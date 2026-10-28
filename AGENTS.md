@@ -29,6 +29,8 @@ Read README.md, docs/requirements.md, docs/decisions.md and the latest entry in 
 
 ## Recordkeeping and verification
 
+- The user explicitly requires a full proper migration preserving JAKH's business logic. Read docs/migration/README.md and the relevant comparison rows before advancing a domain. Complete its evidence-backed fields, relationships, rules, state/permission transitions and exception contract before treating it as ready for implementation acceptance. Preserve supporting ERP and configuration functions; do not substitute static examples for operational coverage.
+- Use F001-F267 comparison IDs and M01-M34 proposed data-contract IDs to connect implementation, tests and source evidence. All current parity acceptance examples are unrun; no row is certified as full parity. Navigation-only source observations require further functional inspection. No production source export/import/reconciliation has occurred.
 - Log completed work, relevant checks, limitations and next steps in docs/project-log.md.
 - Keep credentials and private environment settings out of Git. Do not preserve the login supplied in chat.
 - Preserve historical study revisions and evidence provenance. A visible field or menu is not proof of an enforced end-to-end workflow; an empty sampled list is not proof of absence.

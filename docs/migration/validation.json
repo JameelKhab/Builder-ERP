@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-28",
+  "application_baseline": "3d941a0",
+  "inventory_checks": "passed: 42 areas, 267 unique recorded paths, 96 groups, 21 domains, 34 data contracts, 18 requirement rows; CSV/JSON/HTML agreement",
+  "all_parity_acceptance_statuses": "NOT RUN",
+  "pdf": {
+    "pages": 39,
+    "visual_review": "All pages inspected in five contact sheets; detailed inspection of mapping, subcontract and migration pages. No clipping/overlap observed. Final extracted body identical to rendered body.",
+    "minimum_content_bottom_pt": 139.49,
+    "replacement_glyphs": 0
+  },
+  "browser": {
+    "area_filter": "Subcontract finance returned F095-F097",
+    "exact_search": "F091 returned one certificate row",
+    "expanded_details": "source, gap, rule, data and acceptance text visible",
+    "status_filter": "Partial implementation returned seven destinations",
+    "empty_search": "zero rows with clear empty message",
+    "clear_filters": "restored 267 destinations",
+    "layout": "1280 CSS px; document width 1280; desktop screenshot visually inspected"
+  },
+  "source_manifest": "archive and fresh capture hashes verified",
+  "application_tests": "Not rerun: no application code changed. Prior 30 tests do not certify migration parity.",
+  "scope_limit": "No source production export/import or end-to-end source transition tests; no completed migration claimed."
+}

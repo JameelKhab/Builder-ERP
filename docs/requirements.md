@@ -6,6 +6,8 @@ This editable baseline accompanies the [53-page Revision 4 study](study/JAKH-ERP
 
 Create an original construction ERP for the journey from tendering to handover, defect obligations and final settlement. Use no Odoo application code. Prioritise simple navigation, clear next actions and rich, source-linked information. Work and commit locally; the user has deferred GitHub syncing. Do not push until instructed, deploy to jakh.net or modify the demo.
 
+The user clarified that this means a **full proper migration**, preserving the strong existing JAKH business logic. The first local increment does not meet that scope. The [267-destination comparison](migration/README.md) records the correction: original implementation must preserve functions, data relationships, approved versions, quantities/balances, histories, permissions, reports and exceptions. Simplifying navigation is not permission to reduce business capability. Exact source-export/schema mapping and reconciliation remain unfinished; proposed mappings are not executed migration work.
+
 ## Experience requirements
 
 - Product name: **Builder ERP**.

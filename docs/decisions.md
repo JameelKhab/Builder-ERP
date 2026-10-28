@@ -21,6 +21,7 @@ Last updated: 28 October 2026, Asia/Dubai.
 | D-013 | Choice 2 with clearer categories | User selected Project briefing and emphasised easy reading, easy operation and rich information. Refined before implementation. |
 | D-014 | Product name: Builder ERP | Explicit user correction; apply to the application, titles and exports. Company identities remain separate. |
 | D-015 | Examples for every provided feature | Add discoverable, meaningful scenarios in every supplied company/project and preserve existing local work. |
+| D-016 | Full proper migration preserving JAKH logic | User rejected the shallow functional coverage and requested a full comparison, not a list of gaps supplied by them. Preserve all existing capabilities or explicitly resolve a change; original code does not mean discarding business rules. |
 
 ## Proposed design decisions, pending validation
 
@@ -54,3 +55,10 @@ These are open inputs, not permission to silently replace requested functions wi
 - Report facts are deterministic; Explain findings uses those same facts and source items. No external AI model, payment service or accounting system is connected.
 - The local sample actor is server-selected. Production identity, policy administration, audit hardening, backup/recovery and localisation remain required.
 - Preserve the entire requested scope in the implementation coverage matrix. A navigable sample register is not a completed workflow.
+
+## Correction after the user's migration challenge
+
+- The earlier discovery and initial implementation did not complete the required business-rule/data/exception mapping. Advancing the UI and sample coverage did not satisfy the migration objective.
+- `docs/migration/` is the corrective baseline: 42 areas, 267 recorded navigation destinations, 21 workstreams and 34 proposed data contracts. The complete inventory comparison does not certify hidden workflow behaviour or data migration.
+- Keep the selected visual direction, but add named browse routes and typed services for omitted functions, including original finance, stores, HR, configuration and integrations. No silent scope removal or third-party substitution.
+- Future domain acceptance requires source evidence, business invariants, authorisation/exception tests, connected end-to-end evidence and reconciliation. The actual source export/schema, production identity, data migration/recovery and user validation remain open.

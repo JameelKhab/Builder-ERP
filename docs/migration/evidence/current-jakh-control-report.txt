@@ -1,0 +1,324 @@
+Browser tab: 6, Title: "Construction control · Marina Gate Residences G+4 · 10/28/2026", URL: "https://demo.jakh.net/jakh/action-604/jakh.construction.report/25".
+1 AXWebArea Construction control · Marina Gate Residences G+4 · 10/28/2026, URL: demo.jakh.net/jakh/action-604/jakh.construction.report/25
+	2 container
+		68 button (collapsed) Description: Open navigation, Secondary Actions: Expand
+		69 container
+			70 button arrow_back
+				71 text arrow_back
+			72 text Construction control · Marina Gate Residences G+4 · 10/28/2026
+			73 button (collapsed) Messages 1, Secondary Actions: Expand
+				74 container Messages
+				75 text 1
+			76 button (collapsed) Activities, Secondary Actions: Expand
+				77 container Activities
+			78 button (collapsed) Description: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			79 button التبديل إلى العربية
+			80 button Toggle menu
+				81 image
+					82 container User is online
+		67 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		83 container
+			84 button New
+			85 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+			86 container Pager
+				87 container
+					88 button (disabled) Previous
+						89 text arrow_back_ios_new
+					90 button (disabled) Next
+						91 text arrow_forward_ios
+			92 container
+				93 button Generate report
+				94 button (collapsed) arrow_drop_down, Help: More, Secondary Actions: Expand
+					95 text arrow_drop_down
+			96 container
+				97 heading Construction control · Marina Gate Residences G+4 · 10/28/2026, Value: 1
+					98 text Construction control · Marina Gate Residences G+4 · 10/28/2026
+				99 text Report Type
+				100 container
+					101 text field (settable) Report Type, Value: BOQ and building cost, ID: report_type_0
+				102 text Project
+				103 text field Project, Value: Marina Gate Residences G+4, ID: project_id_0
+				104 text Company
+				105 link Description: JAKH Demo Contracting LLC, Value: demo.jakh.net/odoo/res.company/2
+				106 text Currency
+				107 link Description: AED, Value: demo.jakh.net/odoo/res.currency/129
+				108 text As Of Date
+				109 button As Of Date, ID: as_of_date_0
+				110 text Generated At Oct 28, 10:35 PM WHOLE-PROJECT PERFORMANCE Revised Budget 26,650,000.00 AED Actual Cost 14,055,081.01 AED Forecast Final Cost 26,117,000.00 AED Commitments 7,231,498.00 AED Forecast Margin 6,702,835.00 AED Matched posted receipts (tax-inclusive) 15,675,795.22 AED Physical progress
+				111 text 64.80%
+				112 text Certified financial progress
+				113 text 65.14%
+				114 text Posted billing progress
+				115 text 55.28%
+				116 text FORECAST COMPARISON Forecast comparison
+				117 text Below budget
+				118 text Forecast variance to budget
+				119 text ?
+				120 text -533,000.00 AED
+				121 text Forecast final cost is 533,000.00 AED below the revised budget. This is forecast headroom, not realized profit.
+				122 text Approved WBS forecast coverage
+				123 text 4 of 4 WBS have an approved forecast; 0 use the revised budget provisionally.
+				124 text Forecast basis
+				125 text Latest approved WBS forecasts; WBS without an approved forecast use revised budget as a provisional estimate.
+				126 text Project performance is for the whole project. Detail filters affect only the BOQ/location table. An Undefined percentage means missing approved progress or a non-positive denominator, not zero progress. DETAIL FILTERS Wbs
+				127 text field Wbs, ID: wbs_id_0
+				128 text BOQ item
+				129 text field BOQ item, ID: contract_line_id_0
+				130 text Location
+				131 text field Location, ID: location_id_0
+				132 text Discipline
+				133 text field Discipline, ID: discipline_id_0
+				134 text Some facts have no approved BOQ or building allocation. Unallocated rows remain in the totals; they are never divided between buildings without evidence. UNALLOCATED IN SELECTED DETAIL Unallocated detail rows
+				135 text 4
+				136 text Unallocated posted actual cost 0.00 AED
+				137 table
+					138 row
+						139 cell
+							140 text Wbs
+							141 text swap_vert
+						142 cell
+							143 text BOQ item
+							144 text swap_vert
+						145 cell
+							146 text Building
+							147 text swap_vert
+						148 cell
+							149 text Location
+							150 text swap_vert
+						151 cell
+							152 text Discipline
+							153 text swap_vert
+						154 cell
+							155 text Allocation Status
+							156 text swap_vert
+						157 cell
+							158 text Original budget
+							159 text swap_vert
+						160 cell
+							161 text Revised budget
+							162 text swap_vert
+						163 cell
+							164 text Approved commitments
+							165 text swap_vert
+						166 cell
+							167 text Posted actual cost
+							168 text swap_vert
+						169 cell
+							170 button (collapsed) tune, Secondary Actions: Expand
+								171 text tune
+					172 row
+						173 cell
+							174 text Finishes, doors and façade
+						175 cell
+							176 text Finishes, doors and façade
+						177 cell
+							178 text Main site
+						179 cell
+							180 text Main site
+						181 cell
+							182 text Building works
+						183 cell
+							184 text Allocated
+						185 cell
+							186 text 7,100,000.00 AED
+						187 cell
+							188 text 7,100,000.00 AED
+						189 cell
+							190 text 2,225,028.00 AED
+						191 cell
+							192 text 4,360,224.00 AED
+						193 cell
+							194 button fa-external-link Source facts
+								195 text fa-external-link
+								196 text Source facts
+						197 cell
+					198 row
+						199 cell
+							200 text Finishes, doors and façade
+						201 cell
+							202 text Finishes, doors and façade
+						203 cell
+						204 cell
+						205 cell
+							206 text Building works
+						207 cell
+							208 text Unallocated / incomplete
+						209 cell
+							210 text 0.00 AED
+						211 cell
+							212 text 0.00 AED
+						213 cell
+							214 text 0.00 AED
+						215 cell
+							216 text 0.00 AED
+						217 cell
+							218 button fa-external-link Source facts
+								219 text fa-external-link
+								220 text Source facts
+						221 cell
+					222 row
+						223 cell
+							224 text Frame, slabs and blockwork
+						225 cell
+							226 text Frame, slabs and blockwork
+						227 cell
+							228 text Main site
+						229 cell
+							230 text Main site
+						231 cell
+							232 text Building works
+						233 cell
+							234 text Allocated
+						235 cell
+							236 text 8,600,000.00 AED
+						237 cell
+							238 text 8,600,000.00 AED
+						239 cell
+							240 text 5,006,470.00 AED
+						241 cell
+							242 text 6,324,447.00 AED
+						243 cell
+							244 button fa-external-link Source facts
+								245 text fa-external-link
+								246 text Source facts
+						247 cell
+					248 row
+						249 cell
+							250 text Frame, slabs and blockwork
+						251 cell
+							252 text Frame, slabs and blockwork
+						253 cell
+						254 cell
+						255 cell
+							256 text Building works
+						257 cell
+							258 text Unallocated / incomplete
+						259 cell
+							260 text 0.00 AED
+						261 cell
+							262 text 0.00 AED
+						263 cell
+							264 text 0.00 AED
+						265 cell
+							266 text 0.00 AED
+						267 cell
+							268 button fa-external-link Source facts
+								269 text fa-external-link
+								270 text Source facts
+						271 cell
+					272 row
+						273 cell
+							274 text MEP and lifts
+						275 cell
+							276 text MEP and lifts
+						277 cell
+							278 text Main site
+						279 cell
+							280 text Main site
+						281 cell
+							282 text Building works
+						283 cell
+							284 text Allocated
+						285 cell
+							286 text 5,150,000.00 AED
+						287 cell
+							288 text 5,150,000.00 AED
+						289 cell
+							290 text 0.00 AED
+						291 cell
+							292 text 1,585,170.01 AED
+						293 cell
+							294 button fa-external-link Source facts
+								295 text fa-external-link
+								296 text Source facts
+						297 cell
+					298 row
+						299 cell
+							300 text MEP and lifts
+						301 cell
+							302 text MEP and lifts
+						303 cell
+						304 cell
+						305 cell
+							306 text Building works
+						307 cell
+							308 text Unallocated / incomplete
+						309 cell
+							310 text 0.00 AED
+						311 cell
+							312 text 0.00 AED
+						313 cell
+							314 text 0.00 AED
+						315 cell
+							316 text 0.00 AED
+						317 cell
+							318 button fa-external-link Source facts
+								319 text fa-external-link
+								320 text Source facts
+						321 cell
+					322 row
+						323 cell
+							324 text Piling, raft and basement
+						325 cell
+							326 text Piling, raft and basement
+						327 cell
+							328 text Main site
+						329 cell
+							330 text Main site
+						331 cell
+							332 text Building works
+						333 cell
+							334 text Allocated
+						335 cell
+							336 text 5,800,000.00 AED
+						337 cell
+							338 text 5,800,000.00 AED
+						339 cell
+							340 text 0.00 AED
+						341 cell
+							342 text 1,785,240.00 AED
+						343 cell
+							344 button fa-external-link Source facts
+								345 text fa-external-link
+								346 text Source facts
+						347 cell
+					348 row
+						349 cell
+							350 text Piling, raft and basement
+						351 cell
+							352 text Piling, raft and basement
+						353 cell
+						354 cell
+						355 cell
+							356 text Building works
+						357 cell
+							358 text Unallocated / incomplete
+						359 cell
+							360 text 0.00 AED
+						361 cell
+							362 text 0.00 AED
+						363 cell
+							364 text 0.00 AED
+						365 cell
+							366 text 0.00 AED
+						367 cell
+							368 button fa-external-link Source facts
+								369 text fa-external-link
+								370 text Source facts
+						371 cell
+					372 row
+						373 cell
+							374 text 26,650,000.00 AED
+						375 cell
+							376 text 26,650,000.00 AED
+						377 cell
+							378 text 7,231,498.00 AED
+						379 cell
+							380 text 14,055,081.01 AED
+				381 content list
+					382 tab (selectable, settable, boolean) Detailed calculation basis, Value: 0
+				383 text Company currency, tax-exclusive signed approved and posted facts as of the report date. Received exposure is not added to actual costs. Each BOQ/location fact appears once; historical WBS-only data remains unallocated. WBS forecasts remain at project summary level, never silently split by building. Physical progress uses the latest accepted schedule percentage, weighted by original WBS budget; it is undefined if a funded WBS lacks status. Financial progress is approved certified gross divided by revised contract value; billing is posted gross divided by that same value. Values can be negative or exceed 100% after controlled adjustments. Matched receipts are tax-inclusive allocations of posted native payments or bank statements, including advances and retention releases; credits and write-offs are excluded and bank clearance is not asserted. Unbilled includes draft invoices and posted credits not yet acknowledged as cancelled measurements; age starts at approval, or certificate date for historical approvals without a timestamp.
+
+Latest approved WBS forecasts; WBS without an approved forecast use revised budget as a provisional estimate.
+
+The focused UI element is 1 AXWebArea Construction control · Marina Gate Residences G+4 · 10/28/2026, URL: demo.jakh.net/jakh/action-604/jakh.construction.report/25

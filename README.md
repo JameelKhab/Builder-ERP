@@ -6,6 +6,8 @@ The priority is a simple interface with rich, traceable information. The replace
 
 ## Current status
 
+**Correction after functional comparison:** the current application is a narrow local increment, not a full migration or functionally equivalent replacement. Implementation advanced before the detailed business-rule/data mapping required by the study. The [comparison and migration correction](docs/migration/README.md) now accounts for all 42 recorded primary areas and 267 recorded destination controls. It identifies missing operational/financial logic and proposed acceptance/data contracts. Navigation coverage is not verified workflow parity; most source rules and the real data migration remain to be completed.
+
 **The first working local increment is implemented**, following the user's selection of [choice 2, Project briefing](docs/design/visual-directions.md), refined into clearer information categories. Open the running development app at **http://127.0.0.1:4173/**.
 
 Working features include persistent purchase requests, vendor quote repricing/currencies, independent approval, company/project scopes, cost reports with deterministic findings, source breakdown and CSV export. Other construction registers are read-only synthetic examples. The **Examples** button opens a guide covering every available feature. A versioned pack adds **102 examples** across all three sample projects and both companies, including connected records and four purchase-request stages. See [example coverage](docs/implementation/examples.md). **The complete ERP is still in development; this is not a production release.** See [implemented scope and next increments](docs/implementation/local-increment-1.md).
@@ -19,6 +21,7 @@ Discovery remains recorded in the 53-page Revision 4 study. The navigation has b
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
 - [Decisions](docs/decisions.md): user requirements, proposals and unresolved choices.
 - [Project log](docs/project-log.md): work completed, evidence and next steps.
+- [Full comparison register and correction report](docs/migration/README.md): every recorded source destination, actual Builder gap, required behaviour, migration data and acceptance examples.
 - [Current study](docs/study/JAKH-ERP-Read-Only-Study.pdf): the complete report; new company/currency/reporting/AI requirements are on pages 44-53.
 - [Study contents and history](docs/study/README.md): prior revisions, source evidence and authoring material.
 

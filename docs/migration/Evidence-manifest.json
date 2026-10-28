@@ -1,0 +1,984 @@
+{
+  "legacy_archive": "docs/study/Source-evidence.zip",
+  "archive_sha256": "24438152f5e5219b1b3be6c25b528a493ef6b1d632476a3ecd6d91f0c21f3cb7",
+  "source_navigation": "jakh-study-evidence/41-admin-navigation-expanded-ax.txt",
+  "source_entries": [
+    {
+      "path": "jakh-study-evidence/02-dashboard-desktop-ax.txt",
+      "sha256": "4110ff8a3669db0e38e1a6084ac519e76e89df281d68245fd1c9cfa0a355d8ca",
+      "bytes": 9756
+    },
+    {
+      "path": "jakh-study-evidence/05-estimate-record-ax.txt",
+      "sha256": "2adfd5602882fa201a3d1799a608dd4d11b245b5b82c779a9c159adfb9111ea3",
+      "bytes": 11817
+    },
+    {
+      "path": "jakh-study-evidence/06-project-from-estimate-ax.txt",
+      "sha256": "d848028c103cc6b8f4b97abbf38ee4a563c9892914c6e577aa1eb09a314c28f9",
+      "bytes": 9312
+    },
+    {
+      "path": "jakh-study-evidence/07-project-more-links-ax.txt",
+      "sha256": "6eacfd0869ac80bcf349dba43f5a37551a1e494641e2298ae45fd183aa61aaaf",
+      "bytes": 11090
+    },
+    {
+      "path": "jakh-study-evidence/09-drawing-revisions-ax.txt",
+      "sha256": "64e6e2d9abf033ec491006ba154a1655f011dcf5fc1160d93aeda450ce0771a5",
+      "bytes": 11705
+    },
+    {
+      "path": "jakh-study-evidence/10-snags-list-ax.txt",
+      "sha256": "35026a8f5e915b7dae39f05fcabc72320252edc23efea9535dce23862d850291",
+      "bytes": 4244
+    },
+    {
+      "path": "jakh-study-evidence/11-snags-unfiltered-ax.txt",
+      "sha256": "27d108d5d2f0717aa14a21b22e7cdb4e66c4f265d46ee2b19226d3e009b908ce",
+      "bytes": 9429
+    },
+    {
+      "path": "jakh-study-evidence/12-final-accounts-list-ax.txt",
+      "sha256": "2e7dfbeaba927f84596e2ff5973d9e854a4c6228a2889b19e9bc5c7460a0aaa2",
+      "bytes": 9881
+    },
+    {
+      "path": "jakh-study-evidence/13-final-account-record-ax.txt",
+      "sha256": "3eb4add9b68ffc5f87b7d804dfd4cba3e7380accb1f8aa58cf84f1092a42c18a",
+      "bytes": 10926
+    },
+    {
+      "path": "jakh-study-evidence/14-certificates-list-ax.txt",
+      "sha256": "814ceb87809216bdb27d65c224567e9a1710118edcfcd15e3ed92180b76d6161",
+      "bytes": 10489
+    },
+    {
+      "path": "jakh-study-evidence/15-certificate-record-ax.txt",
+      "sha256": "9d0091a5e6699520f275a46b77cdcc0844edd4358ef2740132602d3c85bb81d2",
+      "bytes": 15205
+    },
+    {
+      "path": "jakh-study-evidence/16-client-contract-ax.txt",
+      "sha256": "f6d367216aa3ba6278e3440ddbf45ab4f9a66bfc97e46dc1c506b5e6e004799e",
+      "bytes": 15226
+    },
+    {
+      "path": "jakh-study-evidence/17-contract-cash-closeout-ax.txt",
+      "sha256": "8ed8ee368a922b74ea123bbd27643dc1259cd9332eb295ad057961d5225f1673",
+      "bytes": 13307
+    },
+    {
+      "path": "jakh-study-evidence/18-requisitions-list-ax.txt",
+      "sha256": "7829c5384777f02238a6fd3275c6579ed26940cd6773348e72edae1feb1ad077",
+      "bytes": 11483
+    },
+    {
+      "path": "jakh-study-evidence/19-requisition-record-ax.txt",
+      "sha256": "bc6ddb717b992bdc610cf74e5189eab9631e696d36c6beaf7fba5429c3863191",
+      "bytes": 11779
+    },
+    {
+      "path": "jakh-study-evidence/20-linked-purchase-order-ax.txt",
+      "sha256": "094f16a5d66f0ddecdcd5e3595cf62452a72eb1b9045c4c8dbdbdee91548e741",
+      "bytes": 10444
+    },
+    {
+      "path": "jakh-study-evidence/21-purchase-order-record-ax.txt",
+      "sha256": "fd6b4b4b70305e99c99694a23ab3f50e6d7f5586412caa8bd021e66bdd5f3e3d",
+      "bytes": 13181
+    },
+    {
+      "path": "jakh-study-evidence/22-material-receipt-ax.txt",
+      "sha256": "7fe6297a2e60b9e55ffe532d3c712acec1a8d8de6831ea53c6aed94d29ec6910",
+      "bytes": 11304
+    },
+    {
+      "path": "jakh-study-evidence/23-site-diaries-list-ax.txt",
+      "sha256": "f02317673bbbcffc50f3fafd36e8387d78210355c2a67ec1b7bdd78b896c9655",
+      "bytes": 9510
+    },
+    {
+      "path": "jakh-study-evidence/24-wbs-list-ax.txt",
+      "sha256": "17565f895f4dde99b831db8ef3ed7ace1c08c42f3880f5e78ddfa433bf376e32",
+      "bytes": 11506
+    },
+    {
+      "path": "jakh-study-evidence/25-wbs-record-ax.txt",
+      "sha256": "dabbe43c5d2bf1f5cb31a84917b51398da8040e15de3beaac56c4cca9679107b",
+      "bytes": 9946
+    },
+    {
+      "path": "jakh-study-evidence/26-project-setup-list-ax.txt",
+      "sha256": "9a116cc2da6d8c006eeace58eb9144f923daa1808c8b25b377c9dcc6920d0f8c",
+      "bytes": 9271
+    },
+    {
+      "path": "jakh-study-evidence/27-subcontract-applications-ax.txt",
+      "sha256": "5244005f1dcd647f715d18b86fbd7ff215a9b2a71833e2d698850857991e71e6",
+      "bytes": 9341
+    },
+    {
+      "path": "jakh-study-evidence/27-subcontract-applications-unfiltered-ax.txt",
+      "sha256": "4a496cb06b06fc9ab3a2be7d33e5d16aa2a9d101aa00c083acdcb15de22ae45d",
+      "bytes": 9186
+    },
+    {
+      "path": "jakh-study-evidence/28-service-entries-list-ax.txt",
+      "sha256": "d4bcd5f88c7e88b722534857ac1e34a6c4bb6940056a822649eb6abdcd12cc65",
+      "bytes": 11685
+    },
+    {
+      "path": "jakh-study-evidence/29-service-entry-record-ax.txt",
+      "sha256": "50f199173e20604ea045d1c06a7fc4a781d3aa475544252823862b2f6f13982d",
+      "bytes": 11843
+    },
+    {
+      "path": "jakh-study-evidence/30-site-engineer-view-ax.txt",
+      "sha256": "c804c3739e6efa8fcbdddffe1d302cbc0bf52cb5ca57b26ec495d3fb467fda06",
+      "bytes": 8598
+    },
+    {
+      "path": "jakh-study-evidence/31-role-projects-ax.txt",
+      "sha256": "20f20efd3af658d84cedb8ae957f53165b2dd9183ea05b0516dd4a47d47f873c",
+      "bytes": 3769
+    },
+    {
+      "path": "jakh-study-evidence/32-site-project-workspace-ax.txt",
+      "sha256": "c97eb5aca949636535e63c5c88f672db149d88b8b17ccb5eefe38d1fa83de82e",
+      "bytes": 5116
+    },
+    {
+      "path": "jakh-study-evidence/33-site-project-more-ax.txt",
+      "sha256": "48cc0fd37859a7934be6f00456a54e725b59a0f9f7cc79ca90f45a542797c0a0",
+      "bytes": 5743
+    },
+    {
+      "path": "jakh-study-evidence/34-site-snags-register-ax.txt",
+      "sha256": "e6ab7910b7434760f41b610b417be52f7302bc51fbe08831716849f669dca4e3",
+      "bytes": 7115
+    },
+    {
+      "path": "jakh-study-evidence/35-snag-record-ax.txt",
+      "sha256": "024faf94e9ad7e3699fdaae9aa72b3aef985ed9189b68783c7ace058030e41f0",
+      "bytes": 5016
+    },
+    {
+      "path": "jakh-study-evidence/36-site-diaries-populated-ax.txt",
+      "sha256": "d40fa024214ceada1d61c013b3461ebf914c1e4a37e62853fd3d0e84518f2fbf",
+      "bytes": 25725
+    },
+    {
+      "path": "jakh-study-evidence/37-site-diary-record-ax.txt",
+      "sha256": "350882e402daabcec2ddaa8d266cbfcd5877a649d71e0f45bdb057b8ffd0e270",
+      "bytes": 4771
+    },
+    {
+      "path": "jakh-study-evidence/38-site-diary-events-ax.txt",
+      "sha256": "5552f54cc3b2a4560fbad9b892acc2fa5a6d9120dcd9db19e6ebe101547cefbb",
+      "bytes": 3990
+    },
+    {
+      "path": "jakh-study-evidence/39-admin-fuller-company-ax.txt",
+      "sha256": "27fb199632b560b06cadfcd8a50fb5786478ce5270fab70f6078481dc2df03ae",
+      "bytes": 11958
+    },
+    {
+      "path": "jakh-study-evidence/40-project-control-report-ax.txt",
+      "sha256": "45dbc7308864c143bb53ddcd46e44bcb3d3a77e9e50a99f15a2d73681bad7ef9",
+      "bytes": 14586
+    },
+    {
+      "path": "jakh-study-evidence/41-admin-navigation-expanded-ax.txt",
+      "sha256": "a304d5dfeb8a0b18ab0a70fdabeb60466d6e8ace148a6af86e436768e764aa10",
+      "bytes": 35075
+    },
+    {
+      "path": "jakh-study-evidence/42-schedule-progress-ax.txt",
+      "sha256": "1335c993ed083522f904845e7986b9aa824cc2cd76a0b25f80009691d36c2f15",
+      "bytes": 77612
+    },
+    {
+      "path": "jakh-study-evidence/43-full-document-register-ax.txt",
+      "sha256": "4ac63069c461580db16d9e8aade6b08c38d0d15bd1529e0f32c7186109bf7943",
+      "bytes": 33021
+    },
+    {
+      "path": "jakh-study-evidence/44-building-drawing-ax.txt",
+      "sha256": "20267cf06181cfad901147ea5ac6c589cdcd9698c3ac4b6a4b4240442a8ad0da",
+      "bytes": 27849
+    },
+    {
+      "path": "jakh-study-evidence/45-document-types-ax.txt",
+      "sha256": "3ec53c09a33edeb7ef0c7061852e8a0db5a8a520083ea8bda5d746b206d89c17",
+      "bytes": 28177
+    },
+    {
+      "path": "jakh-study-evidence/46-variations-list-ax.txt",
+      "sha256": "bf8645735fbaf0c712b040a05bd464fe272c151a23b32028b5c3df16840c81a3",
+      "bytes": 35381
+    },
+    {
+      "path": "jakh-study-evidence/47-variation-record-ax.txt",
+      "sha256": "f57bc6c8e8fe7e3fe55b3a3fa6c530f6eadf57c6b433cbddcca7e3a135f0585e",
+      "bytes": 27078
+    },
+    {
+      "path": "jakh-study-evidence/48-full-closeout-list-ax.txt",
+      "sha256": "a9e5316d106ff2bc945e650257ef14737d7323cb6e822182c94724f4d756bc06",
+      "bytes": 26096
+    },
+    {
+      "path": "jakh-study-evidence/49-full-final-account-record-ax.txt",
+      "sha256": "6aeb361feb4d396a0c1750aaf429585b4983c8db07370328becdd96ab748ff24",
+      "bytes": 26928
+    },
+    {
+      "path": "jakh-study-evidence/50-estimator-dashboard-ax.txt",
+      "sha256": "1ab6be2dc23ac3f333d40d378a8369ecedab310fb64159480a15ed53946cad5f",
+      "bytes": 7838
+    },
+    {
+      "path": "jakh-study-evidence/51-tender-pipeline-ax.txt",
+      "sha256": "ba08545aacd8d27c036ea68a52da259267b38d889f2a6c50c7c0d9afc7b7f708",
+      "bytes": 4182
+    },
+    {
+      "path": "jakh-study-evidence/52-estimator-studies-ax.txt",
+      "sha256": "c3096ae6606cd7b0e9f4cb25930ba5008d42341f7f8dc9a7b549778f77bd6de9",
+      "bytes": 7681
+    },
+    {
+      "path": "jakh-study-evidence/53-project-manager-dashboard-ax.txt",
+      "sha256": "9c9754a60f12834dd68ec6e188e5e585e3899809fb57d938b8c24065eefdd14f",
+      "bytes": 16946
+    },
+    {
+      "path": "jakh-study-evidence/54-approvals-activities-ax.txt",
+      "sha256": "686200319a21b93cb379424f61bd09c8efee4f54b45bc8b13fba9ca6e8a87e82",
+      "bytes": 4681
+    },
+    {
+      "path": "jakh-study-evidence/55-restored-initial-context-ax.txt",
+      "sha256": "7513167bdd782c33241f9c62db795158f08aebfc85258e6423fd0f2e5c7c87fd",
+      "bytes": 6704
+    },
+    {
+      "path": "jakh-study-evidence/56-quality-register-ax.txt",
+      "sha256": "4dfa09f044def6787469100321c115ea017ab728ee97462e6e1737f714f54823",
+      "bytes": 44136
+    },
+    {
+      "path": "jakh-study-evidence/57-ncr-record-ax.txt",
+      "sha256": "4d8a4be4f62e2c3570b272a48fc82ae18c08be0bfb6a4554d962382b4038ae11",
+      "bytes": 6771
+    },
+    {
+      "path": "jakh-study-evidence/58-ncr-resolution-ax.txt",
+      "sha256": "345fa33aab747b8513b8053445fe231bd2473932ea90dcc6a54f6a9ea1470943",
+      "bytes": 6731
+    },
+    {
+      "path": "jakh-study-evidence/59-ncr-lifecycle-ax.txt",
+      "sha256": "1a8e5b324f539ea2cf7f00f65583f9d01521ebc5863f309914e80f5b8428a835",
+      "bytes": 6842
+    },
+    {
+      "path": "jakh-study-evidence/60-ncr-reference-note.txt",
+      "sha256": "c07b511df072e5da283a728f3d91036fde39ddb0fbc22e6c98a7c7ba5dfef5ab",
+      "bytes": 360
+    },
+    {
+      "path": "jakh-study-evidence/61-equipment-register-ax.txt",
+      "sha256": "4567c579de6797eb2972b5d28c797189c21ca78e5867c69ca499d0d615303c04",
+      "bytes": 9842
+    },
+    {
+      "path": "jakh-study-evidence/62-equipment-record-ax.txt",
+      "sha256": "3380b5953671b8431bf05700415eb7d6ea171c2614ada751b30a91251acddd87",
+      "bytes": 7408
+    },
+    {
+      "path": "jakh-study-evidence/63-equipment-product-ax.txt",
+      "sha256": "16433c1dc31e1a62c315d6d8afe79f005d4e197ff85e88f539960e91badffd01",
+      "bytes": 7897
+    },
+    {
+      "path": "jakh-study-evidence/64-equipment-maintenance-ax.txt",
+      "sha256": "0cca1369f7b898c3815e3600ff3d1fa86a3368deb53593908eaf1bd4021d3f00",
+      "bytes": 7693
+    },
+    {
+      "path": "jakh-study-evidence/65-boq-cost-report-entry-ax.txt",
+      "sha256": "3fe4eee0319595c466b8d99a36501f6c6635ee4aed628dd2e4c70d916c9433a0",
+      "bytes": 6707
+    },
+    {
+      "path": "jakh-study-evidence/66-building-control-report-ax.txt",
+      "sha256": "76552977249fee966e03b905488eaf07a48106e5badba08652561b98b8ea6f3c",
+      "bytes": 15972
+    },
+    {
+      "path": "jakh-study-evidence/67-building-cost-detail-ax.txt",
+      "sha256": "8f439004263db5bf34ed65ee2f2df9cb8bc432b5c9295cd8003c36e535b7f65a",
+      "bytes": 15972
+    },
+    {
+      "path": "jakh-study-evidence/68-cost-optional-columns-ax.txt",
+      "sha256": "3793fdf842e0d7cd05be1cb5a236392576c748f1bfc49f8be1931f2799183482",
+      "bytes": 16994
+    },
+    {
+      "path": "jakh-study-evidence/69-cost-source-facts-ax.txt",
+      "sha256": "7937dc3b3237fcbe605bb18f92d8b2a7bce5d38738d7e387e16dd8b227388657",
+      "bytes": 34058
+    },
+    {
+      "path": "jakh-study-evidence/70-subcontract-bill-ax.txt",
+      "sha256": "0c431cce2167e2a65906cfc32d769592b9089b0d307cd22c117610f5dd6eeb8e",
+      "bytes": 10502
+    },
+    {
+      "path": "jakh-study-evidence/71-supplier-certificate-ax.txt",
+      "sha256": "e3597fb9dfb4779469403afd056831415531f8650f8833d1cd09678d4a751d91",
+      "bytes": 8692
+    },
+    {
+      "path": "jakh-study-evidence/72-subcontract-finance-agreement-ax.txt",
+      "sha256": "4d33b40a9f1c650504d0ceee52c2eea5b84316c909f1166821f6fbfcd50a723e",
+      "bytes": 12944
+    },
+    {
+      "path": "jakh-study-evidence/73-company-cash-flow-ax.txt",
+      "sha256": "45626808001c71bb5e86ed426cad43ce5f1a6574d6ea4372cf3a3546fcad908f",
+      "bytes": 7375
+    },
+    {
+      "path": "jakh-study-evidence/74-cash-flow-results-ax.txt",
+      "sha256": "57976fe4232d4efbe73b63ea30107cd2fe87fcbe89d2f08349bfcff30730248d",
+      "bytes": 7616
+    },
+    {
+      "path": "jakh-study-evidence/75-cash-policy-register-ax.txt",
+      "sha256": "35608e2c2eb7e91d7c6106730e237a82a785d56f4699a323dbffea63be1d9316",
+      "bytes": 6154
+    },
+    {
+      "path": "jakh-study-evidence/76-project-cash-forecasts-ax.txt",
+      "sha256": "baa3614960fdf64970053dea42bd0495575a126b9d08361c1d62bebec9b21748",
+      "bytes": 6424
+    },
+    {
+      "path": "jakh-study-evidence/77-scrap-register-ax.txt",
+      "sha256": "6dd496a8c0fa27c6704fb31f7bf70727f607c0fdb181129152cc760e082dc2d4",
+      "bytes": 6921
+    },
+    {
+      "path": "jakh-study-evidence/78-scrap-form-ax.txt",
+      "sha256": "1209e5e0ace5c05a17dc162427213f8da38b39753338070d27502850318b1f7a",
+      "bytes": 7397
+    },
+    {
+      "path": "jakh-study-evidence/79-schedule-register-ax.txt",
+      "sha256": "82f6ba3404abe1da883402ea00daa3b12aefbfcc428cc73ba4ebb4c98dbd5139",
+      "bytes": 56988
+    },
+    {
+      "path": "jakh-study-evidence/80-schedule-record-ax.txt",
+      "sha256": "59e9555781e3fb357bdf9bddcfa8012e4a67c8555406a4f2a86e0112e28c3f5b",
+      "bytes": 8385
+    },
+    {
+      "path": "jakh-study-evidence/81-project-audit-ax.txt",
+      "sha256": "8f267bbebe33b122b4ce39605a26766254f7fc9f87f11618c7e642447d62389b",
+      "bytes": 57709
+    },
+    {
+      "path": "jakh-study-evidence/82-review-turnaround-ax.txt",
+      "sha256": "1870a4d4898c94b5bd56f81f8ff693fc612b0fb56e88e61ec615d0f4fdd5a122",
+      "bytes": 26880
+    },
+    {
+      "path": "jakh-study-evidence/83-saved-dashboards-ax.txt",
+      "sha256": "ce92832c34053d1aea03492281327e5f9f407127bd15c721f85b4513ef364c70",
+      "bytes": 7926
+    },
+    {
+      "path": "jakh-study-evidence/84-project-kpi-dashboard-ax.txt",
+      "sha256": "5b3f07e58faf75e6d7eea0bee8bf216679f977d556470c86521ba6812d03cb23",
+      "bytes": 7976
+    },
+    {
+      "path": "jakh-study-evidence/85-variation-register-ax.txt",
+      "sha256": "6e45e63c2de912032cee1d003dd3e998477453a83de90a3c6ab1b25e7f7aee24",
+      "bytes": 17586
+    },
+    {
+      "path": "jakh-study-evidence/86-variation-detail-ax.txt",
+      "sha256": "ba75bd8ed6b0ad3522ca6c7fbb78f4b963949c85fa5aa965017e4267aacd52f5",
+      "bytes": 9263
+    },
+    {
+      "path": "jakh-study-evidence/87-wbs-budget-register-ax.txt",
+      "sha256": "3a77b05fb8ec0383a169e539169abb97327fc72f7b971e4cc5a4071d03982894",
+      "bytes": 16550
+    },
+    {
+      "path": "jakh-study-evidence/88-wbs-budget-record-ax.txt",
+      "sha256": "8f5789d388ea0e2ab0d0538c82fe3cb8f321b9bbd8c1202193427d26ecde79c2",
+      "bytes": 8526
+    },
+    {
+      "path": "jakh-study-evidence/89-cost-forecast-register-ax.txt",
+      "sha256": "3d150ae36e99edef6f519f07d68adc4a4b32bab9bf5e964884fedffabeb09841",
+      "bytes": 25560
+    },
+    {
+      "path": "jakh-study-evidence/90-approved-cost-forecast-ax.txt",
+      "sha256": "1210075b5580389e49df8bbf8d77b9bc92dfe9f50479370188a070084cb8ce28",
+      "bytes": 9581
+    },
+    {
+      "path": "jakh-study-evidence/91-matched-cash-receipts-ax.txt",
+      "sha256": "73d2ec76b999e01dca46c58dd26653d605bf3c98fbebe9c425589166a78f9eed",
+      "bytes": 8226
+    },
+    {
+      "path": "jakh-study-evidence/92-payment-source-ax.txt",
+      "sha256": "127b63fbe6d6f767cd88bb372d05e6b2723c48b5eb7d9d59640f25b36d843fba",
+      "bytes": 7005
+    },
+    {
+      "path": "jakh-study-evidence/93-followup-context-restored-ax.txt",
+      "sha256": "d3e8b1fd62305a0e0e1fcffef28ac1219f7725270664174f71f2ef250abb6d71",
+      "bytes": 9751
+    },
+    {
+      "path": "jakh-study-evidence/README.json",
+      "sha256": "5755c0d44bd723b44a63b2a04b5f38a37205c0e1b62956b5e78d6d6103704d36",
+      "bytes": 2395
+    },
+    {
+      "path": "jakh-study-evidence/nav-contracts-measured-boq.txt",
+      "sha256": "bfa14e8f38e9049d2a4a8c8e03605a66a58c5867e7847d28befad79b2b253fc5",
+      "bytes": 11462
+    },
+    {
+      "path": "jakh-study-evidence/nav-crm.txt",
+      "sha256": "ea5d2714ac1dbbc9ed6d1ee5280eb613bc026fb035866f664040952c72b58e47",
+      "bytes": 10647
+    },
+    {
+      "path": "jakh-study-evidence/nav-finance.txt",
+      "sha256": "cdb5c9968a99711986bf1d425824fe71eab2fba6d03cbf0b163007bb6d54decf",
+      "bytes": 13058
+    },
+    {
+      "path": "jakh-study-evidence/nav-purchasing.txt",
+      "sha256": "f2e3c72065b40eb21f96d8f67bc399ea7a07bf942ff0a76965478ee6befd082e",
+      "bytes": 11826
+    },
+    {
+      "path": "jakh-study-evidence/nav-quality-hse-specifications.txt",
+      "sha256": "6597a88e36c016f39d8f074798888b87582db5c61590bb42c1dd57d0fe1f54ce",
+      "bytes": 13303
+    },
+    {
+      "path": "jakh-study-evidence/nav-reports.txt",
+      "sha256": "6a79601223ecb72adcc858373a5e8d822bc349599713f319cf863528f566ecf0",
+      "bytes": 10353
+    },
+    {
+      "path": "jakh-study-evidence/nav-sales-quotations.txt",
+      "sha256": "bbe5508e2321cde10d62bf540ed951f2c3ebc49388a04070047a5bca94433ea2",
+      "bytes": 11040
+    },
+    {
+      "path": "jakh-study-evidence/nav-stores-receipts.txt",
+      "sha256": "24e2842a27f80a70021f5e4b7c1c0b415dc4110fbf0bc08c6f3ffefb9601b08c",
+      "bytes": 12502
+    },
+    {
+      "path": "jakh-study-evidence/nav-subcontract-finance.txt",
+      "sha256": "c0462257ee682a5ea39734991e615960891130d26308eb19d63eca05015fc028",
+      "bytes": 12095
+    },
+    {
+      "path": "jakh-study-evidence/nav-wbs-budgets.txt",
+      "sha256": "b4bff5b0f2c55a603fb96554e5ba811be84544a0b130b6d49e4ff05ffd5cbf8b",
+      "bytes": 11219
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/02-dashboard-desktop.png",
+      "sha256": "ec2ca7fbcf1945f4f73f98eb0b91d579e6d39ecdd3406392da106f3aa9ac3a6f",
+      "bytes": 51378
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/04-estimates-list.png",
+      "sha256": "6a2f07e76a4e8f1e020cece6c083f50fe4e5ba71cba6c0805251074c4b1312c9",
+      "bytes": 46857
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/05-estimate-record.png",
+      "sha256": "647fbaf600c0e36524c035e671e0fb04aea0407fb370d25a323c324aca244de3",
+      "bytes": 62688
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/06-project-from-estimate.png",
+      "sha256": "0a2eba4d9c075956120227e00ccf079d73e6f8d842a65f9b927b73911c826b0a",
+      "bytes": 50144
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/08-document-register.png",
+      "sha256": "83807a371b4ff7eaf7df4fb1cc02c29afa434946b3ddd2f7e62406d59d26ec23",
+      "bytes": 42243
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/09-drawing-revisions.png",
+      "sha256": "1014f4a4ac2064a77eec6b44eea41c7f0e9739d7773bbfa30c981b1dff55cb8e",
+      "bytes": 55635
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/10-snags-list.png",
+      "sha256": "a0d6209a5ee455c2864a9132769cc62d1e4c7e207aeac40814a5cc6576b41ee8",
+      "bytes": 41251
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/11-snags-unfiltered.png",
+      "sha256": "0f2bbb847a7a66485379d6a71f29f3b27e19877a695393fbdc1cd852bff03cf7",
+      "bytes": 40808
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/12-final-accounts-list.png",
+      "sha256": "82ebae90183b70545161aae2f3797c7089887774205ff3bfaf9d891864b3e24b",
+      "bytes": 40551
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/13-final-account-record.png",
+      "sha256": "9419b1849c473c96cbac1c56858e774311af06ad4459dd49d5b26be9a52d47c3",
+      "bytes": 56866
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/14-certificates-list.png",
+      "sha256": "1986e23cee6aa74df7512ad33a897ee3d27d131d48b413e8b13b5ae34b36f642",
+      "bytes": 47462
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/15-certificate-record.png",
+      "sha256": "d8bde3faaf0de489a545e1f38130accfdcf5e0f7ef548f3cac6edd1275647ffd",
+      "bytes": 60962
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/16-client-contract.png",
+      "sha256": "63659b0b6b6def06f0af0062d8afc934c4fb33c0e66f5731da7a7e79db6170a9",
+      "bytes": 64779
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/17-contract-cash-closeout.png",
+      "sha256": "dff2ac8b03286b3926ab31ba2a570a1774478ddd1ca74795ce4eda1279a36038",
+      "bytes": 57577
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/18-requisitions-list.png",
+      "sha256": "11b27a4e898089d8aa97d3cbd6e5cd4f88121355d03a213ac9a274fbf0aa33b7",
+      "bytes": 53710
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/19-requisition-record.png",
+      "sha256": "47b2fd3dfe385af6136b87e253071844e4b310daaa63e838f410b6ff40f4b175",
+      "bytes": 63411
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/20-linked-purchase-order.png",
+      "sha256": "8819cab47e093ae00545814b415595db5b5f709055a4fcd77f1460834a27a5f2",
+      "bytes": 40075
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/21-purchase-order-record.png",
+      "sha256": "f8180993d2e4cbfa58f65b4ad2e2937d5cef12e4d64f2993ce0d10a3e8a10042",
+      "bytes": 56696
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/22-material-receipt.png",
+      "sha256": "9a2d9906bfa1ef8ce4311e2ea26f16325e574d0dc7841f3814ebfe84774e93d3",
+      "bytes": 49404
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/23-site-diaries-list.png",
+      "sha256": "9751775544f752cce300ac95e16271eab8c06000cea4845579b4ad4364a11e16",
+      "bytes": 40936
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/24-wbs-list.png",
+      "sha256": "b431942964da247795ae7f68a5db789713bf6fe1ddc078406d1abd70f20050df",
+      "bytes": 50987
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/25-wbs-record.png",
+      "sha256": "02232af98d85c1808b6fc50d3d50336818f9bca739672583ed45b0eb0a3560f6",
+      "bytes": 43994
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/26-project-setup-list.png",
+      "sha256": "fdc60f09b9ccde2f0fdbde0847c4153cd0994de88ddf2427951a9db143dc8352",
+      "bytes": 40762
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/27-subcontract-applications.png",
+      "sha256": "9ef82b2f82ad5d362bb9fabb7d8fe5cc3f7f87ca3f15bef8853930eb455e2231",
+      "bytes": 42651
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/28-service-entries-list.png",
+      "sha256": "22f9ca4c2b1a950f9e798335b386a92c5814d29fe363e0ec14c550e066ef9da1",
+      "bytes": 49763
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/29-service-entry-record.png",
+      "sha256": "239ada86ec808b85a297e0d8384f6fa2602729b6c49f712a212b4bc274d38fce",
+      "bytes": 70124
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/30-site-engineer-view.png",
+      "sha256": "30d82a26ab99ed83cf9a00dd9e162fbb4468d44a7ca8da07431926031892f23d",
+      "bytes": 50149
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/31-role-projects.png",
+      "sha256": "09c335e1ea592597da09e801ab33dccc9600829ea2a0d487fa07c29ffeaac1a5",
+      "bytes": 50559
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/32-site-project-workspace.png",
+      "sha256": "752e27e428b00bd5b33568f30fadef6048e8e66c0993c5c9ad064c53d1079f12",
+      "bytes": 68435
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/33-site-project-more.png",
+      "sha256": "7f9a75434b2c84a21caf74fdb0cb0f24756885cdd727c29010909e1900859454",
+      "bytes": 70209
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/34-site-snags-register.png",
+      "sha256": "3a89c5efe69b32f53987f82cdabc3ecd93fb4d35cad3206bd23f94b7bc086c20",
+      "bytes": 65013
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/35-snag-record.png",
+      "sha256": "623a516241f8a04fcbaa7367ef502c4be1fa3e8761c56e81b1dcf429280da17b",
+      "bytes": 53123
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/36-site-diaries-populated.png",
+      "sha256": "832617dbd5cae1a0b60ed17ebc1302d5dc6b08b3673e8ffed0ce105c81c6c92e",
+      "bytes": 80218
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/37-site-diary-record.png",
+      "sha256": "618663527f204e9bbc3edcfc616c1814358174f91af8236d6d429f078b476774",
+      "bytes": 52275
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/38-site-diary-events.png",
+      "sha256": "27b509e2f9d84a9d4a0b58cd54845a32f04a94ba93e832795bc1cf1863aeae90",
+      "bytes": 50602
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/39-admin-fuller-company.png",
+      "sha256": "f0eb1907bd5f810b9da502f072e8f1fd08651a5d491d3a8ab600d904985f10db",
+      "bytes": 53749
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/40-project-control-report.png",
+      "sha256": "986e679e1719bd9c4d2a4e41ebc0fb8f3fc42737a4ea864994a7d48a434c067f",
+      "bytes": 61108
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/42-schedule-progress.png",
+      "sha256": "3db0b7958fc2085d2860f623c5b0eb8697cb80f7f98902b259c52e2d1b7469c3",
+      "bytes": 95884
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/43-full-document-register.png",
+      "sha256": "03521d96c6a13540908a9dd650a8bf8e62cbc64cebb6786a4b48f5dc2b313bd7",
+      "bytes": 78038
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/44-building-drawing.png",
+      "sha256": "4cae58b78186d46b8bd73705acc04acd74e8c4a91242e54d8283e8411df9b2a9",
+      "bytes": 54017
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/45-document-types.png",
+      "sha256": "e106e19928800339104c66e7cd51cc9ff4ff73a634b23d469e24120c80583b6c",
+      "bytes": 58693
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/46-variations-list.png",
+      "sha256": "b3b138c28e42f4cab73a9b89e228d542aa00a2ddab358bb14cc73217e467ae36",
+      "bytes": 92308
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/47-variation-record.png",
+      "sha256": "e1ed3c31c39c533b3b709887e037c739b1d5106feda88d44128b96d218581141",
+      "bytes": 63471
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/48-full-closeout-list.png",
+      "sha256": "499f1f9c1a70968f4cd87749d7f2086afba59f2dcff11160c5039adc642f9267",
+      "bytes": 41193
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/49-full-final-account-record.png",
+      "sha256": "de3c47470af3b2d05e98d95abbdd193ae0df1450bed8c48c02a0859691c3864e",
+      "bytes": 55635
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/50-estimator-dashboard.png",
+      "sha256": "3328d90381fdd0baa376388b97e6260700bd6c86a3bb2147fb20c56fe0770e2f",
+      "bytes": 48217
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/51-tender-pipeline.png",
+      "sha256": "8f2d32ea62ff9638991cd976ae2395657b53fa8ec00946fc2b12eef2d47c0dff",
+      "bytes": 40099
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/52-estimator-studies.png",
+      "sha256": "ab72595c0f79356720d856bb2866fdef3278de413f82e554c0e4aee6ad8275e0",
+      "bytes": 66659
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/53-project-manager-dashboard.png",
+      "sha256": "1c7707abfa319e5a19c2e27aa27a0e3ef1cd2e766be0566cd165967a4e49ee7c",
+      "bytes": 57743
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/54-approvals-activities.png",
+      "sha256": "0ebb00313d76bf63f1c91caf2737540e6d409e2078b73f37bc69b6139e9f3458",
+      "bytes": 44850
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/55-restored-initial-context.png",
+      "sha256": "276a9cc299d5c05279c661e9e2eadcfe5e05b11e8db1c6c696e7af9ed1a836a8",
+      "bytes": 49919
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/56-quality-register.png",
+      "sha256": "448055317b90fc8676a0bec8cde266527559b3b36d9e1f3925d518ea394d1a20",
+      "bytes": 157472
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/57-ncr-record.png",
+      "sha256": "e2ebe9d36f470adcf84dac758f2f76d8666268e63608600b8b32d54b8d8a0ae3",
+      "bytes": 72200
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/58-ncr-resolution.png",
+      "sha256": "bbea96c0b140a980b6c98fbdf01d7ebd9330bc8eaabdca150a281c5b47691068",
+      "bytes": 71653
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/59-ncr-lifecycle.png",
+      "sha256": "dc5084bc909080f03693242a42df9ee9f0536dc08818628dd4adedd7aed42405",
+      "bytes": 74936
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/61-equipment-register.png",
+      "sha256": "a23417644ac69ba9078259c62790d22006af3ee9459bd1a6ec21f1cc93d22a6c",
+      "bytes": 108001
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/62-equipment-record.png",
+      "sha256": "71cfce5eca0394665fbaddec4064b6e31c90994b16101c000ea2113eda87616c",
+      "bytes": 68888
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/63-equipment-product.png",
+      "sha256": "4bac5c4689acd41c4510347191411172de4c36d14a61fb495b57723f2381c6c5",
+      "bytes": 73251
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/64-equipment-maintenance.png",
+      "sha256": "2176875266808e6bc905f483de7e353716c36e08b7e6709ebb0d1941496b30f4",
+      "bytes": 71661
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/65-boq-cost-report-entry.png",
+      "sha256": "d13659892f8e750d572564379b400e081f0c8012e0d8ff7a0057c5b22db73d3b",
+      "bytes": 69115
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/66-building-control-report.png",
+      "sha256": "2a13b4816a720ce79b4905073e5931e1f0ce541567f7b190a245de6155d8f6ed",
+      "bytes": 96829
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/67-building-cost-detail.png",
+      "sha256": "d759b6db8e40902562b80f752dc19fdcaab1f346854cee8f8d62e2b37476746f",
+      "bytes": 106896
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/68-cost-optional-columns.png",
+      "sha256": "b2e79803da64eaf990fdb51b58e7869c12f0b20cca44175931e923d0db69c07c",
+      "bytes": 114803
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/69-cost-source-facts.png",
+      "sha256": "beecbe93b067d7761dfa84339ca12bebaab818876d25c345612615b013e97fd5",
+      "bytes": 150913
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/70-subcontract-bill.png",
+      "sha256": "e25c7bb5b7dee7f9e63fafcbfa38c56a187b59ad8f2594dabe4bed0ba4324730",
+      "bytes": 90450
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/71-supplier-certificate.png",
+      "sha256": "8ddf6c4affc129c28742ddadc19d763b72229782e9b343bc3b4b367f6de321b4",
+      "bytes": 92923
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/72-subcontract-finance-agreement.png",
+      "sha256": "5e7f69218764a624a1856690c84edcf9bb91f3b4aff9030209d95ee7fbcb6857",
+      "bytes": 103710
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/73-company-cash-flow.png",
+      "sha256": "21d5bfe5ad17652c40aa34e7afd02e212c6aaaf839b3fc0b8ff38b22c6f46621",
+      "bytes": 76326
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/74-cash-flow-results.png",
+      "sha256": "e376e107c6d3cd51f99cffa839d9771ce6ef42fffbfd7c76518055822aa7cbda",
+      "bytes": 72241
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/75-cash-policy-register.png",
+      "sha256": "9114763c130c697fc0ca7a8404e442457a44407116eb161c800fa82aac097b22",
+      "bytes": 55970
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/76-project-cash-forecasts.png",
+      "sha256": "d1a3f107a9cd74015ab80ee3c9756ef4102df1aaa13c247928619098d6ec3731",
+      "bytes": 58231
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/77-scrap-register.png",
+      "sha256": "c24e9a81719daa1898be4e39a5dee217ca7e3cd4602926f5f27462292744ba49",
+      "bytes": 52333
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/78-scrap-form.png",
+      "sha256": "a2c88a8fe40a5a4c6b433d833c1d7d6e69d567833a1d890e7411f9a162ee2001",
+      "bytes": 55542
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/79-schedule-register.png",
+      "sha256": "d3921f25f824d7e1eec9dd41cf14f57d81b76e77321f0aa8e8c24f39bbeaac96",
+      "bytes": 144334
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/80-schedule-record.png",
+      "sha256": "3bf4749d5d0afc6b767a55e2706c06ef36b3ddd4b31430e40ad8e3372fa77c4d",
+      "bytes": 89588
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/81-project-audit.png",
+      "sha256": "5e60724c9c2916290847f1d8f5c37034d7d5ba6e0fca383a44eaa6bd367c3e6d",
+      "bytes": 144623
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/82-review-turnaround.png",
+      "sha256": "a34e32a176f9b8795aec0d9598b6f16b70b677e065562b45780585a5b9f46ffb",
+      "bytes": 127665
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/83-saved-dashboards.png",
+      "sha256": "80a96e0d73e3e1553778ca787a54f0c07d0d72cf3ee892843fd4b6a5f23d9200",
+      "bytes": 78404
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/84-project-kpi-dashboard.png",
+      "sha256": "5b4dc643a753402eeb3e0188a21a2418d51526a2cd588bbb5ed7c4deea8c12cc",
+      "bytes": 80754
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/85-variation-register.png",
+      "sha256": "981f2b8033d25730dbb3a5cacf7af745221ab0a623ed53c8667de47663ac93be",
+      "bytes": 139207
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/86-variation-detail.png",
+      "sha256": "8a58586547e816dbc00a02de8cbcf9968368615ed9800e57d00c00ec74824640",
+      "bytes": 95136
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/87-wbs-budget-register.png",
+      "sha256": "6852ea3eb35ddbec350468e1e235fe96bd9bdef62b94dba13a769175b380c1ed",
+      "bytes": 143447
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/88-wbs-budget-record.png",
+      "sha256": "2bca19ef8439f9b349aadeb4956bdb433c54328d376b5f83f792cdc2811fc680",
+      "bytes": 65934
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/89-cost-forecast-register.png",
+      "sha256": "05e7166cf416ebe9ee488ad3cbc577f713fa0b30bbae9a546fe48dc30c3fcbc2",
+      "bytes": 151172
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/90-approved-cost-forecast.png",
+      "sha256": "6bed9a6e63a9d2a5e7e31d23fb6ee1c6ebfbf7c8c868ca630587e1c58def6d6d",
+      "bytes": 91874
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/91-matched-cash-receipts.png",
+      "sha256": "b0461d4711e3cb5fc6bd117558b05a0059eb65f05987b7c2b77f37d524809ead",
+      "bytes": 88701
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/92-payment-source.png",
+      "sha256": "f07f8ae1f51f29451983ccc2b5aeefd678e1e61cc746c0b1cfd6b554a4707c7d",
+      "bytes": 85973
+    },
+    {
+      "path": "jakh-study-evidence/screenshots/93-followup-context-restored.png",
+      "sha256": "1011b39791b719e11cd391c1a63d0b222803de3fb1bf2a095573dcd8777e0d8a",
+      "bytes": 84024
+    }
+  ],
+  "current_review": [
+    {
+      "path": "evidence/current-jakh-company-dashboard.png",
+      "sha256": "83786db3ca78896559a9767a5bb584f42cece8ce842659f95973a4114a80fe93",
+      "bytes": 91844
+    },
+    {
+      "path": "evidence/current-jakh-company-dashboard.txt",
+      "sha256": "df27a93a339c6be31a6a3c937d2da027dde5216b6ad2fb82a92dde228b007aa2",
+      "bytes": 11958
+    },
+    {
+      "path": "evidence/current-jakh-control-report.png",
+      "sha256": "d959773e460172439fa708c4a90f30c9035256d5ed6241eec76e1e2d1c22a37a",
+      "bytes": 46367
+    },
+    {
+      "path": "evidence/current-jakh-control-report.txt",
+      "sha256": "63a905459081d0c73a624bc6007aef6fc1bcd9d41abb0f453c4198ea8453932d",
+      "bytes": 11317
+    },
+    {
+      "path": "evidence/current-jakh-dashboard.png",
+      "sha256": "ef32dda2aead7f0c9c2912ef1cbb413c2f985b8bba5d3cb2e28fd48cecb11f1d",
+      "bytes": 84008
+    },
+    {
+      "path": "evidence/current-jakh-dashboard.txt",
+      "sha256": "4bf8367875decba4e44e65ece1a5e15fe8648ac89ec0bd1a349dc266d295fd9f",
+      "bytes": 9745
+    }
+  ]
+}

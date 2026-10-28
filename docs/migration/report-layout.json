@@ -1,0 +1,236 @@
+[
+  {
+    "page": 1,
+    "title": "Cover",
+    "font_size": 10,
+    "bottom": 233.98999999999998
+  },
+  {
+    "page": 2,
+    "title": "What went wrong",
+    "font_size": 10.1,
+    "bottom": 197.524
+  },
+  {
+    "page": 3,
+    "title": "Evidence and status rules",
+    "font_size": 10.1,
+    "bottom": 168.83999999999992
+  },
+  {
+    "page": 4,
+    "title": "A concrete piece of JAKH logic to preserve",
+    "font_size": 10.1,
+    "bottom": 169.524
+  },
+  {
+    "page": 5,
+    "title": "Keep the simple interface; restore the depth",
+    "font_size": 10.1,
+    "bottom": 140.84000000000003
+  },
+  {
+    "page": 6,
+    "title": "42 areas 0",
+    "font_size": 8.2,
+    "bottom": 212.69
+  },
+  {
+    "page": 7,
+    "title": "42 areas 14",
+    "font_size": 8.2,
+    "bottom": 139.49
+  },
+  {
+    "page": 8,
+    "title": "42 areas 28",
+    "font_size": 8.2,
+    "bottom": 224.89
+  },
+  {
+    "page": 9,
+    "title": "D01 | Dashboards, reports and KPIs",
+    "font_size": 10.1,
+    "bottom": 185.0239999999999
+  },
+  {
+    "page": 10,
+    "title": "D02 | Approvals and personal work",
+    "font_size": 10.1,
+    "bottom": 256.7339999999999
+  },
+  {
+    "page": 11,
+    "title": "D03 | CRM and bid decisions",
+    "font_size": 10.1,
+    "bottom": 314.1020000000001
+  },
+  {
+    "page": 12,
+    "title": "D04 | Estimating, BOQ and tender handover",
+    "font_size": 10.1,
+    "bottom": 214.39199999999994
+  },
+  {
+    "page": 13,
+    "title": "D05 | Sales quotations and orders",
+    "font_size": 10.1,
+    "bottom": 314.1020000000001
+  },
+  {
+    "page": 14,
+    "title": "D06 | Projects, mobilisation and location structure",
+    "font_size": 10.1,
+    "bottom": 271.7600000000001
+  },
+  {
+    "page": 15,
+    "title": "D07 | Requisition, sourcing and purchase orders",
+    "font_size": 10.1,
+    "bottom": 200.04999999999995
+  },
+  {
+    "page": 16,
+    "title": "D08 | WBS, budgets and cost control",
+    "font_size": 10.1,
+    "bottom": 228.04999999999995
+  },
+  {
+    "page": 17,
+    "title": "D09 | Materials, stores, returns and waste",
+    "font_size": 10.1,
+    "bottom": 257.418
+  },
+  {
+    "page": 18,
+    "title": "D10 | Site diaries, labour and plant actuals",
+    "font_size": 10.1,
+    "bottom": 286.1020000000001
+  },
+  {
+    "page": 19,
+    "title": "D11 | Client contract, measured BOQ and certification",
+    "font_size": 10.1,
+    "bottom": 228.73399999999992
+  },
+  {
+    "page": 20,
+    "title": "D12 | Advances, retention, securities and final accounts",
+    "font_size": 10.1,
+    "bottom": 271.76
+  },
+  {
+    "page": 21,
+    "title": "D13 | Subcontract package through settlement",
+    "font_size": 10.1,
+    "bottom": 200.04999999999995
+  },
+  {
+    "page": 22,
+    "title": "D14 | Programme, progress and delay",
+    "font_size": 10.1,
+    "bottom": 299.76
+  },
+  {
+    "page": 23,
+    "title": "D15 | Finance, payments and cash",
+    "font_size": 10.1,
+    "bottom": 228.04999999999995
+  },
+  {
+    "page": 24,
+    "title": "D16 | Quality, NCR, safety and document control",
+    "font_size": 10.1,
+    "bottom": 214.39199999999994
+  },
+  {
+    "page": 25,
+    "title": "D17 | People, HR, leave, attendance and timesheets",
+    "font_size": 10.1,
+    "bottom": 214.39199999999994
+  },
+  {
+    "page": 26,
+    "title": "D18 | Plant, assets and fleet",
+    "font_size": 10.1,
+    "bottom": 271.07599999999996
+  },
+  {
+    "page": 27,
+    "title": "D19 | Contacts, catalogue and shared reference data",
+    "font_size": 10.1,
+    "bottom": 257.41800000000006
+  },
+  {
+    "page": 28,
+    "title": "D20 | Collaboration, activities and record history",
+    "font_size": 10.1,
+    "bottom": 286.1020000000001
+  },
+  {
+    "page": 29,
+    "title": "D21 | Users, company administration and configurable tools",
+    "font_size": 10.1,
+    "bottom": 200.04999999999995
+  },
+  {
+    "page": 30,
+    "title": "Multiple companies and currencies",
+    "font_size": 10.1,
+    "bottom": 168.84000000000003
+  },
+  {
+    "page": 31,
+    "title": "Every report begins with findings",
+    "font_size": 10.1,
+    "bottom": 211.8660000000001
+  },
+  {
+    "page": 32,
+    "title": "Strategic AI without weakening control",
+    "font_size": 10.1,
+    "bottom": 183.18200000000002
+  },
+  {
+    "page": 33,
+    "title": "Construction gaps beyond the old menus",
+    "font_size": 10.1,
+    "bottom": 226.20800000000008
+  },
+  {
+    "page": 34,
+    "title": "Original data architecture required",
+    "font_size": 10.1,
+    "bottom": 197.52400000000011
+  },
+  {
+    "page": 35,
+    "title": "Migration sequence and reconciliation",
+    "font_size": 10.1,
+    "bottom": 154.49800000000005
+  },
+  {
+    "page": 36,
+    "title": "End-to-end proof: commercial and buying",
+    "font_size": 10.1,
+    "bottom": 183.86599999999999
+  },
+  {
+    "page": 37,
+    "title": "End-to-end proof: site, people and closeout",
+    "font_size": 10.1,
+    "bottom": 198.20799999999997
+  },
+  {
+    "page": 38,
+    "title": "Delivery gates that prevent a repeat",
+    "font_size": 10.1,
+    "bottom": 197.524
+  },
+  {
+    "page": 39,
+    "title": "How to use the delivered package",
+    "font_size": 10.1,
+    "bottom": 257.208
+  }
+]
