@@ -28,6 +28,10 @@ Dates use Asia/Dubai. This log records work and its limits; Git history records 
 - Verified preserved artifact checksums, ZIP integrity, local Markdown links and Python source syntax. A targeted secret-pattern scan found no matches; supplied credentials were not copied.
 - Temporary rebuilt PDFs and renders are ignored under `.work/`. The original reviewed PDF remains unchanged.
 
+### GitHub sync blocker
+
+The first push was rejected with HTTP 403: the laptop's cached Git authentication identified `jame17291-sys`, which lacks write access to `JameelKhab/Builder-ERP`. The prepared work is committed locally. No credentials were changed and no alternate identity was used. Resume the push after the user signs Git into an authorised account or grants the intended account write access. This is a GitHub permission issue, not a deployment attempt or a failed local validation.
+
 ### Next work within the study-led sequence
 
 1. Resolve the highest-impact entity, role, accounting, location/work-item and programme inputs.
