@@ -20,6 +20,8 @@ The latest local increment adds an original **destination Home**, server-enforce
 
 The connected procurement increment now adds multi-line unpriced site demand, supplier quotes/FX, split allocations, independent review, local supplier orders, receipts/rejections, returns, material consumption and transaction-derived additions to cost reports. See [procurement implementation](docs/implementation/procurement-local.md) and the [complete implementation coverage register](docs/implementation/coverage.md). Every comparison function remains tracked; none is certified as full migration parity.
 
+Company/project setup and budget control now add legal identities, locations, item/group WBS, original baselines, independent revisions and released buying capacity. See [foundation implementation](docs/implementation/foundations-local.md). This is another operational subset; the full comparison scope remains open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.

@@ -77,7 +77,7 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
     return input.lines.map(l => {
       const product = get('SELECT * FROM products WHERE id=? AND company_id=? AND active=1', l.product_id, input.company_id);
       requireThat(product, 'Choose an active product in this company.');
-      requireThat(get('SELECT id FROM work_packages WHERE id=? AND company_id=? AND project_id=?', l.work_package_id, input.company_id, input.project_id), 'Choose a work package in this project.');
+      requireThat(get('SELECT id FROM work_packages WHERE id=? AND company_id=? AND project_id=? AND kind=\'item\'', l.work_package_id, input.company_id, input.project_id), 'Choose a work package in this project.');
       requireThat(get('SELECT id FROM project_locations WHERE id=? AND company_id=? AND project_id=?', l.location_id, input.company_id, input.project_id), 'Choose a location in this project.');
       const quantity = decimal(l.quantity, 'Requested quantity', false).toString();
       requireThat(!l.note || typeof l.note === 'string' && l.note.length <= 500, 'Item note is too long.');
@@ -419,7 +419,7 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
     const reqs = all('SELECT * FROM material_requests WHERE company_id=? ORDER BY created_at DESC', company).filter(r => inScope(r) && access.has('requests.read', company, r.project_id)).map(r => requestDetail(r.id));
     const orders = all('SELECT * FROM purchase_orders WHERE company_id=? ORDER BY issued_at DESC', company).filter(r => inScope(r) && (access.has('requests.read', company, r.project_id) || access.has('materials.read', company, r.project_id))).map(r => orderDetail(r.id));
     const locations = all('SELECT * FROM project_locations WHERE company_id=? ORDER BY code', company).filter(r => inScope(r) && (access.has('requests.read', company, r.project_id) || access.has('materials.read', company, r.project_id)));
-    const work = all('SELECT * FROM work_packages WHERE company_id=? ORDER BY code', company).filter(r => inScope(r) && access.has('requests.read', company, r.project_id));
+    const work = all('SELECT * FROM work_packages WHERE company_id=? AND kind=\'item\' ORDER BY code', company).filter(r => inScope(r) && access.has('requests.read', company, r.project_id));
     const awaiting = reqs.filter(r => r.can_approve),
       late = orders.filter(o => o.lines.some(l => new D(l.outstanding).gt(0))),
       rejected = orders.flatMap(o => o.receipts).filter(r => new D(r.rejected).gt(0));

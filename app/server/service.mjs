@@ -1,3 +1,4 @@
+import { foundations } from './foundations.mjs';
 import { procurement } from './procurement.mjs';
 import { sourcingAvailable, costPosition } from './cost-ledger.mjs';
 import { createHash, randomUUID } from 'node:crypto';
@@ -31,7 +32,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     const row = db.prepare('SELECT r.*,u.name requester,v.name vendor_name,c.currency company_currency FROM requests r JOIN companies c ON r.company_id=c.id JOIN users u ON r.requester_id=u.id LEFT JOIN vendors v ON r.vendor_id=v.id AND r.company_id=v.company_id WHERE r.id=?').get(id);
     requireThat(row && allowed(row.company_id, row.project_id) && access.has('requests.read', row.company_id, row.project_id), 'Request is not available.', 404);
     const history = db.prepare('SELECT e.*,u.name actor FROM events e JOIN users u ON e.actor_id=u.id WHERE request_id=? ORDER BY e.id').all(id);
-    const item = db.prepare('SELECT * FROM cost_items WHERE id=?').get(row.item_id);
+    const item = costPosition(db, db.prepare('SELECT * FROM cost_items WHERE id=?').get(row.item_id));
     const available = sourcingAvailable(db, row.item_id, {
       legacyRequest: id
     });
@@ -72,11 +73,17 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     scope(company, project);
     access.requireCap('cost.read', company, project, !project);
     const entity = db.prepare('SELECT * FROM companies WHERE id=?').get(company);
-    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? ORDER BY id').all(company), company, project).filter(r => access.has('cost.read', r.company_id, r.project_id)).map(r => costPosition(db, r));
+    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? AND id NOT IN (SELECT cost_item_id FROM work_packages WHERE kind=\'group\') ORDER BY id').all(company), company, project).filter(r => access.has('cost.read', r.company_id, r.project_id)).map(r => costPosition(db, r));
     const totals = {};
     for (const key of ['original_budget', 'revised_budget', 'committed', 'incurred', 'cash', 'forecast']) totals[key] = rows.some(row => row[key] === null) ? null : money(sum(rows.map(row => row[key])));
     const findings = [];
     const complete = rows.filter(r => r.forecast !== null);
+    if (rows.some(r => r.revised_budget === null)) findings.push({
+      id: 'unapproved_budget',
+      severity: 'warning',
+      text: 'An original budget has not been approved for one or more work items. A complete budget variance cannot be stated.',
+      sourceIds: rows.filter(r => r.revised_budget === null).map(r => r.id)
+    });
     if (rows.length === 0) findings.push({
       id: 'empty',
       severity: 'info',
@@ -111,6 +118,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       text: `Cash paid is ${entity.currency} ${readableMoney(totals.cash)}. It is recorded separately from incurred cost and commitments.`,
       sourceIds: rows.map(r => r.id)
     });
+    const budgetFacts = rows.flatMap(r => r.budget_sources);
+    if (budgetFacts.length) findings.push({
+      id: 'budget_revisions',
+      severity: 'info',
+      text: `${budgetFacts.length} approved budget allocation(s) contribute to this view. Original baselines and later changes remain separate.`,
+      sourceIds: rows.filter(r => r.budget_sources.length).map(r => r.id)
+    });
     const localFacts = rows.flatMap(r => r.transaction_sources);
     if (localFacts.length) findings.push({
       id: 'local_transactions',
@@ -122,13 +136,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     const meta = {
       company: entity,
       project: project ? db.prepare('SELECT * FROM projects WHERE id=?').get(project) : null,
-      asOf: rows.some(r => r.transaction_sources.length) ? today() : SAMPLE_DATE,
+      asOf: rows.some(r => r.transaction_sources.length || r.budget_sources.length) ? today() : SAMPLE_DATE,
       currency: entity.currency,
       taxBasis: 'Excluding tax',
-      basis: 'Illustrative opening balances plus local issued purchase orders and material consumption. Cash and forecasts remain separate.',
+      basis: 'Illustrative opening balances plus approved local budget allocations, issued purchase orders and material consumption. Cash and forecasts remain separate.',
       restricted,
-      definition: 'cost-position-v2',
-      rules: 'findings-v2',
+      definition: 'cost-position-v3',
+      rules: 'findings-v3',
       population: rows.length
     };
     const snapshot = createHash('sha256').update(JSON.stringify({
@@ -156,6 +170,8 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     access.requireCap('requests.write', company, project);
     requireThat(input.vendor_id || access.has('pricing.read', company, project), 'Select a supplier quotation. Only procurement can enter a provisional price.', 403);
     const item = db.prepare('SELECT * FROM cost_items WHERE id=? AND company_id=? AND project_id=?').get(input.item_id, company, project);
+    const work = db.prepare('SELECT * FROM work_packages WHERE cost_item_id=?').get(input.item_id);
+    requireThat(!work || work.kind === 'item', 'Select a work item, not a group.');
     requireThat(item, 'Select a cost item belonging to this project.');
     const entity = db.prepare('SELECT * FROM companies WHERE id=?').get(company);
     let vendor = null;
@@ -348,7 +364,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         requests: [],
         orders: []
       };
+      const foundation = access.has('projects.read', company, project, !project) ? foundations(db, actorId, today).workspace(company, project) : {
+        projects: [],
+        budgets: []
+      };
       return {
+        project_setup: foundation.projects,
+        budget_documents: foundation.budgets,
         material_requests: supply.requests,
         purchase_orders: supply.orders,
         capabilities: access.caps(company, project, !project),
@@ -356,7 +378,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         records: records(company, project),
         report: access.has('cost.read', company, project, !project) ? report(company, project) : null,
         vendors: vendors(company, project),
-        items: visible(db.prepare('SELECT id,company_id,project_id,name FROM cost_items WHERE company_id=?').all(company), company, project).filter(r => access.has('requests.read', company, r.project_id))
+        items: visible(db.prepare('SELECT id,company_id,project_id,name FROM cost_items WHERE company_id=? AND id NOT IN(SELECT cost_item_id FROM work_packages WHERE kind=\'group\')').all(company), company, project).filter(r => access.has('requests.read', company, r.project_id))
       };
     },
     search: (company, term) => {
@@ -376,7 +398,14 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         ...r,
         location: r.lines.map(l => l.location).join(', ')
       }));
-      return [...records(company), ...requests(company), ...typed].filter(r => [r.id, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const budgetDocs = access.has('projects.read', company, null, true) ? foundations(db, actorId, today).workspace(company).budgets.map(d => ({
+        ...d,
+        category: 'Budget control',
+        status: d.state,
+        location: 'Project budget',
+        owner: d.author
+      })) : [];
+      return [...records(company), ...requests(company), ...typed, ...budgetDocs].filter(r => [r.id, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

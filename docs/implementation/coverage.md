@@ -4,11 +4,13 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+The company/project/budget increment adds legal company setup, project details, location/WBS hierarchies and independently approved budget facts connected to procurement and cost reports. See `foundations-local.md` and `contracts/foundations-v1.md`.
+
 The connected procurement increment implements unpriced demand → supplier quotes/FX → independent sourcing review → local orders → partial receipts/rejections → supplier returns/material consumption → operational cost facts. See `contracts/procurement-v1.md` and `procurement-local.md`.
 
 ## Remaining build sequence
 
-1. Complete authenticated local multi-user identity, account provisioning, reference/master maintenance, WBS/budget revision and approval policy.
+1. Complete authenticated local multi-user identity, account provisioning, reference/master maintenance, detailed budget build-ups, dated forecast versions and approval routing. The implemented project/budget subset remains short of full domain acceptance.
 2. Connect purchases to supplier bills, tax/FX/rounding policies, original balanced journals, payment allocation, bank clearance and cash forecasts; expand warehouse/material operations.
 3. Tender/estimating/BOQ-to-project handover; measured client and subcontract certification, advances, retention, variations, securities and final accounts.
 4. Programme/progress/delay, site diaries and resources; NCR/quality/safety, controlled documents/RFIs, testing, snagging and handover.
@@ -77,7 +79,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F053 | Sales & Quotations > Configuration > Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F054 | Sales & Quotations > Configuration > Sales Orders > Templates | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F055 | Sales & Quotations > Configuration > Sales Orders > Headers/Footers | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F056 | Projects > Projects | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F056 | Projects > Projects | partial | Typed project creation/editing, immutable company, manager scope, dates and direct-award setup basis. Templates, tasks, estimate/contract handover and source migration remain open. |
 | F057 | Projects > Tasks > My Tasks | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F058 | Projects > Tasks > All Tasks | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F059 | Projects > Reporting > Tasks Analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -85,17 +87,17 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F061 | Projects > Reporting > Margins | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F062 | Projects > Reporting > Forecast Margins | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F063 | Projects > Configuration > Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F064 | Projects > Configuration > Projects | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F064 | Projects > Configuration > Projects | partial | Company/project-scoped setup with versioned metadata and history. Full configuration, tags, templates, accounting dimensions and migrated records remain open. |
 | F065 | Projects > Configuration > Project Templates | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F066 | Projects > Configuration > Project Roles | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F067 | Projects > Configuration > Tags | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F068 | Projects > Configuration > Activity Types | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F069 | Projects > Configuration > Activity Plans | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F070 | Project requisitions | partial | Typed multi-line unpriced demand, draft revision, submission, supplier quotations/allocation, independent approval and local orders. No requisition amendments after submission, partial-demand awards or source import. |
-| F071 | Project set-up | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F071 | Project set-up | partial | Project setup, locations, WBS and original budget workflow are connected to procurement. Source-estimate handover, cost centres, contract links and migration reconciliation remain open. |
 | F072 | Material returns | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F073 | WBS & Budgets > Open WBS & Budgets | foundation | Typed WBS reference and released-allowance enforcement. Full WBS editor, hierarchical rollups and approved budget baseline/revisions remain open. |
-| F074 | WBS & Budgets > Budget revisions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F073 | WBS & Budgets > Open WBS & Budgets | partial | Scoped item/group WBS, cost codes, cycle-safe hierarchy, child rollups, original baseline/revisions and released buying capacity. Resource build-ups, dated progress/forecasts and source reconciliation remain open. |
+| F074 | WBS & Budgets > Budget revisions | partial | Draft/submit/independent approve/return/cancel; immutable approved deltas, separate budget limits, frozen revision, stale-proposal and live-exposure checks. Effective-date history, full policy routing and source parity remain open. |
 | F075 | Site receipts | partial | PO-line receipts with accepted/rejected quantities, delivery reference, retry key and returns; no uploaded delivery evidence or invoice match. |
 | F076 | Site diaries | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F077 | Contracts & measured BOQ > Open Contracts & measured BOQ | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -261,7 +263,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F237 | Team Discussions > Configuration > User Settings > Voice & Video | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F238 | My Tasks | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F239 | Users & Access > Add User | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F240 | Users & Access > Manage Users | partial | Existing-user business grants, active status, reviewed changes, limits and access history. Production identity and provisioning remain open. |
+| F240 | Users & Access > Manage Users | partial | Existing-user scoped roles, active status, separate purchase/budget limits, reviewed changes and history. Authenticated identity, account provisioning and delegation remain open. |
 | F241 | Users & Access > Access Presets | partial | 27 explicit role presets; 23 assignable. Per-domain capabilities and separate pricing/budget access. Source role-by-role acceptance remains open. |
 | F242 | Users & Access > Advanced Native User Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F243 | Administration > Calendar > Calendar | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -270,10 +272,10 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F246 | Administration > Calendar > Configuration > Work Locations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F247 | Administration > Calendar > Configuration > Reminders | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F248 | Administration > Calendar > Configuration > Tags | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F249 | Administration > Cost Codes | foundation | Existing cost-item references linked to typed WBS. Cost code administration remains open. |
-| F250 | Administration > Buildings, floors & zones | foundation | Typed company/project building-floor-unit sample hierarchy used in requests and movements. Hierarchy maintenance and systems/location imports remain open. |
+| F249 | Administration > Cost Codes | partial | Company-scoped cost-code creation and WBS association with audit evidence. Full code lifecycle, classification and migration remain open. |
+| F250 | Administration > Buildings, floors & zones | partial | Create/edit stable site/building/floor/unit/zone/system hierarchy; scoped cycle checks, hierarchy ordering, reasons and versions. Archive/effective-date policy and source import remain open. |
 | F251 | Administration > Construction disciplines | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F252 | Administration > Business Audit | partial | Append-only access, request and procurement events. Full business audit query/export, external evidence and tamper-resistance operations remain open. |
+| F252 | Administration > Business Audit | partial | Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. |
 | F253 | Administration > Project threshold rules | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F254 | Administration > Implementation workbook | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F255 | Administration > CRM Data Import | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -288,4 +290,4 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F264 | Administration > AI connections | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F265 | Administration > Settings > General Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F266 | Administration > Settings > Users & Companies > Users | partial | Existing-user scope and status management. Account creation and authenticated multi-user sessions remain open. |
-| F267 | Administration > Settings > Users & Companies > Companies | foundation | Separate seeded legal companies and currencies, current role scopes; no company policy/period/tax administration yet. |
+| F267 | Administration > Settings > Users & Companies > Companies | partial | Legal company creation/details, fixed supported functional currency, separate organisation administration and no automatic business grants. Periods, numbering, tax/localisation and intercompany controls remain open. |

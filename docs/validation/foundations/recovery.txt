@@ -1,0 +1,20 @@
+SQLite backup API → separate restored file. All rows and values matched.
+Integrity: ok; foreign keys: no violations.
+requests: 13 rows matched
+events: 29 rows matched
+material_requests: 10 rows matched
+purchase_orders: 4 rows matched
+material_receipts: 4 rows matched
+stock_movements: 12 rows matched
+construction_cost_facts: 8 rows matched
+procurement_events: 55 rows matched
+budget_documents: 9 rows matched
+budget_lines: 9 rows matched
+budget_facts: 3 rows matched
+foundation_events: 23 rows matched
+companies: 2 rows matched
+projects: 3 rows matched
+project_locations: 13 rows matched
+work_packages: 6 rows matched
+memberships: 9 rows matched
+This is a local recovery drill, not a production recovery certification.

@@ -1,3 +1,5 @@
+import { installFoundationExamples } from './foundations-examples.mjs';
+import { installFoundations } from './foundations-schema.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { installProcurementExamples } from './procurement-examples.mjs';
 import { installProcurement } from './procurement-schema.mjs';
@@ -38,7 +40,11 @@ export function openDatabase(path = ':memory:', {
   if (examples) installExamples(db);
   installAccess(db);
   installProcurement(db);
-  if (examples) installProcurementExamples(db);
+  installFoundations(db);
+  if (examples) {
+    installProcurementExamples(db);
+    installFoundationExamples(db);
+  }
   return db;
 }
 const transactionDepth = new WeakMap();

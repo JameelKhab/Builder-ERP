@@ -80,3 +80,11 @@ These are open inputs, not permission to silently replace requested functions wi
 - Returns are constrained by remaining accepted lot stock and reopen expected supply. Consumption/return value uses remaining-lot allocation with residual cents on the final movement. Delivery rounding differences require future explicit reconciliation policy.
 - New procurement example records are additive and transactional. Their cost additions are visible separately from unchanged illustrative opening balances. They are not a production migration.
 - Operational history retains the submitted allocation references and quantities. API reads/writes use live company/project capabilities; role preview remains read only. All user/ERP work stays on this Mac and in local commits.
+
+## 29 October 2026 — Company/project/budget implementation choices
+
+The full local ERP remains the authorised objective. Implemented original typed project/WBS/location and budget controls from source evidence; no copying of Odoo code. Company creation does not assign business access. Organisation administration is distinct from access administration. Functional currency is fixed and supported minor units are explicit. Project ownership cannot move between legal companies.
+
+Original baselines, later revised targets and released buying capacity are separate. Budget decisions use an independent reviewer, a dedicated limit, gross movements, current exposure and frozen project/balance revisions. Historic opening values are not relabelled as migrated approvals. New projects show unknown budgets until baseline approval. Dated forecasts and historic/period controls remain a separate dependency; current approvals use server timestamps.
+
+Synthetic examples add a separate fictional budget reviewer with explicit limits; existing users' purchase authority does not automatically become budget authority. Local sample identity is still a release blocker for real multi-user use.

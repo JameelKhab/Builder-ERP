@@ -1,3 +1,4 @@
+import { Foundations, Organisation } from './Foundations.jsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight, FileText, ChartBar, Sparkle, ArrowLeft, ArrowRight, Plus, List, CheckCircle, House, ShieldCheck } from '@phosphor-icons/react';
 import { api, amount, compact, stateLabel } from './api.js';
@@ -8,7 +9,7 @@ import { Landing } from './Landing.jsx';
 import { Access } from './Access.jsx';
 import { canCategory } from '../shared/access.mjs';
 import { Examples } from './Examples.jsx';
-const GLOBALS = [['Home', House], ['Access', ShieldCheck], ['My Work', User], ['Tenders', Notebook], ['Projects', Buildings], ['Company', Users]];
+const GLOBALS = [['Home', House], ['Access', ShieldCheck], ['Organisation', Buildings], ['My Work', User], ['Tenders', Notebook], ['Projects', Buildings], ['Company', Users]];
 function readRoute() {
   const p = new URLSearchParams(location.hash.slice(1));
   return {
@@ -38,7 +39,7 @@ export function App() {
   const canOpenOrderSource = row => boot.grants.some(g => g.company_id === row.company_id && (g.project_id === '*' || g.project_id === row.project_id) && g.capabilities.some(c => ['requests.read', 'materials.read'].includes(c)));
   const reportProjects = (boot?.projects || []).filter(p => boot.grants.some(g => g.company_id === p.company_id && (g.project_id === '*' || g.project_id === p.id) && g.capabilities.includes('cost.read')));
   const areaVisible = area => area === 'Overview' || (CATEGORIES[area] || []).some(([category]) => canCategory(caps, category));
-  const globalVisible = title => title === 'Home' || title === 'My Work' && can('requests.read') || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
+  const globalVisible = title => title === 'Organisation' && !!boot?.actor.organisation_admin && !boot?.preview || title === 'Home' || title === 'My Work' && (can('requests.read') || can('budgets.approve') || can('budgets.write')) || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
   async function previewUser(id) {
     close();
     setWorkspace(null);
@@ -117,13 +118,21 @@ export function App() {
       }
     });
     return () => controller.abort();
-  }, [boot, companyId, scopeProject, revision, route.global, route.area, route.category]);
+  }, [boot?.actor.id, boot?.preview?.name, companyId, scopeProject, revision, route.global, route.area, route.category]);
   const refresh = () => setRevision(n => n + 1);
   const close = () => {
     openSerial.current++;
     setModal(null);
   };
   async function openRecord(id) {
+    if (id.startsWith('BUD-')) {
+      setModal({
+        type: 'budget',
+        title: 'Budget control',
+        id
+      });
+      return;
+    }
     if (id.startsWith('MR-') || id.startsWith('PO-')) {
       setModal({
         type: 'procurement',
@@ -218,7 +227,7 @@ export function App() {
     type: 'new',
     title: 'New purchase request'
   });
-  const pageTitle = route.global === 'Home' ? 'Home' : route.global === 'Access' ? 'Users & access' : route.global === 'Projects' ? project?.name : route.global === 'Company' ? company?.name : route.global === 'Tenders' ? 'Tenders' : 'My Work';
+  const pageTitle = route.global === 'Organisation' ? 'Companies' : route.global === 'Home' ? 'Home' : route.global === 'Access' ? 'Users & access' : route.global === 'Projects' ? project?.name : route.global === 'Company' ? company?.name : route.global === 'Tenders' ? 'Tenders' : 'My Work';
   const contextFor = r => ({
     company: boot.companies.find(c => c.id === r.company_id)?.name,
     project: boot.projects.find(p => p.id === r.project_id)?.name
@@ -303,7 +312,7 @@ export function App() {
     {workspace.report && <section className="overview-cost">
 <div className="section-head">
 <h2>Cost & cash</h2>
-<span className="muted">{company.currency} · As of 28 Oct</span>
+<span className="muted">{company.currency} · As of {workspace.report.meta.asOf}</span>
 <div className="push-right inline-actions">
 <button className="text-button" onClick={() => nav('Projects', 'Costs & Contracts', 'Cost report')}>
 <ChartBar size={21} />View cost report<CaretRight size={19} />
@@ -325,8 +334,13 @@ export function App() {
 </section>}
 </>;
   }
+  const reloadFoundations = async () => {
+    setBoot(await api('/bootstrap'));
+    setWorkspace(await api(`/workspace?company=${companyId}${scopeProject ? '&project=' + scopeProject : ''}`));
+  };
   function projectArea() {
     if (!can('projects.read') || !areaVisible(route.area) || route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your current role and project.</Empty>;
+    if (['Project setup', 'Budget control'].includes(route.category)) return <Foundations key={companyId + projectId + route.category} company={company} project={project} preview={!!boot.preview} initial={route.category === 'Budget control' ? 'budget' : 'setup'} onChanged={reloadFoundations} />;
     if (route.area === 'Overview') return overview();
     if (['Purchase requests', 'Orders & deliveries'].includes(route.category)) return <Procurement key={companyId + projectId + route.category} company={company} project={project} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialTab={route.category === 'Orders & deliveries' ? 'orders' : 'requests'} />;
     if (route.category === 'Cost report') return <CostReport key={companyId + projectId} company={company} projects={reportProjects} initialProject={projectId} onSource={sources} onExplain={explain} />;
@@ -355,6 +369,7 @@ export function App() {
   }
   function companyArea() {
     if (route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your role in this company.</Empty>;
+    if (route.category === 'setup') return <Foundations key={companyId} company={company} preview={!!boot.preview} onChanged={reloadFoundations} />;
     if (route.category === 'resources') return <><h2>Resources</h2><p className="muted">Plant and materials across your authorised projects.</p>{directory(COMPANY_GROUPS.flatMap(([, entries]) => entries).filter(e => ['Plant & equipment', 'Stores'].includes(e[2]) && canCategory(caps, e[2])).map(e => [e[0], e[1]]), title => nav('Company', 'Overview', title === 'Assets & fleet' ? 'Plant & equipment' : 'Stores'))}</>;
     if (route.category === 'buying') return <><Procurement key={companyId} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} /><details className='proc-history'><summary>Earlier purchase request examples</summary>{requestList(workspace.requests)}</details><h3 className='spaced'>Subcontract examples</h3><RecordTable rows={workspace.records.filter(r => r.category === 'Subcontracts')} onOpen={openRecord} /></>;
     if (route.category === 'report') return <CostReport key={companyId} company={company} projects={reportProjects} onSource={sources} onExplain={explain} />;
@@ -380,6 +395,7 @@ export function App() {
 <h2>{group}</h2>{directory(entries.map(e => [e[0], e[1]]), title => nav('Company', 'Overview', entries.find(e => e[0] === title)[2]))}</section>)}</>;
   }
   function modalBody() {
+    if (modal.type === 'budget') return <Foundations key={modal.id} company={company} preview={!!boot.preview} initial='budget' initialRecord={modal.id} onChanged={reloadFoundations} />;
     if (modal.type === 'procurement') return <Procurement key={companyId + modal.id} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialRecord={modal.id} />;
     if (modal.type === 'loading') return <p role="status">Loading…</p>;
     if (modal.type === 'error') return <ErrorBox message={modal.error} />;
@@ -419,14 +435,14 @@ export function App() {
 </button>)}</div> : <Empty>No matching records. Try a record ID, location, supplier or work description.</Empty>}</>;
     if (modal.type === 'sources') return <>
 <p className="eyebrow">{modal.report.meta.company.name} · {modal.report.meta.project?.name || 'Company scope'} · {modal.report.meta.currency}</p>
-<p className="muted">Snapshot {modal.report.snapshot} · 28 Oct 2026</p>{modal.rows.map(r => <section className="record-section" key={r.id}>
+<p className="muted">Snapshot {modal.report.snapshot} · {modal.report.meta.asOf}</p>{modal.rows.map(r => <section className="record-section" key={r.id}>
 <h3>{r.id} · {r.name}</h3>
 <dl className="facts">{[['original_budget', 'Original budget'], ['revised_budget', 'Revised budget'], ['committed', 'Issued commitments'], ['incurred', 'Incurred cost'], ['cash', 'Cash paid'], ['forecast', 'Forecast final cost']].map(([key, label]) => <div key={key}>
 <dt>{label}</dt>
 <dd>{amount(r[key], modal.report.meta.currency)}</dd>
 </div>)}</dl>
 <p className="notice">{r.source}<small>Illustrative opening snapshot; original JAKH transaction documents have not been imported.</small>
-</p>{r.transaction_sources?.length > 0 && <div><h4>Local transaction additions</h4>{r.transaction_sources.map(f => <p key={f.id}>{f.kind} · {amount(f.amount, modal.report.meta.currency)} · {f.source_id} {f.order_id && canOpenOrderSource(r) && <button className='text-button' onClick={() => openRecord(f.order_id)}>Open {f.order_id}<ArrowRight size={15} /></button>}</p>)}</div>}
+</p>{r.budget_sources?.length > 0 && <div><h4>Approved budget allocations</h4>{r.budget_sources.map(f => <p key={f.id}>{f.title} · revised budget change {amount(f.budget_delta, modal.report.meta.currency)} · release change {amount(f.release_delta, modal.report.meta.currency)} <button className='text-button' onClick={() => openRecord(f.document_id)}>Open budget<ArrowRight size={15} /></button></p>)}</div>}{r.transaction_sources?.length > 0 && <div><h4>Local transaction additions</h4>{r.transaction_sources.map(f => <p key={f.id}>{f.kind} · {amount(f.amount, modal.report.meta.currency)} · {f.source_id} {f.order_id && canOpenOrderSource(r) && <button className='text-button' onClick={() => openRecord(f.order_id)}>Open {f.order_id}<ArrowRight size={15} /></button>}</p>)}</div>}
 </section>)}</>;
     if (modal.type === 'explain') return <>
 <p className="eyebrow">{modal.report.meta.company.name} · {modal.report.meta.project?.name || 'Company scope'}</p>
@@ -496,7 +512,7 @@ export function App() {
 <strong>{company?.currency}</strong>
 </div>
 </div>}</div>}{route.global === 'Projects' && <nav className="project-nav" aria-label="Project areas">{AREAS.filter(areaVisible).map(area => <button key={area} className={route.area === area ? 'selected' : ''} aria-current={route.area === area ? 'page' : undefined} onClick={() => nav('Projects', area)}>{area}</button>)}</nav>}<div className="content">
-<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{boot && !companyId && <Empty>No company access is assigned. An access administrator can review the required role and scope.</Empty>}{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Home' ? <Landing boot={boot} company={company} workspace={workspace} projectId={projectId} setProjectId={setProjectId} onVisit={d => nav(d.section, d.area || 'Overview', d.category || '')} /> : route.global === 'Access' ? boot.actor.access_admin && !boot.preview ? <Access actorId={boot.actor.id} onPreview={previewUser} /> : <Empty>User administration is restricted.</Empty> : !globalVisible(route.global) ? <Empty>This destination is not available for your role.</Empty> : route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
+<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{boot && !companyId && <Empty>No company access is assigned. An access administrator can review the required role and scope.</Empty>}{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Home' ? <Landing boot={boot} company={company} workspace={workspace} projectId={projectId} setProjectId={setProjectId} onVisit={d => nav(d.section, d.area || 'Overview', d.category || '')} /> : route.global === 'Organisation' ? boot.actor.organisation_admin && !boot.preview ? <Organisation onChanged={reloadFoundations} /> : <Empty>Organisation administration is restricted.</Empty> : route.global === 'Access' ? boot.actor.access_admin && !boot.preview ? <Access actorId={boot.actor.id} onPreview={previewUser} /> : <Empty>User administration is restricted.</Empty> : !globalVisible(route.global) ? <Empty>This destination is not available for your role.</Empty> : route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
 <div className="section-head">
 <h2>Bids & estimates</h2>
 <span className="muted">{company.name}</span>
@@ -507,12 +523,12 @@ export function App() {
 <section>
 <div className="section-head">
 <h2>Awaiting your review</h2>
-</div>{typedRequestList((workspace.material_requests || []).filter(r => r.can_approve))}{requestList(workspace.requests.filter(r => r.can_review))}</section>
+</div>{(workspace.budget_documents || []).filter(d => d.can_review).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget approval · {amount(d.approval_amount, company.currency)}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.can_approve))}{requestList(workspace.requests.filter(r => r.can_review))}</section>
 <section className="spaced">
 <div className="section-head">
-<h2>Your requests</h2>
-</div>{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
+<h2>Your drafts & requests</h2>
+</div>{(workspace.budget_documents || []).filter(d => d.author_id === boot.actor.id && ['draft', 'returned', 'submitted'].includes(d.state)).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget · {d.state}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
 </>}</>}</div>
 </main>
-</div>{modal && <Modal title={modal.title} onClose={close} wide={['procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
+</div>{modal && <Modal title={modal.title} onClose={close} wide={['budget', 'procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
 }

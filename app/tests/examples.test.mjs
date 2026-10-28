@@ -18,8 +18,8 @@ test('every visible feature has examples in every sample company and project', t
     const scope = service.workspace(project.company_id, project.id);
     for (const [area, categories] of Object.entries(CATEGORIES)) {
       for (const [category] of categories) {
-        const rows = category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
-        assert.ok(rows.length >= (['Cost report', 'Purchase requests','Orders & deliveries'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
+        const rows = category === 'Project setup' ? scope.project_setup : category === 'Budget control' ? scope.budget_documents : category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
+        assert.ok(rows.length >= (['Project setup','Budget control','Cost report', 'Purchase requests','Orders & deliveries'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
       }
     }
     assert.deepEqual([...new Set(scope.requests.map(r => r.status))].sort(), ['approved', 'draft', 'returned', 'submitted']);

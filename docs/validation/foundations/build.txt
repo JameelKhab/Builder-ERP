@@ -1,0 +1,4 @@
+dist/client/assets/index-QaLHuNRQ.css                             50.98 kB │ gzip:  10.24 kB
+dist/client/assets/index-CzRyq1LS.js                             395.97 kB │ gzip: 111.57 kB
+✓ built in 3.17s
+Prepared Sites build: dist/server/index.js and dist/.openai/hosting.json

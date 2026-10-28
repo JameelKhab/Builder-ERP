@@ -38,7 +38,9 @@ export function policy(db, actorId) {
   const requireCap = (cap, company, project, aggregate = false) => requireThat(has(cap, company, project, aggregate), 'Your role does not permit this action.', 403);
   const record = r => Boolean(r && has(CATEGORY_CAPABILITY[r.category], r.company_id, r.project_id));
   const approvalLimit = (company, project) => matching(company, project).filter(m => m.can_approve && ROLE_BY_ID[m.role_id]?.capabilities.includes('requests.approve')).reduce((n, m) => new D(m.approval_limit).gt(n) ? money(m.approval_limit) : n, '0.00');
+  const budgetApprovalLimit = (company, project) => matching(company, project).filter(m => ROLE_BY_ID[m.role_id]?.capabilities.includes('budgets.approve')).reduce((n, m) => new D(m.budget_approval_limit || '0').gt(n) ? money(m.budget_approval_limit) : n, '0.00');
   return {
+    budgetApprovalLimit,
     actor,
     grants,
     matching,

@@ -1,3 +1,4 @@
+import { foundations } from './foundations.mjs';
 import express from 'express';
 import { randomBytes } from 'node:crypto';
 import { accessAdmin } from './access-admin.mjs';
@@ -69,6 +70,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.foundations = foundations(db, session.previewId || session.actorId, today);
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
@@ -104,6 +106,22 @@ export function createApi(db, {
   app.post('/api/requests', (req, res) => res.status(201).json(req.service.create(req.body)));
   app.put('/api/requests/:id', (req, res) => res.json(req.service.update(req.params.id, req.body)));
   app.post('/api/requests/:id/decision', (req, res) => res.json(req.service.decide(req.params.id, req.body)));
+  app.get('/api/organisation', (req, res) => res.json(req.foundations.organisation()));
+  app.post('/api/organisation/companies', (req, res) => res.status(201).json(req.foundations.saveCompany(null, req.body)));
+  app.put('/api/organisation/companies/:id', (req, res) => res.json(req.foundations.saveCompany(req.params.id, req.body)));
+  app.get('/api/foundations', (req, res) => res.json(req.foundations.workspace(req.query.company, req.query.project || null)));
+  app.post('/api/projects', (req, res) => res.status(201).json(req.foundations.saveProject(null, req.body)));
+  app.put('/api/projects/:id', (req, res) => res.json(req.foundations.saveProject(req.params.id, req.body)));
+  app.get('/api/projects/:id/history', (req, res) => res.json(req.foundations.projectHistory(req.params.id)));
+  app.post('/api/locations', (req, res) => res.status(201).json(req.foundations.saveLocation(null, req.body)));
+  app.put('/api/locations/:id', (req, res) => res.json(req.foundations.saveLocation(req.params.id, req.body)));
+  app.post('/api/work-packages', (req, res) => res.status(201).json(req.foundations.savePackage(null, req.body)));
+  app.put('/api/work-packages/:id', (req, res) => res.json(req.foundations.savePackage(req.params.id, req.body)));
+  app.post('/api/cost-codes', (req, res) => res.status(201).json(req.foundations.addCostCode(req.body)));
+  app.get('/api/budgets/:id', (req, res) => res.json(req.foundations.budgetDetail(req.params.id)));
+  app.post('/api/budgets', (req, res) => res.status(201).json(req.foundations.saveBudget(null, req.body)));
+  app.put('/api/budgets/:id', (req, res) => res.json(req.foundations.saveBudget(req.params.id, req.body)));
+  app.post('/api/budgets/:id/decision', (req, res) => res.json(req.foundations.decideBudget(req.params.id, req.body)));
   app.get('/api/procurement', (req, res) => res.json(req.procurement.workspace(req.query.company, req.query.project || null)));
   app.get('/api/material-requests/:id', (req, res) => res.json(req.procurement.requestDetail(req.params.id)));
   app.post('/api/material-requests', (req, res) => res.status(201).json(req.procurement.createRequest(req.body)));
