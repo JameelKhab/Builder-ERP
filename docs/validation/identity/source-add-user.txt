@@ -1,0 +1,374 @@
+Browser tab: 11, Title: "JAKH Dashboard", URL: "https://demo.jakh.net/jakh/action-604".
+0 AXWebArea JAKH Dashboard, URL: demo.jakh.net/jakh/action-604
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 button (collapsed) Description: Tender & BOQ, Secondary Actions: Expand
+					14 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					15 button (collapsed) Description: Projects, Secondary Actions: Expand
+					16 button Project requisitions
+					17 button Project set-up
+					18 button Material returns
+					19 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					20 button Site receipts
+					21 button Site diaries
+					22 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					23 button Site materials & issues
+					24 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					25 button Payment certificates
+					26 button Advances & retention releases
+					27 button Final accounts & closeout
+					28 button Guarantees & bonds
+					29 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					30 button Subcontract order amendments
+					31 button Subcontractor applications
+					32 button Subcontract service entries
+					33 button Subcontract work corrections
+					34 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					35 button Labour & plant allocation
+					36 button Labour & plant actual feeds
+					37 button P6 schedule progress
+					38 button (collapsed) Description: Finance, Secondary Actions: Expand
+					39 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					40 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					41 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					42 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					43 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					44 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					45 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					46 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					47 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					48 button My Tasks
+					319 container
+						320 button (expanded) Description: Users & Access, Secondary Actions: Collapse
+						321 content list jakh-menu-435
+							322 button Add User
+							323 button Manage Users
+							324 button Access Presets
+							325 button Advanced Native User Settings
+					50 button (collapsed) Description: Administration, Secondary Actions: Expand
+			51 container
+				52 text JAKH Contracting Platform
+				53 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		54 container
+			55 button (collapsed) Messages 1, Secondary Actions: Expand
+				56 container Messages
+				57 text 1
+			58 button (collapsed) Activities, Secondary Actions: Expand
+				59 container Activities
+			60 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			61 button التبديل إلى العربية
+			62 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			63 button (collapsed) User is online, Secondary Actions: Expand
+				64 image
+					65 container User is online
+		66 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		67 container
+			68 text JAKH · CONTRACTING & CONSTRUCTION
+			69 heading Dashboard, Value: 1
+				70 text Dashboard
+			71 text JAKH Demo Contracting LLC
+			72 button Set up a project
+			73 button Refresh
+		74 container Modules
+			75 heading Modules, Value: 2, ID: jakh-modules-heading
+				76 text Modules
+			77 text Your business, projects and site controls in one place.
+			78 button (collapsed) Show module shortcuts, Secondary Actions: Expand
+		79 container Construction project control
+			80 heading JAKH Demo Contracting LLC, Value: 2
+				81 text JAKH Demo Contracting LLC
+			82 container
+				83 text AED  · Company-currency posted and approved records ·  2026-10-29
+			84 button 2 Project exceptions
+				85 text 2
+				86 text  Project exceptions
+			87 button AED 25.89M Approved commitments Open contributing records
+				88 text AED 25.89M
+				89 text Approved commitments
+				90 text Open contributing records
+			91 button AED 51.19M Posted project costs Open contributing records
+				92 text AED 51.19M
+				93 text Posted project costs
+				94 text Open contributing records
+			95 button AED 67.49M Certified gross Open contributing records
+				96 text AED 67.49M
+				97 text Certified gross
+				98 text Open contributing records
+			99 button AED 64.25M Posted billing gross Open contributing records
+				100 text AED 64.25M
+				101 text Posted billing gross
+				102 text Open contributing records
+			103 container Project performance table
+				104 table
+					105 row
+						106 cell
+							107 text Project
+						108 cell
+							109 text Revised budget
+						110 cell
+							111 text Forecast final cost
+						112 cell
+							113 text Forecast margin
+						114 cell
+							115 text Physical progress
+						116 cell
+							117 text Certified financial progress
+						118 cell
+							119 text CPI
+						120 cell
+							121 text SPI
+					122 row
+						123 cell
+							124 text Al Qudra School Fit-out
+						125 cell
+							126 text AED 6,930,000.00
+						127 cell
+							128 text AED 7,016,240.25
+						129 cell
+							130 text AED 1,566,766.75
+						131 cell
+							132 text 95.7%
+						133 cell
+							134 text 94.91%
+						135 cell
+							136 text 1.1031
+						137 cell
+							138 text 1
+						139 cell
+							140 button Open control report
+					141 row
+						142 cell
+							143 text Harbour Logistics Warehouse
+						144 cell
+							145 text AED 16,100,000.00
+						146 cell
+							147 text AED 17,227,000.00
+						148 cell
+							149 text AED 2,658,390.00
+						150 cell
+							151 text 73.47%
+						152 cell
+							153 text 73.92%
+						154 cell
+							155 text 0.9289
+						156 cell
+							157 text 0.82
+						158 cell
+							159 button Open control report
+					160 row
+						161 cell
+							162 text Internal
+						163 cell
+							164 text AED 0.00
+						165 cell
+							166 text AED 0.00
+						167 cell
+							168 text AED 0.00
+						169 cell
+							170 text Undefined
+						171 cell
+							172 text Undefined
+						173 cell
+							174 text Undefined
+						175 cell
+							176 text Undefined
+						177 cell
+							178 button Open control report
+					179 row
+						180 cell
+							181 text Jumeirah Park Villa Renovation (direct award)
+						182 cell
+							183 text AED 0.00
+						184 cell
+							185 text AED 0.00
+						186 cell
+							187 text AED 0.00
+						188 cell
+							189 text Undefined
+						190 cell
+							191 text Undefined
+						192 cell
+							193 text Undefined
+						194 cell
+							195 text Undefined
+						196 cell
+							197 button Open control report
+					198 row
+						199 cell
+							200 text Marina Gate Residences G+4
+						201 cell
+							202 text AED 26,650,000.00
+						203 cell
+							204 text AED 26,117,000.00
+						205 cell
+							206 text AED 6,702,835.00
+						207 cell
+							208 text 64.8%
+						209 cell
+							210 text 65.14%
+						211 cell
+							212 text 1.2287
+						213 cell
+							214 text 1
+						215 cell
+							216 button Open control report
+					217 row
+						218 cell
+							219 text Oasis Mall Retail Fit-out (completed)
+						220 cell
+							221 text AED 3,590,000.00
+						222 cell
+							223 text AED 4,052,430.00
+						224 cell
+							225 text AED 378,311.00
+						226 cell
+							227 text 100%
+						228 cell
+							229 text 100%
+						230 cell
+							231 text 0.9034
+						232 cell
+							233 text 1
+						234 cell
+							235 button Open control report
+					236 row
+						237 cell
+							238 text Palm Crest Villas — 24 villas
+						239 cell
+							240 text AED 26,136,000.00
+						241 cell
+							242 text AED 25,613,280.00
+						243 cell
+							244 text AED 6,536,666.40
+						245 cell
+							246 text 66.39%
+						247 cell
+							248 text 58.59%
+						249 cell
+							250 text 1.2036
+						251 cell
+							252 text 1
+						253 cell
+							254 button Open control report
+			255 container Project pages
+				256 container
+					257 text 1 – 7  /  7  ·  Totals include all permitted active projects.
+				258 button (disabled) Previous projects
+				259 button (disabled) Next projects
+			260 text Physical progress is weighted by original WBS budget; missing approved progress is Undefined. Financial progress is certified gross divided by revised contract value. CPI/SPI use earned value, not billing. Each company and currency remains separate.
+		261 container Business & project overview
+			262 heading Business & project overview, Value: 2, ID: jakh-overview-heading
+				263 text Business & project overview
+			264 text Open a count to see the records behind it.
+			265 button 7 Active projects Open contributing records
+				266 text 7
+				267 text Active projects
+				268 text Open contributing records
+			269 button 4 Open opportunities Open contributing records
+				270 text 4
+				271 text Open opportunities
+				272 text Open contributing records
+			273 button 1 Estimates awaiting approval Open contributing records
+				274 text 1
+				275 text Estimates awaiting approval
+				276 text Open contributing records
+			277 button 0 Requisitions awaiting approval Open contributing records
+				278 text 0
+				279 text Requisitions awaiting approval
+				280 text Open contributing records
+			281 button 1 Certificates awaiting approval Open contributing records
+				282 text 1
+				283 text Certificates awaiting approval
+				284 text Open contributing records
+			285 button 4 Priced variations awaiting approval Open contributing records
+				286 text 4
+				287 text Priced variations awaiting approval
+				288 text Open contributing records
+			289 button 0 Budget revisions awaiting approval Open contributing records
+				290 text 0
+				291 text Budget revisions awaiting approval
+				292 text Open contributing records
+			293 button 0 Forecasts awaiting approval Open contributing records
+				294 text 0
+				295 text Forecasts awaiting approval
+				296 text Open contributing records
+			297 button 2 Pending receipts Open contributing records
+				298 text 2
+				299 text Pending receipts
+				300 text Open contributing records
+			301 button 3 Overdue customer invoices Open contributing records
+				302 text 3
+				303 text Overdue customer invoices
+				304 text Open contributing records
+			305 button 4 Overdue vendor bills Open contributing records
+				306 text 4
+				307 text Overdue vendor bills
+				308 text Open contributing records
+			309 button 16 Open quality / HSE actions Open contributing records
+				310 text 16
+				311 text Open quality / HSE actions
+				312 text Open contributing records
+			313 button 8 Documents awaiting approval Open contributing records
+				314 text 8
+				315 text Documents awaiting approval
+				316 text Open contributing records
+		317 container
+			318 text Record counts for your selected companies and access rights. Overdue invoices and bills include only posted, unpaid or partially paid documents past their due date; payments in progress are excluded. Pending receipts exclude drafts and completed or cancelled transfers. No currency amounts are combined. Generated  2026-10-28 21:30:55  UTC · Selected companies
+		326 container
+			327 heading Add User, Value: 4
+				328 text Add User
+			329 button Close
+			330 container
+				331 text Review the effective permissions before applying. An email is sent only if you tick Email an invitation. USER IDENTITY
+				332 text Existing user
+				373 combo box (collapsed, settable) Existing user, ID: target_user_id_0, Secondary Actions: Expand
+				335 text Full name
+				336 text field (settable) Full name, ID: name_0
+				337 text Login
+				338 text field (settable) Login, ID: login_0
+				339 text Contact email
+				340 text field (settable) Contact email
+				341 container
+					342 text Email an invitation ?
+				343 container
+					344 checkbox (settable, integer) Email an invitation?, Value: 0, ID: send_invitation_0
+				345 text Designation / job title
+				346 text field (settable) Designation / job title, ID: designation_0
+				347 text Interface language
+				348 container
+					349 text field (settable) Interface language, Value: English (US), ID: lang_0
+				350 text ACCESS PRESET
+				351 text Preset
+				374 combo box (collapsed, settable) Preset, ID: preset_id_0, Secondary Actions: Expand
+				353 text Allowed companies
+				354 container
+					355 container JAKH Demo Contracting LLC
+						356 text JAKH Demo Contracting LLC
+						357 link Description: Delete, Value: demo.jakh.net/jakh/action-604#
+					375 combo box (collapsed, settable) Allowed companies, ID: company_ids_0, Secondary Actions: Expand
+				359 text Default company
+				376 combo box (collapsed, settable) Default company, Value: JAKH Demo Contracting LLC, ID: company_id_0, Secondary Actions: Expand
+				361 text Project access
+				362 container
+					363 text field (settable) Project access, Value: Selected projects, ID: project_scope_0
+				364 text Assigned projects
+				377 combo box (collapsed, settable) Assigned projects, ID: project_ids_0, Secondary Actions: Expand
+				366 text Assigned-project scope restricts project and linked JAKH records. Native accounting, purchasing and stock permissions can still expose company-wide records. The review shows inherited rights; a designation does not replace workflow approvals. ADVANCED ADDITIONS
+				367 text Additional approved roles
+				378 combo box (collapsed, settable) Additional approved roles, ID: extra_group_ids_0, Secondary Actions: Expand
+				369 text Reason for access change
+				370 text entry area (settable) Reason for access change, ID: reason_0
+			371 button Review Effective Access
+			372 button Cancel
+
+The focused UI element is 0 AXWebArea JAKH Dashboard, URL: demo.jakh.net/jakh/action-604

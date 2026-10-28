@@ -5,7 +5,7 @@ import {createApi} from '../server/http.mjs';
 import {procurement} from '../server/procurement.mjs';
 import {installProcurementExamples} from '../server/procurement-examples.mjs';
 async function client(t,db,actorId){
- const server=createApi(db,{actorId,today:()=> '2026-10-28'}).listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
+ const server=createApi(db,{authMode:'sample',actorId,today:()=> '2026-10-28'}).listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));t.after(()=>new Promise(resolve=>server.close(resolve)));
  const headers={'X-Builder-Client':'local-app','Content-Type':'application/json'},base=`http://127.0.0.1:${server.address().port}/api`;
  const login=await fetch(base+'/local-session',{method:'POST',headers});headers.Cookie=login.headers.get('set-cookie').split(';')[0];
  return async(path,body,method='POST')=>{const res=await fetch(base+path,{headers,method:body===undefined?'GET':method,...(body===undefined?{}:{body:JSON.stringify(body)})});return {status:res.status,body:await res.json()}};

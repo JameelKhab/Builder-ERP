@@ -1,0 +1,306 @@
+{
+  "schema_versions": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "preservation": [
+    {
+      "table": "companies",
+      "rows": 2,
+      "identical": true
+    },
+    {
+      "table": "projects",
+      "rows": 3,
+      "identical": true
+    },
+    {
+      "table": "users",
+      "rows": 7,
+      "identical": true
+    },
+    {
+      "table": "memberships",
+      "rows": 9,
+      "identical": true
+    },
+    {
+      "table": "vendors",
+      "rows": 3,
+      "identical": true
+    },
+    {
+      "table": "cost_items",
+      "rows": 7,
+      "identical": true
+    },
+    {
+      "table": "requests",
+      "rows": 13,
+      "identical": true
+    },
+    {
+      "table": "events",
+      "rows": 29,
+      "identical": true
+    },
+    {
+      "table": "records",
+      "rows": 107,
+      "identical": true
+    },
+    {
+      "table": "sample_packs",
+      "rows": 3,
+      "identical": true
+    },
+    {
+      "table": "access_events",
+      "rows": 0,
+      "identical": true
+    },
+    {
+      "table": "products",
+      "rows": 6,
+      "identical": true
+    },
+    {
+      "table": "project_locations",
+      "rows": 13,
+      "identical": true
+    },
+    {
+      "table": "work_packages",
+      "rows": 6,
+      "identical": true
+    },
+    {
+      "table": "material_requests",
+      "rows": 10,
+      "identical": true
+    },
+    {
+      "table": "material_request_lines",
+      "rows": 13,
+      "identical": true
+    },
+    {
+      "table": "supplier_quotes",
+      "rows": 9,
+      "identical": true
+    },
+    {
+      "table": "sourcing_allocations",
+      "rows": 9,
+      "identical": true
+    },
+    {
+      "table": "purchase_orders",
+      "rows": 4,
+      "identical": true
+    },
+    {
+      "table": "purchase_order_lines",
+      "rows": 4,
+      "identical": true
+    },
+    {
+      "table": "material_receipts",
+      "rows": 4,
+      "identical": true
+    },
+    {
+      "table": "stock_movements",
+      "rows": 12,
+      "identical": true
+    },
+    {
+      "table": "construction_cost_facts",
+      "rows": 8,
+      "identical": true
+    },
+    {
+      "table": "procurement_events",
+      "rows": 55,
+      "identical": true
+    },
+    {
+      "table": "cost_codes",
+      "rows": 2,
+      "identical": true
+    },
+    {
+      "table": "budget_documents",
+      "rows": 9,
+      "identical": true
+    },
+    {
+      "table": "budget_lines",
+      "rows": 9,
+      "identical": true
+    },
+    {
+      "table": "budget_facts",
+      "rows": 3,
+      "identical": true
+    },
+    {
+      "table": "foundation_events",
+      "rows": 23,
+      "identical": true
+    }
+  ],
+  "recovery": [
+    {
+      "table": "schema_versions",
+      "identical": true
+    },
+    {
+      "table": "companies",
+      "identical": true
+    },
+    {
+      "table": "projects",
+      "identical": true
+    },
+    {
+      "table": "users",
+      "identical": true
+    },
+    {
+      "table": "memberships",
+      "identical": true
+    },
+    {
+      "table": "vendors",
+      "identical": true
+    },
+    {
+      "table": "cost_items",
+      "identical": true
+    },
+    {
+      "table": "requests",
+      "identical": true
+    },
+    {
+      "table": "events",
+      "identical": true
+    },
+    {
+      "table": "records",
+      "identical": true
+    },
+    {
+      "table": "sample_packs",
+      "identical": true
+    },
+    {
+      "table": "access_events",
+      "identical": true
+    },
+    {
+      "table": "products",
+      "identical": true
+    },
+    {
+      "table": "project_locations",
+      "identical": true
+    },
+    {
+      "table": "work_packages",
+      "identical": true
+    },
+    {
+      "table": "material_requests",
+      "identical": true
+    },
+    {
+      "table": "material_request_lines",
+      "identical": true
+    },
+    {
+      "table": "supplier_quotes",
+      "identical": true
+    },
+    {
+      "table": "sourcing_allocations",
+      "identical": true
+    },
+    {
+      "table": "purchase_orders",
+      "identical": true
+    },
+    {
+      "table": "purchase_order_lines",
+      "identical": true
+    },
+    {
+      "table": "material_receipts",
+      "identical": true
+    },
+    {
+      "table": "stock_movements",
+      "identical": true
+    },
+    {
+      "table": "construction_cost_facts",
+      "identical": true
+    },
+    {
+      "table": "procurement_events",
+      "identical": true
+    },
+    {
+      "table": "cost_codes",
+      "identical": true
+    },
+    {
+      "table": "budget_documents",
+      "identical": true
+    },
+    {
+      "table": "budget_lines",
+      "identical": true
+    },
+    {
+      "table": "budget_facts",
+      "identical": true
+    },
+    {
+      "table": "foundation_events",
+      "identical": true
+    },
+    {
+      "table": "identity_state",
+      "identical": true
+    },
+    {
+      "table": "identities",
+      "identical": true
+    },
+    {
+      "table": "identity_sessions",
+      "identical": true
+    },
+    {
+      "table": "identity_codes",
+      "identical": true
+    },
+    {
+      "table": "identity_limits",
+      "identical": true
+    },
+    {
+      "table": "identity_events",
+      "identical": true
+    }
+  ],
+  "integrity": "ok",
+  "foreign_key_errors": 0,
+  "identity_count": 0,
+  "secure_state": 0
+}

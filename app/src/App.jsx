@@ -1,3 +1,4 @@
+import { Account } from './Identity.jsx';
 import { Foundations, Organisation } from './Foundations.jsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight, FileText, ChartBar, Sparkle, ArrowLeft, ArrowRight, Plus, List, CheckCircle, House, ShieldCheck } from '@phosphor-icons/react';
@@ -18,8 +19,8 @@ function readRoute() {
     category: p.get('category') || ''
   };
 }
-export function App() {
-  const [boot, setBoot] = useState(null),
+export function App({initialBoot,onSignOut,onSetup}) {
+  const [boot, setBoot] = useState(initialBoot),
     [companyId, setCompanyId] = useState('jakh'),
     [projectId, setProjectId] = useState('harbour'),
     [route, setRoute] = useState(readRoute),
@@ -81,25 +82,11 @@ export function App() {
     window.addEventListener('hashchange', fn);
     return () => window.removeEventListener('hashchange', fn);
   }, []);
-  useEffect(() => {
-    let active = true;
-    api('/local-session', {}).then(() => api('/bootstrap')).then(b => {
-      if (active) {
-        setBoot(b);
-        if (!b.companies.some(c => c.id === companyId)) {
-          setCompanyId(b.companies[0]?.id || '');
-          setProjectId(b.projects[0]?.id || '');
-        }
-      }
-    }).catch(e => active && setError(e.message));
-    return () => {
-      active = false;
-    };
-  }, []);
+  useEffect(()=>{setBoot(initialBoot);if(!initialBoot.companies.some(c=>c.id===companyId)){setCompanyId(initialBoot.companies[0]?.id||'');setProjectId(initialBoot.projects[0]?.id||'');}},[initialBoot]);
   useEffect(() => {
     if (!boot) return;
     if (!companyId) {
-      setWorkspace(null);
+      setWorkspace({capabilities:[],requests:[],records:[],report:null,vendors:[],items:[],material_requests:[],purchase_orders:[],budget_documents:[],project_setup:[]});
       setLoading(false);
       setError('');
       return;
@@ -336,7 +323,7 @@ export function App() {
   }
   const reloadFoundations = async () => {
     setBoot(await api('/bootstrap'));
-    setWorkspace(await api(`/workspace?company=${companyId}${scopeProject ? '&project=' + scopeProject : ''}`));
+    if(companyId)setWorkspace(await api(`/workspace?company=${companyId}${scopeProject ? '&project=' + scopeProject : ''}`));
   };
   function projectArea() {
     if (!can('projects.read') || !areaVisible(route.area) || route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your current role and project.</Empty>;
@@ -395,6 +382,7 @@ export function App() {
 <h2>{group}</h2>{directory(entries.map(e => [e[0], e[1]]), title => nav('Company', 'Overview', entries.find(e => e[0] === title)[2]))}</section>)}</>;
   }
   function modalBody() {
+    if(modal.type==='account') return <Account mode={boot.mode} onSetup={onSetup} onSignOut={onSignOut}/>;
     if (modal.type === 'budget') return <Foundations key={modal.id} company={company} preview={!!boot.preview} initial='budget' initialRecord={modal.id} onChanged={reloadFoundations} />;
     if (modal.type === 'procurement') return <Procurement key={companyId + modal.id} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialRecord={modal.id} />;
     if (modal.type === 'loading') return <p role="status">Loading…</p>;
@@ -461,7 +449,7 @@ export function App() {
 <nav aria-label="Main navigation">{GLOBALS.filter(([title]) => globalVisible(title)).map(([title, Icon]) => <button key={title} aria-current={route.global === title ? 'page' : undefined} className={route.global === title ? 'global-link active' : 'global-link'} onClick={() => nav(title)}>
 <Icon size={25} weight={route.global === title ? 'fill' : 'regular'} />{title}</button>)}</nav>
 <div className="sidebar-footer">Built around your work.<br />
-<span>Local sample workspace</span>
+<span>{boot?.mode==='local'?'Local workspace':'Local sample workspace'}</span>
 </div>
 </aside>
 <div className="workspace">
@@ -471,22 +459,23 @@ export function App() {
 </button>
 <label className="company-select">
 <span className="sr-only">Company</span>
-<select value={companyId} onChange={e => switchCompany(e.target.value)} disabled={!boot}>{boot?.companies.map(c => <option value={c.id} key={c.id}>{c.name}</option>)}</select>
+<select value={companyId} onChange={e => switchCompany(e.target.value)} disabled={!boot || !companyId}>{!companyId&&<option value="">No business scope</option>}{boot?.companies.map(c => <option value={c.id} key={c.id}>{c.name}</option>)}</select>
 </label>
 <form className="search" onSubmit={doSearch}>
 <MagnifyingGlass size={21} />
-<input aria-label="Search company records" placeholder="Search projects, documents, contracts…" value={search} onChange={e => setSearch(e.target.value)} maxLength={120} required />
+<input aria-label="Search company records" placeholder="Search projects, documents, contracts…" value={search} onChange={e => setSearch(e.target.value)} maxLength={120} disabled={!companyId} required />
 <button type="submit" className="sr-only">Search</button>
 </form>
-<button className="examples-button" aria-label="Explore examples" onClick={openExamples} disabled={!boot}>
+<button className="examples-button" aria-label="Explore examples" onClick={openExamples} disabled={!boot || !companyId}>
 <Question size={21} /><span>Examples</span>
 </button>
 <div className="profile">
-<span className="avatar">{boot?.actor.name.split(' ').slice(0, 2).map(n => n[0]).join('') || 'B'}</span>
+<button className="profile-button" disabled={!!boot?.preview} aria-label="Your account and sign-in" onClick={()=>setModal({type:'account',title:'Your account'})}><span className="avatar">{boot?.actor.name.split(' ').slice(0, 2).map(n => n[0]).join('') || 'B'}</span>
 <div>
 <strong>{boot?.actor.name || 'Ahmed Al Mansoori'}</strong>
 <small>{boot?.preview ? 'Access preview · Read only' : boot?.actor.role || 'Loading…'}</small>
 </div>
+</button>
 </div>
 </header>
 {boot?.preview && <div className="preview-banner"><span>Previewing {boot.actor.name} · Read only · Live permissions</span><button onClick={() => previewUser(null)}>Return to {boot.preview.name.split(' ')[0]}’s workspace</button></div>}
@@ -512,7 +501,7 @@ export function App() {
 <strong>{company?.currency}</strong>
 </div>
 </div>}</div>}{route.global === 'Projects' && <nav className="project-nav" aria-label="Project areas">{AREAS.filter(areaVisible).map(area => <button key={area} className={route.area === area ? 'selected' : ''} aria-current={route.area === area ? 'page' : undefined} onClick={() => nav('Projects', area)}>{area}</button>)}</nav>}<div className="content">
-<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{boot && !companyId && <Empty>No company access is assigned. An access administrator can review the required role and scope.</Empty>}{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Home' ? <Landing boot={boot} company={company} workspace={workspace} projectId={projectId} setProjectId={setProjectId} onVisit={d => nav(d.section, d.area || 'Overview', d.category || '')} /> : route.global === 'Organisation' ? boot.actor.organisation_admin && !boot.preview ? <Organisation onChanged={reloadFoundations} /> : <Empty>Organisation administration is restricted.</Empty> : route.global === 'Access' ? boot.actor.access_admin && !boot.preview ? <Access actorId={boot.actor.id} onPreview={previewUser} /> : <Empty>User administration is restricted.</Empty> : !globalVisible(route.global) ? <Empty>This destination is not available for your role.</Empty> : route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
+<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{boot && !companyId && !['Home','Organisation','Access'].includes(route.global) && <Empty>No company access is assigned. An access administrator can review the required role and scope.</Empty>}{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Home' ? !company ? <section className="workspace-welcome"><p className="eyebrow">YOUR WORKSPACE</p><h1>Your workspace is ready.</h1><p className="muted">No business scope has been assigned to this account.</p><div className="inline-actions">{boot.actor.organisation_admin&&<button className='primary' onClick={()=>nav('Organisation')}>Manage companies</button>}{boot.actor.access_admin&&<button className='secondary' onClick={()=>nav('Access')}>Manage users & access</button>}</div></section> : <Landing boot={boot} company={company} workspace={workspace} projectId={projectId} setProjectId={setProjectId} onVisit={d => nav(d.section, d.area || 'Overview', d.category || '')} /> : route.global === 'Organisation' ? boot.actor.organisation_admin && !boot.preview ? <Organisation onChanged={reloadFoundations} /> : <Empty>Organisation administration is restricted.</Empty> : route.global === 'Access' ? boot.actor.access_admin && !boot.preview ? <Access actorId={boot.actor.id} onPreview={previewUser} /> : <Empty>User administration is restricted.</Empty> : !globalVisible(route.global) ? <Empty>This destination is not available for your role.</Empty> : route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
 <div className="section-head">
 <h2>Bids & estimates</h2>
 <span className="muted">{company.name}</span>
@@ -530,5 +519,5 @@ export function App() {
 </div>{(workspace.budget_documents || []).filter(d => d.author_id === boot.actor.id && ['draft', 'returned', 'submitted'].includes(d.state)).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget · {d.state}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
 </>}</>}</div>
 </main>
-</div>{modal && <Modal title={modal.title} onClose={close} wide={['budget', 'procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
+</div>{modal && <Modal title={modal.title} onClose={close} wide={['account', 'budget', 'procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
 }

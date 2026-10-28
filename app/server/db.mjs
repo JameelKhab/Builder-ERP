@@ -1,3 +1,4 @@
+import { installIdentity } from './identity-schema.mjs';
 import { installFoundationExamples } from './foundations-examples.mjs';
 import { installFoundations } from './foundations-schema.mjs';
 import { DatabaseSync } from 'node:sqlite';
@@ -41,6 +42,7 @@ export function openDatabase(path = ':memory:', {
   installAccess(db);
   installProcurement(db);
   installFoundations(db);
+  installIdentity(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { openDatabase } from '../server/db.mjs';
 import { createApi } from '../server/http.mjs';
 async function client(t, db, actorId) {
-  const server = createApi(db, {
+  const server = createApi(db, {authMode: 'sample',
     actorId
   }).listen(0, '127.0.0.1');
   await new Promise(r => server.once('listening', r));

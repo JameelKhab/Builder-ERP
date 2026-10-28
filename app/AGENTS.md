@@ -15,7 +15,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Use `npm run local` to start BOTH the loopback API and Vite. `npm run dev` alone starts only the frontend. This is an original, persistent local ERP increment, not merely a static Sites prototype.
 - User explicitly requires local work and local Git commits. Do not push, share, deploy, modify the old demo or invoke a hosting handoff without a later user instruction.
 - The Sites starter files are retained, but its static worker does NOT run this app's database/API. A successful frontend build is not a deployable ERP or production readiness.
-- Keep sample-mode identity and synthetic records clearly labelled. The only operational write workflow currently implemented is purchase request drafting, repricing and approval. Other registers are read-only samples. Never describe those as completed workflow modules.
+- Keep sample-mode identity and synthetic records clearly labelled. Operational subsets now include scoped access, local individual identity/provisioning, company/project/hierarchy/budget control and procurement through material movements. Read the current implementation coverage before describing any domain as complete. Other registers remain read-only samples. Setting up the first owner permanently disables the sample adapter for that database; never reset user credentials or create real passwords on the user’s behalf.
 - Run `npm test` and `npm run build` for meaningful application changes. Financial state changes require service tests; do not replace exact arithmetic with JavaScript floating-point money.
 - Follow the root AGENTS.md and update `../docs/implementation/local-increment-1.md` and the project log when scope changes.
 

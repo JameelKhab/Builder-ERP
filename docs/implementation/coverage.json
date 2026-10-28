@@ -2910,9 +2910,15 @@
       "domain": "D21",
       "source_path": "Users & Access > Add User",
       "destination": "Company > Administration > Access \u00b7 Add user",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Reviewed individual local account creation, existing non-administrator identity binding and one-time manual activation; explicit scope/limits and audit. Contact/email/language/default-company preferences, invitation transport and exact source parity remain open.",
+      "evidence": [
+        "docs/implementation/identity-local.md",
+        "docs/implementation/contracts/identity-v1.md",
+        "docs/validation/identity/source-add-user.txt",
+        "app/tests/identity.test.mjs",
+        "app/tests/identity-api.test.mjs"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "A new site engineer starts with only assigned projects.",
       "source_verification_remaining": "Inventory custom fields/actions/reports/automations and external APIs before promising equivalence. Confirm authentication/SSO, server authorisation, company inheritance, maker/checker, restore and integration ownership."
@@ -2923,12 +2929,17 @@
       "source_path": "Users & Access > Manage Users",
       "destination": "Company > Administration > Access \u00b7 Users",
       "local_status": "partial",
-      "implemented_and_remaining": "Existing-user scoped roles, active status, separate purchase/budget limits, reviewed changes and history. Authenticated identity, account provisioning and delegation remain open.",
+      "implemented_and_remaining": "Individual sign-in, live role/company/project controls, independent access/administrative review, revocation, recovery and session management. Delegation, configurable approval routes and full source-role acceptance remain open.",
       "evidence": [
         "app/tests/access.test.mjs",
         "app/tests/foundations.test.mjs",
         "app/tests/foundations-api.test.mjs",
-        "docs/implementation/contracts/foundations-v1.md"
+        "docs/implementation/contracts/foundations-v1.md",
+        "docs/implementation/identity-local.md",
+        "docs/implementation/contracts/identity-v1.md",
+        "docs/validation/identity/source-add-user.txt",
+        "app/tests/identity.test.mjs",
+        "app/tests/identity-api.test.mjs"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Deactivating a user preserves their historic authorship and decisions.",
@@ -2940,9 +2951,14 @@
       "source_path": "Users & Access > Access Presets",
       "destination": "Company > Administration > Access \u00b7 Role presets",
       "local_status": "partial",
-      "implemented_and_remaining": "27 explicit role presets; 23 assignable. Per-domain capabilities and separate pricing/budget access. Source role-by-role acceptance remains open.",
+      "implemented_and_remaining": "27 explicit role presets; 23 assignable. Plain-language effective-access review, separate pricing/budget access and independent administrative authority. Source role-by-role acceptance and additional same-scope roles remain open.",
       "evidence": [
-        "app/tests/access.test.mjs"
+        "app/tests/access.test.mjs",
+        "docs/implementation/identity-local.md",
+        "docs/implementation/contracts/identity-v1.md",
+        "docs/validation/identity/source-add-user.txt",
+        "app/tests/identity.test.mjs",
+        "app/tests/identity-api.test.mjs"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Changing a preset produces a reviewable access delta.",
@@ -2953,9 +2969,15 @@
       "domain": "D21",
       "source_path": "Users & Access > Advanced Native User Settings",
       "destination": "Company > Administration > Access \u00b7 Advanced settings",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Original local account/session/password/recovery controls; no Odoo dependency. Advanced authentication, MFA/passkeys/SSO, preferences and equivalent source settings remain open.",
+      "evidence": [
+        "docs/implementation/identity-local.md",
+        "docs/implementation/contracts/identity-v1.md",
+        "docs/validation/identity/source-add-user.txt",
+        "app/tests/identity.test.mjs",
+        "app/tests/identity-api.test.mjs"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "A custom permission maps to a named Builder control, not an Odoo dependency.",
       "source_verification_remaining": "Inventory custom fields/actions/reports/automations and external APIs before promising equivalence. Confirm authentication/SSO, server authorisation, company inheritance, maker/checker, restore and integration ownership."
@@ -3257,9 +3279,14 @@
       "source_path": "Administration > Settings > Users & Companies > Users",
       "destination": "Company > Administration > Access \u00b7 Users",
       "local_status": "partial",
-      "implemented_and_remaining": "Existing-user scope and status management. Account creation and authenticated multi-user sessions remain open.",
+      "implemented_and_remaining": "Original reviewed account provisioning, activation, authentication and session/recovery controls. Network-release hardening and full source identity migration remain open.",
       "evidence": [
-        "app/tests/api.test.mjs"
+        "app/tests/api.test.mjs",
+        "docs/implementation/identity-local.md",
+        "docs/implementation/contracts/identity-v1.md",
+        "docs/validation/identity/source-add-user.txt",
+        "app/tests/identity.test.mjs",
+        "app/tests/identity-api.test.mjs"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "The administration and access menus resolve to the same user lifecycle.",
@@ -3570,7 +3597,8 @@
       "required_fields": "scope/limit, route, version hash, actor, authority, outcome",
       "invariant": "Stale-version decisions rejected; immutable history",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open."
     },
     {
       "id": "M33",
@@ -3930,7 +3958,7 @@
       "data": "Companies/currencies/period settings; users/memberships/roles/presets; calendars; masters; thresholds; import mappings; integration batches/errors/idempotency IDs; custom definitions/versions; audit events; AI connection metadata (secrets handled separately).",
       "verify": "Inventory custom fields/actions/reports/automations and external APIs before promising equivalence. Confirm authentication/SSO, server authorisation, company inheritance, maker/checker, restore and integration ownership.",
       "example": "An administrator maps one P6 activity code to a WBS and reviews a rejected duplicate feed in the inbox. Retrying after correction posts once, with source batch, reviewer and audit event; the AI connection cannot grant itself posting authority.",
-      "local_implementation": "Original company/project/setup/budget services implemented for the subset described in docs/implementation/foundations-local.md. Source baseline current-field remains historical; full domain acceptance and migration are open."
+      "local_implementation": "Original company/project/budget administration plus local owner setup, individual sign-in, reviewed account provisioning/activation, independent access administration, sessions/recovery and audit. See identity-local.md and foundations-local.md; source-current fields remain historical. Full configurable tools, network release and migration acceptance remain open."
     }
   ]
 }

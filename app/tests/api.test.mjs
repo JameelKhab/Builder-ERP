@@ -4,7 +4,7 @@ import { openDatabase } from '../server/db.mjs';
 import { createApi } from '../server/http.mjs';
 test('HTTP boundary requires a session, blocks cross-origin writes and scopes direct endpoints', async t => {
   const db = openDatabase(),
-    app = createApi(db, {
+    app = createApi(db, {authMode: 'sample',
       actorId: 'mohammed',
       today: () => '2026-10-28'
     });
@@ -65,7 +65,7 @@ test('access preview is administrator-only, server-enforced read-only, and revoc
   const db = openDatabase(':memory:', {
       examples: true
     }),
-    app = createApi(db, {
+    app = createApi(db, {authMode: 'sample',
       today: () => '2026-10-28'
     }),
     server = app.listen(0, '127.0.0.1');
@@ -119,7 +119,7 @@ test('access preview is administrator-only, server-enforced read-only, and revoc
 });
 test('a normal session cannot impersonate another user and logout revokes its token', async t => {
   const db = openDatabase(),
-    server = createApi(db, {
+    server = createApi(db, {authMode: 'sample',
       actorId: 'mohammed'
     }).listen(0, '127.0.0.1');
   await new Promise(resolve => server.once('listening', resolve));

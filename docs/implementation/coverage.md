@@ -4,13 +4,15 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+Individual local sign-in now includes reviewed provisioning/activation, session/recovery controls and independent access administration. Real two-user budget/purchase approval is verified. See `identity-local.md` and `contracts/identity-v1.md`.
+
 The company/project/budget increment adds legal company setup, project details, location/WBS hierarchies and independently approved budget facts connected to procurement and cost reports. See `foundations-local.md` and `contracts/foundations-v1.md`.
 
 The connected procurement increment implements unpriced demand → supplier quotes/FX → independent sourcing review → local orders → partial receipts/rejections → supplier returns/material consumption → operational cost facts. See `contracts/procurement-v1.md` and `procurement-local.md`.
 
 ## Remaining build sequence
 
-1. Complete authenticated local multi-user identity, account provisioning, reference/master maintenance, detailed budget build-ups, dated forecast versions and approval routing. The implemented project/budget subset remains short of full domain acceptance.
+1. Complete identity hardening/preferences/delegation, reference/master maintenance, detailed budget build-ups, dated forecast versions and approval routing. The implemented project/budget subset remains short of full domain acceptance.
 2. Connect purchases to supplier bills, tax/FX/rounding policies, original balanced journals, payment allocation, bank clearance and cash forecasts; expand warehouse/material operations.
 3. Tender/estimating/BOQ-to-project handover; measured client and subcontract certification, advances, retention, variations, securities and final accounts.
 4. Programme/progress/delay, site diaries and resources; NCR/quality/safety, controlled documents/RFIs, testing, snagging and handover.
@@ -262,10 +264,10 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F236 | Team Discussions > Configuration > User Settings > Notifications | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F237 | Team Discussions > Configuration > User Settings > Voice & Video | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F238 | My Tasks | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F239 | Users & Access > Add User | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F240 | Users & Access > Manage Users | partial | Existing-user scoped roles, active status, separate purchase/budget limits, reviewed changes and history. Authenticated identity, account provisioning and delegation remain open. |
-| F241 | Users & Access > Access Presets | partial | 27 explicit role presets; 23 assignable. Per-domain capabilities and separate pricing/budget access. Source role-by-role acceptance remains open. |
-| F242 | Users & Access > Advanced Native User Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F239 | Users & Access > Add User | partial | Reviewed individual local account creation, existing non-administrator identity binding and one-time manual activation; explicit scope/limits and audit. Contact/email/language/default-company preferences, invitation transport and exact source parity remain open. |
+| F240 | Users & Access > Manage Users | partial | Individual sign-in, live role/company/project controls, independent access/administrative review, revocation, recovery and session management. Delegation, configurable approval routes and full source-role acceptance remain open. |
+| F241 | Users & Access > Access Presets | partial | 27 explicit role presets; 23 assignable. Plain-language effective-access review, separate pricing/budget access and independent administrative authority. Source role-by-role acceptance and additional same-scope roles remain open. |
+| F242 | Users & Access > Advanced Native User Settings | partial | Original local account/session/password/recovery controls; no Odoo dependency. Advanced authentication, MFA/passkeys/SSO, preferences and equivalent source settings remain open. |
 | F243 | Administration > Calendar > Calendar | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F244 | Administration > Calendar > Configuration > Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F245 | Administration > Calendar > Configuration > Calendars | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -289,5 +291,5 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F263 | Administration > Screen Builder | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F264 | Administration > AI connections | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F265 | Administration > Settings > General Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F266 | Administration > Settings > Users & Companies > Users | partial | Existing-user scope and status management. Account creation and authenticated multi-user sessions remain open. |
+| F266 | Administration > Settings > Users & Companies > Users | partial | Original reviewed account provisioning, activation, authentication and session/recovery controls. Network-release hardening and full source identity migration remain open. |
 | F267 | Administration > Settings > Users & Companies > Companies | partial | Legal company creation/details, fixed supported functional currency, separate organisation administration and no automatic business grants. Periods, numbering, tax/localisation and intercompany controls remain open. |

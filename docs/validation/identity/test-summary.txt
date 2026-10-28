@@ -1,0 +1,11 @@
+ℹ tests 94
+ℹ suites 0
+ℹ pass 94
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17200.95125
+
+✓ built in 2.43s
+Prepared Sites build: dist/server/index.js and dist/.openai/hosting.json

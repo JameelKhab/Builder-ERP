@@ -2,6 +2,10 @@
 
 28 October 2026. User-selected direction: **choice 2, Project briefing**, with clearer categories. The full original ERP remains in progress. All displayed companies, people, rates, quotes and transactions are synthetic; the illustrative business date is 28 October 2026.
 
+## Current continuation — 29 October 2026
+
+This document preserves the first increment baseline below. Later operational subsets are recorded in [access and destinations](access-and-destinations.md), [procurement](procurement-local.md), [company/project/budget control](foundations-local.md) and [individual local identity](identity-local.md). Current validation: 94 tests, frontend build and additive schema-5 preservation/recovery checks. Full parity remains unverified in the [267-function overlay](coverage.md).
+
 ## Read, decide, then open detail
 
 The project overview answers three questions in order:

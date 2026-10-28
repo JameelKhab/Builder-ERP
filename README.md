@@ -16,11 +16,13 @@ Discovery remains recorded in the 53-page Revision 4 study. The navigation has b
 
 **Development, testing and Git commits stay local for now. Do not push to GitHub, deploy to jakh.net or change the existing demo.** GitHub is the intended remote project record, but the user has deferred syncing. Resume GitHub pushes only when instructed. A future deployment requires a separate explicit instruction after local work is complete.
 
-The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. This is still a local sample, not production identity or full migration.
+The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. The later individual-sign-in increment is described below; full migration and production release remain open.
 
 The connected procurement increment now adds multi-line unpriced site demand, supplier quotes/FX, split allocations, independent review, local supplier orders, receipts/rejections, returns, material consumption and transaction-derived additions to cost reports. See [procurement implementation](docs/implementation/procurement-local.md) and the [complete implementation coverage register](docs/implementation/coverage.md). Every comparison function remains tracked; none is certified as full migration parity.
 
 Company/project setup and budget control now add legal identities, locations, item/group WBS, original baselines, independent revisions and released buying capacity. See [foundation implementation](docs/implementation/foundations-local.md). This is another operational subset; the full comparison scope remains open.
+
+Individual local accounts now support owner setup, reviewed activation, sessions/recovery and independent administration. See [identity implementation](docs/implementation/identity-local.md). A real two-user test approves a budget and purchase and reconciles the resulting commitment. The persistent preview has no configured real credentials yet; the user chooses those in the setup screen.
 
 ## Start here
 
@@ -59,14 +61,14 @@ npm run local
 
 The launcher starts the frontend on `127.0.0.1:4173` and the API on `127.0.0.1:4174`. Both bind to loopback. Data is saved in `.work/data/builder.sqlite` at the repository root. Base data is seeded only when empty; the versioned example pack adds missing examples once without replacing existing records. Restarting preserves records. Do not delete that file to reset a workspace; archive a stopped development database first.
 
-The explicit local-sample mode signs in a synthetic project manager. It is **not production authentication**. Do not put confidential business data into this sample or expose it to a network. Production identity, financial localisation, infrastructure and recovery are separate implementation gates.
+The default local launcher retains an explicit synthetic preview until first-owner setup is completed from the profile. `npm run local -- --secure` starts owner setup/sign-in without sample login. After setup, the database always requires individual sign-in, even when restarted with the sample flag. The user chooses their own credentials. Network release, financial localisation and production security remain separate gates; keep this development app on loopback.
 
 ```sh
 npm test
 npm run build
 ```
 
-Validation on 28 October 2026: 30 tests passed; frontend build passed; primary workflows and responsive layouts checked in the browser with no warning/error console entries. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 94 tests passed; frontend build passed; individual sign-in, scoped destinations, account review and mobile account controls checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

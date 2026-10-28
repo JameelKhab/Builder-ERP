@@ -10,7 +10,13 @@ export async function api(path, body, method = 'POST', signal) {
     signal
   });
   const result = await response.json();
-  if (!response.ok) throw new Error(result.error || 'Unable to complete this action.');
+  if (!response.ok) {
+    const error = new Error(result.error || 'Unable to complete this action.');
+    error.status = response.status;
+    error.code = result.code;
+    if (response.status === 401 && (result.code === 'session_expired' || !path.startsWith('/auth/'))) window.dispatchEvent(new Event('builder-session-expired'));
+    throw error;
+  }
   return result;
 }
 export const numberText = value => {

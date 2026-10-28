@@ -24,7 +24,7 @@ export function accessAdmin(db, actorId) {
       const before = snapshot(id);
       requireThat(before.user, 'User is not available.', 404);
       requireThat(id !== actorId, 'You cannot change your own access. Another administrator must review it.', 403);
-      requireThat(!before.user.access_admin, 'Administrator authority is managed separately from business role grants.', 403);
+      requireThat(!(before.user.access_admin || before.user.organisation_admin) || input.active === true, 'Remove administrative authority through its separate review before disabling this account.', 403);
       requireThat(input.version === before.user.access_version, 'Access changed. Reload before reviewing again.', 409);
       requireThat(typeof input.reason === 'string' && input.reason.trim().length >= 10 && input.reason.length <= 1000, 'Explain the access change in at least 10 characters.');
       requireThat(typeof input.active === 'boolean', 'Choose an account status.');

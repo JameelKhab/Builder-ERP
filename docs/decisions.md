@@ -88,3 +88,10 @@ The full local ERP remains the authorised objective. Implemented original typed 
 Original baselines, later revised targets and released buying capacity are separate. Budget decisions use an independent reviewer, a dedicated limit, gross movements, current exposure and frozen project/balance revisions. Historic opening values are not relabelled as migrated approvals. New projects show unknown budgets until baseline approval. Dated forecasts and historic/period controls remain a separate dependency; current approvals use server timestamps.
 
 Synthetic examples add a separate fictional budget reviewer with explicit limits; existing users' purchase authority does not automatically become budget authority. Local sample identity is still a release blocker for real multi-user use.
+
+
+## 29 October 2026 — Local identity continuation
+
+- Local owner setup and individual username/password accounts now replace the synthetic identity once the user opts into setup. The user chooses their own credentials; no invitations are sent automatically. Sample login is permanently disabled for a secured database.
+- Scope, business approvals and administrative authority remain separate. Another administrator reviews changes to one's own authority; new owner financial approval limits begin at zero.
+- Opaque sessions, local activation/recovery and recent password confirmation support independent local business decisions. This is a tested local implementation choice, not a certified production identity service. MFA/SSO, preferences, network-release hardening and source-policy equivalence remain open.
