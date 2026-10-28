@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28",
+  "operation": "Local repository setup and portable study tooling validation",
+  "study_pages": 53,
+  "generated_report_text_matches_reviewed_report": true,
+  "generated_report_all_page_pixels_match_reviewed_renders": true,
+  "pdf_outline_entries": 53,
+  "preserved_artifact_checksums": "verified",
+  "markdown_links": "valid",
+  "python_syntax": "valid",
+  "zip_integrity": "passed",
+  "secret_pattern_scan": "no matches; not a guarantee of exhaustive detection",
+  "erp_code_started": false,
+  "deployment_performed": false
+}

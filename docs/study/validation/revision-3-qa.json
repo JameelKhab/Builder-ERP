@@ -1,0 +1,31 @@
+{
+  "revision": 3,
+  "pages": 43,
+  "outline_entries": 43,
+  "primary_entries_mapped": 42,
+  "primary_labels_match_observed_inventory": true,
+  "requested_areas_mapped": 12,
+  "desk_walkthroughs": 12,
+  "topic_pages": {
+    "25": "1. NCR operations",
+    "26": "2. Asset management",
+    "27": "3. Payments & cash flow",
+    "28": "4. Subcontracting management",
+    "29": "5. Cost analysis for each site item",
+    "32": "6. Waste management",
+    "33": "7. Variations and change requests",
+    "34": "8. Programme & delay",
+    "35": "9. KPI management",
+    "36": "10. Keeping records",
+    "37": "11. Approval workflow",
+    "38": "12. Tracking and transparency"
+  },
+  "reference_links_verified": true,
+  "live_application_retested_in_this_revision": false,
+  "user_testing_performed": false,
+  "business_state_transitions_tested": false,
+  "visual_review": "All 43 rendered pages inspected: new pages 1-13 individually, supporting pages 14-43 in contact sheets. Final corrected page 32 rerendered and reinspected. No clipping, overlap or missing content observed.",
+  "pdf_sha256": "2129b80dde7dc4164f2c7870ca5af6a91e9ecec607957104fd4821e5410423c0",
+  "pdf_bytes": 1821878,
+  "evidence_archive_entries": 189
+}

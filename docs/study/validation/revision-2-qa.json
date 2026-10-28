@@ -1,0 +1,21 @@
+{
+  "revision": 2,
+  "pages": 32,
+  "visual_review": "All 32 pages inspected. Final changed pages 19 and 22 rerendered and reinspected. No layout defects observed.",
+  "topic_pages": {
+    "13": "1. NCR operations",
+    "14": "2. Asset management",
+    "15": "3. Payments & cash flow",
+    "16": "4. Subcontracting management",
+    "17": "5. Cost analysis for each site item",
+    "20": "6. Waste management",
+    "21": "7. Variations and change requests",
+    "22": "8. Programme & delay",
+    "23": "9. KPI management",
+    "24": "10. Keeping records",
+    "25": "11. Approval workflow",
+    "26": "12. Tracking and transparency"
+  },
+  "reference_link_verified": true,
+  "business_state_transitions_tested": false
+}

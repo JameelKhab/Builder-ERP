@@ -1,0 +1,83 @@
+{
+  "study_date": "2026-10-28",
+  "current_revision": 4,
+  "current_pages": 53,
+  "source": "Read-only JAKH demo study and subsequent requirements review in this conversation. No Odoo source was imported.",
+  "files": [
+    {
+      "path": "docs/study/JAKH-ERP-Read-Only-Study.pdf",
+      "bytes": 1855510,
+      "sha256": "50fc7e5a3d7bd9b72d88525168c471a65ccd5aca37bb43970d03b28563864577"
+    },
+    {
+      "path": "docs/study/Navigation-inventory.txt",
+      "bytes": 30762,
+      "sha256": "a69310bff3e8105f340b91e90ef60029065aca71e6b6cd0e2131254059d1e1f4"
+    },
+    {
+      "path": "docs/study/Project-navigation-evidence.png",
+      "bytes": 70209,
+      "sha256": "7f9a75434b2c84a21caf74fdb0cb0f24756885cdd727c29010909e1900859454"
+    },
+    {
+      "path": "docs/study/README.md",
+      "bytes": 3321,
+      "sha256": "92d95b7692daad3fdade7b2f7eaf7709c7e42b28e966e6984946a4de1ca7a80e"
+    },
+    {
+      "path": "docs/study/Source-evidence.zip",
+      "bytes": 5619176,
+      "sha256": "24438152f5e5219b1b3be6c25b528a493ef6b1d632476a3ecd6d91f0c21f3cb7"
+    },
+    {
+      "path": "docs/study/archive/study-authoring-history.zip",
+      "bytes": 138993,
+      "sha256": "97cc1b35be710b86d164c7d42bb8e9c3252172301e8377c8ebaf358b60bc4328"
+    },
+    {
+      "path": "docs/study/archive/study-revision-1.pdf",
+      "bytes": 565383,
+      "sha256": "d21288771f01b1ad4dab8017d093d692ba33be0e265051a1dd74b460a371c623"
+    },
+    {
+      "path": "docs/study/archive/study-revision-2.pdf",
+      "bytes": 1780964,
+      "sha256": "ac3bd6b5685ab639714e580df318380a54444bcc7bab825da1848401a285eefe"
+    },
+    {
+      "path": "docs/study/archive/study-revision-3.pdf",
+      "bytes": 1821878,
+      "sha256": "2129b80dde7dc4164f2c7870ca5af6a91e9ecec607957104fd4821e5410423c0"
+    },
+    {
+      "path": "docs/study/study-revision-4.txt",
+      "bytes": 121551,
+      "sha256": "811675668394178b70d0d187b796b8cee7e497c5d228209474a4cb36462a7b61"
+    },
+    {
+      "path": "docs/study/validation/repository-import.json",
+      "bytes": 554,
+      "sha256": "5207d638a5b9dd5164aff5ecec42e291f9c23eacaad1c64afecb1c70523385ab"
+    },
+    {
+      "path": "docs/study/validation/revision-2-qa.json",
+      "bytes": 718,
+      "sha256": "3ead169d9ac5320a9e2cd1ae57439c177e1e42ab7bfcf9c6d3aaca053d56eaa3"
+    },
+    {
+      "path": "docs/study/validation/revision-3-qa.json",
+      "bytes": 1215,
+      "sha256": "1adc064ee25912027317d12e34dc3ae655a4d2c4f08ba4edb5729edf53675a7f"
+    },
+    {
+      "path": "docs/study/validation/revision-4-layout.json",
+      "bytes": 2890,
+      "sha256": "59cd870e843e93b010fdc01aa544c295e99ca3c643f363896070b7e153f4fb91"
+    },
+    {
+      "path": "docs/study/validation/revision-4-qa.json",
+      "bytes": 1804,
+      "sha256": "9230fd66d79eebdc3d483bf0b20f36ba8e4a9e08b2a3453bd286e1312c3a9a41"
+    }
+  ]
+}

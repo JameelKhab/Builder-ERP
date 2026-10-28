@@ -1,0 +1,33 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.credentials/
+secrets/
+
+# Dependencies and transient build/runtime files
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+dist/
+build/
+.next/
+.work/
+*.log
+.DS_Store
+
+# Local database files and editor state
+*.sqlite
+*.sqlite3
+.idea/
+.vscode/

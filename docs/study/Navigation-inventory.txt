@@ -1,0 +1,592 @@
+JAKH ERP — FACTUAL NAVIGATION ANALYSIS
+Evidence: 41-admin-navigation-expanded-ax.txt. Read-only AX snapshot; current app findings only.
+
+Top-level entries: 42
+All sidebar navigation button controls: 363
+Parsed menu controls: 363 = 96 expandable groups + 267 leaf buttons.
+Maximum semantic destination depth: 4 menu levels (root item = level 1).
+Group counts describe navigation controls; a leaf is not proof of a unique underlying destination.
+
+TOP-LEVEL INVENTORY (all controls, groups, leaves within each entry)
+01. Dashboard: 1 controls; 0 groups; 1 leaves
+02. Reports: 22 controls; 3 groups; 19 leaves
+03. My Approvals & Activities: 1 controls; 0 groups; 1 leaves
+04. CRM: 22 controls; 6 groups; 16 leaves
+05. Tender & BOQ: 5 controls; 1 groups; 4 leaves
+06. Sales & Quotations: 20 controls; 6 groups; 14 leaves
+07. Projects: 18 controls; 4 groups; 14 leaves
+08. Project requisitions: 1 controls; 0 groups; 1 leaves
+09. Project set-up: 1 controls; 0 groups; 1 leaves
+10. Material returns: 1 controls; 0 groups; 1 leaves
+11. WBS & Budgets: 3 controls; 1 groups; 2 leaves
+12. Site receipts: 1 controls; 0 groups; 1 leaves
+13. Site diaries: 1 controls; 0 groups; 1 leaves
+14. Contracts & measured BOQ: 4 controls; 1 groups; 3 leaves
+15. Site materials & issues: 1 controls; 0 groups; 1 leaves
+16. Purchasing: 16 controls; 6 groups; 10 leaves
+17. Payment certificates: 1 controls; 0 groups; 1 leaves
+18. Advances & retention releases: 1 controls; 0 groups; 1 leaves
+19. Final accounts & closeout: 1 controls; 0 groups; 1 leaves
+20. Guarantees & bonds: 1 controls; 0 groups; 1 leaves
+21. Subcontract finance: 4 controls; 1 groups; 3 leaves
+22. Subcontract order amendments: 1 controls; 0 groups; 1 leaves
+23. Subcontractor applications: 1 controls; 0 groups; 1 leaves
+24. Subcontract service entries: 1 controls; 0 groups; 1 leaves
+25. Subcontract work corrections: 1 controls; 0 groups; 1 leaves
+26. Stores & Receipts: 26 controls; 10 groups; 16 leaves
+27. Labour & plant allocation: 1 controls; 0 groups; 1 leaves
+28. Labour & plant actual feeds: 1 controls; 0 groups; 1 leaves
+29. P6 schedule progress: 1 controls; 0 groups; 1 leaves
+30. Finance: 39 controls; 12 groups; 27 leaves
+31. Quality, HSE & Specifications: 5 controls; 1 groups; 4 leaves
+32. People & HR: 23 controls; 7 groups; 16 leaves
+33. Time Off: 18 controls; 5 groups; 13 leaves
+34. Attendance: 15 controls; 4 groups; 11 leaves
+35. Timesheets: 12 controls; 4 groups; 8 leaves
+36. Plant & Equipment: 11 controls; 4 groups; 7 leaves
+37. Fleet: 23 controls; 8 groups; 15 leaves
+38. Contacts & Masters: 10 controls; 3 groups; 7 leaves
+39. Team Discussions: 12 controls; 3 groups; 9 leaves
+40. My Tasks: 1 controls; 0 groups; 1 leaves
+41. Users & Access: 5 controls; 1 groups; 4 leaves
+42. Administration: 30 controls; 5 groups; 25 leaves
+
+DEEPEST DESTINATION PATHS
+AX 35: Reports > Saved Dashboards > Configuration > Dashboards
+AX 36: Reports > Saved Dashboards > Configuration > Sections
+AX 37: Reports > Saved Dashboards > Configuration > Share links
+AX 65: CRM > Configuration > Activities > Activity Types
+AX 66: CRM > Configuration > Activities > Activity Plans
+AX 70: CRM > Configuration > Pipeline > Stages
+AX 71: CRM > Configuration > Pipeline > Tags
+AX 72: CRM > Configuration > Pipeline > Lost Reasons
+AX 110: Sales & Quotations > Configuration > Sales Orders > Templates
+AX 111: Sales & Quotations > Configuration > Sales Orders > Headers/Footers
+AX 185: Purchasing > Configuration > Products > Categories
+AX 186: Purchasing > Configuration > Products > Units & Packagings
+AX 213: Stores & Receipts > Operations > Transfers > Receipts
+AX 214: Stores & Receipts > Operations > Transfers > Deliveries
+AX 218: Stores & Receipts > Operations > Adjustments > Physical Inventory
+AX 219: Stores & Receipts > Operations > Adjustments > Scrap
+AX 223: Stores & Receipts > Operations > Procurement > Replenishment
+AX 242: Stores & Receipts > Configuration > Warehouse Management > Warehouses
+AX 243: Stores & Receipts > Configuration > Warehouse Management > Operations Types
+AX 247: Stores & Receipts > Configuration > Products > Categories
+AX 248: Stores & Receipts > Configuration > Products > Units & Packagings
+AX 278: Finance > Accounting > Transactions > Journal Entries
+AX 285: Finance > Review > Control > Journal Items
+AX 286: Finance > Review > Control > Audit Trail
+AX 293: Finance > Reporting > Management > Invoice Analysis
+AX 294: Finance > Reporting > Management > Cashflow Analysis
+AX 295: Finance > Reporting > Management > Analytic Report
+AX 304: Finance > Configuration > Accounting > Chart of Accounts
+AX 305: Finance > Configuration > Accounting > Taxes
+AX 306: Finance > Configuration > Accounting > Journals
+AX 307: Finance > Configuration > Accounting > Currencies
+AX 308: Finance > Configuration > Accounting > Fiscal Positions
+AX 309: Finance > Configuration > Accounting > Multi-Ledger
+AX 313: Finance > Configuration > Invoicing > Payment Terms
+AX 314: Finance > Configuration > Invoicing > Product Categories
+AX 344: People & HR > Configuration > Employee > Onboarding / Offboarding
+AX 345: People & HR > Configuration > Employee > Employee Types
+AX 346: People & HR > Configuration > Employee > Work Locations
+AX 347: People & HR > Configuration > Employee > Departure Reasons
+AX 348: People & HR > Configuration > Employee > Skill Types
+AX 352: People & HR > Configuration > Time Management > Working Schedules
+AX 353: People & HR > Configuration > Time Management > Time Types
+AX 357: People & HR > Configuration > Recruitment > Job Positions
+AX 358: People & HR > Configuration > Recruitment > Contract Templates
+AX 424: Timesheets > Reporting > Timesheets > By Employee
+AX 425: Timesheets > Reporting > Timesheets > By Project
+AX 426: Timesheets > Reporting > Timesheets > By Task
+AX 427: Timesheets > Reporting > Timesheets > By Billing Type
+AX 471: Fleet > Configuration > Models > Manufacturers
+AX 472: Fleet > Configuration > Models > Models
+AX 473: Fleet > Configuration > Models > Categories
+AX 477: Fleet > Configuration > Contracts > Contract Types
+AX 481: Fleet > Configuration > Services > Service Types
+AX 485: Fleet > Configuration > Vehicle > Status
+AX 486: Fleet > Configuration > Vehicle > Tags
+AX 500: Contacts & Masters > Configuration > Localization > Countries
+AX 501: Contacts & Masters > Configuration > Localization > Fed. States
+AX 502: Contacts & Masters > Configuration > Localization > Cities
+AX 503: Contacts & Masters > Configuration > Localization > Country Group
+AX 520: Team Discussions > Configuration > User Settings > Notifications
+AX 521: Team Discussions > Configuration > User Settings > Voice & Video
+AX 901: Administration > Calendar > Configuration > Settings
+AX 902: Administration > Calendar > Configuration > Calendars
+AX 903: Administration > Calendar > Configuration > Work Locations
+AX 904: Administration > Calendar > Configuration > Reminders
+AX 905: Administration > Calendar > Configuration > Tags
+AX 913: Administration > Settings > Users & Companies > Users
+AX 914: Administration > Settings > Users & Companies > Companies
+
+REPEATED EXACT LABELS (groups and leaves; not verified duplicate targets)
+Configuration: 16 controls, 1 leaves
+Settings: 13 controls, 12 leaves
+Reporting: 12 controls, 0 leaves
+Products: 11 controls, 6 leaves
+Customers: 5 controls, 4 leaves
+Categories: 4 controls, 4 leaves
+Dashboard: 4 controls, 4 leaves
+Management: 4 controls, 1 leaves
+Tags: 4 controls, 4 leaves
+Activity Types: 3 controls, 3 leaves
+Fleet: 3 controls, 1 leaves
+Orders: 3 controls, 1 leaves
+Payments: 3 controls, 3 leaves
+Projects: 3 controls, 2 leaves
+Time Types: 3 controls, 3 leaves
+Timesheets: 3 controls, 0 leaves
+Vendors: 3 controls, 2 leaves
+Accounting: 2 controls, 0 leaves
+Activities: 2 controls, 1 leaves
+Activity Plans: 2 controls, 2 leaves
+Attendances: 2 controls, 2 leaves
+Automatic Rules: 2 controls, 2 leaves
+Calendar: 2 controls, 1 leaves
+Contracts: 2 controls, 1 leaves
+Dashboards: 2 controls, 2 leaves
+Models: 2 controls, 1 leaves
+My Tasks: 2 controls, 2 leaves
+Odometers: 2 controls, 2 leaves
+Overview: 2 controls, 2 leaves
+Pipeline: 2 controls, 1 leaves
+Sales: 2 controls, 1 leaves
+Services: 2 controls, 1 leaves
+Teams: 2 controls, 2 leaves
+Time Off: 2 controls, 1 leaves
+Units & Packagings: 2 controls, 2 leaves
+Work Locations: 2 controls, 2 leaves
+
+REPEATED-LEAF PATH EXAMPLES
+Sales & Quotations > Products > Products
+Sales & Quotations > Reporting > Products
+Purchasing > Products > Products
+Stores & Receipts > Products > Products
+Finance > Customers > Products
+Finance > Vendors > Products
+CRM > Sales > Customers
+Sales & Quotations > Orders > Customers
+Sales & Quotations > Reporting > Customers
+Finance > Customers > Customers
+CRM > Configuration > Settings
+Sales & Quotations > Configuration > Settings
+Projects > Configuration > Settings
+Purchasing > Configuration > Settings
+Stores & Receipts > Configuration > Settings
+Finance > Configuration > Settings
+People & HR > Configuration > Settings
+Attendance > Configuration > Settings
+Plant & Equipment > Configuration > Settings
+Fleet > Configuration > Settings
+Team Discussions > Configuration > Settings
+Administration > Calendar > Configuration > Settings
+Dashboard
+Finance > Dashboard
+Attendance > Management > Dashboard
+Plant & Equipment > Dashboard
+Projects > Tasks > My Tasks
+My Tasks
+Reports > Saved Dashboards > Dashboards
+Reports > Saved Dashboards > Configuration > Dashboards
+Sales & Quotations > Configuration > Payments
+Finance > Customers > Payments
+Finance > Vendors > Payments
+Projects > Projects
+Projects > Configuration > Projects
+Purchasing > Orders > Vendors
+Finance > Vendors > Vendors
+CRM > Configuration > Activities > Activity Types
+Projects > Configuration > Activity Types
+Fleet > Configuration > Activity Types
+CRM > Configuration > Activities > Activity Plans
+Projects > Configuration > Activity Plans
+People & HR > Configuration > Time Management > Time Types
+Time Off > Configuration > Time Types
+Attendance > Configuration > Time Types
+Time Off > Configuration > Automatic Rules
+Attendance > Configuration > Automatic Rules
+
+ROLE AND COMPANY CONTEXT — CORRECTION TO INITIAL EMPTY-LIST IMPRESSIONS
+
+Fair comparison in JAKH Demo Contracting LLC (AED):
+  Admin: 42 top-level entries (41-admin-navigation-expanded-ax.txt).
+  Project Manager: 20 (53-project-manager-dashboard-ax.txt).
+  Site Engineer: 10 (30-site-engineer-view-ax.txt).
+  Estimator: 9 (50-estimator-dashboard-ax.txt).
+These counts describe visible top-level navigation, not all permitted operations.
+The role switch is the app's built-in demonstration View as feature; this was not
+an independent security/authorisation penetration test.
+
+Initial My Company (USD) observations included the JD2 11-villa sample and empty
+snag/diary lists. They cannot establish that the product lacks these capabilities.
+The fuller JAKH Demo Contracting LLC dataset contains Marina Gate Residences G+4,
+seven active projects on the Site Engineer dashboard, 12 current-period diaries
+and eight open snags/defects. The diary record pager shows 52 records across its
+list context; 12 is the dashboard's current-period metric, not total historical
+record count. Company, selected companies, role, period and filters must be
+recorded with every claim about empty data or counts.
+
+Role filtering already exists and is material: do not describe all staff as
+seeing the 42-entry admin menu. PM20 remains broad. Site Engineer10 and Estimator9
+still include separate Time Off, Attendance, Team Discussions and My Tasks entries.
+Site Engineer's sidebar lacks a Projects entry, yet dashboard project access and
+project details were observed (30-33); absence from the sidebar is not proof of
+missing access. Need user task testing to determine the clearest starting route.
+
+FACTUAL NAVIGATION FINDINGS AND LIMITS
+
+1. The admin interface mixes broad domains (Finance, Projects), individual work
+   queues (Project requisitions, Site receipts, Site diaries), commercial steps
+   (Payment certificates, Advances & retention releases, Final accounts & closeout)
+   and specialist feeds (Labour & plant actual feeds, P6 schedule progress) at the
+   same top level. Evidence: full42-entry inventory in snapshot41.
+2. Four-level menu paths are observed; their deepest leaves include dashboard
+   settings and CRM configuration. This does not mean every operational task
+   requires four levels or four clicks.
+3. Repeated labels are verified; duplicate underlying destinations are not. The
+   AX menu buttons expose labels and hierarchy, not target URLs/action identities.
+   Products under Reporting may be an analysis view; Customers under Finance may
+   differ in scope from a CRM customer view. Verify identity, filters, permissions
+   and actions before consolidating any two routes.
+4. Project-related destinations are present but partly concealed under More. In
+   the initial My Company11-villa project, More reveals WBS/Budgets, Contracts,
+   Requisitions, Site materials, Service entries, Client certificates, Variations,
+   Final accounts, Award estimate and Set-up checklist (07). In the Site Engineer
+   Marina Gate project, More reveals a role-limited set: WBS/Budgets, Contracts,
+   Requisitions and Client certificates (33). Do not imply all users see all links.
+5. Existing record links offer useful continuity. The estimate has Opportunity,
+   Quotation and Project links plus version/history and a handover message (05);
+   the project breadcrumb returns to the originating estimate (06). A new design
+   should retain this lineage; repeated contextual links are not duplicate records.
+
+PRELIMINARY CONSTRUCTION COVERAGE — OBSERVED VS UNVERIFIED
+
+Area: Tender / estimate / award
+  Observed: JD2 estimate versioning, handover state, opportunity, quotation and
+            project links; log says handover creates draft quotation/project and
+            WBS budgets remain draft (05-06). CRM/Tender menus exist (41).
+  Limit: Initial evidence is an11-villa My CompanyUSD sample, not a tower process.
+         Full tender addenda, qualifications, approval delegation and end-to-end
+         award controls require further task demonstration.
+
+Area: Project control / schedule
+  Observed: Marina Gate project and four WBS entries in its project More menu (33).
+            P6 schedule progress list contains145 records, accepted manual update
+            records, project/WBS, planned/earned values, progress and forecast finish
+            columns (42). PM dashboard includes CPI/SPI and cost/forecast reporting (53).
+  Limit: A list of progress feeds does not prove a dependency-based planning,
+         critical-path, resource scheduling, delay notice or EOT workflow.
+
+Area: Site diary / instructions
+  Observed: Populated submitted diary with project/date, manpower, equipment,
+            photos and Work and events tabs (37-38). Work/events has free-text
+            work, delays, instructions/visitors/inspections and safety areas.
+  Limit: No structured instruction-to-notice/change trace is visible in the sampled
+         diary tab. Operational diary capability is present; do not call it missing.
+
+Area: Snags / defects
+  Observed: Snag Water ponding on balcony, flat302 has project, WBS, BOQ item,
+            responsible party, responsible person, due date, severity, photo and
+            states through Verified/Closed (35). Eight open snags in role context (30).
+  Limit: Selected structured Location is Main site while flat302 appears in title.
+         Floor/unit/room granularity, repeat inspection, reopening, bulk location
+         views and staged handover links need task validation. Closure was not executed.
+
+Area: Documents / design approvals
+  Observed: Document register has15 rows (43). Drawing JSD-TOW-DWG-001 is linked
+            to Marina Gate, WBS, Location and Discipline (44). Revision B is Approved/
+            Current; A is Approved/Superseded, with reviewer, due/submitted/completed
+            dates. Kind options include Drawing, Submittal, Specification, Method
+            Statement, Inspection/Test Plan and Correspondence (45).
+  Limit: Supports a broader document model than drawings alone. All15 listed sample
+         entries are drawings. End-to-end review/resubmission, transmittals, RFI
+         workflow, distribution/acknowledgement, authority approvals and each other
+         document kind were not demonstrated. Do not claim these are absent.
+
+Area: Variation / instruction / time entitlement
+  Observed: Marina Gate owner variation is Priced, with monetary amount, quantity,
+            rate, project/WBS/contract/partner links, pricing person and free-text
+            description saying client instruction recorded on site (47). Statuses
+            and Approve commercial impact/Reject controls are visible.
+  Limit: No visible structured source-instruction link, notice deadline or time
+         impact field in this sampled record. This is a traceability question,
+         not proof that those capabilities do not exist elsewhere. Approval and
+         downstream certificate behaviour were not executed.
+
+Area: Final account / handover
+  Observed: One Approved final-account sample for completed Oasis Mall fit-out
+            (48-49): contract/project links, certified gross, recovered advance,
+            released retention, approval metadata and Close contract and project.
+  Limit: This is evidence of financial closeout. It does not demonstrate a complete
+         physical handover, commissioning, O&M/as-built pack, asset/warranty transfer,
+         staged acceptance or defects-liability workflow. Close was not executed.
+
+Area: Unified approvals
+  Observed: My Activities & Approvals list shows two assigned project threshold
+            exception activities, for SPI and CPI, with due dates and Done/Reschedule
+            controls (54). Role dashboards have additional pending-type counters.
+  Limit: Not evidence that every procurement, document, certificate, variation,
+         diary or commercial approval is consolidated in one inbox. Compare queues
+         and document state changes across real role handoffs before concluding.
+
+REVISED NAVIGATION MAP - REVISION 3 PROPOSAL
+This replaces the earlier candidate grouping. Full explanation: PDF pages 2-13.
+Global: My Work | Tenders | Projects | Company.
+Within a project: Overview | Plan | Site | Buying | Costs & Contracts | Documents | Handover.
+Company directory: Buying | Finance | People | Assets & Fleet | Stores | Contacts & Catalogue | Reports.
+Administration is a separate utility. Contextual views open canonical records, not copies.
+The map is a proposal; no staff usability test or new live audit occurred in Revision 3.
+
+Current primary entry | Proposed home | Continuity rule
+
+01. Dashboard
+  Home: My Work; Projects > Overview
+  Rule: Personal actions and project health have separate purposes; retire the generic duplicate entry.
+
+02. Reports
+  Home: Company > Reports; relevant workspace
+  Rule: One report definition; contextual views carry filters. Report setup belongs in Administration.
+
+03. My Approvals & Activities
+  Home: My Work
+  Rule: One decision/task queue, with explicit action, project, owner and due date.
+
+04. CRM
+  Home: Tenders > Opportunities
+  Rule: Keep leads, client follow-ups and bid decisions together. Contacts link to the shared directory.
+
+05. Tender & BOQ
+  Home: Tenders > Tender workspace
+  Rule: Tender documents, take-off, estimate revisions and bid review remain together.
+
+06. Sales & Quotations
+  Home: Tenders > Offers & award
+  Rule: Preserve quotation versions and accepted terms. Non-project sales, if needed, remain a named Company workflow.
+
+07. Projects
+  Home: Projects
+  Rule: Portfolio -> project overview -> stable project areas. Tasks appear in My Work and their project.
+
+08. Project requisitions
+  Home: Project > Buying > Requests
+  Rule: Site action Request materials opens the same request with location and work item filled in.
+
+09. Project set-up
+  Home: Project > Overview > Setup checklist
+  Rule: Mobilisation tasks, owners and missing baseline information; ongoing settings are secondary.
+
+10. Material returns
+  Home: Project > Site > Materials
+  Rule: Return from the original issue/receipt; shared warehouse view in Company > Stores.
+
+11. WBS & Budgets
+  Home: Project > Costs & Contracts > Budget & cost
+  Rule: Work items, cost codes, resource build-ups and approved versions; Plan links to the same work items.
+
+12. Site receipts
+  Home: Project > Buying > Orders & deliveries
+  Rule: Site > Materials offers Receive delivery; it opens the same delivery record.
+
+13. Site diaries
+  Home: Project > Site > Daily work
+  Rule: Daily report with labour, plant, progress, photos and events; do not re-enter shared facts.
+
+14. Contracts & measured BOQ
+  Home: Project > Costs & Contracts > Client contract
+  Rule: Award baseline, measurement rules and claims. Subcontract scope lives in its Buying package.
+
+15. Site materials & issues
+  Home: Project > Site > Materials
+  Rule: Available, reserved, issued, returned, installed and wasted quantities remain distinguishable.
+
+16. Purchasing
+  Home: Project > Buying; Company > Buying
+  Rule: Requests, comparisons, orders and deliveries. Company shows an all-project queue of the same records.
+
+17. Payment certificates
+  Home: Project > Costs & Contracts > Claims & payments
+  Rule: Client measurement/certification; supplier certificates stay within their subcontract package.
+
+18. Advances & retention releases
+  Home: Respective contract/package > Money
+  Rule: Client terms in Costs & Contracts; subcontract terms in Buying. Finance executes authorised settlements.
+
+19. Final accounts & closeout
+  Home: Project > Costs & Contracts > Final account
+  Rule: Commercial settlement linked to the separate Handover readiness record.
+
+20. Guarantees & bonds
+  Home: Respective contract/package > Securities
+  Rule: One register; expiry and release tasks in My Work. Finance has a company-wide securities view.
+
+21. Subcontract finance
+  Home: Project > Buying > Subcontract package > Money
+  Rule: Terms, certificates, bills, advances, retention and payment status. Posting remains in Finance.
+
+22. Subcontract order amendments
+  Home: Subcontract package > Changes
+  Rule: A linked amendment changes the commitment only when authorised; preserve its versions.
+
+23. Subcontractor applications
+  Home: Subcontract package > Work & claims
+  Rule: Application -> assessed work -> certificate; show differences and their reasons.
+
+24. Subcontract service entries
+  Home: Subcontract package > Work & claims
+  Rule: Accepted/rejected measured work; site reviewers get direct assigned tasks.
+
+25. Subcontract work corrections
+  Home: Original assessment > Correct or revise
+  Rule: A controlled correction with reason and history; no disconnected correction module.
+
+26. Stores & Receipts
+  Home: Company > Stores; Project > Site > Materials
+  Rule: Shared warehouse operations and project stock views. Deliveries link to Buying orders.
+
+27. Labour & plant allocation
+  Home: Project > Plan > Resources
+  Rule: Planned allocation; daily use captured in Site. Company People/Assets holds identities and availability.
+
+28. Labour & plant actual feeds
+  Home: Project > Site > Daily work; Administration > Integrations
+  Rule: Operational actuals are reviewable in context; technical imports/mappings stay with integration operators.
+
+29. P6 schedule progress
+  Home: Project > Plan > Programme
+  Rule: Progress, import freshness and baseline references. Preserve explicit programme ownership.
+
+30. Finance
+  Home: Company > Finance
+  Rule: Receivables, payables, cash/bank, ledger, close and reporting. Project views link the same facts.
+
+31. Quality, HSE & Specifications
+  Home: Project > Site > Quality & NCRs / Safety
+  Rule: Inspections, NCRs and safety cases; controlled specifications are linked from Documents.
+
+32. People & HR
+  Home: Company > People
+  Rule: Employee, recruitment and employment records; project assignments link here without exposing restricted details.
+
+33. Time Off
+  Home: Company > People > Leave; My Work
+  Rule: Employee request and manager decision are direct actions; balances and policy remain in People.
+
+34. Attendance
+  Home: Company > People > Attendance
+  Rule: Personal entry/correction and supervisor review; attendance is distinct from project costed time.
+
+35. Timesheets
+  Home: My Work > My time; Company > People > Timesheets
+  Rule: Project allocation is visible in Site; one approved time source prevents duplicate labour cost.
+
+36. Plant & Equipment
+  Home: Company > Assets & Fleet
+  Rule: Availability, custody, hire and maintenance. Project Plan/Site shows assigned plant and actual use.
+
+37. Fleet
+  Home: Company > Assets & Fleet > Vehicles
+  Rule: Vehicle-specific odometer, fuel, service and contract records remain explicit views.
+
+38. Contacts & Masters
+  Home: Company > Contacts & Catalogue
+  Rule: Shared parties, materials/services and units. Accounting and approval policy setup stays in Administration.
+
+39. Team Discussions
+  Home: Record > Discussion; My Work > Messages
+  Rule: Decisions attach to the relevant record; unlinked conversations remain searchable but do not approve work.
+
+40. My Tasks
+  Home: My Work
+  Rule: Merge the entry point with activities, keeping task type, source and completion rules.
+
+41. Users & Access
+  Home: Administration > Access
+  Rule: Explicit roles, company/project scope and delegated authority. No business module entry.
+
+42. Administration
+  Home: Administration utility
+  Rule: Company settings, policies, integrations, shared calendars and system operations; access restricted by duty.
+
+NEXT VALIDATION QUESTIONS
+
+- Can a site engineer find the current approved drawing and open snags for one
+  floor/unit without knowing whether the function is under Reports, Projects or Quality?
+- Can a PM see blockers, responsible people and next actions for a tower package
+  without opening a different module for every commercial/quality/site step?
+- Can a QS trace one site instruction to notice, quotation, approval, programme
+  impact, certified amount and invoice without retyping the same facts?
+- Which repeated labels actually share a target/model, filters and permissions,
+  and which represent separate reports or operations that need clearer naming?
+- Does a consistent project/floor/unit/package context persist when moving between
+  diary, drawing, snag, variation, certificate and handover records?
+- Which approvals are absent from My work, and what user-visible handoff is needed?
+- Can physical completion and handover be distinguished from financial closeout?
+
+FOLLOW-UP ADDENDUM - REVISION 2
+28 October 2026. Original inventory counts are unchanged; follow-up evidence
+extends capability checks rather than recounting the complete sidebar.
+
+In the current Revision 3 PDF, pages 23-24 map existence/need and pages 25-38
+provide detailed requirements. Page 6 shows their revised navigation homes.
+
+1. NCR: populated Non-conformance records under Quality & HSE Actions,
+   with resolution and lifecycle fields (E56-E59). Cause/prevention and
+   independent verification enforcement remain unverified.
+2. Assets: equipment register, crane identity/cost and maintenance fields
+   confirmed (E61-E64). Complete custody/hire/finance/handover chain unverified.
+3. Payments/cash: matched posted receipts and supplier bill visible
+   (E70, E91-E92). Company cash report blocked by required policy selection;
+   visible policy and project cash-forecast registers empty (E73-E76).
+4. Subcontracts: bill -> certificate -> finance agreement linked, with
+   retention terms and balances (E70-E72). Full award/exception/settlement
+   chain not exercised.
+5. Costs: BOQ/location cost report and source facts (E66-E69), released
+   WBS and approved cost-to-complete forecast (E87-E90). Sample item/location
+   granularity remains coarse; WBS Forecast Amount differs from the dated
+   authoritative approved forecast. Do not mix incurred cost with cash paid.
+6. Waste: empty scrap register and unsaved form inspected then discarded
+   (E77-E78). Full site disposal/reuse evidence chain unverified.
+7. Changes: commercial variation record/approval/certification states
+   confirmed (E85-E86); structured instruction/notice/time chain unverified.
+8. Programme: progress detail explicitly treats P6 as schedule master;
+   accepted manual progress exists (E79-E80). Delay/EOT workflow unverified.
+9. KPIs: construction metrics, turnaround and generic saved dashboards
+   exist (E53-E54, E66, E82-E84); governed definition/target/action cycle unverified.
+10. Records: controlled revisions, attachments and lifecycle views exist;
+   historical reconstruction, distribution and retention need validation.
+11. Approvals: document-specific approvers and states visible; all-record
+   queue coverage, authority limits/delegation and enforcement untested.
+12. Transparency: source-fact drill-through confirmed (E69-E72, E81);
+   this is not proof of an immutable who-changed-what event log.
+
+All twelve are proposed construction ERP scope. Evidence status is partial,
+limited or blocked for a specific report, not a finding of global absence.
+No application code inspected or reused; no design/build started.
+
+
+ADDED REQUIREMENTS - REVISION 4
+28 October 2026. Scope extension only; no new live ERP inspection.
+
+The 42 observed primary entries and the four-starting-point proposal remain.
+The Company workspace follows an explicit legal-company selector.
+
+- Multi-company foundations (PDF page 44): separate ledgers, authority, bank
+  accounts, numbering and access; shared vendor identity with entity-specific
+  terms; explicit intercompany/shared-project records.
+- Vendor currencies (45-46): selected quote/agreement/preference precedence;
+  original and company-currency values; versioned FX; repricing and budget
+  checks; one legal entity, vendor and currency per purchase order.
+- Reporting (47): project, company and authorised group scope with the same
+  metric definitions, drill-down, source/rate versions and explicit eliminations.
+- Report findings (48-49): a summary above every report and in exports, driven
+  by the full filtered dataset and verified rules, with optional AI explanation.
+- AI placement (50-52): contextual search/explanations, document extraction
+  and reviewable drafts across construction and company work; predictive
+  features only after sufficient data and evaluated benefit.
+- Acceptance (53): entity/currency isolation, report reconciliation, summary
+  correctness, permission-preserving AI, failure handling and measurable value.
+
+These are proposed original-ERP requirements, not verified existing features.
+No ERP implementation or AI integration was performed in this revision.

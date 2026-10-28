@@ -1,0 +1,2604 @@
+PAGE 1
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Simpler to use, rich in information
+Revision 4 - simple construction navigation with company, currency, reporting and AI requirements.
+Simple navigation needs a strong information foundation. Keep project work in one
+continuous workspace, with company-wide specialist queues opening the same records. This revision
+adds explicit company ownership, vendor currencies, scoped reporting, report findings and carefully
+placed AI assistance.
+The revised recommendation
+Starting point
+Purpose
+My Work
+What needs my action or decision, what I am waiting for, and where I resume.
+Tenders
+Opportunity, tender, estimate, offer and award, with a clear project handoff.
+Projects
+One workspace: Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover.
+Company
+Visible directory for Buying, Finance, People, Assets & Fleet, Stores, Contacts &
+Catalogue, and Reports.
+Keep project, location, work item, owner and next action visible. A case continues through its stages;
+users do not repeatedly open the same tabs in successive modules. Detailed quantities, money,
+evidence and history remain available under clear labels.
+What the study covers
+Mapped all 42 current primary entries and all twelve requested capabilities; walked twelve
+findability scenarios on paper; examined four difficult cross-team journeys; specified record
+behaviour, scope, search, permissions and validation gates. No staff usability test or executable
+prototype was used.
+Read this first
+Pages 2-5: the recommended map and daily experience.
+Page 6: exact homes for your twelve areas.
+Pages 7-8: tender-to-handover and difficult journeys.
+Pages 9-11: every current primary menu mapped.
+Pages 12-13: findability checks and user-testing criteria.
+Supporting study: existing UI findings and screenshots, pages 14-22; capability existence/need and detail, pages 23-38;
+original-code scope and validation, pages 39-41; evidence and limits, pages 42-43. Pages 2-13 replace the previous
+candidate navigation proposal.
+New requirements, pages 44-53: multiple companies; vendor-based purchase currencies and an FX example;
+project/company/group reporting; summaries driven by report findings; AI placement, controls, rollout and acceptance
+checks.
+Status: this revision extends the study, not the live application. Earlier observations remain dated 28 October 2026 and are
+not newly retested. It is a recommended information map, not proof of the best possible usability. No application source
+was copied or new ERP code built.
+Discovery findings and proposals - no application redesign or code implementation
+1
+
+
+PAGE 2
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Four clear starting points
+Recommended information map. This is a study proposal, not a tested interface or a visual design.
+Start with a task, a tender, a project, or company work. Keep these four destinations in a small
+global navigation. After opening a project, use its seven stable areas below. Do not keep the old
+module tree alongside them.
+Start here
+What the user expects to find
+My Work
+What I need to do, decide, chase or resume. Direct links to my frequent specialist queues
+and personal requests.
+Tenders
+Opportunities, bid/no-bid, tender documents, estimates, offers, revisions and award. A
+tender remains traceable after a project is created.
+Projects
+Find a project, then manage its plan, site work, buying, costs, documents and handover in
+one context.
+Company
+Buying across projects, Finance, People, Assets & Fleet, Stores, Contacts & Catalogue, and
+Reports. Show these names visibly on the directory.
+The project map
+Project areas - stable order
+Plain-language purpose
+Overview | Plan | Site
+Understand the project; plan the work; record and control what
+happens on site.
+Buying | Costs & Contracts
+Obtain materials/subcontract work; explain budgets,
+obligations, changes, claims and money.
+Documents | Handover
+Find controlled information; prove work is ready, accepted and
+supported after completion.
+Utilities, not additional business modules
+Search, company/project scope, help, profile and authorised Administration access stay consistent.
+The Company workspace follows the selected legal entity; authorised group views explicitly show
+their included entities. A project overview opens on current work, risks and next actions.
+Why this replaces Revision 2: Buying, Finance and Resources no longer compete with Projects in the primary menu.
+Company-wide specialists use direct queue shortcuts; project users follow the job without leaving its context. The number
+four is a proposed grouping, not a usability result.
+Discovery findings and proposals - no application redesign or code implementation
+2
+
+
+PAGE 3
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Seven places inside a project
+Each area opens a useful work view with clearly named links. No nested accordion tree and no universal row of repeated
+tabs.
+Area
+Visible contents and boundaries
+Overview
+Next actions, blockers, due milestones and a small role-relevant performance summary.
+Setup checklist and project facts are secondary links. KPIs link to source records.
+Plan
+Programme; Look-ahead; Constraints & delays; Resources. Baseline/current dates and
+progress stay connected. Delay events link to commercial/time claims, without copying
+them.
+Site
+Daily work; Materials; Quality & NCRs; Safety; Waste. Direct actions: Record daily work,
+Request materials, Receive delivery, Report a quality problem. Show assigned field work
+first.
+Buying
+Requests; Orders & deliveries; Subcontract packages. Follow selection/award, delivery or
+measured work through the same order/package. Company Buying is an all-project view.
+Costs & Contracts
+Budget & cost; Client contract; Changes; Claims & payments; Cash flow; Final account.
+Subcontract amounts link to their Buying package. Finance posting/bank work stays in
+Company Finance.
+Documents
+Drawings; Submittals; RFIs; Specifications & methods; Correspondence.
+Current/revision/issue/review states are explicit. Source-case attachments are
+searchable links, not copied documents.
+Handover
+Snags; Testing & commissioning; Handover packs; Defects & warranties. Organise by
+location/system/installed asset, with partial handover and client acceptance evidence.
+Stable structure; relevant content
+Keep area names and order stable across lifecycle stages. Stage and role change the recommended
+work and visible permissions, not the meaning or location of an area. Snagging and handover
+preparation remain reachable during construction.
+A specialist registry can be a dense, filterable table when that helps its user. A site worker gets a focused action and the
+evidence needed now. Neither requires a second copy of the data. Area sublinks are page content, not another permanently
+expanded sidebar. Preserve filters and scroll position when returning from a record.
+Discovery findings and proposals - no application redesign or code implementation
+3
+
+
+PAGE 4
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+My Work is the daily starting point
+Role-aware priorities, with consistent navigation and explicit authority. Proposed defaults must be checked with actual staff.
+Show Needs my decision, Assigned to me, and Waiting on others as views of one queue. Every
+row says what to do, project/location, due date, current owner and why it is waiting. Resume drafts
+and recent work directly; routine notifications must not bury decisions.
+Person
+Default work and direct shortcuts
+Owner / project manager
+Exceptions, milestones, cost/cash outlook and delegated decisions. Project
+Overview and portfolio reports.
+Estimator / tender manager
+Bid deadlines, estimate review and offer revisions. Tender workspace.
+Site engineer / supervisor
+Today's work, drawings, material needs, inspections and blockers. Site plus the
+look-ahead.
+QS / cost controller / buyer
+Measurements, changes, forecasts, claims and purchasing decisions. Budget &
+cost or a cross-project Buying queue.
+QA/QC / document controller
+Inspections, NCR actions and document reviews; overdue owners visible. Quality
+& NCRs or Documents.
+Finance / people / plant teams
+Authorised payment/close work, staff requests, or asset service/availability.
+Their named Company workspace directly.
+Company is a visible directory, not a miscellaneous menu
+Buying - all-project procurement and subcontract queues.
+Finance - receivables, payables, cash/bank, ledger, period close and financial reports.
+People - employment, recruitment, leave, attendance and time.
+Assets & Fleet - custody, hire, maintenance and vehicles.
+Stores - warehouses, transfers, counts and stock movements.
+Contacts & Catalogue - parties, materials/services and shared units.
+Reports - cross-project comparisons and governed metric/report definitions.
+Daily specialists go straight to their queue from My Work. Keep company and All projects / named project scope visible; a
+cross-company queue labels each record. Roles and entity permissions control access. Company > Reports uses the same
+definitions as project reports, always with a findings summary.
+Discovery findings and proposals - no application redesign or code implementation
+4
+
+
+PAGE 5
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+One case, a clear next step
+Screen behaviour requirements. The proposal preserves rich information while reducing repeated navigation and data
+entry.
+Layer
+What stays visible or opens on demand
+Always visible
+Record title/ID; project and relevant package/location; status in words; owner; next
+action and due date; material blockers; version/cutoff for decisions and totals.
+Main working content
+The information needed for the current task and one primary action, with explicit
+secondary alternatives such as Return for correction. A reviewer sees evidence
+before deciding.
+Named detail sections
+Quantities, resources, money, technical evidence or terms as appropriate to the
+record. Show section names and key warnings; expand detail when useful. No vague
+More container for essential work.
+Related records and history
+Linked order, certificate, bill, inspection, change or drawing; decision and revision
+history. Open a related record with context retained and a clear return path.
+A record evolves; the user does not restart
+An NCR stays the same case through containment, remedy, verification and closure. A subcontract
+package keeps scope, work and money together; its certificates and bills remain separately
+controlled linked records. Do not copy every tab into each linked screen or flatten legally different
+transactions into one form.
+Prefill known project, item, location and party details. Ask only for facts needed at the current
+transition. Preserve drafts, validation messages and entered information. New approved versions
+require explicit revision; historic decisions retain the evidence actually reviewed.
+Contextual AI can help find, explain or draft information without becoming another navigation layer. Keep its sources and
+active company/project visible. Financial arithmetic and approval rules remain controlled logic; AI proposals require the
+relevant review. See pages 50-52.
+Find information without knowing its module
+Search by ID, title, party, floor/unit, asset tag and familiar aliases: NCR / non-conformance / quality
+problem; VO / variation / change; plant / equipment; snag / defect. Results show type, scope, state
+and current revision, deduplicated by record identity. Always offer a browsable route as well.
+Make search scope obvious and offer a deliberate broader search. Respect permissions in results, snippets, exports and
+links. Distinguish no records, active filters, insufficient access, stale data and a loading/error state. Attachment full-text/OCR
+coverage must be stated and verified.
+Discovery findings and proposals - no application redesign or code implementation
+5
+
+
+PAGE 6
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Exact homes for all twelve areas
+All project paths below start inside the selected project unless Company or My Work is specified. These are proposed
+homes, not live routes.
+Capability
+Home
+Owner / connected work
+NCR operations
+Site > Quality & NCRs
+QA/site: contain, investigate, authorise remedy, verify.
+Linked cost, waste, change and delay evidence.
+Asset management
+Company > Assets & Fleet
+Plant team: availability, custody, hire and maintenance.
+Project assignment/use; installed assets in Handover.
+Payments & cash flow
+Costs & Contracts > Claims &
+payments / Cash flow
+QS/finance: project outlook and collections. Company >
+Finance handles bank, payment and reconciliation
+work.
+Subcontracting
+Buying > Subcontract packages
+Procurement/QS: scope, award, work, changes and
+money stay on one package; site reviews assigned
+work.
+Item cost analysis
+Costs & Contracts > Budget &
+cost
+Cost controller: choose item/location, then compare
+budget, incurred, cash spent and forecast with source
+drill-down.
+Waste management
+Site > Waste
+Site/stores: material loss, reuse and disposal evidence.
+Link stock movement, carrier/destination and allocated
+cost.
+Variations / changes
+Costs & Contracts > Changes
+QS/PM: one change case from instruction through
+cost/time decision. Site and Documents provide direct
+Raise change links.
+Programme & delay
+Plan > Programme / Constraints
+& delays
+Planner: baseline/current dates, progress, constraints
+and delay cases. Link an EOT assessment to the same
+events.
+KPI management
+Overview > Performance
+PM: relevant exceptions and trends with owner, cutoff
+and definition. Company > Reports maintains shared
+definitions.
+Keeping records
+Documents + each source record
+Document controller owns controlled revisions;
+evidence stays attached to its transaction/case and is
+searchable centrally.
+Approval workflow
+My Work + record decision area
+Approver: see evidence, version, authority, next owner
+and deadline. Policies live in Administration.
+Tracking /
+transparency
+Every record; Overview
+exceptions
+All permitted roles: state, blocker, responsible person,
+next action and history; totals lead to source facts.
+Records, approval decisions and tracking are present on every relevant case. Their dedicated search or queue views are
+additional ways to reach the same information, not additional copies or independent workflows.
+Discovery findings and proposals - no application redesign or code implementation
+6
+
+
+PAGE 7
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+The construction journey stays
+connected
+A project lifecycle is a guide, not a compulsory wizard. Procurement, design, site work, commercial work and handover
+preparation overlap.
+Stage
+Where work starts
+Handoff that must be explicit
+1. Opportunity / bid
+decision
+Tenders > Opportunity
+Client, tender requirements, deadlines, scope, risks and
+accountable bid decision.
+2. Estimate / offer
+Tender workspace
+Take-off/BOQ, resource rates, quotes, exclusions and
+approved offer revision. Preserve the tender basis.
+3. Award / mobilisation
+Award -> Project setup
+checklist
+Accepted contract and scope; versioned cost baseline;
+location/work-item structure; programme; authorities
+and obligations. Direct awards have a supported entry.
+4. Design / plan /
+procure
+Documents + Plan + Buying
+Approved information, material/subcontract readiness
+and site prerequisites linked to planned work.
+5. Execute / inspect
+Site, from the look-ahead
+Daily evidence, quantities/resources, quality/safety,
+material movements and accepted progress. Failed work
+generates accountable follow-up.
+6. Assess / claim / pay
+Costs & Contracts; package
+Money
+Measured acceptance -> certificate -> invoice/bill ->
+payment. Separate commercial values, incurred cost
+and cash.
+7. Test / hand over
+Handover by floor/unit/system
+Tests, snags, as-builts, O&M, training, warranties and
+acceptance. Partial handover has clear boundaries and
+outstanding obligations.
+8. Defects / final
+settlement
+Handover + Final account
+Defects and warranty duties; agreed final account;
+authorised securities/retention release. Technical and
+commercial closure remain distinct.
+The common context travels with the work
+Company -> project -> work item/package + location/system. Link the programme activity, client
+BOQ line, subcontract scope, resource and evidence as relevant. A work breakdown and a physical
+location are different dimensions; neither should have to stand in for the other.
+Changes, delays, approvals, records and cost control operate throughout these stages. A closed stage remains readable.
+New information can cause a controlled revision or reopening instead of silently overwriting the past.
+Discovery findings and proposals - no application redesign or code implementation
+7
+
+
+PAGE 8
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Four journeys that expose weak
+mapping
+Expert walkthrough of the proposed structure. These are reasoned checks, not observed user-test results or executed
+business transactions.
+1. A failed concrete inspection
+Site / inspection -> NCR -> authorised repair -> reinspection. Keep the inspection, location,
+cause, corrective actions and closure evidence together. Link labour/material/plant costs and waste
+to that work item. If a commercial change or delay is relevant, create a linked assessment; an NCR
+does not automatically become a billable variation.
+Navigation test: the engineer can report the problem from the inspection; QA receives the decision in My Work; the PM
+sees the blocker. Nobody must find a separate approval or costing module to understand the case.
+2. A subcontractor submits more than is accepted
+Buying / package -> application -> assessed work -> certificate -> bill -> payment. Show
+claimed and accepted quantities with reasons for differences. The same package Money view
+explains deductions, retention, invoice status, due balance and payment. Finance acts on the linked
+authorised bill/payment record.
+Navigation test: the QS and accountant can identify the held step and its owner without treating a certificate as a paid
+invoice. Partial/rejected work and revised claims remain traceable.
+3. A drawing instruction affects time and cost
+Documents / instruction -> change case -> linked delay assessment. The change owns scope,
+notice evidence, price and decision versions. Plan owns affected activities, mitigation and time
+analysis. Link both under the instruction; record pending/disputed status and accountable deadlines
+without double-entering the event.
+Navigation test: both Plan and Costs & Contracts reveal the same originating event and the other assessment. A priced
+variation alone does not imply approved time or changed commitments.
+4. The owner asks why one slab is overspending
+Costs & Contracts / Budget & cost -> floor + slab item. Begin with revised budget, incurred
+cost, cash spent and forecast final cost at one cutoff. Expand
+material/labour/plant/subcontract/indirect detail, then source transactions. Show allocation gaps,
+productivity, waste, outstanding obligations and assumptions.
+Navigation test: no separate search through stock, purchasing and finance is required to explain the totals. Source
+documents stay one link away, with their scope, tax basis and reconciliation status visible.
+Discovery findings and proposals - no application redesign or code implementation
+8
+
+
+PAGE 9
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Every current menu has a home - 1
+Traceability from the 42 observed administrator entries (E41). New destinations are proposals; repeated old labels do not
+prove duplicate functionality.
+Current entry
+Proposed destination
+What is preserved or consolidated
+01. Dashboard
+My Work; Projects > Overview
+Personal actions and project health have
+separate purposes; retire the generic duplicate
+entry.
+02. Reports
+Company > Reports; relevant
+workspace
+One report definition; contextual views carry
+filters. Report setup belongs in Administration.
+03. My Approvals & Activities
+My Work
+One decision/task queue, with explicit action,
+project, owner and due date.
+04. CRM
+Tenders > Opportunities
+Keep leads, client follow-ups and bid decisions
+together. Contacts link to the shared directory.
+05. Tender & BOQ
+Tenders > Tender workspace
+Tender documents, take-off, estimate revisions
+and bid review remain together.
+06. Sales & Quotations
+Tenders > Offers & award
+Preserve quotation versions and accepted
+terms. Non-project sales, if needed, remain a
+named Company workflow.
+07. Projects
+Projects
+Portfolio -> project overview -> stable project
+areas. Tasks appear in My Work and their
+project.
+08. Project requisitions
+Project > Buying > Requests
+Site action Request materials opens the same
+request with location and work item filled in.
+09. Project set-up
+Project > Overview > Setup
+checklist
+Mobilisation tasks, owners and missing baseline
+information; ongoing settings are secondary.
+10. Material returns
+Project > Site > Materials
+Return from the original issue/receipt; shared
+warehouse view in Company > Stores.
+11. WBS & Budgets
+Project > Costs & Contracts >
+Budget & cost
+Work items, cost codes, resource build-ups and
+approved versions; Plan links to the same work
+items.
+12. Site receipts
+Project > Buying > Orders &
+deliveries
+Site > Materials offers Receive delivery; it
+opens the same delivery record.
+13. Site diaries
+Project > Site > Daily work
+Daily report with labour, plant, progress, photos
+and events; do not re-enter shared facts.
+14. Contracts & measured
+BOQ
+Project > Costs & Contracts >
+Client contract
+Award baseline, measurement rules and claims.
+Subcontract scope lives in its Buying package.
+Project means the selected project workspace. A root-level map does not replace a later inventory of all 267 leaf controls,
+fields, reports, permissions and integrations before implementation.
+Discovery findings and proposals - no application redesign or code implementation
+9
+
+
+PAGE 10
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Every current menu has a home - 2
+Traceability from the 42 observed administrator entries (E41). New destinations are proposals; repeated old labels do not
+prove duplicate functionality.
+Current entry
+Proposed destination
+What is preserved or consolidated
+15. Site materials & issues
+Project > Site > Materials
+Available, reserved, issued, returned, installed
+and wasted quantities remain distinguishable.
+16. Purchasing
+Project > Buying; Company >
+Buying
+Requests, comparisons, orders and deliveries.
+Company shows an all-project queue of the
+same records.
+17. Payment certificates
+Project > Costs & Contracts >
+Claims & payments
+Client measurement/certification; supplier
+certificates stay within their subcontract
+package.
+18. Advances & retention
+releases
+Respective contract/package >
+Money
+Client terms in Costs & Contracts; subcontract
+terms in Buying. Finance executes authorised
+settlements.
+19. Final accounts & closeout
+Project > Costs & Contracts >
+Final account
+Commercial settlement linked to the separate
+Handover readiness record.
+20. Guarantees & bonds
+Respective contract/package >
+Securities
+One register; expiry and release tasks in My
+Work. Finance has a company-wide securities
+view.
+21. Subcontract finance
+Project > Buying > Subcontract
+package > Money
+Terms, certificates, bills, advances, retention
+and payment status. Posting remains in
+Finance.
+22. Subcontract order
+amendments
+Subcontract package > Changes
+A linked amendment changes the commitment
+only when authorised; preserve its versions.
+23. Subcontractor
+applications
+Subcontract package > Work &
+claims
+Application -> assessed work -> certificate;
+show differences and their reasons.
+24. Subcontract service
+entries
+Subcontract package > Work &
+claims
+Accepted/rejected measured work; site
+reviewers get direct assigned tasks.
+25. Subcontract work
+corrections
+Original assessment > Correct or
+revise
+A controlled correction with reason and history;
+no disconnected correction module.
+26. Stores & Receipts
+Company > Stores; Project > Site
+> Materials
+Shared warehouse operations and project stock
+views. Deliveries link to Buying orders.
+27. Labour & plant allocation
+Project > Plan > Resources
+Planned allocation; daily use captured in Site.
+Company People/Assets holds identities and
+availability.
+28. Labour & plant actual
+feeds
+Project > Site > Daily work;
+Administration > Integrations
+Operational actuals are reviewable in context;
+technical imports/mappings stay with
+integration operators.
+Project means the selected project. Contextual shortcuts open the same records; no duplicate entry.
+Discovery findings and proposals - no application redesign or code implementation
+10
+
+
+PAGE 11
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Every current menu has a home - 3
+Traceability from the 42 observed administrator entries (E41). New destinations are proposals; repeated old labels do not
+prove duplicate functionality.
+Current entry
+Proposed destination
+What is preserved or consolidated
+29. P6 schedule progress
+Project > Plan > Programme
+Progress, import freshness and baseline
+references. Preserve explicit programme
+ownership.
+30. Finance
+Company > Finance
+Receivables, payables, cash/bank, ledger, close
+and reporting. Project views link the same facts.
+31. Quality, HSE &
+Specifications
+Project > Site > Quality & NCRs /
+Safety
+Inspections, NCRs and safety cases; controlled
+specifications are linked from Documents.
+32. People & HR
+Company > People
+Employee, recruitment and employment
+records; project assignments link here without
+exposing restricted details.
+33. Time Off
+Company > People > Leave; My
+Work
+Employee request and manager decision are
+direct actions; balances and policy remain in
+People.
+34. Attendance
+Company > People > Attendance
+Personal entry/correction and supervisor
+review; attendance is distinct from project
+costed time.
+35. Timesheets
+My Work > My time; Company >
+People > Timesheets
+Project allocation is visible in Site; one approved
+time source prevents duplicate labour cost.
+36. Plant & Equipment
+Company > Assets & Fleet
+Availability, custody, hire and maintenance.
+Project Plan/Site shows assigned plant and
+actual use.
+37. Fleet
+Company > Assets & Fleet >
+Vehicles
+Vehicle-specific odometer, fuel, service and
+contract records remain explicit views.
+38. Contacts & Masters
+Company > Contacts & Catalogue
+Shared parties, materials/services and units.
+Accounting and approval policy setup stays in
+Administration.
+39. Team Discussions
+Record > Discussion; My Work >
+Messages
+Decisions attach to the relevant record;
+unlinked conversations remain searchable but
+do not approve work.
+40. My Tasks
+My Work
+Merge the entry point with activities, keeping
+task type, source and completion rules.
+41. Users & Access
+Administration > Access
+Explicit roles, company/project scope and
+delegated authority. No business module entry.
+42. Administration
+Administration utility
+Company settings, policies, integrations, shared
+calendars and system operations; access
+restricted by duty.
+Project means the selected project. Contextual shortcuts open the same records; no duplicate entry.
+Discovery findings and proposals - no application redesign or code implementation
+11
+
+
+PAGE 12
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Twelve findability checks
+Desk review performed against the proposed routes. No prototype exists and no click counts, timings or completion rates
+have been measured.
+Task in the user's words
+Proposed starting route
+Information required to finish
+Find today's overdue
+decisions
+My Work > Needs my decision
+> record
+Project, deadline, submitted version, evidence and
+allowed action; not an empty generic task
+dashboard.
+Find an issued floor drawing
+Project > Documents >
+Drawings
+Filter floor/system; distinguish issue purpose,
+review state, current revision and superseded
+history.
+Request and receive
+materials
+Site action > linked Buying
+request/order
+Project/item/location persists. Partial, rejected and
+returned quantities have explicit next actions.
+Raise and close an NCR
+Project > Site > Quality & NCRs
+Source inspection, remedy authority and
+independent verification where required; follow
+rework cost.
+Find a crane and its
+availability
+Company > Assets & Fleet >
+asset
+Location, custodian, service status and project
+allocation; maintenance block cannot be hidden
+by a calendar view.
+Explain slab cost and
+spending
+Project > Costs & Contracts >
+Budget & cost
+Same item/cutoff: budget, incurred, paid and
+forecast. Expand resources and source facts
+without changing context.
+Check a subcontractor's
+unpaid claim
+Project > Buying > package >
+Money
+Claimed/assessed/certified/billed/due/paid values
+and owner of the held step; linked Finance record.
+Assess a design change and
+delay
+Drawing or Site event > Raise
+change
+One case references instruction, affected work,
+notice, commercial decision and linked delay/EOT
+assessment.
+Explain next month's cash
+gap
+Project > Costs & Contracts >
+Cash flow
+Expected dates, overdue receipts, approved
+obligations and scenario assumptions; company
+view retains source scope.
+Record waste and recover its
+cost
+Project > Site > Waste
+Measured material loss versus disposal
+movement, reuse, evidence and allocation; no
+double-counted material cost.
+Prepare partial floor
+handover
+Project > Handover >
+location/system pack
+Outstanding tests/snags, current as-builts/O&M
+and acceptance evidence; contractual gate
+exceptions are authorised.
+Reconstruct who approved a
+change
+Change > History; search by ID
+Version, actor, decision, reason and linked effects;
+audit history is distinct from a financial fact
+register.
+Review result: each of these tasks now has a named home and a linked handoff. Remaining hypotheses include whether
+Company is clear enough, whether users expect changes under Costs & Contracts, and whether snag discovery works
+equally well from Site and Handover. Test these first.
+Discovery findings and proposals - no application redesign or code implementation
+12
+
+
+PAGE 13
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Prove the map before building it
+Review conclusion: this is a stronger, traceable proposal. Calling it the best user experience requires evidence from
+representative users.
+What the second review changed
+Removed competing top-level module choices; split vague Resources into named Company
+workspaces; gave Documents and Handover permanent homes; defined package ownership and
+Finance handoffs; removed stage-dependent navigation; mapped all 42 roots and all twelve
+requested capabilities. Richness now comes from connected records, not more primary menu entries.
+A small, measurable validation programme
+Round
+Method and proposed acceptance target
+1. Labels and tree test
+Give realistic tasks without menu words. Test the proposed map with you and
+representatives of site, QS/PM, buying, quality/documents and finance; add
+estimator/plant/people users for their routes. Target at least 90% correct first
+destinations across core tasks; inspect failures by role, not only the overall average.
+2. Paper/clickable task
+walkthrough
+After study review, test current drawing, NCR, partial delivery, subcontract claim, item
+cost, change/delay and handover cases. Target at least 90% unassisted completion
+and median information-finding time under 60 seconds. These are proposed gates, not
+achieved results.
+3. Comprehension and
+exceptions
+Every participant handling money must correctly distinguish budget, incurred, cash
+spent and forecast on the tested item. Critical tested decisions must have the right
+version, authority and scope. Include wrong project, missing allocation, rejected work,
+stale data, partial payment and reopening.
+4. Accessibility and repeat
+use
+Test keyboard/focus, zoom, touch and relevant assistive technology; mobile capture
+and poor connectivity where needed. Repeat with revised labels and different
+examples; check return visits without coaching.
+Record the baseline and agree targets before testing; revise the design when it fails. Do not average away a severe control
+failure or conceal poor results for one role. Test browse routes as well as search, and record wrong turns and repeated
+entry.
+Principles checked against published guidance
+Nielsen Norman Group: Progressive Disclosure supports keeping frequent needs visible and clearly labelling secondary
+detail. W3C: Consistent Navigation supports predictable relative ordering. GOV.UK: Task list distinguishes flexible task
+completion from a strictly ordered process. These support the principles, not the exact four/seven-area grouping. Accessed
+28 October 2026.
+Discovery findings and proposals - no application redesign or code implementation
+13
+
+
+PAGE 14
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Navigation needs a new structure
+Evidence: E39 administrator dashboard, E41 expanded navigation inventory, E30/E50/E53 role dashboards.
+Role
+Primary
+entries
+What this proves
+Administrator
+42
+Broad modules and individual transactions share one level.
+Project Manager
+20
+Role filtering still leaves a long operational menu.
+Site Engineer
+10
+A smaller role-specific menu already exists.
+Estimator
+9
+Tender work can be presented with fewer primary areas.
+E39. Administrator in JAKH Demo Contracting LLC. The screenshot shows the first portion of the scrollable sidebar.
+The fully expanded administrator tree contains 363 button controls: 96 groups and 267 leaf
+buttons, with paths reaching four menu levels. Leaf counts are navigation controls, not a count of
+unique features.
+Repeated leaf labels include Products (6), Customers (4), Settings (12), Dashboard (4), Payments (3), and My Tasks (2).
+Their targets were not all compared; identical labels do not prove duplicate records or duplicate functionality.
+Discovery findings and proposals - no application redesign or code implementation
+14
+
+
+PAGE 15
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+A project should open on work
+Evidence: E32 project entry and E33 its More menu, viewed as Site Engineer.
+E33. Marina Gate Residences G+4 opens on Map / Description / Settings. WBS, Contracts, Requisitions and Client
+certificates sit under More.
+Observed friction
+The main project view prioritises a large Dubai map, generic task counts, and project metadata. It
+does not immediately answer what is happening on site, what is late, what needs approval, or which
+floor/package needs attention.
+Requirement to validate
+Use a project workspace with a stable identity and location/package filter. Put current actions,
+blockers, recent progress, and relevant documents within that context. Treat maps and
+administrative settings as supporting information.
+Waiting records should name the next owner and expected review date, including when the viewing user cannot approve.
+The absence of an approval button for a site role may be correct permission behaviour.
+Discovery findings and proposals - no application redesign or code implementation
+15
+
+
+PAGE 16
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Keep the procurement chain connected
+Observed path: requisition -> linked PO list -> purchase order -> completed receipt. Evidence E19-E22.
+E21. P00005 shows received/billed quantities and links to the receipt, bill, and requisition. Its main view does not give
+project/WBS/location the prominence seen on the requisition.
+What works, and where context weakens
+The requisition includes the project, WBS, required date, planning-demand reference, and requested
+location. The PO exposes the vendor, arrival, receipt status and quantities. The receipt exposes the
+source PO and stock movement. The linkage is present; the user must reconstruct its construction
+context.
+Requirement to validate
+Carry project, package and location visibly across demand, request, quotation, order, receipt,
+inspection, issue, installation, and invoice. Link distinct controlled records rather than merging them
+into one editable document.
+In this sample, a link labelled 1 Purchase orders opens an intermediate single-row list before the PO. Test direct opening
+when there is exactly one related record. Partial delivery, rejection, returns and billing exceptions were not executed.
+Discovery findings and proposals - no application redesign or code implementation
+16
+
+
+PAGE 17
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Technical controls exist
+Evidence: E43 document register, E44 revision history, E45 document-category dropdown.
+E44. General arrangement drawing JSD-TOW-DWG-001 shows approved revision B as Current and approved revision A as
+Superseded.
+Preserve revision meaning
+The current-versus-superseded distinction is useful. A register also needs to let a site user find the
+correct approved document for the floor, zone, trade and activity without searching through
+unrelated projects.
+The category control offers Drawing, Submittal, Specification, Method Statement, Inspection / Test
+Plan, and Correspondence. The fuller register contained 15 drawing records; other category
+workflows were not demonstrated by populated samples.
+Still to validate
+Dedicated RFI routing, drawing release/transmittal, consultant response codes, inspection hold points, document
+distribution and external-party review. A category called Correspondence does not by itself demonstrate an RFI workflow.
+Discovery findings and proposals - no application redesign or code implementation
+17
+
+
+PAGE 18
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Tower work needs structured locations
+Evidence: E34 snag register, E35 snag detail, E37-E38 submitted site diary.
+E35. Water ponding on balcony, flat 302 is linked to a project, WBS, BOQ item, contractor and person. Its structured
+Location is Main site.
+A concrete retrieval problem
+The eight displayed open snags all use Main site, including titles referring to a flat or individual villa.
+For these records, finding work by floor or unit depends on free text. This is a sample-data limitation
+and an information-structure risk; it does not prove the application cannot represent locations.
+Requirement to validate
+Model project -> tower/building -> floor -> unit/zone, with systems and packages linked separately.
+Test bulk snagging, photos, contractor assignment, rectification, reinspection, reopening and partial
+handover by location.
+The site diary has purposeful Manpower, Equipment, Photos, and Work and events tabs. Keep useful grouping. Its Submitted
+state and the snag's Awaiting Review state need clearer next-review ownership in the captured views.
+Discovery findings and proposals - no application redesign or code implementation
+18
+
+
+PAGE 19
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Connect changes to their
+consequences
+Evidence: E46-E47 variation records; E15 client certificate and E29 subcontract service entry.
+E47. A priced MEP variation has project/contract links, quantity, rate, value, pricing owner, and approval actions. No
+instruction link, notice deadline, or time impact is visible on this record.
+Commercial coverage is present
+The sampled client certificate contains cumulative quantities, prior/current/remaining measurements,
+approved variations, retention/recovery values, an invoice link, and technical/commercial/finance
+review history. A submitted subcontract service entry also has package, location and quantity
+context.
+The chain to validate
+Source instruction -> required notice -> estimate and cost/time impact -> review -> approval or
+dispute -> budget/programme change -> measured work -> certification -> invoice -> cash. Include
+work proceeding before approval and rejected or partially certified amounts.
+Missing fields on the sampled variation are not proof of system-wide absence. Contract-specific notice rules, approval
+authorities and finance treatment require validation with your business owners.
+Discovery findings and proposals - no application redesign or code implementation
+19
+
+
+PAGE 20
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Handover is more than a final account
+Evidence: E48-E49 final-account workflow; E34-E35 snagging. No closure action was executed.
+E49. The completed retail-fit-out project has an Approved final account and a Close contract and project action. The visible
+detail focuses on certification, advance recovery and retention.
+Separate three completion questions
+Technical readiness: are inspections, testing/commissioning, authority requirements, as-builts,
+O&M manuals, warranties, training and required snags complete?
+Client acceptance: which building, floor, unit or system is accepted, by whom, with what
+outstanding obligations and defect-liability dates?
+Commercial settlement: are measurements, variations, claims, subcontract settlements, retention
+and final balances agreed?
+The sampled final-account screen does not visibly present a structured technical-readiness pack. Backend closure checks
+and wider handover workflows were not tested. Define the three tracks explicitly before designing the replacement.
+Discovery findings and proposals - no application redesign or code implementation
+20
+
+
+PAGE 21
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Construction coverage map - 1
+Observed means visible in this run. Not demonstrated means unverified, not proven absent. Execution/approval transitions
+were not performed.
+Lifecycle area
+Current evidence
+Requirement / next verification
+Tender pipeline / bid
+decision
+Observed: generic CRM entry;
+estimator preview has no matching
+opportunities (E51).
+Validate bid/no-bid, tender deadlines,
+qualifications, clarifications, tender security and
+opportunity access.
+BOQ / estimate /
+revisions
+Observed: estimates, study versions,
+pricing, review and transfer links
+(E05, E52).
+Validate take-off detail, quote comparison,
+exclusions, alternate bids, revision comparison
+and approval limits.
+Award / project
+mobilisation
+Observed:
+estimate-to-quotation/project
+transfer; setup entry (E05-E07, E26).
+Validate contract obligations, responsibilities,
+programme and budget baseline; direct-award
+path.
+Project / tower locations
+Observed: location records; fuller
+building sample uses Main site (E35,
+E44).
+Validate tower/floor/unit/zone hierarchy and
+large-volume navigation. G+4 is not a high-rise
+scale test.
+Budget / cost codes /
+forecasts
+Observed: BOQ/location cost report,
+source links and approved
+cost-to-complete forecasts (E66-E69,
+E90).
+Validate item/resource detail, revisions,
+commitments, incurred costs and cash
+reconciliation. See pages 29-31.
+Programme / look-ahead
+Observed: 145 progress records; the
+detail says P6 is schedule master
+(E79-E80).
+Validate activity logic, baselines, imports,
+look-ahead and delay/EOT linkage. See page 34.
+Drawings / submittals /
+documents
+Observed: current/superseded
+drawings and six categories
+(E43-E45).
+Validate submissions, transmittals, distribution,
+consultant response and overdue review
+ownership.
+RFIs / instructions
+Not demonstrated as a dedicated
+workflow in the inspected views.
+Trace RFI -> response -> drawing/work
+instruction -> cost/time consequences. Do not
+treat a label as proof.
+Materials / procurement
+Observed:
+demand/request/order/receipt links
+(E19-E22).
+Validate quote comparison, approvals, lead
+times, partial/rejected delivery, returns and
+material inspection.
+Stores / site issues /
+installation
+Navigation and demand links
+observed; full operational chain not
+walked.
+Trace stock source, reservation, transfer, issue,
+installed quantity, wastage and cost allocation.
+Subcontract award /
+amendments
+Navigation and subcontract
+order/service links observed
+(E28-E29, E41).
+Validate package scope, exclusions,
+measurement rules, changes, commitments and
+subcontract securities.
+Subcontract
+measurement /
+payment
+Observed: service entries, supplier
+certificate, bill and retention
+agreement links (E29, E70-E72).
+Validate application -> acceptance ->
+settlement; rejected work, deductions and
+correction. See page 28.
+Discovery findings and proposals - no application redesign or code implementation
+21
+
+
+PAGE 22
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Construction coverage map - 2
+This map is a requirements register for the new ERP. Supporting functions remain in scope even when sampled only through
+navigation.
+Lifecycle area
+Current evidence
+Requirement / next verification
+Daily reports / labour /
+plant
+Observed: populated diaries with
+resources and work/events (E36-E38);
+allocation/feed entries.
+Validate who submits/approves,
+location/package detail, hours, equipment use
+and cost-feed reconciliation.
+Quality / HSE /
+inspections
+Observed: non-conformances,
+inspections and risk assessments;
+NCR resolution/lifecycle (E56-E59).
+Validate ITP hold points, cause/corrective action,
+independent verification and safety controls. See
+page 25.
+Variations / notices /
+delay
+Observed: price/approval states;
+time/notice chain not visible in
+sample (E46-E47).
+Define instruction evidence, notice dates,
+cost/time assessment, disputed work and linked
+approval history.
+Client measurement /
+certification
+Observed: cumulative BOQ/variation
+measurement and staged approval
+(E15).
+Validate claimed vs certified/rejected values,
+evidence, corrections, prior quantities and
+invoice progression.
+Finance / cash /
+accounting
+Observed: bill and matched receipt
+sources. Cash report blocked by
+policy selection; visible policy list
+empty (E70, E74-E76, E91-E92).
+Validate forecasts, policy setup, reconciliation
+and original posting/localisation. See pages 27
+and 30.
+Approvals / delegation /
+exceptions
+Observed: role routes/history; PM
+activity queue has two threshold
+tasks (E15-E16, E54).
+Verify queue coverage for all pending
+documents; delegation, absence cover,
+rejection/resubmission and independence.
+Testing / commissioning
+Not demonstrated as an end-to-end
+workflow in inspected records.
+Define system/asset tests, dependencies,
+witnesses, results, failures/retests and readiness
+evidence.
+Snagging /
+rectification
+Observed: populated snags, owners,
+before photo and status sequence
+(E34-E35).
+Validate after-photo requirements, independent
+verification, reopening, bulk capture and
+unit/system filtering.
+Handover / defect
+liability
+Not demonstrated as a structured
+handover pack in the sampled
+final-account view (E49).
+Define partial acceptance, as-builts, O&M,
+warranties, training, DLP dates, outstanding work
+and responsibility.
+Final accounts /
+retention
+Observed: financial final-account
+workflow; sample Approved and
+Closed records (E13, E49).
+Validate technical/contractual readiness gates,
+settlement, retention release and auditable
+reopening.
+People / assets / shared
+masters
+Observed: equipment, serial/cost and
+maintenance detail (E61-E64). Most
+HR/fleet scope remains
+navigation-only.
+Validate asset custody, utilisation, hire, finance
+and handover; retain required HR/shared scope.
+See page 26.
+Portals / integrations /
+migration
+Role chooser exposes
+client/subcontractor portals; schedule
+and cost feeds have entries.
+Verify portal permissions, external reviews,
+integration ownership, data/attachment export,
+migration and cutover.
+Discovery findings and proposals - no application redesign or code implementation
+22
+
+
+PAGE 23
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Your 12 areas: existence and need
+Expanded scope map 1 of 2. Follow-up inspection: administrator, JAKH Demo Contracting LLC, AED, 28 October 2026.
+All twelve belong in the construction ERP scope. The depth varies, but none should disappear
+merely to shorten the menu. Place them inside coherent project workspaces and shared services. A
+visible record proves that capability exists at that level; it does not prove a complete or reliable
+end-to-end process.
+Area / detail page
+Current evidence and status
+Need in the new ERP
+1. NCR operations
+Page 25
+PARTIAL: populated Non-conformance
+records, resolution, verifier and timestamps.
+E56-E59.
+Essential from mobilisation: contain
+defective work, resolve the cause, verify
+the remedy, and trace rework
+consequences.
+2. Asset management
+Page 26
+PARTIAL: 20 equipment records; crane
+serial/cost, maintenance links and reliability
+metrics. E61-E64.
+Essential: know what is available, where
+it is, who has it, whether it is fit for use,
+and what it costs. Separate owned/hired
+plant and client handover assets.
+3. Payments & cash flow
+Page 27
+PARTIAL / BLOCKED REPORT: posted
+receipts and bills exist. Company cash
+report requires a policy; visible policy and
+cash-forecast lists are empty. E70, E73-E76,
+E91-E92.
+Essential: expected versus actual money,
+approved obligations, collections,
+payment scheduling, advances, retention
+and liquidity.
+4. Subcontracting
+Page 28
+SUBSTANTIAL PARTIAL CHAIN:
+service-entry/certificate/bill links, finance
+agreement, retention terms and balances.
+E29, E70-E72.
+Essential: manage each package from
+selection and award through measured
+work, changes, payment and final
+settlement.
+5. Item cost breakdown
+Pages 29-31
+PARTIAL: BOQ/location report, source facts,
+WBS budgets and approved
+cost-to-complete forecasts. Samples remain
+coarse. E66-E69, E87-E90.
+Essential: one explainable item ledger
+with budget, quantities, resources,
+incurred cost, commitments, payments
+and completion forecast.
+6. Waste management
+Page 32
+LIMITED: empty scrap register and unsaved
+stock-scrap form. Full site waste chain not
+demonstrated. E77-E78.
+Essential: material loss and
+environmental disposal/reuse records;
+costs and quantities linked to the work
+that caused them.
+Status key: PARTIAL = useful records or controls observed, with workflow depth unverified. LIMITED = narrow or
+unpopulated evidence. BLOCKED REPORT = a specific report could not produce results under the inspected setup. None
+means proven absent throughout the system.
+Discovery findings and proposals - no application redesign or code implementation
+23
+
+
+PAGE 24
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Your 12 areas: controls and visibility
+Expanded scope map 2 of 2. Proposed requirements below are design inputs, not claims about existing functionality.
+Area / detail page
+Current evidence and status
+Need in the new ERP
+7. Variations / change
+requests
+Page 33
+PARTIAL: 17 variation records;
+owner/subcontract distinction, pricing,
+approval and certification states. E85-E86.
+Essential: capture an early change event,
+assess scope/cost/time, obtain authority,
+and carry the outcome into budgets,
+orders and programme.
+8. Programme & delay
+Page 34
+PARTIAL: accepted progress facts; screen
+explicitly makes P6 the schedule master.
+Delay/EOT chain not demonstrated.
+E79-E80.
+Essential: baseline/current plan,
+look-ahead, constraints, delay events,
+mitigation and time-impact evidence.
+9. KPI management
+Page 35
+PARTIAL: CPI/SPI, project financial/progress
+metrics, exception activities, turnaround
+data and generic dashboards. E53-E54, E66,
+E82-E84.
+Essential: definitions, owners, targets,
+trends, data freshness and corrective
+actions; a chart alone is insufficient.
+10. Keeping records
+Page 36
+PARTIAL: revisions, attachments, diaries,
+lifecycle rows and source links. E37-E45,
+E57-E59, E82.
+Foundation: authoritative evidence,
+controlled revisions, search, distribution,
+retention and export throughout the
+project.
+11. Approval workflow
+Page 37
+PARTIAL: staged certificate review, named
+forecast approver, quality verifier,
+document review and activity queues. E15,
+E54, E59, E71, E82, E90.
+Foundation: consistent, policy-based
+routing with next owner/due date,
+rejection/resubmission, delegation and
+version-aware decisions.
+12. Tracking /
+transparency
+Page 38
+PARTIAL: project facts link to source
+records; dates, provenance and some
+approver fields exist. E69-E72, E81-E82,
+E90-E92.
+Foundation: show where work stands,
+why it is blocked, who acts next, and how
+every total was derived, within access
+rights.
+How these fit together
+The common spine is company -> project -> building/floor/zone -> work item/package, with linked
+programme activity, resource, party and evidence. Records, approvals and tracking serve every
+workflow. Quality, cost and schedule consequences must travel with the originating event.
+Example: failed inspection -> NCR -> authorised repair -> labour/material/plant use and waste -> reinspection -> accepted
+progress. If scope or time changes, link the change/delay assessment. Do not assume every NCR automatically creates a
+billable variation.
+Discovery findings and proposals - no application redesign or code implementation
+24
+
+
+PAGE 25
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+1. NCR operations
+Existence: confirmed at record level; completeness: partial. Route: Quality, HSE & Specifications -> Quality & HSE Actions.
+E56-E59.
+E59. A closed honeycombing NCR has project/WBS, responsibility, severity, lifecycle dates and a named verifier. Resolution
+is a separate free-text section.
+What exists; what remains uncertain
+The register mixes inspections, non-conformances and risk assessments. The sampled NCR has one
+attachment and a generic correction statement. Its responsible person and verifier are the same in
+this sample. Structured requirement breach, root-cause analysis, distinct corrective-action tasks,
+effectiveness review and linked rework costs were not visible; independence rules were not
+exercised.
+Needed workflow and simple UI
+Essential. QA/QC raises the issue against an inspection, specification and exact location; the site
+team contains it; the responsible contractor proposes a disposition; required technical/client
+reviewers authorise it; the team implements and supplies evidence; QA/QC verifies and closes or
+reopens. Record cause, prevention, owners, deadlines and cost/time impacts. Keep it in Project ->
+Site -> Quality & NCRs, with one case timeline and the action required now.
+Test: trace one rejected concrete item through repair, reinspection and linked costs; show why it may be closed. Where
+policy requires independent verification, prove the resolver cannot provide that approval.
+Reference reviewed: the public QIC NCR toolkit description covers a form, procedure, register and dashboard, including
+cause analysis, corrective action and effectiveness checks. Paid files were not acquired or inspected. This is a process
+reference, not certification evidence or a copied template.
+Discovery findings and proposals - no application redesign or code implementation
+25
+
+
+PAGE 26
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+2. Asset management
+Existence: equipment and maintenance confirmed; a complete asset lifecycle is not demonstrated. E61-E64.
+E62. Tower crane TC-01 has a maintenance team and 14 linked maintenance records. The project deployment is in
+description text; Used in location is blank.
+Preserve, then connect
+Twenty equipment records are visible. The crane has a serial number, cost, vendor/model/warranty
+fields and reliability measures. Fleet also has navigation entries. These do not establish fixed-asset
+accounting, hire control, transfer history, inspection/calibration validity, fuel/use reconciliation or
+client asset handover.
+Needed workflow and simple UI
+Essential, with three related tracks. Owned plant/tools: acquire -> identify/tag -> assign/transfer
+-> use -> maintain -> dispose. Hired plant: hire terms -> on-hire -> utilisation/downtime -> off-hire
+-> invoice check. Installed client assets: install -> test/commission -> warranty/O&M -> handover.
+Link rather than duplicate asset identities across operations and finance.
+The plant manager owns availability and service dates; site custodians own location/use; finance
+owns valuation and depreciation policy. Link hours, fuel, repairs, hire, depreciation or approved
+internal charges to the appropriate project/work item. Keep Company -> Assets & Fleet as the shared
+register, and show assigned assets in each project.
+Test: transfer a crane between projects, stop scheduling it while out of service, reconcile its utilisation/cost, and find its
+inspection evidence. Separately retrieve one installed pump's commissioning and warranty pack.
+Discovery findings and proposals - no application redesign or code implementation
+26
+
+
+PAGE 27
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+3. Payments & cash flow
+Existence: payment evidence confirmed; forecast depth unverified; company cash report blocked by its policy prerequisite.
+E70, E73-E76, E91-E92.
+E74. Company cash generation requires an approved classification policy. E75 shows an empty visible policy register; E76
+shows no project cash-forecast records.
+What the evidence supports
+The building report links to eight posted payment sources totalling AED 15,675,795.22. One source
+has balanced bank/receivable journal lines and an invoice reference. The report explicitly does not
+assert bank clearance. A subcontract bill shows AED 257,484 gross work, AED 25,748.40 retention
+and AED 231,735.60 due. Certification, invoicing, due balances and cash are different facts.
+Needed workflow and simple UI
+Essential. Finance and QS maintain expected receipts and outflows from payment terms,
+certificates, invoices, payroll, orders, taxes, advances and retention. Use a rolling weekly view for
+near-term liquidity and monthly project-to-completion outlook, with base/late-payment scenarios.
+Reconcile actual bank movements, forecast dates and invoice allocations; explain unmatched or
+overdue items.
+Show project cash in Project -> Costs & Contracts, and the same records in Finance for company-wide
+scheduling and reconciliation. Display planned, approved, due, paid/received and bank-reconciled
+states separately. Include approval and bank authority checks; report access must not imply payment
+authority.
+Test: follow partial settlement, advance recovery, retention release and a late receipt through both project and company
+views. Validate the cash-policy setup before relying on the company report. No payments were initiated in this study.
+Discovery findings and proposals - no application redesign or code implementation
+27
+
+
+PAGE 28
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+4. Subcontracting management
+Existence: a substantial measurement-to-bill chain is visible. Award, exceptions and settlement remain to be validated. E29,
+E70-E72.
+E71. The supplier certificate connects service entry, PO, project/WBS, finance agreement, approver, retention and bill.
+Current strengths and gaps
+The linked agreement holds retention percentage/cap, advance/recovery terms, balances and eight
+certificates. The bill links back to the service entry, PO and supplier certificate. Separate application,
+amendment and correction menus exist. Tender comparison, scope boundaries, securities, insurance
+expiry, disputed measurements, backcharges and final settlement were not walked end to end.
+Needed workflow and simple UI
+Essential. Procurement/QS prequalify and compare bids -> approve package scope and award ->
+record mobilisation obligations -> receive the subcontractor's application -> measure/inspect
+accepted work -> assess deductions and changes -> approve certificate -> match bill -> pay ->
+settle and release retention against agreed conditions.
+Use one package workspace: scope/BOQ, commitments, progress, changes, quality obligations and
+money. Keep claimed, assessed, certified, invoiced and paid amounts distinct. Link NCRs,
+rectification, securities and handover readiness. Company -> Buying provides cross-project queues;
+project and portal views reference the same authorised records.
+Test: certify only accepted quantities from a partly rejected application, amend scope, apply an evidenced deduction, then
+reconcile the package account without counting both the service receipt and bill as separate incurred cost.
+Discovery findings and proposals - no application redesign or code implementation
+28
+
+
+PAGE 29
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+5. Cost analysis for each site item
+Existence: BOQ/location cost reporting and source lineage are confirmed. Required tower/resource granularity is not yet
+demonstrated. E66-E69, E87-E90.
+E67. The report distinguishes original/revised budgets, commitments and posted cost, with BOQ/building/location fields and
+explicit unallocated rows.
+A useful foundation with a granularity gap
+The sampled building uses four broad WBS/BOQ groups, generally allocated to Main site. This does
+not demonstrate the cost of a particular floor slab, door type or installation activity. Source facts
+distinguish commitments, received exposure, posted cost and revenue/billing. Approved forecasts
+include actual-cost snapshots and remaining costs; report rules avoid silently dividing WBS forecasts
+among buildings.
+One WBS form shows Forecast Amount = 0 while its dated approved forecast is AED 8,428,000
+(E88-E90). The report says it uses the approved forecast. The UI should identify that authoritative
+value and explain the other field; the difference is not proof the report calculation is wrong.
+Required grain and ownership
+Essential. QS/cost control defines work items and cost codes; planning supplies quantities and
+dates; site/stores supply consumption and progress; procurement supplies commitments; finance
+supplies postings/payments. Analyse by company, project, location, work item/WBS, resource type
+and period. Map client BOQ lines to internal work items with explicit, versioned allocations; they are
+not necessarily one-to-one.
+Simple UI: select an item and location once, then see Budget / Incurred / Paid / Forecast with expandable resource and
+source detail. Never label all four as Actual. Pages 30-31 define the measures and a reconciliation example.
+Discovery findings and proposals - no application redesign or code implementation
+29
+
+
+PAGE 30
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Cost dictionary: compare like with like
+Proposed definitions for agreement with cost control and finance. These are requirements, not a claim that every measure
+is implemented.
+Measure
+Meaning and control
+Original budget
+Frozen approved cost plan: quantities x resource rates, plus explicitly allocated
+indirect cost and risk. Keep the original version.
+Revised budget
+Original budget plus approved budget changes/transfers. An owner selling-price
+variation must not automatically become an equal cost-budget change.
+Plan to date / earned value
+Planned value is budgeted work scheduled by the status date. Earned value is
+budgeted value of accepted work completed. Both must use the same approved
+baseline and measurement rules.
+Commitments
+Approved purchase/subcontract obligations, including controlled amendments. Show
+total and remaining uninvoiced/unperformed exposure separately; total commitments
+are not extra cost to add to actuals.
+Incurred actual cost
+Posted cost plus approved period-end accruals, net of corrections and credits, counted
+once. Stock receipt, issue, installation and invoice may represent different stages, not
+four costs.
+Cash spent / received
+Allocated payment or receipt amounts and dates. Separate advances, taxes and
+retention; show reconciliation status. Cash spent may precede or follow the related
+incurred cost.
+Cost to complete
+Reviewed remaining committed work + remaining uncommitted work + explicit risk
+allowance. Identify assumptions, rates, productivity, owner and update date.
+Forecast final cost / EAC
+Incurred cost + cost to complete. Show variance to revised budget; a favourable
+forecast is not realised profit. Keep prior approved forecasts.
+Revenue / margin
+Separate contract value, approved/pending changes, claimed, certified, invoiced and
+collected amounts. Compare compatible revenue/cost forecasts for margin; cash
+balance is a separate measure.
+Every number needs a basis
+Display cutoff date, company/currency, tax basis, unit of measure, baseline/revision, allocation status
+and data freshness. For each cost type expose budget quantity/rate, actual quantity/rate,
+productivity, waste and the source documents. Use material, labour, plant, subcontract and
+indirect-cost categories.
+Never hide missing allocations, stale forecasts or unreconciled differences. Shared costs require an approved allocation
+basis and version history. Accruals must reverse or clear when the underlying bill arrives. A business owner must approve
+the precise posting and valuation rules.
+Discovery findings and proposals - no application redesign or code implementation
+30
+
+
+PAGE 31
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+One item, four different answers
+Illustrative acceptance fixture only - invented figures, not extracted from JAKH. Example: one floor slab work item, one
+cutoff date, AED, tax excluded.
+Question
+Example answer / explanation
+What was planned?
+Original budget 100,000; approved cost-budget change +10,000; revised budget
+110,000.
+What has it cost so far?
+Posted cost 52,000 + approved unbilled accrual 8,000 = incurred cost 60,000.
+What is committed?
+Approved package/order obligations total 80,000. Of these, 40,000 is already
+included in incurred cost; 40,000 remains. Other incurred labour/plant costs are
+20,000.
+What cash has left?
+Payments 45,000: 35,000 settling bills plus 10,000 advance. This does not turn
+incurred cost into 45,000 or 105,000.
+What will remaining work cost?
+Remaining committed work 40,000 + other remaining work 5,000 + risk 3,000 =
+cost to complete 48,000. Future cash timing also reflects unpaid incurred costs
+and advance recovery.
+Where will it finish?
+Incurred 60,000 + remaining 48,000 = forecast final cost 108,000. Revised
+budget 110,000 - forecast 108,000 = forecast headroom 2,000.
+Break the same item into resources
+Expand the slab into concrete, reinforcement, formwork, labour, plant and allocated site overhead.
+Each has planned quantity/rate, actual consumed quantity, accepted installed quantity, loss/rework,
+incurred cost and remaining forecast. Use a common location and cutoff; aggregate the detail back to
+the item, floor and project.
+Required reconciliation tests
+1. Every item total equals its contributing facts, with no source counted twice.
+2. Cost posted without an item remains visibly unallocated until an authorised allocation.
+3. A later bill replaces/clears the accrual rather than adding a duplicate cost.
+4. Paid amounts trace to invoice/advance allocations and bank reconciliation.
+5. Changes preserve the original budget and prior approved forecasts.
+For quantity control, reconcile opening usable stock + receipts/transfers in against installed or otherwise consumed
+quantity, returns/transfers out, closing usable stock and recorded loss. Define measurement units and avoid counting waste
+again if it is already included in a consumption category.
+Discovery findings and proposals - no application redesign or code implementation
+31
+
+
+PAGE 32
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+6. Waste management
+Existence: a stock-scrap function is visible; full construction waste control is not demonstrated. E77-E78.
+E78. Unsaved scrap form: product, quantity/unit, reason, company and replenishment. It was discarded without entry or
+confirmation.
+Two needs must be covered
+Material efficiency: distinguish allowed waste, avoidable loss, damage, theft, rejected work,
+recoverable offcuts and rework. Link issued/returned/installed quantities to the item, location and
+responsible trade. An inventory adjustment alone does not explain what happened on site.
+Site waste handling: classify waste, segregate/store it, arrange collection, record weight/volume,
+carrier and destination, then attach acceptance/weighbridge/disposal evidence. Track reuse,
+recycling, recovery proceeds and disposal cost. Confirm jurisdiction and contract requirements before
+specifying controlled waste paperwork.
+Needed workflow and simple UI
+Site/store staff record waste against work or an NCR; the site/environmental owner selects the
+handling route; an authorised person approves the write-off or disposal; receipt/evidence closes the
+movement; cost control allocates the impact. One Project -> Site -> Waste register should connect
+physical movements and cost, with stock transactions remaining controlled linked records.
+Test: reconcile reinforcement received, used, returned, reusable offcuts and lost/scrapped quantity for one floor; follow one
+disposal load to acceptance evidence and its cost. Define waste-rate denominators by material and units; do not combine
+tonnes and cubic metres in one total.
+Discovery findings and proposals - no application redesign or code implementation
+32
+
+
+PAGE 33
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+7. Variations and change requests
+Existence: commercial variation records confirmed; the upstream change-event and time-impact chain remains partial.
+E85-E86.
+E86. A priced owner variation links project, WBS and contract. The instruction is mentioned in free text; structured
+notice/time-impact fields are not visible.
+What exists
+The register includes Draft/Submitted/Priced/Approved/Fully certified and Rejected stages. The UI
+explains that an approved owner variation feeds certification, while a subcontract variation does not
+itself create a commitment or invoice. Preserve that distinction. Internal design changes, early
+warnings and potential changes were not demonstrated as a separate connected intake.
+Needed workflow and simple UI
+Essential. Capture a change event from a client instruction, RFI, revised drawing or site condition.
+Identify affected scope/location, initiator, responsibility and contract references. Track notice
+requirements, cost/time assessment, quotations, review, decision and implementation. Keep
+potential, instructed, submitted, approved, disputed, rejected and withdrawn outcomes
+understandable.
+QS/PM own assessment; planning owns time effects; the designated internal/client authority owns
+decisions. Link approved outcomes to budget revision, contract/BOQ, subcontract/PO amendment,
+programme revision, forecasts and certificates. Internal approval and client acceptance are separate
+decisions. Configure notice dates from the actual contract; do not hard-code a universal deadline.
+Test: an urgent instructed change can proceed under recorded authority while its price is disputed; costs, notice dates and
+programme effects remain visible. Use one Changes workspace with an evidence timeline, not repeated data entry in each
+downstream record.
+Discovery findings and proposals - no application redesign or code implementation
+33
+
+
+PAGE 34
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+8. Programme & delay
+Existence: progress ingestion and acceptance confirmed; full planning and delay management not demonstrated. E79-E80.
+E80. The screen says P6 is the schedule master. This accepted manual update has PV/EV and progress; forecast finish and
+location are blank. No activity-level link is visible.
+Separate progress reporting from controlling time
+A percentage or SPI does not explain the critical activity, lost days or recovery plan. The inspected
+record is a dated WBS progress fact. It does not demonstrate dependencies, calendars, baseline
+comparison, critical path, float, resource loading, look-ahead constraints or an EOT assessment.
+Needed workflow and simple UI
+Essential. Planner owns an approved baseline and dated updates. Site teams report actual
+starts/finishes and remaining work, linked to accepted evidence. Surface a near-term look-ahead with
+prerequisites such as design release, access, materials, inspections, labour and plant. Record delay
+events with discovery/date range, affected activities, cause, evidence, responsibility, mitigation and
+review status.
+Connect delay assessments to notices, change events, the programme version analysed, forecast
+finish and any time/cost claim. Keep requested, assessed and granted extension distinct. A
+planner/contract administrator must validate analysis and contractual interpretation; a metric alone
+must not decide entitlement.
+Architecture decision: retain a clearly defined P6 exchange or build original scheduling capability, according to
+operational need. Either requires one authoritative programme and traceable versions. Test: a late approved drawing
+blocks a floor activity; show the dependency, mitigation, notice and updated finish without overwriting the baseline.
+Discovery findings and proposals - no application redesign or code implementation
+34
+
+
+PAGE 35
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+9. KPI management
+Existence: metrics and dashboards confirmed; a complete KPI definition/ownership/action cycle is unverified. E53-E54, E66,
+E82-E84.
+Construction dashboards already expose CPI/SPI and financial/physical progress. Saved Project
+dashboards emphasise tasks, logged hours and task closure, while document turnaround has
+reviewer/due-date data. These are useful components, but a KPI needs an agreed meaning and
+accountable response.
+Recommended starting
+KPI
+Definition / owner / response
+Cost performance
+CPI = earned value / compatible incurred actual cost, where cost > 0. Cost controller
+investigates adverse cost/productivity drivers; show excluded/unallocated costs.
+Schedule performance
+SPI = earned value / planned value, where plan > 0; planner also tracks milestone
+slippage and critical constraints. SPI is not a count of delay days.
+Completion forecast
+Revised budget minus forecast final cost, plus forecast coverage/freshness. QS owns
+the cost-to-complete review and corrective action.
+Quality
+Open/overdue NCR count, closure duration, recurrence and rework cost. QA/QC owns
+review; normalise comparisons by work/inspection volume where appropriate.
+Buying / subcontract
+Required-on-site delivery reliability and overdue package actions. Procurement/PM
+owns expediting and recovery.
+Cash / commercial
+Overdue receivables/payables, certified-but-unbilled value and forecast cash shortfall.
+Finance/QS own collections, billing and payment planning.
+Resources / waste
+Productive asset hours / available planned hours; material waste / defined input
+quantity. Plant/site owners investigate downtime and loss.
+Approvals / records
+Overdue reviews and turnaround by document type/owner; current approved
+document coverage. Document control and workflow owners resolve bottlenecks.
+One metric definition, several contextual views
+Store formula/version, unit, population, exclusions, period, baseline, target, threshold, owner, refresh
+time and source link. Support trend and explanation, then assign an action with due date. Start each
+role with a few actionable measures; let users expand the supporting detail.
+Test: a dashboard total reconciles to its records under the same filters; zero, missing and not-applicable values differ.
+Crossing a threshold creates one owned action and stops duplicate reminders. Targets need business agreement; this study
+does not invent performance benchmarks.
+Discovery findings and proposals - no application redesign or code implementation
+35
+
+
+PAGE 36
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+10. Keeping records
+Existence: document revisions, attachments, site diaries and review records confirmed; retention and distribution controls
+remain unverified. E37-E45, E57-E59, E82.
+E82. Review records expose document/revision, project, reviewer, due date, completion and status; age/cycle measures are
+available in the wider table.
+The record must explain what was known then
+Preserve a document ID and revision, issue purpose, creator/source, project/location/package,
+timestamps, review decision and linked work. The current approved drawing should be clear
+alongside history. Approval and issue-for-construction are separate meanings and must be labelled
+consistently; the register exposes both fields.
+Needed workflow and simple UI
+Foundation across all modules. Capture -> classify -> review/revise -> approve ->
+issue/distribute -> acknowledge where required -> supersede/archive. Link correspondence, photos,
+inspections/tests, daily reports, instructions, notices, measurements, meetings, commercial evidence
+and handover packs. A chatter attachment is not by itself a controlled document register.
+Document control owns numbering/revision/distribution; originating teams own content;
+project/finance owners set retention and access rules. Search by project, floor, work item, party, date
+and record type. Define offline photo capture/sync, permissions, version conflicts, backups, export
+and retention/hold behaviour in engineering validation.
+Test: reconstruct which approved revision and instruction supported a particular pour/certificate on a historical date,
+retrieve its evidence, and export an indexed package without losing relationships. Show relevant records inside each
+workflow; keep one authoritative copy.
+Discovery findings and proposals - no application redesign or code implementation
+36
+
+
+PAGE 37
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+11. Approval workflow
+Existence: several document-specific routes and approver histories are visible; universal queue coverage and enforcement
+remain untested. E15, E54, E59, E71, E82, E90.
+Foundation. Use one approval service and personal queue, with distinct policies for each business
+object. The table below proposes ownership for validation; it is not a statement of the current
+permission configuration.
+Object / trigger
+Proposed responsibility and decision boundary
+Tender / budget / forecast
+Estimator or QS prepares; PM/commercial authority reviews; delegated authority
+approves within value/risk limits. Preserve priced and approved versions.
+Purchase / subcontract award
+Requester -> technical/budget check -> procurement/commercial -> authorised
+award. Receiving and paying require separate checks.
+Inspection / NCR / snag
+Site/contractor submits -> QA/QC/technical review -> required consultant/client
+sign-off -> verified closure. Configure independence and hold-point rules.
+Change / time assessment
+Originator -> QS and planner assessment -> PM/internal authority ->
+client/consultant decision where needed. Keep commercial and time decisions
+traceable.
+Measurement / certificate
+Site validates quantity -> QS assesses -> commercial/finance checks -> authorised
+certificate. Supplier claim, certificate, bill and payment remain distinct.
+Bill / payment / release
+Match supporting obligation and evidence -> finance review -> authorised
+payment/release -> bank reconciliation. No dashboard permission grants bank
+authority.
+Document / handover
+Author -> discipline reviewers -> approval -> authorised release. Handover also
+checks technical, client acceptance and commercial obligations.
+Controls and UI that every route shares
+Show current step, assigned person/role, due date, blockers and decision history on the record and in
+My Work. Support sequential/parallel review, amount/risk limits, substitutes, absence delegation,
+escalation, rejection reasons and resubmission. A material edit must invalidate or reroute the
+affected approval version.
+Record policy version, actor, authority, timestamp, comments and document snapshot. Enforce permissions on the server
+and prevent duplicate/concurrent decisions. Distinguish an operational activity marked Done from a formal business
+approval.
+Test: absence delegation, out-of-limit approval, prohibited self-approval, changed documents and simultaneous clicks all
+produce correct, explainable outcomes. Queue counts reconcile to pending business records. Read-only inspection did not
+execute these tests.
+Discovery findings and proposals - no application redesign or code implementation
+37
+
+
+PAGE 38
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+12. Tracking and transparency
+Existence: source drill-through and provenance confirmed; complete event history and permission boundaries require
+validation. E69-E72, E81-E82, E90-E92.
+E69. Contributing facts show dates, classifications, project/WBS, amounts, provenance and Open source links. One was
+followed to a supplier bill and certificate.
+Keep the good traceability, make it easier to read
+The project-control audit lists financial/control facts, including their provenance. This is useful
+evidence lineage; it is not proof of an immutable who-changed-what audit log. Approver/date fields
+and chatter support some history, but universal old/new values, deletions, permission changes and
+restoration were not tested.
+Needed behaviour and simple UI
+Foundation. Every record answers: what is this, which work does it affect, what changed, who owns
+the next step, when is it due, and why is it blocked? Use a consistent timeline for submission,
+revision, decision, execution, posting and settlement. Link each event to its actor, authority, source
+version and resulting records.
+A project overview should summarise exceptions and next actions; users expand only what needs
+explanation. Every aggregate drills to the same filtered records and shows refresh/cutoff and missing
+data. Client/subcontractor views show their permitted scope, with confidential internal prices and
+personal information controlled by policy.
+Test: trace a forecast variance to an item, bill/service entry and originating scope change; reconstruct its approval version.
+An authorised user can export that chain, and an unauthorised user cannot gain access through a deep link.
+Records/approvals/tracking share one history service rather than three duplicate modules.
+Discovery findings and proposals - no application redesign or code implementation
+38
+
+
+PAGE 39
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Define an original application
+Rebuild boundary and migration study. The current product supplies observable business requirements, not implementation
+code.
+No Odoo application-code dependency
+Build original source, data models, APIs, approval/state rules and UI. Do not copy, translate or adapt
+Odoo modules or application code. No existing source code was inspected during this study. Selection
+of framework, database and deployment architecture remains a later engineering decision.
+Core domain relationships to specify
+Company and authority -> party/person -> opportunity/tender -> estimate revision -> contract and
+BOQ baseline -> project, location and WBS/package -> demand and commitment ->
+delivery/service/progress evidence -> variation/certificate -> invoice/payment -> handover/defect
+obligation.
+Keep document revisions, financial postings, approval events and operational evidence linked but
+distinct. Define stable identifiers, permissions, immutable approved snapshots, corrections, search,
+attachments and audit history across those relationships.
+Explicit domain scope also includes quality/NCR, asset custody/maintenance/hire, waste, changes/notices,
+programme/delay, item/resource allocations, cash forecasts and KPIs. Company ownership, currency/rate snapshots,
+intercompany links, scoped report runs and verified findings are foundations. AI uses these controlled records and services;
+see pages 44-53.
+Finance and supporting ERP scope
+Specify original accounting/posting and reconciliation requirements with the finance owner. Inventory
+the required HR, attendance, leave, timesheet, plant, fleet, master-data and administration functions.
+Integration decisions require explicit scope; they must not quietly replace requested functionality.
+Migration and cutover requirements
+Step
+Evidence required before production use
+Inventory and export
+Authorised exports of records, identifiers, attachments, companies, currencies,
+statuses, approvals and ownership.
+Map and trial-migrate
+A field/state map and repeatable trial import; preserve relationships and approved
+historical meaning.
+Reconcile
+Counts, opening balances, inventory, open orders, project budgets/costs, certificates,
+claims, retention and attachments checked by owners.
+Pilot and cut over
+One representative project plus exceptions; parallel reconciliation, backups, rollback
+and agreed transition responsibilities.
+Discovery findings and proposals - no application redesign or code implementation
+39
+
+
+PAGE 40
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Validate before detailed design
+The read-only study is ready for review. Detailed design and application coding remain behind the requested review point.
+Priority sequence - the full scope remains
+Priority
+Outcome
+First: navigation and context
+Agree roles, canonical records, project/floor/package context, terminology and an
+understandable work queue.
+Next: tower workflow depth
+Resolve engineering-to-site, instruction-to-variation/time,
+package-to-measurement, and technical-to-commercial closeout handoffs.
+Then: coherent original ERP
+Design and build the lifecycle in increments, including original finance controls and
+the required supporting modules.
+Before replacement
+Trial migration, representative-user validation, accounting/control review,
+security/access testing, integration checks and a controlled pilot.
+Tasks for the next validation round
+1. Find the approved drawing for one tower floor and confirm which revision may be used.
+2. Request a material, follow a partial/rejected delivery, and find the installed quantity.
+3. Trace a subcontract package from measured work through payment.
+4. Record an instruction, identify cost/time consequences, and follow its approval or dispute.
+5. Explain claimed, certified, invoiced and collected values for one period.
+6. Find all snags in one unit, verify the fix, and check partial-handover readiness.
+Use you and representative estimator, site, procurement, QS/PM, quality/document-control and
+finance users where available. Measure unassisted completion, time to the correct information, wrong
+turns, repeated entry and missed handoffs. Use the proposed targets on page 13, record a real
+baseline, and agree gates before testing; no staff usability test has yet been run.
+Decisions still needed
+Confirm actual roles/approval authority, contract types, floor/unit structure, consultant/client/subcontractor participation,
+document and programme tools, accounting/localisation needs, languages/mobile/offline needs, project volumes and
+migration depth. A delivery estimate should follow this scope, not precede it.
+Terms used in the study
+BOQ: bill of quantities. WBS: work breakdown structure. QS: quantity surveyor. RFI: request for information. ITP:
+inspection/test plan. EOT: extension of time. DLP: defect-liability period. O&M: operation and maintenance.
+Discovery findings and proposals - no application redesign or code implementation
+40
+
+
+PAGE 41
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Twelve validation scenarios
+Proposed acceptance work after study review. These scenarios have not been executed against the current ERP.
+Area
+Evidence needed to accept the workflow
+1. NCR
+A failed inspection reaches authorised repair and verified closure; cause, effectiveness,
+location and rework costs remain linked.
+2. Assets
+One owned and one hired asset can be assigned, moved, maintained and costed; one
+installed asset has an exportable handover pack.
+3. Cash
+Partial payments, advance recovery, retention and late receipts reconcile between
+project forecasts, ledgers and bank evidence.
+4. Subcontracting
+A partly rejected claim produces the right certificate, deduction, bill and payment;
+package totals and final retention reconcile.
+5. Item cost
+One floor item reconciles original/revised budget, resources, incurred cost/accruals,
+remaining obligations, cash and forecast without duplication.
+6. Waste
+One material quantity balance closes; a disposal/recovery movement has ownership,
+destination evidence and allocated cost.
+7. Changes
+One instructed but disputed change retains notices, assessment, decision versions and
+downstream budget/order/programme links.
+8. Programme / delay
+One delayed prerequisite is traced to affected activities, mitigation, forecast finish and a
+versioned time assessment.
+9. KPIs
+A metric reconciles to its source population and produces one accountable action when
+its agreed threshold is crossed.
+10. Records
+A historical work event can be reconstructed using the correct document revisions,
+correspondence, photos and approval evidence.
+11. Approvals
+Test delegation, limits, rejection, changed documents and concurrency; the personal
+queue matches pending business decisions.
+12. Transparency
+A permitted user traces a dashboard total to source events; a user outside that scope
+cannot access it through links or exports.
+Sequence and release priorities
+First: agree IDs, location/work-item structure, definitions, records, approvals and history. Then:
+validate integrated project scenarios across all twelve areas; deepen NCR/waste, programme/delay
+and cash/item allocation where evidence is weakest. Before release: prove roles, reconciliation,
+migrations and recovery with representative users.
+All twelve remain in scope. Advanced analytics and automation can follow reliable operational capture; essential site, cash,
+quality and approval controls must not be postponed merely for a cleaner-looking first screen.
+Discovery findings and proposals - no application redesign or code implementation
+41
+
+
+PAGE 42
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Evidence and limits
+Primary source: live UI at https://demo.jakh.net/ on 28 October 2026. Evidence IDs match saved screenshot and
+accessibility-snapshot prefixes.
+Evidence
+Observed route / role / purpose
+E02, E39, E41
+Administrator dashboards and complete expanded sidebar. E41 is an accessibility inventory,
+not a single screenshot.
+E05-E07
+My Company / USD: estimate EST/2026/00004 -> linked project and project shortcuts.
+E15-E17
+My Company / USD: measured client certificate -> contract -> cash/closeout tab.
+E19-E22
+My Company / USD: material-shortage requisition -> P00005 -> JD2/IN/00001 receipt.
+E28-E29
+My Company / USD: subcontract service entries and submitted review record.
+E30-E38
+Site Engineer, JAKH Demo Contracting LLC / AED: project portfolio, G+4 project, snags and
+diary.
+E40, E42
+Administrator, fuller company: G+4 construction report and schedule-progress register.
+E43-E45
+Administrator, fuller company: document register, G+4 drawing revision history and
+category menu.
+E46-E49
+Administrator, fuller company: variations and the approved completed-project final account.
+E50-E52
+Estimator: role dashboard, CRM entry and eight BOQ studies.
+E53-E54
+Project Manager: role dashboard and two-item activities/approvals queue.
+E55
+Administrator returned to original My Company context and normal browser viewport.
+Scope limits that affect the conclusions
+The first administrator view selected My Company (USD); role previews opened JAKH Demo
+Contracting LLC (AED), which has fuller samples. Empty initial lists are not proof of absent features.
+The study inspected a G+4 building and villa/fit-out examples, not high-rise operating scale.
+Only navigation, view filters, role previews, record/form reading and report generation/viewing were used. Unsaved scrap
+and report criteria were discarded. Generated report-view records are the only new records from these inspections. No
+business document was edited, approved, posted, paid, closed or deleted; no source-code audit, migration, reconciliation or
+state-transition test was performed.
+Accessibility observations are risks to verify: truncation, small/dense text, colour-dependent cues and tab-state semantics.
+Keyboard/focus, screen-reader behaviour, measured contrast and error recovery were not tested. Screenshot blank capture
+margins are omitted only in PDF placement; visible content is unchanged. Early clipped capture E07 is excluded from visual
+conclusions in favour of E33.
+Discovery findings and proposals - no application redesign or code implementation
+42
+
+
+PAGE 43
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Follow-up evidence and reference
+Administrator in JAKH Demo Contracting LLC / AED, then restored to My Company. Public reference reviewed separately; no
+ERP data was sent to it.
+Evidence
+Observed purpose / result
+E56-E59
+Quality register -> building Non-conformance -> Resolution -> Lifecycle. Populated, closed
+case; no transition executed.
+E60
+Public QIC NCR toolkit product description, accessed 28 October 2026. Paid documents not
+inspected.
+E61-E64
+Equipment register -> tower crane -> Product Information -> Maintenance. Identity, cost,
+location gap and reliability fields.
+E65-E69
+BOQ report selector -> dashboard-generated building report -> detail/optional columns ->
+source facts. Selector did not offer the existing project; dashboard route succeeded.
+E70-E72
+Source fact -> subcontract bill -> supplier certificate -> finance agreement. Quantities,
+deductions, approvals and balances.
+E73-E76
+Company cash report -> policy prerequisite error -> empty policy register -> empty project
+cash-forecast register.
+E77-E78
+Empty scrap register -> unsaved form, then discard. No scrap or inventory adjustment
+created.
+E79-E80
+Schedule register -> accepted building progress record. P6 named as master; manual source
+shown.
+E81-E84
+Project-control facts, document turnaround and saved generic dashboards. Record lineage
+differs from full change-event auditing.
+E85-E86
+Variation register -> priced building MEP change. Commercial lifecycle and scope links
+observed.
+E87-E90
+WBS -> budget record -> forecast register -> approved structural forecast. Authoritative
+dated forecast differs from simple WBS field.
+E91-E93
+Matched receipt sources -> posted journal entry -> original dashboard/company restored. No
+payment/reversal action executed.
+Source and interpretation limits
+QIC Management Systems: NCR Management Toolkit public description. Its form/procedure/register/dashboard outline
+informed the NCR comparison. The requirements and UI placement in this report are our proposed construction brief; they
+do not reproduce or validate the paid toolkit or establish ISO compliance.
+An empty list applies only to the inspected role/company/filter context. Fields or capabilities not visible in sampled records
+are labelled unverified, not globally absent. Sample totals and same-person approvals are evidence of these examples, not
+proof of accounting correctness or permission enforcement. The public demo can change or reset. Detailed design and
+coding remain subject to your study review.
+Discovery findings and proposals - no application redesign or code implementation
+43
+
+
+PAGE 44
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Multiple companies, one clear context
+Revision 4 requirements. Earlier company switching was observed; entity isolation, intercompany accounting and
+consolidated reporting were not tested.
+Manage several legal companies in one ERP without mixing their obligations. Keep the four
+starting points. A persistent company selector scopes the workspace; the project and every
+transaction show their owning company. My Work can collect authorised tasks across companies,
+with a company label on every row.
+Requirement
+Proposed behaviour
+Separate legal entities
+Each company has its own ledger, accounting currency, fiscal periods, tax/localisation
+setup, numbering, bank accounts, approval authority and access scope. A branch/site
+is not automatically a separate legal company.
+Project ownership
+Default each project to one legal company. A shared project or joint venture uses a
+management umbrella with explicit company-specific contracts, costs and allocations;
+an umbrella does not merge legal ledgers.
+Transaction ownership
+A purchase request, PO, bill, payment, stock movement or employment record has
+explicit legal ownership. The project normally supplies it. Resolve a conflicting
+company selection before saving; never silently move a record between companies.
+Shared vendor identity
+A vendor may have one shared party identity, with company-specific approval status,
+agreements, currencies, payment terms, tax setup and permitted payment
+instructions. Restricted balances/contracts remain scoped.
+Central buying / shared
+resources
+One sourcing exercise can serve several companies, but awards, orders and
+allocations remain entity-specific. Cross-company purchases, stock, labour and plant
+charges use linked intercompany documents and reconciliation, not informal transfers.
+Access and group visibility
+Roles include company + project + duty. Group management access is explicit.
+Enforce scope in records, reports, search, exports, attachments, AI retrieval and
+caches; a selector is not the security boundary.
+Company switching
+Switch the workspace context without changing an open document's owner. Handle
+unsaved edits explicitly; label deep-linked records with their actual company. Group
+scope is for authorised overview/reporting, not ambiguous transaction entry.
+Simple experience: Company A / Tower 01 stays visible while the user requests material or reviews a claim. Company B
+appears only after a deliberate switch or an explicitly labelled cross-company queue. Company-wide views include central
+costs and unallocated work as well as projects.
+Discovery findings and proposals - no application redesign or code implementation
+44
+
+
+PAGE 45
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Vendor currency follows the purchase
+Purchase-request design: vendor information provides defaults; the accepted quotation or agreement supplies the
+transaction currency.
+Step
+What the user sees and what the system does
+1. Choose project / company
+Use the project's legal company and budget context. Allow a documented
+central-buying/intercompany route where required, rather than assigning another
+company's bill to the project silently.
+2. Capture the need
+Enter item/service, quantity, unit, required date and work item/location. A vendor is
+optional at requisition stage; without one, show an estimate in the company budget
+currency.
+3. Choose vendor / quotation
+Currency precedence: selected valid quotation -> applicable vendor agreement ->
+vendor preferred permitted currency for this company. If unresolved, ask for currency
+before submission. Never infer it just from vendor country.
+4. Show both values
+Show vendor-currency price/total and the company-currency estimate. Put rate
+direction, date/source and provisional basis in clearly labelled rate details; surface
+missing/stale-rate warnings directly. Taxes, freight, duty and other charges are
+explicit, not hidden inside FX.
+5. Compare and approve
+Compare offers in a common approved evaluation currency/date with equivalent
+quantities, scope, delivery and landed-cost assumptions. Budget/authority checks use
+the company's policy basis. Changing vendor, currency, price or FX beyond policy
+triggers a visible recheck and, where required, renewed approval.
+6. Create the order
+One PO has one purchasing company, vendor and transaction currency. Split
+incompatible selections into linked orders. Carry the chosen quotation, currency,
+terms, quantities and approval version forward without retyping.
+Defaults should save effort without hiding decisions
+A vendor may quote in several currencies. Store allowed currencies and date-effective terms; a EUR
+quotation can override a USD preference when valid. Changing the vendor must not reinterpret an
+old USD amount as EUR. Reprice or request confirmation with a clear before/after comparison.
+One requisition can collect needs before sourcing; quotations retain their own currencies. Multiple projects within one
+company need explicit allocation. Multiple companies require separate authorised purchasing obligations. Bill/payment
+currencies and bank details are validated independently; a currency default does not authorise a bank-detail change.
+Discovery findings and proposals - no application redesign or code implementation
+45
+
+
+PAGE 46
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Currency: keep the four meanings
+clear
+Illustrative acceptance fixture only. All rates below are invented, not current exchange rates or JAKH transaction data.
+Taxes, fees, accruals and prior revaluation are excluded.
+Company A uses AED for this example; the vendor quotes EUR 40,000. The selected quote
+controls the order currency. Exchange-rate snapshots explain why the company-currency values can
+change through the lifecycle.
+Stage
+Rate: AED per EUR
+Meaning
+Request estimate
+4.00
+EUR 40,000 x 4.00 = AED 160,000 for the request's budget
+check. This is neither a posted cost nor a payment.
+Order approval
+4.10
+AED 164,000 commitment equivalent. Against an AED 170,000
+item budget, remaining headroom is AED 6,000. Recheck the
+approval policy.
+Bill recognition
+4.15
+Illustrative liability carrying amount AED 166,000.
+Posting/valuation and cost allocation follow the approved
+accounting policy.
+Settlement
+4.20
+AED 168,000 cash payment. With no intervening
+revaluation/fees, the illustrative settlement difference is AED
+2,000; do not rewrite the original request or bill rate.
+Four currency roles, shown only when relevant
+Transaction currency: what the quotation, order or invoice is denominated in.
+Company accounting/functional currency: the company's approved accounting basis.
+Project control currency: an optional agreed comparison basis for budgets and forecasts.
+Report presentation currency: the selected reporting basis, with its translation policy and date.
+Required controls
+Store original amounts and currency alongside rate, direction, source, effective date and converted
+amounts. Use decimal precision and currency-specific rounding. Keep budget, commitment,
+recognition, settlement and reporting rate snapshots distinct. Reports separate operational variance
+from FX effects.
+Missing/stale rates must produce an explicit exception before an amount-dependent approval or posting; a report must not
+silently treat them as 1:1 or zero. Finance controls rate overrides, remeasurement, realised/unrealised FX treatment and
+period locks. Historic approved reports remain reproducible.
+Accounting reference: IFRS Foundation: IAS 21 distinguishes foreign transactions, functional currency and presentation
+currency. Applicable standards, jurisdictions and posting policies must be agreed with the finance owner; this example does
+not establish compliance.
+Discovery findings and proposals - no application redesign or code implementation
+46
+
+
+PAGE 47
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+One reporting system, several scopes
+Project and company reporting are core requirements. Authorised group reporting is an additional explicit scope, with
+consolidation controls.
+Start a report from the relevant project area or Company > Reports. Use the same definition and
+metric rules. The header always shows company scope, project scope, period/as-of date, currency
+basis, document states, filters, data freshness and whether the population is restricted by
+permissions.
+Scope
+Examples and required behaviour
+One project
+Budget versus incurred/paid/forecast; buying and subcontract status; cash outlook;
+programme/delays; NCRs, waste, assets, approvals and handover readiness. Filter by
+item, package, floor/system, party and period.
+One company
+All its projects plus non-project activity, overheads and unallocated amounts. Finance,
+procurement, people, stores and asset reports use the same source facts and respect
+restricted personal/financial detail.
+Selected projects
+Portfolio comparisons within authorised companies. Show included projects and
+exclusions; expose incompatible baselines, cutoffs or missing forecasts before
+presenting rankings.
+Selected companies / group
+Translate to an explicit presentation basis. Label a management aggregation
+separately from a consolidated financial report. Consolidation requires defined scope,
+mappings, aligned periods/policies and intercompany eliminations; adding company
+totals is insufficient.
+Source drill-down
+Summary finding -> contributing rows -> source record/version. Preserve company,
+project, cutoff and filters on every step. A reader with narrower rights receives an
+explicitly scoped report, not hidden-data snippets.
+Saved / exported reports
+Save a versioned report run with parameters, data cutoff and calculation/rate
+versions. PDF and spreadsheet exports include the same findings summary and scope;
+exports and shared links enforce access and distribution policy.
+Aggregation must retain meaning
+Never add unlike currencies or units. Recompute ratios from compatible numerators/denominators
+rather than averaging project percentages. Show unallocated and stale data. Reconcile project totals
+to company totals through non-project costs, allocations and adjustments; explain intercompany
+eliminations in group totals.
+Changing filters or currency creates a matching summary for the new result. An asynchronous summary must never stay
+above a different report version. Where a report genuinely has no project dimension, say so and offer the relevant company
+report.
+Discovery findings and proposals - no application redesign or code implementation
+47
+
+
+PAGE 48
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Every report starts with findings
+A standard Report findings section sits above the details in every report, including exports. It works even when generative
+AI is disabled or unavailable.
+At the top
+Content contract
+Scope and reliability
+Company/project, reporting period, currency/tax basis, comparison basis, data
+freshness and coverage. Put material missing-data or reconciliation warnings before
+reassuring conclusions.
+Main findings
+Three to five concise findings ranked by business impact: what changed, size of
+variance, affected work and source. More critical exceptions remain visible through an
+explicit count/list.
+Evidence and interpretation
+Each factual statement links to the supporting metric/rows. Separate observed facts,
+forecast assumptions and suggested actions. A correlation or large variance is not
+automatically a proven cause.
+Action / ownership
+Name the accountable role or actual assigned owner when known, the relevant due
+date and a link to investigate. Suggestions remain suggestions until the user creates
+or assigns work.
+Empty / limited results
+State No matching records, Missing baseline, Incomplete data or Summary unavailable
+accurately. Never present no data as zero cost, good performance or completed work.
+The logic reads the complete report result
+1. Resolve authorised scope and filters; create a consistent report snapshot.
+2. Calculate metrics across the full result set, not only the visible page.
+3. Apply versioned report-specific rules for variances, trends, overdue items, concentration, missing
+data and reconciliation.
+4. Build structured findings with values, units, comparison bases, severity and evidence references.
+5. Render a plain-language summary; optional AI can explain the verified findings.
+6. Check every generated numeric/factual claim against the findings before display. Fall back to
+deterministic text when validation fails.
+A report definition includes its summary rules
+Cost reports compare budgets and completion forecasts; cash reports explain dated inflows/outflows;
+quality reports surface severity, overdue cases and recurrence; programme reports show
+milestones/constraints. Define meaningful rules for each report instead of applying one generic
+prompt to every table.
+Store report-run ID, metric/rule versions and, when used, model/prompt versions. Cache by exact report snapshot, scope
+and permissions. Do not let free-text records instruct the summariser to change filters, totals or its evidence requirements.
+Discovery findings and proposals - no application redesign or code implementation
+48
+
+
+PAGE 49
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Examples of useful report summaries
+Invented examples to specify behaviour. These are not findings from the live JAKH demo.
+Project cost and cash report
+Company A / Tower 01 | 30 September | AED | tax excluded
+Revised budget 1,000,000; incurred 620,000; cash spent 540,000; remaining forecast cost 460,000;
+forecast final cost 1,080,000. Forecast next-period receipts 120,000 and outflows 180,000.
+What the user reads
+Evidence / interpretation
+Forecast final cost is AED 80,000 above budget (8%).
+1,080,000 - 1,000,000 = 80,000; denominator is the revised
+budget. This is a forecast variance, not already incurred
+overspend.
+Structure and MEP account for the forecast overrun.
+Illustrative package variances: Structure +50,000; MEP
++30,000; all others net zero. Link the package forecast
+versions; do not invent the underlying cause.
+AED 30,000 of incurred cost still needs item
+allocation.
+Included in the AED 620,000 project total, but item-level
+attribution is incomplete. Link the unallocated source facts and
+responsible cost-control queue.
+Expected outflows exceed receipts by AED 60,000
+next period.
+180,000 - 120,000 = 60,000 before opening cash and
+financing. It is not the projected bank balance. Link the dated
+cash lines and assumptions.
+Project quality report
+Company A / Tower 01 | as of 30 September
+20 open NCRs, including 6 overdue and 1 critical. All numbers refer to the same authorised project
+population.
+Summary: Six of 20 open NCRs are overdue (30%). One critical case requires immediate attention
+by its assigned QA/QC owner. Four of the overdue cases relate to the same subcontract package;
+investigate its linked records before drawing a cause or performance conclusion. A comparable prior
+snapshot is unavailable, so no improving/worsening trend is claimed.
+Links: Open overdue cases; Open critical case; View affected package. The summary identifies the case's owner and due
+date from the record. It does not declare work fit for release or close the NCR.
+The summary must change when the evidence changes
+Filter to another floor/company, revise a forecast, correct an FX rate or reduce the reader's access: recalculate the
+population and its findings together. A stale summary is replaced with a visible refresh state, never left above new totals.
+Discovery findings and proposals - no application redesign or code implementation
+49
+
+
+PAGE 50
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+AI where it helps construction work
+Strategic goal: reduce searching and repeated entry, improve evidence completeness, and help people explain exceptions.
+AI stays inside the existing workflows.
+Where / entry point
+Useful assistance and required evidence
+Human decision / value to measure
+Tenders
+Review tender pack
+Extract requirements, dates and exclusions
+from cited tender pages; compare revisions;
+draft a compliance checklist and estimate
+assumptions.
+Estimator validates scope and
+commercial assumptions. Measure
+review time and missed obligations, not
+text volume.
+Documents
+Find / compare
+information
+Answer questions with document ID, revision,
+issue purpose and quoted location; compare
+drawings/specification text and draft RFIs
+from linked evidence.
+Document/technical owner validates use
+and interpretation. Measure
+correct-document retrieval and review
+effort.
+Site
+Draft daily report
+Turn notes, voice or photos into a proposed
+diary with quantities, location, labour and
+plant; flag gaps and ask for missing facts.
+Supervisor confirms extracted facts.
+Measure entry time, correction burden
+and complete location/work-item
+capture.
+Quality / NCRs
+Review this case
+Suggest classification and similar authorised
+cases; assemble inspection/specification
+evidence and draft corrective-action
+questions.
+QA/QC owns cause, disposition and
+verification. AI cannot certify structural
+safety or close an NCR. Measure missing
+evidence and review time.
+Plan / delays
+Explain the blocker
+Summarise constraints, prerequisites and
+dated progress; highlight possible slippage
+and draft a delay chronology linked to
+programme versions.
+Planner validates logic, mitigation and
+time assessment. Measure useful
+warnings and false alarms; predictions
+require sufficient history.
+Changes
+Prepare assessment
+Assemble instructions, RFIs, revisions and
+measured impacts; draft a change narrative
+and list missing cost/time evidence.
+QS/PM and authorised parties decide
+value, notices and entitlement. AI
+cannot invent contract deadlines or
+approve a variation.
+Handover
+Check this pack
+Compare required deliverables with actual
+tests, snags, as-builts, O&M and warranty
+records by location/system.
+Engineer/client confirms acceptance.
+Measure missing documents found and
+pack-preparation time; document
+presence alone is not technical
+acceptance.
+Keep one clear business action per screen. Show assistance such as Find the drawing, Draft this report or Explain this
+difference only when relevant. Avoid a separate AI menu for every module and avoid a permanently competing chat panel.
+Discovery findings and proposals - no application redesign or code implementation
+50
+
+
+PAGE 51
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+AI in buying, money and company work
+The same permission and company boundaries apply to every suggestion. Models explain and draft; controlled services
+calculate and validate.
+Where
+Strategic fit
+Boundary / success measure
+Buying / subcontracting
+Extract quotation lines, currencies,
+exclusions and terms; compare like-for-like
+offers; draft package/application reviews
+from linked measurements.
+Validate extraction and company-specific
+vendor terms. Normalised FX/landed-cost
+arithmetic is deterministic. Buyer/QS
+awards and certifies; measure review time
+and missed exceptions.
+Budget & cost
+Explain variances through linked quantities,
+rates, waste, allocations and forecast
+assumptions; propose clearly labelled
+scenarios.
+Cost controller approves allocations and
+forecasts. Never invent reasons for a
+variance. Measure supported explanations
+and time to trace a total.
+Finance / cash
+Suggest invoice matching, possible
+duplicates and collection priorities; explain
+cash scenarios using due dates and
+observed payment history.
+Finance verifies matches, adjustments and
+payments. Risk scores are signals, not
+fraud verdicts. Measure false positives,
+reconciliation effort and cash forecast
+error.
+Assets & Fleet
+Find assets by need/location; summarise
+maintenance history and expiry evidence;
+later test predictive servicing on sufficient
+failure/use history.
+Plant owner controls fitness/availability
+and maintenance decisions. Measure
+downtime and useful alerts; begin with
+rules for known service dates.
+Stores / waste
+Suggest movement coding; flag unusual
+loss or consumption against accepted work;
+extract disposal evidence and reconcile
+missing documents.
+Site/stores confirms movement, quantity
+and destination. Measure capture
+completeness, false alarms and avoidable
+loss.
+People
+Answer employee policy questions from
+current permitted policies; draft leave/time
+corrections and explain the employee's own
+records.
+Keep personal data restricted. No
+autonomous hiring, discipline or worker
+scoring. Measure self-service completion
+and factual correctness.
+Reports / KPIs / My Work
+Explain verified report findings, summarise
+a case timeline and propose relevant
+follow-ups with sources and accountable
+owners.
+Findings engine controls numbers; rules
+control priority and routing. Do not create
+duplicate tasks or send messages
+automatically. Measure faster decisions
+and accepted suggestions.
+Cross-ERP search: one optional Ask JAKH entry can answer a scoped question across authorised records, with source
+links. It shows the active company/project and does not silently broaden them. Users can always complete the same core
+work through ordinary screens.
+Discovery findings and proposals - no application redesign or code implementation
+51
+
+
+PAGE 52
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+AI controls and rollout
+Design requirements for the original ERP. No AI provider, model, contract or data-sharing configuration is selected by this
+study.
+Control
+Required behaviour
+Authority
+AI reads only the requesting user's permitted company/project/record scope. Drafts
+are separate from submitted records. Server-side workflow rules and approvals remain
+the authority for award, posting, payment, closure and external commitments.
+Evidence
+Answers link to source records/revisions and identify missing evidence. Forecasts and
+suggested explanations are labelled. An unsupported answer must say that evidence
+is insufficient; model confidence is not proof.
+Data handling
+Define company-specific AI permissions, approved providers/regions, retention and
+training-use restrictions. Minimise/redact payloads; do not share payroll, bank or
+commercially restricted material by default. Apply the same policy to prompts, logs,
+embeddings and exports.
+Untrusted inputs / tools
+Treat vendor quotes, uploaded documents and emails as data, never instructions to
+the assistant. Restrict tools to named operations; enforce scope independently. No
+arbitrary SQL, unrestricted browsing or blanket write access from a model.
+Review and recovery
+Preview any proposed change with sources before authorised acceptance. Revalidate
+permissions and current version at execution; prevent duplicate submissions. Log
+model/version, relevant evidence, suggestions and user decisions with appropriate
+retention.
+Reliability / cost
+Measure task correctness, source support, user correction burden, latency and cost
+per completed task. Version and regression-test changes; provide per-company
+disable controls. Core workflows and rule-based report summaries continue during AI
+outages.
+Sequence by value and readiness
+First: reliable company/currency data, metric definitions, report-findings rules, source-linked search
+and read-only case explanations.
+Then: quotation/document extraction and reviewable drafts for diaries, NCRs, RFIs, claims and
+handover packs.
+Later: predictive cash, delay, maintenance and anomaly signals, only after sufficient representative
+history and measured benefit.
+Select pilots with the business owner; measure baseline effort and errors, then compare assisted work. Keep features that
+improve completion and correctness at an acceptable operating cost. AI coverage across the ERP is intentional, but every
+screen does not need a generated message.
+Discovery findings and proposals - no application redesign or code implementation
+52
+
+
+PAGE 53
+JAKH ERP  /  READ-ONLY STUDY  /  REVISION 4
+28 October 2026  |  Dubai
+Acceptance checks for the added
+scope
+Proposed release gates, not tests already run. This extension specifies requirements; it does not claim these capabilities
+exist or are enforced in the current demo.
+Scenario
+Required result
+Two companies / same vendor
+Company-specific terms, bank authority, balances and permissions remain separate.
+A Company A-only user cannot retrieve B data through search, exports, summaries,
+AI or cached answers.
+Shared project / central buying
+The umbrella totals reconcile to entity-specific transactions. Intercompany
+documents match; group eliminations do not remove legitimate third-party costs or
+double-count internal charges.
+No vendor / several currencies
+An unsourced requisition stays an estimate. A valid quotation overrides preference
+explicitly; incompatible company/vendor/currency selections split into linked orders.
+No silent relabelling of amounts.
+FX changes / missing rates
+Reproduce request, PO, bill and payment snapshots in the worked example.
+Missing/stale rates cannot produce false totals or pass amount-based authority
+checks; changed terms recheck policy.
+Project / company / group
+reports
+Reconcile project + non-project + unallocated activity to company totals. Group
+translation and eliminations are explainable. Preserve scope/cutoff through
+drill-down and export.
+Every report has a summary
+The full filtered population drives findings, including pagination and restrictions.
+Values, units, denominators and evidence links agree with the report. Empty,
+incomplete, stale and zero are distinguishable.
+AI error / malicious document
+Test fabricated citations, wrong currency, hidden instructions, sensitive-data
+requests and attempted unauthorised actions. Reject unsupported output; return a
+safe deterministic summary or an explicit inability to answer.
+Useful AI / service outage
+Compare pilot task time, accuracy and correction burden against the baseline. On
+model failure, normal ERP work and calculated summaries still work; no phantom
+approval, duplicate task or silent external message.
+Configuration still to establish: legal companies and jurisdictions, accounting/control/report currencies, shared-project
+model, group consolidation needs, vendor terms, FX sources and tolerances, report owners/thresholds, AI data policy and
+pilot users. These are implementation inputs; the requirements above are already in scope.
+Sources: IFRS Foundation, IAS 21 overview informs currency distinctions. NIST, Generative AI Profile informs lifecycle
+evaluation/governance. OWASP, Excessive Agency supports limited permissions, functionality and autonomy. Accessed 28
+October 2026. The detailed ERP mappings and tests are our proposed requirements, not standards certification.
+Discovery findings and proposals - no application redesign or code implementation
+53
