@@ -83,3 +83,9 @@ Evidence: `../docs/validation/examples/builder-overview.png`, `examples-guide.pn
 Browser checks verified the guide route/project switch, the Garden Residences quality register, NCR detail and related drawing, USD company examples, four request stages and returned-request history. Keyboard activation worked on the tested record/related-work controls. Mobile guide navigation opened My Work. The detailed source/permission/persistence checks are in the 30-test suite. This update does not claim full accessibility conformance or completion of the wider ERP.
 
 Follow-up result: passed for the requested branding, content coverage and guide; prior broader release gaps remain.
+
+## 29 October — Company contacts and catalogue
+
+Retained the selected Builder briefing typography, colours and descriptive Home destinations. Added Contacts & catalogue with three purpose-labelled categories and progressive record/history detail; no Odoo icon wall. Terms review shows current versus proposed payment terms, permitted currencies, author, dates and required reason.
+
+Browser verified desktop 1280×900 and mobile 390×844; mobile document width equals viewport with no horizontal overflow. Checked real local catalogue creation, visible rejection of a fractional whole-unit pack, valid pack save, history, company switching and distinct EUR/30-day versus USD/45-day terms. Corrected a React numeric-condition artefact in review and made error feedback visible. Evidence in `../docs/validation/masters/`. Source review remained read-only; no source mutations, permissions, passwords, supplier communications or deployments were performed. Full representative-user and accessibility acceptance remains open.

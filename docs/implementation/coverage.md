@@ -4,6 +4,8 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+Company contacts, independently reviewed supplier terms/currencies and typed catalogue/pack maintenance now connect to quotations, orders and historical snapshots. My Work/search and company examples are included. See `masters-local.md` and `contracts/masters-v1.md`. Full party/pricelist/configuration scope remains open.
+
 Individual local sign-in now includes reviewed provisioning/activation, session/recovery controls and independent access administration. Real two-user budget/purchase approval is verified. See `identity-local.md` and `contracts/identity-v1.md`.
 
 The company/project/budget increment adds legal company setup, project details, location/WBS hierarchies and independently approved budget facts connected to procurement and cost reports. See `foundations-local.md` and `contracts/foundations-v1.md`.
@@ -51,7 +53,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F023 | CRM > Sales > My Activities | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F024 | CRM > Sales > My Quotations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F025 | CRM > Sales > Teams | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F026 | CRM > Sales > Customers | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F026 | CRM > Sales > Customers | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |
 | F027 | CRM > Reporting > Forecast | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F028 | CRM > Reporting > Pipeline | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F029 | CRM > Reporting > Leads | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -69,8 +71,8 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F041 | Tender & BOQ > Estimate analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F042 | Sales & Quotations > Orders > Quotations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F043 | Sales & Quotations > Orders > Orders | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F044 | Sales & Quotations > Orders > Customers | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F045 | Sales & Quotations > Products > Products | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F044 | Sales & Quotations > Orders > Customers | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |
+| F045 | Sales & Quotations > Products > Products | foundation | Canonical company material/service catalogue with category, base unit, packs and historical identity. Dedicated sales/accounting pricing/tax workflows remain open. |
 | F046 | Sales & Quotations > Products > Pricelists | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F047 | Sales & Quotations > Reporting > Sales | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F048 | Sales & Quotations > Reporting > Salespersons | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -106,16 +108,16 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F078 | Contracts & measured BOQ > BOQ revisions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F079 | Contracts & measured BOQ > Variations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F080 | Site materials & issues | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F081 | Purchasing > Orders > Requests for Quotation | partial | Product-specific immutable supplier quotes, currency from vendor, dated FX and exact multi-vendor allocations. No outbound RFQ or supplier portal. |
-| F082 | Purchasing > Orders > Purchase Orders | partial | Local orders grouped by supplier/currency, frozen rate snapshots, independent approval, commitment facts and connected deliveries. Bills, taxes, payment terms, closure and order amendments remain open. |
+| F081 | Purchasing > Orders > Requests for Quotation | partial | Product-specific immutable quotations with approved supplier currencies/terms, pack conversions, dated FX and exact split allocations. Current supplier/product checks and frozen identity prevent stale commitments. RFQ communications and supplier portal remain open. |
+| F082 | Purchasing > Orders > Purchase Orders | partial | Local supplier/currency orders, frozen identity/address/payment-term/pack/FX snapshots, independent approval, commitment facts and deliveries. Bills, tax, closure, amendments, document issue/distribution and source migration remain open. |
 | F083 | Purchasing > Orders > Purchase Agreements | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F084 | Purchasing > Orders > Vendors | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F085 | Purchasing > Products > Products | foundation | Typed company-specific sample product/UOM masters used by requests and deliveries. Product maintenance, variants and valuation policies remain open. |
+| F084 | Purchasing > Orders > Vendors | partial | Canonical supplier/customer identity, company contact details, reviewed effective terms/currencies, block/archive/restore, scoped search and history. Supplier qualification, multiple contacts/addresses, tax/bank controls and source migration remain open. |
+| F085 | Purchasing > Products > Products | partial | Typed company catalogue maintenance with material/service separation, fixed code/base unit/precision, category/description/archive and product-specific packs connected to purchasing. Variants, valuation/tax, full pricing and source migration remain open. |
 | F086 | Purchasing > Reporting > Purchase | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F087 | Purchasing > Configuration > Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F088 | Purchasing > Configuration > Vendor Pricelists | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F089 | Purchasing > Configuration > Products > Categories | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F090 | Purchasing > Configuration > Products > Units & Packagings | foundation | Explicit stock/request product unit. UOM registry, conversions and packaging remain open. |
+| F088 | Purchasing > Configuration > Vendor Pricelists | foundation | Product-specific supplier quote/item code and pack reference, explicit quantity and currency/FX snapshots. Reusable supplier price lists, effective quantity tiers and item cross-reference administration remain open. |
+| F089 | Purchasing > Configuration > Products > Categories | partial | Company product category create/rename/archive with stable IDs and retained product/history links. Hierarchy, accounting/valuation policies and source import remain open. |
+| F090 | Purchasing > Configuration > Products > Units & Packagings | partial | Dimension-labelled base units and immutable product pack factors, exact pack quote/base quantity conversion, precision checks, retirement and historic snapshots. Full UOM administration/dimensional conversions remain open. |
 | F091 | Payment certificates | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F092 | Advances & retention releases | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F093 | Final accounts & closeout | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -133,7 +135,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F105 | Stores & Receipts > Operations > Adjustments > Physical Inventory | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F106 | Stores & Receipts > Operations > Adjustments > Scrap | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F107 | Stores & Receipts > Operations > Procurement > Replenishment | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F108 | Stores & Receipts > Products > Products | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F108 | Stores & Receipts > Products > Products | partial | Typed company catalogue maintenance with material/service separation, fixed code/base unit/precision, category/description/archive and product-specific packs connected to purchasing. Variants, valuation/tax, full pricing and source migration remain open. |
 | F109 | Stores & Receipts > Reporting > Stock | partial | Per-receipt available quantity/value after returns and consumption. Full warehouse/location stock reporting, count adjustments and valuation periods remain open. |
 | F110 | Stores & Receipts > Reporting > Moves History | partial | Append-only receipt/return/consumption movement ledger, actor, reason, location and cost source. Search/export and all other movement types remain open. |
 | F111 | Stores & Receipts > Reporting > Moves Analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -141,8 +143,8 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F113 | Stores & Receipts > Configuration > Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F114 | Stores & Receipts > Configuration > Warehouse Management > Warehouses | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F115 | Stores & Receipts > Configuration > Warehouse Management > Operations Types | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F116 | Stores & Receipts > Configuration > Products > Categories | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F117 | Stores & Receipts > Configuration > Products > Units & Packagings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F116 | Stores & Receipts > Configuration > Products > Categories | partial | Company product category create/rename/archive with stable IDs and retained product/history links. Hierarchy, accounting/valuation policies and source import remain open. |
+| F117 | Stores & Receipts > Configuration > Products > Units & Packagings | partial | Dimension-labelled base units and immutable product pack factors, exact pack quote/base quantity conversion, precision checks, retirement and historic snapshots. Full UOM administration/dimensional conversions remain open. |
 | F118 | Labour & plant allocation | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F119 | Labour & plant actual feeds | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F120 | P6 schedule progress | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -150,13 +152,13 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F122 | Finance > Customers > Invoices | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F123 | Finance > Customers > Credit Notes | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F124 | Finance > Customers > Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F125 | Finance > Customers > Products | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F126 | Finance > Customers > Customers | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F125 | Finance > Customers > Products | foundation | Canonical company material/service catalogue with category, base unit, packs and historical identity. Dedicated sales/accounting pricing/tax workflows remain open. |
+| F126 | Finance > Customers > Customers | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |
 | F127 | Finance > Vendors > Bills | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F128 | Finance > Vendors > Refunds | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F129 | Finance > Vendors > Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F130 | Finance > Vendors > Products | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F131 | Finance > Vendors > Vendors | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F130 | Finance > Vendors > Products | foundation | Canonical company material/service catalogue with category, base unit, packs and historical identity. Dedicated sales/accounting pricing/tax workflows remain open. |
+| F131 | Finance > Vendors > Vendors | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |
 | F132 | Finance > Accounting > Transactions > Journal Entries | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F133 | Finance > Review > Control > Journal Items | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F134 | Finance > Review > Control > Audit Trail | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -171,8 +173,8 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F143 | Finance > Configuration > Accounting > Currencies | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F144 | Finance > Configuration > Accounting > Fiscal Positions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F145 | Finance > Configuration > Accounting > Multi-Ledger | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F146 | Finance > Configuration > Invoicing > Payment Terms | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F147 | Finance > Configuration > Invoicing > Product Categories | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F146 | Finance > Configuration > Invoicing > Payment Terms | foundation | Independently approved company supplier payment days/effective dates freeze into quotations/orders. Full payment-term schedules, instalments, discounts, customer terms and invoice/accounting integration remain open. |
+| F147 | Finance > Configuration > Invoicing > Product Categories | partial | Company product category create/rename/archive with stable IDs and retained product/history links. Hierarchy, accounting/valuation policies and source import remain open. |
 | F148 | Quality, HSE & Specifications > Snags & defects | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F149 | Quality, HSE & Specifications > Quality & HSE Actions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F150 | Quality, HSE & Specifications > Document Control & Specifications | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -247,7 +249,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F219 | Fleet > Configuration > Vehicle > Status | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F220 | Fleet > Configuration > Vehicle > Tags | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F221 | Fleet > Configuration > Activity Types | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F222 | Contacts & Masters > Contacts | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F222 | Contacts & Masters > Contacts | partial | Shared party identity with company-specific roles/contact details/terms, explicit authorised linking, safe shared renames, archive and document snapshots. Contact hierarchy, tags, multiple addresses and full source migration remain open. |
 | F223 | Contacts & Masters > Configuration > Contact Tags | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F224 | Contacts & Masters > Configuration > Industries | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F225 | Contacts & Masters > Configuration > Localization > Countries | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |

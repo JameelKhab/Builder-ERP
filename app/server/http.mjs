@@ -1,3 +1,4 @@
+import { masters } from './masters.mjs';
 import { identity } from './identity.mjs';
 import { foundations } from './foundations.mjs';
 import express from 'express';
@@ -131,6 +132,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.masters = masters(db, session.previewId || session.actorId, today);
     req.foundations = foundations(db, session.previewId || session.actorId, today);
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
@@ -204,6 +206,20 @@ export function createApi(db, {
   app.post('/api/requests', (req, res) => res.status(201).json(req.service.create(req.body)));
   app.put('/api/requests/:id', (req, res) => res.json(req.service.update(req.params.id, req.body)));
   app.post('/api/requests/:id/decision', (req, res) => res.json(req.service.decide(req.params.id, req.body)));
+  app.get('/api/masters', (req, res) => res.json(req.masters.workspace(req.query.company)));
+  app.get('/api/masters/parties/:id', (req, res) => res.json(req.masters.partyDetail(req.query.company, req.params.id)));
+  app.post('/api/masters/parties', (req, res) => res.status(201).json(req.masters.saveParty(null, req.body)));
+  app.put('/api/masters/parties/:id', (req, res) => res.json(req.masters.saveParty(req.params.id, req.body)));
+  app.post('/api/masters/parties/:id/terms', (req, res) => res.json(req.masters.proposeTerms(req.params.id, req.body)));
+  app.post('/api/masters/parties/:id/block', (req, res) => res.json(req.masters.blockSupplier(req.params.id, req.body)));
+  app.post('/api/masters/terms/:id/decision', (req, res) => res.json(req.masters.decideTerms(req.params.id, req.body)));
+  app.get('/api/masters/products/:id', (req, res) => res.json(req.masters.productDetail(req.params.id)));
+  app.post('/api/masters/products', (req, res) => res.status(201).json(req.masters.saveProduct(null, req.body)));
+  app.put('/api/masters/products/:id', (req, res) => res.json(req.masters.saveProduct(req.params.id, req.body)));
+  app.post('/api/masters/products/:id/packs', (req, res) => res.json(req.masters.addPack(req.params.id, req.body)));
+  app.put('/api/masters/packs/:id', (req, res) => res.json(req.masters.retirePack(req.params.id, req.body)));
+  app.post('/api/masters/categories', (req, res) => res.status(201).json(req.masters.saveCategory(null, req.body)));
+  app.put('/api/masters/categories/:id', (req, res) => res.json(req.masters.saveCategory(req.params.id, req.body)));
   app.get('/api/organisation', (req, res) => res.json(req.foundations.organisation()));
   app.post('/api/organisation/companies', (req, res) => res.status(201).json(req.foundations.saveCompany(null, req.body)));
   app.put('/api/organisation/companies/:id', (req, res) => res.json(req.foundations.saveCompany(req.params.id, req.body)));

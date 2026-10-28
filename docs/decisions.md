@@ -95,3 +95,9 @@ Synthetic examples add a separate fictional budget reviewer with explicit limits
 - Local owner setup and individual username/password accounts now replace the synthetic identity once the user opts into setup. The user chooses their own credentials; no invitations are sent automatically. Sample login is permanently disabled for a secured database.
 - Scope, business approvals and administrative authority remain separate. Another administrator reviews changes to one's own authority; new owner financial approval limits begin at zero.
 - Opaque sessions, local activation/recovery and recent password confirmation support independent local business decisions. This is a tested local implementation choice, not a certified production identity service. MFA/SSO, preferences, network-release hardening and source-policy equivalence remain open.
+
+## 29 October 2026 — Company masters and buying definitions
+
+Original party identity can be shared; commercial terms and contact details stay within the legal company. Company-wide maintenance is distinct from project access; an independent company reviewer approves supplier currencies, explicit invoice-relative payment days and effective dates. Opening payment days stay unknown. Blocking new purchasing does not prevent existing deliveries.
+
+A product’s name never determines a pack size. Stable base units/precision, immutable product-specific pack factors and exact ratio pricing prevent silent quantity/price reinterpretation. Quote/order master snapshots preserve historical identity and require fresh review when supplier terms or order identity/address changes. Preset versions explicitly add master maintenance/review capabilities without granting financial limits. Full supplier/customer/configuration, accounting and migration scope stays open.

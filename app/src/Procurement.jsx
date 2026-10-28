@@ -187,7 +187,7 @@ export function Procurement({
             action: mode,
             note
           })} />}
- {r.can_price && r.quotes?.length > 0 && <details className="proc-history"><summary>All supplier quotations · {r.quotes.length}</summary>{r.quotes.map(q => <div key={q.id}><strong>{q.vendor} · {q.product}</strong><p>{numberText(q.quantity)} {q.uom} at {amount(q.unit_price, q.currency)} each · Lead time {q.lead_days} days</p><small>{q.reference} · Valid until {q.valid_until} · {q.id}</small></div>)}</details>}
+ {r.can_price && r.quotes?.length > 0 && <details className="proc-history"><summary>All supplier quotations · {r.quotes.length}</summary>{r.quotes.map(q => <div key={q.id}><strong>{q.vendor} · {q.product}</strong><p>{numberText(q.quantity)} {q.uom} · {q.pack ? `${q.pack.quoted_quantity} ${q.pack.pack_name} at ${amount(q.pack.quoted_price, q.currency)} per quoted unit` : `${amount(q.unit_price, q.currency)} each`} · Lead time {q.lead_days} days</p><small>{q.reference}{q.pack?.supplier_code ? ` · Supplier item ${q.pack.supplier_code}` : ''} · Valid until {q.valid_until} · {q.id}</small></div>)}</details>}
  </> : <>
  <button className="text-button" onClick={() => open('request', r.request_id)}>Open originating request {r.request_id}<ArrowRight size={17} /></button>
  <Lines lines={r.lines} order priced={r.can_price} currency={r.currency} />
@@ -225,7 +225,7 @@ function Lines({
   priced = false,
   currency
 }) {
-  return <div className="proc-table-wrap"><table className="proc-table"><caption>{order ? 'Ordered quantities and delivery position' : 'Requested quantities'}</caption><thead><tr><th>Material / work package</th><th>Location</th><th>{order ? 'Ordered' : 'Needed'}</th>{order && <><th>Accepted net of returns</th><th>Outstanding</th>{priced && <th>Unit price</th>}</>}</tr></thead><tbody>{lines.map(l => <tr key={l.id}><td data-label="Material / work package"><strong>{l.product}</strong><small>{l.work_package}</small>{l.note && <small>{l.note}</small>}</td><td data-label="Location">{l.location_code} {l.location}</td><td data-label={order ? "Ordered" : "Needed"}>{numberText(l.quantity)} {l.uom}</td>{order && <><td data-label="Accepted net of returns">{l.received} {l.uom}</td><td data-label="Outstanding">{l.outstanding} {l.uom}</td>{priced && <td data-label="Unit price">{amount(l.unit_price, currency)}</td>}</>}</tr>)}</tbody></table></div>;
+  return <div className="proc-table-wrap"><table className="proc-table"><caption>{order ? 'Ordered quantities and delivery position' : 'Requested quantities'}</caption><thead><tr><th>Material / work package</th><th>Location</th><th>{order ? 'Ordered' : 'Needed'}</th>{order && <><th>Accepted net of returns</th><th>Outstanding</th>{priced && <th>Quoted price</th>}</>}</tr></thead><tbody>{lines.map(l => <tr key={l.id}><td data-label="Material / work package"><strong>{l.product}</strong><small>{l.work_package}</small>{l.note && <small>{l.note}</small>}</td><td data-label="Location">{l.location_code} {l.location}</td><td data-label={order ? "Ordered" : "Needed"}>{numberText(l.quantity)} {l.uom}</td>{order && <><td data-label="Accepted net of returns">{l.received} {l.uom}</td><td data-label="Outstanding">{l.outstanding} {l.uom}</td>{priced && <td data-label="Quoted price">{amount(l.pack?.quoted_price || l.unit_price, currency)}<small>per {l.pack?.pack_name || l.uom}{l.pack && l.pack.base_quantity !== '1' ? ` · ${l.pack.base_quantity} ${l.uom}` : ''}</small></td>}</>}</tr>)}</tbody></table></div>;
 }
 function Buttons({
   busy,
@@ -300,6 +300,9 @@ function QuoteForm({
   const [form, setForm] = useState({
     line_id: request.lines[0].id,
     vendor_id: '',
+    currency: '',
+    pack_id: '',
+    supplier_code: '',
     quantity: request.lines[0].quantity,
     unit_price: '',
     rate: '',
@@ -313,26 +316,57 @@ function QuoteForm({
     ...f,
     [k]: v
   }));
-  const vendor = data.vendors.find(v => v.id === form.vendor_id);
+  const vendor = data.vendors.find(v => v.id === form.vendor_id),
+    line = request.lines.find(l => l.id === form.line_id),
+    packs = (data.packs || []).filter(p => p.product_id === line.product_id),
+    pack = packs.find(p => p.id === form.pack_id),
+    currency = form.currency || vendor?.currency;
   return <form className="proc-form" onSubmit={e => {
     e.preventDefault();
     onSave({
       ...form,
-      rate: vendor?.currency === company.currency ? '1' : form.rate,
-      rate_source: vendor?.currency === company.currency ? 'Same company currency' : form.rate_source,
+      currency,
+      rate: currency === company.currency ? '1' : form.rate,
+      rate_source: currency === company.currency ? 'Same company currency' : form.rate_source,
       lead_days: Number(form.lead_days)
     });
-  }}><h3>Record a supplier quotation</h3><p className="muted">Currency follows the vendor. Quote and exchange-rate evidence are retained with the purchase.</p><div className="proc-grid"><Select label="Requested material" value={form.line_id} onChange={v => setForm(f => ({
+  }}><h3>Record a supplier quotation</h3><p className="muted">Use the supplier’s approved company currencies. Quote units, terms and exchange-rate evidence stay with the purchase.</p>{!data.vendors.length && <Empty>No approved suppliers are available. Maintain the company’s supplier terms in Contacts & catalogue.</Empty>}<div className="proc-grid"><Select label="Requested material" value={form.line_id} onChange={v => setForm(f => ({
         ...f,
         line_id: v,
-        quantity: request.lines.find(l => l.id === v).quantity
+        supplier_code: '',
+        pack_id: '',
+        quantity: request.lines.find(l => l.id === v).quantity,
+        unit_price: ''
       }))} rows={request.lines.map(l => ({
         id: l.id,
         label: `${l.product} · ${l.quantity} ${l.uom} · ${l.location}`
-      }))} /><Select label="Supplier" value={form.vendor_id} onChange={put('vendor_id')} rows={data.vendors.map(v => ({
+      }))} /><Select label="Supplier" value={form.vendor_id} onChange={v => setForm(f => ({
+        ...f,
+        vendor_id: v,
+        supplier_code: '',
+        currency: data.vendors.find(x => x.id === v)?.currency || '',
+        unit_price: '',
+        rate: '',
+        rate_source: '',
+        reference: ''
+      }))} rows={data.vendors.map(v => ({
         ...v,
-        label: `${v.name} · ${v.currency}`
-      }))} /><Input label="Quote reference" value={form.reference} onChange={put('reference')} maxLength={120} /><Input label="Quoted quantity" inputMode="decimal" value={form.quantity} onChange={put('quantity')} /><Input label={`Unit price · ${vendor?.currency || 'vendor currency'}`} inputMode="decimal" value={form.unit_price} onChange={put('unit_price')} /><Input label="Valid until" type="date" value={form.valid_until} onChange={put('valid_until')} /><Input label="Lead time · days" type="number" min="0" max="730" value={form.lead_days} onChange={put('lead_days')} /><Input label="Rate date" type="date" value={form.rate_date} onChange={put('rate_date')} />{vendor && vendor.currency !== company.currency && <><Input label={`1 ${vendor.currency} equals how many ${company.currency}?`} inputMode="decimal" value={form.rate} onChange={put('rate')} /><Input label="Rate source / reference" value={form.rate_source} onChange={put('rate_source')} maxLength={160} /></>}</div><Buttons busy={busy} onCancel={onCancel} label="Save supplier quotation" /></form>;
+        label: `${v.name} · ${v.currency} preferred`
+      }))} />{vendor && <Select label="Quotation currency" value={currency} onChange={v => setForm(f => ({
+        ...f,
+        currency: v,
+        unit_price: '',
+        rate: '',
+        rate_source: ''
+      }))} rows={vendor.currencies.map(c => ({
+        id: c,
+        name: c
+      }))} />}<Field label="Quotation unit"><select value={form.pack_id} onChange={e => setForm(f => ({
+          ...f,
+          pack_id: e.target.value,
+          quantity: '',
+          unit_price: ''
+        }))}><option value="">Base unit · {line.uom}</option>{packs.map(p => <option key={p.id} value={p.id}>{p.name} · {p.base_quantity} {line.uom} each</option>)}</select></Field><Input label="Supplier item code (optional)" value={form.supplier_code} onChange={put('supplier_code')} required={false} maxLength={100} /><Input label="Quote reference" value={form.reference} onChange={put('reference')} maxLength={120} /><Input label={`Quoted quantity · ${pack ? pack.name : line.uom}`} inputMode="decimal" value={form.quantity} onChange={put('quantity')} /><Input label={`Price per ${pack ? 'pack' : line.uom} · ${currency || 'supplier currency'}`} inputMode="decimal" value={form.unit_price} onChange={put('unit_price')} /><Input label="Valid until" type="date" value={form.valid_until} onChange={put('valid_until')} /><Input label="Lead time · days" type="number" min="0" max="730" value={form.lead_days} onChange={put('lead_days')} /><Input label="Rate date" type="date" value={form.rate_date} onChange={put('rate_date')} />{vendor && currency !== company.currency && <><Input label={`1 ${currency} equals how many ${company.currency}?`} inputMode="decimal" value={form.rate} onChange={put('rate')} /><Input label="Rate source / reference" value={form.rate_source} onChange={put('rate_source')} maxLength={160} /></>}</div>{pack && <p className="muted">1 {pack.name} = {pack.base_quantity} {line.uom}. Supplier allocation and site receipts will use {line.uom}.</p>}<Buttons busy={busy} onCancel={onCancel} label="Save supplier quotation" /></form>;
 }
 function SourcingForm({
   request,
@@ -349,7 +383,7 @@ function SourcingForm({
         quantity
       }))
     });
-  }}><h3>Allocate quantities to suppliers</h3><p className="muted">Split a material between suppliers if needed. Quantities must cover each request line exactly. Leave unused quotes blank.</p>{request.quotes.map(q => <div className="proc-quote" key={q.id}><div><strong>{q.vendor} · {q.product}</strong><small>{request.lines.find(l => l.id === q.line_id)?.location} · {request.lines.find(l => l.id === q.line_id)?.work_package}</small><p>{q.quantity} {q.uom} quoted at {amount(q.unit_price, q.currency)} · {q.reference}</p><small>Valid until {q.valid_until} · Rate {q.rate} on {q.rate_date}</small></div><Input label={`Allocate · ${q.uom}`} required={false} inputMode="decimal" value={quantities[q.id]} onChange={v => setQuantities({
+  }}><h3>Allocate quantities to suppliers</h3><p className="muted">Split a material between suppliers if needed. Quantities must cover each request line exactly. Leave unused quotes blank.</p>{request.quotes.map(q => <div className="proc-quote" key={q.id}><div><strong>{q.vendor} · {q.product}</strong><small>{request.lines.find(l => l.id === q.line_id)?.location} · {request.lines.find(l => l.id === q.line_id)?.work_package}</small><p>{q.quantity} {q.uom} available · {q.pack ? `${amount(q.pack.quoted_price, q.currency)} per ${q.pack.pack_name} (${q.pack.base_quantity} ${q.uom})` : amount(q.unit_price, q.currency)} · {q.reference}</p><small>Valid until {q.valid_until} · Rate {q.rate} on {q.rate_date}</small></div><Input label={`Allocate · ${q.uom}`} required={false} inputMode="decimal" value={quantities[q.id]} onChange={v => setQuantities({
         ...quantities,
         [q.id]: v
       })} /></div>)}<Buttons busy={busy} onCancel={onCancel} label="Send plan for independent review" /></form>;

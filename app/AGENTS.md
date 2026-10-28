@@ -21,3 +21,5 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - Product name: **Builder ERP**. Keep it consistent in the brand, tab title, exports and runtime metadata. Preserve legal-company identities separately.
 - Every visible feature needs meaningful examples. `server/examples.mjs` installs an additive, versioned sample pack in explicit local mode; never reset user work. `src/Examples.jsx` and `example-guide.js` expose the same authorised catalogue. The coverage tests must pass when adding or renaming features.
+
+- Company masters now include contact/party maintenance, independent supplier terms/currency review and material/service catalogue/packs. Keep company terms separate, company-wide master authority explicit, and historic document identity/unit snapshots immutable. A unit or pack must never be inferred from a product name. Supplier/pricelist/configuration and accounting scope remains incomplete; consult masters-local.md.

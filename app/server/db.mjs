@@ -1,3 +1,5 @@
+import { installMasterExamples } from './masters-examples.mjs';
+import { installMasters } from './masters-schema.mjs';
 import { installIdentity } from './identity-schema.mjs';
 import { installFoundationExamples } from './foundations-examples.mjs';
 import { installFoundations } from './foundations-schema.mjs';
@@ -43,9 +45,11 @@ export function openDatabase(path = ':memory:', {
   installProcurement(db);
   installFoundations(db);
   installIdentity(db);
+  installMasters(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
+    installMasterExamples(db);
   }
   return db;
 }

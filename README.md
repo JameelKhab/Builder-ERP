@@ -24,6 +24,8 @@ Company/project setup and budget control now add legal identities, locations, it
 
 Individual local accounts now support owner setup, reviewed activation, sessions/recovery and independent administration. See [identity implementation](docs/implementation/identity-local.md). A real two-user test approves a budget and purchase and reconciles the resulting commitment. The persistent preview has no configured real credentials yet; the user chooses those in the setup screen.
 
+Company contacts, independently reviewed supplier currencies/terms and catalogue/pack maintenance now connect to purchasing, with historical document snapshots and company-specific examples. See [master implementation](docs/implementation/masters-local.md). Full pricing/configuration and other retained ERP domains remain open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
@@ -68,7 +70,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 94 tests passed; frontend build passed; individual sign-in, scoped destinations, account review and mobile account controls checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 109 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms and catalogue screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

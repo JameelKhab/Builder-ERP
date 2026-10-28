@@ -9,7 +9,7 @@ export const demand={company_id:'jakh',project_id:'harbour',title:'Level 12 bloc
 function fixture(t){const db=openDatabase();t.after(()=>db.close());return {db,site:procurement(db,'mohammed',today),buyer:procurement(db,'sara',today),manager:procurement(db,'ahmed',today)};}
 function plan(f,{input=demand,unit_price='10',split=true}={}){
  let r=f.site.createRequest(input);r=f.site.decide(r.id,{version:r.version,action:'submit'});
- const q=(vendor,quantity,rate)=>{r=f.buyer.addQuote(r.id,{version:r.version,line_id:r.lines[0].id,vendor_id:vendor,reference:'Quote '+vendor,quantity,unit_price:vendor==='gulf'?'42':unit_price,currency:'FORGED',rate,rate_date:'2026-10-29',rate_source:'Test fixed snapshot',valid_until:'2026-11-10',lead_days:2});};
+ const q=(vendor,quantity,rate)=>{r=f.buyer.addQuote(r.id,{version:r.version,line_id:r.lines[0].id,vendor_id:vendor,reference:'Quote '+vendor,quantity,unit_price:vendor==='gulf'?'42':unit_price,rate,rate_date:'2026-10-29',rate_source:'Test fixed snapshot',valid_until:'2026-11-10',lead_days:2});};
  q('euro',split?'60':'100','4');if(split)q('gulf','40','999');
  return f.buyer.sourcePlan(r.id,{version:r.version,allocations:r.quotes.map(q=>({quote_id:q.id,quantity:q.quantity}))});
 }

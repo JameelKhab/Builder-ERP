@@ -1,0 +1,138 @@
+ Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+- button "New"
+- list:
+  - link "Contacts":
+    - /url: /jakh/contacts
+- generic: Arabian Steel Rebar Trading (Demo)
+- button "Actions menu":
+  - generic: more_vert
+- button "star 0 Opportunities":
+  - generic: star
+  - generic: "0"
+  - generic: Opportunities
+- button "shopping_cart 0 Sales":
+  - generic: shopping_cart
+  - generic: "0"
+  - generic: Sales
+- button "edit_square 0.00 AED Invoiced":
+  - generic: edit_square
+  - generic: 0.00 AED
+  - generic: Invoiced
+- button "edit_square 3 Vendor Bills":
+  - generic: edit_square
+  - generic: "3"
+  - generic: Vendor Bills
+- button "More arrow_drop_down":
+  - generic: More
+  - text: arrow_drop_down
+- search:
+  - navigation "Pager":
+    - generic: "12"
+    - text: / 80
+    - button "Previous":
+      - generic: arrow_back_ios_new
+    - button "Next":
+      - generic: arrow_forward_ios
+- main:
+  - button "Add Photo"
+  - img "Binary file"
+  - heading "Arabian Steel Rebar Trading (Demo)" [level=1]:
+    - combobox "Name (company or person)": Arabian Steel Rebar Trading (Demo)
+  - generic "Company": business
+  - combobox "Related Company"
+  - generic "Email": mail
+  - textbox "Email"
+  - generic "Phone": phone
+  - textbox "Phone"
+  - generic: Address
+  - textbox "Street..."
+  - textbox "Street 2..."
+  - textbox "City"
+  - combobox "State"
+  - textbox "ZIP"
+  - combobox "Country": United Arab Emirates
+  - text: TRN
+  - superscript: "?"
+  - combobox
+  - button "add":
+    - generic: add
+  - generic: Job Position
+  - textbox "Job Position":
+    - /placeholder: e.g. Sales Director
+  - generic: Website
+  - textbox "Website":
+    - /placeholder: https://example.com
+  - text: Language
+  - superscript: "?"
+  - textbox "Language?": English (US)
+  - generic: Tags
+  - combobox "Tags"
+  - list:
+    - tab "Contacts"
+    - tab "Sales & Purchase" [active]
+    - tab "Invoicing"
+    - tab "Partner Assignment"
+    - tab "Notes"
+  - generic: Sales
+  - text: Salesperson
+  - superscript: "?"
+  - combobox "Salesperson?"
+  - text: Pricelist
+  - superscript: "?"
+  - combobox "Pricelist?": Default (AED)
+  - generic: Payment Terms
+  - combobox "Payment Terms"
+  - generic: Payment Method
+  - combobox "Payment Method"
+  - text: Incoterm
+  - superscript: "?"
+  - combobox "Incoterm?"
+  - generic: Incoterm Location
+  - textbox "Incoterm Location"
+  - generic: Purchase
+  - text: Group RFQ
+  - superscript: "?"
+  - textbox "Group RFQ?": On Order
+  - generic: Buyer
+  - combobox "Buyer"
+  - generic: Payment Terms
+  - combobox "Payment Terms"
+  - generic: Payment Method
+  - combobox "Payment Method"
+  - text: Receipt Reminder
+  - superscript: "?"
+  - checkbox "Receipt Reminder?"
+  - text: Supplier Currency
+  - superscript: "?"
+  - combobox "Supplier Currency?"
+  - text: Incoterm
+  - superscript: "?"
+  - combobox "Incoterm?"
+  - generic: Incoterm Location
+  - textbox "Incoterm Location"
+  - generic: Fiscal Information
+  - text: Fiscal Position
+  - superscript: "?"
+  - combobox "Fiscal Position?"
+  - generic: Misc
+  - generic: Reference
+  - textbox "Reference"
+  - generic: Company
+  - combobox "Company": JAKH Demo Contracting LLC
+  - generic: Industry
+  - combobox "Industry"
+  - text: Barcode
+  - superscript: "?"
+  - textbox "Barcode?"
+  - button "Send message"
+  - button "Log note"
+  - button "Activity"
+  - button "Search Messages":
+    - img: search
+  - button "Attach files":
+    - generic: attach_file
+  - button "0":
+    - img: person
+    - superscript: "0"
+  - generic: 😶
+  - generic: No messages yet.

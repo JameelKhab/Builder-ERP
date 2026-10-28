@@ -126,3 +126,7 @@ Implemented scope and verified boundaries: `implementation/access-and-destinatio
 ## 29 October implementation status
 
 Company/project/location/WBS and original/revised budget controls now have typed services, local screens, examples and tests. See [foundation implementation](implementation/foundations-local.md). This does not reduce the remaining comparison, reporting, financial, identity, AI or migration scope. Every source function remains unverified for full parity.
+
+## 29 October — Master maintenance progress
+
+Original company party/contact records, independent supplier terms/currency review and material/service catalogue/pack definitions now connect to procurement. Quote/order snapshots preserve historic identity and currency/unit meaning; controls apply in services and local HTTP. Full party, pricing, configuration, accounting and migration requirements remain in scope. See `implementation/masters-local.md`.

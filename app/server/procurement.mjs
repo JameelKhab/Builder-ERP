@@ -1,8 +1,9 @@
+import { snapshot, freezeMaster, usableSupplier, quantityFor, quotePrice } from './master-rules.mjs';
 import { randomUUID } from 'node:crypto';
 import { sourcingAvailable } from './cost-ledger.mjs';
 import { policy } from './access.mjs';
 import { transaction } from './db.mjs';
-import { D, decimal, money, price, sum, requireThat } from './money.mjs';
+import { D, decimal, money, sum, requireThat } from './money.mjs';
 const uid = prefix => `${prefix}-${randomUUID().slice(0, 8).toUpperCase()}`;
 const now = () => new Date().toISOString();
 function text(value, label, max = 200) {
@@ -38,9 +39,23 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
     requireThat(r && access.has('requests.read', r.company_id, r.project_id), 'Request is not available.', 404);
     return r;
   };
-  const lines = id => all('SELECT l.*,p.name product,p.uom,w.name work_package,w.cost_item_id,loc.name location,loc.code location_code FROM material_request_lines l JOIN products p ON p.id=l.product_id JOIN work_packages w ON w.id=l.work_package_id JOIN project_locations loc ON loc.id=l.location_id WHERE request_id=? ORDER BY l.rowid', id);
-  const allocations = id => all('SELECT a.*,q.vendor_id,q.currency,q.unit_price,q.rate,q.rate_date,q.rate_source,q.valid_until,q.reference,q.author_id quote_author,q.quantity quote_quantity,v.name vendor,l.work_package_id,w.cost_item_id FROM sourcing_allocations a JOIN supplier_quotes q ON q.id=a.quote_id JOIN vendors v ON v.id=q.vendor_id AND v.company_id=q.company_id JOIN material_request_lines l ON l.id=a.line_id JOIN work_packages w ON w.id=l.work_package_id WHERE a.request_id=? ORDER BY a.id', id);
+  const lines = id => all('SELECT l.*,p.name product,p.uom,w.name work_package,w.cost_item_id,loc.name location,loc.code location_code FROM material_request_lines l JOIN products p ON p.id=l.product_id JOIN work_packages w ON w.id=l.work_package_id JOIN project_locations loc ON loc.id=l.location_id WHERE request_id=? ORDER BY l.rowid', id).map(l => ({
+    ...l,
+    ...snapshot(db, 'line', l.id)
+  }));
+  const allocations = id => all('SELECT a.*,q.company_id,q.vendor_id,q.currency,q.unit_price,q.rate,q.rate_date,q.rate_source,q.valid_until,q.reference,q.author_id quote_author,q.quantity quote_quantity,v.name vendor,l.work_package_id,w.cost_item_id FROM sourcing_allocations a JOIN supplier_quotes q ON q.id=a.quote_id JOIN vendors v ON v.id=q.vendor_id AND v.company_id=q.company_id JOIN material_request_lines l ON l.id=a.line_id JOIN work_packages w ON w.id=l.work_package_id WHERE a.request_id=? ORDER BY a.id', id).map(a => ({
+    ...a,
+    vendor: snapshot(db, 'quote', a.quote_id).vendor || a.vendor
+  }));
   const validQuote = q => {
+    if (q.vendor_id) {
+      const item = get('SELECT p.active,p.kind FROM products p JOIN material_request_lines l ON l.product_id=p.id JOIN supplier_quotes q ON q.line_id=l.id WHERE q.id=?', q.quote_id || q.id);
+      requireThat(item?.active && item.kind === 'material', 'The quoted product is unavailable for new purchasing.');
+      const frozen = snapshot(db, 'quote', q.quote_id || q.id);
+      const supplier = usableSupplier(db, q.company_id, q.vendor_id, today(), frozen.terms_id);
+      requireThat((!frozen.vendor || frozen.vendor === supplier.name) && (!Object.hasOwn(frozen, 'address') || frozen.address === supplier.address), 'Supplier identity or order address changed. Obtain a fresh quotation and review sourcing again.', 409);
+      requireThat(supplier.currencies.includes(q.currency), 'The quoted currency is no longer permitted. Obtain a new quotation.');
+    }
     requireThat(q.valid_until >= today(), 'Supplier quotation expired. Obtain a new quotation.');
     requireThat(q.rate_date <= today() && (Date.parse(today()) - Date.parse(q.rate_date)) / 86400000 <= 7, 'The exchange-rate snapshot is stale or future-dated. Obtain a fresh quotation.');
   };
@@ -66,7 +81,14 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       orders: all('SELECT id,state,currency FROM purchase_orders WHERE request_id=?', id)
     };
     if (priced) {
-      result.quotes = all('SELECT q.*,v.name vendor,p.name product,p.uom FROM supplier_quotes q JOIN vendors v ON v.id=q.vendor_id AND v.company_id=q.company_id JOIN material_request_lines l ON l.id=q.line_id JOIN products p ON p.id=l.product_id WHERE q.request_id=? ORDER BY q.created_at', id);
+      result.quotes = all('SELECT q.*,v.name vendor,p.name product,p.uom FROM supplier_quotes q JOIN vendors v ON v.id=q.vendor_id AND v.company_id=q.company_id JOIN material_request_lines l ON l.id=q.line_id JOIN products p ON p.id=l.product_id WHERE q.request_id=? ORDER BY q.created_at', id).map(q => ({
+        ...q,
+        ...snapshot(db, 'line', q.line_id),
+        id: q.id,
+        vendor: snapshot(db, 'quote', q.id).vendor || q.vendor,
+        terms_snapshot: snapshot(db, 'quote', q.id),
+        pack: get('SELECT * FROM quote_pack_details WHERE quote_id=?', q.id) || null
+      }));
       result.allocations = plan;
       result.company_amount = plan.length ? money(sum(plan.map(a => a.company_amount))) : null;
     }
@@ -75,15 +97,21 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
   function validateLines(input) {
     requireThat(Array.isArray(input.lines) && input.lines.length > 0 && input.lines.length <= 100, 'Add between 1 and 100 requested items.');
     return input.lines.map(l => {
-      const product = get('SELECT * FROM products WHERE id=? AND company_id=? AND active=1', l.product_id, input.company_id);
+      const product = get('SELECT * FROM products WHERE id=? AND company_id=? AND active=1 AND kind=\'material\'', l.product_id, input.company_id);
       requireThat(product, 'Choose an active product in this company.');
       requireThat(get('SELECT id FROM work_packages WHERE id=? AND company_id=? AND project_id=? AND kind=\'item\'', l.work_package_id, input.company_id, input.project_id), 'Choose a work package in this project.');
       requireThat(get('SELECT id FROM project_locations WHERE id=? AND company_id=? AND project_id=?', l.location_id, input.company_id, input.project_id), 'Choose a location in this project.');
-      const quantity = decimal(l.quantity, 'Requested quantity', false).toString();
+      const quantity = quantityFor(l.quantity, product.precision, 'Requested quantity').toString();
       requireThat(!l.note || typeof l.note === 'string' && l.note.length <= 500, 'Item note is too long.');
       return {
         id: uid('ML'),
         product_id: product.id,
+        master: {
+          product: product.name,
+          code: product.code,
+          uom: product.uom,
+          precision: product.precision
+        },
         work_package_id: l.work_package_id,
         location_id: l.location_id,
         quantity,
@@ -104,7 +132,10 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
         },
         items = validateLines(input);
       run('INSERT INTO material_requests(id,company_id,project_id,title,needed_by,requester_id,state,created_at) VALUES(?,?,?,?,?,?,?,?)', r.id, r.company_id, r.project_id, r.title, r.needed_by, actorId, 'draft', now());
-      for (const l of items) run('INSERT INTO material_request_lines(id,request_id,company_id,project_id,product_id,work_package_id,location_id,quantity,note) VALUES(?,?,?,?,?,?,?,?,?)', l.id, r.id, r.company_id, r.project_id, l.product_id, l.work_package_id, l.location_id, l.quantity, l.note);
+      for (const l of items) {
+        run('INSERT INTO material_request_lines(id,request_id,company_id,project_id,product_id,work_package_id,location_id,quantity,note) VALUES(?,?,?,?,?,?,?,?,?)', l.id, r.id, r.company_id, r.project_id, l.product_id, l.work_package_id, l.location_id, l.quantity, l.note);
+        freezeMaster(db, 'line', l.id, l.master);
+      }
       event('request', {
         ...r,
         version: 1
@@ -126,7 +157,10 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
           project_id: r.project_id
         });
       run('DELETE FROM material_request_lines WHERE request_id=?', id);
-      for (const l of items) run('INSERT INTO material_request_lines(id,request_id,company_id,project_id,product_id,work_package_id,location_id,quantity,note) VALUES(?,?,?,?,?,?,?,?,?)', l.id, id, r.company_id, r.project_id, l.product_id, l.work_package_id, l.location_id, l.quantity, l.note);
+      for (const l of items) {
+        run('INSERT INTO material_request_lines(id,request_id,company_id,project_id,product_id,work_package_id,location_id,quantity,note) VALUES(?,?,?,?,?,?,?,?,?)', l.id, id, r.company_id, r.project_id, l.product_id, l.work_package_id, l.location_id, l.quantity, l.note);
+        freezeMaster(db, 'line', l.id, l.master);
+      }
       run('UPDATE material_requests SET title=?,needed_by=?,version=version+1 WHERE id=?', title, needed, id);
       event('request', {
         ...r,
@@ -145,10 +179,19 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       requireThat(line, 'Choose a line in this request.');
       const vendor = get('SELECT * FROM vendors WHERE id=? AND company_id=?', input.vendor_id, r.company_id);
       requireThat(vendor, 'Choose a company-approved vendor.');
-      const currency = vendor.currency,
-        company = get('SELECT currency FROM companies WHERE id=?', r.company_id);
-      const quantity = decimal(input.quantity, 'Quote quantity', false).toString(),
-        unitPrice = decimal(input.unit_price, 'Quoted unit price', false).toString();
+      const supplier = usableSupplier(db, r.company_id, vendor.id, today());
+      const currency = input.currency || supplier.currency;
+      requireThat(supplier.currencies.includes(currency), 'Choose a currency permitted by this company’s approved supplier terms.');
+      const company = get('SELECT currency FROM companies WHERE id=?', r.company_id);
+      requireThat(get("SELECT id FROM products WHERE id=? AND active=1 AND kind='material'", line.product_id), 'The product is unavailable for new quotations.');
+      const item = lines(id).find(l => l.id === line.id),
+        pack = input.pack_id ? get('SELECT * FROM product_packs WHERE id=? AND product_id=? AND active=1', input.pack_id, line.product_id) : null;
+      requireThat(!input.pack_id || pack, 'Choose an active pack for this product.');
+      const quotedQuantity = decimal(input.quantity, 'Quoted quantity', false),
+        quotedPrice = decimal(input.unit_price, 'Quoted unit price', false),
+        factor = new D(pack?.base_quantity || '1');
+      const quantity = quantityFor(quotedQuantity.times(factor).toString(), item.precision, 'Converted base quantity').toString(),
+        unitPrice = quotedPrice.div(factor).toString();
       const rate = currency === company.currency ? '1' : decimal(input.rate, 'Company-currency conversion rate', false).toString();
       const q = {
         id: uid('SQ'),
@@ -158,6 +201,15 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       validQuote(q);
       requireThat(Number.isInteger(input.lead_days) && input.lead_days >= 0 && input.lead_days <= 730, 'Lead time must be 0–730 whole days.');
       run('INSERT INTO supplier_quotes(id,request_id,line_id,company_id,vendor_id,reference,quantity,unit_price,currency,rate,rate_date,rate_source,valid_until,lead_days,author_id,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', q.id, id, line.id, r.company_id, vendor.id, text(input.reference, 'Quotation reference', 120), quantity, unitPrice, currency, rate, q.rate_date, text(input.rate_source, 'Rate source', 160), q.valid_until, input.lead_days, actorId, now());
+      freezeMaster(db, 'quote', q.id, {
+        vendor: supplier.name,
+        address: supplier.address,
+        party_id: supplier.party_id,
+        terms_id: supplier.terms.id,
+        payment_days: supplier.terms.payment_days,
+        preferred_currency: supplier.currency
+      });
+      run('INSERT INTO quote_pack_details VALUES(?,?,?,?,?,?,?)', q.id, pack?.id || null, pack?.name || item.uom, factor.toString(), quotedQuantity.toString(), quotedPrice.toString(), input.supplier_code ? text(input.supplier_code, 'Supplier item code', 100) : '');
       run('UPDATE material_requests SET version=version+1 WHERE id=?', id);
       event('request', {
         ...r,
@@ -180,13 +232,14 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
           const q = get('SELECT * FROM supplier_quotes WHERE id=? AND request_id=?', a.quote_id, id);
           requireThat(q, 'Quotation is not in this request.');
           validQuote(q);
-          const qty = decimal(a.quantity, 'Award quantity', false);
+          const line = lines(id).find(l => l.id === q.line_id);
+          const qty = quantityFor(a.quantity, line.precision, 'Award quantity');
           requireThat(qty.lte(q.quantity), 'Award quantity exceeds the quoted quantity.');
           return {
             id: uid('SA'),
             quote: q,
             quantity: qty.toString(),
-            ...price(qty.toString(), q.unit_price, q.rate)
+            ...quotePrice(db, q.id, qty.toString(), q.unit_price, q.rate)
           };
         });
       for (const l of lines(id)) requireThat(sum(plan.filter(a => a.quote.line_id === l.id).map(a => a.quantity)).cmp(l.quantity) === 0, `Supplier quantities must match the requested ${l.quantity} ${l.uom} of ${l.product}.`);
@@ -261,6 +314,7 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
         ids.push(id);
         const first = rows[0];
         run('INSERT INTO purchase_orders(id,request_id,company_id,project_id,vendor_id,currency,state,issued_by,issued_at) VALUES(?,?,?,?,?,?,?,?,?)', id, r.id, r.company_id, r.project_id, first.vendor_id, first.currency, 'issued', actorId, now());
+        freezeMaster(db, 'order', id, snapshot(db, 'quote', first.quote_id));
         for (const a of rows) {
           const lineId = uid('PL');
           run('INSERT INTO purchase_order_lines(id,order_id,allocation_id,request_line_id,quantity,unit_price,amount,company_amount,rate,rate_date,rate_source) VALUES(?,?,?,?,?,?,?,?,?,?,?)', lineId, id, a.id, a.line_id, a.quantity, a.unit_price, a.amount, a.company_amount, a.rate, a.rate_date, a.rate_source);
@@ -284,9 +338,18 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
   const order = id => {
     const o = get('SELECT o.*,v.name vendor,c.currency company_currency FROM purchase_orders o JOIN vendors v ON v.id=o.vendor_id AND v.company_id=o.company_id JOIN companies c ON c.id=o.company_id WHERE o.id=?', id);
     requireThat(o && (access.has('requests.read', o.company_id, o.project_id) || access.has('materials.read', o.company_id, o.project_id)), 'Order is not available.', 404);
-    return o;
+    return {
+      ...o,
+      ...snapshot(db, 'order', id),
+      id: o.id
+    };
   };
-  const orderLines = id => all('SELECT ol.*,l.product_id,l.work_package_id,l.location_id,p.name product,p.uom,w.cost_item_id,w.name work_package,loc.name location FROM purchase_order_lines ol JOIN material_request_lines l ON l.id=ol.request_line_id JOIN products p ON p.id=l.product_id JOIN work_packages w ON w.id=l.work_package_id JOIN project_locations loc ON loc.id=l.location_id WHERE order_id=?', id);
+  const orderLines = id => all('SELECT ol.*,a.quote_id,l.product_id,l.work_package_id,l.location_id,p.name product,p.uom,w.cost_item_id,w.name work_package,loc.name location FROM purchase_order_lines ol JOIN sourcing_allocations a ON a.id=ol.allocation_id JOIN material_request_lines l ON l.id=ol.request_line_id JOIN products p ON p.id=l.product_id JOIN work_packages w ON w.id=l.work_package_id JOIN project_locations loc ON loc.id=l.location_id WHERE order_id=?', id).map(l => ({
+    ...l,
+    ...snapshot(db, 'line', l.request_line_id),
+    id: l.id,
+    pack: get('SELECT * FROM quote_pack_details WHERE quote_id=?', l.quote_id) || null
+  }));
   function netAccepted(lineId) {
     const rs = all('SELECT id,accepted FROM material_receipts WHERE order_line_id=?', lineId);
     return sum(rs.map(r => r.accepted)).minus(sum(rs.flatMap(r => all("SELECT quantity FROM stock_movements WHERE receipt_id=? AND kind='return'", r.id).map(m => m.quantity))));
@@ -308,9 +371,14 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
           received: received.toString(),
           outstanding: new D(l.quantity).minus(received).toString()
         };
-      if (!priced) for (const k of ['unit_price', 'amount', 'company_amount', 'rate', 'rate_date', 'rate_source']) delete row[k];
+      if (!priced) for (const k of ['pack', 'unit_price', 'amount', 'company_amount', 'rate', 'rate_date', 'rate_source']) delete row[k];
       return row;
     });
+    if (!priced) {
+      delete o.payment_days;
+      delete o.terms_id;
+      delete o.preferred_currency;
+    }
     const receipts = all('SELECT r.*,u.name receiver FROM material_receipts r JOIN users u ON u.id=r.received_by WHERE order_id=? ORDER BY received_at DESC', id).map(r => {
       const b = lotBalance(r.id);
       return {
@@ -361,10 +429,12 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       requireThat(o.state === 'issued', 'Only issued orders can be received.');
       const line = orderLines(id).find(l => l.id === input.line_id);
       requireThat(line, 'Choose a line in this order.');
+      quantityFor(input.accepted, line.precision, 'Accepted quantity', true);
+      quantityFor(input.rejected, line.precision, 'Rejected quantity', true);
       requireThat(accepted.plus(rejected).gt(0), 'Enter a delivered quantity.');
       requireThat(accepted.plus(rejected).lte(new D(line.quantity).minus(netAccepted(line.id))), 'Delivered quantity exceeds the outstanding order quantity.');
       const receipt = uid('RCV'),
-        value = price(accepted.gt(0) ? accepted.toString() : '1', accepted.gt(0) ? line.unit_price : '0', line.rate).companyAmount;
+        value = accepted.gt(0) ? quotePrice(db, line.quote_id, accepted.toString(), line.unit_price, line.rate).companyAmount : '0.00';
       run('INSERT INTO material_receipts(id,order_id,order_line_id,company_id,project_id,accepted,rejected,company_value,delivery_reference,reason,received_by,received_at,command_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', receipt, id, line.id, o.company_id, o.project_id, accepted.toString(), rejected.toString(), value, deliveryRef, reason, actorId, now(), key);
       if (accepted.gt(0)) run('INSERT INTO stock_movements(id,receipt_id,company_id,project_id,kind,quantity,company_value,location_id,reason,actor_id,at,command_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', uid('MOV'), receipt, o.company_id, o.project_id, 'receipt', accepted.toString(), value, line.location_id, 'Accepted delivery', actorId, now(), `receipt:${receipt}`);
       run('UPDATE purchase_orders SET version=version+1 WHERE id=?', id);
@@ -383,7 +453,8 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       permit('stock.write', o);
       requireThat(['return', 'issue'].includes(input.kind), 'Choose a supplier return or material issue.');
       const key = text(input.command_key, 'Movement operation key', 100);
-      const qty = decimal(input.quantity, 'Movement quantity', false),
+      const stockLine = orderLines(o.id).find(l => l.id === r.order_line_id);
+      const qty = quantityFor(input.quantity, stockLine.precision, 'Movement quantity'),
         reason = text(input.reason, 'Movement reason', 500);
       const prior = get('SELECT * FROM stock_movements WHERE receipt_id=? AND command_key=?', receiptId, key);
       if (prior) {
@@ -429,8 +500,23 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       locations,
       work_packages: work,
       creatable_projects: all('SELECT id,name FROM projects WHERE company_id=?', company).filter(p => (!project || p.id === project) && access.has('requests.write', company, p.id)),
-      products: all('SELECT id,code,name,uom FROM products WHERE company_id=? AND active=1 ORDER BY name', company),
-      vendors: permits('procurement.write') ? all('SELECT id,name,currency FROM vendors WHERE company_id=? ORDER BY name', company) : [],
+      products: all("SELECT id,code,name,uom,precision FROM products WHERE company_id=? AND active=1 AND kind='material' ORDER BY name", company),
+      packs: all('SELECT pp.*,p.company_id FROM product_packs pp JOIN products p ON p.id=pp.product_id WHERE p.company_id=? AND pp.active=1', company),
+      vendors: permits('procurement.write') ? all('SELECT id FROM vendors WHERE company_id=?', company).flatMap(v => {
+        try {
+          const r = usableSupplier(db, company, v.id, today());
+          return [{
+            id: v.id,
+            name: r.name,
+            currency: r.currency,
+            currencies: r.currencies,
+            payment_days: r.terms.payment_days,
+            terms_id: r.terms.id
+          }];
+        } catch {
+          return [];
+        }
+      }) : [],
       capabilities: access.caps(company, project, !project),
       findings: [{
         id: 'reviews',

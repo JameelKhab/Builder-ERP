@@ -1,3 +1,5 @@
+import { masters } from './masters.mjs';
+import { legacyMaster, freezeMaster, usableSupplier } from './master-rules.mjs';
 import { foundations } from './foundations.mjs';
 import { procurement } from './procurement.mjs';
 import { sourcingAvailable, costPosition } from './cost-ledger.mjs';
@@ -31,6 +33,8 @@ export function createService(db, actorId, today = () => new Date().toISOString(
   const getRequest = (id, internal = false) => {
     const row = db.prepare('SELECT r.*,u.name requester,v.name vendor_name,c.currency company_currency FROM requests r JOIN companies c ON r.company_id=c.id JOIN users u ON r.requester_id=u.id LEFT JOIN vendors v ON r.vendor_id=v.id AND r.company_id=v.company_id WHERE r.id=?').get(id);
     requireThat(row && allowed(row.company_id, row.project_id) && access.has('requests.read', row.company_id, row.project_id), 'Request is not available.', 404);
+    const frozen = legacyMaster(db, id);
+    if (Object.hasOwn(frozen, 'vendor')) row.vendor_name = frozen.vendor;
     const history = db.prepare('SELECT e.*,u.name actor FROM events e JOIN users u ON e.actor_id=u.id WHERE request_id=? ORDER BY e.id').all(id);
     const item = costPosition(db, db.prepare('SELECT * FROM cost_items WHERE id=?').get(row.item_id));
     const available = sourcingAvailable(db, row.item_id, {
@@ -178,6 +182,8 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     if (input.vendor_id) {
       vendor = db.prepare('SELECT * FROM vendors WHERE id=? AND company_id=?').get(input.vendor_id, company);
       requireThat(vendor, 'Vendor is not approved for this company.');
+      const terms = usableSupplier(db, company, vendor.id, today());
+      requireThat(terms.currencies.includes(vendor.currency), 'Legacy quotation currency is no longer permitted. Use a fresh product-specific quotation.');
       requireThat(vendor.valid_until >= today(), 'The quotation has expired. Request an updated quote.');
       requireThat(vendor.rate_date <= today() && (Date.parse(today()) - Date.parse(vendor.rate_date)) / 86400000 <= 7, 'The exchange rate is missing, future-dated or stale. Finance must refresh it.');
     }
@@ -237,6 +243,10 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     };
     const keys = Object.keys(row);
     db.prepare(`INSERT INTO requests(${keys.join(',')}) VALUES(${keys.map(() => '?').join(',')})`).run(...Object.values(row));
+    freezeMaster(db, 'legacy_request', id + '@1', {
+      vendor: p.vendor_name,
+      terms_id: p.vendor_id ? usableSupplier(db, input.company_id, p.vendor_id, today()).terms.id : null
+    });
     event(id, 'created', 1, 'Draft request created.');
     return getRequest(id);
   });
@@ -251,6 +261,10 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       }),
       fields = validatedFields(input);
     db.prepare("UPDATE requests SET title=?,location=?,unit=?,due=?,item_id=?,vendor_id=?,quantity=?,unit_price=?,currency=?,amount=?,company_amount=?,rate=?,rate_date=?,rate_source=?,quote=?,status='draft',version=version+1 WHERE id=?").run(fields.title, fields.location, fields.unit, fields.due, p.item_id, p.vendor_id, p.quantity, p.unit_price, p.currency, p.amount, p.companyAmount, p.rate, p.rate_date, p.rate_source, p.quote, id);
+    freezeMaster(db, 'legacy_request', id + '@' + (old.version + 1), {
+      vendor: p.vendor_name,
+      terms_id: p.vendor_id ? usableSupplier(db, old.company_id, p.vendor_id, today()).terms.id : null
+    });
     event(id, 'revised', old.version + 1, 'Repriced from the selected quote or company-currency estimate. Approval must be requested again.');
     return getRequest(id);
   });
@@ -272,6 +286,9 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       if (input.action === 'approve') {
         requireThat(new D(old.after_request).gte(0), 'This request exceeds the available sourcing allowance. Budget review is required.');
         if (old.vendor_id) {
+          const approved = usableSupplier(db, old.company_id, old.vendor_id, today(), legacyMaster(db, id).terms_id);
+          requireThat(!legacyMaster(db, id).vendor || legacyMaster(db, id).vendor === approved.name, 'The supplier identity changed. Return this request for repricing.', 409);
+          requireThat(approved.currencies.includes(old.currency), 'The quotation currency is no longer permitted.');
           const vendor = db.prepare('SELECT * FROM vendors WHERE id=? AND company_id=?').get(old.vendor_id, old.company_id);
           requireThat(vendor.valid_until >= today(), 'The quotation has expired. Return the request for a revised quote.');
           requireThat((Date.parse(today()) - Date.parse(old.rate_date)) / 86400000 <= 7 && old.rate_date <= today(), 'The saved FX rate is stale or future-dated. Return for repricing.');
@@ -318,7 +335,14 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     scope(company, project);
     return visible(db.prepare('SELECT * FROM requests WHERE company_id=? ORDER BY created_at DESC').all(company), company, project).filter(r => access.has('requests.read', r.company_id, r.project_id)).map(r => getRequest(r.id));
   };
-  const vendors = (company, project) => access.has('vendors.read', company, project, !project) ? db.prepare('SELECT * FROM vendors WHERE company_id=?').all(company).map(v => access.has('pricing.read', company, project, !project) ? v : {
+  const vendors = (company, project) => access.has('vendors.read', company, project, !project) ? db.prepare('SELECT * FROM vendors WHERE company_id=?').all(company).filter(v => {
+    try {
+      const s = usableSupplier(db, company, v.id, today());
+      return s.currencies.includes(v.currency) && v.valid_until >= today();
+    } catch {
+      return false;
+    }
+  }).map(v => access.has('pricing.read', company, project, !project) ? v : {
     id: v.id,
     company_id: v.company_id,
     name: v.name,
@@ -369,6 +393,10 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         budgets: []
       };
       return {
+        master_reviews: access.has('suppliers.approve', company, null) ? masters(db, actorId, today).workspace(company).pending.filter(p => p.can_decide).map(p => ({
+          ...p,
+          id: 'MASTER-party:' + p.party_id
+        })) : [],
         project_setup: foundation.projects,
         budget_documents: foundation.budgets,
         material_requests: supply.requests,
@@ -405,7 +433,26 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         location: 'Project budget',
         owner: d.author
       })) : [];
-      return [...records(company), ...requests(company), ...typed, ...budgetDocs].filter(r => [r.id, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const master = access.has('vendors.read', company, null, true) ? masters(db, actorId, today).workspace(company) : {
+        contacts: [],
+        products: []
+      };
+      const masterRows = [...master.contacts.map(p => ({
+        id: 'MASTER-party:' + p.party_id,
+        display_reference: p.reference || 'Contact',
+        title: p.name,
+        category: 'Contacts & catalogue',
+        location: p.country,
+        status: p.active ? 'Active' : 'Archived'
+      })), ...master.products.map(p => ({
+        id: 'MASTER-product:' + p.id,
+        display_reference: p.code,
+        title: p.name,
+        category: 'Contacts & catalogue',
+        location: p.kind + ' · ' + p.uom,
+        status: p.active ? 'Active' : 'Archived'
+      }))];
+      return [...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

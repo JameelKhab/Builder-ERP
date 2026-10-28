@@ -83,3 +83,7 @@ The next AI increment should take verified scoped report findings or authorised 
 5. Introduce evaluated contextual AI on governed records; validate usability with representative staff throughout, not only at the end.
 
 This sequence is a working delivery proposal, not removal or postponement without record of any requested capability. No push, hosting handoff or deployment has occurred.
+
+## 29 October — Contacts, supplier terms and catalogue
+
+The latest operational subset adds shared party identity with separate company terms, independent supplier currency/payment-day approval, purchasing blocks, product/category maintenance, fixed units/precision and explicit purchase packs. Quotations/orders preserve identity, terms and conversion snapshots. My Work/search and both-company examples are connected. See [master implementation](masters-local.md); every full-comparison domain remains tracked and no parity/migration completion is claimed.

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Buildings, ShoppingCart, Scales, Files, Notebook, Crane, Users, ChartBar, Wallet, ShieldCheck, ArrowUpRight, ArrowRight } from '@phosphor-icons/react';
+import { AddressBook, Buildings, ShoppingCart, Scales, Files, Notebook, Crane, Users, ChartBar, Wallet, ShieldCheck, ArrowUpRight, ArrowRight } from '@phosphor-icons/react';
 import { destinationsFor } from '../shared/access.mjs';
 const icons = {
+  AddressBook,
   Buildings,
   ShoppingCart,
   Scales,
@@ -25,7 +26,7 @@ export function Landing({
   const projectCaps = [...new Set(boot.grants.filter(g => g.company_id === company.id && (g.project_id === '*' || g.project_id === projectId)).flatMap(g => g.capabilities))];
   const destinations = destinationsFor(caps).filter(d => d.section !== 'Projects' || destinationsFor(projectCaps).some(p => p.id === d.id));
   const projects = boot.projects.filter(p => p.company_id === company.id);
-  const reviews = workspace.requests.filter(r => r.can_review).length + (workspace.material_requests || []).filter(r => r.can_approve).length + (workspace.budget_documents || []).filter(d => d.can_review).length;
+  const reviews = (workspace.master_reviews || []).length + workspace.requests.filter(r => r.can_review).length + (workspace.material_requests || []).filter(r => r.can_approve).length + (workspace.budget_documents || []).filter(d => d.can_review).length;
   const own = workspace.requests.filter(r => r.requester_id === boot.actor.id && ['draft', 'returned'].includes(r.status)).length + (workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id && r.state === 'draft').length + (workspace.budget_documents || []).filter(d => d.author_id === boot.actor.id && ['draft', 'returned'].includes(d.state)).length;
   return <div className="landing">
     <div className="landing-intro"><div><p className="eyebrow">YOUR WORKSPACE</p><h1>A clear place to start.</h1><p>Choose what you need to work on. Everything stays within {company.name}.</p></div>
@@ -42,6 +43,6 @@ export function Landing({
             return <button key={d.id} className="destination-card" onClick={() => onVisit(d)}><div className="destination-symbol"><Icon size={26} /><ArrowUpRight size={19} /></div><h3>{d.title}</h3><p>{d.id === 'buying' && !projectCaps.includes('commercial.read') ? 'Site requests and approved supplier quotations.' : d.description}</p><span className="destination-open">Open {d.title.toLowerCase()}<ArrowRight size={16} /></span></button>;
           })}</div></section>;
     })}
-    <p className="landing-foot">Local development · Fictional examples. Project setup, budget control, procurement, deliveries, material use, reports and access controls work locally; other destinations contain sample registers.</p>
+    <p className="landing-foot">Local development · Fictional examples. Contacts, catalogue, project setup, budget control, procurement, deliveries, material use, reports and access controls work locally; other destinations contain sample registers.</p>
   </div>;
 }

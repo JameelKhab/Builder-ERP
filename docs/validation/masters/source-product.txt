@@ -1,0 +1,134 @@
+ Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+- button "New"
+- list:
+  - link "Products":
+    - /url: /jakh/purchase-products
+- generic: "[JSD-MAT2] Concrete blocks 200 mm (100 pcs)"
+- button "Actions menu":
+  - generic: more_vert
+- button "area_chart 0 0 Units Forecasted":
+  - generic: area_chart
+  - generic: "0"
+  - generic: "0"
+  - generic: Units
+  - generic: Forecasted
+- button "article 0 Documents":
+  - generic: article
+  - generic: "0"
+  - generic: Documents
+- button "android_cell_5_bar 0 0 Units Outgoing":
+  - generic: android_cell_5_bar
+  - generic: "0"
+  - generic: "0"
+  - generic: Units
+  - generic: Outgoing
+- button "credit_card 2,393 0 Units Incoming":
+  - generic: credit_card
+  - generic: 2,393
+  - generic: "0"
+  - generic: Units
+  - generic: Incoming
+- button "More arrow_drop_down":
+  - generic: More
+  - text: arrow_drop_down
+- search:
+  - navigation "Pager":
+    - generic: "1"
+    - text: / 12
+    - button "Previous":
+      - generic: arrow_back_ios_new
+    - button "Next":
+      - generic: arrow_forward_ios
+- main:
+  - heading "Add to Favorites Concrete blocks 200 mm (100 pcs) EN" [level=1]:
+    - button "Add to Favorites":
+      - img "Add to Favorites": star
+    - textbox "Name":
+      - /placeholder: e.g. Cheese Burger
+      - text: Concrete blocks 200 mm (100 pcs)
+    - button "EN"
+  - checkbox "Sales" [checked]
+  - generic: Sales
+  - checkbox "Purchase" [checked]
+  - generic: Purchase
+  - button "Edit":
+    - generic: edit
+  - button "Clear":
+    - generic: delete
+  - img "Binary file"
+  - list:
+    - tab "General Information"
+    - tab "Sales"
+    - tab "Prices"
+    - tab "Purchase"
+    - tab "Inventory"
+    - tab "Accounting"
+  - text: Product Type
+  - superscript: "?"
+  - radiogroup "Product Type":
+    - radio "Goods" [checked]
+    - generic: Goods
+    - radio "Service"
+    - generic: Service
+    - radio "Combo"
+    - generic: Combo
+  - text: Invoicing Policy
+  - superscript: "?"
+  - textbox "Invoicing Policy?": Ordered quantities
+  - text: Track Inventory
+  - superscript: "?"
+  - checkbox "Track Inventory?" [checked]
+  - generic: Quantity On Hand
+  - textbox: "0.00"
+  - generic: Units
+  - text: Sales Price
+  - superscript: "?"
+  - generic: "1.00"
+  - generic: AED
+  - textbox "Sales Price?": "1.00"
+  - generic: AED
+  - generic: per
+  - combobox: Units
+  - text: Sales Taxes
+  - superscript: "?"
+  - combobox "Sales Taxes?"
+  - text: Cost
+  - superscript: "?"
+  - generic: "410.00"
+  - generic: AED
+  - textbox "Cost?": "410.00"
+  - generic: AED
+  - generic: per
+  - combobox: Units
+  - text: Purchase Taxes
+  - superscript: "?"
+  - generic "5%":
+    - generic: 5%
+    - link "Delete":
+      - /url: "#"
+      - generic: close_small
+  - combobox "Purchase Taxes?"
+  - generic: Category
+  - combobox "Category": Construction materials
+  - generic: Reference
+  - textbox "Reference": JSD-MAT2
+  - generic: Barcode
+  - textbox "Barcode"
+  - generic: Tags
+  - combobox "Tags"
+  - generic: Company
+  - combobox "Company": JAKH Demo Contracting LLC
+  - generic: Internal Notes
+  - generic: This note is only for internal purposes.
+  - button "Send message"
+  - button "Log note"
+  - button "Activity"
+  - button "Search Messages":
+    - img: search
+  - button "Attach files":
+    - generic: attach_file
+  - button "0":
+    - img: person
+    - superscript: "0"
+  - generic: 😶
+  - generic: No messages yet.
