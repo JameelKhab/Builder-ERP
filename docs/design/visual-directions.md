@@ -2,7 +2,7 @@
 
 28 October 2026. The user has explicitly authorised implementation: "start building, make sure to build with quality". The implementation authorisation supersedes earlier pending-study notes. Development and commits remain local; remote syncing and deployment remain deferred.
 
-Three independent design previews were generated using the built-in image tool. The display order below is the selection order presented in the conversation. No direction has been selected yet, and these images are not running application screens.
+Three independent design previews were generated using the built-in image tool. The display order below is the selection order presented in the conversation. The user subsequently selected display choice 2, Project briefing, and asked for clearer information categories. The original three images remain historical design evidence.
 
 | Display order | Direction | Preview | Intended interaction |
 | --- | --- | --- | --- |
@@ -26,4 +26,6 @@ The images convey layout and interaction intent, not business-rule validation or
 
 Direction 3 depicts the requester as the signed-in user while showing approval. That generated detail must be corrected: approver actions are determined by server-side authority and an applicable separation-of-duties policy; the screen is not approval to allow self-approval. The budget impact must also be labelled as a provisional request allocation rather than a posted cost or issued commitment. Company selection must preserve the owning company of an open record.
 
-The Product Design workflow requires a visual selection before application scaffolding. No application code or local server has been created in this design step. This is not completion of the ERP build.
+The user selection resolved the visual gate. A single [refined choice 2](directions/02-project-briefing-refined.png) was generated to incorporate clearer categories before implementation; its exact [prompt](directions/02-refinement-prompt.json) is retained. The resulting local app is in `app/`; see [design QA](../../app/design-qa.md). The complete ERP build remains in progress.
+
+The selected overview has three groups: Decisions needed, Site & programme, Cost & cash. Company/project context is persistent; deeper detail is reached through named categories or a record. Review pending replaces the image's unsupported Due today claim because the current request has a site-needed date, not a separate approval deadline.

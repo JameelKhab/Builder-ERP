@@ -6,7 +6,7 @@
 - The existing JAKH demo was used as a read-only requirements/evidence source. Do not modify it while working on the replacement.
 - Develop and validate locally. Do not deploy to jakh.net, demo.jakh.net or another production destination without a later explicit user instruction. Do not add automatic deployment pipelines as part of routine development.
 - GitHub is the intended remote project record, but the user's latest instruction is to keep everything committed locally for now. Keep meaningful changes and validation in local Git. Do not push to GitHub until the user resumes syncing; that is separate from any deployment instruction.
-- Current phase: the user explicitly authorised implementation on 28 October 2026. Three visual directions are prepared; a visual selection is pending under the Product Design workflow. Do not ask again for permission to build. Follow the user's current instruction when advancing the work.
+- Current phase: the user explicitly authorised implementation on 28 October 2026. The user selected choice 2 (Project briefing), with clearer categories and rich information. The first working local increment is in app/. Do not ask again for permission to build. Follow the user's current instruction when advancing the work.
 
 ## Read before substantial work
 

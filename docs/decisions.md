@@ -17,7 +17,8 @@ Last updated: 28 October 2026, Asia/Dubai.
 | D-009 | Builder-ERP is the project repository | Use https://github.com/JameelKhab/Builder-ERP to record work. |
 | D-010 | Work locally; no jakh.net deployment yet | Keep the existing site unchanged until the user explicitly instructs deployment after local completion. |
 | D-011 | Keep everything committed locally for now | After the GitHub permission rejection, the user explicitly deferred remote syncing. Do not retry a push until instructed. |
-| D-012 | Start building with quality | Explicitly authorised implementation on 28 October 2026; no need to re-request implementation permission. Visual direction remains unselected. |
+| D-012 | Start building with quality | Explicitly authorised implementation on 28 October 2026; no need to re-request implementation permission. |
+| D-013 | Choice 2 with clearer categories | User selected Project briefing and emphasised easy reading, easy operation and rich information. Refined before implementation. |
 
 ## Proposed design decisions, pending validation
 
@@ -39,6 +40,15 @@ Last updated: 28 October 2026, Asia/Dubai.
 - Contract types, cost/work breakdown, tower/floor/unit/system hierarchy and programme ownership/integration.
 - Mobile, offline, language, accessibility and volume requirements.
 - AI provider/data region/retention policy, restricted data categories, pilot tasks and evaluation sets.
-- Approved visual design, technology architecture, delivery sequence and migration/cutover strategy.
+- Representative-user validation of the selected direction; production architecture, delivery priorities and migration/cutover strategy.
 
 These are open inputs, not permission to silently replace requested functions with integrations or remove them from scope.
+
+## First local implementation decisions
+
+- The overview uses Decisions needed, Site & programme and Cost & cash. Deeper information follows purpose-labelled directories and record details, preserving the four/seven navigation structure.
+- React/Vite and an original Express service with SQLite support the first persistent local increment. This is a local implementation choice, not a decision to run a multi-user production ERP on this topology.
+- Exact decimal strings/BigInt arithmetic, service-enforced scope, revision checks, independent approval and append-only events are foundational. Current currency support assumes two minor-unit digits (sample AED/EUR/USD).
+- Report facts are deterministic; Explain findings uses those same facts and source items. No external AI model, payment service or accounting system is connected.
+- The local sample actor is server-selected. Production identity, policy administration, audit hardening, backup/recovery and localisation remain required.
+- Preserve the entire requested scope in the implementation coverage matrix. A navigable sample register is not a completed workflow.

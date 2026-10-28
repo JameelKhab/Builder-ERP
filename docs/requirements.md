@@ -8,8 +8,8 @@ Create an original construction ERP for the journey from tendering to handover, 
 
 ## Experience requirements
 
-- Proposed global navigation: My Work, Tenders, Projects, Company.
-- Proposed project areas: Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover.
+- Selected direction uses global navigation: My Work, Tenders, Projects, Company.
+- Selected direction uses project areas: Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover.
 - Preserve company/project/location/work-item context across records and handoffs.
 - Show current state, owner, next action, due date and material blockers plainly.
 - A case evolves through its lifecycle; do not repeat the same tabs and fields in successive modules.
@@ -18,6 +18,8 @@ Create an original construction ERP for the journey from tendering to handover, 
 - Provide browse routes as well as search; keep filters and return context.
 - Role defaults prioritise work without granting permission or changing the meaning/order of navigation.
 - Do not confuse an empty list, access restriction, filtered result, missing allocation, stale data or error with a valid zero.
+
+The user selected Project briefing (choice 2) with clearer categories. The first local increment uses three overview groups: **Decisions needed**, **Site & programme**, **Cost & cash**. Purpose-labelled directories lead to focused records; these replace recursive module browsing. This is an implementation baseline, not proof that every requirement below is complete. See [coverage](implementation/local-increment-1.md).
 
 ## Construction lifecycle
 

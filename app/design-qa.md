@@ -1,0 +1,73 @@
+# Selected Project briefing — design QA
+
+Date: 28 October 2026. Scope: first local increment, not complete-ERP acceptance.
+
+final result: passed
+
+## Comparison target and evidence
+
+- Source visual truth: `../docs/design/directions/02-project-briefing-refined.png` (1487 × 1058 pixels), selected from display choice 2 and refined for clearer categories.
+- Local implementation: `http://127.0.0.1:4173/#section=Projects&area=Overview`, JAKH Contracting LLC / Harbour Tower / sample manager Ahmed; sample request PR-0264 awaiting independent review; light theme.
+- Screenshot: `../docs/validation/local-increment-1/overview-desktop.png`.
+- Desktop CSS viewport: **1440 × 1024**. The browser retained the user's existing 130% zoom; the capture surface was set to 1872 × 1332 to obtain this CSS size. Device scale was not changed for the final captures.
+- Native screenshot canvas: 1440 × 1025 pixels. The browser compositor placed the complete uniformly scaled viewport in its upper-left 1108 × 788 content region, with blank right/bottom padding. Normalisation cropped only that padding and rescaled the content to 1440 × 1024. The reference was resized to the same dimensions. No UI content was removed or rearranged. This extra scaling softens text in stored screenshots; it is not a source font blur.
+- Full comparison, inspected side by side: `../docs/validation/local-increment-1/comparison-final.png` (2880 × 1060 with labels).
+- Focused decision/table comparison, inspected side by side: `../docs/validation/local-increment-1/comparison-detail.png` (2320 × 550). This was required to judge row labels, ownership, currency and typography beyond the reduced full-frame comparison.
+- Responsive evidence: `overview-tablet.png` (1024 × 767 CSS), `overview-mobile.png` and `site-mobile.png` (390 × 844 CSS) in that same folder. These captures had the same compositor padding and were normalised uniformly. Mobile is a responsive adaptation; there was no separate selected mobile reference.
+- Desktop document width equalled viewport width (1440); tablet 1024; mobile 390. No horizontal page overflow. Desktop document height was 1032, with a small ordinary vertical scroll. Mobile project areas scroll horizontally within their own navigation strip; the page itself does not.
+
+## Findings and comparison history
+
+### Pass 1 — blocked pending fixes
+
+Evidence: `../docs/validation/local-increment-1/comparison-before.png`, plus mobile/keyboard browser inspection.
+
+1. **[P2] Work table typography and vertical rhythm.** The first implementation made row labels/IDs harder to scan than the selected reference and pushed cost/footer content too low. Increased work-table body/status/ID sizes to 15/14/13px, reduced excess cell padding and tightened header/section spacing. The final focused comparison shows readable titles and stable columns without overlap.
+2. **[P2] Search disappeared on mobile.** Hiding the search control removed a core find route. The narrow header now shows company selection and search on separate rows. Post-fix `overview-mobile.png` verifies both controls.
+3. **[P2] Mobile work rows obscured context.** Desktop table columns did not fit usefully on a phone. Work rows now stack with visible Location, Owner, Due and Status labels. `site-mobile.png` verifies the populated layout, with no page overflow.
+4. **[P2] Modal close did not restore keyboard focus.** Escape closed a record but left focus at the document. Added explicit opener capture/restoration and controlled native-dialog cancellation. Reopened NCR-018 and pressed Escape: the dialog closed and focus returned to the “Verify concrete finish / NCR-018” button. The focused outline is visible in `site-mobile.png`.
+
+### Pass 2 — passed
+
+Captured the revised app at the same desktop company/project/state, inspected the full combined comparison and focused decision/table regions, then reviewed tablet and mobile captures. No actionable P0/P1/P2 visual or core-interaction issues remain within the implemented scope. This is a design implementation gate, not evidence that all ERP requirements or release gates have passed.
+
+## Required fidelity surfaces
+
+| Surface | Assessment |
+| --- | --- |
+| Fonts and typography | Georgia preserves the serif project/section hierarchy; self-hosted Inter supplies legible UI text. These are close available substitutes, not claims of exact generated-image typeface identity. Body rows use 15px, secondary IDs 13px, status 14px. Headings wrap without overlap. Source mock text is somewhat larger/looser; final implementation retains clear hierarchy with operational detail. Minor font-shape differences are acceptable here. |
+| Spacing and layout rhythm | Slim navy rail, persistent company/search header, project context, stable seven-area navigation, one decision surface, flat site rows and three financial columns match the selected composition. Fine dividers and restrained radii avoid nested card clutter. Phone fields stack; tablet decision values wrap intentionally. |
+| Colours and tokens | Navy rail, warm white canvas, subdued grey labels and copper actions preserve the reference. Status is communicated in text as well as colour. Focus has a visible outline. Informal visual contrast review was performed; no full WCAG audit is claimed. |
+| Image quality and assets | The selected screen has no photographic/illustrative assets. JAKH ERP is editable text branding and AA is a real text-initial identity treatment, matching the reference's UI anatomy. Standard icons use Phosphor. No invented illustration, rasterised UI, custom SVG art, decorative CSS asset or Odoo asset substitutes were introduced. Screenshot softness comes from documented capture normalisation. |
+| Copy and content | Standalone business labels describe purpose. Findings precede the figures; budget, forecast and cash remain distinct. “Review pending” intentionally replaces unsupported “Due today”; a site-needed date is not an approval deadline. Sample mode is visibly labelled. Source details distinguish illustrative opening snapshots from real document evidence. No user instruction text leaks into product copy. |
+
+## Functional checks observed in the browser
+
+- Approved a permitted independent sample request; updated status and event appeared, without creating an order/payment.
+- Created a draft, changed EUR vendor to AED vendor, observed a new price/company equivalent, saved and submitted to an independent reviewer. Self-approval was not offered.
+- Opened request history, NCR detail, category directories, scoped search and contextual report explanation.
+- Switched project/company report scope; company report included six items including overheads. Paginated to rows 5–6 while findings still described the whole six-item population. Exported and inspected a CSV containing the summary before all rows.
+- Switched to the USD company and observed its own project and USD report, separate from the AED company.
+- Checked mobile menu and company/search visibility; verified modal Escape/focus restoration.
+- Inspected browser warning/error logs after the final changes: **no entries**.
+- Automated checks: **25 passed**; frontend production build passed. These supplement rather than replace browser evidence.
+
+## Open questions and residual test gaps
+
+- Representative construction users have not yet completed the study's navigation/task tests. The user selected the design direction, not a measured usability score.
+- Other workflow registers are read-only samples and have not passed operational acceptance. Production identity, accounting and security are not complete.
+- Full screen-reader, high zoom, long real-world text, offline, accessibility conformance and device-matrix testing remain release work.
+
+## Follow-up polish (P3)
+
+- Refine exact serif/UI font matching if an approved brand typography system becomes available.
+- Broaden density and long-label testing with realistic role-specific datasets; preserve progressive disclosure rather than adding dashboard widgets.
+
+## Implementation checklist
+
+- [x] Confirm exact selected/refined image.
+- [x] Compare combined full and focused rendered evidence.
+- [x] Fix all identified P2 issues and recapture.
+- [x] Verify core working interactions, responsive states and console.
+- [x] Record intentional differences, scope limits and remaining release tests.
+- [x] Keep the local preview running; no remote publish or deployment.
