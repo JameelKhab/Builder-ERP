@@ -17,6 +17,7 @@ Last updated: 28 October 2026, Asia/Dubai.
 | D-009 | Builder-ERP is the project repository | Use https://github.com/JameelKhab/Builder-ERP to record work. |
 | D-010 | Work locally; no jakh.net deployment yet | Keep the existing site unchanged until the user explicitly instructs deployment after local completion. |
 | D-011 | Keep everything committed locally for now | After the GitHub permission rejection, the user explicitly deferred remote syncing. Do not retry a push until instructed. |
+| D-012 | Start building with quality | Explicitly authorised implementation on 28 October 2026; no need to re-request implementation permission. Visual direction remains unselected. |
 
 ## Proposed design decisions, pending validation
 

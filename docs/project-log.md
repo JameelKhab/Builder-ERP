@@ -42,3 +42,13 @@ The first push was rejected with HTTP 403: the laptop's cached Git authenticatio
 4. Implement and test locally in coherent workflow increments, recording decisions and meaningful checks here.
 
 The current study is a requirements baseline, not evidence that implementation or user acceptance has already occurred.
+
+## 28 October 2026 - Implementation authorised; initial visual directions
+
+- User instructed: "start building, make sure to build with quality". This authorises implementation; the earlier study-only gate no longer applies. Local-only commits, no remote sync, no deployment, and no Odoo code remain binding.
+- Read repository requirements and reviewed the relevant Product Design workflow. It requires three visual concepts and user selection before application scaffolding when no desired visual target has been selected.
+- Inspected two previously captured demo screenshots and attached them to three independent image generations as problem/context evidence. No further changes or sign-in to the live demo were made.
+- Produced and retained three independent UI concepts, in conversation display order: Clear desk, Project briefing, Work in context. Saved exact prompts and source references under `docs/design/`.
+- Visually inspected all three generated results. Reviewed navigation and illustrative arithmetic (EUR 36,000 × 4 = AED 144,000; AED 200,000 − AED 144,000 = AED 56,000; AED 48.6m − AED 48.0m = AED 0.6m). These are mocked examples, not application test results.
+- Flagged a generated self-approval identity inconsistency in direction 3 for correction before implementation. Runtime authority, financial controls, accessibility and responsiveness are not proven by the images.
+- Next step: resolve the user's visual selection and begin original application implementation with connected workflow tests. No application code or server was created in this design step; the ERP is not complete.

@@ -6,7 +6,7 @@ The priority is a simple interface with rich, traceable information. The replace
 
 ## Current status
 
-Discovery and requirements are recorded through **study Revision 4, 28 October 2026**. The report has 53 pages. The navigation proposal and requirements have not yet been validated with representative users, and no ERP implementation has started.
+Discovery and requirements are recorded through **study Revision 4, 28 October 2026**. The report has 53 pages. The user has now authorised implementation. Three [visual directions](docs/design/visual-directions.md) are prepared for selection; application coding has not started. The navigation proposal and requirements have not yet been validated with representative users.
 
 **Development, testing and Git commits stay local for now. Do not push to GitHub, deploy to jakh.net or change the existing demo.** GitHub is the intended remote project record, but the user has deferred syncing. Resume GitHub pushes only when instructed. A future deployment requires a separate explicit instruction after local work is complete.
 
