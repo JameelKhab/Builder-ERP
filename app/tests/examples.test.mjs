@@ -18,8 +18,8 @@ test('every visible feature has examples in every sample company and project', t
     const scope = service.workspace(project.company_id, project.id);
     for (const [area, categories] of Object.entries(CATEGORIES)) {
       for (const [category] of categories) {
-        const rows = category === 'Purchase requests' ? scope.requests : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
-        assert.ok(rows.length >= (['Cost report', 'Purchase requests'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
+        const rows = category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
+        assert.ok(rows.length >= (['Cost report', 'Purchase requests','Orders & deliveries'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
       }
     }
     assert.deepEqual([...new Set(scope.requests.map(r => r.status))].sort(), ['approved', 'draft', 'returned', 'submitted']);
@@ -93,7 +93,11 @@ test('installing examples upgrades existing data once without overwriting work o
   const updated = createService(db, 'ahmed', today);
   assert.equal(updated.getRequest(userRequest.id).title, 'User-created draft');
   assert.equal(updated.record('NCR-018').title, 'Preserved title');
-  assert.deepEqual(updated.report('jakh'), report);
+  const afterReport=updated.report('jakh');
+  for(const row of report.rows){const after=afterReport.rows.find(r=>r.id===row.id);for(const key of ['original_budget','revised_budget','opening_committed','opening_incurred','cash','forecast'])assert.equal(after[key],row[key]);}
+  assert.equal(afterReport.totals.committed,'32105280.00');
+  assert.equal(afterReport.totals.incurred,'25351880.00');
+  const factCount=db.prepare('SELECT count(*) n FROM construction_cost_facts').get().n;
   const count = () => db.prepare('SELECT COUNT(*) n FROM records').get().n;
   const before = count();
   db.prepare("UPDATE records SET title='Preserve example edits' WHERE id='EX-HT-NCR-1'").run();
@@ -101,5 +105,5 @@ test('installing examples upgrades existing data once without overwriting work o
   assert.equal(count(), before);
   assert.equal(updated.record('EX-HT-NCR-1').title, 'Preserve example edits');
   db.close(); db = openDatabase(path, { examples: true });
-  assert.equal(count(), before); db.close();
+  assert.equal(count(), before); assert.equal(db.prepare('SELECT count(*) n FROM construction_cost_facts').get().n,factCount); db.close();
 });

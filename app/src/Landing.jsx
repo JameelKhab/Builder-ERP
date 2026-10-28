@@ -25,8 +25,8 @@ export function Landing({
   const projectCaps = [...new Set(boot.grants.filter(g => g.company_id === company.id && (g.project_id === '*' || g.project_id === projectId)).flatMap(g => g.capabilities))];
   const destinations = destinationsFor(caps).filter(d => d.section !== 'Projects' || destinationsFor(projectCaps).some(p => p.id === d.id));
   const projects = boot.projects.filter(p => p.company_id === company.id);
-  const reviews = workspace.requests.filter(r => r.can_review).length;
-  const own = workspace.requests.filter(r => r.requester_id === boot.actor.id && ['draft', 'returned'].includes(r.status)).length;
+  const reviews = workspace.requests.filter(r => r.can_review).length + (workspace.material_requests||[]).filter(r=>r.can_approve).length;
+  const own = workspace.requests.filter(r => r.requester_id === boot.actor.id && ['draft', 'returned'].includes(r.status)).length + (workspace.material_requests||[]).filter(r=>r.requester_id===boot.actor.id&&r.state==='draft').length;
   return <div className="landing">
     <div className="landing-intro"><div><p className="eyebrow">YOUR WORKSPACE</p><h1>A clear place to start.</h1><p>Choose what you need to work on. Everything stays within {company.name}.</p></div>
       <div className="scope-note"><ShieldCheck size={21} /><span>Built around your access<small>Only your permitted destinations are shown.</small></span></div></div>
@@ -42,6 +42,6 @@ export function Landing({
             return <button key={d.id} className="destination-card" onClick={() => onVisit(d)}><div className="destination-symbol"><Icon size={26} /><ArrowUpRight size={19} /></div><h3>{d.title}</h3><p>{d.id === 'buying' && !projectCaps.includes('commercial.read') ? 'Site requests and approved supplier quotations.' : d.description}</p><span className="destination-open">Open {d.title.toLowerCase()}<ArrowRight size={16} /></span></button>;
           })}</div></section>;
     })}
-    <p className="landing-foot">Local development · Fictional examples. Purchase requests, cost reports and access controls work locally; other destinations contain sample registers.</p>
+    <p className="landing-foot">Local development · Fictional examples. Procurement, deliveries, material use, cost reports and access controls work locally; other destinations contain sample registers.</p>
   </div>;
 }

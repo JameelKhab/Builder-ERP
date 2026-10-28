@@ -1,3 +1,5 @@
+import { procurement } from './procurement.mjs';
+import { sourcingAvailable, costPosition } from './cost-ledger.mjs';
 import { createHash, randomUUID } from 'node:crypto';
 import { D, DomainError, requireThat, money, price, sum } from './money.mjs';
 import { transaction } from './db.mjs';
@@ -30,8 +32,9 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     requireThat(row && allowed(row.company_id, row.project_id) && access.has('requests.read', row.company_id, row.project_id), 'Request is not available.', 404);
     const history = db.prepare('SELECT e.*,u.name actor FROM events e JOIN users u ON e.actor_id=u.id WHERE request_id=? ORDER BY e.id').all(id);
     const item = db.prepare('SELECT * FROM cost_items WHERE id=?').get(row.item_id);
-    const reservations = sum(db.prepare("SELECT company_amount FROM requests WHERE item_id=? AND status='approved' AND id<>?").all(row.item_id, id).map(r => r.company_amount));
-    const available = new D(item.request_allowance).minus(reservations);
+    const available = sourcingAvailable(db, row.item_id, {
+      legacyRequest: id
+    });
     const limit = access.approvalLimit(row.company_id, row.project_id);
     const result = {
       ...row,
@@ -69,7 +72,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     scope(company, project);
     access.requireCap('cost.read', company, project, !project);
     const entity = db.prepare('SELECT * FROM companies WHERE id=?').get(company);
-    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? ORDER BY id').all(company), company, project).filter(r => access.has('cost.read', r.company_id, r.project_id));
+    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? ORDER BY id').all(company), company, project).filter(r => access.has('cost.read', r.company_id, r.project_id)).map(r => costPosition(db, r));
     const totals = {};
     for (const key of ['original_budget', 'revised_budget', 'committed', 'incurred', 'cash', 'forecast']) totals[key] = rows.some(row => row[key] === null) ? null : money(sum(rows.map(row => row[key])));
     const findings = [];
@@ -108,17 +111,24 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       text: `Cash paid is ${entity.currency} ${readableMoney(totals.cash)}. It is recorded separately from incurred cost and commitments.`,
       sourceIds: rows.map(r => r.id)
     });
+    const localFacts = rows.flatMap(r => r.transaction_sources);
+    if (localFacts.length) findings.push({
+      id: 'local_transactions',
+      severity: 'info',
+      text: `Local records add ${entity.currency} ${readableMoney(sum(localFacts.filter(f => f.kind === 'commitment').map(f => f.amount)))} of issued commitments and ${entity.currency} ${readableMoney(sum(localFacts.filter(f => f.kind === 'incurred').map(f => f.amount)))} of consumed-material cost to the illustrative openings. Cash and completion forecasts remain unchanged.`,
+      sourceIds: rows.filter(r => r.transaction_sources.length).map(r => r.id)
+    });
     const restricted = !memberships().some(m => m.company_id === company && m.project_id === '*' && access.has('cost.read', company, null));
     const meta = {
       company: entity,
       project: project ? db.prepare('SELECT * FROM projects WHERE id=?').get(project) : null,
-      asOf: SAMPLE_DATE,
+      asOf: rows.some(r => r.transaction_sources.length) ? today() : SAMPLE_DATE,
       currency: entity.currency,
       taxBasis: 'Excluding tax',
-      basis: 'Illustrative approved budget, commitment, cost and cash snapshots',
+      basis: 'Illustrative opening balances plus local issued purchase orders and material consumption. Cash and forecasts remain separate.',
       restricted,
-      definition: 'cost-position-v1',
-      rules: 'findings-v1',
+      definition: 'cost-position-v2',
+      rules: 'findings-v2',
       population: rows.length
     };
     const snapshot = createHash('sha256').update(JSON.stringify({
@@ -133,7 +143,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       totals,
       findings,
       snapshot,
-      limitations: ['Sample opening balances are not connected to posted accounting transactions.', 'Request approval reserves a sourcing allowance; it does not issue an order, incur cost or pay a supplier.']
+      limitations: ['Sample opening balances are not connected to posted accounting transactions.', 'Local orders add commitments; material consumption adds operational incurred cost. These are not general-ledger postings. Receipt stock is not yet consumed cost.', 'Request approval reserves an allowance. Cash and completion forecasts are not changed by orders or stock movements.']
     };
   };
   const preview = input => {
@@ -334,7 +344,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     }),
     workspace: (company, project) => {
       scope(company, project);
+      const supply = access.has('requests.read', company, project, !project) || access.has('materials.read', company, project, !project) ? procurement(db, actorId, today).workspace(company, project) : {
+        requests: [],
+        orders: []
+      };
       return {
+        material_requests: supply.requests,
+        purchase_orders: supply.orders,
         capabilities: access.caps(company, project, !project),
         requests: requests(company, project),
         records: records(company, project),
@@ -348,7 +364,19 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       requireThat(typeof term === 'string' && term.length <= 120, 'Search is too long.');
       const q = term.toLowerCase().trim();
       if (!q) return [];
-      return [...records(company), ...requests(company)].filter(r => [r.id, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const supply = access.has('requests.read', company, null, true) || access.has('materials.read', company, null, true) ? procurement(db, actorId, today).workspace(company, null) : {
+        requests: [],
+        orders: []
+      };
+      const typed = [...supply.requests, ...supply.orders.map(o => ({
+        ...o,
+        title: o.vendor + ' · Purchase order',
+        vendor_name: o.vendor
+      }))].map(r => ({
+        ...r,
+        location: r.lines.map(l => l.location).join(', ')
+      }));
+      return [...records(company), ...requests(company), ...typed].filter(r => [r.id, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

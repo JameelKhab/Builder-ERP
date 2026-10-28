@@ -17,3 +17,6 @@ test('cent round-trip for positive and negative values', () => {
   }
   assert.equal(new D('600000').div(1000000).toFixed(1), '0.6');
 });
+test('exact decimal string serialization preserves integer zeros and fractional precision',()=>{
+ for(const [value,expected] of [['0','0'],['100','100'],['100.000000','100'],['0.000001','0.000001'],['-12.2300','-12.23']])assert.equal(new D(value).toString(),expected);
+});

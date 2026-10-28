@@ -18,6 +18,8 @@ Discovery remains recorded in the 53-page Revision 4 study. The navigation has b
 
 The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. This is still a local sample, not production identity or full migration.
 
+The connected procurement increment now adds multi-line unpriced site demand, supplier quotes/FX, split allocations, independent review, local supplier orders, receipts/rejections, returns, material consumption and transaction-derived additions to cost reports. See [procurement implementation](docs/implementation/procurement-local.md) and the [complete implementation coverage register](docs/implementation/coverage.md). Every comparison function remains tracked; none is certified as full migration parity.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.

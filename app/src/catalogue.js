@@ -2,7 +2,7 @@ export const AREAS = ['Overview', 'Plan', 'Site', 'Buying', 'Costs & Contracts',
 export const CATEGORIES = {
   Plan: [['Programme & delays', 'Baseline, look-ahead, constraints and delay evidence.'], ['KPIs & performance', 'Definitions, targets, source populations and follow-up.']],
   Site: [['Daily work', 'Diaries, labour, activity and site evidence.'], ['Quality & safety', 'Inspections, NCRs, corrective action and verification.'], ['Materials & waste', 'Receipts, use, reuse, loss and disposal records.'], ['Plant & equipment', 'Custody, utilisation, maintenance and equipment cost.']],
-  Buying: [['Purchase requests', 'What the site needs, when it is needed and who reviews it.'], ['Subcontracts', 'Package scope, measured work, certificates and settlement.']],
+  Buying: [['Purchase requests', 'Multi-line site demand, supplier quotes and independent sourcing approval.'], ['Orders & deliveries', 'Supplier orders, partial receipts, returns and material consumption.'], ['Subcontracts', 'Package scope, measured work, certificates and settlement.']],
   'Costs & Contracts': [['Cost report', 'Budget, commitments, incurred cost, cash and forecast.'], ['Changes & variations', 'Instructions, notices, assessment and approval.'], ['Payments & cash flow', 'Certificates, invoices, due amounts and expected receipts.']],
   Documents: [['Drawings & revisions', 'The current issued revision, with history retained.'], ['RFIs & correspondence', 'Questions, replies, notices and related work.']],
   Handover: [['Snags & defects', 'Location-specific defects, rectification and acceptance.'], ['Testing & commissioning', 'Readiness, witness tests, installed assets and O&M.']]

@@ -62,6 +62,9 @@ export class D {
   toDecimalPlaces(places) {
     return new D(this.toFixed(places));
   }
+  toString() {
+    return this.toFixed(12).replace(/\.?0+$/, '');
+  }
   toFixed(places = 2) {
     if (!Number.isInteger(places) || places < 0 || places > 12) throw new RangeError('Unsupported decimal precision');
     const value = rounded(this.scaled, 10n ** BigInt(12 - places)),

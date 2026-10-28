@@ -2,6 +2,7 @@ import express from 'express';
 import { randomBytes } from 'node:crypto';
 import { accessAdmin } from './access-admin.mjs';
 import { policy } from './access.mjs';
+import { procurement } from './procurement.mjs';
 import { createService } from './service.mjs';
 
 // Local sample identity is deliberately injected by the server, never selected by an HTTP header.
@@ -68,6 +69,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
   app.get('/api/bootstrap', (req, res) => res.json({
@@ -102,6 +104,17 @@ export function createApi(db, {
   app.post('/api/requests', (req, res) => res.status(201).json(req.service.create(req.body)));
   app.put('/api/requests/:id', (req, res) => res.json(req.service.update(req.params.id, req.body)));
   app.post('/api/requests/:id/decision', (req, res) => res.json(req.service.decide(req.params.id, req.body)));
+  app.get('/api/procurement', (req, res) => res.json(req.procurement.workspace(req.query.company, req.query.project || null)));
+  app.get('/api/material-requests/:id', (req, res) => res.json(req.procurement.requestDetail(req.params.id)));
+  app.post('/api/material-requests', (req, res) => res.status(201).json(req.procurement.createRequest(req.body)));
+  app.put('/api/material-requests/:id', (req, res) => res.json(req.procurement.updateRequest(req.params.id, req.body)));
+  app.post('/api/material-requests/:id/quotes', (req, res) => res.json(req.procurement.addQuote(req.params.id, req.body)));
+  app.post('/api/material-requests/:id/sourcing', (req, res) => res.json(req.procurement.sourcePlan(req.params.id, req.body)));
+  app.post('/api/material-requests/:id/decision', (req, res) => res.json(req.procurement.decide(req.params.id, req.body)));
+  app.post('/api/material-requests/:id/orders', (req, res) => res.json(req.procurement.issueOrders(req.params.id, req.body)));
+  app.get('/api/purchase-orders/:id', (req, res) => res.json(req.procurement.orderDetail(req.params.id)));
+  app.post('/api/purchase-orders/:id/receipts', (req, res) => res.json(req.procurement.receive(req.params.id, req.body)));
+  app.post('/api/material-receipts/:id/movements', (req, res) => res.json(req.procurement.moveStock(req.params.id, req.body)));
   app.use((error, req, res, next) => {
     if (error.status) return res.status(error.status).json({
       error: error.message

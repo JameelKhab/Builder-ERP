@@ -70,3 +70,13 @@ These are open inputs, not permission to silently replace requested functions wi
 - Original implementation choice: role grants per company/project scope, independent approval limits, separate access-administration authority, reviewed versioned changes and read-only administrator preview. Preset names are mapped; unreviewed source role inheritance is not assumed equivalent.
 - AP/AR/payroll/timekeeper presets cannot be assigned while their necessary document and confidential-field controls are absent. Existing sample identities remain explicitly local; no production authentication claim.
 - Historical full-comparison files remain unchanged; `implementation/access-and-destinations.md` records progress against F001/F021/F070/F239–242/F252/F266/F267 and M01/M02/M32.
+
+
+## 29 October 2026 — Connected original procurement
+
+- The user reaffirms full local completion. Maintain the entire comparison scope; tested subsets are recorded as partial and navigation/examples do not count as completed operational functions.
+- Site demand is unpriced and multi-line. Product-specific quotes and supplier allocation are a separate commercial stage; vendor details determine transaction currency. Procurement author and requester both require independent approval.
+- Approved allocations reserve a released sourcing allowance; issued orders replace reservations with commitments. Receipt acceptance creates stock; consumption creates operational cost. These do not manufacture accounting postings, payment, cash or a new completion forecast.
+- Returns are constrained by remaining accepted lot stock and reopen expected supply. Consumption/return value uses remaining-lot allocation with residual cents on the final movement. Delivery rounding differences require future explicit reconciliation policy.
+- New procurement example records are additive and transactional. Their cost additions are visible separately from unchanged illustrative opening balances. They are not a production migration.
+- Operational history retains the submitted allocation references and quantities. API reads/writes use live company/project capabilities; role preview remains read only. All user/ERP work stays on this Mac and in local commits.

@@ -3,6 +3,7 @@ import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight
 import { api, amount, compact, stateLabel } from './api.js';
 import { AREAS, CATEGORIES, COMPANY_GROUPS } from './catalogue.js';
 import { Modal, ErrorBox, Empty, Status, RecordTable, RecordDetail, RequestDetail, RequestForm, CostReport } from './components.jsx';
+import { Procurement } from './Procurement.jsx';
 import { Landing } from './Landing.jsx';
 import { Access } from './Access.jsx';
 import { canCategory } from '../shared/access.mjs';
@@ -34,6 +35,7 @@ export function App() {
     scopeProject = route.global === 'Projects' ? projectId : '';
   const caps = workspace?.capabilities || [];
   const can = cap => caps.includes(cap);
+  const canOpenOrderSource = row => boot.grants.some(g => g.company_id === row.company_id && (g.project_id === '*' || g.project_id === row.project_id) && g.capabilities.some(c => ['requests.read', 'materials.read'].includes(c)));
   const reportProjects = (boot?.projects || []).filter(p => boot.grants.some(g => g.company_id === p.company_id && (g.project_id === '*' || g.project_id === p.id) && g.capabilities.includes('cost.read')));
   const areaVisible = area => area === 'Overview' || (CATEGORIES[area] || []).some(([category]) => canCategory(caps, category));
   const globalVisible = title => title === 'Home' || title === 'My Work' && can('requests.read') || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
@@ -115,13 +117,21 @@ export function App() {
       }
     });
     return () => controller.abort();
-  }, [boot, companyId, scopeProject, revision]);
+  }, [boot, companyId, scopeProject, revision, route.global, route.area, route.category]);
   const refresh = () => setRevision(n => n + 1);
   const close = () => {
     openSerial.current++;
     setModal(null);
   };
   async function openRecord(id) {
+    if (id.startsWith('MR-') || id.startsWith('PO-')) {
+      setModal({
+        type: 'procurement',
+        title: 'Requests & orders',
+        id
+      });
+      return;
+    }
     const serial = ++openSerial.current;
     setModal({
       type: 'loading',
@@ -213,6 +223,9 @@ export function App() {
     company: boot.companies.find(c => c.id === r.company_id)?.name,
     project: boot.projects.find(p => p.id === r.project_id)?.name
   });
+  function typedRequestList(rows) {
+    return <div className='request-list'>{rows.map(r => <button className='request-row' key={r.id} onClick={() => openRecord(r.id)}><div><small>{r.id} · {r.state.replaceAll('_', ' ')}</small><h3>{r.title}</h3><p>{r.lines.length} materials · Needed {r.needed_by}</p></div><ArrowRight size={20} /></button>)}</div>;
+  }
   function requestList(rows) {
     return rows.length ? <div className="request-list">{rows.map(r => <button className="request-row" key={r.id} onClick={() => openRecord(r.id)}>
 <div>
@@ -315,6 +328,7 @@ export function App() {
   function projectArea() {
     if (!can('projects.read') || !areaVisible(route.area) || route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your current role and project.</Empty>;
     if (route.area === 'Overview') return overview();
+    if (['Purchase requests', 'Orders & deliveries'].includes(route.category)) return <Procurement key={companyId + projectId + route.category} company={company} project={project} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialTab={route.category === 'Orders & deliveries' ? 'orders' : 'requests'} />;
     if (route.category === 'Cost report') return <CostReport key={companyId + projectId} company={company} projects={reportProjects} initialProject={projectId} onSource={sources} onExplain={explain} />;
     if (route.category) {
       const group = (CATEGORIES[route.area] || []).find(g => g[0] === route.category);
@@ -342,6 +356,7 @@ export function App() {
   function companyArea() {
     if (route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your role in this company.</Empty>;
     if (route.category === 'resources') return <><h2>Resources</h2><p className="muted">Plant and materials across your authorised projects.</p>{directory(COMPANY_GROUPS.flatMap(([, entries]) => entries).filter(e => ['Plant & equipment', 'Stores'].includes(e[2]) && canCategory(caps, e[2])).map(e => [e[0], e[1]]), title => nav('Company', 'Overview', title === 'Assets & fleet' ? 'Plant & equipment' : 'Stores'))}</>;
+    if (route.category === 'buying') return <><Procurement key={companyId} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} /><details className='proc-history'><summary>Earlier purchase request examples</summary>{requestList(workspace.requests)}</details><h3 className='spaced'>Subcontract examples</h3><RecordTable rows={workspace.records.filter(r => r.category === 'Subcontracts')} onOpen={openRecord} /></>;
     if (route.category === 'report') return <CostReport key={companyId} company={company} projects={reportProjects} onSource={sources} onExplain={explain} />;
     if (route.category) {
       return <>
@@ -365,6 +380,7 @@ export function App() {
 <h2>{group}</h2>{directory(entries.map(e => [e[0], e[1]]), title => nav('Company', 'Overview', entries.find(e => e[0] === title)[2]))}</section>)}</>;
   }
   function modalBody() {
+    if (modal.type === 'procurement') return <Procurement key={companyId + modal.id} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialRecord={modal.id} />;
     if (modal.type === 'loading') return <p role="status">Loading…</p>;
     if (modal.type === 'error') return <ErrorBox message={modal.error} />;
     if (modal.type === 'examples') return <Examples workspace={modal.workspace} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} initialProject={projectId} actorId={boot.actor.id} onVisit={(feature, selectedProject) => {
@@ -409,14 +425,14 @@ export function App() {
 <dt>{label}</dt>
 <dd>{amount(r[key], modal.report.meta.currency)}</dd>
 </div>)}</dl>
-<p className="notice">{r.source}<small>Illustrative opening snapshot. Transaction documents have not been imported.</small>
-</p>
+<p className="notice">{r.source}<small>Illustrative opening snapshot; original JAKH transaction documents have not been imported.</small>
+</p>{r.transaction_sources?.length > 0 && <div><h4>Local transaction additions</h4>{r.transaction_sources.map(f => <p key={f.id}>{f.kind} · {amount(f.amount, modal.report.meta.currency)} · {f.source_id} {f.order_id && canOpenOrderSource(r) && <button className='text-button' onClick={() => openRecord(f.order_id)}>Open {f.order_id}<ArrowRight size={15} /></button>}</p>)}</div>}
 </section>)}</>;
     if (modal.type === 'explain') return <>
 <p className="eyebrow">{modal.report.meta.company.name} · {modal.report.meta.project?.name || 'Company scope'}</p>
 <p className="notice">Calculated explanation<small>These statements come from report rules and source totals. No generative AI service is connected.</small>
 </p>{modal.report.findings.map(f => <section className="record-section" key={f.id}>
-<h3>{f.id === 'variance' ? 'Budget versus forecast' : f.id === 'driver' ? 'Largest cost pressure' : f.id === 'cash' ? 'Cash is separate' : 'Data coverage'}</h3>
+<h3>{f.id === 'variance' ? 'Budget versus forecast' : f.id === 'driver' ? 'Largest cost pressure' : f.id === 'cash' ? 'Cash is separate' : f.id === 'local_transactions' ? 'Local transaction additions' : 'Data coverage'}</h3>
 <p>{f.text}</p>{f.sourceIds.length > 0 && <button className="text-button" onClick={() => sources(modal.report.rows.filter(r => f.sourceIds.includes(r.id)), modal.report)}>Inspect supporting items<ArrowRight size={18} />
 </button>}</section>)}<p className="muted">Snapshot {modal.report.snapshot} · {modal.report.meta.rules}. Suggestions and external commitments require human review.</p>
 </>;
@@ -462,7 +478,11 @@ export function App() {
 {!['Home', 'Access'].includes(route.global) && <div className="project-header">
 <div>
 <h1>{pageTitle || 'Builder ERP'}</h1>
-<p>{route.global === 'Projects' ? `${project?.location} · ${project?.phase} · Wednesday, 28 October 2026` : route.global === 'Company' ? 'Company-wide operations and shared information' : route.global === 'Tenders' ? 'From opportunity to a confident bid.' : 'Your reviews and requests, across this company.'}</p>
+<p>{route.global === 'Projects' ? `${project?.location} · ${project?.phase} · ${new Date().toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+              })}` : route.global === 'Company' ? 'Company-wide operations and shared information' : route.global === 'Tenders' ? 'From opportunity to a confident bid.' : 'Your reviews and requests, across this company.'}</p>
 </div>{route.global === 'Projects' && project && <div className="project-meta">
 <label>
 <span>Project</span>
@@ -487,12 +507,12 @@ export function App() {
 <section>
 <div className="section-head">
 <h2>Awaiting your review</h2>
-</div>{requestList(workspace.requests.filter(r => r.can_review))}</section>
+</div>{typedRequestList((workspace.material_requests || []).filter(r => r.can_approve))}{requestList(workspace.requests.filter(r => r.can_review))}</section>
 <section className="spaced">
 <div className="section-head">
 <h2>Your requests</h2>
-</div>{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
+</div>{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
 </>}</>}</div>
 </main>
-</div>{modal && <Modal title={modal.title} onClose={close} wide={['request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
+</div>{modal && <Modal title={modal.title} onClose={close} wide={['procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
 }

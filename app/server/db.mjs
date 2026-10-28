@@ -1,8 +1,12 @@
 import { DatabaseSync } from 'node:sqlite';
+import { installProcurementExamples } from './procurement-examples.mjs';
+import { installProcurement } from './procurement-schema.mjs';
 import { seed } from './seed.mjs';
 import { installAccess } from './access.mjs';
 import { installExamples } from './examples.mjs';
-export function openDatabase(path = ':memory:', { examples = false } = {}) {
+export function openDatabase(path = ':memory:', {
+  examples = false
+} = {}) {
   const db = new DatabaseSync(path);
   db.exec(`PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
     CREATE TABLE IF NOT EXISTS schema_versions (version INTEGER PRIMARY KEY);
@@ -33,16 +37,24 @@ export function openDatabase(path = ':memory:', { examples = false } = {}) {
   }
   if (examples) installExamples(db);
   installAccess(db);
+  installProcurement(db);
+  if (examples) installProcurementExamples(db);
   return db;
 }
+const transactionDepth = new WeakMap();
 export function transaction(db, fn) {
-  db.exec('BEGIN IMMEDIATE');
+  const depth = transactionDepth.get(db) || 0,
+    savepoint = `builder_nested_${depth}`;
+  db.exec(depth ? `SAVEPOINT ${savepoint}` : 'BEGIN IMMEDIATE');
+  transactionDepth.set(db, depth + 1);
   try {
     const result = fn();
-    db.exec('COMMIT');
+    db.exec(depth ? `RELEASE SAVEPOINT ${savepoint}` : 'COMMIT');
     return result;
   } catch (error) {
-    db.exec('ROLLBACK');
+    db.exec(depth ? `ROLLBACK TO SAVEPOINT ${savepoint}; RELEASE SAVEPOINT ${savepoint}` : 'ROLLBACK');
     throw error;
+  } finally {
+    transactionDepth.set(db, depth);
   }
 }
