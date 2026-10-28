@@ -1,3 +1,5 @@
+import { installQualityExamples } from './quality-examples.mjs';
+import { installQuality } from './quality-schema.mjs';
 import { installMasterExamples } from './masters-examples.mjs';
 import { installMasters } from './masters-schema.mjs';
 import { installIdentity } from './identity-schema.mjs';
@@ -46,10 +48,12 @@ export function openDatabase(path = ':memory:', {
   installFoundations(db);
   installIdentity(db);
   installMasters(db);
+  installQuality(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
     installMasterExamples(db);
+    installQualityExamples(db);
   }
   return db;
 }

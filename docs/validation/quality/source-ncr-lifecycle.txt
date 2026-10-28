@@ -1,0 +1,263 @@
+- text: menu
+- complementary "ERP navigation":
+  - strong: JAKH ERP
+  - generic: Contracting & construction
+  - button "Collapse navigation" [expanded]:
+    - generic: chevron_backward
+  - navigation "Modules":
+    - paragraph: Modules
+    - list:
+      - button "Dashboard":
+        - generic: apps
+        - generic: Dashboard
+      - button "Reports":
+        - generic: bar_chart
+        - generic: Reports
+        - generic: chevron_forward
+      - button "My Approvals & Activities":
+        - generic: task_alt
+        - generic: My Approvals & Activities
+      - button "CRM":
+        - generic: handshake
+        - generic: CRM
+        - generic: chevron_forward
+      - button "Tender & BOQ":
+        - generic: calculate
+        - generic: Tender & BOQ
+        - generic: chevron_forward
+      - button "Sales & Quotations":
+        - generic: folder
+        - generic: Sales & Quotations
+        - generic: chevron_forward
+      - button "Projects":
+        - generic: assignment
+        - generic: Projects
+        - generic: chevron_forward
+      - button "Project requisitions":
+        - generic: description
+        - generic: Project requisitions
+      - button "Project set-up":
+        - generic: description
+        - generic: Project set-up
+      - button "Material returns":
+        - generic: description
+        - generic: Material returns
+      - button "WBS & Budgets":
+        - generic: folder
+        - generic: WBS & Budgets
+        - generic: chevron_forward
+      - button "Site receipts":
+        - generic: description
+        - generic: Site receipts
+      - button "Site diaries":
+        - generic: description
+        - generic: Site diaries
+      - button "Contracts & measured BOQ":
+        - generic: folder
+        - generic: Contracts & measured BOQ
+        - generic: chevron_forward
+      - button "Site materials & issues":
+        - generic: description
+        - generic: Site materials & issues
+      - button "Purchasing":
+        - generic: shopping_cart
+        - generic: Purchasing
+        - generic: chevron_forward
+      - button "Payment certificates":
+        - generic: description
+        - generic: Payment certificates
+      - button "Advances & retention releases":
+        - generic: description
+        - generic: Advances & retention releases
+      - button "Final accounts & closeout":
+        - generic: description
+        - generic: Final accounts & closeout
+      - button "Guarantees & bonds":
+        - generic: description
+        - generic: Guarantees & bonds
+      - button "Subcontract finance":
+        - generic: folder
+        - generic: Subcontract finance
+        - generic: chevron_forward
+      - button "Subcontract order amendments":
+        - generic: description
+        - generic: Subcontract order amendments
+      - button "Subcontractor applications":
+        - generic: description
+        - generic: Subcontractor applications
+      - button "Subcontract service entries":
+        - generic: description
+        - generic: Subcontract service entries
+      - button "Subcontract work corrections":
+        - generic: description
+        - generic: Subcontract work corrections
+      - button "Stores & Receipts":
+        - generic: inventory_2
+        - generic: Stores & Receipts
+        - generic: chevron_forward
+      - button "Labour & plant allocation":
+        - generic: description
+        - generic: Labour & plant allocation
+      - button "Labour & plant actual feeds":
+        - generic: description
+        - generic: Labour & plant actual feeds
+      - button "P6 schedule progress":
+        - generic: description
+        - generic: P6 schedule progress
+      - button "Finance":
+        - generic: account_balance
+        - generic: Finance
+        - generic: chevron_forward
+      - button "Quality, HSE & Specifications" [expanded]:
+        - generic: fact_check
+        - generic: Quality, HSE & Specifications
+        - generic: expand_more
+      - list:
+        - button "Snags & defects":
+          - generic: fact_check
+          - generic: Snags & defects
+        - button "Quality & HSE Actions":
+          - generic: fact_check
+          - generic: Quality & HSE Actions
+        - button "Document Control & Specifications":
+          - generic: fact_check
+          - generic: Document Control & Specifications
+        - button "Reviews & Turnaround":
+          - generic: fact_check
+          - generic: Reviews & Turnaround
+      - button "People & HR":
+        - generic: folder
+        - generic: People & HR
+        - generic: chevron_forward
+      - button "Time Off":
+        - generic: folder
+        - generic: Time Off
+        - generic: chevron_forward
+      - button "Attendance":
+        - generic: folder
+        - generic: Attendance
+        - generic: chevron_forward
+      - button "Timesheets":
+        - generic: folder
+        - generic: Timesheets
+        - generic: chevron_forward
+      - button "Plant & Equipment":
+        - generic: folder
+        - generic: Plant & Equipment
+        - generic: chevron_forward
+      - button "Fleet":
+        - generic: folder
+        - generic: Fleet
+        - generic: chevron_forward
+      - button "Contacts & Masters":
+        - generic: folder
+        - generic: Contacts & Masters
+        - generic: chevron_forward
+      - button "Team Discussions":
+        - generic: folder
+        - generic: Team Discussions
+        - generic: chevron_forward
+      - button "My Tasks":
+        - generic: description
+        - generic: My Tasks
+      - button "Users & Access":
+        - generic: folder
+        - generic: Users & Access
+        - generic: chevron_forward
+      - button "Administration":
+        - generic: settings
+        - generic: Administration
+        - generic: chevron_forward
+  - text: JAKH Contracting Platform
+  - link "Help & product information":
+    - /url: /jakh/help
+- banner:
+  - navigation:
+    - text: apps
+    - menu:
+      - button "Messages 1":
+        - img "Messages": forum
+        - generic: "1"
+      - button "Activities":
+        - img "Activities": schedule
+      - button "View as":
+        - generic: visibility
+        - generic: View as
+      - button "التبديل إلى العربية":
+        - text: language
+        - generic: العربية
+      - button "JAKH Demo Contracting LLC":
+        - text: business
+        - generic: JAKH Demo Contracting LLC
+      - text: contrast
+      - button:
+        - text: database
+- note: Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+- button "New"
+- list:
+  - link "Quality & HSE Actions":
+    - /url: /jakh/action-620
+- generic: Honeycombing at column C-14 (Feb)
+- button "Actions menu":
+  - generic: more_vert
+- search:
+  - navigation "Pager":
+    - generic: "1"
+    - text: / 1
+    - button "Previous" [disabled]:
+      - generic: arrow_back_ios_new
+    - button "Next" [disabled]:
+      - generic: arrow_forward_ios
+- main:
+  - radiogroup "Statusbar":
+    - radio "Verified / Closed" [checked] [disabled]
+    - radio "Resolved" [disabled]
+    - radio "In Progress" [disabled]
+    - radio "Awaiting Review" [disabled]
+    - radio "Draft" [disabled]
+    - text: chevron_forward
+  - generic: Name
+  - textbox "Name": Honeycombing at column C-14 (Feb)
+  - generic: Kind
+  - textbox "Kind": Non-conformance
+  - generic: Project
+  - combobox "Project": Marina Gate Residences G+4
+  - generic: Wbs
+  - combobox "Wbs": Frame, slabs and blockwork
+  - generic: Responsible
+  - combobox "Responsible": Grace Thomas
+  - generic: Due Date
+  - text: calendar_today
+  - button "Due Date": Feb 15
+  - generic: Severity
+  - textbox "Severity": High
+  - text: Authority Reference
+  - superscript: "?"
+  - textbox "Authority Reference?"
+  - list:
+    - tab "Details & Hazards"
+    - tab "Resolution"
+    - tab "Lifecycle" [active]
+  - generic: Submitted At
+  - generic: Feb 10, 2:00 PM
+  - generic: Resolved At
+  - generic: Feb 10, 2:00 PM
+  - generic: Closed At
+  - generic: Feb 10, 2:00 PM
+  - generic: Verified By
+  - link "Grace Thomas":
+    - /url: /odoo/res.users/37
+  - generic: Add verification files using the attachment control in the chatter. Standards references require project approval and do not establish statutory compliance.
+  - button "Send message"
+  - button "Log note"
+  - button "Activity"
+  - button "Search Messages":
+    - img: search
+  - button "Attach files":
+    - generic: attach_file
+    - superscript: "1"
+  - button "0":
+    - img: person
+    - superscript: "0"
+  - generic: 😶
+  - generic: No messages yet.

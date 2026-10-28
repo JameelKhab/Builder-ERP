@@ -155,9 +155,13 @@
       "domain": "D01",
       "source_path": "Reports > Quality / HSE Reporting",
       "destination": "Project or Company > Reports · Quality / HSE Reporting",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Current NCR report by company/project/state/severity with full-population findings, source links and CSV; closed/reopened cases reconcile by current state. Full quality/HSE inspection KPIs, aging, period/cutoff history and source parity remain open.",
+      "evidence": [
+        "app/tests/quality.test.mjs",
+        "app/tests/quality-api.test.mjs",
+        "docs/validation/quality/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Closed and reopened NCRs follow defined counts, not duplicate cases.",
       "source_verification_remaining": "Report joins, permission filters, reversal handling, snapshot dates, policy approval, scheduler and share-token behaviour remain untested in JAKH. No full report-result reconciliation or JAKH data import has occurred."
@@ -1902,9 +1906,13 @@
       "domain": "D16",
       "source_path": "Quality, HSE & Specifications > Quality & HSE Actions",
       "destination": "Project > Site > Quality & safety",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Typed NCR observation, containment, cause/disposition, independently reviewed plans, corrective actions, hashed local evidence, independent verification/failure/closure/reopening and history. Consequence follow-ups are explicit but downstream posting/resolution, broader HSE/inspection/ITP and source parity remain open.",
+      "evidence": [
+        "app/tests/quality.test.mjs",
+        "app/tests/quality-api.test.mjs",
+        "docs/validation/quality/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "A remedy cannot close a case without required verification evidence.",
       "source_verification_remaining": "Confirm source NCR transition requirements, HSE reporting/restrictions, review routing and enforcement of superseded drawings/hold points. The external NCR-kit reference was contextual; no kit was purchased/imported and its content is not proof of JAKH capability."
@@ -3182,12 +3190,13 @@
       "source_path": "Administration > Business Audit",
       "destination": "Company > Administration · Business Audit",
       "local_status": "partial",
-      "implemented_and_remaining": "Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open.",
+      "implemented_and_remaining": "Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. NCR cycle/plan/action/evidence snapshots and independent decisions are now also append-only.",
       "evidence": [
         "app/tests/access.test.mjs",
         "app/tests/foundations.test.mjs",
         "app/tests/foundations-api.test.mjs",
-        "docs/implementation/contracts/foundations-v1.md"
+        "docs/implementation/contracts/foundations-v1.md",
+        "app/tests/quality.test.mjs"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A rejected unauthorised action is distinguishable from a completed change.",
@@ -3624,20 +3633,22 @@
     {
       "id": "M27",
       "subject": "Documents",
-      "status": "open",
+      "status": "foundation",
       "required_fields": "identity, type, revision, content hash, issue purpose, distribution, history",
       "invariant": "Approved not automatically current/IFC; preserve files and hashes",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": "Hashed immutable NCR evidence bytes and authorised attachment downloads; controlled document identity/revisions, distribution and retention remain open."
     },
     {
       "id": "M28",
       "subject": "Quality/NCR",
-      "status": "open",
+      "status": "partial",
       "required_fields": "requirement, containment, cause, remedy, verifier, close/reopen, effects",
       "invariant": "Closure requires configured evidence/authority",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": "Original NCR lifecycle with scoped independent review, evidence, consequence follow-ups and current-state reports. Wider quality/HSE/inspection and source reconciliation remain open."
     },
     {
       "id": "M29",
@@ -3674,7 +3685,8 @@
       "invariant": "Stale-version decisions rejected; immutable history",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open."
+      "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
+      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open."
     },
     {
       "id": "M33",
@@ -3949,7 +3961,7 @@
       "route": "Project > Site > Quality & safety; Documents > Controlled documents / Reviews; Handover > Snags",
       "evidence": "09-11, 34-35, 43-45, 56-60, 82",
       "observed": "Quality/HSE action and NCR records were inspected; document categories include drawings, submittals, specifications, methods, ITP and correspondence. Approved revision B was Current while approved A was Superseded. Review report includes reviewer, due/completed dates, state, register status, issued-for-construction and cycle/age. Snag links location, WBS/BOQ and contractor.",
-      "current": "Read-only NCR, drawing, RFI and snag examples. No controlled revision workflow, attachment storage, review routing, ITP holds, NCR verification or closure/reopening.",
+      "current": "Operational NCR subset: immediate containment, plan/action control, independent review and verification, local hashed evidence, closure/reopen, company/project reports and follow-ups. HSE/inspection/ITP, controlled documents, snagging and downstream impact resolution remain open.",
       "preserve": "Keep NCR requirement/inspection, containment, root cause, disposition/remedy, responsible party, evidence, independent verification and closure/reopen. Connect cost, waste, change and delay consequences. Documents require unique identity plus revision, issue purpose, supersession, distributions and review history; approval is distinct from current/issued-for-construction.",
       "data": "Quality/HSE cases; severity/type; requirement/inspection reference; remedies/verifications; attachments/photos; document identities/revisions/hashes; review cycles/transmittals; snag locations and acceptance.",
       "verify": "Confirm source NCR transition requirements, HSE reporting/restrictions, review routing and enforcement of superseded drawings/hold points. The external NCR-kit reference was contextual; no kit was purchased/imported and its content is not proof of JAKH capability.",

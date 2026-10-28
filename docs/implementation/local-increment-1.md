@@ -87,3 +87,7 @@ This sequence is a working delivery proposal, not removal or postponement withou
 ## 29 October — Contacts, supplier terms and catalogue
 
 The latest operational subset adds shared party identity with separate company terms, independent supplier currency/payment-day approval, purchasing blocks, product/category maintenance, fixed units/precision and explicit purchase packs. Quotations/orders preserve identity, terms and conversion snapshots. My Work/search and both-company examples are connected. See [master implementation](masters-local.md); every full-comparison domain remains tracked and no parity/migration completion is claimed.
+
+## NCR continuation · schema 7
+
+A connected original NCR workflow now adds immediate containment, independent plan review, assigned corrective actions, hashed local evidence, verification/failure/closure/reopening, search/My Work and project/company findings/export. Five synthetic scenarios per project preserve earlier data. See [quality-local.md](quality-local.md); this is a partial operational domain, not full quality/HSE or migration acceptance.

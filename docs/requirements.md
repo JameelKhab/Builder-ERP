@@ -130,3 +130,7 @@ Company/project/location/WBS and original/revised budget controls now have typed
 ## 29 October — Master maintenance progress
 
 Original company party/contact records, independent supplier terms/currency review and material/service catalogue/pack definitions now connect to procurement. Quote/order snapshots preserve historic identity and currency/unit meaning; controls apply in services and local HTTP. Full party, pricing, configuration, accounting and migration requirements remain in scope. See `implementation/masters-local.md`.
+
+## NCR implementation continuation
+
+The local original NCR subset now connects requirement/location/WBS, immediate containment, root-cause/disposition/actions, independent plan and verification decisions, original evidence bytes and closure/reopen history. Cost/waste/change/delay follow-ups remain distinct obligations; no automatic downstream posting is claimed. F013/F149/M28 remain partial; full quality/HSE, controlled-document, handover, migration and usability acceptance remain required.

@@ -26,6 +26,8 @@ Individual local accounts now support owner setup, reviewed activation, sessions
 
 Company contacts, independently reviewed supplier currencies/terms and catalogue/pack maintenance now connect to purchasing, with historical document snapshots and company-specific examples. See [master implementation](docs/implementation/masters-local.md). Full pricing/configuration and other retained ERP domains remain open.
 
+NCRs now support immediate containment, independent corrective-plan review, action evidence, verification/closure/reopening and scoped findings/export. See [NCR implementation](docs/implementation/quality-local.md). Other quality/HSE/inspection/document/handover scope remains open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
@@ -70,7 +72,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 109 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms and catalogue screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 122 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms and catalogue screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

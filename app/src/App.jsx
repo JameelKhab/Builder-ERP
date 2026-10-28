@@ -1,3 +1,4 @@
+import { Quality } from './Quality.jsx';
 import { Masters } from './Masters.jsx';
 import { Account } from './Identity.jsx';
 import { Foundations, Organisation } from './Foundations.jsx';
@@ -43,9 +44,10 @@ export function App({
   const caps = workspace?.capabilities || [];
   const can = cap => caps.includes(cap);
   const canOpenOrderSource = row => boot.grants.some(g => g.company_id === row.company_id && (g.project_id === '*' || g.project_id === row.project_id) && g.capabilities.some(c => ['requests.read', 'materials.read'].includes(c)));
+  const qualityProjects = (boot?.projects || []).filter(p => p.company_id === companyId && boot.grants.some(g => g.company_id === p.company_id && (g.project_id === '*' || g.project_id === p.id) && g.capabilities.includes('quality.read')));
   const reportProjects = (boot?.projects || []).filter(p => boot.grants.some(g => g.company_id === p.company_id && (g.project_id === '*' || g.project_id === p.id) && g.capabilities.includes('cost.read')));
   const areaVisible = area => area === 'Overview' || (CATEGORIES[area] || []).some(([category]) => canCategory(caps, category));
-  const globalVisible = title => title === 'Organisation' && !!boot?.actor.organisation_admin && !boot?.preview || title === 'Home' || title === 'My Work' && (can('requests.read') || can('budgets.approve') || can('budgets.write')) || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
+  const globalVisible = title => title === 'Organisation' && !!boot?.actor.organisation_admin && !boot?.preview || title === 'Home' || title === 'My Work' && (can('requests.read') || can('budgets.approve') || can('budgets.write') || can('quality.read')) || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
   async function previewUser(id) {
     close();
     setWorkspace(null);
@@ -134,6 +136,14 @@ export function App({
     setModal(null);
   };
   async function openRecord(id) {
+    if (/^NCR-[A-F0-9]{8}$/.test(id)) {
+      setModal({
+        type: 'quality',
+        title: 'Quality & NCRs',
+        id
+      });
+      return;
+    }
     if (id.startsWith('MASTER-')) {
       setModal({
         type: 'masters',
@@ -360,6 +370,7 @@ export function App({
     if (['Project setup', 'Budget control'].includes(route.category)) return <Foundations key={companyId + projectId + route.category} company={company} project={project} preview={!!boot.preview} initial={route.category === 'Budget control' ? 'budget' : 'setup'} onChanged={reloadFoundations} />;
     if (route.area === 'Overview') return overview();
     if (['Purchase requests', 'Orders & deliveries'].includes(route.category)) return <Procurement key={companyId + projectId + route.category} company={company} project={project} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialTab={route.category === 'Orders & deliveries' ? 'orders' : 'requests'} />;
+    if (route.category === 'Quality & safety') return <><Quality key={companyId + projectId} company={company} project={project} projects={qualityProjects} preview={!!boot.preview} /><details className='record-section'><summary>Earlier quality & HSE examples · read only</summary><RecordTable rows={workspace.records.filter(r => r.category === 'Quality & safety')} onOpen={openRecord} /></details></>;
     if (route.category === 'Cost report') return <CostReport key={companyId + projectId} company={company} projects={reportProjects} initialProject={projectId} onSource={sources} onExplain={explain} />;
     if (route.category) {
       const group = (CATEGORIES[route.area] || []).find(g => g[0] === route.category);
@@ -386,6 +397,7 @@ export function App({
   }
   function companyArea() {
     if (route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your role in this company.</Empty>;
+    if (route.category === 'quality') return <Quality key={companyId} company={company} projects={qualityProjects} preview={!!boot.preview} />;
     if (route.category === 'vendors') return <Masters key={companyId} company={company} preview={!!boot.preview} />;
     if (route.category === 'setup') return <Foundations key={companyId} company={company} preview={!!boot.preview} onChanged={reloadFoundations} />;
     if (route.category === 'resources') return <><h2>Resources</h2><p className="muted">Plant and materials across your authorised projects.</p>{directory(COMPANY_GROUPS.flatMap(([, entries]) => entries).filter(e => ['Plant & equipment', 'Stores'].includes(e[2]) && canCategory(caps, e[2])).map(e => [e[0], e[1]]), title => nav('Company', 'Overview', title === 'Assets & fleet' ? 'Plant & equipment' : 'Stores'))}</>;
@@ -407,6 +419,7 @@ export function App({
 <h2>{group}</h2>{directory(entries.map(e => [e[0], e[1]]), title => nav('Company', 'Overview', entries.find(e => e[0] === title)[2]))}</section>)}</>;
   }
   function modalBody() {
+    if (modal.type === 'quality') return <Quality key={companyId + modal.id} company={company} projects={qualityProjects} preview={!!boot.preview} initialRecord={modal.id} onChanged={refresh} />;
     if (modal.type === 'masters') return <Masters key={companyId + modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id} onChanged={refresh} />;
     if (modal.type === 'account') return <Account mode={boot.mode} onSetup={onSetup} onSignOut={onSignOut} />;
     if (modal.type === 'budget') return <Foundations key={modal.id} company={company} preview={!!boot.preview} initial='budget' initialRecord={modal.id} onChanged={reloadFoundations} />;
@@ -541,12 +554,12 @@ export function App({
 <section>
 <div className="section-head">
 <h2>Awaiting your review</h2>
-</div>{(workspace.master_reviews || []).map(p => <button className='budget-work-link' key={p.id} onClick={() => openRecord(p.id)}><strong>{p.name}</strong><span>Supplier terms · Independent review{p.stale ? ' · Needs revision' : ''}</span><ArrowRight size={18} /></button>)}{(workspace.budget_documents || []).filter(d => d.can_review).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget approval · {amount(d.approval_amount, company.currency)}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.can_approve))}{requestList(workspace.requests.filter(r => r.can_review))}</section>
+</div>{(workspace.quality_cases || []).filter(c => c.can_review).map(c => <button className='budget-work-link' key={c.id} onClick={() => openRecord(c.id)}><strong>{c.title}</strong><span>NCR · {c.state_label} · {c.project}</span><ArrowRight size={18} /></button>)}{(workspace.master_reviews || []).map(p => <button className='budget-work-link' key={p.id} onClick={() => openRecord(p.id)}><strong>{p.name}</strong><span>Supplier terms · Independent review{p.stale ? ' · Needs revision' : ''}</span><ArrowRight size={18} /></button>)}{(workspace.budget_documents || []).filter(d => d.can_review).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget approval · {amount(d.approval_amount, company.currency)}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.can_approve))}{requestList(workspace.requests.filter(r => r.can_review))}</section>
 <section className="spaced">
 <div className="section-head">
-<h2>Your drafts & requests</h2>
-</div>{(workspace.budget_documents || []).filter(d => d.author_id === boot.actor.id && ['draft', 'returned', 'submitted'].includes(d.state)).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget · {d.state}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
+<h2>Your drafts & assigned work</h2>
+</div>{(workspace.quality_cases || []).filter(c => (c.my_case || c.my_action) && !['closed', 'cancelled'].includes(c.state)).map(c => <button className='budget-work-link' key={c.id} onClick={() => openRecord(c.id)}><strong>{c.title}</strong><span>NCR · {c.state_label} · Due {dueLabel(c.due_date)}</span><ArrowRight size={18} /></button>)}{(workspace.budget_documents || []).filter(d => d.author_id === boot.actor.id && ['draft', 'returned', 'submitted'].includes(d.state)).map(d => <button className='budget-work-link' key={d.id} onClick={() => openRecord(d.id)}><strong>{d.title}</strong><span>Budget · {d.state}</span><ArrowRight size={18} /></button>)}{typedRequestList((workspace.material_requests || []).filter(r => r.requester_id === boot.actor.id))}{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
 </>}</>}</div>
 </main>
-</div>{modal && <Modal title={modal.title} onClose={close} wide={['masters', 'account', 'budget', 'procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
+</div>{modal && <Modal title={modal.title} onClose={close} wide={['quality', 'masters', 'account', 'budget', 'procurement', 'request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
 }

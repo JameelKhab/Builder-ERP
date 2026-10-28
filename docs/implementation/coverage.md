@@ -4,6 +4,8 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+NCRs now have a connected original lifecycle, local evidence files, independent plan/verification decisions, immediate containment, consequences and company/project findings. See `quality-local.md` and `contracts/quality-v1.md`. Broader quality/HSE/inspection/document/handover and downstream consequence resolution remain open.
+
 Company contacts, independently reviewed supplier terms/currencies and typed catalogue/pack maintenance now connect to quotations, orders and historical snapshots. My Work/search and company examples are included. See `masters-local.md` and `contracts/masters-v1.md`. Full party/pricelist/configuration scope remains open.
 
 Individual local sign-in now includes reviewed provisioning/activation, session/recovery controls and independent access administration. Real two-user budget/purchase approval is verified. See `identity-local.md` and `contracts/identity-v1.md`.
@@ -40,7 +42,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F010 | Reports > Project cash forecasts | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F011 | Reports > Project cash forecast | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F012 | Reports > Posted Ledger | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F013 | Reports > Quality / HSE Reporting | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F013 | Reports > Quality / HSE Reporting | partial | Current NCR report by company/project/state/severity with full-population findings, source links and CSV; closed/reopened cases reconcile by current state. Full quality/HSE inspection KPIs, aging, period/cutoff history and source parity remain open. |
 | F014 | Reports > Project-control audit | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F015 | Reports > Scheduled reports | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F016 | Reports > Document Lifecycle Reporting | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -176,7 +178,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F146 | Finance > Configuration > Invoicing > Payment Terms | foundation | Independently approved company supplier payment days/effective dates freeze into quotations/orders. Full payment-term schedules, instalments, discounts, customer terms and invoice/accounting integration remain open. |
 | F147 | Finance > Configuration > Invoicing > Product Categories | partial | Company product category create/rename/archive with stable IDs and retained product/history links. Hierarchy, accounting/valuation policies and source import remain open. |
 | F148 | Quality, HSE & Specifications > Snags & defects | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F149 | Quality, HSE & Specifications > Quality & HSE Actions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F149 | Quality, HSE & Specifications > Quality & HSE Actions | partial | Typed NCR observation, containment, cause/disposition, independently reviewed plans, corrective actions, hashed local evidence, independent verification/failure/closure/reopening and history. Consequence follow-ups are explicit but downstream posting/resolution, broader HSE/inspection/ITP and source parity remain open. |
 | F150 | Quality, HSE & Specifications > Document Control & Specifications | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F151 | Quality, HSE & Specifications > Reviews & Turnaround | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F152 | People & HR > Management | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -279,7 +281,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F249 | Administration > Cost Codes | partial | Company-scoped cost-code creation and WBS association with audit evidence. Full code lifecycle, classification and migration remain open. |
 | F250 | Administration > Buildings, floors & zones | partial | Create/edit stable site/building/floor/unit/zone/system hierarchy; scoped cycle checks, hierarchy ordering, reasons and versions. Archive/effective-date policy and source import remain open. |
 | F251 | Administration > Construction disciplines | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F252 | Administration > Business Audit | partial | Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. |
+| F252 | Administration > Business Audit | partial | Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. NCR cycle/plan/action/evidence snapshots and independent decisions are now also append-only. |
 | F253 | Administration > Project threshold rules | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F254 | Administration > Implementation workbook | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F255 | Administration > CRM Data Import | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |

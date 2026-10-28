@@ -1,3 +1,4 @@
+import { quality } from './quality.mjs';
 import { masters } from './masters.mjs';
 import { legacyMaster, freezeMaster, usableSupplier } from './master-rules.mjs';
 import { foundations } from './foundations.mjs';
@@ -393,6 +394,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         budgets: []
       };
       return {
+        quality_cases: access.has('quality.read', company, project, !project) ? quality(db, actorId, today).list(company, project) : [],
         master_reviews: access.has('suppliers.approve', company, null) ? masters(db, actorId, today).workspace(company).pending.filter(p => p.can_decide).map(p => ({
           ...p,
           id: 'MASTER-party:' + p.party_id
@@ -452,7 +454,12 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         location: p.kind + ' · ' + p.uom,
         status: p.active ? 'Active' : 'Archived'
       }))];
-      return [...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const qualityRows = access.has('quality.read', company, null, true) ? quality(db, actorId, today).list(company).map(r => ({
+        ...r,
+        category: 'Quality & safety',
+        status: r.state_label
+      })) : [];
+      return [...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

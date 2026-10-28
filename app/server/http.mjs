@@ -1,3 +1,4 @@
+import { quality } from './quality.mjs';
 import { masters } from './masters.mjs';
 import { identity } from './identity.mjs';
 import { foundations } from './foundations.mjs';
@@ -56,6 +57,9 @@ export function createApi(db, {
     });
     next();
   });
+  app.use('/api/quality/cases/:id/evidence', express.json({
+    limit: '3mb'
+  }));
   app.use(express.json({
     limit: '24kb'
   }));
@@ -132,6 +136,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.quality = quality(db, session.previewId || session.actorId, today);
     req.masters = masters(db, session.previewId || session.actorId, today);
     req.foundations = foundations(db, session.previewId || session.actorId, today);
     req.procurement = procurement(db, session.previewId || session.actorId, today);
@@ -206,6 +211,32 @@ export function createApi(db, {
   app.post('/api/requests', (req, res) => res.status(201).json(req.service.create(req.body)));
   app.put('/api/requests/:id', (req, res) => res.json(req.service.update(req.params.id, req.body)));
   app.post('/api/requests/:id/decision', (req, res) => res.json(req.service.decide(req.params.id, req.body)));
+  app.get('/api/quality', (req, res) => res.json(req.quality.list(req.query.company, req.query.project || null)));
+  app.get('/api/quality/options', (req, res) => res.json(req.quality.options(req.query.company, req.query.project)));
+  app.get('/api/quality/report', (req, res) => res.json(req.quality.report(req.query.company, req.query.project || null, {
+    state: req.query.state || '',
+    severity: req.query.severity || ''
+  })));
+  app.get('/api/quality/cases/:id', (req, res) => res.json(req.quality.detail(req.params.id)));
+  app.post('/api/quality/cases', (req, res) => res.status(201).json(req.quality.save(null, req.body)));
+  app.put('/api/quality/cases/:id', (req, res) => res.json(req.quality.save(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/containment', (req, res) => res.json(req.quality.contain(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/plan', (req, res) => res.json(req.quality.plan(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/evidence', (req, res) => res.json(req.quality.attach(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/decision', (req, res) => res.json(req.quality.decide(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/assignment', (req, res) => res.json(req.quality.reassign(req.params.id, req.body)));
+  app.post('/api/quality/cases/:id/actions/:action/complete', (req, res) => res.json(req.quality.completeAction(req.params.id, req.params.action, req.body)));
+  app.post('/api/quality/cases/:id/actions/:action/assignment', (req, res) => res.json(req.quality.reassignAction(req.params.id, req.params.action, req.body)));
+  app.get('/api/quality/evidence/:id', (req, res) => {
+    const e = req.quality.download(req.params.id);
+    res.set({
+      'Content-Type': e.mime,
+      'Content-Disposition': `attachment; filename*=UTF-8''${encodeURIComponent(e.filename)}`,
+      'Content-Security-Policy': "default-src 'none'; sandbox",
+      'Content-Length': String(e.size)
+    });
+    res.send(Buffer.from(e.content));
+  });
   app.get('/api/masters', (req, res) => res.json(req.masters.workspace(req.query.company)));
   app.get('/api/masters/parties/:id', (req, res) => res.json(req.masters.partyDetail(req.query.company, req.params.id)));
   app.post('/api/masters/parties', (req, res) => res.status(201).json(req.masters.saveParty(null, req.body)));

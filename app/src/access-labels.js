@@ -8,6 +8,7 @@ const areas = {
   receipts: 'Deliveries',
   stock: 'Stock movements',
   wbs: 'Work breakdown',
+  quality: 'Quality & NCRs',
   finance: 'Finance',
   people: 'People'
 };
@@ -18,6 +19,7 @@ export function permissionLabel(value) {
     read: 'view',
     write: 'create and revise',
     manage: 'manage',
+    review: 'independent review',
     approve: 'approve within assigned limits'
   }[action] || action}`;
 }
