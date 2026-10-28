@@ -116,3 +116,9 @@ Start with governed data, rules-based summaries, search and explanations; then r
 - Test AI hallucination, fabricated citations, malicious document instructions, restricted data requests and attempted unauthorised actions; core workflows and calculated summaries must work during outages.
 - Verify accessibility, keyboard/focus, zoom, mobile/poor connectivity where required, roles, accounting controls, migration, backups and recovery before replacement.
 - No production deployment until local completion and a later explicit deployment instruction.
+
+## 28 October 2026 — Destination landing page and access migration
+
+Confirmed user instruction: begin building from the supplied full comparison. Re-study JAKH access before enhancing it. Use the idea of clear permission-dependent landing destinations, with an original Builder visual identity rather than an Odoo look. This supersedes the earlier requirement to keep exactly four global starting points; those work areas remain available beneath Home.
+
+Implemented scope and verified boundaries: `implementation/access-and-destinations.md`. Every role/company/project restriction must apply to the service, field projection, report, search, related links, export and future AI context. Menu visibility is not authorization. Preserve source distinctions between role presets, company/project assignments, commercial pricing, business read-only access and approval authority. Unknown or unsupported permissions fail closed.

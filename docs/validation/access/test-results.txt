@@ -1,0 +1,58 @@
+
+> builder-erp@0.0.0 test
+> node --test tests/*.test.mjs
+
+✔ site engineer has operational destinations without commercial, HR or admin access (36.891833ms)
+✔ pricing is withheld across request lookup, workspace, search, preview and linked records (36.757875ms)
+✔ HR and system administration do not imply financial access; unknown records fail closed (12.394917ms)
+✔ every role has an explicit available capability contract and auditors cannot mutate (6.229333ms)
+✔ a role in one project cannot widen reporting or record access in another (6.624625ms)
+✔ reviewed access changes are atomic, versioned, reasoned and recorded with before/after (10.718667ms)
+✔ invalid grants cannot expand authority or partially replace existing permissions (5.781125ms)
+✔ revocation takes effect for an existing service and disabled reviewers receive no work (6.560167ms)
+✔ purchase pricing does not grant budget, forecast or cash access through request details (4.930625ms)
+✔ removing all grants leaves an active account with no visible companies, projects or records (5.306834ms)
+✔ HTTP boundary requires a session, blocks cross-origin writes and scopes direct endpoints (70.359583ms)
+✔ access preview is administrator-only, server-enforced read-only, and revocation invalidates sessions (54.229166ms)
+✔ a normal session cannot impersonate another user and logout revokes its token (10.072584ms)
+✔ rounding boundaries and negative values use half away from zero (1.020875ms)
+✔ cent round-trip for positive and negative values (2.583ms)
+✔ money uses exact decimal arithmetic and rounds the document amount before conversion (1.7065ms)
+✔ company and project permissions apply to direct lookup, search, reports and creation (11.396541ms)
+✔ cross-company vendor, project and cost-item references are rejected (2.37875ms)
+✔ currency and price come from the selected company vendor quote, not client amounts (2.364667ms)
+✔ vendor optional estimates use company currency; missing quantity and price are rejected (2.055875ms)
+✔ stale rates and expired quotations block repricing and approval (3.519041ms)
+✔ independent approval persists a versioned event and does not manufacture costs or cash (7.874417ms)
+✔ changed vendor terms cannot be approved using an earlier request snapshot (7.485459ms)
+✔ self approval and role escalation via client payload are forbidden (4.467375ms)
+✔ submission does not route to a reviewer outside the company (3.1ms)
+✔ return, reprice, resubmit and approval preserve history and enforce current revision (7.109208ms)
+✔ concurrent reviewers cannot approve the same revision twice (3.213333ms)
+✔ budget reservations are transactional and prevent another approval exceeding allowance (4.320875ms)
+✔ approval limits apply to converted company amount (2.515708ms)
+✔ the complete report, source rows and findings share one versioned snapshot (3.941583ms)
+✔ company reports include non-project overheads and do not mix legal currencies (2.945ms)
+✔ missing forecasts remain unknown, never zero or an apparently complete partial total (2.255125ms)
+✔ invalid dates and oversized descriptions fail without creating records (3.4895ms)
+✔ history cannot be edited or deleted through normal database statements (1.922125ms)
+✔ local changes survive database reopen without fixture reseeding (10.103958ms)
+✔ every visible feature has examples in every sample company and project (94.874666ms)
+✔ example records contain substantive detail, history and resolvable scoped relationships (58.682334ms)
+✔ expanded examples respect company and project permissions, including related work (15.306125ms)
+✔ request examples reconcile currencies and have valid independent approval histories (9.732083ms)
+✔ installing examples upgrades existing data once without overwriting work or financial snapshots (17.37975ms)
+✔ money display preserves exact long amounts and fractional unit prices (0.750125ms)
+✔ export includes full-scope findings before all rows, even when the UI is paginated (7.058542ms)
+✔ serves existing static assets without a fallback (20.825625ms)
+✔ falls back to index.html for an unknown app route (1.474959ms)
+✔ does not turn missing API or write requests into the app shell (0.689792ms)
+✔ emits the files required by Sites packaging (4.1765ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 434.029334

@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { D, DomainError, requireThat, money, price, sum } from './money.mjs';
 import { transaction } from './db.mjs';
+import { policy, safeDetails } from './access.mjs';
 import { SAMPLE_DATE } from './seed.mjs';
 const readableMoney = value => {
   const [integer, fraction] = money(value).split('.');
@@ -11,12 +12,12 @@ const requiredText = (value, name, max = 160) => {
   return value.trim();
 };
 export function createService(db, actorId, today = () => new Date().toISOString().slice(0, 10)) {
-  const actor = db.prepare('SELECT * FROM users WHERE id=?').get(actorId);
-  requireThat(actor, 'Unknown user.', 401);
-  const memberships = db.prepare('SELECT * FROM memberships WHERE user_id=?').all(actorId);
-  const allowed = (company, project) => memberships.some(m => m.company_id === company && (m.project_id === '*' || project && m.project_id === project));
+  const access = policy(db, actorId),
+    actor = access.actor();
+  const memberships = () => access.grants();
+  const allowed = (company, project) => memberships().some(m => m.company_id === company && (m.project_id === '*' || project && m.project_id === project));
   const scope = (company, project = null) => {
-    requireThat(memberships.some(m => m.company_id === company), 'Company is not available.', 404);
+    requireThat(memberships().some(m => m.company_id === company), 'Company is not available.', 404);
     if (project) requireThat(db.prepare('SELECT id FROM projects WHERE id=? AND company_id=?').get(project, company) && allowed(company, project), 'Project is not available.', 404);
     return {
       company,
@@ -24,29 +25,51 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     };
   };
   const visible = (rows, company, project) => rows.filter(row => row.company_id === company && (!project || row.project_id === project) && allowed(row.company_id, row.project_id));
-  const getRequest = id => {
+  const getRequest = (id, internal = false) => {
     const row = db.prepare('SELECT r.*,u.name requester,v.name vendor_name,c.currency company_currency FROM requests r JOIN companies c ON r.company_id=c.id JOIN users u ON r.requester_id=u.id LEFT JOIN vendors v ON r.vendor_id=v.id AND r.company_id=v.company_id WHERE r.id=?').get(id);
-    requireThat(row && allowed(row.company_id, row.project_id), 'Request is not available.', 404);
+    requireThat(row && allowed(row.company_id, row.project_id) && access.has('requests.read', row.company_id, row.project_id), 'Request is not available.', 404);
     const history = db.prepare('SELECT e.*,u.name actor FROM events e JOIN users u ON e.actor_id=u.id WHERE request_id=? ORDER BY e.id').all(id);
     const item = db.prepare('SELECT * FROM cost_items WHERE id=?').get(row.item_id);
     const reservations = sum(db.prepare("SELECT company_amount FROM requests WHERE item_id=? AND status='approved' AND id<>?").all(row.item_id, id).map(r => r.company_amount));
     const available = new D(item.request_allowance).minus(reservations);
-    const approver = memberships.find(m => m.company_id === row.company_id && (m.project_id === '*' || m.project_id === row.project_id) && m.can_approve);
-    return {
+    const limit = access.approvalLimit(row.company_id, row.project_id);
+    const result = {
       ...row,
       history,
       item,
       available: money(available),
       after_request: money(available.minus(row.company_amount)),
-      can_edit: row.requester_id === actorId && ['draft', 'returned'].includes(row.status),
-      can_review: Boolean(approver && row.requester_id !== actorId && row.status === 'submitted'),
-      approval_limit: approver?.approval_limit || '0'
+      can_edit: access.has('requests.write', row.company_id, row.project_id) && row.requester_id === actorId && ['draft', 'returned'].includes(row.status),
+      can_review: Boolean(new D(limit).gt(0) && row.requester_id !== actorId && row.status === 'submitted' && new D(row.company_amount).lte(limit)),
+      approval_limit: limit,
+      can_price: access.has('pricing.read', row.company_id, row.project_id),
+      can_budget: access.has('cost.read', row.company_id, row.project_id)
     };
+    if (internal) return result;
+    const publicRow = {
+      ...result
+    };
+    if (!result.can_budget) {
+      publicRow.item = {
+        id: item.id,
+        name: item.name
+      };
+      for (const field of ['available', 'after_request']) delete publicRow[field];
+    }
+    if (!result.can_price) {
+      publicRow.history = history.map(e => ({
+        ...e,
+        note: 'Event recorded. Commercial notes are restricted.'
+      }));
+      for (const field of ['unit_price', 'amount', 'company_amount', 'rate', 'rate_date', 'rate_source', 'quote', 'approval_limit']) delete publicRow[field];
+    }
+    return publicRow;
   };
   const report = (company, project = null) => {
     scope(company, project);
+    access.requireCap('cost.read', company, project, !project);
     const entity = db.prepare('SELECT * FROM companies WHERE id=?').get(company);
-    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? ORDER BY id').all(company), company, project);
+    const rows = visible(db.prepare('SELECT * FROM cost_items WHERE company_id=? ORDER BY id').all(company), company, project).filter(r => access.has('cost.read', r.company_id, r.project_id));
     const totals = {};
     for (const key of ['original_budget', 'revised_budget', 'committed', 'incurred', 'cash', 'forecast']) totals[key] = rows.some(row => row[key] === null) ? null : money(sum(rows.map(row => row[key])));
     const findings = [];
@@ -85,7 +108,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       text: `Cash paid is ${entity.currency} ${readableMoney(totals.cash)}. It is recorded separately from incurred cost and commitments.`,
       sourceIds: rows.map(r => r.id)
     });
-    const restricted = !memberships.some(m => m.company_id === company && m.project_id === '*');
+    const restricted = !memberships().some(m => m.company_id === company && m.project_id === '*' && access.has('cost.read', company, null));
     const meta = {
       company: entity,
       project: project ? db.prepare('SELECT * FROM projects WHERE id=?').get(project) : null,
@@ -120,6 +143,8 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     } = input;
     scope(company, project);
     requireThat(project, 'Select a project.');
+    access.requireCap('requests.write', company, project);
+    requireThat(input.vendor_id || access.has('pricing.read', company, project), 'Select a supplier quotation. Only procurement can enter a provisional price.', 403);
     const item = db.prepare('SELECT * FROM cost_items WHERE id=? AND company_id=? AND project_id=?').get(input.item_id, company, project);
     requireThat(item, 'Select a cost item belonging to this project.');
     const entity = db.prepare('SELECT * FROM companies WHERE id=?').get(company);
@@ -190,7 +215,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     return getRequest(id);
   });
   const update = (id, input) => transaction(db, () => {
-    const old = getRequest(id);
+    const old = getRequest(id, true);
     requireThat(input.version === old.version, 'This request changed. Reload it before editing.', 409);
     requireThat(old.can_edit, 'Only the requester can edit a draft or returned request.', 403);
     const p = preview({
@@ -204,14 +229,14 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     return getRequest(id);
   });
   const decide = (id, input) => transaction(db, () => {
-    const old = getRequest(id);
+    const old = getRequest(id, true);
     requireThat(input.version === old.version, 'This request changed. Reload it before deciding.', 409);
     requireThat(['submit', 'approve', 'return'].includes(input.action), 'Unknown action.');
     let state, owner, note;
     if (input.action === 'submit') {
       requireThat(old.can_edit, 'Only the requester can submit a draft or returned request.', 403);
       state = 'submitted';
-      const reviewers = db.prepare("SELECT u.name,m.approval_limit FROM memberships m JOIN users u ON u.id=m.user_id WHERE m.company_id=? AND (m.project_id='*' OR m.project_id=?) AND m.user_id<>? AND m.can_approve=1 ORDER BY u.name").all(old.company_id, old.project_id, actorId).filter(r=>new D(old.company_amount).lte(r.approval_limit));
+      const reviewers = db.prepare("SELECT u.id,u.name,m.approval_limit FROM memberships m JOIN users u ON u.id=m.user_id WHERE m.company_id=? AND (m.project_id='*' OR m.project_id=?) AND m.user_id<>? AND m.can_approve=1 AND u.active=1 ORDER BY u.name").all(old.company_id, old.project_id, actorId).filter(r => policy(db, r.id).has('requests.approve', old.company_id, old.project_id) && new D(old.company_amount).lte(policy(db, r.id).approvalLimit(old.company_id, old.project_id)));
       requireThat(reviewers.length > 0, 'No independent reviewer has sufficient authority for this company and project. Configure approval authority before submitting.');
       owner = reviewers[0].name;
       note = 'Submitted for independent review.';
@@ -239,51 +264,83 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     event(id, state, old.version + 1, note);
     return getRequest(id);
   });
+  const record = id => {
+    const r = db.prepare('SELECT * FROM records WHERE id=?').get(id);
+    requireThat(r && allowed(r.company_id, r.project_id) && access.record(r), 'Record is not available.', 404);
+    const raw = JSON.parse(r.details);
+    const related = (raw._example?.linkedIds || []).map(id => db.prepare('SELECT * FROM records WHERE id=?').get(id)).filter(row => row && allowed(row.company_id, row.project_id) && access.record(row)).map(({
+      id,
+      title
+    }) => ({
+      id,
+      title
+    }));
+    const details = safeDetails(raw, access.has('pricing.read', r.company_id, r.project_id));
+    if (details._example) details._example.linkedIds = related.map(r => r.id);
+    return {
+      ...r,
+      details,
+      related,
+      details_restricted: !access.has('pricing.read', r.company_id, r.project_id)
+    };
+  };
   const records = (company, project = null) => {
     scope(company, project);
-    return visible(db.prepare('SELECT * FROM records WHERE company_id=? ORDER BY due,id').all(company), company, project).map(r => ({
-      ...r,
-      details: JSON.parse(r.details)
-    }));
+    return visible(db.prepare('SELECT * FROM records WHERE company_id=? ORDER BY due,id').all(company), company, project).filter(access.record).map(r => record(r.id));
   };
   const requests = (company, project = null) => {
     scope(company, project);
-    return visible(db.prepare('SELECT * FROM requests WHERE company_id=? ORDER BY created_at DESC').all(company), company, project).map(r => getRequest(r.id));
+    return visible(db.prepare('SELECT * FROM requests WHERE company_id=? ORDER BY created_at DESC').all(company), company, project).filter(r => access.has('requests.read', r.company_id, r.project_id)).map(r => getRequest(r.id));
   };
+  const vendors = (company, project) => access.has('vendors.read', company, project, !project) ? db.prepare('SELECT * FROM vendors WHERE company_id=?').all(company).map(v => access.has('pricing.read', company, project, !project) ? v : {
+    id: v.id,
+    company_id: v.company_id,
+    name: v.name,
+    currency: v.currency
+  }) : [];
   return {
     actor,
     scope,
     report,
-    preview,
     create,
     update,
     decide,
     getRequest,
     records,
     requests,
+    record,
+    preview: input => {
+      const p = preview(input);
+      return access.has('pricing.read', input.company_id, input.project_id) ? p : {
+        quantity: p.quantity,
+        currency: p.currency,
+        vendor_id: p.vendor_id,
+        vendor_name: p.vendor_name,
+        item_id: p.item_id,
+        priced: true,
+        restricted: true
+      };
+    },
     bootstrap: () => ({
-      actor,
-      companies: db.prepare('SELECT * FROM companies').all().filter(c => memberships.some(m => m.company_id === c.id)),
-      projects: db.prepare('SELECT * FROM projects').all().filter(p => allowed(p.company_id, p.id)),
+      actor: access.actor(),
+      companies: db.prepare('SELECT * FROM companies').all().filter(c => memberships().some(m => m.company_id === c.id)),
+      projects: db.prepare('SELECT * FROM projects').all().filter(p => allowed(p.company_id, p.id) && access.has('projects.read', p.company_id, p.id)),
+      grants: memberships().map(m => ({
+        ...m,
+        capabilities: access.caps(m.company_id, m.project_id === '*' ? null : m.project_id)
+      })),
       sampleDate: SAMPLE_DATE,
       mode: 'local-sample'
     }),
-    workspace: (company, project) => ({
-      requests: requests(company, project),
-      records: records(company, project),
-      report: report(company, project),
-      vendors: db.prepare('SELECT * FROM vendors WHERE company_id=?').all(company)
-    }),
-    record: id => {
-      const r = db.prepare('SELECT * FROM records WHERE id=?').get(id);
-      requireThat(r && allowed(r.company_id, r.project_id), 'Record is not available.', 404);
-      const details = JSON.parse(r.details);
-      const related = (details._example?.linkedIds || []).map(link => db.prepare('SELECT id,title,company_id,project_id FROM records WHERE id=?').get(link)).filter(row => row && allowed(row.company_id, row.project_id)).map(({ id, title }) => ({ id, title }));
-      if (details._example) details._example.linkedIds = related.map(row => row.id);
+    workspace: (company, project) => {
+      scope(company, project);
       return {
-        ...r,
-        details,
-        related
+        capabilities: access.caps(company, project, !project),
+        requests: requests(company, project),
+        records: records(company, project),
+        report: access.has('cost.read', company, project, !project) ? report(company, project) : null,
+        vendors: vendors(company, project),
+        items: visible(db.prepare('SELECT id,company_id,project_id,name FROM cost_items WHERE company_id=?').all(company), company, project).filter(r => access.has('requests.read', company, r.project_id))
       };
     },
     search: (company, term) => {

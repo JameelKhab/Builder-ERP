@@ -60,10 +60,9 @@ test('company and project permissions apply to direct lookup, search, reports an
   }), {
     status: 404
   });
-  const company = engineer.report('jakh');
-  assert.equal(company.meta.restricted, true);
-  assert.equal(company.rows.length, 4);
-  assert.ok(company.rows.every(r => r.project_id === 'harbour'));
+  assert.throws(()=>engineer.report('jakh'),{status:403});
+  assert.equal(engineer.workspace('jakh').report,null);
+  assert.ok(engineer.workspace('jakh').items.every(r=>r.project_id==='harbour'));
 });
 test('cross-company vendor, project and cost-item references are rejected', t => {
   const {
@@ -231,7 +230,8 @@ test('return, reprice, resubmit and approval preserve history and enforce curren
     version: 3
   });
   assert.equal(revised.currency, 'AED');
-  assert.equal(revised.amount, '148000.00');
+  assert.equal(revised.amount, undefined);
+  assert.equal(manager.getRequest(revised.id).amount,'148000.00');
   assert.equal(revised.status, 'draft');
   assert.throws(() => manager.decide('PR-0264', {
     action: 'approve',

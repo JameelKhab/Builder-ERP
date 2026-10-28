@@ -1,5 +1,6 @@
 import { DatabaseSync } from 'node:sqlite';
 import { seed } from './seed.mjs';
+import { installAccess } from './access.mjs';
 import { installExamples } from './examples.mjs';
 export function openDatabase(path = ':memory:', { examples = false } = {}) {
   const db = new DatabaseSync(path);
@@ -31,6 +32,7 @@ export function openDatabase(path = ':memory:', { examples = false } = {}) {
     }
   }
   if (examples) installExamples(db);
+  installAccess(db);
   return db;
 }
 export function transaction(db, fn) {

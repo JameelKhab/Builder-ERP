@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-28",
+  "source": "https://demo.jakh.net/",
+  "local_preview": "http://127.0.0.1:4173/",
+  "test_count": 46,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "648cb5a661d409c7abbe54ff7ea9985ba9bd1852161d06113d29e3589e14fbca"
+    },
+    {
+      "path": "builder/access-review.png",
+      "sha256": "16097c030459bf1a3aca1f992431d00b4acf4343cd14b533cc5d21c7d7347474"
+    },
+    {
+      "path": "builder/home-desktop.png",
+      "sha256": "40972335030d4bf8da2d11aa35f6bb41035ad2841d5d8afdb59a30768e8eac75"
+    },
+    {
+      "path": "builder/home-mobile.png",
+      "sha256": "08c7037d6898765d207998d597f21b7ec2af68d6cbe72cbb7397c28225cca3b7"
+    },
+    {
+      "path": "builder/restricted-request.png",
+      "sha256": "31aff51d143af383cc12aca6e33564c355b9b9e2861f8c5c34d27567e05a9431"
+    },
+    {
+      "path": "builder/site-engineer-home.png",
+      "sha256": "85655812c6ec9889815c6366f80eff6c1f46d0b2e46993ca66a3a7d096b6b3e1"
+    },
+    {
+      "path": "source/manage-access.png",
+      "sha256": "c0d42708feae7f6a62221daf7abd38d7a69bb326d2b8fc3abff9da603bafcc87"
+    },
+    {
+      "path": "source/manage-access.txt",
+      "sha256": "1991b4dd8800c62a5f53e55c30ed84163808e7d83703be1c375117a8afcfecb3"
+    },
+    {
+      "path": "source/site-engineer.png",
+      "sha256": "b9a8012cd93e76ec70759188f64e4066068d2c75d198545542ae37932fdc215c"
+    },
+    {
+      "path": "source/site-engineer.txt",
+      "sha256": "5ad02b79218c33df83c7999112c8a8c50c114719f7b16017a437dcb260cbc738"
+    },
+    {
+      "path": "test-results.txt",
+      "sha256": "760edc28613c04826120a297c2e4b4502433ce8097768bee5078b8498b6f8d8d"
+    }
+  ]
+}

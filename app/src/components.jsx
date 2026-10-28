@@ -89,7 +89,10 @@ export function RecordDetail({
   project,
   onOpen
 }) {
-  const { _example: example, ...fields } = record.details;
+  const {
+    _example: example,
+    ...fields
+  } = record.details;
   return <>
 <p className="eyebrow">{company} · {project || 'Company record'}</p>
 <div className="record-context">
@@ -108,9 +111,12 @@ export function RecordDetail({
 <dt>{key}</dt>
 <dd>{value}</dd>
 </div>)}</dl>
-{example && <>
+{record.details_restricted && <p className="notice">Commercial details and free-text example history are withheld for this role.</p>}{example && <>
 <section className="record-section"><h3>Example history</h3><ol className="example-timeline">{example.timeline.map((event, index) => <li key={index}><strong>{dueLabel(event.at)} · {event.who}</strong><p>{event.text}</p></li>)}</ol></section>
-<section className="record-section"><h3>Related work</h3><p className="muted">Follow the same issue through its other records.</p><div className="related-examples">{record.related?.map(({id, title}) => <button className="secondary" key={id} onClick={() => onOpen(id)}><span>{title}<small>{id}</small></span><ArrowRight size={16} /></button>)}</div></section>
+<section className="record-section"><h3>Related work</h3><p className="muted">Follow the same issue through its other records.</p><div className="related-examples">{record.related?.map(({
+            id,
+            title
+          }) => <button className="secondary" key={id} onClick={() => onOpen(id)}><span>{title}<small>{id}</small></span><ArrowRight size={16} /></button>)}</div></section>
 </>}
 <p className="muted footnote">Sample register · read only in this increment.</p>
 </>;
@@ -195,22 +201,22 @@ export function RequestDetail({
 <tr>
 <th>Item</th>
 <th>Quantity</th>
-<th>Unit price</th>
-<th>Amount</th>
+{r.can_price && <><th>Unit price</th>
+<th>Amount</th></>}
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>{r.title}</td>
 <td>{r.quantity} {r.unit}</td>
-<td>{amount(r.unit_price, r.currency)}</td>
-<td>{amount(r.amount, r.currency)}</td>
+{r.can_price && <><td>{amount(r.unit_price, r.currency)}</td>
+<td>{amount(r.amount, r.currency)}</td></>}
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-    <section className="record-section">
+    {r.can_price ? <section className="record-section">
 <h3>Currency & budget</h3>
 <div className="metrics two">
 <div>
@@ -223,9 +229,9 @@ export function RequestDetail({
 </div>
 </div>
 <p className="muted">1 {r.currency} = {r.rate} {r.company_currency} · {r.rate_date} · {r.rate_source}{r.quote ? ` · ${r.quote}` : ''}</p>
-<div className="notice">{amount(r.available, r.company_currency)} sourcing allowance before this request. {amount(r.after_request, r.company_currency)} remaining {r.status === 'approved' ? 'after approval' : 'if approved'}.<small>This is a request allocation, separate from issued commitments, incurred cost and cash.</small>
-</div>
-</section>
+{r.can_budget && <div className="notice">{amount(r.available, r.company_currency)} sourcing allowance before this request. {amount(r.after_request, r.company_currency)} remaining {r.status === 'approved' ? 'after approval' : 'if approved'}.<small>This is a request allocation, separate from issued commitments, incurred cost and cash.</small>
+</div>}
+</section> : <p className="notice">Prices and budget values are restricted to commercial roles. The selected supplier currency is {r.currency}.</p>}
     <section className="record-section">
 <h3>Approval & record history</h3>
 <ol className="history">{r.history.map(e => <li key={e.id}>
@@ -255,6 +261,7 @@ export function RequestForm({
   project,
   vendors,
   items,
+  canPrice = true,
   existing,
   onSaved
 }) {
@@ -264,7 +271,7 @@ export function RequestForm({
     due: existing.due,
     unit: existing.unit,
     quantity: existing.quantity,
-    unit_price: existing.unit_price,
+    unit_price: existing.unit_price || '',
     vendor_id: existing.vendor_id || '',
     item_id: existing.item_id
   } : {
@@ -328,7 +335,7 @@ export function RequestForm({
   }
   return <form onSubmit={save}>
 <p className="eyebrow">{company.name} · {project.name}</p>
-<p className="muted">Start with the site need. A vendor is optional; selecting a quote sets its currency and price.</p>
+<p className="muted">{canPrice ? 'Start with the site need. A vendor is optional; selecting a quote sets its currency and price.' : 'Record the site need and select an approved supplier quotation. Procurement reviews pricing; your role sees quantities and supplier currency.'}</p>
 <ErrorBox message={error} />
 <h3>What is needed?</h3>
 <div className="form-grid">
@@ -349,10 +356,10 @@ export function RequestForm({
 <h3>Vendor & estimate</h3>
 <div className="form-grid">
 <label className="field full">Vendor quotation<select value={form.vendor_id} onChange={e => change('vendor_id', e.target.value)}>
-<option value="">No vendor yet · Estimate in {company.currency}</option>{vendors.map(v => <option key={v.id} value={v.id}>{v.name} · {v.quote} · {v.currency}</option>)}</select>
-</label>{!form.vendor_id && <label className="field">Estimated unit price · {company.currency}<input inputMode="decimal" value={form.unit_price} onChange={e => change('unit_price', e.target.value)} required />
+<option value="">{canPrice ? `No vendor yet · Estimate in ${company.currency}` : 'Select an approved supplier'}</option>{vendors.map(v => <option key={v.id} value={v.id}>{v.name} · {v.currency}{v.quote ? ` · ${v.quote}` : ''}</option>)}</select>
+</label>{canPrice && !form.vendor_id && <label className="field">Estimated unit price · {company.currency}<input inputMode="decimal" value={form.unit_price} onChange={e => change('unit_price', e.target.value)} required />
 </label>}</div>
-<ErrorBox message={previewError} />{preview && <div className="notice">
+<ErrorBox message={previewError} />{preview?.restricted ? <p className="notice">Supplier quotation selected · {preview.currency}. Pricing is restricted to authorised colleagues.</p> : preview && <div className="notice">
 <strong>{amount(preview.amount, preview.currency)}</strong> vendor estimate · <strong>{amount(preview.companyAmount, company.currency)}</strong> company estimate<small>1 {preview.currency} = {preview.rate} {company.currency} · {preview.rate_date} · {preview.quote || 'Provisional estimate'}</small>
 <small>Changing the vendor reprices the request. It does not relabel the old amount.</small>
 </div>}<div className="dialog-actions">

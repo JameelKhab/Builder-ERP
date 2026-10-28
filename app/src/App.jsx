@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight, FileText, ChartBar, Sparkle, ArrowLeft, ArrowRight, Plus, List, CheckCircle } from '@phosphor-icons/react';
+import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight, FileText, ChartBar, Sparkle, ArrowLeft, ArrowRight, Plus, List, CheckCircle, House, ShieldCheck } from '@phosphor-icons/react';
 import { api, amount, compact, stateLabel } from './api.js';
 import { AREAS, CATEGORIES, COMPANY_GROUPS } from './catalogue.js';
 import { Modal, ErrorBox, Empty, Status, RecordTable, RecordDetail, RequestDetail, RequestForm, CostReport } from './components.jsx';
+import { Landing } from './Landing.jsx';
+import { Access } from './Access.jsx';
+import { canCategory } from '../shared/access.mjs';
 import { Examples } from './Examples.jsx';
-const GLOBALS = [['My Work', User], ['Tenders', Notebook], ['Projects', Buildings], ['Company', Users]];
+const GLOBALS = [['Home', House], ['Access', ShieldCheck], ['My Work', User], ['Tenders', Notebook], ['Projects', Buildings], ['Company', Users]];
 function readRoute() {
   const p = new URLSearchParams(location.hash.slice(1));
   return {
-    global: GLOBALS.some(([g]) => g === p.get('section')) ? p.get('section') : 'Projects',
+    global: GLOBALS.some(([g]) => g === p.get('section')) ? p.get('section') : 'Home',
     area: AREAS.includes(p.get('area')) ? p.get('area') : 'Overview',
     category: p.get('category') || ''
   };
@@ -29,6 +32,30 @@ export function App() {
   const company = boot?.companies.find(c => c.id === companyId),
     project = boot?.projects.find(p => p.id === projectId),
     scopeProject = route.global === 'Projects' ? projectId : '';
+  const caps = workspace?.capabilities || [];
+  const can = cap => caps.includes(cap);
+  const reportProjects = (boot?.projects || []).filter(p => boot.grants.some(g => g.company_id === p.company_id && (g.project_id === '*' || g.project_id === p.id) && g.capabilities.includes('cost.read')));
+  const areaVisible = area => area === 'Overview' || (CATEGORIES[area] || []).some(([category]) => canCategory(caps, category));
+  const globalVisible = title => title === 'Home' || title === 'My Work' && can('requests.read') || title === 'Access' && !!boot?.actor.access_admin && !boot?.preview || title === 'Projects' && can('projects.read') || title === 'Tenders' && can('tenders.read') || title === 'Company' && COMPANY_GROUPS.some(([, entries]) => entries.some(e => canCategory(caps, e[2])));
+  async function previewUser(id) {
+    close();
+    setWorkspace(null);
+    setLoading(true);
+    try {
+      await api('/access/preview', {
+        user_id: id
+      });
+      const b = await api('/bootstrap');
+      setBoot(b);
+      setCompanyId(b.companies[0]?.id || '');
+      setProjectId(b.projects[0]?.id || '');
+      setSearch('');
+      nav('Home');
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
+    }
+  }
   function nav(global, area = 'Overview', category = '') {
     location.hash = new URLSearchParams({
       section: global,
@@ -45,7 +72,9 @@ export function App() {
     setMobileNav(false);
   }
   useEffect(() => {
-    const fn = () => setRoute(readRoute());
+    const fn = () => {
+      if (location.hash !== '#main-content') setRoute(readRoute());
+    };
     window.addEventListener('hashchange', fn);
     return () => window.removeEventListener('hashchange', fn);
   }, []);
@@ -66,6 +95,12 @@ export function App() {
   }, []);
   useEffect(() => {
     if (!boot) return;
+    if (!companyId) {
+      setWorkspace(null);
+      setLoading(false);
+      setError('');
+      return;
+    }
     const controller = new AbortController();
     setLoading(true);
     setWorkspace(null);
@@ -132,12 +167,23 @@ export function App() {
   }
   async function openExamples() {
     const serial = ++openSerial.current;
-    setModal({ type: 'loading', title: 'Explore examples' });
+    setModal({
+      type: 'loading',
+      title: 'Explore examples'
+    });
     try {
       const all = await api(`/workspace?company=${companyId}`);
-      if (serial === openSerial.current) setModal({ type: 'examples', title: 'Explore examples', workspace: all });
+      if (serial === openSerial.current) setModal({
+        type: 'examples',
+        title: 'Explore examples',
+        workspace: all
+      });
     } catch (e) {
-      if (serial === openSerial.current) setModal({ type: 'error', title: 'Examples unavailable', error: e.message });
+      if (serial === openSerial.current) setModal({
+        type: 'error',
+        title: 'Examples unavailable',
+        error: e.message
+      });
     }
   }
   function switchCompany(id) {
@@ -162,7 +208,7 @@ export function App() {
     type: 'new',
     title: 'New purchase request'
   });
-  const pageTitle = route.global === 'Projects' ? project?.name : route.global === 'Company' ? company?.name : route.global === 'Tenders' ? 'Tenders' : 'My Work';
+  const pageTitle = route.global === 'Home' ? 'Home' : route.global === 'Access' ? 'Users & access' : route.global === 'Projects' ? project?.name : route.global === 'Company' ? company?.name : route.global === 'Tenders' ? 'Tenders' : 'My Work';
   const contextFor = r => ({
     company: boot.companies.find(c => c.id === r.company_id)?.name,
     project: boot.projects.find(p => p.id === r.project_id)?.name
@@ -173,7 +219,7 @@ export function App() {
 <strong>{r.title}</strong>
 <small>{r.id} · {r.location} · {boot.projects.find(p => p.id === r.project_id)?.name}</small>
 </div>
-<span>{amount(r.amount, r.currency)}</span>
+<span>{r.can_price ? amount(r.amount, r.currency) : `${r.quantity} ${r.unit}`}</span>
 <Status value={r.status} />
 <CaretRight size={20} />
 </button>)}</div> : <Empty>No purchase requests in this scope.</Empty>;
@@ -229,19 +275,19 @@ export function App() {
 <strong>No decisions waiting for you.</strong>
 <p>Your submitted requests and project records are available in Buying and Site.</p>
 </div>
-<button className="text-button" onClick={() => nav('Projects', 'Buying', 'Purchase requests')}>View requests<ArrowRight size={18} />
-</button>
+{can('requests.read') && <button className="text-button" onClick={() => nav('Projects', 'Buying', 'Purchase requests')}>View requests<ArrowRight size={18} />
+</button>}
 </div>}</section>
     <section className="overview-site">
 <div className="section-head">
-<h2>Site & programme</h2>
+<h2>{can('site.read') ? 'Site & programme' : 'Project activity'}</h2>
 <span className="muted">Next 7 days</span>
-<button className="text-button push-right" onClick={() => nav('Projects', 'Site')}>Open site work<CaretRight size={20} />
-</button>
+{areaVisible('Site') && <button className="text-button push-right" onClick={() => nav('Projects', 'Site')}>Open site work<CaretRight size={20} />
+</button>}
 </div>
-<RecordTable rows={siteRows} onOpen={openRecord} />
+<RecordTable rows={siteRows.length ? siteRows : workspace.records.slice(0, 3)} onOpen={openRecord} />
 </section>
-    <section className="overview-cost">
+    {workspace.report && <section className="overview-cost">
 <div className="section-head">
 <h2>Cost & cash</h2>
 <span className="muted">{company.currency} · As of 28 Oct</span>
@@ -263,12 +309,13 @@ export function App() {
 <button className="source-link" onClick={() => sources(workspace.report.rows, workspace.report)}>Based on {workspace.report.rows.length} cost item{workspace.report.rows.length === 1 ? '' : 's'}</button>
 <span>Sample data · Local development</span>
 </div>
-</section>
+</section>}
 </>;
   }
   function projectArea() {
+    if (!can('projects.read') || !areaVisible(route.area) || route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your current role and project.</Empty>;
     if (route.area === 'Overview') return overview();
-    if (route.category === 'Cost report') return <CostReport key={companyId + projectId} company={company} projects={boot.projects} initialProject={projectId} onSource={sources} onExplain={explain} />;
+    if (route.category === 'Cost report') return <CostReport key={companyId + projectId} company={company} projects={reportProjects} initialProject={projectId} onSource={sources} onExplain={explain} />;
     if (route.category) {
       const group = (CATEGORIES[route.area] || []).find(g => g[0] === route.category);
       return <>
@@ -278,7 +325,7 @@ export function App() {
 <div>
 <h2>{route.category}</h2>
 <p className="muted">{group?.[1]}</p>
-</div>{route.category === 'Purchase requests' && <button className="primary" onClick={newRequest}>
+</div>{route.category === 'Purchase requests' && can('requests.write') && !boot.preview && <button className="primary" onClick={newRequest}>
 <Plus size={19} />New request</button>}</div>{route.category === 'Purchase requests' ? requestList(workspace.requests) : <>
 <RecordTable rows={workspace.records.filter(r => r.category === route.category)} onOpen={openRecord} />
 <p className="footnote muted">Sample register · Open a record to inspect its context and next action.</p>
@@ -290,10 +337,12 @@ export function App() {
 <h2>{route.area}</h2>
 <p className="muted">Choose the work you need. Your project context stays with you.</p>
 </div>
-</div>{directory(CATEGORIES[route.area] || [], category => nav('Projects', route.area, category))}</>;
+</div>{directory((CATEGORIES[route.area] || []).filter(([category]) => canCategory(caps, category)), category => nav('Projects', route.area, category))}</>;
   }
   function companyArea() {
-    if (route.category === 'report') return <CostReport key={companyId} company={company} projects={boot.projects} onSource={sources} onExplain={explain} />;
+    if (route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your role in this company.</Empty>;
+    if (route.category === 'resources') return <><h2>Resources</h2><p className="muted">Plant and materials across your authorised projects.</p>{directory(COMPANY_GROUPS.flatMap(([, entries]) => entries).filter(e => ['Plant & equipment', 'Stores'].includes(e[2]) && canCategory(caps, e[2])).map(e => [e[0], e[1]]), title => nav('Company', 'Overview', title === 'Assets & fleet' ? 'Plant & equipment' : 'Stores'))}</>;
+    if (route.category === 'report') return <CostReport key={companyId} company={company} projects={reportProjects} onSource={sources} onExplain={explain} />;
     if (route.category) {
       return <>
 <button className="back" onClick={() => nav('Company')}>
@@ -306,13 +355,13 @@ export function App() {
 <h3>{v.name}</h3>
 <p>{v.quote} · {v.currency} · Quote valid until {v.valid_until}</p>
 </div>
-<strong>{amount(v.unit_price, v.currency)} / tonne</strong>
+{v.unit_price && <strong>{amount(v.unit_price, v.currency)} / tonne</strong>}
 </div>)}</div> : route.category === 'buying' ? <>{requestList(workspace.requests)}<h3 className="spaced">Subcontracts</h3>
 <RecordTable rows={workspace.records.filter(r => r.category === 'Subcontracts')} onOpen={openRecord} />
-</> : <RecordTable rows={workspace.records.filter(r => r.category === route.category)} onOpen={openRecord} />}</>;
+</> : <RecordTable rows={workspace.records.filter(r => r.category === route.category || route.category === 'Stores' && r.category === 'Materials & waste')} onOpen={openRecord} />}</>;
     }
     return <>
-<p className="intro">Company-wide work, grouped by purpose. Each project keeps the same source records.</p>{COMPANY_GROUPS.map(([group, entries]) => <section className="company-group" key={group}>
+<p className="intro">Company-wide work, grouped by purpose. Each project keeps the same source records.</p>{COMPANY_GROUPS.map(([group, entries]) => [group, entries.filter(e => canCategory(caps, e[2]))]).filter(([, entries]) => entries.length).map(([group, entries]) => <section className="company-group" key={group}>
 <h2>{group}</h2>{directory(entries.map(e => [e[0], e[1]]), title => nav('Company', 'Overview', entries.find(e => e[0] === title)[2]))}</section>)}</>;
   }
   function modalBody() {
@@ -323,7 +372,11 @@ export function App() {
       setProjectId(selectedProject);
       nav(feature.global, feature.area, feature.category);
     }} />;
-    if (modal.type === 'request') return <RequestDetail key={modal.record.id} request={modal.record} {...contextFor(modal.record)} onChanged={refresh} onEdit={r => setModal({
+    if (modal.type === 'request') return <RequestDetail key={modal.record.id} request={{
+      ...modal.record,
+      can_edit: modal.record.can_edit && !boot.preview,
+      can_review: modal.record.can_review && !boot.preview
+    }} {...contextFor(modal.record)} onChanged={refresh} onEdit={r => setModal({
       type: 'edit',
       title: 'Revise purchase request',
       record: r
@@ -331,7 +384,7 @@ export function App() {
     if (modal.type === 'record') return <RecordDetail record={modal.record} {...contextFor(modal.record)} onOpen={openRecord} />;
     if (['new', 'edit'].includes(modal.type)) {
       const p = modal.record ? boot.projects.find(p => p.id === modal.record.project_id) : project;
-      return <RequestForm company={company} project={p} vendors={workspace?.vendors || []} items={(workspace?.report.rows || []).filter(i => i.project_id === p.id)} existing={modal.record} onSaved={r => {
+      return <RequestForm company={company} project={p} vendors={workspace?.vendors || []} canPrice={can('pricing.read')} items={(workspace?.items || []).filter(i => i.project_id === p.id)} existing={modal.record} onSaved={r => {
         setModal({
           type: 'request',
           title: r.title,
@@ -368,19 +421,19 @@ export function App() {
 </button>}</section>)}<p className="muted">Snapshot {modal.report.snapshot} · {modal.report.meta.rules}. Suggestions and external commitments require human review.</p>
 </>;
   }
-  return <div className="shell">
+  return <div className={`shell ${route.global === 'Home' ? 'home-shell' : ''}`}>
 <a className="skip-link" href="#main-content">Skip to workspace</a>
 <aside className={mobileNav ? 'sidebar open' : 'sidebar'}>
-<div className="brand">Builder ERP</div>
+<button className="brand" onClick={() => nav('Home')}>Builder ERP</button>
 <p className="brand-company">{company?.name || 'Construction workspace'}</p>
-<nav aria-label="Main navigation">{GLOBALS.map(([title, Icon]) => <button key={title} aria-current={route.global === title ? 'page' : undefined} className={route.global === title ? 'global-link active' : 'global-link'} onClick={() => nav(title)}>
+<nav aria-label="Main navigation">{GLOBALS.filter(([title]) => globalVisible(title)).map(([title, Icon]) => <button key={title} aria-current={route.global === title ? 'page' : undefined} className={route.global === title ? 'global-link active' : 'global-link'} onClick={() => nav(title)}>
 <Icon size={25} weight={route.global === title ? 'fill' : 'regular'} />{title}</button>)}</nav>
 <div className="sidebar-footer">Built around your work.<br />
 <span>Local sample workspace</span>
 </div>
 </aside>
 <div className="workspace">
-<header className="topbar">
+<header className="topbar"><button className="home-brand" onClick={() => nav('Home')}>Builder<span> ERP</span></button>
 <button className="icon-button mobile-menu" aria-label="Toggle main navigation" onClick={() => setMobileNav(v => !v)}>
 <List size={25} />
 </button>
@@ -397,15 +450,16 @@ export function App() {
 <Question size={21} /><span>Examples</span>
 </button>
 <div className="profile">
-<span className="avatar">AA</span>
+<span className="avatar">{boot?.actor.name.split(' ').slice(0, 2).map(n => n[0]).join('') || 'B'}</span>
 <div>
 <strong>{boot?.actor.name || 'Ahmed Al Mansoori'}</strong>
-<small>{boot?.actor.role || 'Project manager'}</small>
+<small>{boot?.preview ? 'Access preview · Read only' : boot?.actor.role || 'Loading…'}</small>
 </div>
 </div>
 </header>
+{boot?.preview && <div className="preview-banner"><span>Previewing {boot.actor.name} · Read only · Live permissions</span><button onClick={() => previewUser(null)}>Return to {boot.preview.name.split(' ')[0]}’s workspace</button></div>}
 <main id="main-content" tabIndex={-1}>
-<div className="project-header">
+{!['Home', 'Access'].includes(route.global) && <div className="project-header">
 <div>
 <h1>{pageTitle || 'Builder ERP'}</h1>
 <p>{route.global === 'Projects' ? `${project?.location} · ${project?.phase} · Wednesday, 28 October 2026` : route.global === 'Company' ? 'Company-wide operations and shared information' : route.global === 'Tenders' ? 'From opportunity to a confident bid.' : 'Your reviews and requests, across this company.'}</p>
@@ -421,8 +475,8 @@ export function App() {
 <span>Base currency</span>
 <strong>{company?.currency}</strong>
 </div>
-</div>}</div>{route.global === 'Projects' && <nav className="project-nav" aria-label="Project areas">{AREAS.map(area => <button key={area} className={route.area === area ? 'selected' : ''} aria-current={route.area === area ? 'page' : undefined} onClick={() => nav('Projects', area)}>{area}</button>)}</nav>}<div className="content">
-<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
+</div>}</div>}{route.global === 'Projects' && <nav className="project-nav" aria-label="Project areas">{AREAS.filter(areaVisible).map(area => <button key={area} className={route.area === area ? 'selected' : ''} aria-current={route.area === area ? 'page' : undefined} onClick={() => nav('Projects', area)}>{area}</button>)}</nav>}<div className="content">
+<ErrorBox message={error} retry={boot ? refresh : () => location.reload()} />{boot && !companyId && <Empty>No company access is assigned. An access administrator can review the required role and scope.</Empty>}{loading && !error && <div className="loading" role="status">Loading your workspace…</div>}{workspace && !loading && <>{route.global === 'Home' ? <Landing boot={boot} company={company} workspace={workspace} projectId={projectId} setProjectId={setProjectId} onVisit={d => nav(d.section, d.area || 'Overview', d.category || '')} /> : route.global === 'Access' ? boot.actor.access_admin && !boot.preview ? <Access actorId={boot.actor.id} onPreview={previewUser} /> : <Empty>User administration is restricted.</Empty> : !globalVisible(route.global) ? <Empty>This destination is not available for your role.</Empty> : route.global === 'Projects' ? projectArea() : route.global === 'Company' ? companyArea() : route.global === 'Tenders' ? <>
 <div className="section-head">
 <h2>Bids & estimates</h2>
 <span className="muted">{company.name}</span>

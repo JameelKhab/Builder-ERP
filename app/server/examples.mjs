@@ -82,7 +82,7 @@ export function installExamples(db) {
       ['maya', 'Maya Chen', 'Commercial manager', 'build', '*', '500000']
     ]) {
       insert('users', { id, name, role });
-      insert('memberships', { user_id: id, company_id: company, project_id: project, can_approve: limit === '0' ? 0 : 1, approval_limit: limit });
+      insert('memberships', { ...(db.prepare('PRAGMA table_info(memberships)').all().some(c=>c.name==='role_id') ? {role_id:role === 'Site engineer'?'site_engineer':'commercial_manager'} : {}), user_id: id, company_id: company, project_id: project, can_approve: limit === '0' ? 0 : 1, approval_limit: limit });
     }
     for (const p of projects) {
       if (!db.prepare('SELECT id FROM projects WHERE id=? AND company_id=?').get(p.id, p.company)) continue;

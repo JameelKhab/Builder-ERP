@@ -62,3 +62,11 @@ These are open inputs, not permission to silently replace requested functions wi
 - `docs/migration/` is the corrective baseline: 42 areas, 267 recorded navigation destinations, 21 workstreams and 34 proposed data contracts. The complete inventory comparison does not certify hidden workflow behaviour or data migration.
 - Keep the selected visual direction, but add named browse routes and typed services for omitted functions, including original finance, stores, HR, configuration and integrations. No silent scope removal or third-party substitution.
 - Future domain acceptance requires source evidence, business invariants, authorisation/exception tests, connected end-to-end evidence and reconciliation. The actual source export/schema, production identity, data migration/recovery and user validation remain open.
+
+## 28 October 2026 — Original Home and scoped permissions
+
+- User-directed: add a clear access-dependent destination landing page; retain the selected Builder project-briefing style and avoid Odoo's icon-wall appearance.
+- Fresh JAKH source UI review confirmed preset/company/project/approval separation and Site Engineer's no-price intent. Builder now applies consistent service policy and field projection across implemented data surfaces.
+- Original implementation choice: role grants per company/project scope, independent approval limits, separate access-administration authority, reviewed versioned changes and read-only administrator preview. Preset names are mapped; unreviewed source role inheritance is not assumed equivalent.
+- AP/AR/payroll/timekeeper presets cannot be assigned while their necessary document and confidential-field controls are absent. Existing sample identities remain explicitly local; no production authentication claim.
+- Historical full-comparison files remain unchanged; `implementation/access-and-destinations.md` records progress against F001/F021/F070/F239–242/F252/F266/F267 and M01/M02/M32.

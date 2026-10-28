@@ -16,6 +16,8 @@ Discovery remains recorded in the 53-page Revision 4 study. The navigation has b
 
 **Development, testing and Git commits stay local for now. Do not push to GitHub, deploy to jakh.net or change the existing demo.** GitHub is the intended remote project record, but the user has deferred syncing. Resume GitHub pushes only when instructed. A future deployment requires a separate explicit instruction after local work is complete.
 
+The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. This is still a local sample, not production identity or full migration.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
@@ -27,7 +29,7 @@ Discovery remains recorded in the 53-page Revision 4 study. The navigation has b
 
 ## Selected experience
 
-Four starting points: **My Work, Tenders, Projects, Company**.
+Start on **Home**, with permitted destinations grouped by Project delivery, Company operations and Administration. The existing **My Work, Tenders, Projects and Company** work areas remain available according to access.
 
 Within a project: **Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover**.
 

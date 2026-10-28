@@ -54,11 +54,12 @@ test('expanded examples respect company and project permissions, including relat
   assert.throws(() => engineer.record('EX-GR-NCR-1'), { status: 404 });
   assert.equal(engineer.search('jakh', 'EX-GR').length, 0);
   const original = engineer.record('EX-HT-NCR-1');
-  original.details._example.linkedIds.push('EX-CO-NCR-1');
-  db.prepare('UPDATE records SET details=? WHERE id=?').run(JSON.stringify(original.details), original.id);
+  const raw=JSON.parse(db.prepare('SELECT details FROM records WHERE id=?').get(original.id).details);
+  raw._example.linkedIds.push('EX-CO-NCR-1');
+  db.prepare('UPDATE records SET details=? WHERE id=?').run(JSON.stringify(raw), original.id);
   const after = engineer.record(original.id);
   assert.ok(after.related.every(r => !r.id.startsWith('EX-CO')));
-  assert.ok(after.details._example.linkedIds.every(id => !id.startsWith('EX-CO')));
+  assert.equal(after.details._example,undefined);
 });
 
 test('request examples reconcile currencies and have valid independent approval histories', t => {

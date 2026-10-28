@@ -1,0 +1,986 @@
+Browser tab: 8, Title: "Users & Access", URL: "https://demo.jakh.net/jakh/action-683".
+0 AXWebArea Users & Access, URL: demo.jakh.net/jakh/action-683
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 button (collapsed) Description: Tender & BOQ, Secondary Actions: Expand
+					14 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					15 button (collapsed) Description: Projects, Secondary Actions: Expand
+					16 button Project requisitions
+					17 button Project set-up
+					18 button Material returns
+					19 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					20 button Site receipts
+					21 button Site diaries
+					22 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					23 button Site materials & issues
+					24 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					25 button Payment certificates
+					26 button Advances & retention releases
+					27 button Final accounts & closeout
+					28 button Guarantees & bonds
+					29 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					30 button Subcontract order amendments
+					31 button Subcontractor applications
+					32 button Subcontract service entries
+					33 button Subcontract work corrections
+					34 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					35 button Labour & plant allocation
+					36 button Labour & plant actual feeds
+					37 button P6 schedule progress
+					38 button (collapsed) Description: Finance, Secondary Actions: Expand
+					39 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					40 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					41 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					42 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					43 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					44 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					45 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					46 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					47 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					48 button My Tasks
+					319 container
+						320 button (expanded) Description: Users & Access, Secondary Actions: Collapse
+						321 content list jakh-menu-435
+							322 button Add User
+							323 button Manage Users
+							324 button Access Presets
+							325 button Advanced Native User Settings
+					50 button (collapsed) Description: Administration, Secondary Actions: Expand
+			51 container
+				52 text JAKH Contracting Platform
+				53 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		54 container
+			55 button (collapsed) Messages 1, Secondary Actions: Expand
+				56 container Messages
+				57 text 1
+			58 button (collapsed) Activities, Secondary Actions: Expand
+				59 container Activities
+			60 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			61 button التبديل إلى العربية
+			62 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			63 button (collapsed) User is online, Secondary Actions: Expand
+				64 image
+					65 container User is online
+		66 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information. Users & Access
+		326 container
+			327 button Search...
+			328 search text field (settable)
+			329 button (collapsed) Description: Toggle Search Panel, Secondary Actions: Expand
+		330 container Pager
+			331 container
+				332 text 1-35  /  35
+			333 container
+				334 button (disabled) Previous
+					1189 text arrow_back_ios_new
+				336 button (disabled) Next
+					1190 text arrow_forward_ios
+		338 table
+			339 row
+				340 cell
+					341 checkbox (settable, integer) Value: 0, ID: checkbox-comp-34
+				342 cell
+					343 text Name
+					1191 text swap_vert
+				345 cell
+					346 text Login
+					1192 text swap_vert
+				348 cell
+					349 text Designation
+					1193 text swap_vert
+				351 cell
+					352 text Access preset
+					1194 text swap_vert
+				354 cell
+					355 text Default company
+					1195 text swap_vert
+				357 cell
+					358 text Project access
+					1196 text swap_vert
+				360 cell
+					361 text Active
+					1197 text swap_vert
+				363 cell
+					364 button (collapsed) tune, Secondary Actions: Expand
+						1198 text tune
+			366 row
+				367 cell
+					368 container
+						369 checkbox (settable, integer) Value: 0, ID: checkbox-comp-35
+				370 cell
+					371 text Administrator
+				372 cell
+					373 text admin
+				374 cell
+				375 cell
+				376 cell
+					377 text My Company
+				378 cell
+					379 text Allowed companies
+				380 cell
+					381 container
+						382 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				383 cell
+					384 button fa-lock Manage Access
+						1199 text fa-lock
+						386 text Manage Access
+				387 cell
+			388 row
+				389 cell
+					390 container
+						391 checkbox (settable, integer) Value: 0, ID: checkbox-comp-36
+				392 cell
+					393 text Ahmed Raza
+				394 cell
+					395 text view-as.site_engineer
+				396 cell
+					397 text Site Engineer
+				398 cell
+					399 text Site Engineer
+				400 cell
+					401 text JAKH Demo Contracting LLC
+				402 cell
+					403 text Allowed companies
+				404 cell
+					405 container
+						406 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				407 cell
+					408 button fa-lock Manage Access
+						1200 text fa-lock
+						410 text Manage Access
+				411 cell
+			412 row
+				413 cell
+					414 container
+						415 checkbox (settable, integer) Value: 0, ID: checkbox-comp-37
+				416 cell
+					417 text Aisha Rahman
+				418 cell
+					419 text view-as.ar_clerk
+				420 cell
+					421 text Accounts Receivable Clerk
+				422 cell
+					423 text Accounts Receivable Clerk
+				424 cell
+					425 text JAKH Demo Contracting LLC
+				426 cell
+					427 text Allowed companies
+				428 cell
+					429 container
+						430 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				431 cell
+					432 button fa-lock Manage Access
+						1201 text fa-lock
+						434 text Manage Access
+				435 cell
+			436 row
+				437 cell
+					438 container
+						439 checkbox (settable, integer) Value: 0, ID: checkbox-comp-38
+				440 cell
+					441 text Anil Varghese
+				442 cell
+					443 text view-as.estimator
+				444 cell
+					445 text Estimator
+				446 cell
+					447 text Estimator
+				448 cell
+					449 text JAKH Demo Contracting LLC
+				450 cell
+					451 text Allowed companies
+				452 cell
+					453 container
+						454 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				455 cell
+					456 button fa-lock Manage Access
+						1202 text fa-lock
+						458 text Manage Access
+				459 cell
+			460 row
+				461 cell
+					462 container
+						463 checkbox (settable, integer) Value: 0, ID: checkbox-comp-39
+				464 cell
+					465 text David Morgan
+				466 cell
+					467 text view-as.commercial_manager
+				468 cell
+					469 text Commercial Manager
+				470 cell
+					471 text Commercial Manager
+				472 cell
+					473 text JAKH Demo Contracting LLC
+				474 cell
+					475 text Allowed companies
+				476 cell
+					477 container
+						478 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				479 cell
+					480 button fa-lock Manage Access
+						1203 text fa-lock
+						482 text Manage Access
+				483 cell
+			484 row
+				485 cell
+					486 container
+						487 checkbox (settable, integer) Value: 0, ID: checkbox-comp-40
+				488 cell
+					489 text DEMO ONLY [JD2] — Director
+				490 cell
+					491 text jakh-connected-demo-v2.c1.jd2.company1.director@invalid.test
+				492 cell
+				493 cell
+				494 cell
+					495 text My Company
+				496 cell
+					497 text Allowed companies
+				498 cell
+					499 container
+						500 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				501 cell
+					502 button fa-lock Manage Access
+						1204 text fa-lock
+						504 text Manage Access
+				505 cell
+			506 row
+				507 cell
+					508 container
+						509 checkbox (settable, integer) Value: 0, ID: checkbox-comp-41
+				510 cell
+					511 text DEMO ONLY [JD2] — Estimator
+				512 cell
+					513 text jakh-connected-demo-v2.c1.jd2.company1.estimator@invalid.test
+				514 cell
+				515 cell
+				516 cell
+					517 text My Company
+				518 cell
+					519 text Allowed companies
+				520 cell
+					521 container
+						522 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				523 cell
+					524 button fa-lock Manage Access
+						1205 text fa-lock
+						526 text Manage Access
+				527 cell
+			528 row
+				529 cell
+					530 container
+						531 checkbox (settable, integer) Value: 0, ID: checkbox-comp-42
+				532 cell
+					533 text DEMO ONLY [JD2] — Finance
+				534 cell
+					535 text jakh-connected-demo-v2.c1.jd2.company1.finance@invalid.test
+				536 cell
+				537 cell
+				538 cell
+					539 text My Company
+				540 cell
+					541 text Allowed companies
+				542 cell
+					543 container
+						544 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				545 cell
+					546 button fa-lock Manage Access
+						1206 text fa-lock
+						548 text Manage Access
+				549 cell
+			550 row
+				551 cell
+					552 container
+						553 checkbox (settable, integer) Value: 0, ID: checkbox-comp-43
+				554 cell
+					555 text DEMO ONLY [JD2] — Procurement
+				556 cell
+					557 text jakh-connected-demo-v2.c1.jd2.company1.procurement@invalid.test
+				558 cell
+				559 cell
+				560 cell
+					561 text My Company
+				562 cell
+					563 text Allowed companies
+				564 cell
+					565 container
+						566 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				567 cell
+					568 button fa-lock Manage Access
+						1207 text fa-lock
+						570 text Manage Access
+				571 cell
+			572 row
+				573 cell
+					574 container
+						575 checkbox (settable, integer) Value: 0, ID: checkbox-comp-44
+				576 cell
+					577 text DEMO ONLY [JD2] — Project Manager
+				578 cell
+					579 text jakh-connected-demo-v2.c1.jd2.company1.project_manager@invalid.test
+				580 cell
+				581 cell
+				582 cell
+					583 text My Company
+				584 cell
+					585 text Allowed companies
+				586 cell
+					587 container
+						588 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				589 cell
+					590 button fa-lock Manage Access
+						1208 text fa-lock
+						592 text Manage Access
+				593 cell
+			594 row
+				595 cell
+					596 container
+						597 checkbox (settable, integer) Value: 0, ID: checkbox-comp-45
+				598 cell
+					599 text DEMO ONLY [JD2] — Quality
+				600 cell
+					601 text jakh-connected-demo-v2.c1.jd2.company1.quality@invalid.test
+				602 cell
+				603 cell
+				604 cell
+					605 text My Company
+				606 cell
+					607 text Allowed companies
+				608 cell
+					609 container
+						610 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				611 cell
+					612 button fa-lock Manage Access
+						1209 text fa-lock
+						614 text Manage Access
+				615 cell
+			616 row
+				617 cell
+					618 container
+						619 checkbox (settable, integer) Value: 0, ID: checkbox-comp-46
+				620 cell
+					621 text DEMO ONLY [JD2] — Technical
+				622 cell
+					623 text jakh-connected-demo-v2.c1.jd2.company1.technical@invalid.test
+				624 cell
+				625 cell
+				626 cell
+					627 text My Company
+				628 cell
+					629 text Allowed companies
+				630 cell
+					631 container
+						632 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				633 cell
+					634 button fa-lock Manage Access
+						1210 text fa-lock
+						636 text Manage Access
+				637 cell
+			638 row
+				639 cell
+					640 container
+						641 checkbox (settable, integer) Value: 0, ID: checkbox-comp-47
+				642 cell
+					643 text Fatima Zahra
+				644 cell
+					645 text view-as.procurement
+				646 cell
+					647 text Procurement Officer
+				648 cell
+					649 text Procurement Officer
+				650 cell
+					651 text JAKH Demo Contracting LLC
+				652 cell
+					653 text Allowed companies
+				654 cell
+					655 container
+						656 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				657 cell
+					658 button fa-lock Manage Access
+						1211 text fa-lock
+						660 text Manage Access
+				661 cell
+			662 row
+				663 cell
+					664 container
+						665 checkbox (settable, integer) Value: 0, ID: checkbox-comp-48
+				666 cell
+					667 text Grace Thomas
+				668 cell
+					669 text view-as.quality_hse
+				670 cell
+					671 text Quality & HSE Officer
+				672 cell
+					673 text Quality & HSE Officer
+				674 cell
+					675 text JAKH Demo Contracting LLC
+				676 cell
+					677 text Allowed companies
+				678 cell
+					679 container
+						680 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				681 cell
+					682 button fa-lock Manage Access
+						1212 text fa-lock
+						684 text Manage Access
+				685 cell
+			686 row
+				687 cell
+					688 container
+						689 checkbox (settable, integer) Value: 0, ID: checkbox-comp-49
+				690 cell
+					691 text Hassan Ali
+				692 cell
+					693 text view-as.inventory_manager
+				694 cell
+					695 text Inventory Manager
+				696 cell
+					697 text Inventory Manager
+				698 cell
+					699 text JAKH Demo Contracting LLC
+				700 cell
+					701 text Allowed companies
+				702 cell
+					703 container
+						704 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				705 cell
+					706 button fa-lock Manage Access
+						1213 text fa-lock
+						708 text Manage Access
+				709 cell
+			710 row
+				711 cell
+					712 container
+						713 checkbox (settable, integer) Value: 0, ID: checkbox-comp-50
+				714 cell
+					715 text Huda Nasser
+				716 cell
+					717 text view-as.project_accountant
+				718 cell
+					719 text Project Accountant
+				720 cell
+					721 text Project Accountant
+				722 cell
+					723 text JAKH Demo Contracting LLC
+				724 cell
+					725 text Allowed companies
+				726 cell
+					727 container
+						728 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				729 cell
+					730 button fa-lock Manage Access
+						1214 text fa-lock
+						732 text Manage Access
+				733 cell
+			734 row
+				735 cell
+					736 container
+						737 checkbox (settable, integer) Value: 0, ID: checkbox-comp-51
+				738 cell
+					739 text Imran Qureshi
+				740 cell
+					741 text view-as.timekeeper
+				742 cell
+					743 text Timekeeper
+				744 cell
+					745 text Timekeeper
+				746 cell
+					747 text JAKH Demo Contracting LLC
+				748 cell
+					749 text Allowed companies
+				750 cell
+					751 container
+						752 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				753 cell
+					754 button fa-lock Manage Access
+						1215 text fa-lock
+						756 text Manage Access
+				757 cell
+			758 row
+				759 cell
+					760 container
+						761 checkbox (settable, integer) Value: 0, ID: checkbox-comp-52
+				762 cell
+					763 text Joseph Mathew
+				764 cell
+					765 text view-as.storekeeper
+				766 cell
+					767 text Storekeeper
+				768 cell
+					769 text Storekeeper
+				770 cell
+					771 text JAKH Demo Contracting LLC
+				772 cell
+					773 text Allowed companies
+				774 cell
+					775 container
+						776 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				777 cell
+					778 button fa-lock Manage Access
+						1216 text fa-lock
+						780 text Manage Access
+				781 cell
+			782 row
+				783 cell
+					784 container
+						785 checkbox (settable, integer) Value: 0, ID: checkbox-comp-53
+				786 cell
+					787 text Khalid Al Mansoori
+				788 cell
+					789 text view-as.director
+				790 cell
+					791 text Construction Director
+				792 cell
+					793 text Construction Director
+				794 cell
+					795 text JAKH Demo Contracting LLC
+				796 cell
+					797 text Allowed companies
+				798 cell
+					799 container
+						800 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				801 cell
+					802 button fa-lock Manage Access
+						1217 text fa-lock
+						804 text Manage Access
+				805 cell
+			806 row
+				807 cell
+					808 container
+						809 checkbox (settable, integer) Value: 0, ID: checkbox-comp-54
+				810 cell
+					811 text Layla Hassan
+				812 cell
+					813 text view-as.hr_manager
+				814 cell
+					815 text HR Manager
+				816 cell
+					817 text HR Manager
+				818 cell
+					819 text JAKH Demo Contracting LLC
+				820 cell
+					821 text Allowed companies
+				822 cell
+					823 container
+						824 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				825 cell
+					826 button fa-lock Manage Access
+						1218 text fa-lock
+						828 text Manage Access
+				829 cell
+			830 row
+				831 cell
+					832 container
+						833 checkbox (settable, integer) Value: 0, ID: checkbox-comp-55
+				834 cell
+					835 text Lina Kassem
+				836 cell
+					837 text view-as.planner
+				838 cell
+					839 text Planning Engineer
+				840 cell
+					841 text Planning Engineer
+				842 cell
+					843 text JAKH Demo Contracting LLC
+				844 cell
+					845 text Allowed companies
+				846 cell
+					847 container
+						848 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				849 cell
+					850 button fa-lock Manage Access
+						1219 text fa-lock
+						852 text Manage Access
+				853 cell
+			854 row
+				855 cell
+					856 container
+						857 checkbox (settable, integer) Value: 0, ID: checkbox-comp-56
+				858 cell
+					859 text Maryam Siddiqui
+				860 cell
+					861 text view-as.document_controller
+				862 cell
+					863 text Document Controller
+				864 cell
+					865 text Document Controller
+				866 cell
+					867 text JAKH Demo Contracting LLC
+				868 cell
+					869 text Allowed companies
+				870 cell
+					871 container
+						872 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				873 cell
+					874 button fa-lock Manage Access
+						1220 text fa-lock
+						876 text Manage Access
+				877 cell
+			878 row
+				879 cell
+					880 container
+						881 checkbox (settable, integer) Value: 0, ID: checkbox-comp-57
+				882 cell
+					883 text Mohammed Saleh
+				884 cell
+					885 text view-as.purchase_manager
+				886 cell
+					887 text Purchasing Manager
+				888 cell
+					889 text Purchasing Manager
+				890 cell
+					891 text JAKH Demo Contracting LLC
+				892 cell
+					893 text Allowed companies
+				894 cell
+					895 container
+						896 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				897 cell
+					898 button fa-lock Manage Access
+						1221 text fa-lock
+						900 text Manage Access
+				901 cell
+			902 row
+				903 cell
+					904 container
+						905 checkbox (settable, integer) Value: 0, ID: checkbox-comp-58
+				906 cell
+					907 text Nadia Karim
+				908 cell
+					909 text view-as.technical_engineer
+				910 cell
+					911 text Technical Engineer
+				912 cell
+					913 text Technical Engineer
+				914 cell
+					915 text JAKH Demo Contracting LLC
+				916 cell
+					917 text Allowed companies
+				918 cell
+					919 container
+						920 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				921 cell
+					922 button fa-lock Manage Access
+						1222 text fa-lock
+						924 text Manage Access
+				925 cell
+			926 row
+				927 cell
+					928 container
+						929 checkbox (settable, integer) Value: 0, ID: checkbox-comp-59
+				930 cell
+					931 text Omar Farouk
+				932 cell
+					933 text view-as.project_manager
+				934 cell
+					935 text Project Manager
+				936 cell
+					937 text Project Manager
+				938 cell
+					939 text JAKH Demo Contracting LLC
+				940 cell
+					941 text Allowed companies
+				942 cell
+					943 container
+						944 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				945 cell
+					946 button fa-lock Manage Access
+						1223 text fa-lock
+						948 text Manage Access
+				949 cell
+			950 row
+				951 cell
+					952 container
+						953 checkbox (settable, integer) Value: 0, ID: checkbox-comp-60
+				954 cell
+					955 text Peter Collins
+				956 cell
+					957 text view-as.auditor
+				958 cell
+					959 text Read-only Auditor
+				960 cell
+					961 text Read-only Auditor
+				962 cell
+					963 text JAKH Demo Contracting LLC
+				964 cell
+					965 text Allowed companies
+				966 cell
+					967 container
+						968 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				969 cell
+					970 button fa-lock Manage Access
+						1224 text fa-lock
+						972 text Manage Access
+				973 cell
+			974 row
+				975 cell
+					976 container
+						977 checkbox (settable, integer) Value: 0, ID: checkbox-comp-61
+				978 cell
+					979 text Priya Nair
+				980 cell
+					981 text view-as.quantity_surveyor
+				982 cell
+					983 text Quantity Surveyor
+				984 cell
+					985 text Quantity Surveyor
+				986 cell
+					987 text JAKH Demo Contracting LLC
+				988 cell
+					989 text Allowed companies
+				990 cell
+					991 container
+						992 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				993 cell
+					994 button fa-lock Manage Access
+						1225 text fa-lock
+						996 text Manage Access
+				997 cell
+			998 row
+				999 cell
+					1000 container
+						1001 checkbox (settable, integer) Value: 0, ID: checkbox-comp-62
+				1002 cell
+					1003 text Rajesh Menon
+				1004 cell
+					1005 text view-as.financial_controller
+				1006 cell
+					1007 text Financial Controller
+				1008 cell
+					1009 text Financial Controller
+				1010 cell
+					1011 text JAKH Demo Contracting LLC
+				1012 cell
+					1013 text Allowed companies
+				1014 cell
+					1015 container
+						1016 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1017 cell
+					1018 button fa-lock Manage Access
+						1226 text fa-lock
+						1020 text Manage Access
+				1021 cell
+			1022 row
+				1023 cell
+					1024 container
+						1025 checkbox (settable, integer) Value: 0, ID: checkbox-comp-63
+				1026 cell
+					1027 text Ravi Kumar
+				1028 cell
+					1029 text view-as.ap_clerk
+				1030 cell
+					1031 text Accounts Payable Clerk
+				1032 cell
+					1033 text Accounts Payable Clerk
+				1034 cell
+					1035 text JAKH Demo Contracting LLC
+				1036 cell
+					1037 text Allowed companies
+				1038 cell
+					1039 container
+						1040 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1041 cell
+					1042 button fa-lock Manage Access
+						1227 text fa-lock
+						1044 text Manage Access
+				1045 cell
+			1046 row
+				1047 cell
+					1048 container
+						1049 checkbox (settable, integer) Value: 0, ID: checkbox-comp-64
+				1050 cell
+					1051 text Samir Khoury
+				1052 cell
+					1053 text view-as.plant_manager
+				1054 cell
+					1055 text Plant & Equipment Manager
+				1056 cell
+					1057 text Plant & Equipment Manager
+				1058 cell
+					1059 text JAKH Demo Contracting LLC
+				1060 cell
+					1061 text Allowed companies
+				1062 cell
+					1063 container
+						1064 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1065 cell
+					1066 button fa-lock Manage Access
+						1228 text fa-lock
+						1068 text Manage Access
+				1069 cell
+			1070 row
+				1071 cell
+					1072 container
+						1073 checkbox (settable, integer) Value: 0, ID: checkbox-comp-65
+				1074 cell
+					1075 text Sara Haddad
+				1076 cell
+					1077 text view-as.cfo
+				1078 cell
+					1079 text Chief Financial Officer (CFO)
+				1080 cell
+					1081 text Chief Financial Officer (CFO)
+				1082 cell
+					1083 text JAKH Demo Contracting LLC
+				1084 cell
+					1085 text Allowed companies
+				1086 cell
+					1087 container
+						1088 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1089 cell
+					1090 button fa-lock Manage Access
+						1229 text fa-lock
+						1092 text Manage Access
+				1093 cell
+			1094 row
+				1095 cell
+					1096 container
+						1097 checkbox (settable, integer) Value: 0, ID: checkbox-comp-66
+				1098 cell
+					1099 text Tariq Aziz
+				1100 cell
+					1101 text view-as.subcontractor_manager
+				1102 cell
+					1103 text Subcontract Manager
+				1104 cell
+					1105 text Subcontract Manager
+				1106 cell
+					1107 text JAKH Demo Contracting LLC
+				1108 cell
+					1109 text Allowed companies
+				1110 cell
+					1111 container
+						1112 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1113 cell
+					1114 button fa-lock Manage Access
+						1230 text fa-lock
+						1116 text Manage Access
+				1117 cell
+			1118 row
+				1119 cell
+					1120 container
+						1121 checkbox (settable, integer) Value: 0, ID: checkbox-comp-67
+				1122 cell
+					1123 text TEST
+				1124 cell
+					1125 text TEST
+				1126 cell
+				1127 cell
+					1128 text Chief Financial Officer (CFO)
+				1129 cell
+					1130 text My Company
+				1131 cell
+					1132 text Allowed companies
+				1133 cell
+					1134 container
+						1135 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1136 cell
+					1137 button fa-lock Manage Access
+						1231 text fa-lock
+						1139 text Manage Access
+				1140 cell
+			1141 row
+				1142 cell
+					1143 container
+						1144 checkbox (settable, integer) Value: 0, ID: checkbox-comp-68
+				1145 cell
+					1146 text Vikram Shah
+				1147 cell
+					1148 text view-as.accountant
+				1149 cell
+					1150 text Accountant
+				1151 cell
+					1152 text Accountant
+				1153 cell
+					1154 text JAKH Demo Contracting LLC
+				1155 cell
+					1156 text Allowed companies
+				1157 cell
+					1158 container
+						1159 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1160 cell
+					1161 button fa-lock Manage Access
+						1232 text fa-lock
+						1163 text Manage Access
+				1164 cell
+			1165 row
+				1166 cell
+					1167 container
+						1168 checkbox (settable, integer) Value: 0, ID: checkbox-comp-69
+				1169 cell
+					1170 text Yousef Hamdan
+				1171 cell
+					1172 text view-as.tendering_manager
+				1173 cell
+					1174 text Tendering Manager
+				1175 cell
+					1176 text Tendering Manager
+				1177 cell
+					1178 text JAKH Demo Contracting LLC
+				1179 cell
+					1180 text Allowed companies
+				1181 cell
+					1182 container
+						1183 checkbox (disabled, settable, integer) Value: 1, ID: boolean_checkbox
+				1184 cell
+					1185 button fa-lock Manage Access
+						1233 text fa-lock
+						1187 text Manage Access
+				1188 cell
+		1234 container
+			1235 heading Manage Employee Access, Value: 4
+				1236 text Manage Employee Access
+			1237 button Close
+			1238 container
+				1239 text Review the effective permissions before applying. An email is sent only if you tick Email an invitation. USER IDENTITY
+				1240 text Existing user
+				1241 container
+					1242 combo box (collapsed, settable) Existing user, Value: Omar Farouk, ID: target_user_id_0, Secondary Actions: Expand
+				1243 button Internal link
+					1244 text open_in_browser
+				1245 text Full name
+				1246 text field (settable) Full name, Value: Omar Farouk, ID: name_0
+				1247 text Login
+				1248 text field (settable) Login, Value: view-as.project_manager, ID: login_0
+				1249 text Contact email
+				1250 text field (settable) Contact email
+				1251 container
+					1252 text Email an invitation ?
+				1253 container
+					1254 checkbox (settable, integer) Email an invitation?, Value: 0, ID: send_invitation_0
+				1255 text Designation / job title
+				1256 text field (settable) Designation / job title, Value: Project Manager, ID: designation_0
+				1257 text Interface language
+				1258 container
+					1259 text field (settable) Interface language, Value: English (US), ID: lang_0
+				1260 text ACCESS PRESET
+				1261 text Preset
+				1262 combo box (collapsed, settable) Preset, Value: Project Manager, ID: preset_id_0, Secondary Actions: Expand
+				1263 text Allowed companies
+				1264 container
+					1265 container JAKH Demo Contracting LLC
+						1266 text JAKH Demo Contracting LLC
+						1267 link Description: Delete, Value: demo.jakh.net/jakh/action-683#
+					1268 combo box (collapsed, settable) Allowed companies, ID: company_ids_0, Secondary Actions: Expand
+				1269 text Default company
+				1270 combo box (collapsed, settable) Default company, Value: JAKH Demo Contracting LLC, ID: company_id_0, Secondary Actions: Expand
+				1271 text Project access
+				1272 container
+					1273 text field (settable) Project access, Value: Allowed companies, ID: project_scope_0
+				1274 text Assigned-project scope restricts project and linked JAKH records. Native accounting, purchasing and stock permissions can still expose company-wide records. The review shows inherited rights; a designation does not replace workflow approvals. ADVANCED ADDITIONS
+				1275 text Additional approved roles
+				1276 combo box (collapsed, settable) Additional approved roles, ID: extra_group_ids_0, Secondary Actions: Expand
+				1277 text Reason for access change
+				1278 text entry area (settable) Reason for access change, ID: reason_0
+			1279 button Review Effective Access
+			1280 button Cancel
+
+The focused UI element is 1242 combo box (collapsed, settable) Existing user, Value: Omar Farouk, ID: target_user_id_0, Secondary Actions: Expand
