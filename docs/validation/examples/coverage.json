@@ -1,0 +1,669 @@
+{
+  "date": "2026-10-28",
+  "newRegisters": 90,
+  "newRequests": 12,
+  "coverage": [
+    {
+      "company": "jakh",
+      "project": "harbour",
+      "features": [
+        {
+          "group": "Start here",
+          "feature": "My Work",
+          "count": 7,
+          "exampleIds": [
+            "PR-0264",
+            "PR-EX-GR-DRAFT"
+          ]
+        },
+        {
+          "group": "Start here",
+          "feature": "Tenders",
+          "count": 3,
+          "exampleIds": [
+            "EX-AE-TEN-1",
+            "EX-AE-TEN-2"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "Programme & delays",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-ACT-2",
+            "EX-HT-ACT-1"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "KPIs & performance",
+          "count": 3,
+          "exampleIds": [
+            "KPI-001",
+            "EX-HT-KPI-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Daily work",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-LOG-2",
+            "LOG-028"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Quality & safety",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-NCR-2",
+            "NCR-018"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Materials & waste",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-WST-2",
+            "WST-009"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Plant & equipment",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-AST-2",
+            "EX-HT-AST-1"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Purchase requests",
+          "count": 5,
+          "exampleIds": [
+            "PR-0264",
+            "PR-EX-HT-APPROVED"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Subcontracts",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-SC-1",
+            "EX-HT-SC-2"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Cost report",
+          "count": 4,
+          "exampleIds": [
+            "C-101",
+            "C-102"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Changes & variations",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-VO-2",
+            "EX-HT-VO-1"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Payments & cash flow",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-PAY-1",
+            "EX-HT-PAY-2"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "Drawings & revisions",
+          "count": 3,
+          "exampleIds": [
+            "DRW-041",
+            "EX-HT-DRW-2"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "RFIs & correspondence",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-RFI-2",
+            "EX-HT-RFI-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Snags & defects",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-SN-2",
+            "EX-HT-SN-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Testing & commissioning",
+          "count": 3,
+          "exampleIds": [
+            "EX-HT-COM-2",
+            "EX-HT-COM-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Project & company reports",
+          "count": 6,
+          "exampleIds": [
+            "C-101",
+            "C-102"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Payments & cash flow",
+          "count": 5,
+          "exampleIds": [
+            "EX-GR-PAY-1",
+            "EX-GR-PAY-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Buying & subcontractors",
+          "count": 14,
+          "exampleIds": [
+            "PR-0264",
+            "PR-EX-GR-APPROVED"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "People",
+          "count": 3,
+          "exampleIds": [
+            "HR-014",
+            "EX-AE-HR-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Assets & fleet",
+          "count": 5,
+          "exampleIds": [
+            "EX-GR-AST-2",
+            "EX-HT-AST-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Stores & materials",
+          "count": 3,
+          "exampleIds": [
+            "ST-005",
+            "EX-AE-ST-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Contacts & catalogue",
+          "count": 2,
+          "exampleIds": [
+            "euro",
+            "gulf"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "jakh",
+      "project": "gardens",
+      "features": [
+        {
+          "group": "Start here",
+          "feature": "My Work",
+          "count": 7,
+          "exampleIds": [
+            "PR-0264",
+            "PR-EX-GR-DRAFT"
+          ]
+        },
+        {
+          "group": "Start here",
+          "feature": "Tenders",
+          "count": 3,
+          "exampleIds": [
+            "EX-AE-TEN-1",
+            "EX-AE-TEN-2"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "Programme & delays",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-ACT-2",
+            "EX-GR-ACT-1"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "KPIs & performance",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-KPI-1",
+            "EX-GR-KPI-2"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Daily work",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-LOG-2",
+            "EX-GR-LOG-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Quality & safety",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-NCR-2",
+            "EX-GR-NCR-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Materials & waste",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-WST-2",
+            "EX-GR-WST-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Plant & equipment",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-AST-2",
+            "EX-GR-AST-1"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Purchase requests",
+          "count": 4,
+          "exampleIds": [
+            "PR-EX-GR-APPROVED",
+            "PR-EX-GR-DRAFT"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Subcontracts",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-SC-1",
+            "EX-GR-SC-2"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Cost report",
+          "count": 1,
+          "exampleIds": [
+            "C-201"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Changes & variations",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-VO-2",
+            "EX-GR-VO-1"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Payments & cash flow",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-PAY-1",
+            "EX-GR-PAY-2"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "Drawings & revisions",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-DRW-2",
+            "EX-GR-DRW-1"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "RFIs & correspondence",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-RFI-2",
+            "EX-GR-RFI-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Snags & defects",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-SN-2",
+            "EX-GR-SN-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Testing & commissioning",
+          "count": 2,
+          "exampleIds": [
+            "EX-GR-COM-2",
+            "EX-GR-COM-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Project & company reports",
+          "count": 6,
+          "exampleIds": [
+            "C-101",
+            "C-102"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Payments & cash flow",
+          "count": 5,
+          "exampleIds": [
+            "EX-GR-PAY-1",
+            "EX-GR-PAY-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Buying & subcontractors",
+          "count": 14,
+          "exampleIds": [
+            "PR-0264",
+            "PR-EX-GR-APPROVED"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "People",
+          "count": 3,
+          "exampleIds": [
+            "HR-014",
+            "EX-AE-HR-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Assets & fleet",
+          "count": 5,
+          "exampleIds": [
+            "EX-GR-AST-2",
+            "EX-HT-AST-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Stores & materials",
+          "count": 3,
+          "exampleIds": [
+            "ST-005",
+            "EX-AE-ST-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Contacts & catalogue",
+          "count": 2,
+          "exampleIds": [
+            "euro",
+            "gulf"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "build",
+      "project": "creek",
+      "features": [
+        {
+          "group": "Start here",
+          "feature": "My Work",
+          "count": 3,
+          "exampleIds": [
+            "PR-EX-CO-DRAFT",
+            "PR-EX-CO-RETURNED"
+          ]
+        },
+        {
+          "group": "Start here",
+          "feature": "Tenders",
+          "count": 2,
+          "exampleIds": [
+            "EX-INT-TEN-1",
+            "EX-INT-TEN-2"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "Programme & delays",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-ACT-2",
+            "EX-CO-ACT-1"
+          ]
+        },
+        {
+          "group": "Plan",
+          "feature": "KPIs & performance",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-KPI-1",
+            "EX-CO-KPI-2"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Daily work",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-LOG-2",
+            "EX-CO-LOG-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Quality & safety",
+          "count": 3,
+          "exampleIds": [
+            "EX-CO-NCR-2",
+            "CO-011"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Materials & waste",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-WST-2",
+            "EX-CO-WST-1"
+          ]
+        },
+        {
+          "group": "Site",
+          "feature": "Plant & equipment",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-AST-2",
+            "EX-CO-AST-1"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Purchase requests",
+          "count": 4,
+          "exampleIds": [
+            "PR-EX-CO-APPROVED",
+            "PR-EX-CO-DRAFT"
+          ]
+        },
+        {
+          "group": "Buying",
+          "feature": "Subcontracts",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-SC-1",
+            "EX-CO-SC-2"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Cost report",
+          "count": 1,
+          "exampleIds": [
+            "C-301"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Changes & variations",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-VO-2",
+            "EX-CO-VO-1"
+          ]
+        },
+        {
+          "group": "Costs & Contracts",
+          "feature": "Payments & cash flow",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-PAY-1",
+            "EX-CO-PAY-2"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "Drawings & revisions",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-DRW-2",
+            "EX-CO-DRW-1"
+          ]
+        },
+        {
+          "group": "Documents",
+          "feature": "RFIs & correspondence",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-RFI-2",
+            "EX-CO-RFI-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Snags & defects",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-SN-2",
+            "EX-CO-SN-1"
+          ]
+        },
+        {
+          "group": "Handover",
+          "feature": "Testing & commissioning",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-COM-2",
+            "EX-CO-COM-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Project & company reports",
+          "count": 1,
+          "exampleIds": [
+            "C-301"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Payments & cash flow",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-PAY-1",
+            "EX-CO-PAY-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Buying & subcontractors",
+          "count": 6,
+          "exampleIds": [
+            "PR-EX-CO-APPROVED",
+            "PR-EX-CO-DRAFT"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "People",
+          "count": 2,
+          "exampleIds": [
+            "EX-INT-HR-1",
+            "EX-INT-HR-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Assets & fleet",
+          "count": 2,
+          "exampleIds": [
+            "EX-CO-AST-2",
+            "EX-CO-AST-1"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Stores & materials",
+          "count": 2,
+          "exampleIds": [
+            "EX-INT-ST-1",
+            "EX-INT-ST-2"
+          ]
+        },
+        {
+          "group": "Company",
+          "feature": "Contacts & catalogue",
+          "count": 1,
+          "exampleIds": [
+            "world"
+          ]
+        }
+      ]
+    }
+  ]
+}

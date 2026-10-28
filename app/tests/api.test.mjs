@@ -23,13 +23,13 @@ test('HTTP boundary requires a session, blocks cross-origin writes and scopes di
     method: 'POST',
     headers: {
       Origin: 'https://untrusted.example',
-      'X-Jakh-Client': 'local-app'
+      'X-Builder-Client': 'local-app'
     }
   })).status, 403);
   const session = await fetch(base + '/api/local-session', {
     method: 'POST',
     headers: {
-      'X-Jakh-Client': 'local-app'
+      'X-Builder-Client': 'local-app'
     }
   });
   assert.equal(session.status, 200);
@@ -37,7 +37,7 @@ test('HTTP boundary requires a session, blocks cross-origin writes and scopes di
   assert.match(session.headers.get('set-cookie'), /HttpOnly; SameSite=Strict/);
   const headers = {
     Cookie: cookie,
-    'X-Jakh-Client': 'local-app',
+    'X-Builder-Client': 'local-app',
     'Content-Type': 'application/json'
   };
   assert.equal((await fetch(base + '/api/workspace?company=build', {

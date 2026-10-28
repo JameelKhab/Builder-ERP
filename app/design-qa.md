@@ -71,3 +71,15 @@ Captured the revised app at the same desktop company/project/state, inspected th
 - [x] Verify core working interactions, responsive states and console.
 - [x] Record intentional differences, scope limits and remaining release tests.
 - [x] Keep the local preview running; no remote publish or deployment.
+
+## Follow-up: Builder ERP name and examples (28 October 2026)
+
+The user explicitly replaced the software name with **Builder ERP** and requested examples for every provided feature. This authorised branding/copy change supersedes JAKH ERP text in the historical mock. Legal-company names remain unchanged. The existing composition, type system, colours and seven project areas remain the visual baseline.
+
+Added a quiet Examples launcher beside search, a grouped examples guide with project picker, related-work links and example histories. The guide is optional; it does not add modules to the main navigation. Each of its 24 feature destinations is populated in every supplied project/company scope. Overview offers View all reviews when more than one review is pending.
+
+Evidence: `../docs/validation/examples/builder-overview.png`, `examples-guide.png` and `examples-mobile.png`. Desktop overview capture is 1872 × 1332 pixels; guide capture uses the browser's 1440 × 1025 canvas with content in 1108 × 788, normalised to 1440 × 1024. Mobile CSS viewport was 390 × 844; its native 390 × 844 canvas had content in 300 × 650, normalised to the CSS size. An intermediate browser pinch/pan offset caused clipped captures and inaccurate pointer targets; it was cleared with temporary page-scale emulation. Final native capture and DOM metrics showed the complete mobile dialog (370px wide), no document overflow and readable controls. Browser zoom remained 130%. Intermediate clipped captures are not acceptance evidence.
+
+Browser checks verified the guide route/project switch, the Garden Residences quality register, NCR detail and related drawing, USD company examples, four request stages and returned-request history. Keyboard activation worked on the tested record/related-work controls. Mobile guide navigation opened My Work. The detailed source/permission/persistence checks are in the 30-test suite. This update does not claim full accessibility conformance or completion of the wider ERP.
+
+Follow-up result: passed for the requested branding, content coverage and guide; prior broader release gaps remain.

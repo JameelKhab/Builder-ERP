@@ -86,8 +86,10 @@ export function RecordTable({
 export function RecordDetail({
   record,
   company,
-  project
+  project,
+  onOpen
 }) {
+  const { _example: example, ...fields } = record.details;
   return <>
 <p className="eyebrow">{company} · {project || 'Company record'}</p>
 <div className="record-context">
@@ -102,10 +104,14 @@ export function RecordDetail({
 <small>{record.owner} · {record.due ? `Due ${dueLabel(record.due)}` : 'No due date set'}</small>
 </div>
 </div>
-<dl className="detail-list">{Object.entries(record.details).map(([key, value]) => <div key={key}>
+<dl className="detail-list">{Object.entries(fields).map(([key, value]) => <div key={key}>
 <dt>{key}</dt>
 <dd>{value}</dd>
 </div>)}</dl>
+{example && <>
+<section className="record-section"><h3>Example history</h3><ol className="example-timeline">{example.timeline.map((event, index) => <li key={index}><strong>{dueLabel(event.at)} · {event.who}</strong><p>{event.text}</p></li>)}</ol></section>
+<section className="record-section"><h3>Related work</h3><p className="muted">Follow the same issue through its other records.</p><div className="related-examples">{record.related?.map(({id, title}) => <button className="secondary" key={id} onClick={() => onOpen(id)}><span>{title}<small>{id}</small></span><ArrowRight size={16} /></button>)}</div></section>
+</>}
 <p className="muted footnote">Sample register · read only in this increment.</p>
 </>;
 }
@@ -208,7 +214,7 @@ export function RequestDetail({
 <h3>Currency & budget</h3>
 <div className="metrics two">
 <div>
-<span>Vendor amount</span>
+<span>{r.vendor_id ? 'Vendor amount' : 'Estimated amount'}</span>
 <strong>{amount(r.amount, r.currency)}</strong>
 </div>
 <div>
@@ -384,7 +390,7 @@ export function CostReport({
     const url = URL.createObjectURL(blob),
       link = document.createElement('a');
     link.href = url;
-    link.download = `JAKH-cost-${company.id}-${project || 'company'}-${report.snapshot}.csv`;
+    link.download = `Builder-ERP-cost-${company.id}-${project || 'company'}-${report.snapshot}.csv`;
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }

@@ -4,7 +4,7 @@ export async function api(path, body, method = 'POST', signal) {
     credentials: 'same-origin',
     headers: body === undefined ? {} : {
       'Content-Type': 'application/json',
-      'X-Jakh-Client': 'local-app'
+      'X-Builder-Client': 'local-app'
     },
     body: body === undefined ? undefined : JSON.stringify(body),
     signal

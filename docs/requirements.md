@@ -8,6 +8,9 @@ Create an original construction ERP for the journey from tendering to handover, 
 
 ## Experience requirements
 
+- Product name: **Builder ERP**.
+- Include a meaningful, accessible example for each provided feature, with sufficient detail to explain its use. Populated company/project examples should show different states and related records. Clearly identify read-only examples and unfinished workflows.
+
 - Selected direction uses global navigation: My Work, Tenders, Projects, Company.
 - Selected direction uses project areas: Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover.
 - Preserve company/project/location/work-item context across records and handoffs.

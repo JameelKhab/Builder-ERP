@@ -7,7 +7,7 @@ function quote(value) {
 
 export function costReportCsv(report) {
   const lines = [
-    ['JAKH cost report'],
+    ['Builder ERP cost report'],
     ['Company', report.meta.company.name],
     ['Project', report.meta.project?.name || 'All authorised company activity'],
     ['Currency', report.meta.currency],

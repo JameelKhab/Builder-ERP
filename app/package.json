@@ -1,5 +1,5 @@
 {
-  "name": "jakh-builder-erp",
+  "name": "builder-erp",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "local": "node scripts/local.mjs",
-    "test": "node --test tests/domain.test.mjs tests/api.test.mjs tests/decimal.test.mjs tests/presentation.test.mjs tests/report-export.test.mjs"
+    "test": "node --test tests/domain.test.mjs tests/api.test.mjs tests/decimal.test.mjs tests/presentation.test.mjs tests/report-export.test.mjs tests/examples.test.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "5.3.0",

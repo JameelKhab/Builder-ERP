@@ -8,7 +8,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
 
-## JAKH-specific direction and boundaries
+## Builder ERP direction and boundaries
 
 - User selected choice 2, Project briefing, on 28 October 2026. Use `../docs/design/directions/02-project-briefing-refined.png` as the selected visual target. The refinement incorporates their request: easy to read, easy to operate, rich in information, with clearer categories.
 - Keep four global destinations, seven stable project areas and three overview groups: Decisions needed, Site & programme, Cost & cash. Category directories describe purpose; record detail carries evidence and history. Avoid recursive module menus and repeated nested tab bars.
@@ -18,3 +18,6 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Keep sample-mode identity and synthetic records clearly labelled. The only operational write workflow currently implemented is purchase request drafting, repricing and approval. Other registers are read-only samples. Never describe those as completed workflow modules.
 - Run `npm test` and `npm run build` for meaningful application changes. Financial state changes require service tests; do not replace exact arithmetic with JavaScript floating-point money.
 - Follow the root AGENTS.md and update `../docs/implementation/local-increment-1.md` and the project log when scope changes.
+
+- Product name: **Builder ERP**. Keep it consistent in the brand, tab title, exports and runtime metadata. Preserve legal-company identities separately.
+- Every visible feature needs meaningful examples. `server/examples.mjs` installs an additive, versioned sample pack in explicit local mode; never reset user work. `src/Examples.jsx` and `example-guide.js` expose the same authorised catalogue. The coverage tests must pass when adding or renaming features.

@@ -12,6 +12,11 @@
 
 Read README.md, docs/requirements.md, docs/decisions.md and the latest entry in docs/project-log.md. Use the study for supporting detail. Update these records when requirements or decisions change; distinguish confirmed user requirements from design proposals.
 
+## Product name and examples
+
+- The software is **Builder ERP**, as explicitly named by the user. JAKH remains a sample legal-company name and historical discovery reference, not the product brand.
+- Every provided feature needs meaningful, discoverable examples. Keep the example guide aligned with the visible feature catalogue and ensure sample coverage in each supplied company/project. Add examples without overwriting existing records or claiming unfinished workflows are operational.
+
 ## Product principles
 
 - Simplicity means clear task routes, stable navigation, progressive detail and preserved context. Do not remove essential controls merely to reduce menu counts.

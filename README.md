@@ -8,7 +8,7 @@ The priority is a simple interface with rich, traceable information. The replace
 
 **The first working local increment is implemented**, following the user's selection of [choice 2, Project briefing](docs/design/visual-directions.md), refined into clearer information categories. Open the running development app at **http://127.0.0.1:4173/**.
 
-Working features include persistent purchase requests, vendor quote repricing/currencies, independent approval, company/project scopes, cost reports with deterministic findings, source breakdown and CSV export. Other construction registers are read-only synthetic examples. **The complete ERP is still in development; this is not a production release.** See [implemented scope and next increments](docs/implementation/local-increment-1.md).
+Working features include persistent purchase requests, vendor quote repricing/currencies, independent approval, company/project scopes, cost reports with deterministic findings, source breakdown and CSV export. Other construction registers are read-only synthetic examples. The **Examples** button opens a guide covering every available feature. A versioned pack adds **102 examples** across all three sample projects and both companies, including connected records and four purchase-request stages. See [example coverage](docs/implementation/examples.md). **The complete ERP is still in development; this is not a production release.** See [implemented scope and next increments](docs/implementation/local-increment-1.md).
 
 Discovery remains recorded in the 53-page Revision 4 study. The navigation has been reviewed in a browser, but has not been validated with representative users.
 
@@ -48,7 +48,7 @@ npm ci
 npm run local
 ```
 
-The launcher starts the frontend on `127.0.0.1:4173` and the API on `127.0.0.1:4174`. Both bind to loopback. Data is saved in `.work/data/builder.sqlite` at the repository root and seeded only when empty. Restarting preserves records. Do not delete that file to reset a workspace; archive a stopped development database first.
+The launcher starts the frontend on `127.0.0.1:4173` and the API on `127.0.0.1:4174`. Both bind to loopback. Data is saved in `.work/data/builder.sqlite` at the repository root. Base data is seeded only when empty; the versioned example pack adds missing examples once without replacing existing records. Restarting preserves records. Do not delete that file to reset a workspace; archive a stopped development database first.
 
 The explicit local-sample mode signs in a synthetic project manager. It is **not production authentication**. Do not put confidential business data into this sample or expose it to a network. Production identity, financial localisation, infrastructure and recovery are separate implementation gates.
 
@@ -57,7 +57,7 @@ npm test
 npm run build
 ```
 
-Validation on 28 October 2026: 25 tests passed; frontend build passed; primary workflows and responsive layouts checked in the browser with no warning/error console entries. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Validation on 28 October 2026: 30 tests passed; frontend build passed; primary workflows and responsive layouts checked in the browser with no warning/error console entries. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

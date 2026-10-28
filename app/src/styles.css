@@ -1620,6 +1620,31 @@ td {
 }
 
 .overview-foot { color: #586a80; }
+.examples-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 42px; flex-shrink: 0; color: var(--copper); font-size: 14px; padding: 8px; border-radius: 4px; }
+.examples-button:hover { background: #f8eee7; }
+.example-guide > .field { margin: 22px 0 10px; max-width: 340px; }
+.example-group { margin-top: 28px; }
+.example-group h3 { margin: 0 0 10px; }
+.example-group ul { list-style: none; margin: 0; padding: 0; }
+.example-group li { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line); }
+.example-group h4 { margin: 0 0 6px; font-family: inherit; font-size: 16px; }
+.example-group p { margin: 0 0 7px; font-size: 14px; }
+.example-group small { display: block; color: var(--muted); line-height: 1.6; font-size: 13px; }
+.example-count { display: inline-block; font-weight: 400; color: var(--muted); margin-left: 8px; font-size: 12px; }
+.example-group .text-button { white-space: nowrap; flex-shrink: 0; }
+.example-timeline { padding-left: 22px; }
+.example-timeline li { padding: 8px 0; font-size: 14px; }
+.example-timeline p { margin: 6px 0; }
+.related-examples { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+.related-examples .secondary { text-align: left; justify-content: space-between; }
+.related-examples small { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+@media (max-width: 700px) {
+  .examples-button { gap: 4px; padding: 4px; font-size: 12px; }
+  .topbar .company-select { min-width: 0; }
+  .example-group li { gap: 8px; }
+  .example-count { margin-left: 0; display: block; margin-top: 4px; }
+  .example-group .text-button { font-size: 13px; padding: 8px 0; }
+}
 @media (max-width: 700px) {
   .work-table { display: block; min-width: 0; }
   .work-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }

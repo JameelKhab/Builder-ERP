@@ -1,6 +1,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import { seed } from './seed.mjs';
-export function openDatabase(path = ':memory:') {
+import { installExamples } from './examples.mjs';
+export function openDatabase(path = ':memory:', { examples = false } = {}) {
   const db = new DatabaseSync(path);
   db.exec(`PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
     CREATE TABLE IF NOT EXISTS schema_versions (version INTEGER PRIMARY KEY);
@@ -29,6 +30,7 @@ export function openDatabase(path = ':memory:') {
       throw error;
     }
   }
+  if (examples) installExamples(db);
   return db;
 }
 export function transaction(db, fn) {

@@ -17,7 +17,7 @@ Node 24.15.x is the current runtime. Dependencies and lockfile are pinned. Inter
 
 ## Authority and state
 
-The sample HTTP identity is injected by the server, not accepted from a caller-supplied role header. A random expiring HttpOnly/SameSite=Strict cookie identifies a local session. Write requests require the expected origin (when supplied) and a custom client header. **Anyone who can use this local sample endpoint can obtain the sample identity. This is explicitly not real authentication or a production security boundary.** Both listeners are loopback-only; API startup requires `JAKH_LOCAL_SAMPLE=1`.
+The sample HTTP identity is injected by the server, not accepted from a caller-supplied role header. A random expiring HttpOnly/SameSite=Strict cookie identifies a local session. Write requests require the expected origin (when supplied) and a custom client header. **Anyone who can use this local sample endpoint can obtain the sample identity. This is explicitly not real authentication or a production security boundary.** Both listeners are loopback-only; API startup requires `BUILDER_LOCAL_SAMPLE=1`.
 
 Domain services resolve membership for every company/project lookup, search, report and mutation. A company-level membership grants the applicable company scope; project membership restricts the population. Services validate that a request's project, cost item and vendor belong to the owning company. Database relationships supplement these checks; schema-level constraints alone are not the complete access model.
 
@@ -33,7 +33,7 @@ Reports compute one complete authorised population and deterministic findings fr
 
 ## Data lifecycle and delivery
 
-Schema version 1 is recorded. Future schema changes require explicit migrations and migration tests; `CREATE TABLE IF NOT EXISTS` is only initialisation. Empty databases are seeded once; reopening preserves user changes. Local runtime data is ignored by Git. Git bundles back up source/documents, **not** live business data. A separate tested database backup/restore process is required before real use.
+Schema version 1 is recorded. Future schema changes require explicit migrations and migration tests; `CREATE TABLE IF NOT EXISTS` is only initialisation. Empty databases are seeded once; reopening preserves user changes. The explicit local startup also installs the versioned `feature-examples-v1` pack transactionally. Its marker prevents repeat installation, and insert-if-missing semantics preserve existing rows. This pack adds examples, not financial opening balances. Local runtime data is ignored by Git. Git bundles back up source/documents, **not** live business data. A separate tested database backup/restore process is required before real use.
 
 The first install used cached packages because this laptop's TLS gateway prevented a verified registry connection. TLS verification and OS trust were not weakened. `cookie-signature` is pinned to cached compatible 1.0.6 via an override; reassess this and all dependencies in the release review. No vulnerability-audit pass is asserted.
 

@@ -3,6 +3,7 @@ import { User, Notebook, Buildings, Users, MagnifyingGlass, Question, CaretRight
 import { api, amount, compact, stateLabel } from './api.js';
 import { AREAS, CATEGORIES, COMPANY_GROUPS } from './catalogue.js';
 import { Modal, ErrorBox, Empty, Status, RecordTable, RecordDetail, RequestDetail, RequestForm, CostReport } from './components.jsx';
+import { Examples } from './Examples.jsx';
 const GLOBALS = [['My Work', User], ['Tenders', Notebook], ['Projects', Buildings], ['Company', Users]];
 function readRoute() {
   const p = new URLSearchParams(location.hash.slice(1));
@@ -129,6 +130,16 @@ export function App() {
       });
     }
   }
+  async function openExamples() {
+    const serial = ++openSerial.current;
+    setModal({ type: 'loading', title: 'Explore examples' });
+    try {
+      const all = await api(`/workspace?company=${companyId}`);
+      if (serial === openSerial.current) setModal({ type: 'examples', title: 'Explore examples', workspace: all });
+    } catch (e) {
+      if (serial === openSerial.current) setModal({ type: 'error', title: 'Examples unavailable', error: e.message });
+    }
+  }
   function switchCompany(id) {
     setCompanyId(id);
     setProjectId(boot.projects.find(p => p.company_id === id)?.id || '');
@@ -190,6 +201,7 @@ export function App() {
 <div className="section-head">
 <h2>Decisions needed</h2>
 <span className="muted">{pending.length ? `${pending.length} awaiting your review` : 'You’re up to date'}</span>
+{pending.length > 1 && <button className="text-button push-right" onClick={() => nav('My Work')}>View all reviews<ArrowRight size={18} /></button>}
 </div>{r ? <div className="decision">
 <div className="decision-title">
 <h3>{r.title}</h3>
@@ -306,33 +318,17 @@ export function App() {
   function modalBody() {
     if (modal.type === 'loading') return <p role="status">Loading…</p>;
     if (modal.type === 'error') return <ErrorBox message={modal.error} />;
-    if (modal.type === 'help') return <>
-<p>Choose a company, then a project. Project areas stay in the same order everywhere.</p>
-<dl className="detail-list">
-<div>
-<dt>Decisions needed</dt>
-<dd>Requests that you have authority to review. Approving sourcing does not create an order or payment.</dd>
-</div>
-<div>
-<dt>Site & programme</dt>
-<dd>Location, owner, due date and current status together. Open a row for its evidence and next action.</dd>
-</div>
-<div>
-<dt>Cost & cash</dt>
-<dd>Findings are calculated from every item in the report scope. Open the report for the complete breakdown.</dd>
-</div>
-<div>
-<dt>Local sample</dt>
-<dd>Purchase drafts and review decisions persist on this laptop. Other registers are read-only sample records. Production sign-in and the remaining ERP workflows are still to be built.</dd>
-</div>
-</dl>
-</>;
+    if (modal.type === 'examples') return <Examples workspace={modal.workspace} company={company} projects={boot.projects.filter(p => p.company_id === companyId)} initialProject={projectId} actorId={boot.actor.id} onVisit={(feature, selectedProject) => {
+      close();
+      setProjectId(selectedProject);
+      nav(feature.global, feature.area, feature.category);
+    }} />;
     if (modal.type === 'request') return <RequestDetail key={modal.record.id} request={modal.record} {...contextFor(modal.record)} onChanged={refresh} onEdit={r => setModal({
       type: 'edit',
       title: 'Revise purchase request',
       record: r
     })} />;
-    if (modal.type === 'record') return <RecordDetail record={modal.record} {...contextFor(modal.record)} />;
+    if (modal.type === 'record') return <RecordDetail record={modal.record} {...contextFor(modal.record)} onOpen={openRecord} />;
     if (['new', 'edit'].includes(modal.type)) {
       const p = modal.record ? boot.projects.find(p => p.id === modal.record.project_id) : project;
       return <RequestForm company={company} project={p} vendors={workspace?.vendors || []} items={(workspace?.report.rows || []).filter(i => i.project_id === p.id)} existing={modal.record} onSaved={r => {
@@ -375,7 +371,7 @@ export function App() {
   return <div className="shell">
 <a className="skip-link" href="#main-content">Skip to workspace</a>
 <aside className={mobileNav ? 'sidebar open' : 'sidebar'}>
-<div className="brand">JAKH ERP</div>
+<div className="brand">Builder ERP</div>
 <p className="brand-company">{company?.name || 'Construction workspace'}</p>
 <nav aria-label="Main navigation">{GLOBALS.map(([title, Icon]) => <button key={title} aria-current={route.global === title ? 'page' : undefined} className={route.global === title ? 'global-link active' : 'global-link'} onClick={() => nav(title)}>
 <Icon size={25} weight={route.global === title ? 'fill' : 'regular'} />{title}</button>)}</nav>
@@ -397,11 +393,8 @@ export function App() {
 <input aria-label="Search company records" placeholder="Search projects, documents, contracts…" value={search} onChange={e => setSearch(e.target.value)} maxLength={120} required />
 <button type="submit" className="sr-only">Search</button>
 </form>
-<button className="icon-button help" aria-label="Workspace help" onClick={() => setModal({
-          type: 'help',
-          title: 'Find your way around'
-        })}>
-<Question size={24} />
+<button className="examples-button" aria-label="Explore examples" onClick={openExamples} disabled={!boot}>
+<Question size={21} /><span>Examples</span>
 </button>
 <div className="profile">
 <span className="avatar">AA</span>
@@ -414,7 +407,7 @@ export function App() {
 <main id="main-content" tabIndex={-1}>
 <div className="project-header">
 <div>
-<h1>{pageTitle || 'JAKH workspace'}</h1>
+<h1>{pageTitle || 'Builder ERP'}</h1>
 <p>{route.global === 'Projects' ? `${project?.location} · ${project?.phase} · Wednesday, 28 October 2026` : route.global === 'Company' ? 'Company-wide operations and shared information' : route.global === 'Tenders' ? 'From opportunity to a confident bid.' : 'Your reviews and requests, across this company.'}</p>
 </div>{route.global === 'Projects' && project && <div className="project-meta">
 <label>
@@ -447,5 +440,5 @@ export function App() {
 </div>{requestList(workspace.requests.filter(r => r.requester_id === boot.actor.id))}</section>
 </>}</>}</div>
 </main>
-</div>{modal && <Modal title={modal.title} onClose={close} wide={['request', 'new', 'edit', 'sources'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
+</div>{modal && <Modal title={modal.title} onClose={close} wide={['request', 'new', 'edit', 'sources', 'examples'].includes(modal.type)}>{modalBody()}</Modal>}</div>;
 }

@@ -19,6 +19,8 @@ Last updated: 28 October 2026, Asia/Dubai.
 | D-011 | Keep everything committed locally for now | After the GitHub permission rejection, the user explicitly deferred remote syncing. Do not retry a push until instructed. |
 | D-012 | Start building with quality | Explicitly authorised implementation on 28 October 2026; no need to re-request implementation permission. |
 | D-013 | Choice 2 with clearer categories | User selected Project briefing and emphasised easy reading, easy operation and rich information. Refined before implementation. |
+| D-014 | Product name: Builder ERP | Explicit user correction; apply to the application, titles and exports. Company identities remain separate. |
+| D-015 | Examples for every provided feature | Add discoverable, meaningful scenarios in every supplied company/project and preserve existing local work. |
 
 ## Proposed design decisions, pending validation
 

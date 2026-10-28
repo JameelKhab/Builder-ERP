@@ -20,7 +20,7 @@ export function createApi(db, {
     if (req.headers.origin && req.headers.origin !== origin) return res.status(403).json({
       error: 'Origin is not allowed.'
     });
-    if (!['GET', 'HEAD'].includes(req.method) && req.headers['x-jakh-client'] !== 'local-app') return res.status(403).json({
+    if (!['GET', 'HEAD'].includes(req.method) && req.headers['x-builder-client'] !== 'local-app') return res.status(403).json({
       error: 'Same-origin client header required.'
     });
     next();
@@ -36,13 +36,13 @@ export function createApi(db, {
       error: 'Too many local sessions. Restart the local server.'
     });
     sessions.set(token, now + 8 * 60 * 60 * 1000);
-    res.setHeader('Set-Cookie', `jakh_local=${token}; HttpOnly; SameSite=Strict; Path=/api; Max-Age=28800`);
+    res.setHeader('Set-Cookie', `builder_local=${token}; HttpOnly; SameSite=Strict; Path=/api; Max-Age=28800`);
     res.json({
       mode: 'local-sample'
     });
   });
   app.use('/api', (req, res, next) => {
-    const token = req.headers.cookie?.split(';').map(s => s.trim()).find(s => s.startsWith('jakh_local='))?.slice(11);
+    const token = req.headers.cookie?.split(';').map(s => s.trim()).find(s => s.startsWith('builder_local='))?.slice(14);
     if (!token || (sessions.get(token) || 0) <= Date.now()) return res.status(401).json({
       error: 'Local session expired. Reload this page.'
     });

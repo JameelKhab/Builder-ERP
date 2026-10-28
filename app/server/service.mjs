@@ -277,9 +277,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
     record: id => {
       const r = db.prepare('SELECT * FROM records WHERE id=?').get(id);
       requireThat(r && allowed(r.company_id, r.project_id), 'Record is not available.', 404);
+      const details = JSON.parse(r.details);
+      const related = (details._example?.linkedIds || []).map(link => db.prepare('SELECT id,title,company_id,project_id FROM records WHERE id=?').get(link)).filter(row => row && allowed(row.company_id, row.project_id)).map(({ id, title }) => ({ id, title }));
+      if (details._example) details._example.linkedIds = related.map(row => row.id);
       return {
         ...r,
-        details: JSON.parse(r.details)
+        details,
+        related
       };
     },
     search: (company, term) => {
