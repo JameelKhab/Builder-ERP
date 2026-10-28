@@ -4,7 +4,7 @@ This editable baseline accompanies the [53-page Revision 4 study](study/JAKH-ERP
 
 ## Objective and boundaries
 
-Create an original construction ERP for the journey from tendering to handover, defect obligations and final settlement. Use no Odoo application code. Prioritise simple navigation, clear next actions and rich, source-linked information. Work locally; do not deploy to jakh.net or modify the demo.
+Create an original construction ERP for the journey from tendering to handover, defect obligations and final settlement. Use no Odoo application code. Prioritise simple navigation, clear next actions and rich, source-linked information. Work and commit locally; the user has deferred GitHub syncing. Do not push until instructed, deploy to jakh.net or modify the demo.
 
 ## Experience requirements
 

@@ -5,7 +5,7 @@
 - Build an original construction ERP from scratch. Do not copy, translate, adapt or depend on Odoo application code or import the old Odoo project into this repository.
 - The existing JAKH demo was used as a read-only requirements/evidence source. Do not modify it while working on the replacement.
 - Develop and validate locally. Do not deploy to jakh.net, demo.jakh.net or another production destination without a later explicit user instruction. Do not add automatic deployment pipelines as part of routine development.
-- GitHub is the project record. Keep meaningful changes and their validation in Git; a GitHub backup is separate from application deployment.
+- GitHub is the intended remote project record, but the user's latest instruction is to keep everything committed locally for now. Keep meaningful changes and validation in local Git. Do not push to GitHub until the user resumes syncing; that is separate from any deployment instruction.
 - Current phase: study and requirements recorded. Repository setup is not evidence that the proposed interface, architecture or implementation has been approved. Follow the user's current instruction when advancing the work.
 
 ## Read before substantial work

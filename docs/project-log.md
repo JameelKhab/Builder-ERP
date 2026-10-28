@@ -32,6 +32,8 @@ Dates use Asia/Dubai. This log records work and its limits; Git history records 
 
 The first push was rejected with HTTP 403: the laptop's cached Git authentication identified `jame17291-sys`, which lacks write access to `JameelKhab/Builder-ERP`. The prepared work is committed locally. No credentials were changed and no alternate identity was used. Resume the push after the user signs Git into an authorised account or grants the intended account write access. This is a GitHub permission issue, not a deployment attempt or a failed local validation.
 
+**User direction after that attempt:** "Keep everything committed locally for now." Remote syncing is now deliberately deferred. Do not retry a push merely because authentication changes; wait for the user to resume syncing. Continue local development and local commits under the separate no-deployment boundary.
+
 ### Next work within the study-led sequence
 
 1. Resolve the highest-impact entity, role, accounting, location/work-item and programme inputs.
