@@ -9,6 +9,7 @@ const areas = {
   stock: 'Stock movements',
   wbs: 'Work breakdown',
   quality: 'Quality & NCRs',
+  ledger: 'General ledger',
   finance: 'Finance',
   people: 'People'
 };
@@ -16,6 +17,7 @@ export function permissionLabel(value) {
   const [area, action] = value.split('.');
   const name = areas[area] || area.charAt(0).toUpperCase() + area.slice(1);
   return `${name}: ${{
+    post: 'post within separate journal authority',
     read: 'view',
     write: 'create and revise',
     manage: 'manage',

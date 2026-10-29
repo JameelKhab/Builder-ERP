@@ -47,7 +47,8 @@ export function Access({
         } : {}),
         ...(key === 'role_id' ? {
           approval_limit: '0',
-          budget_approval_limit: '0'
+          budget_approval_limit: '0',
+          ledger_approval_limit: '0'
         } : {})
       })
     }));
@@ -87,7 +88,7 @@ export function Access({
               active: e.target.checked
             });
           }} />Account active</label>
-      {form.grants.map((g, i) => <div className="grant" key={i}><div className="grant-fields"><label className="field">Company<select value={g.company_id} onChange={e => changeGrant(i, 'company_id', e.target.value)}><option value="">Choose company</option>{data.companies.map(c => <option value={c.id} key={c.id}>{c.name}</option>)}</select></label><label className="field">Project scope<select value={g.project_id} onChange={e => changeGrant(i, 'project_id', e.target.value)}><option value="">Choose scope</option><option value="*">All projects + company records</option>{data.projects.filter(p => p.company_id === g.company_id).map(p => <option value={p.id} key={p.id}>{p.name}</option>)}</select></label><label className="field">Role<select value={g.role_id} onChange={e => changeGrant(i, 'role_id', e.target.value)}><option value="">Choose role</option>{data.roles.filter(r => r.available).map(r => <option value={r.id} key={r.id}>{r.name}</option>)}</select></label><label className="field">Purchase approval · {data.companies.find(c => c.id === g.company_id)?.currency || 'company currency'}<input inputMode="decimal" value={g.approval_limit} onChange={e => changeGrant(i, 'approval_limit', e.target.value)} /></label><label className="field">Budget approval · {data.companies.find(c => c.id === g.company_id)?.currency || 'company currency'}<input inputMode="decimal" value={g.budget_approval_limit || '0'} onChange={e => changeGrant(i, 'budget_approval_limit', e.target.value)} /></label></div><p>{data.roles.find(r => r.id === g.role_id)?.description}</p><button className="text-button" onClick={() => {
+      {form.grants.map((g, i) => <div className="grant" key={i}><div className="grant-fields"><label className="field">Company<select value={g.company_id} onChange={e => changeGrant(i, 'company_id', e.target.value)}><option value="">Choose company</option>{data.companies.map(c => <option value={c.id} key={c.id}>{c.name}</option>)}</select></label><label className="field">Project scope<select value={g.project_id} onChange={e => changeGrant(i, 'project_id', e.target.value)}><option value="">Choose scope</option><option value="*">All projects + company records</option>{data.projects.filter(p => p.company_id === g.company_id).map(p => <option value={p.id} key={p.id}>{p.name}</option>)}</select></label><label className="field">Role<select value={g.role_id} onChange={e => changeGrant(i, 'role_id', e.target.value)}><option value="">Choose role</option>{data.roles.filter(r => r.available).map(r => <option value={r.id} key={r.id}>{r.name}</option>)}</select></label><label className="field">Purchase approval · {data.companies.find(c => c.id === g.company_id)?.currency || 'company currency'}<input inputMode="decimal" value={g.approval_limit} onChange={e => changeGrant(i, 'approval_limit', e.target.value)} /></label><label className="field">Budget approval · {data.companies.find(c => c.id === g.company_id)?.currency || 'company currency'}<input inputMode="decimal" value={g.budget_approval_limit || '0'} onChange={e => changeGrant(i, 'budget_approval_limit', e.target.value)} /></label><label className="field">Journal posting · {data.companies.find(c => c.id === g.company_id)?.currency || 'company currency'}<input inputMode="decimal" value={g.ledger_approval_limit || '0'} onChange={e => changeGrant(i, 'ledger_approval_limit', e.target.value)} /></label></div><p>{data.roles.find(r => r.id === g.role_id)?.description}</p><button className="text-button" onClick={() => {
             setReview(false);
             setForm({
               ...form,
@@ -103,7 +104,8 @@ export function Access({
               project_id: '',
               role_id: '',
               approval_limit: '0',
-              budget_approval_limit: '0'
+              budget_approval_limit: '0',
+              ledger_approval_limit: '0'
             }]
           });
         }}><Plus size={18} />Add company or project scope</button>
@@ -114,7 +116,7 @@ export function Access({
               reason: e.target.value
             });
           }} minLength={10} maxLength={1000} placeholder="Explain the business need and who requested this access." /></label>
-      {!review ? <button className="primary" onClick={() => setReview(true)} disabled={form.reason.trim().length < 10}>Review effective access</button> : <section className="access-review"><h2>Review before applying</h2><p>{form.active ? 'Account remains active.' : 'Account will be disabled.'} Every listed scope is combined. A company-wide role also applies to its projects.</p>{form.grants.map((g, i) => <div key={i}><strong>{data.companies.find(c => c.id === g.company_id)?.name} · {g.project_id === '*' ? 'All projects and company records' : data.projects.find(p => p.id === g.project_id)?.name}</strong><p>{data.roles.find(r => r.id === g.role_id)?.name} · Purchase approval up to {g.approval_limit} {data.companies.find(c => c.id === g.company_id)?.currency}</p><p>Budget approval up to {g.budget_approval_limit || '0'} {data.companies.find(c => c.id === g.company_id)?.currency}. Separate authority; self-approval is blocked.</p><p className="muted">{data.roles.find(r => r.id === g.role_id)?.capabilities.map(permissionLabel).join(' · ')}</p></div>)}<p>Self-approval remains blocked. Existing sessions will be invalidated. The old and new access will be recorded with your reason.</p><button className="primary" onClick={save} disabled={busy}>{busy ? 'Applying…' : 'Apply reviewed access'}</button></section>}
+      {!review ? <button className="primary" onClick={() => setReview(true)} disabled={form.reason.trim().length < 10}>Review effective access</button> : <section className="access-review"><h2>Review before applying</h2><p>{form.active ? 'Account remains active.' : 'Account will be disabled.'} Every listed scope is combined. A company-wide role also applies to its projects.</p>{form.grants.map((g, i) => <div key={i}><strong>{data.companies.find(c => c.id === g.company_id)?.name} · {g.project_id === '*' ? 'All projects and company records' : data.projects.find(p => p.id === g.project_id)?.name}</strong><p>{data.roles.find(r => r.id === g.role_id)?.name} · Purchase approval up to {g.approval_limit} {data.companies.find(c => c.id === g.company_id)?.currency}</p><p>Budget approval up to {g.budget_approval_limit || '0'} {data.companies.find(c => c.id === g.company_id)?.currency}. Separate authority; self-approval is blocked.</p><p>Journal posting up to {g.ledger_approval_limit || '0'} {data.companies.find(c => c.id === g.company_id)?.currency}. Independent from purchase and budget authority.</p><p className="muted">{data.roles.find(r => r.id === g.role_id)?.capabilities.map(permissionLabel).join(' · ')}</p></div>)}<p>Self-approval remains blocked. Existing sessions will be invalidated. The old and new access will be recorded with your reason.</p><button className="primary" onClick={save} disabled={busy}>{busy ? 'Applying…' : 'Apply reviewed access'}</button></section>}
     </fieldset>{selected.user.id === actorId && <p className="notice">Another administrator must review changes to your own access.</p>}</>}
   </div>;
 }

@@ -91,3 +91,7 @@ The latest operational subset adds shared party identity with separate company t
 ## NCR continuation · schema 7
 
 A connected original NCR workflow now adds immediate containment, independent plan review, assigned corrective actions, hashed local evidence, verification/failure/closure/reopening, search/My Work and project/company findings/export. Five synthetic scenarios per project preserve earlier data. See [quality-local.md](quality-local.md); this is a partial operational domain, not full quality/HSE or migration acceptance.
+
+## 29 October 2026 — General ledger continuation
+
+Added an operational general-ledger subset: company accounts/periods, exact-currency journals, independent authority and posting, immutable facts, reversal links, project/company findings and CSV. Home → Accounting and the project General ledger view open canonical records. See ledger-local.md and contracts/ledger-v1.md. Full finance and ERP remain open against 267 functions/34 contracts/21 domains.

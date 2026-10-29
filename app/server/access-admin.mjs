@@ -44,7 +44,11 @@ export function accessAdmin(db, actorId) {
         const budgetLimit = g.budget_approval_limit ?? '0.00';
         requireThat(typeof budgetLimit === 'string' && /^\d{1,12}(\.\d{1,2})?$/.test(budgetLimit), 'Budget authority must be a non-negative amount with at most two decimals.');
         requireThat(new D(budgetLimit).isZero() || role.capabilities.includes('budgets.approve'), 'This role cannot approve budgets. Set budget authority to zero.');
+        const ledgerLimit = g.ledger_approval_limit ?? '0.00';
+        requireThat(typeof ledgerLimit === 'string' && /^\d{1,12}(\.\d{1,2})?$/.test(ledgerLimit), 'Journal authority must be a non-negative amount with at most two decimals.');
+        requireThat(new D(ledgerLimit).isZero() || role.capabilities.includes('ledger.post'), 'This role cannot post journals. Set journal authority to zero.');
         return {
+          ledger_approval_limit: money(ledgerLimit),
           budget_approval_limit: money(budgetLimit),
           user_id: id,
           company_id: g.company_id,
@@ -55,7 +59,7 @@ export function accessAdmin(db, actorId) {
         };
       });
       db.prepare('DELETE FROM memberships WHERE user_id=?').run(id);
-      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit) VALUES(?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit);
+      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit,ledger_approval_limit) VALUES(?,?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit, g.ledger_approval_limit);
       db.prepare('UPDATE users SET active=?,access_version=access_version+1 WHERE id=?').run(input.active ? 1 : 0, id);
       const after = snapshot(id);
       db.prepare('INSERT INTO access_events(actor_id,user_id,before_json,after_json,reason,at) VALUES(?,?,?,?,?,?)').run(actorId, id, JSON.stringify(before), JSON.stringify(after), input.reason.trim(), new Date().toISOString());

@@ -105,3 +105,7 @@ A product’s name never determines a pack size. Stable base units/precision, im
 ## 29 October 2026 — NCR lifecycle and evidence
 
 Immediate containment is recordable before completing the investigation. An assigned independent reviewer accepts a plan and later verifies closure; reporter, owners, plan authors and all historical action completers within the cycle are excluded. Revised containment/plans require current evidence. Failed verification requires new corrective evidence; reopening preserves earlier cycles. Local files are immutable database blobs with hash and authorised attachment-only download. Consequence follow-ups do not create financial, waste, variation or schedule facts. Full quality/HSE/inspection and downstream consequence resolution remain open.
+
+## 29 October 2026 — Original accounting controls
+
+General journals use a single legal company and optional single project. Immutable posted facts are corrected by linked full reversal; no reset to draft. Separate journal limits and independent author/reviewer checks apply. Company chart and periods are explicit configuration, with reserved control accounts blocked from manual posting until typed subledgers exist. Exact FX conversion records visible rounding; procurement rates do not become accounting rates. Original source evidence is read-only, and the source reset-to-draft control is intentionally replaced by traceable reversal.

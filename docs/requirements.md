@@ -134,3 +134,7 @@ Original company party/contact records, independent supplier terms/currency revi
 ## NCR implementation continuation
 
 The local original NCR subset now connects requirement/location/WBS, immediate containment, root-cause/disposition/actions, independent plan and verification decisions, original evidence bytes and closure/reopen history. Cost/waste/change/delay follow-ups remain distinct obligations; no automatic downstream posting is claimed. F013/F149/M28 remain partial; full quality/HSE, controlled-document, handover, migration and usability acceptance remain required.
+
+## 29 October 2026 — Original general ledger
+
+Implemented company accounts/periods, original exact-currency journal preparation and independent posting/reversal, immutable source snapshots, scoped ledger/trial-balance findings and export. Explicit separate journal authority defaults to zero. Tax, bills/invoices, AP/AR/payments, bank/stock reconciliation, WBS accounting allocation and full source migration remain required; no illustrative balance counts as posted accounting.

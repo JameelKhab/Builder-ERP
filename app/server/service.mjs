@@ -1,3 +1,4 @@
+import { ledger } from './ledger.mjs';
 import { quality } from './quality.mjs';
 import { masters } from './masters.mjs';
 import { legacyMaster, freezeMaster, usableSupplier } from './master-rules.mjs';
@@ -394,6 +395,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         budgets: []
       };
       return {
+        ledger_entries: access.has('finance.read', company, project, !project) ? ledger(db, actorId, today).list(company, project) : [],
         quality_cases: access.has('quality.read', company, project, !project) ? quality(db, actorId, today).list(company, project) : [],
         master_reviews: access.has('suppliers.approve', company, null) ? masters(db, actorId, today).workspace(company).pending.filter(p => p.can_decide).map(p => ({
           ...p,
@@ -459,7 +461,13 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         category: 'Quality & safety',
         status: r.state_label
       })) : [];
-      return [...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const ledgerRows = access.has('finance.read', company, null, true) ? ledger(db, actorId, today).list(company).map(r => ({
+        ...r,
+        display_reference: r.number,
+        category: 'General ledger',
+        status: r.state_label
+      })) : [];
+      return [...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

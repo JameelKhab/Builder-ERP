@@ -4,6 +4,8 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+Original general ledger now supports company accounts/periods, exact-currency journals, independent posting/reversal, immutable history and scoped ledger/trial-balance findings. See `ledger-local.md` and `contracts/ledger-v1.md`. Typed bills, payments, tax, bank/stock reconciliation and source accounting migration remain open.
+
 NCRs now have a connected original lifecycle, local evidence files, independent plan/verification decisions, immediate containment, consequences and company/project findings. See `quality-local.md` and `contracts/quality-v1.md`. Broader quality/HSE/inspection/document/handover and downstream consequence resolution remain open.
 
 Company contacts, independently reviewed supplier terms/currencies and typed catalogue/pack maintenance now connect to quotations, orders and historical snapshots. My Work/search and company examples are included. See `masters-local.md` and `contracts/masters-v1.md`. Full party/pricelist/configuration scope remains open.
@@ -31,7 +33,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | ID | Source destination | Local status | Current implementation / remaining work |
 |---|---|---|---|
 | F001 | Dashboard | partial | Project/company cost report combines illustrative opening balances with local PO commitments and material-consumption facts; findings and source links. Other dashboard metrics remain open. |
-| F002 | Reports > Ledger, trial balance & aging | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F002 | Reports > Ledger, trial balance & aging | partial | Original company/project general ledger and trial balance, accounting-date opening/movement/closing, account filters, findings and full CSV. Aging, AP/AR and source reconciliation remain open. |
 | F003 | Reports > Company cash flow | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F004 | Reports > Cash-flow accounting policies | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F005 | Reports > BOQ & building cost control | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -41,7 +43,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F009 | Reports > Cost forecasts | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F010 | Reports > Project cash forecasts | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F011 | Reports > Project cash forecast | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F012 | Reports > Posted Ledger | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F012 | Reports > Posted Ledger | partial | Immutable original posted journal lines, accounting-date cutoffs, source/reversal links and scoped ledger findings/export. Typed subledger postings and imported source ledger remain open. |
 | F013 | Reports > Quality / HSE Reporting | partial | Current NCR report by company/project/state/severity with full-population findings, source links and CSV; closed/reopened cases reconcile by current state. Full quality/HSE inspection KPIs, aging, period/cutoff history and source parity remain open. |
 | F014 | Reports > Project-control audit | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F015 | Reports > Scheduled reports | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -150,7 +152,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F118 | Labour & plant allocation | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F119 | Labour & plant actual feeds | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F120 | P6 schedule progress | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F121 | Finance > Dashboard | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F121 | Finance > Dashboard | partial | Accounting destination exposes journal states and ledger/trial-balance findings. Full finance dashboard, AP/AR/cash/tax and reconciliation remain open. |
 | F122 | Finance > Customers > Invoices | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F123 | Finance > Customers > Credit Notes | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F124 | Finance > Customers > Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -161,18 +163,18 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F129 | Finance > Vendors > Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F130 | Finance > Vendors > Products | foundation | Canonical company material/service catalogue with category, base unit, packs and historical identity. Dedicated sales/accounting pricing/tax workflows remain open. |
 | F131 | Finance > Vendors > Vendors | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |
-| F132 | Finance > Accounting > Transactions > Journal Entries | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F133 | Finance > Review > Control > Journal Items | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F134 | Finance > Review > Control > Audit Trail | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F132 | Finance > Accounting > Transactions > Journal Entries | partial | Typed general journals: exact currencies/rates, independent posting with separate authority, source references, stale-account checks, immutable numbered facts and linked full reversals. Typed finance sources, templates/delegation and parity remain open. |
+| F133 | Finance > Review > Control > Journal Items | partial | Immutable posted journal-line projection with account snapshots, exact base amounts/rounding, source links and company/project reports. Tax/party/subledger analysis remains open. |
+| F134 | Finance > Review > Control > Audit Trail | partial | Append-only journal/configuration events, review reasons, frozen versions, posting/reversal links and independent controls. Broader accounting audit, external tamper resistance and source parity remain open. |
 | F135 | Finance > Reporting > Management > Invoice Analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F136 | Finance > Reporting > Management > Cashflow Analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F137 | Finance > Reporting > Management > Analytic Report | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F138 | Finance > Configuration > Settings | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F138 | Finance > Configuration > Settings | partial | Company chart and non-overlapping periods; audited close/reopen, separate journal authority and supported accounting FX snapshots. Tax/fiscal localisation and broader settings remain open. |
 | F139 | Finance > Configuration > Online Payments | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F140 | Finance > Configuration > Accounting > Chart of Accounts | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F140 | Finance > Configuration > Accounting > Chart of Accounts | partial | Company chart maintenance, fixed code/type/purpose, prospective name/status changes, historical snapshots and reserved control accounts. Full hierarchy/tags/account mappings/opening migration remain open. |
 | F141 | Finance > Configuration > Accounting > Taxes | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F142 | Finance > Configuration > Accounting > Journals | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F143 | Finance > Configuration > Accounting > Currencies | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F142 | Finance > Configuration > Accounting > Journals | foundation | Transactional company/year general-journal numbering and immutable entries. Configurable journal books, series, defaults, currencies and controls remain open. |
+| F143 | Finance > Configuration > Accounting > Currencies | foundation | Explicit manual accounting FX source/date/direction and exact AED/USD/EUR conversion separate from procurement rates. Master currency/rate feeds, other precisions, revaluation and settlement FX remain open. |
 | F144 | Finance > Configuration > Accounting > Fiscal Positions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F145 | Finance > Configuration > Accounting > Multi-Ledger | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F146 | Finance > Configuration > Invoicing > Payment Terms | foundation | Independently approved company supplier payment days/effective dates freeze into quotations/orders. Full payment-term schedules, instalments, discounts, customer terms and invoice/accounting integration remain open. |
@@ -281,7 +283,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F249 | Administration > Cost Codes | partial | Company-scoped cost-code creation and WBS association with audit evidence. Full code lifecycle, classification and migration remain open. |
 | F250 | Administration > Buildings, floors & zones | partial | Create/edit stable site/building/floor/unit/zone/system hierarchy; scoped cycle checks, hierarchy ordering, reasons and versions. Archive/effective-date policy and source import remain open. |
 | F251 | Administration > Construction disciplines | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F252 | Administration > Business Audit | partial | Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. NCR cycle/plan/action/evidence snapshots and independent decisions are now also append-only. |
+| F252 | Administration > Business Audit | partial | Append-only access, request, procurement, setup and budget history with before/after evidence. Full audit query/export, external evidence and tamper-resistance operations remain open. NCR cycle/plan/action/evidence snapshots and independent decisions are now also append-only. General-ledger journal/configuration snapshots, posting and reversal events are also retained. |
 | F253 | Administration > Project threshold rules | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F254 | Administration > Implementation workbook | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F255 | Administration > CRM Data Import | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |

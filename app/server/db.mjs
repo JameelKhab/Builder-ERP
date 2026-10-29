@@ -1,3 +1,5 @@
+import { installLedger } from './ledger-schema.mjs';
+import { installLedgerExamples } from './ledger-examples.mjs';
 import { installQualityExamples } from './quality-examples.mjs';
 import { installQuality } from './quality-schema.mjs';
 import { installMasterExamples } from './masters-examples.mjs';
@@ -49,11 +51,13 @@ export function openDatabase(path = ':memory:', {
   installIdentity(db);
   installMasters(db);
   installQuality(db);
+  installLedger(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
     installMasterExamples(db);
     installQualityExamples(db);
+    installLedgerExamples(db);
   }
   return db;
 }

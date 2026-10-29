@@ -1,3 +1,4 @@
+import { ledger } from './ledger.mjs';
 import { quality } from './quality.mjs';
 import { masters } from './masters.mjs';
 import { identity } from './identity.mjs';
@@ -136,12 +137,30 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.ledger = ledger(db, session.previewId || session.actorId, today);
     req.quality = quality(db, session.previewId || session.actorId, today);
     req.masters = masters(db, session.previewId || session.actorId, today);
     req.foundations = foundations(db, session.previewId || session.actorId, today);
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/ledger/options', (req, res) => res.json(req.ledger.options(req.query.company, req.query.project || null)));
+  app.get('/api/ledger/report', (req, res) => res.json(req.ledger.report(req.query.company, {
+    project: req.query.project || null,
+    from: req.query.from || undefined,
+    to: req.query.to || undefined,
+    account: req.query.account || null
+  })));
+  app.get('/api/ledger/entries', (req, res) => res.json(req.ledger.list(req.query.company, req.query.project || null)));
+  app.get('/api/ledger/entries/:id', (req, res) => res.json(req.ledger.detail(req.params.id)));
+  app.post('/api/ledger/entries', (req, res) => res.status(201).json(req.ledger.save(null, req.body)));
+  app.put('/api/ledger/entries/:id', (req, res) => res.json(req.ledger.save(req.params.id, req.body)));
+  app.post('/api/ledger/entries/:id/decision', (req, res) => res.json(req.ledger.decide(req.params.id, req.body)));
+  app.post('/api/ledger/entries/:id/reversal', (req, res) => res.status(201).json(req.ledger.reverse(req.params.id, req.body)));
+  app.post('/api/ledger/accounts', (req, res) => res.status(201).json(req.ledger.account(null, req.body)));
+  app.put('/api/ledger/accounts/:id', (req, res) => res.json(req.ledger.account(req.params.id, req.body)));
+  app.post('/api/ledger/periods', (req, res) => res.status(201).json(req.ledger.period(req.body)));
+  app.post('/api/ledger/periods/:id/decision', (req, res) => res.json(req.ledger.periodDecision(req.params.id, req.body)));
   app.get('/api/bootstrap', (req, res) => res.json({
     ...req.service.bootstrap(),
     mode: req.realIdentity ? 'local' : 'local-sample',

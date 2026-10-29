@@ -1,0 +1,3 @@
+Browser tab: 19, Title: "PBNK1/2026/00086 (INV/2026/00017)", URL: "https://demo.jakh.net/jakh/action-604/account.move/456".
+There has been no change in the accessibility tree.
+The focused UI element is 0 AXWebArea PBNK1/2026/00086 (INV/2026/00017), URL: demo.jakh.net/jakh/action-604/account.move/456

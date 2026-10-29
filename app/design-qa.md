@@ -93,3 +93,7 @@ Browser verified desktop 1280×900 and mobile 390×844; mobile document width eq
 ## 29 October 2026 · NCR workflow
 
 Checked original Home/Company/Project routes, focused case stages and evidence/history, saved case creation, visible missing-evidence feedback, attachment upload, date persistence, containment before cause, restart/search and responsive 1280px/390px layouts. Fixed controlled date-input persistence and removed repeated list filters from the creation form. Broad quality/HSE registers remain separate illustrative records. Backend/HTTP tests exercise independent review, failed verification and reopening.
+
+## 29 October 2026 — General ledger
+
+Checked persistent Accounting destination, project/company report filters and source/reversal navigation; isolated accountant draft creation/edit/submission; 1280 desktop and 390 mobile. Fixed save-navigation loss, same-currency duplicate amounts, report filter layout and scope wording. Browser rejected unbalanced entry, preserved date 27 October, kept saved record open and withheld self-posting. Report/export reconciles three scoped reversal lines and AED 1,280.13 on each side. Both final warning/error logs are empty. Evidence: ../docs/validation/ledger/. This is local subset verification; broader finance and representative-user usability remain open.

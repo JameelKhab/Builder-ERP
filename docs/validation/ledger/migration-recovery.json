@@ -1,0 +1,607 @@
+{
+  "date": "2026-10-28T23:55:58.798Z",
+  "before_backup": ".work/data/builder-before-ledger-20261029.sqlite",
+  "recovery": ".work/data/builder-ledger-recovery-check.sqlite",
+  "existing_tables": [
+    {
+      "table": "access_events",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "budget_documents",
+      "prior_rows": 9,
+      "current_rows": 9,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "budget_facts",
+      "prior_rows": 3,
+      "current_rows": 3,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "budget_lines",
+      "prior_rows": 9,
+      "current_rows": 9,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "catalogue_units",
+      "prior_rows": 11,
+      "current_rows": 11,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "companies",
+      "prior_rows": 2,
+      "current_rows": 2,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "construction_cost_facts",
+      "prior_rows": 8,
+      "current_rows": 8,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "cost_codes",
+      "prior_rows": 2,
+      "current_rows": 2,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "cost_items",
+      "prior_rows": 7,
+      "current_rows": 7,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "document_master_snapshots",
+      "prior_rows": 41,
+      "current_rows": 41,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "events",
+      "prior_rows": 29,
+      "current_rows": 29,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "foundation_events",
+      "prior_rows": 23,
+      "current_rows": 23,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identities",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identity_codes",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identity_events",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identity_limits",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identity_sessions",
+      "prior_rows": 0,
+      "current_rows": 0,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "identity_state",
+      "prior_rows": 1,
+      "current_rows": 1,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "master_events",
+      "prior_rows": 16,
+      "current_rows": 16,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "material_receipts",
+      "prior_rows": 4,
+      "current_rows": 4,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "material_request_lines",
+      "prior_rows": 14,
+      "current_rows": 14,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "material_requests",
+      "prior_rows": 11,
+      "current_rows": 11,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "memberships",
+      "prior_rows": 11,
+      "current_rows": 15,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "parties",
+      "prior_rows": 4,
+      "current_rows": 4,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "party_companies",
+      "prior_rows": 5,
+      "current_rows": 5,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "procurement_events",
+      "prior_rows": 58,
+      "current_rows": 58,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "product_categories",
+      "prior_rows": 4,
+      "current_rows": 4,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "product_packs",
+      "prior_rows": 3,
+      "current_rows": 3,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "products",
+      "prior_rows": 9,
+      "current_rows": 9,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "project_locations",
+      "prior_rows": 13,
+      "current_rows": 13,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "projects",
+      "prior_rows": 3,
+      "current_rows": 3,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "purchase_order_lines",
+      "prior_rows": 4,
+      "current_rows": 4,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "purchase_orders",
+      "prior_rows": 4,
+      "current_rows": 4,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quality_actions",
+      "prior_rows": 12,
+      "current_rows": 12,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quality_cases",
+      "prior_rows": 16,
+      "current_rows": 16,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quality_events",
+      "prior_rows": 119,
+      "current_rows": 119,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quality_evidence",
+      "prior_rows": 37,
+      "current_rows": 37,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quality_impacts",
+      "prior_rows": 76,
+      "current_rows": 76,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "quote_pack_details",
+      "prior_rows": 1,
+      "current_rows": 1,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "records",
+      "prior_rows": 107,
+      "current_rows": 107,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "requests",
+      "prior_rows": 13,
+      "current_rows": 13,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "sample_packs",
+      "prior_rows": 5,
+      "current_rows": 6,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "schema_versions",
+      "prior_rows": 7,
+      "current_rows": 8,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "sourcing_allocations",
+      "prior_rows": 9,
+      "current_rows": 9,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "stock_movements",
+      "prior_rows": 12,
+      "current_rows": 12,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "supplier_quotes",
+      "prior_rows": 10,
+      "current_rows": 10,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "supplier_term_decisions",
+      "prior_rows": 2,
+      "current_rows": 2,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "supplier_terms",
+      "prior_rows": 7,
+      "current_rows": 7,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "users",
+      "prior_rows": 8,
+      "current_rows": 10,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "vendors",
+      "prior_rows": 5,
+      "current_rows": 5,
+      "old_columns_unchanged": true
+    },
+    {
+      "table": "work_packages",
+      "prior_rows": 6,
+      "current_rows": 6,
+      "old_columns_unchanged": true
+    }
+  ],
+  "recovery_tables": [
+    {
+      "table": "access_events",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "budget_documents",
+      "rows": 9,
+      "match": true
+    },
+    {
+      "table": "budget_facts",
+      "rows": 3,
+      "match": true
+    },
+    {
+      "table": "budget_lines",
+      "rows": 9,
+      "match": true
+    },
+    {
+      "table": "catalogue_units",
+      "rows": 11,
+      "match": true
+    },
+    {
+      "table": "companies",
+      "rows": 2,
+      "match": true
+    },
+    {
+      "table": "construction_cost_facts",
+      "rows": 8,
+      "match": true
+    },
+    {
+      "table": "cost_codes",
+      "rows": 2,
+      "match": true
+    },
+    {
+      "table": "cost_items",
+      "rows": 7,
+      "match": true
+    },
+    {
+      "table": "document_master_snapshots",
+      "rows": 41,
+      "match": true
+    },
+    {
+      "table": "events",
+      "rows": 29,
+      "match": true
+    },
+    {
+      "table": "foundation_events",
+      "rows": 23,
+      "match": true
+    },
+    {
+      "table": "identities",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "identity_codes",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "identity_events",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "identity_limits",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "identity_sessions",
+      "rows": 0,
+      "match": true
+    },
+    {
+      "table": "identity_state",
+      "rows": 1,
+      "match": true
+    },
+    {
+      "table": "ledger_accounts",
+      "rows": 6,
+      "match": true
+    },
+    {
+      "table": "ledger_entries",
+      "rows": 12,
+      "match": true
+    },
+    {
+      "table": "ledger_events",
+      "rows": 41,
+      "match": true
+    },
+    {
+      "table": "ledger_lines",
+      "rows": 27,
+      "match": true
+    },
+    {
+      "table": "ledger_periods",
+      "rows": 2,
+      "match": true
+    },
+    {
+      "table": "ledger_sequences",
+      "rows": 2,
+      "match": true
+    },
+    {
+      "table": "master_events",
+      "rows": 16,
+      "match": true
+    },
+    {
+      "table": "material_receipts",
+      "rows": 4,
+      "match": true
+    },
+    {
+      "table": "material_request_lines",
+      "rows": 14,
+      "match": true
+    },
+    {
+      "table": "material_requests",
+      "rows": 11,
+      "match": true
+    },
+    {
+      "table": "memberships",
+      "rows": 15,
+      "match": true
+    },
+    {
+      "table": "parties",
+      "rows": 4,
+      "match": true
+    },
+    {
+      "table": "party_companies",
+      "rows": 5,
+      "match": true
+    },
+    {
+      "table": "procurement_events",
+      "rows": 58,
+      "match": true
+    },
+    {
+      "table": "product_categories",
+      "rows": 4,
+      "match": true
+    },
+    {
+      "table": "product_packs",
+      "rows": 3,
+      "match": true
+    },
+    {
+      "table": "products",
+      "rows": 9,
+      "match": true
+    },
+    {
+      "table": "project_locations",
+      "rows": 13,
+      "match": true
+    },
+    {
+      "table": "projects",
+      "rows": 3,
+      "match": true
+    },
+    {
+      "table": "purchase_order_lines",
+      "rows": 4,
+      "match": true
+    },
+    {
+      "table": "purchase_orders",
+      "rows": 4,
+      "match": true
+    },
+    {
+      "table": "quality_actions",
+      "rows": 12,
+      "match": true
+    },
+    {
+      "table": "quality_cases",
+      "rows": 16,
+      "match": true
+    },
+    {
+      "table": "quality_events",
+      "rows": 119,
+      "match": true
+    },
+    {
+      "table": "quality_evidence",
+      "rows": 37,
+      "match": true
+    },
+    {
+      "table": "quality_impacts",
+      "rows": 76,
+      "match": true
+    },
+    {
+      "table": "quote_pack_details",
+      "rows": 1,
+      "match": true
+    },
+    {
+      "table": "records",
+      "rows": 107,
+      "match": true
+    },
+    {
+      "table": "requests",
+      "rows": 13,
+      "match": true
+    },
+    {
+      "table": "sample_packs",
+      "rows": 6,
+      "match": true
+    },
+    {
+      "table": "schema_versions",
+      "rows": 8,
+      "match": true
+    },
+    {
+      "table": "sourcing_allocations",
+      "rows": 9,
+      "match": true
+    },
+    {
+      "table": "stock_movements",
+      "rows": 12,
+      "match": true
+    },
+    {
+      "table": "supplier_quotes",
+      "rows": 10,
+      "match": true
+    },
+    {
+      "table": "supplier_term_decisions",
+      "rows": 2,
+      "match": true
+    },
+    {
+      "table": "supplier_terms",
+      "rows": 7,
+      "match": true
+    },
+    {
+      "table": "users",
+      "rows": 10,
+      "match": true
+    },
+    {
+      "table": "vendors",
+      "rows": 5,
+      "match": true
+    },
+    {
+      "table": "work_packages",
+      "rows": 6,
+      "match": true
+    }
+  ],
+  "identity_credentials": 0,
+  "integrity": [
+    {
+      "integrity_check": "ok"
+    }
+  ],
+  "foreign_keys": []
+}

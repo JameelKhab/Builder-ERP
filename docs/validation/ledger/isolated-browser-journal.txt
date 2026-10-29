@@ -1,0 +1,78 @@
+- link "Skip to workspace":
+  - /url: "#main-content"
+- complementary:
+  - button "Builder ERP"
+  - paragraph: JAKH Contracting LLC
+  - navigation "Main navigation":
+    - button "Home":
+      - text: Home
+    - button "My Work":
+      - text: My Work
+    - button "Projects":
+      - text: Projects
+    - button "Company":
+      - text: Company
+  - text: Built around your work.
+  - text: Local sample workspace
+- banner:
+  - generic: Company
+  - combobox "Company":
+    - option "JAKH Contracting LLC" [selected]
+    - option "JAKH International Ltd"
+  - textbox "Search company records":
+    - /placeholder: Search projects, documents, contracts…
+  - button "Search"
+  - button "Explore examples":
+    - generic: Examples
+  - button "Your account and sign-in":
+    - generic: RA
+    - strong: Rana Ali · example accountant
+    - generic: accountant
+- main:
+  - heading "JAKH Contracting LLC" [level=1]
+  - paragraph: Company-wide operations and shared information
+  - paragraph: JAKH Contracting LLC · Authorised company scope
+  - heading "General ledger" [level=2]:
+    - text: General ledger
+  - paragraph: Prepare, independently review, then post. Follow every balance to its journal.
+  - button "Journal register":
+    - text: Journal register
+  - paragraph: JRN-7B44130A · Independent review
+  - heading "Example · Browser accounting form check" [level=3]
+  - paragraph: Harbour Tower · 27 Oct 2026 · Prepared by Rana Ali · example accountant
+  - generic: Equal debit & credit
+  - strong: AED 123.45
+  - generic: AED 123.45
+  - button "Withdraw submission"
+  - paragraph: Awaiting an independent reviewer with journal authority of at least AED 123.45.
+  - table:
+    - rowgroup:
+      - row "Account & description Debit Credit AED debit AED credit":
+        - columnheader "Account & description"
+        - columnheader "Debit"
+        - columnheader "Credit"
+        - columnheader "AED debit"
+        - columnheader "AED credit"
+    - rowgroup:
+      - row "5100 · Example · Site support expense Fictional local form check AED 123.45 AED 0.00 123.45 0.00":
+        - cell "5100 · Example · Site support expense Fictional local form check":
+          - strong: 5100 · Example · Site support expense
+          - generic: Fictional local form check
+        - cell "AED 123.45"
+        - cell "AED 0.00"
+        - cell "123.45"
+        - cell "0.00"
+      - row "2200 · Example · Accrued site support Fictional offset AED 0.00 AED 123.45 0.00 123.45":
+        - cell "2200 · Example · Accrued site support Fictional offset":
+          - strong: 2200 · Example · Accrued site support
+          - generic: Fictional offset
+        - cell "AED 0.00"
+        - cell "AED 123.45"
+        - cell "0.00"
+        - cell "123.45"
+  - heading "Source & accounting basis" [level=3]
+  - paragraph:
+    - strong: BROWSER-TEST-ONLY
+  - paragraph: Isolated in-memory synthetic walkthrough. No real liability or cash.
+  - paragraph: 1 AED = 1 AED · 27 Oct 2026 · Functional currency
+  - generic "Review history · 3 events"
