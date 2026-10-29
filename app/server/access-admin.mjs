@@ -50,7 +50,11 @@ export function accessAdmin(db, actorId) {
         const apLimit = g.ap_approval_limit ?? '0.00';
         requireThat(typeof apLimit === 'string' && /^\d{1,12}(\.\d{1,2})?$/.test(apLimit), 'AP authority must be a non-negative amount with at most two decimals.');
         requireThat(new D(apLimit).isZero() || role.capabilities.includes('ap.post'), 'This role cannot post supplier bills. Set AP authority to zero.');
+        const paymentLimit = g.payment_approval_limit ?? '0.00';
+        requireThat(typeof paymentLimit === 'string' && /^\d{1,12}(\.\d{1,2})?$/.test(paymentLimit), 'Payment authority must be a non-negative amount with at most two decimals.');
+        requireThat(new D(paymentLimit).isZero() || role.capabilities.includes('payments.approve'), 'This role cannot approve payments. Set payment authority to zero.');
         return {
+          payment_approval_limit: money(paymentLimit),
           ap_approval_limit: money(apLimit),
           ledger_approval_limit: money(ledgerLimit),
           budget_approval_limit: money(budgetLimit),
@@ -63,7 +67,7 @@ export function accessAdmin(db, actorId) {
         };
       });
       db.prepare('DELETE FROM memberships WHERE user_id=?').run(id);
-      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit,ledger_approval_limit,ap_approval_limit) VALUES(?,?,?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit, g.ledger_approval_limit, g.ap_approval_limit);
+      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit,ledger_approval_limit,ap_approval_limit,payment_approval_limit) VALUES(?,?,?,?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit, g.ledger_approval_limit, g.ap_approval_limit, g.payment_approval_limit);
       db.prepare('UPDATE users SET active=?,access_version=access_version+1 WHERE id=?').run(input.active ? 1 : 0, id);
       const after = snapshot(id);
       db.prepare('INSERT INTO access_events(actor_id,user_id,before_json,after_json,reason,at) VALUES(?,?,?,?,?,?)').run(actorId, id, JSON.stringify(before), JSON.stringify(after), input.reason.trim(), new Date().toISOString());

@@ -108,7 +108,7 @@ test('every role has an explicit available capability contract and auditors cann
   const {
     db
   } = fixture(t);
-  assert.equal(ROLES.length, 27);
+  assert.equal(ROLES.length, 29);
   for (const role of ROLES) {
     db.prepare("UPDATE memberships SET role_id=? WHERE user_id='mohammed'").run(role.id);
     const p = policy(db, 'mohammed');

@@ -429,13 +429,13 @@ test('additive examples cover every project, are idempotent and export all facts
     const r = svc.report(p.company_id, {
       project: p.id
     });
-    assert.equal(svc.list(p.company_id, p.id).length, 6);
-    assert.equal(r.rows.length, 15);
+    assert.equal(svc.list(p.company_id, p.id).length, 14);
+    assert.equal(r.rows.length, p.id === 'harbour' ? 39 : 33);
     assert.equal(r.findings[2].source_ids.length, 1);
-    assert.equal(r.findings[3].source_ids.length, 1);
+    assert.equal(r.findings[3].source_ids.length, 2);
     const csv = ledgerCsv(r);
     assert.ok(csv.indexOf('Findings') < csv.indexOf('Posted journal lines'));
-    assert.equal(csv.split('\r\n').filter(l => l.includes('GL/2026/')).length, 15);
+    assert.equal(csv.split('\r\n').filter(l => l.includes('GL/2026/')).length, r.rows.length);
     r.rows[0].description = '=UNSAFE()';
     assert.ok(ledgerCsv(r).includes("'=UNSAFE()"));
   }

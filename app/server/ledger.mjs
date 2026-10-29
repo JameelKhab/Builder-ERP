@@ -206,6 +206,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
         requireThat(r.state === 'open', 'Period is already closed.');
         requireThat(!get("SELECT id FROM ledger_entries WHERE company_id=? AND state='submitted' AND accounting_date BETWEEN ? AND ?", r.company_id, r.start_date, r.end_date), 'Return or post submitted journals before closing this period.');
         requireThat(!get("SELECT id FROM payable_documents WHERE company_id=? AND state='submitted' AND accounting_date BETWEEN ? AND ?", r.company_id, r.start_date, r.end_date), 'Return or post submitted supplier bills and credits before closing this period.');
+        requireThat(!get("SELECT id FROM payments WHERE company_id=? AND state IN ('submitted','approved') AND accounting_date BETWEEN ? AND ?",r.company_id,r.start_date,r.end_date), 'Return or record pending payments before closing this period.');
         run("UPDATE ledger_periods SET state='closed',closed_by=?,closed_at=?,version=version+1 WHERE id=?", actorId, now(), id);
       } else {
         requireThat(r.state === 'closed', 'Period is already open.');

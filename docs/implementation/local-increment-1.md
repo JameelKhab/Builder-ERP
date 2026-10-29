@@ -4,7 +4,7 @@
 
 ## Current continuation — 29 October 2026
 
-This document preserves the first increment baseline below. Later operational subsets are recorded in [access and destinations](access-and-destinations.md), [procurement](procurement-local.md), [company/project/budget control](foundations-local.md) and [individual local identity](identity-local.md). Current validation: 94 tests, frontend build and additive schema-5 preservation/recovery checks. Full parity remains unverified in the [267-function overlay](coverage.md).
+This document preserves the first increment baseline below. Later operational subsets cover access/destinations, procurement, company/project/budget control, individual identity, masters, NCRs, ledger, material AP and [supplier settlements/bank evidence](payments-local.md). Current validation: 162 tests, frontend build and additive schema-10 recovery across 70 tables. Full parity remains unverified in the [267-function overlay](coverage.md).
 
 ## Read, decide, then open detail
 

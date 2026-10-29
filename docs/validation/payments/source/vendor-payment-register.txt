@@ -1,0 +1,1192 @@
+Browser tab: 28, Title: "Vendor Payments", URL: "https://demo.jakh.net/jakh/vendor-payments".
+0 AXWebArea Vendor Payments, URL: demo.jakh.net/jakh/vendor-payments
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 button (collapsed) Description: Tender & BOQ, Secondary Actions: Expand
+					14 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					15 button (collapsed) Description: Projects, Secondary Actions: Expand
+					16 button Project requisitions
+					17 button Project set-up
+					18 button Material returns
+					19 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					20 button Site receipts
+					21 button Site diaries
+					22 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					23 button Site materials & issues
+					24 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					25 button Payment certificates
+					26 button Advances & retention releases
+					27 button Final accounts & closeout
+					28 button Guarantees & bonds
+					29 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					30 button Subcontract order amendments
+					31 button Subcontractor applications
+					32 button Subcontract service entries
+					33 button Subcontract work corrections
+					34 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					35 button Labour & plant allocation
+					36 button Labour & plant actual feeds
+					37 button P6 schedule progress
+					133 container
+						134 button (expanded) Description: Finance, Secondary Actions: Collapse
+						135 content list jakh-menu-153
+							136 button Dashboard
+							137 button (collapsed) Description: Customers, Secondary Actions: Expand
+							144 container
+								145 button (expanded) Description: Vendors, Secondary Actions: Collapse
+								146 content list jakh-menu-161
+									147 button Bills
+									148 button Refunds
+									149 button Payments
+									150 button Products
+									151 button Vendors
+							139 button (collapsed) Description: Accounting, Secondary Actions: Expand
+							140 button (collapsed) Description: Review, Secondary Actions: Expand
+							141 button (collapsed) Description: Reporting, Secondary Actions: Expand
+							142 button (collapsed) Description: Configuration, Secondary Actions: Expand
+					39 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					40 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					41 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					42 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					43 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					44 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					45 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					46 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					47 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					48 button My Tasks
+					49 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					50 button (collapsed) Description: Administration, Secondary Actions: Expand
+			51 container
+				52 text JAKH Contracting Platform
+				53 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		54 container
+			55 button (collapsed) Messages 1, Secondary Actions: Expand
+				56 container Messages
+				57 text 1
+			58 button (collapsed) Activities, Secondary Actions: Expand
+				59 container Activities
+			60 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			61 button التبديل إلى العربية
+			62 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			63 button (collapsed) User is online, Secondary Actions: Expand
+				64 image
+					65 container User is online
+		66 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		152 button New
+		153 text Vendor Payments
+		154 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		155 container
+			156 button Search...
+			157 container search
+				158 button edit
+					159 text edit
+				160 container
+					161 text Vendor Payments
+					162 button Remove
+						163 text close_small
+			164 search text field (settable)
+			165 button (collapsed) Description: Toggle Search Panel, Secondary Actions: Expand
+		166 container Pager
+			167 container
+				168 text 1-55  /  55
+			169 container
+				170 button (disabled) Previous
+					171 text arrow_back_ios_new
+				172 button (disabled) Next
+					173 text arrow_forward_ios
+		174 container
+			175 button List View
+				176 text reorder
+			177 button Kanban View
+				178 text oi_view-kanban
+			179 button Graph View
+				180 text bar_chart
+			181 button Activity View
+				182 text schedule
+		183 table
+			184 row
+				185 cell
+					186 checkbox (settable, integer) Value: 0, ID: checkbox-comp-1
+				187 cell
+					188 text Date
+					189 text swap_vert
+				190 cell
+					191 text Number
+					192 text swap_vert
+				193 cell
+					194 text Journal
+					195 text swap_vert
+				196 cell
+					197 text Vendor
+					198 text swap_vert
+				199 cell
+					200 text Amount in Currency
+				201 cell
+					202 text Amount
+					203 text swap_vert
+				204 cell
+					205 text State
+					206 text swap_vert
+				207 cell
+					208 button (collapsed) tune, Secondary Actions: Expand
+						209 text tune
+			210 row
+				211 cell
+					212 container
+						213 checkbox (settable, integer) Value: 0, ID: checkbox-comp-2
+				214 cell
+					215 text Oct 15
+				216 cell
+					217 text PBNK1/2026/00084
+				218 cell
+					219 text Bank
+				220 cell
+					221 text Greenline Landscaping (Demo)
+				222 cell
+					223 text -151,194.60 AED
+				224 cell
+					225 text -151,194.60 AED
+				226 cell
+					227 text Paid
+				228 cell
+			229 row
+				230 cell
+					231 container
+						232 checkbox (settable, integer) Value: 0, ID: checkbox-comp-3
+				233 cell
+					234 text Oct 15
+				235 cell
+					236 text PBNK1/2026/00083
+				237 cell
+					238 text Bank
+				239 cell
+					240 text Apex Facade Systems (Demo)
+				241 cell
+					242 text -245,835.00 AED
+				243 cell
+					244 text -245,835.00 AED
+				245 cell
+					246 text Paid
+				247 cell
+			248 row
+				249 cell
+					250 container
+						251 checkbox (settable, integer) Value: 0, ID: checkbox-comp-4
+				252 cell
+					253 text Oct 15
+				254 cell
+					255 text PBNK1/2026/00082
+				256 cell
+					257 text Bank
+				258 cell
+					259 text Gulf Readymix Concrete (Demo)
+				260 cell
+					261 text -819,090.00 AED
+				262 cell
+					263 text -819,090.00 AED
+				264 cell
+					265 text Paid
+				266 cell
+			267 row
+				268 cell
+					269 container
+						270 checkbox (settable, integer) Value: 0, ID: checkbox-comp-5
+				271 cell
+					272 text Oct 15
+				273 cell
+					274 text PBNK1/2026/00081
+				275 cell
+					276 text Bank
+				277 cell
+					278 text BlueShield Waterproofing (Demo)
+				279 cell
+					280 text -227,788.20 AED
+				281 cell
+					282 text -227,788.20 AED
+				283 cell
+					284 text Paid
+				285 cell
+			286 row
+				287 cell
+					288 container
+						289 checkbox (settable, integer) Value: 0, ID: checkbox-comp-6
+				290 cell
+					291 text Oct 15
+				292 cell
+					293 text PBNK1/2026/00080
+				294 cell
+					295 text Bank
+				296 cell
+					297 text Skyline MEP Contracting (Demo)
+				298 cell
+					299 text -201,690.00 AED
+				300 cell
+					301 text -201,690.00 AED
+				302 cell
+					303 text Paid
+				304 cell
+			305 row
+				306 cell
+					307 container
+						308 checkbox (settable, integer) Value: 0, ID: checkbox-comp-7
+				309 cell
+					310 text Oct 15
+				311 cell
+					312 text PBNK1/2026/00079
+				313 cell
+					314 text Bank
+				315 cell
+					316 text Emirates Cement Supplies (Demo)
+				317 cell
+					318 text -1,463,360.00 AED
+				319 cell
+					320 text -1,463,360.00 AED
+				321 cell
+					322 text Paid
+				323 cell
+			324 row
+				325 cell
+					326 container
+						327 checkbox (settable, integer) Value: 0, ID: checkbox-comp-8
+				328 cell
+					329 text Sep 15
+				330 cell
+					331 text PBNK1/2026/00075
+				332 cell
+					333 text Bank
+				334 cell
+					335 text Greenline Landscaping (Demo)
+				336 cell
+					337 text -151,194.60 AED
+				338 cell
+					339 text -151,194.60 AED
+				340 cell
+					341 text Paid
+				342 cell
+			343 row
+				344 cell
+					345 container
+						346 checkbox (settable, integer) Value: 0, ID: checkbox-comp-9
+				347 cell
+					348 text Sep 15
+				349 cell
+					350 text PBNK1/2026/00074
+				351 cell
+					352 text Bank
+				353 cell
+					354 text Apex Facade Systems (Demo)
+				355 cell
+					356 text -245,835.00 AED
+				357 cell
+					358 text -245,835.00 AED
+				359 cell
+					360 text Paid
+				361 cell
+			362 row
+				363 cell
+					364 container
+						365 checkbox (settable, integer) Value: 0, ID: checkbox-comp-10
+				366 cell
+					367 text Sep 15
+				368 cell
+					369 text PBNK1/2026/00073
+				370 cell
+					371 text Bank
+				372 cell
+					373 text Emirates Cement Supplies (Demo)
+				374 cell
+					375 text -875,296.00 AED
+				376 cell
+					377 text -875,296.00 AED
+				378 cell
+					379 text Paid
+				380 cell
+			381 row
+				382 cell
+					383 container
+						384 checkbox (settable, integer) Value: 0, ID: checkbox-comp-11
+				385 cell
+					386 text Sep 15
+				387 cell
+					388 text PBNK1/2026/00072
+				389 cell
+					390 text Bank
+				391 cell
+					392 text BlueShield Waterproofing (Demo)
+				393 cell
+					394 text -215,249.40 AED
+				395 cell
+					396 text -215,249.40 AED
+				397 cell
+					398 text Paid
+				399 cell
+			400 row
+				401 cell
+					402 container
+						403 checkbox (settable, integer) Value: 0, ID: checkbox-comp-12
+				404 cell
+					405 text Sep 15
+				406 cell
+					407 text PBNK1/2026/00071
+				408 cell
+					409 text Bank
+				410 cell
+					411 text Skyline MEP Contracting (Demo)
+				412 cell
+					413 text -196,587.00 AED
+				414 cell
+					415 text -196,587.00 AED
+				416 cell
+					417 text Paid
+				418 cell
+			419 row
+				420 cell
+					421 container
+						422 checkbox (settable, integer) Value: 0, ID: checkbox-comp-13
+				423 cell
+					424 text Sep 15
+				425 cell
+					426 text PBNK1/2026/00070
+				427 cell
+					428 text Bank
+				429 cell
+					430 text Gulf Readymix Concrete (Demo)
+				431 cell
+					432 text -1,372,845.00 AED
+				433 cell
+					434 text -1,372,845.00 AED
+				435 cell
+					436 text Paid
+				437 cell
+			438 row
+				439 cell
+					440 container
+						441 checkbox (settable, integer) Value: 0, ID: checkbox-comp-14
+				442 cell
+					443 text Aug 14
+				444 cell
+					445 text PBNK1/2026/00066
+				446 cell
+					447 text Bank
+				448 cell
+					449 text Greenline Landscaping (Demo)
+				450 cell
+					451 text -131,924.70 AED
+				452 cell
+					453 text -131,924.70 AED
+				454 cell
+					455 text Paid
+				456 cell
+			457 row
+				458 cell
+					459 container
+						460 checkbox (settable, integer) Value: 0, ID: checkbox-comp-15
+				461 cell
+					462 text Aug 14
+				463 cell
+					464 text PBNK1/2026/00065
+				465 cell
+					466 text Bank
+				467 cell
+					468 text Apex Facade Systems (Demo)
+				469 cell
+					470 text -225,787.50 AED
+				471 cell
+					472 text -225,787.50 AED
+				473 cell
+					474 text Paid
+				475 cell
+			476 row
+				477 cell
+					478 container
+						479 checkbox (settable, integer) Value: 0, ID: checkbox-comp-16
+				480 cell
+					481 text Aug 14
+				482 cell
+					483 text PBNK1/2026/00064
+				484 cell
+					485 text Bank
+				486 cell
+					487 text Gulf Readymix Concrete (Demo)
+				488 cell
+					489 text -752,685.00 AED
+				490 cell
+					491 text -752,685.00 AED
+				492 cell
+					493 text Paid
+				494 cell
+			495 row
+				496 cell
+					497 container
+						498 checkbox (settable, integer) Value: 0, ID: checkbox-comp-17
+				499 cell
+					500 text Aug 14
+				501 cell
+					502 text PBNK1/2026/00063
+				503 cell
+					504 text Bank
+				505 cell
+					506 text BlueShield Waterproofing (Demo)
+				507 cell
+					508 text -194,815.80 AED
+				509 cell
+					510 text -194,815.80 AED
+				511 cell
+					512 text Paid
+				513 cell
+			514 row
+				515 cell
+					516 container
+						517 checkbox (settable, integer) Value: 0, ID: checkbox-comp-18
+				518 cell
+					519 text Aug 14
+				520 cell
+					521 text PBNK1/2026/00062
+				522 cell
+					523 text Bank
+				524 cell
+					525 text Skyline MEP Contracting (Demo)
+				526 cell
+					527 text -186,624.00 AED
+				528 cell
+					529 text -186,624.00 AED
+				530 cell
+					531 text Paid
+				532 cell
+			533 row
+				534 cell
+					535 container
+						536 checkbox (settable, integer) Value: 0, ID: checkbox-comp-19
+				537 cell
+					538 text Aug 14
+				539 cell
+					540 text PBNK1/2026/00061
+				541 cell
+					542 text Bank
+				543 cell
+					544 text Emirates Cement Supplies (Demo)
+				545 cell
+					546 text -1,292,952.00 AED
+				547 cell
+					548 text -1,292,952.00 AED
+				549 cell
+					550 text Paid
+				551 cell
+			552 row
+				553 cell
+					554 container
+						555 checkbox (settable, integer) Value: 0, ID: checkbox-comp-20
+				556 cell
+					557 text Jul 15
+				558 cell
+					559 text PBNK1/2026/00056
+				560 cell
+					561 text Bank
+				562 cell
+					563 text Greenline Landscaping (Demo)
+				564 cell
+					565 text -93,220.20 AED
+				566 cell
+					567 text -93,220.20 AED
+				568 cell
+					569 text Paid
+				570 cell
+			571 row
+				572 cell
+					573 container
+						574 checkbox (settable, integer) Value: 0, ID: checkbox-comp-21
+				575 cell
+					576 text Jul 15
+				577 cell
+					578 text PBNK1/2026/00055
+				579 cell
+					580 text Bank
+				581 cell
+					582 text Apex Facade Systems (Demo)
+				583 cell
+					584 text -185,895.00 AED
+				585 cell
+					586 text -185,895.00 AED
+				587 cell
+					588 text Paid
+				589 cell
+			590 row
+				591 cell
+					592 container
+						593 checkbox (settable, integer) Value: 0, ID: checkbox-comp-22
+				594 cell
+					595 text Jul 15
+				596 cell
+					597 text PBNK1/2026/00054
+				598 cell
+					599 text Bank
+				600 cell
+					601 text Emirates Cement Supplies (Demo)
+				602 cell
+					603 text -591,804.00 AED
+				604 cell
+					605 text -591,804.00 AED
+				606 cell
+					607 text Paid
+				608 cell
+			609 row
+				610 cell
+					611 container
+						612 checkbox (settable, integer) Value: 0, ID: checkbox-comp-23
+				613 cell
+					614 text Jul 15
+				615 cell
+					616 text PBNK1/2026/00053
+				617 cell
+					618 text Bank
+				619 cell
+					620 text BlueShield Waterproofing (Demo)
+				621 cell
+					622 text -165,790.80 AED
+				623 cell
+					624 text -165,790.80 AED
+				625 cell
+					626 text Paid
+				627 cell
+			628 row
+				629 cell
+					630 container
+						631 checkbox (settable, integer) Value: 0, ID: checkbox-comp-24
+				632 cell
+					633 text Jul 15
+				634 cell
+					635 text PBNK1/2026/00052
+				636 cell
+					637 text Bank
+				638 cell
+					639 text Skyline MEP Contracting (Demo)
+				640 cell
+					641 text -171,801.00 AED
+				642 cell
+					643 text -171,801.00 AED
+				644 cell
+					645 text Paid
+				646 cell
+			647 row
+				648 cell
+					649 container
+						650 checkbox (settable, integer) Value: 0, ID: checkbox-comp-25
+				651 cell
+					652 text Jul 15
+				653 cell
+					654 text PBNK1/2026/00051
+				655 cell
+					656 text Bank
+				657 cell
+					658 text Gulf Readymix Concrete (Demo)
+				659 cell
+					660 text -1,125,180.00 AED
+				661 cell
+					662 text -1,125,180.00 AED
+				663 cell
+					664 text Paid
+				665 cell
+			666 row
+				667 cell
+					668 container
+						669 checkbox (settable, integer) Value: 0, ID: checkbox-comp-26
+				670 cell
+					671 text Jun 12
+				672 cell
+					673 text PBNK1/2026/00045
+				674 cell
+					675 text Bank
+				676 cell
+					677 text Precision Joinery (Demo)
+				678 cell
+					679 text -43,615.26 AED
+				680 cell
+					681 text -43,615.26 AED
+				682 cell
+					683 text Paid
+				684 cell
+			685 row
+				686 cell
+					687 container
+						688 checkbox (settable, integer) Value: 0, ID: checkbox-comp-27
+				689 cell
+					690 text Jun 12
+				691 cell
+					692 text PBNK1/2026/00044
+				693 cell
+					694 text Bank
+				695 cell
+					696 text Jebel Ali Blocks Factory (Demo)
+				697 cell
+					698 text -145,550.00 AED
+				699 cell
+					700 text -145,550.00 AED
+				701 cell
+					702 text Paid
+				703 cell
+			704 row
+				705 cell
+					706 container
+						707 checkbox (settable, integer) Value: 0, ID: checkbox-comp-28
+				708 cell
+					709 text Jun 12
+				710 cell
+					711 text PBNK1/2026/00043
+				712 cell
+					713 text Bank
+				714 cell
+					715 text Greenline Landscaping (Demo)
+				716 cell
+					717 text -35,410.50 AED
+				718 cell
+					719 text -35,410.50 AED
+				720 cell
+					721 text Paid
+				722 cell
+			723 row
+				724 cell
+					725 container
+						726 checkbox (settable, integer) Value: 0, ID: checkbox-comp-29
+				727 cell
+					728 text Jun 12
+				729 cell
+					730 text PBNK1/2026/00042
+				731 cell
+					732 text Bank
+				733 cell
+					734 text Apex Facade Systems (Demo)
+				735 cell
+					736 text -126,157.50 AED
+				737 cell
+					738 text -126,157.50 AED
+				739 cell
+					740 text Paid
+				741 cell
+			742 row
+				743 cell
+					744 container
+						745 checkbox (settable, integer) Value: 0, ID: checkbox-comp-30
+				746 cell
+					747 text Jun 12
+				748 cell
+					749 text PBNK1/2026/00041
+				750 cell
+					751 text Bank
+				752 cell
+					753 text Gulf Readymix Concrete (Demo)
+				754 cell
+					755 text -420,660.00 AED
+				756 cell
+					757 text -420,660.00 AED
+				758 cell
+					759 text Paid
+				760 cell
+			761 row
+				762 cell
+					763 container
+						764 checkbox (settable, integer) Value: 0, ID: checkbox-comp-31
+				765 cell
+					766 text Jun 12
+				767 cell
+					768 text PBNK1/2026/00040
+				769 cell
+					770 text Bank
+				771 cell
+					772 text BlueShield Waterproofing (Demo)
+				773 cell
+					774 text -128,638.80 AED
+				775 cell
+					776 text -128,638.80 AED
+				777 cell
+					778 text Paid
+				779 cell
+			780 row
+				781 cell
+					782 container
+						783 checkbox (settable, integer) Value: 0, ID: checkbox-comp-32
+				784 cell
+					785 text Jun 12
+				786 cell
+					787 text PBNK1/2026/00039
+				788 cell
+					789 text Bank
+				790 cell
+					791 text Skyline MEP Contracting (Demo)
+				792 cell
+					793 text -151,632.00 AED
+				794 cell
+					795 text -151,632.00 AED
+				796 cell
+					797 text Paid
+				798 cell
+			799 row
+				800 cell
+					801 container
+						802 checkbox (settable, integer) Value: 0, ID: checkbox-comp-33
+				803 cell
+					804 text Jun 12
+				805 cell
+					806 text PBNK1/2026/00038
+				807 cell
+					808 text Bank
+				809 cell
+					810 text Emirates Cement Supplies (Demo)
+				811 cell
+					812 text -814,368.00 AED
+				813 cell
+					814 text -814,368.00 AED
+				815 cell
+					816 text Paid
+				817 cell
+			818 row
+				819 cell
+					820 container
+						821 checkbox (settable, integer) Value: 0, ID: checkbox-comp-34
+				822 cell
+					823 text May 22
+				824 cell
+					825 text PBNK1/2026/00089
+				826 cell
+					827 text Bank
+				828 cell
+					829 text Precision Joinery (Demo)
+				830 cell
+					831 text -65,400.00 AED
+				832 cell
+					833 text -65,400.00 AED
+				834 cell
+					835 text Paid
+				836 cell
+			837 row
+				838 cell
+					839 container
+						840 checkbox (settable, integer) Value: 0, ID: checkbox-comp-35
+				841 cell
+					842 text May 15
+				843 cell
+					844 text PBNK1/2026/00033
+				845 cell
+					846 text Bank
+				847 cell
+					848 text Precision Joinery (Demo)
+				849 cell
+					850 text -109,008.72 AED
+				851 cell
+					852 text -109,008.72 AED
+				853 cell
+					854 text Paid
+				855 cell
+			856 row
+				857 cell
+					858 container
+						859 checkbox (settable, integer) Value: 0, ID: checkbox-comp-36
+				860 cell
+					861 text May 15
+				862 cell
+					863 text PBNK1/2026/00032
+				864 cell
+					865 text Bank
+				866 cell
+					867 text Arabian Steel Rebar Trading (Demo)
+				868 cell
+					869 text -235,850.00 AED
+				870 cell
+					871 text -235,850.00 AED
+				872 cell
+					873 text Paid
+				874 cell
+			875 row
+				876 cell
+					877 container
+						878 checkbox (settable, integer) Value: 0, ID: checkbox-comp-37
+				879 cell
+					880 text May 15
+				881 cell
+					882 text PBNK1/2026/00031
+				883 cell
+					884 text Bank
+				885 cell
+					886 text Apex Facade Systems (Demo)
+				887 cell
+					888 text -46,575.00 AED
+				889 cell
+					890 text -46,575.00 AED
+				891 cell
+					892 text Paid
+				893 cell
+			894 row
+				895 cell
+					896 container
+						897 checkbox (settable, integer) Value: 0, ID: checkbox-comp-38
+				898 cell
+					899 text May 15
+				900 cell
+					901 text PBNK1/2026/00030
+				902 cell
+					903 text Bank
+				904 cell
+					905 text Emirates Cement Supplies (Demo)
+				906 cell
+					907 text -70,244.00 AED
+				908 cell
+					909 text -70,244.00 AED
+				910 cell
+					911 text Paid
+				912 cell
+			913 row
+				914 cell
+					915 container
+						916 checkbox (settable, integer) Value: 0, ID: checkbox-comp-39
+				917 cell
+					918 text May 15
+				919 cell
+					920 text PBNK1/2026/00029
+				921 cell
+					922 text Bank
+				923 cell
+					924 text BlueShield Waterproofing (Demo)
+				925 cell
+					926 text -83,359.80 AED
+				927 cell
+					928 text -83,359.80 AED
+				929 cell
+					930 text Paid
+				931 cell
+			932 row
+				933 cell
+					934 container
+						935 checkbox (settable, integer) Value: 0, ID: checkbox-comp-40
+				936 cell
+					937 text May 15
+				938 cell
+					939 text PBNK1/2026/00028
+				940 cell
+					941 text Bank
+				942 cell
+					943 text Skyline MEP Contracting (Demo)
+				944 cell
+					945 text -126,603.00 AED
+				946 cell
+					947 text -126,603.00 AED
+				948 cell
+					949 text Paid
+				950 cell
+			951 row
+				952 cell
+					953 container
+						954 checkbox (settable, integer) Value: 0, ID: checkbox-comp-41
+				955 cell
+					956 text May 15
+				957 cell
+					958 text PBNK1/2026/00027
+				959 cell
+					960 text Bank
+				961 cell
+					962 text Gulf Readymix Concrete (Demo)
+				963 cell
+					964 text -699,960.00 AED
+				965 cell
+					966 text -699,960.00 AED
+				967 cell
+					968 text Paid
+				969 cell
+			970 row
+				971 cell
+					972 container
+						973 checkbox (settable, integer) Value: 0, ID: checkbox-comp-42
+				974 cell
+					975 text Apr 15
+				976 cell
+					977 text PBNK1/2026/00023
+				978 cell
+					979 text Bank
+				980 cell
+					981 text Precision Joinery (Demo)
+				982 cell
+					983 text -141,676.02 AED
+				984 cell
+					985 text -141,676.02 AED
+				986 cell
+					987 text Paid
+				988 cell
+			989 row
+				990 cell
+					991 container
+						992 checkbox (settable, integer) Value: 0, ID: checkbox-comp-43
+				993 cell
+					994 text Apr 15
+				995 cell
+					996 text PBNK1/2026/00022
+				997 cell
+					998 text Bank
+				999 cell
+					1000 text Jebel Ali Blocks Factory (Demo)
+				1001 cell
+					1002 text -472,320.00 AED
+				1003 cell
+					1004 text -472,320.00 AED
+				1005 cell
+					1006 text Paid
+				1007 cell
+			1008 row
+				1009 cell
+					1010 container
+						1011 checkbox (settable, integer) Value: 0, ID: checkbox-comp-44
+				1012 cell
+					1013 text Apr 15
+				1014 cell
+					1015 text PBNK1/2026/00021
+				1016 cell
+					1017 text Bank
+				1018 cell
+					1019 text BlueShield Waterproofing (Demo)
+				1020 cell
+					1021 text -29,489.40 AED
+				1022 cell
+					1023 text -29,489.40 AED
+				1024 cell
+					1025 text Paid
+				1026 cell
+			1027 row
+				1028 cell
+					1029 container
+						1030 checkbox (settable, integer) Value: 0, ID: checkbox-comp-45
+				1031 cell
+					1032 text Apr 15
+				1033 cell
+					1034 text PBNK1/2026/00020
+				1035 cell
+					1036 text Bank
+				1037 cell
+					1038 text Skyline MEP Contracting (Demo)
+				1039 cell
+					1040 text -96,714.00 AED
+				1041 cell
+					1042 text -96,714.00 AED
+				1043 cell
+					1044 text Paid
+				1045 cell
+			1046 row
+				1047 cell
+					1048 container
+						1049 checkbox (settable, integer) Value: 0, ID: checkbox-comp-46
+				1050 cell
+					1051 text Apr 15
+				1052 cell
+					1053 text PBNK1/2026/00019
+				1054 cell
+					1055 text Bank
+				1056 cell
+					1057 text Emirates Cement Supplies (Demo)
+				1058 cell
+					1059 text -326,128.00 AED
+				1060 cell
+					1061 text -326,128.00 AED
+				1062 cell
+					1063 text Paid
+				1064 cell
+			1065 row
+				1066 cell
+					1067 container
+						1068 checkbox (settable, integer) Value: 0, ID: checkbox-comp-47
+				1069 cell
+					1070 text Mar 13
+				1071 cell
+					1072 text PBNK1/2026/00016
+				1073 cell
+					1074 text Bank
+				1075 cell
+					1076 text Precision Joinery (Demo)
+				1077 cell
+					1078 text -141,676.02 AED
+				1079 cell
+					1080 text -141,676.02 AED
+				1081 cell
+					1082 text Paid
+				1083 cell
+			1084 row
+				1085 cell
+					1086 container
+						1087 checkbox (settable, integer) Value: 0, ID: checkbox-comp-48
+				1088 cell
+					1089 text Mar 13
+				1090 cell
+					1091 text PBNK1/2026/00015
+				1092 cell
+					1093 text Bank
+				1094 cell
+					1095 text Arabian Steel Rebar Trading (Demo)
+				1096 cell
+					1097 text -304,750.00 AED
+				1098 cell
+					1099 text -304,750.00 AED
+				1100 cell
+					1101 text Paid
+				1102 cell
+			1103 row
+				1104 cell
+					1105 container
+						1106 checkbox (settable, integer) Value: 0, ID: checkbox-comp-49
+				1107 cell
+					1108 text Mar 13
+				1109 cell
+					1110 text PBNK1/2026/00014
+				1111 cell
+					1112 text Bank
+				1113 cell
+					1114 text Skyline MEP Contracting (Demo)
+				1115 cell
+					1116 text -61,722.00 AED
+				1117 cell
+					1118 text -61,722.00 AED
+				1119 cell
+					1120 text Paid
+				1121 cell
+			1122 row
+				1123 cell
+					1124 container
+						1125 checkbox (settable, integer) Value: 0, ID: checkbox-comp-50
+				1126 cell
+					1127 text Mar 13
+				1128 cell
+					1129 text PBNK1/2026/00013
+				1130 cell
+					1131 text Bank
+				1132 cell
+					1133 text Gulf Readymix Concrete (Demo)
+				1134 cell
+					1135 text -205,770.00 AED
+				1136 cell
+					1137 text -205,770.00 AED
+				1138 cell
+					1139 text Paid
+				1140 cell
+			1141 row
+				1142 cell
+					1143 container
+						1144 checkbox (settable, integer) Value: 0, ID: checkbox-comp-51
+				1145 cell
+					1146 text Feb 13
+				1147 cell
+					1148 text PBNK1/2026/00010
+				1149 cell
+					1150 text Bank
+				1151 cell
+					1152 text Precision Joinery (Demo)
+				1153 cell
+					1154 text -109,008.72 AED
+				1155 cell
+					1156 text -109,008.72 AED
+				1157 cell
+					1158 text Paid
+				1159 cell
+			1160 row
+				1161 cell
+					1162 container
+						1163 checkbox (settable, integer) Value: 0, ID: checkbox-comp-52
+				1164 cell
+					1165 text Feb 13
+				1166 cell
+					1167 text PBNK1/2026/00009
+				1168 cell
+					1169 text Bank
+				1170 cell
+					1171 text Jebel Ali Blocks Factory (Demo)
+				1172 cell
+					1173 text -363,260.00 AED
+				1174 cell
+					1175 text -363,260.00 AED
+				1176 cell
+					1177 text Paid
+				1178 cell
+			1179 row
+				1180 cell
+					1181 container
+						1182 checkbox (settable, integer) Value: 0, ID: checkbox-comp-53
+				1183 cell
+					1184 text Feb 13
+				1185 cell
+					1186 text PBNK1/2026/00008
+				1187 cell
+					1188 text Bank
+				1189 cell
+					1190 text Skyline MEP Contracting (Demo)
+				1191 cell
+					1192 text -21,627.00 AED
+				1193 cell
+					1194 text -21,627.00 AED
+				1195 cell
+					1196 text Paid
+				1197 cell
+			1198 row
+				1199 cell
+					1200 container
+						1201 checkbox (settable, integer) Value: 0, ID: checkbox-comp-54
+				1202 cell
+					1203 text Feb 13
+				1204 cell
+					1205 text PBNK1/2026/00007
+				1206 cell
+					1207 text Bank
+				1208 cell
+					1209 text Emirates Cement Supplies (Demo)
+				1210 cell
+					1211 text -54,808.00 AED
+				1212 cell
+					1213 text -54,808.00 AED
+				1214 cell
+					1215 text Paid
+				1216 cell
+			1217 row
+				1218 cell
+					1219 container
+						1220 checkbox (settable, integer) Value: 0, ID: checkbox-comp-55
+				1221 cell
+					1222 text Jan 15
+				1223 cell
+					1224 text PBNK1/2026/00005
+				1225 cell
+					1226 text Bank
+				1227 cell
+					1228 text Precision Joinery (Demo)
+				1229 cell
+					1230 text -43,615.26 AED
+				1231 cell
+					1232 text -43,615.26 AED
+				1233 cell
+					1234 text Paid
+				1235 cell
+			1236 row
+				1237 cell
+					1238 container
+						1239 checkbox (settable, integer) Value: 0, ID: checkbox-comp-56
+				1240 cell
+					1241 text Jan 15
+				1242 cell
+					1243 text PBNK1/2026/00004
+				1244 cell
+					1245 text Bank
+				1246 cell
+					1247 text Arabian Steel Rebar Trading (Demo)
+				1248 cell
+					1249 text -92,750.00 AED
+				1250 cell
+					1251 text -92,750.00 AED
+				1252 cell
+					1253 text Paid
+				1254 cell
+			1255 row
+				1256 cell
+					1257 text -17,052,791.80 AED
+
+The focused UI element is 164 search text field (settable)

@@ -1,3 +1,4 @@
+import { payableBalance } from './payable-balance.mjs';
 import { randomUUID } from 'node:crypto';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
@@ -518,6 +519,17 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
       can_open_ledger: can('finance.read', r),
       can_open_order: can('requests.read', r) || can('materials.read', r),
       journal_number: r.journal_id ? get('SELECT number FROM ledger_entries WHERE id=?', r.journal_id).number : null,
+      balance: r.state === 'posted' && r.kind === 'bill' ? (() => {
+        const b = payableBalance(db, r);
+        return {
+          ...b,
+          settlements: b.settlements.map(a => ({
+            ...a,
+            can_open: can('payments.read', get('SELECT company_id,project_id FROM payments WHERE id=?', a.payment_id))
+          }))
+        };
+      })() : null,
+      can_open_payment: can('payments.read', r),
       credits: all('SELECT id,reference,state,total,company_total FROM payable_documents WHERE original_id=?', id),
       receipt_position: JSON.parse(r.lines_json).map(l => receipt(l.receipt_id)),
       history: history('document', id)
@@ -560,8 +572,9 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
       const credits = docs.filter(c => c.original_id === r.id),
         credit = money(sum(credits.map(c => c.total))),
         base_credit = money(sum(credits.map(c => c.company_total))),
-        open = money(new D(r.total).minus(credit)),
-        base_open = money(new D(r.company_total).minus(base_credit));
+        balance = payableBalance(db, r, to),
+        open = balance.open,
+        base_open = balance.base_open;
       return {
         id: r.id,
         reference: r.reference,
@@ -578,6 +591,9 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
         base_original: r.company_total,
         base_credited: base_credit,
         base_open,
+        settled: balance.settled,
+        base_settled: balance.base_settled,
+        settlements: balance.settlements,
         overdue: r.due_date < to && new D(open).gt(0),
         journal_id: r.journal_id,
         credits: credits.map(c => ({
@@ -590,6 +606,8 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
     });
     const exceptions = all('SELECT id,company_id,project_id,received_at FROM material_receipts WHERE company_id=? AND substr(received_at,1,10)<=?', company, to).filter(r => (!project || r.project_id === project) && can('ap.read', r)).map(r => receipt(r.id, to)).filter(r => new D(r.available).gt(0) || new D(r.credit_needed).gt(0));
     const controlLines = docs.flatMap(d => all("SELECT l.* FROM ledger_lines l JOIN ledger_accounts a ON a.id=l.account_id WHERE l.entry_id=? AND a.purpose='payable'", d.journal_id));
+    const paymentJournals = [...new Set(rows.flatMap(r => r.settlements.map(a => a.journal_id)))];
+    for (const id of paymentJournals) controlLines.push(...all("SELECT l.* FROM ledger_lines l JOIN ledger_accounts a ON a.id=l.account_id WHERE l.entry_id=? AND a.purpose='payable'", id).filter(l => (!project || l.project_id === project) && can('ap.read', l)));
     const control = money(sum(controlLines.map(l => new D(l.base_credit).minus(l.base_debit)))),
       open = money(sum(rows.map(r => r.base_open))),
       difference = money(new D(control).minus(open)),
@@ -604,6 +622,7 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
       totals: {
         original: money(sum(rows.map(r => r.base_original))),
         credited: money(sum(rows.map(r => r.base_credited))),
+        settled: money(sum(rows.map(r => r.base_settled))),
         open,
         overdue: money(sum(rows.filter(r => r.overdue).map(r => r.base_open))),
         control,
@@ -613,8 +632,8 @@ export function payables(db, actorId, today = () => now().slice(0, 10)) {
         currency,
         open: money(sum(rows.filter(r => r.currency === currency).map(r => r.open)))
       })),
-      findings: [`${counted(rows.length, 'posted supplier bill')}; ${counted(docs.filter(r => r.kind === 'credit').length, 'posted return credit')} through ${to}.`, `${open} ${get('SELECT currency FROM companies WHERE id=?', company).currency} remains payable before cash settlement; past-due bills: ${rows.filter(r => r.overdue).length}.`, `Unbilled accepted receipt lots: ${exceptions.filter(r => new D(r.available).gt(0)).length}. Billed returns awaiting credit: ${exceptions.filter(r => new D(r.credit_needed).gt(0)).length}.`, `Documents awaiting review: ${pending}. Linked AP control difference: ${difference}.`],
-      limitations: ['Material receipt bills and quantity return credits only. Payments and settlements are not implemented here; open amounts do not claim actual cash movement.', 'Invoice classification is explicit. Automatic stock valuation/GRNI, subcontract certificates, retention, price-only credits and legal tax localisation remain open.', 'Posted bill accounting is separate from the operational cost report; it does not add the same material cost twice.', 'Receipt exceptions use operational UTC event dates; financial balances use accounting dates. Pending documents reflect the current review queue within the date filter, not historical workflow status.', project ? 'Selected project only.' : access.has('ap.read', company) ? 'All authorised company projects.' : 'Restricted to your authorised projects; this is not a full legal-company statement.']
+      findings: [`${counted(rows.length, 'posted supplier bill')}; ${counted(docs.filter(r => r.kind === 'credit').length, 'posted return credit')} through ${to}.`, `${open} ${get('SELECT currency FROM companies WHERE id=?', company).currency} is the net supplier balance after credits and recorded settlements (negative means supplier credit); past-due bills: ${rows.filter(r => r.overdue).length}.`, `Unbilled accepted receipt lots: ${exceptions.filter(r => new D(r.available).gt(0)).length}. Billed returns awaiting credit: ${exceptions.filter(r => new D(r.credit_needed).gt(0)).length}.`, `Documents awaiting review: ${pending}. Linked AP control difference: ${difference}.`],
+      limitations: ['Material receipt bills, quantity return credits and recorded supplier settlements. Approval alone never reduces a balance. Negative balances are supplier credits awaiting refund or future allocation; bank clearance is separate.', 'Invoice classification is explicit. Automatic stock valuation/GRNI, subcontract certificates, retention, price-only credits and legal tax localisation remain open.', 'Posted bill accounting is separate from the operational cost report; it does not add the same material cost twice.', 'Receipt exceptions use operational UTC event dates; financial balances use accounting dates. Pending documents reflect the current review queue within the date filter, not historical workflow status.', project ? 'Selected project only.' : access.has('ap.read', company) ? 'All authorised company projects.' : 'Restricted to your authorised projects; this is not a full legal-company statement.']
     };
   }
   return {

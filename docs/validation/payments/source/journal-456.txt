@@ -1,0 +1,170 @@
+Browser tab: 28, Title: "PBNK1/2026/00086 (INV/2026/00017)", URL: "https://demo.jakh.net/jakh/action-604/account.move/456".
+0 AXWebArea PBNK1/2026/00086 (INV/2026/00017), URL: demo.jakh.net/jakh/action-604/account.move/456
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 button (collapsed) Description: Tender & BOQ, Secondary Actions: Expand
+					14 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					15 button (collapsed) Description: Projects, Secondary Actions: Expand
+					16 button Project requisitions
+					17 button Project set-up
+					18 button Material returns
+					19 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					20 button Site receipts
+					21 button Site diaries
+					22 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					23 button Site materials & issues
+					24 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					25 button Payment certificates
+					26 button Advances & retention releases
+					27 button Final accounts & closeout
+					28 button Guarantees & bonds
+					29 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					30 button Subcontract order amendments
+					31 button Subcontractor applications
+					32 button Subcontract service entries
+					33 button Subcontract work corrections
+					34 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					35 button Labour & plant allocation
+					36 button Labour & plant actual feeds
+					37 button P6 schedule progress
+					38 button (collapsed) Description: Finance, Secondary Actions: Expand
+					39 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					40 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					41 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					42 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					43 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					44 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					45 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					46 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					47 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					48 button My Tasks
+					49 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					50 button (collapsed) Description: Administration, Secondary Actions: Expand
+			51 container
+				52 text JAKH Contracting Platform
+				53 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		54 container
+			55 button (collapsed) Messages 1, Secondary Actions: Expand
+				56 container Messages
+				57 text 1
+			58 button (collapsed) Activities, Secondary Actions: Expand
+				59 container Activities
+			60 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			61 button التبديل إلى العربية
+			62 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			63 button (collapsed) User is idle, Secondary Actions: Expand
+				64 image
+					65 container User is idle
+		66 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		67 button New
+		68 content list
+			69 link Description: JAKH Dashboard, Value: demo.jakh.net/jakh/action-604
+		70 text PBNK1/2026/00086 (INV/2026/00017)
+		71 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		72 container
+			73 button menu 1 Payment
+				74 text menu
+				75 text 1 Payment
+			76 button menu Reconciled Items
+				77 text menu
+				78 text Reconciled Items
+		79 container Pager
+			80 container
+				81 text 1  /  1
+			82 container
+				83 button (disabled) Previous
+					84 text arrow_back_ios_new
+				85 button (disabled) Next
+					86 text arrow_forward_ios
+		87 container
+			88 button Reverse Entry
+			89 button Reset to Draft
+			90 button (collapsed) No Review, Secondary Actions: Expand
+			91 Statusbar
+				92 radio button (disabled) Posted, Value: 1
+				93 radio button (disabled) Draft, Value: 0
+			94 heading PBNK1/2026/00086, Value: 1
+				95 text PBNK1/2026/00086
+			96 text Reference
+			97 text field (settable) Reference, Value: INV/2026/00017, ID: ref_1
+			98 text Accounting Date
+			99 text Oct 22
+			100 text Journal
+			101 text Bank
+			102 content list
+				103 tab (selectable, settable, boolean) Journal Items, Value: 0
+				104 tab (selectable, settable, boolean) Other Info, Value: 0
+			105 table
+				106 row
+					107 cell
+						108 text Account
+						109 text swap_vert
+					110 cell
+						111 text Partner
+						112 text swap_vert
+					113 cell
+						114 text Description
+						115 text swap_vert
+					116 cell
+						117 text Debit
+						118 text swap_vert
+					119 cell
+						120 text Credit
+						121 text swap_vert
+					122 cell
+						123 text Tax Grids
+					124 cell
+						125 button (collapsed) tune, Secondary Actions: Expand
+							126 text tune
+				127 row
+					128 cell
+						129 text 160100 Main Bank Account
+					130 cell
+						131 text Marina Gate Holdings (Demo)
+					132 cell
+						133 text Manual Payment: INV/2026/00017
+					134 cell
+						135 text 2,713,801.09 AED
+					136 cell
+						137 text 0.00 AED
+					138 cell
+					139 cell
+				140 row
+					141 cell
+						142 text 150100 Accounts Receivable
+					143 cell
+						144 text Marina Gate Holdings (Demo)
+					145 cell
+						146 text Manual Payment: INV/2026/00017
+					147 cell
+						148 text 0.00 AED
+					149 cell
+						150 text 2,713,801.09 AED
+					151 cell
+					152 cell
+				153 row
+					154 cell
+						155 text 2,713,801.09 AED
+					156 cell
+						157 text 2,713,801.09 AED
+			158 button Send message
+			159 button Log note
+			160 button Activity
+			161 button Search Messages
+			162 button Attach files
+				163 text attach_file
+			164 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+				165 text 0
+			166 text 😶 No messages yet.
+
+The focused UI element is 0 AXWebArea PBNK1/2026/00086 (INV/2026/00017), URL: demo.jakh.net/jakh/action-604/account.move/456

@@ -24,7 +24,7 @@
       "source_path": "Reports > Ledger, trial balance & aging",
       "destination": "Project or Company > Reports · Ledger, trial balance & aging",
       "local_status": "partial",
-      "implemented_and_remaining": "Company/project general ledger and trial balance plus material-payable balances, due exceptions, transaction-currency groups and linked AP control reconciliation with findings/CSV. Full aging buckets, AR, payments and imported source reconciliation remain open.",
+      "implemented_and_remaining": "Company/project ledger and AP balances now include exact recorded settlements, refunds and reversals with AP-control reconciliation, findings and CSV. Full aging, AR, period revaluation and imported source reconciliation remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -33,7 +33,11 @@
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Debits equal credits and AP/AR aging agrees to control accounts.",
@@ -44,9 +48,14 @@
       "domain": "D01",
       "source_path": "Reports > Company cash flow",
       "destination": "Project or Company > Reports · Company cash flow",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Supplier cash movement findings by company/project separate approved plans, recorded out/in/net and current bank clearance, with source allocations and CSV. Customer cash, opening balances, charges/transfers, classification, forecasting and full company cash flow remain open.",
+      "evidence": [
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "A posted receipt and an uncleared bank item remain distinguishable.",
       "source_verification_remaining": "Report joins, permission filters, reversal handling, snapshot dates, policy approval, scheduler and share-token behaviour remain untested in JAKH. No full report-result reconciliation or JAKH data import has occurred."
@@ -153,7 +162,7 @@
       "source_path": "Reports > Posted Ledger",
       "destination": "Project or Company > Reports · Posted Ledger",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable posted general journals and typed material bill/return-credit postings, accounting-date cutoffs and canonical source links. Other subledgers and imported source ledger remain open.",
+      "implemented_and_remaining": "Immutable general, material-AP and supplier-settlement journals with canonical source/reversal links and accounting-date cutoffs. Broader subledgers and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -162,7 +171,11 @@
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Opening a cost fact reaches the bill or approved source movement.",
@@ -274,13 +287,17 @@
       "source_path": "My Approvals & Activities",
       "destination": "My Work > Approvals & activities",
       "local_status": "partial",
-      "implemented_and_remaining": "My Work includes purchase/budget/master/NCR/journal and independent AP reviews plus author drafts. Current scope and separate financial authorities are enforced. General configurable routes, escalation/delegation and complete workflow coverage remain open.",
+      "implemented_and_remaining": "My Work includes independent purchase/budget/master/NCR/journal/AP/payment reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation and broader workflow coverage remain open.",
       "evidence": [
         "app/tests/procurement.test.mjs",
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One returned certificate produces one current task with its review stage.",
@@ -1658,12 +1675,16 @@
       "source_path": "Finance > Vendors > Bills",
       "destination": "Company > Finance · Bills",
       "local_status": "partial",
-      "implemented_and_remaining": "Typed material-receipt supplier bills: immutable supplier/order/currency context, net accepted quantity ceilings, price-basis/variance, configured exclusive tax/FX, due dates, independent AP limit and atomic linked journals. Service/subcontract certificates/retention, non-PO bills, attachments, settlements and source parity remain open.",
+      "implemented_and_remaining": "Material receipt supplier bills, exclusive configured tax/accounting FX, receipt/price checks and separate AP posting now connect to partial settlement and bank evidence. Service/subcontract certificates/retention, non-PO charges, attachments, richer tax and source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A bill beyond approved service quantity is held as an exception.",
@@ -1675,12 +1696,16 @@
       "source_path": "Finance > Vendors > Refunds",
       "destination": "Company > Finance · Refunds",
       "local_status": "partial",
-      "implemented_and_remaining": "Linked material return credits correct the original bill liability/classification/tax in original currencies and amounts, with remaining-quantity checks, partial residual-cent allocation and independent posting. Price-only credits, full voids, debit notes and cash refunds remain open.",
+      "implemented_and_remaining": "Original-value material return credits preserve quantity/carrying residuals; credit after payment creates a negative supplier balance cleared by a separately approved refund. Price-only credits, debit notes, full AP voids and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A supplier credit reduces payable and corrects source cost appropriately.",
@@ -1691,9 +1716,14 @@
       "domain": "D15",
       "source_path": "Finance > Vendors > Payments",
       "destination": "Company > Finance · Payments",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Original supplier payment/refund lifecycle: multi-bill/company-project allocations, zero-default independent amount approval, approved reservations, evidenced offline recording, exact AP/bank/FX journals and independent statement matching/unmatching/void-replacement. Reversals retain original values/accounts. No bank transfer integration. Beneficiary/payment-run controls, fees/transfers, broader settlement types and source parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Partial payment leaves the correct transaction-currency liability.",
       "source_verification_remaining": "Source posting rules, localisations, tax treatment, lock dates, currencies and multi-ledger purpose need validation. The demo is not the production accounting migration source. No opening balance, trial balance, AP/AR or bank reconciliation has been imported."
@@ -1753,7 +1783,7 @@
       "source_path": "Finance > Review > Control > Journal Items",
       "destination": "Company > Finance · Journal Items",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable general and typed AP journal lines preserve account snapshots, exact transaction/base values, visible rounding and source links. Broader party/tax/analytic/subledger reporting remains open.",
+      "implemented_and_remaining": "Immutable general/AP/payment journal lines with frozen source/account/currency values and exact reversals. Project allocations balance independently. Full analytic/tax/party accounting and source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1762,7 +1792,11 @@
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A project cost drill-down reaches balanced accounting evidence.",
@@ -1774,7 +1808,7 @@
       "source_path": "Finance > Review > Control > Audit Trail",
       "destination": "Company > Finance · Audit Trail",
       "local_status": "partial",
-      "implemented_and_remaining": "Append-only journal/AP/configuration snapshots, review reasons, frozen versions, source/reversal/credit links and independent controls. Broader audit queries, external tamper resistance and source parity remain open.",
+      "implemented_and_remaining": "Append-only journal/AP/payment/configuration and statement-match evidence, live authority, original/reversal/source snapshots and non-destructive statement corrections. Full audit querying, external tamper resistance and historical reconciliation reconstruction remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1783,7 +1817,11 @@
         "docs/implementation/contracts/payables-v1.md",
         "app/tests/payables.test.mjs",
         "app/tests/payables-api.test.mjs",
-        "docs/validation/payables/verification.md"
+        "docs/validation/payables/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Posted history cannot be silently edited or deleted.",
@@ -1806,9 +1844,14 @@
       "domain": "D15",
       "source_path": "Finance > Reporting > Management > Cashflow Analysis",
       "destination": "Company > Finance · Cashflow Analysis",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Complete authorised supplier cash movement population and findings/CSV separate plans, recorded transactions and bank matches. Full cash policy/forecast/operating-investing-financing analysis and source migration remain open.",
+      "evidence": [
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Forecast receipts never enter actual-cash totals.",
       "source_verification_remaining": "Source posting rules, localisations, tax treatment, lock dates, currencies and multi-ledger purpose need validation. The demo is not the production accounting migration source. No opening balance, trial balance, AP/AR or bank reconciliation has been imported."
@@ -1910,13 +1953,17 @@
       "domain": "D15",
       "source_path": "Finance > Configuration > Accounting > Currencies",
       "destination": "Company > Administration > Finance settings · Currencies",
-      "local_status": "foundation",
-      "implemented_and_remaining": "Explicit manual accounting FX source/date/direction and exact AED/USD/EUR conversion separate from procurement rates. Master currency/rate feeds, other precisions, revaluation and settlement FX remain open.",
+      "local_status": "partial",
+      "implemented_and_remaining": "Explicit procurement/accounting/settlement rate snapshots with exact AED/USD/EUR arithmetic, different invoice/bank currencies and realised settlement difference. Wider minor-unit policies, dated revaluation, bank remeasurement and configuration/source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
         "app/tests/ledger-api.test.mjs",
-        "docs/validation/ledger/verification.md"
+        "docs/validation/ledger/verification.md",
+        "docs/implementation/contracts/payments-v1.md",
+        "app/tests/payments.test.mjs",
+        "app/tests/payments-api.test.mjs",
+        "docs/validation/payments/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A missing rate blocks financial posting instead of defaulting to one.",
@@ -3493,7 +3540,7 @@
       "invariant": "Separate legal entities; no combined accounting without policy",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Legal identities and fixed functional currency plus ledger account/period/general-numbering subset. Tax/fiscal/localisation and complete configuration remain open. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open."
+      "local_notes": "Legal identities and fixed functional currency plus ledger account/period/general-numbering subset. Tax/fiscal/localisation and complete configuration remain open. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
     },
     {
       "id": "M02",
@@ -3694,7 +3741,7 @@
       "invariant": "Balanced posting; AP/AR/control/bank reconciliation",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original immutable general ledger, explicit FX, independent posting/reversal, period/account controls and reports. AP/AR/open items, payments, bank/tax/stock/contract integration and production reconciliation remain open. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open."
+      "local_notes": "Original immutable general ledger, explicit FX, independent posting/reversal, period/account controls and reports. AP/AR/open items, payments, bank/tax/stock/contract integration and production reconciliation remain open. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
     },
     {
       "id": "M24",
@@ -3703,7 +3750,8 @@
       "required_fields": "type/source/date, dimensions, amounts, snapshot, remaining work, approval",
       "invariant": "Count each cost once; choose approved cutoff version",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
     },
     {
       "id": "M25",
@@ -3779,7 +3827,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open."
+      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
     },
     {
       "id": "M33",
@@ -3816,7 +3864,7 @@
       "data": "Report definitions; source fact type/ID/date; metric versions; approved forecasts and snapshots; WBS/location allocation; cash-flow policies; saved filters and dashboard definitions; subscriptions and share permissions.",
       "verify": "Report joins, permission filters, reversal handling, snapshot dates, policy approval, scheduler and share-token behaviour remain untested in JAKH. No full report-result reconciliation or JAKH data import has occurred.",
       "example": "For one work item: revised budget 110,000; incurred 60,000; cash 45,000; remaining work 48,000; forecast 108,000; headroom 2,000. The report must explain the 15,000 cost/cash difference and never add total commitments to incurred cost. This is a proposed acceptance fixture, not a JAKH transaction.",
-      "local_implementation": "Cost reports include approved budget allocation facts, local order commitments and consumed-material cost; source links and deterministic findings. Posted accounting, dated forecast versions and other source reports remain open. Original ledger/trial-balance reports now reconcile current posted facts by accounting cutoff, with scoped findings/CSV; full report domain remains open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open."
+      "local_implementation": "Cost reports include approved budget allocation facts, local order commitments and consumed-material cost; source links and deterministic findings. Posted accounting, dated forecast versions and other source reports remain open. Original ledger/trial-balance reports now reconcile current posted facts by accounting cutoff, with scoped findings/CSV; full report domain remains open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open. Supplier payments/refunds and independent bank evidence now connect to AP and typed ledger/cash findings; full finance and source parity remain open."
     },
     {
       "id": "D02",
@@ -4044,7 +4092,7 @@
       "data": "COA/journals/taxes/periods; invoice/bill lines; open items; credit notes; journal entries/items; payment allocations; bank statements/reconciliations; exchange rates; control-account links and analytic allocation.",
       "verify": "Source posting rules, localisations, tax treatment, lock dates, currencies and multi-ledger purpose need validation. The demo is not the production accounting migration source. No opening balance, trial balance, AP/AR or bank reconciliation has been imported.",
       "example": "A USD supplier bill is booked at one rate and partially paid at another. Record remaining USD liability, company-currency cash and realised FX separately; settle only the approved payment and reconcile the bank independently.",
-      "local_implementation": "Original general-ledger subset now posts balanced exact-currency journals with independent limits, immutable facts, period/account controls and traceable reversals. Company/project reports reconcile openings/movements/closings. Bills/invoices, AP/AR, payment allocation, bank clearance, tax, revaluation, stock valuation and source migration remain open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open."
+      "local_implementation": "Original general-ledger subset now posts balanced exact-currency journals with independent limits, immutable facts, period/account controls and traceable reversals. Company/project reports reconcile openings/movements/closings. Bills/invoices, AP/AR, payment allocation, bank clearance, tax, revaluation, stock valuation and source migration remain open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open. Supplier payments/refunds and independent bank evidence now connect to AP and typed ledger/cash findings; full finance and source parity remain open."
     },
     {
       "id": "D16",

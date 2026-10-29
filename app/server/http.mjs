@@ -1,3 +1,4 @@
+import { payments } from './payments.mjs';
 import { payables } from './payables.mjs';
 import { ledger } from './ledger.mjs';
 import { quality } from './quality.mjs';
@@ -138,6 +139,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.payments = payments(db, session.previewId || session.actorId, today);
     req.payables = payables(db, session.previewId || session.actorId, today);
     req.ledger = ledger(db, session.previewId || session.actorId, today);
     req.quality = quality(db, session.previewId || session.actorId, today);
@@ -146,6 +148,20 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/payments/options',(req,res)=>res.json(req.payments.options(req.query.company,req.query.project||null)));
+  app.get('/api/payments/report',(req,res)=>res.json(req.payments.report(req.query.company,{project:req.query.project||null,to:req.query.to||undefined})));
+  app.get('/api/payments/documents',(req,res)=>res.json(req.payments.list(req.query.company,req.query.project||null)));
+  app.get('/api/payments/documents/:id',(req,res)=>res.json(req.payments.detail(req.params.id)));
+  app.post('/api/payments/documents',(req,res)=>res.status(201).json(req.payments.save(null,req.body)));
+  app.put('/api/payments/documents/:id',(req,res)=>res.json(req.payments.save(req.params.id,req.body)));
+  app.post('/api/payments/documents/:id/decision',(req,res)=>res.json(req.payments.decide(req.params.id,req.body)));
+  app.post('/api/payments/documents/:id/reversal',(req,res)=>res.status(201).json(req.payments.reverse(req.params.id,req.body)));
+  app.post('/api/payments/banks',(req,res)=>res.status(201).json(req.payments.bank(null,req.body)));
+  app.put('/api/payments/banks/:id',(req,res)=>res.json(req.payments.bank(req.params.id,req.body)));
+  app.get('/api/payments/statements',(req,res)=>res.json(req.payments.statements(req.query.company)));
+  app.post('/api/payments/statements/:id/void',(req,res)=>res.json(req.payments.voidStatement(req.params.id,req.body)));
+  app.post('/api/payments/statements',(req,res)=>res.status(201).json(req.payments.statement(req.body)));
+  app.post('/api/payments/statement-rows/:id/decision',(req,res)=>res.json(req.payments.match(req.params.id,req.body)));
   app.get('/api/payables/options', (req,res)=>res.json(req.payables.options(req.query.company,req.query.project||null)));
   app.get('/api/payables/sources', (req,res)=>res.json(req.payables.sources(req.query.company,req.query.project||null)));
   app.get('/api/payables/report', (req,res)=>res.json(req.payables.report(req.query.company,{project:req.query.project||null,to:req.query.to||undefined})));

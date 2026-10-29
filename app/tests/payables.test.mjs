@@ -361,17 +361,17 @@ test('payable examples are additive, independent, scoped to every supplied proje
   });
   t.after(() => db.close());
   const count = () => db.prepare('SELECT count(*) n FROM payable_documents').get().n;
-  assert.equal(count(), 12);
+  assert.equal(count(), 18);
   installPayableExamples(db);
-  assert.equal(count(), 12);
+  assert.equal(count(), 18);
   for (const p of db.prepare('SELECT * FROM projects').all()) {
     const s = payables(db, 'example-ap-author', today),
       r = s.report(p.company_id, {
         project: p.id
       });
-    assert.equal(s.list(p.company_id, p.id).length, 4);
+    assert.equal(s.list(p.company_id, p.id).length, 6);
     assert.equal(r.totals.difference, '0.00');
-    assert.equal(r.rows.length, 1);
+    assert.equal(r.rows.length, 2);
     assert.ok(r.exceptions.some(e => new D(e.credit_needed).gt(0)));
     assert.equal(r.pending, 1);
   }
