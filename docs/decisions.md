@@ -16,7 +16,7 @@ Last updated: 28 October 2026, Asia/Dubai.
 | D-008 | Strategic AI across the ERP | Fit assistance to useful tasks and measure benefit; preserve financial/approval authority. |
 | D-009 | Builder-ERP is the project repository | Use https://github.com/JameelKhab/Builder-ERP to record work. |
 | D-010 | Work locally; no jakh.net deployment yet | Keep the existing site unchanged until the user explicitly instructs deployment after local completion. |
-| D-011 | Keep everything committed locally for now | After the GitHub permission rejection, the user explicitly deferred remote syncing. Do not retry a push until instructed. |
+| D-011 | Historical local-only sync decision — superseded | Initially deferred after a GitHub permission rejection. On 29 October the user explicitly authorised GitHub sync and a portable handover; see D-012 below. |
 | D-012 | Start building with quality | Explicitly authorised implementation on 28 October 2026; no need to re-request implementation permission. |
 | D-013 | Choice 2 with clearer categories | User selected Project briefing and emphasised easy reading, easy operation and rich information. Refined before implementation. |
 | D-014 | Product name: Builder ERP | Explicit user correction; apply to the application, titles and exports. Company identities remain separate. |
@@ -133,3 +133,7 @@ Finance activation is a versioned independent decision. Cumulative measurement u
 ## 29 October 2026 — Customer receipts and shared bank evidence
 
 Receipt approval, evidenced cash recording and independent bank matching are distinct decisions. Customer cash uses `customer_receipts.*`; the existing `receipts.write` continues to mean material delivery. Separate receipt limits default to zero. A remittance can cover multiple invoices/projects under company-wide authority; project users see only their allocation, while combined titles/files/detail stay restricted. Exact remaining AR carrying values and actual bank FX balance each project without recognising revenue twice. Full linked reversal preserves original facts and needs fresh independent decisions. The advance source sequence is request → invoice → actual settlement; advance recovery must derive from its settled subledger, never an allowance. Credits/unallocated cash, advance invoicing/recovery, broader bank integration and full migration remain open.
+
+## 29 October 2026 — GitHub continuity (D-012)
+
+The user now explicitly requests publishing all verified project work to JameelKhab/Builder-ERP and using it as the source of information for another laptop and possibly another ChatGPT account. This supersedes D-011 and earlier local-only Git restrictions. START-HERE.md must contain the full objective, current state, setup, validation, exact next step, remaining scope and continuation prompt. Preserve runtime data separately in a portable consistent backup; credentials and local environment remain outside Git. Development remains local and deployment is not authorised. Browser sign-in and Git credentials are separate; do not claim publication until the remote commit is verified.

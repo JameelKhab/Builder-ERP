@@ -149,3 +149,7 @@ Original contract finance activation, cumulative measured certificates and separ
 ## 29 October 2026 — Customer settlement continuation
 
 Original customer receipt allocation, independent approval, evidenced recording, shared bank matching and immutable full corrections now connect posted certificate invoices to actual open receivables. Company/project findings and CSV retain the same scoped population. Actual advance request/invoicing/recovery, credits/unallocated cash, retention release and full company cash-flow/migration requirements remain open. See `implementation/receipts-local.md`.
+
+## 29 October 2026 — Portability and repository continuity
+
+The user requires GitHub (JameelKhab/Builder-ERP) to hold the project source of truth and a self-contained resumption summary. Another laptop or ChatGPT account must be able to continue using the repository alone. Verified commits may now be pushed; deployment remains unauthorised. START-HERE.md covers setup, exact current state and remaining scope. A separate private portable archive preserves the saved runtime workspace; no credential is committed.

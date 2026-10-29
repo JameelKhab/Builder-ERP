@@ -4,6 +4,10 @@ An original construction ERP for the complete journey from opportunity and tende
 
 The priority is a simple interface with rich, traceable information. The replacement must be built from scratch without copying, adapting or depending on Odoo application code.
 
+## Continue on another laptop or account
+
+**[Read START-HERE.md](START-HERE.md)** for the self-contained handover: setup, implemented scope, validation, exact next step, remaining requirements and a prompt for a new coding assistant. No access to the previous chat or ChatGPT account is needed. This repository is the user-designated source of truth.
+
 ## Current status
 
 **Correction after functional comparison:** the current application is a narrow local increment, not a full migration or functionally equivalent replacement. Implementation advanced before the detailed business-rule/data mapping required by the study. The [comparison and migration correction](docs/migration/README.md) now accounts for all 42 recorded primary areas and 267 recorded destination controls. It identifies missing operational/financial logic and proposed acceptance/data contracts. Navigation coverage is not verified workflow parity; most source rules and the real data migration remain to be completed.
@@ -14,7 +18,7 @@ Working features include persistent purchase requests, vendor quote repricing/cu
 
 Discovery remains recorded in the 53-page Revision 4 study. The navigation has been reviewed in a browser, but has not been validated with representative users.
 
-**Development, testing and Git commits stay local for now. Do not push to GitHub, deploy to jakh.net or change the existing demo.** GitHub is the intended remote project record, but the user has deferred syncing. Resume GitHub pushes only when instructed. A future deployment requires a separate explicit instruction after local work is complete.
+**Development and testing stay local. The user now authorises verified commits to GitHub as the project source of truth.** Keep the handover and coverage current. Do not deploy to jakh.net or change the existing demo; deployment still requires a separate explicit instruction. Earlier local-only sync decisions are historical and superseded.
 
 The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. The later individual-sign-in increment is described below; full migration and production release remain open.
 
@@ -71,7 +75,7 @@ The study sources are report-authoring tools, **not ERP application code**. No p
 
 ## Local development
 
-Use Node 24.15.x (see `app/.nvmrc`), then:
+Use Node 24.x, at least 24.15 (see `app/.nvmrc`), then:
 
 ```sh
 cd app

@@ -5,12 +5,12 @@
 - Build an original construction ERP from scratch. Do not copy, translate, adapt or depend on Odoo application code or import the old Odoo project into this repository.
 - The existing JAKH demo was used as a read-only requirements/evidence source. Do not modify it while working on the replacement.
 - Develop and validate locally. Do not deploy to jakh.net, demo.jakh.net or another production destination without a later explicit user instruction. Do not add automatic deployment pipelines as part of routine development.
-- GitHub is the intended remote project record, but the user's latest instruction is to keep everything committed locally for now. Keep meaningful changes and validation in local Git. Do not push to GitHub until the user resumes syncing; that is separate from any deployment instruction.
+- Latest user instruction (29 October 2026): sync verified work to https://github.com/JameelKhab/Builder-ERP and make that repository the project source of truth. The user may change laptop and ChatGPT account. Maintain START-HERE.md, coverage, requirements, decisions and the project log so the repository is self-contained. This supersedes earlier local-only Git instructions; it does not authorise deployment or repository visibility/access changes.
 - Current phase: the user explicitly authorised implementation on 28 October 2026. The user selected choice 2 (Project briefing), with clearer categories and rich information. The first working local increment is in app/. Do not ask again for permission to build. Follow the user's current instruction when advancing the work.
 
 ## Read before substantial work
 
-Read README.md, docs/requirements.md, docs/decisions.md and the latest entry in docs/project-log.md. Use the study for supporting detail. Update these records when requirements or decisions change; distinguish confirmed user requirements from design proposals.
+Read START-HERE.md, README.md, docs/requirements.md, docs/decisions.md and the latest entry in docs/project-log.md. Use the study for supporting detail. Update these records when requirements or decisions change; distinguish confirmed user requirements from design proposals.
 
 ## Product name and examples
 

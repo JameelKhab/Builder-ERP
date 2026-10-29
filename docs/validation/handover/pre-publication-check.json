@@ -1,0 +1,23 @@
+{
+  "tracked_files_checked": 471,
+  "issues": [
+    {
+      "path": "docs/study/JAKH-ERP-Read-Only-Study.pdf",
+      "finding": "Credential-like pattern; inspect privately"
+    },
+    {
+      "path": "docs/study/archive/study-authoring-history.zip!company_currency_ai_content.py",
+      "finding": "Credential-like archive pattern"
+    },
+    {
+      "path": "tools/study/company_currency_ai_content.py",
+      "finding": "Credential-like pattern; inspect privately"
+    }
+  ],
+  "checks": [
+    "common token/private-key signatures",
+    "excluded credential/runtime filenames",
+    "text/bytes inside tracked ZIP evidence"
+  ],
+  "limits": "Not a full secret, binary-image, dependency or security audit. Runtime database and local authentication configuration remain ignored."
+}
