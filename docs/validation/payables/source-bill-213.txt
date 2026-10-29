@@ -197,7 +197,7 @@ Browser tab: 23, Title: "BILL/2026/09/0004", URL: "https://demo.jakh.net/jakh/ac
 						195 text -25,748.40 AED
 					196 cell
 			197 container
-				198 container 
+				198 container
 
 					199 container
 						200 text Terms and Conditions
@@ -233,7 +233,7 @@ Browser tab: 23, Title: "BILL/2026/09/0004", URL: "https://demo.jakh.net/jakh/ac
 							230 text Rajesh Menon
 						231 text Sep 10, 2:00 PM
 						232 container
-							233 text This vendor bill has been created from: 
+							233 text This vendor bill has been created from:
 							234 link Description: P00021, Value: demo.jakh.net/jakh/action-604/jakh.project.control.entry/583/account.move/213#
 
 The focused UI element is 0 AXWebArea BILL/2026/09/0004, URL: demo.jakh.net/jakh/action-604/jakh.project.control.entry/583/account.move/213

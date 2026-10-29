@@ -11,3 +11,5 @@
 This is local subset verification, not full source parity, statutory accounting acceptance or complete ERP release. Real source migration, payment/bank/stock accounting, subcontract certificate deductions and broader ERP remain open. No push, deployment or JAKH mutation.
 
 Final report desktop/mobile screenshots and full accessibility text were captured from the saved workspace; both final warning/error log inspections are empty. The temporary isolated server is stopped. The saved app continues on loopback ports 4173/4174.
+
+The final browser CSV was downloaded again after wording corrections and reconciled to one Harbour bill, EUR 226.80 / AED 935.20 open. Archived CSV uses LF line endings; live exports use CRLF. Accessibility archives retain all text with trailing whitespace normalised.

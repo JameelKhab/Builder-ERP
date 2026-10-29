@@ -81,16 +81,16 @@ Browser tab: 27, Title: "Builder ERP · Construction workspace", URL: "http://12
 					79 text AED 1,162  payable before settlement
 				80 content list
 					81 container
-						82 AXListMarker • 
+						82 AXListMarker •
 						83 text 2 posted supplier bills; 2 posted return credits through 2026-10-29.
 					84 container
-						85 AXListMarker • 
+						85 AXListMarker •
 						86 text 1162.00 AED remains payable before cash settlement; past-due bills: 0.
 					87 container
-						88 AXListMarker • 
+						88 AXListMarker •
 						89 text Unbilled accepted receipt lots: 5. Billed returns awaiting credit: 2.
 					90 container
-						91 AXListMarker • 
+						91 AXListMarker •
 						92 text Documents awaiting review: 2. Linked AP control difference: 0.00.
 				93 text AED 226.80  open EUR 226.80  open Original bills AED 1,291.11 Return credits AED 129.11 Past due AED 0 AP control difference AED 0
 				94 heading Bill balances, Value: 3

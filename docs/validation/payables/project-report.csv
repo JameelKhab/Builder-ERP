@@ -5,16 +5,16 @@
 "Functional currency","AED"
 
 "Findings"
-"1 posted supplier bills; 1 posted return credits through 2026-10-29."
-"935.20 AED remains payable before cash settlement; 0 bills have passed their due date."
-"3 receipt lots have unbilled accepted quantities; 1 have billed returns awaiting credit."
-"1 documents await review. Linked AP control difference: 0.00."
+"1 posted supplier bill; 1 posted return credit through 2026-10-29."
+"935.20 AED remains payable before cash settlement; past-due bills: 0."
+"Unbilled accepted receipt lots: 3. Billed returns awaiting credit: 1."
+"Documents awaiting review: 1. Linked AP control difference: 0.00."
 
 "Limitations"
 "Material receipt bills and quantity return credits only. Payments and settlements are not implemented here; open amounts do not claim actual cash movement."
 "Invoice classification is explicit. Automatic stock valuation/GRNI, subcontract certificates, retention, price-only credits and legal tax localisation remain open."
 "Posted bill accounting is separate from the operational cost report; it does not add the same material cost twice."
-"Receipt exceptions use operational UTC event dates; financial balances use accounting dates."
+"Receipt exceptions use operational UTC event dates; financial balances use accounting dates. Pending documents reflect the current review queue within the date filter, not historical workflow status."
 "Selected project only."
 
 "Bill ID","Supplier reference","Supplier","Project","Accounting date","Due date","Currency","Original","Credited","Open","Functional original","Functional credited","Functional open","Overdue","Journal ID"
