@@ -34,6 +34,8 @@ Material supplier bills now match accepted receipt quantities, require independe
 
 Supplier payments/refunds now connect separate independent approval, evidenced offline recording, exact AP/bank/FX allocation, independent statement matching and retained corrections. Findings and CSV support project/company scope. See [settlement implementation](docs/implementation/payments-local.md). No bank transfers are executed; full cash classifications/forecasts, AR, bank imports/fees/transfers and source migration remain open.
 
+Estimate studies now support original BOQ/resource pricing, building quantity exceptions, independent approval, immutable revisions/comparison and controlled project/WBS/draft-baseline handover. Scoped findings and CSV preserve recorded rates and distinguish estimated cost from selling value. See [estimating implementation](docs/implementation/estimates-local.md). Workbook/cap-share parity, CRM/sales/contracts and the full award handover remain open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.

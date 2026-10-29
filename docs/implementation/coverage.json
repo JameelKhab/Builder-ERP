@@ -287,7 +287,7 @@
       "source_path": "My Approvals & Activities",
       "destination": "My Work > Approvals & activities",
       "local_status": "partial",
-      "implemented_and_remaining": "My Work includes independent purchase/budget/master/NCR/journal/AP/payment reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation and broader workflow coverage remain open.",
+      "implemented_and_remaining": "My Work and Home include independent purchase/budget/master/NCR/journal/AP/payment/estimate reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation, reassignment and broader workflow coverage remain open.",
       "evidence": [
         "app/tests/procurement.test.mjs",
         "docs/implementation/contracts/payables-v1.md",
@@ -297,7 +297,11 @@
         "docs/implementation/contracts/payments-v1.md",
         "app/tests/payments.test.mjs",
         "app/tests/payments-api.test.mjs",
-        "docs/validation/payments/verification.md"
+        "docs/validation/payments/verification.md",
+        "docs/implementation/contracts/estimates-v1.md",
+        "app/tests/estimates.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/tenders/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One returned certificate produces one current task with its review stage.",
@@ -516,9 +520,14 @@
       "domain": "D04",
       "source_path": "Tender & BOQ > BOQ estimates",
       "destination": "Tenders > Estimates · BOQ & pricing",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Typed estimate revisions, summary BOQ groups/items, resource assemblies with explicit currencies/price bases, repeated-building replacements including zero, secondary quantity explanation, proportional indirect cents and documented cost/selling pricing now work locally. Parent cap/share semantics, workbook/take-off mapping, resource/pool maintenance, exact legacy markup/rounding parity and full award/sales handover remain open.",
+      "evidence": [
+        "docs/implementation/contracts/estimates-v1.md",
+        "app/tests/estimates.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/tenders/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "A repeated-floor variant changes its quantities without altering other floors.",
       "source_verification_remaining": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas."
@@ -528,9 +537,14 @@
       "domain": "D04",
       "source_path": "Tender & BOQ > Study versions",
       "destination": "Tenders > Estimates · Versions",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Independent estimate approval locks version inputs and calculations; new revisions preserve stable BOQ keys, decisions and predecessor links. Comparisons explain quantity/direct/indirect/pricing changes; cancelled revision numbers are retained. Source historical version import and full parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/estimates-v1.md",
+        "app/tests/estimates.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/tenders/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Changing a resource rate creates a new study version.",
       "source_verification_remaining": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas."
@@ -540,9 +554,14 @@
       "domain": "D04",
       "source_path": "Tender & BOQ > Estimate analysis",
       "destination": "Tenders > Estimates · Analysis",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Study cost/selling/margin findings, project/company latest-study reports and CSV reconcile to exact line calculations. Functional currency uses dated snapshots; scope and cancellation/revision population are explicit. Cap/share analysis, exact legacy pricing/rounding parity, pipeline forecasts and full reporting remain open.",
+      "evidence": [
+        "docs/implementation/contracts/estimates-v1.md",
+        "app/tests/estimates.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/tenders/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Analysis reconciles to line calculations using the documented pricing order.",
       "source_verification_remaining": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas."
@@ -3549,7 +3568,8 @@
       "required_fields": "id, owning company, customer, dates, phase, source estimate/contract",
       "invariant": "Direct award and tender handover preserve provenance",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
     },
     {
       "id": "M03",
@@ -3590,29 +3610,32 @@
     {
       "id": "M07",
       "subject": "Estimate header",
-      "status": "open",
+      "status": "partial",
       "required_fields": "company/currency, quantities, pricing order, version, approvals",
       "invariant": "Approved version immutable; preserve calculation order",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
     },
     {
       "id": "M08",
       "subject": "Estimate lines and assemblies",
-      "status": "open",
+      "status": "partial",
       "required_fields": "parent, resource, unit, quantity, direct cost, indirect allocation, markup",
       "invariant": "Compare parent caps, variants and totals before acceptance",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
     },
     {
       "id": "M09",
       "subject": "Award handover",
-      "status": "open",
+      "status": "partial",
       "required_fields": "approved estimate version, quote/order, project, generated WBS",
       "invariant": "Idempotent handover; budgets require independent release",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
     },
     {
       "id": "M10",
@@ -3827,7 +3850,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
+      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open. Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
     },
     {
       "id": "M33",
@@ -3910,7 +3933,8 @@
       "preserve": "Preserve source workbook provenance, row codes, parent/child BOQ, units, assembly resources, building-specific quantities and variants, pricing sequence and precision. Approved studies lock; revisions remain distinct. Award produces linked draft commercial and budget records without silently releasing them.",
       "data": "Workbook/row mappings; estimate headers; BOQ groups/lines; assembly components; rates and dates; location quantities; indirect pools; pricing order; versions; approvals; quotation/project/WBS crosswalk.",
       "verify": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas.",
-      "example": "Ten typical floors and two modified floors share an assembly. Reprice steel without overwriting the accepted tender; compare the new version, approve it, and hand over exact location quantities and the approved budget basis."
+      "example": "Ten typical floors and two modified floors share an assembly. Reprice steel without overwriting the accepted tender; compare the new version, approve it, and hand over exact location quantities and the approved budget basis.",
+      "local_implementation": " Original BOQ/assembly/override calculation, independent version approval/comparison, scoped findings/export and project/WBS/draft-budget handover now work locally. Workbook intake, parent cap/share parity, full pricing/configuration and sales/contract handover remain open."
     },
     {
       "id": "D05",

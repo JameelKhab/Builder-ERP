@@ -4,7 +4,7 @@
 
 ## Current continuation — 29 October 2026
 
-This document preserves the first increment baseline below. Later operational subsets cover access/destinations, procurement, company/project/budget control, individual identity, masters, NCRs, ledger, material AP and [supplier settlements/bank evidence](payments-local.md). Current validation: 162 tests, frontend build and additive schema-10 recovery across 70 tables. Full parity remains unverified in the [267-function overlay](coverage.md).
+This document preserves the first increment baseline below. Later operational subsets cover access/destinations, procurement, company/project/budget control, individual identity, masters, NCRs, ledger, material AP [supplier settlements/bank evidence](payments-local.md) and [estimate studies/project setup](estimates-local.md). Current validation: 177 tests, frontend build and additive schema-11 recovery across 77 business tables. Full parity remains unverified in the [267-function overlay](coverage.md).
 
 ## Read, decide, then open detail
 

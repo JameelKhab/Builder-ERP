@@ -1,0 +1,16 @@
+"Builder ERP · Estimate register"
+"Company","jakh"
+"Project","harbour"
+"State","all"
+"Company currency","AED"
+
+"Findings"
+"3 latest studies in the authorised project scope; prior revisions are excluded."
+"0 approved, 1 awaiting approval."
+"AED 76948.30 estimated cost and AED 101571.75 potential selling value across noncancelled studies. These are estimates, not committed contracts."
+"Each study uses its recorded exchange-rate date. Figures are not retranslated at today's rates."
+
+"Estimate","Study","Revision","Project","Title","Customer","State","Due","Currency","FX rate","FX date","Cost","Selling","Company cost","Company selling"
+"EST-C9C027D8","STUDY-5D2AB948","2","Harbour Tower","Example · Reviewed villa estimate · Harbour Tower","Example · JAKH Contracting LLC development client","Needs approval","2026-12-01","AED","1","2026-10-29","26096.00","34446.72","26096.00","34446.72"
+"EST-382D4FC7","STUDY-7B7081F3","1","Harbour Tower","Example · Foreign resource quote · Harbour Tower","Example · JAKH Contracting LLC development client","Draft","2026-12-01","AED","1","2026-10-29","25780.30","34029.99","25780.30","34029.99"
+"EST-03FDBED3","STUDY-314D34E0","1","Harbour Tower","Example · Estimate to finish · Harbour Tower","Example · JAKH Contracting LLC development client","Changes requested","2026-12-01","AED","1","2026-10-29","25072.00","33095.04","25072.00","33095.04"

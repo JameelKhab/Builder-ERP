@@ -1,0 +1,239 @@
+Browser tab: 32, Title: "EST/2026/00009", URL: "https://demo.jakh.net/jakh/action-626/9".
+1 AXWebArea EST/2026/00009, URL: demo.jakh.net/jakh/action-626/9
+	2 container
+		3 container Description: ERP navigation, ID: jakh-sidebar
+			4 text JAKH ERP
+			5 text Contracting & construction
+			6 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			7 container Description: Modules, ID: jakh-sidebar-navigation
+				8 text MODULES
+				9 content list
+					10 button Dashboard
+					11 button (collapsed) Description: Reports, Secondary Actions: Expand
+					12 button My Approvals & Activities
+					13 button (collapsed) Description: CRM, Secondary Actions: Expand
+					14 container
+						15 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						16 content list jakh-menu-388
+							17 button BOQ workbook intake
+							18 button BOQ estimates
+							19 button Study versions
+							20 button Estimate analysis
+					21 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					22 button (collapsed) Description: Projects, Secondary Actions: Expand
+					23 button Project requisitions
+					24 button Project set-up
+					25 button Material returns
+					26 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					27 button Site receipts
+					28 button Site diaries
+					29 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					30 button Site materials & issues
+					31 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					32 button Payment certificates
+					33 button Advances & retention releases
+					34 button Final accounts & closeout
+					35 button Guarantees & bonds
+					36 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					37 button Subcontract order amendments
+					38 button Subcontractor applications
+					39 button Subcontract service entries
+					40 button Subcontract work corrections
+					41 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					42 button Labour & plant allocation
+					43 button Labour & plant actual feeds
+					44 button P6 schedule progress
+					45 button (collapsed) Description: Finance, Secondary Actions: Expand
+					46 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					47 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					48 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					49 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					50 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					51 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					52 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					53 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					54 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					55 button My Tasks
+					56 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					57 button (collapsed) Description: Administration, Secondary Actions: Expand
+			58 container
+				59 text JAKH Contracting Platform
+				60 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		61 container
+			62 button (collapsed) Messages 1, Secondary Actions: Expand
+				63 container Messages
+				64 text 1
+			65 button (collapsed) Activities 1, Secondary Actions: Expand
+				66 container Activities
+				67 text 1
+			68 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			69 button التبديل إلى العربية
+			70 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			71 button (collapsed) User is online, Secondary Actions: Expand
+				72 image
+					73 container User is online
+		74 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		75 button New
+		76 content list
+			77 link Description: BOQ estimates, Value: demo.jakh.net/jakh/action-626
+		78 text EST/2026/00009
+		79 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		80 container
+			81 button history 0 Versions
+				82 text history
+				83 container
+					84 text 0 Versions
+			85 button handshake Opportunity
+				86 text handshake
+				87 text Opportunity
+		88 container Pager
+			89 container
+				90 text 6  /  11
+			91 container
+				92 button Previous
+					93 text arrow_back_ios_new
+				94 button Next
+					95 text arrow_forward_ios
+		96 container
+			97 button Submit for approval
+			98 button Import BOQ workbooks
+			99 Statusbar
+				100 radio button (disabled) Handed over, Value: 0
+				101 radio button (disabled) Approved, Value: 0
+				102 radio button (disabled) In review, Value: 0
+				103 radio button (disabled) Draft, Value: 1
+			104 heading EST/2026/00009, Value: 1
+				105 text EST/2026/00009
+			106 heading Silver Palm Townhouses — Phase 2, Value: 2
+				107 text field (settable) Value: Silver Palm Townhouses — Phase 2, ID: title_0
+			108 text Customer
+			109 combo box (collapsed, settable) Customer, Value: Silver Palm Investments (Demo), ID: partner_id_0, Secondary Actions: Expand
+			110 text Opportunity
+			111 combo box (collapsed, settable) Opportunity, Value: Silver Palm Townhouses — Phase 2, ID: opportunity_id_0, Secondary Actions: Expand
+			112 text Estimator
+			113 combo box (collapsed, settable) Estimator, Value: Anil Varghese, ID: estimator_id_0, Secondary Actions: Expand
+			114 text Project Manager
+			115 combo box (collapsed, settable) Project Manager, ID: project_manager_id_0, Secondary Actions: Expand
+			116 text Company
+			117 combo box (collapsed, settable) Company, Value: JAKH Demo Contracting LLC, ID: company_id_0, Secondary Actions: Expand
+			118 text Currency
+			119 combo box (collapsed, settable) Currency, Value: AED, ID: currency_id_0, Secondary Actions: Expand
+			120 text Repeated buildings
+			121 text field (settable) Repeated buildings, Value: 1, ID: unit_count_0
+			122 text Header markup (%)
+			123 text field (settable) Header markup (%), Value: 0.000000, ID: header_markup_percent_0
+			124 text Indirect cost pool
+			125 container
+				126 text 0.00  AED
+				127 text field (settable) Indirect cost pool, Value: 0.00, ID: indirect_amount_0
+				128 text  AED
+			129 text Overhead (%)
+			130 text field (settable) Overhead (%), Value: 8.000000, ID: overhead_percent_0
+			131 text Profit (%)
+			132 text field (settable) Profit (%), Value: 10.000000, ID: profit_percent_0
+			133 text Pricing Basis
+			134 text Direct + proportional indirect; overhead then profit then legacy item/header markup
+			135 content list
+				136 tab (selectable, settable, boolean) BOQ & assemblies, Value: 0
+				137 tab (selectable, settable, boolean) Building quantities, Value: 0
+				138 tab (selectable, settable, boolean) Study versions, Value: 0
+				139 tab (selectable, settable, boolean) Notes, Value: 0
+			140 table
+				141 row
+					142 cell
+					143 cell
+						144 text Code
+						145 text swap_vert
+					146 cell
+						147 text Description
+						148 text swap_vert
+					149 cell
+						150 text Parent value cap / summary
+						151 text swap_vert
+					152 cell
+						153 text Parent BOQ group
+					154 cell
+						155 text Share of parent (%)
+						156 text swap_vert
+					157 cell
+						158 text Cost Code
+						159 text swap_vert
+					160 cell
+						161 text Primary unit
+						162 text swap_vert
+					163 cell
+						164 text Quantity per building
+						165 text swap_vert
+					166 cell
+						167 text Direct unit cost
+						168 text swap_vert
+					169 cell
+						170 text Item markup (%)
+						171 text swap_vert
+					172 cell
+						173 text Total Quantity
+						174 text swap_vert
+					175 cell
+						176 text Sell Amount
+						177 text swap_vert
+					178 cell
+						179 button (collapsed) tune, Secondary Actions: Expand
+							180 text tune
+				181 row
+					182 cell
+						183 text drag_indicator
+					184 cell
+						185 text JSD-FIN-2
+					186 cell
+						187 text Main works
+					188 cell
+						189 container
+							190 checkbox (disabled, settable, integer) Value: 0, ID: boolean_checkbox
+					191 cell
+					192 cell
+						193 text 0.000000
+					194 cell
+						195 text Finishes
+					196 cell
+						197 text Units
+					198 cell
+						199 text 1.000000
+					200 cell
+						201 text 0.000000
+					202 cell
+						203 text 0.000000
+					204 cell
+						205 text 1.000000
+					206 cell
+						207 text 29,462,400.00 AED
+					208 cell
+						209 button Open in form view
+					210 cell
+						211 button Delete row
+							212 text delete
+				213 row
+					214 cell
+						215 button Add a line
+			216 container
+				217 text Direct cost :
+			218 text 24,800,000.00 AED
+			219 container
+				220 text Direct + allocated indirect cost :
+			221 text 24,800,000.00 AED
+			222 container
+				223 text Selling amount, excluding tax :
+			224 text 29,462,400.00 AED
+			225 container
+				226 text Margin :
+			227 text 4,662,400.00 AED
+			228 button Send message
+			229 button Log note
+			230 button Activity
+			231 button Search Messages
+			232 button Attach files
+				233 text attach_file
+			234 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+				235 text 0
+			236 text 😶 No messages yet.
+
+The focused UI element is 1 AXWebArea EST/2026/00009, URL: demo.jakh.net/jakh/action-626/9

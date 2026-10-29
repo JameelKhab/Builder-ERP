@@ -1,0 +1,11 @@
+const csv = rows => rows.map(row => row.map(v => {
+  let s = String(v ?? '');
+  if (/^[=+@\-\t\r]/.test(s)) s = "'" + s;
+  return '"' + s.replaceAll('"', '""') + '"';
+}).join(',')).join('\r\n');
+export function estimateRegisterCsv(r) {
+  return csv([['Builder ERP · Estimate register'], ['Company', r.company], ['Project', r.project || 'Authorised company scope'], ['State', r.state], ['Company currency', r.currency], [], ['Findings'], ...r.findings.map(f => [f]), [], ['Estimate', 'Study', 'Revision', 'Project', 'Title', 'Customer', 'State', 'Due', 'Currency', 'FX rate', 'FX date', 'Cost', 'Selling', 'Company cost', 'Company selling'], ...r.rows.map(x => [x.id, x.study_id, x.revision, x.project, x.title, x.customer, x.state_label, x.due, x.currency, x.rate, x.rate_date, x.totals.budget, x.totals.selling, x.totals.company_budget, x.totals.company_selling])]);
+}
+export function estimateDetailCsv(r) {
+  return csv([['Builder ERP · Estimate study'], ['Estimate', r.id], ['Revision', r.revision], ['Company', r.company_id], ['Project', r.project_id || 'Pre-project'], ['Customer', r.customer.name], ['Currency', r.currency], ['State', r.state_label], ['Pricing policy', r.calculation.policy], ['FX to company currency', r.rate, r.rate_date, r.rate_source], ['Basis', r.basis], ['Exclusions', r.exclusions], [], ['Findings'], ...r.calculation.findings.map(f => [f]), [], ['Code', 'Description', 'Type', 'Unit', 'Total quantity', 'Direct', 'Indirect', 'Budget', 'Selling', 'Margin', 'Company budget', 'Company selling'], ...r.calculation.rows.map(l => [l.code, l.description, l.kind, l.unit, l.total_quantity, l.direct, l.indirect, l.budget, l.selling, l.margin, l.company_budget, l.company_selling]), [], ['Resource line', 'Description', 'Kind', 'Unit', 'Consumption per primary unit', 'Rate', 'Price basis', 'Currency', 'FX to estimate', 'FX date', 'FX source'], ...r.resources.map(x => [r.lines.find(l => l.key === x.line_key)?.code, x.description, x.kind, x.unit, x.consumption, x.unit_rate, x.price_basis, x.currency, x.rate, x.rate_date, x.rate_source]), [], ['Override line', 'Building', 'Replacement quantity', 'Reason'], ...r.overrides.map(v => [r.lines.find(l => l.key === v.line_key)?.code, v.building, v.quantity, v.reason]), [], ['Project handover', r.handover?.project_id], ['Draft budget', r.handover?.budget_id]]);
+}

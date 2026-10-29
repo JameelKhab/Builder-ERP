@@ -1,0 +1,132 @@
+Browser tab: 34, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4187/#section=Tenders".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4187/#section=Tenders
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4187/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Access
+					11 image
+					12 text Access
+				13 button Organisation
+					14 image
+					15 text Organisation
+				16 button My Work
+					17 image
+					47 text My Work
+				18 button Tenders
+					19 image
+					48 text Tenders
+				20 button Projects
+					21 image
+					49 text Projects
+				22 button Company
+					23 image
+					50 text Company
+			24 text Built around your work.
+			25 text Local sample workspace
+		26 container
+			27 text Company
+			28 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				29 menu
+					30 (selected) JAKH Contracting LLC
+					31 JAKH International Ltd
+			32 image
+			33 text field (settable) Search company records
+			34 button Search
+			35 button Explore examples
+				36 image
+				37 text Examples
+			38 button Your account and sign-in
+				39 text AA
+				40 text Ahmed Al Mansoori
+				41 text Project manager
+		42 container main-content
+			43 heading Tenders, Value: 1
+				44 text Tenders
+			45 text From opportunity to a confident bid.
+			182 container
+				183 image
+				184 text Estimate decision recorded.
+			51 button All estimates
+				52 image
+				53 text All estimates
+			185 container
+				186 text EST-BA571E1D  · REVISION  1  ·  NEEDS APPROVAL
+			187 heading Browser check · Tower concrete package, Value: 2
+				188 text Browser check · Tower concrete package
+			189 container
+				190 text Example · JAKH Contracting LLC development client  ·  QA-TOWER-001  · Due  2026-10-29
+			191 button Export study
+				192 image
+				193 text Export study
+			194 text Estimated cost
+			195 text AED 720.00
+			196 container
+				197 text Includes  AED 20.00  indirect
+			198 text Selling before tax
+			199 text AED 950.40
+			200 text Estimated margin
+			201 text AED 230.40
+			202 container
+				203 text 24.24 % of selling
+			204 container
+				205 heading Study findings, Value: 3
+					206 text Study findings
+				207 text 1 priced work items across 2 building(s); 1 explicit quantity override(s). Estimated cost AED 720.00 includes 20.00 allocated indirect costs. Selling value before tax is 950.40. Margin is AED 230.40 (24.24% of selling value); it is not recorded revenue or cash. CON-01 · Tower concrete: estimated cost AED 720.00. Prepared by  Ahmed Al Mansoori .  AED  1 =  AED 1  ·  2026-10-29 .
+			209 container
+				210 heading Work breakdown, Value: 3
+					211 text Work breakdown
+				212 text Open an item for its resource calculations, building exceptions and quantity basis.
+				213 table
+					214 row
+						215 cell
+							216 text Work item
+						217 cell
+							218 text Quantity
+						219 cell
+							220 text Direct cost
+						221 cell
+							222 text Indirect
+						223 cell
+							224 text Estimated cost
+						225 cell
+							226 text Selling
+					227 row
+						228 cell
+							229 button (collapsed) CON-01 · Tower concrete, Secondary Actions: Expand
+								230 text CON-01
+								231 text  · 
+								232 text Tower concrete
+						233 cell
+							234 text 7 m3
+						235 cell
+							236 text AED 700.00
+						237 cell
+							238 text AED 20.00
+						239 cell
+							240 text AED 720.00
+						241 cell
+							242 text AED 950.40
+			243 button (collapsed) Pricing basis, assumptions & exclusions, Secondary Actions: Expand
+				244 text Pricing basis, assumptions & exclusions
+			245 container
+				246 heading Next step, Value: 3
+					247 text Next step
+				248 text Decision / revision reason
+				249 text entry area (settable) Decision / revision reason
+				258 button (disabled) Withdraw for editing
+			252 button (collapsed) Revisions & comparison · 1, Secondary Actions: Expand
+				253 text Revisions & comparison · 
+				254 text 1
+			255 button (collapsed) Decision history · 2, Secondary Actions: Expand
+				256 text Decision history · 
+				257 text 2
+			46 button (collapsed) Earlier opportunity and tender examples · read only, Secondary Actions: Expand
+				181 text Earlier opportunity and tender examples · read only
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4187/#section=Tenders

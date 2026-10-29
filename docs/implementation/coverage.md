@@ -4,6 +4,8 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
+Estimate studies now connect typed BOQ/resource pricing, repeated-building overrides, exact cost/selling calculations, independent version approval/comparison, scoped findings/CSV and controlled project/WBS/draft-budget handover with zero spending release. See `estimates-local.md` and `contracts/estimates-v1.md`. Workbook intake, cap/share and exact pricing parity, CRM/sales/contracts and full award handover remain open.
+
 Supplier payments and refunds now connect independent approval, offline transaction recording, exact AP/bank/FX allocations, independent bank matching and retained corrections. Company/project cash findings and CSV reconcile to supplier balances and typed journals. See `payments-local.md` and `contracts/payments-v1.md`. Full cash classification/forecast, customer/subcontract settlement, bank integrations and source migration remain open.
 
 Material receipt supplier bills now support exact price basis, configured exclusive tax/FX, independent AP authority, immutable source journals, quantity return credits and company/project findings/control reconciliation/CSV. See `payables-local.md` and `contracts/payables-v1.md`. Service/subcontract certificates, retention, stock valuation, broader bank integration and source parity remain open.
@@ -24,7 +26,7 @@ The connected procurement increment implements unpriced demand → supplier quot
 
 1. Complete identity hardening/preferences/delegation, reference/master maintenance, detailed budget build-ups, dated forecast versions and approval routing. The implemented project/budget subset remains short of full domain acceptance.
 2. Extend material-payable accounting to service/certificate bills, customer settlement, bank import/fees/transfers, stock/GRNI reconciliation, complete tax/FX policies and cash forecasts; expand warehouse/material operations.
-3. Tender/estimating/BOQ-to-project handover; measured client and subcontract certification, advances, retention, variations, securities and final accounts.
+3. Complete workbook/BOQ cap-share/resource/pricing fidelity and opportunity/sales/award handover; measured client and subcontract certification, advances, retention, variations, securities and final accounts.
 4. Programme/progress/delay, site diaries and resources; NCR/quality/safety, controlled documents/RFIs, testing, snagging and handover.
 5. People/HR/payroll, plant/assets/fleet, CRM/sales, collaboration and configuration/integration functions retained in the comparison.
 6. All project/company reports and KPI populations, report findings and exports; governed contextual AI with evidence, permission checks and reviewable actions.
@@ -56,7 +58,7 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F018 | Reports > Saved Dashboards > Configuration > Dashboards | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F019 | Reports > Saved Dashboards > Configuration > Sections | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F020 | Reports > Saved Dashboards > Configuration > Share links | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F021 | My Approvals & Activities | partial | My Work includes independent purchase/budget/master/NCR/journal/AP/payment reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation and broader workflow coverage remain open. |
+| F021 | My Approvals & Activities | partial | My Work and Home include independent purchase/budget/master/NCR/journal/AP/payment/estimate reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation, reassignment and broader workflow coverage remain open. |
 | F022 | CRM > Sales > My Pipeline | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F023 | CRM > Sales > My Activities | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F024 | CRM > Sales > My Quotations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
@@ -74,9 +76,9 @@ This sequence is dependency driven. Source verification and migration contracts 
 | F036 | CRM > Configuration > Pipeline > Tags | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F037 | CRM > Configuration > Pipeline > Lost Reasons | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F038 | Tender & BOQ > BOQ workbook intake | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F039 | Tender & BOQ > BOQ estimates | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F040 | Tender & BOQ > Study versions | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
-| F041 | Tender & BOQ > Estimate analysis | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
+| F039 | Tender & BOQ > BOQ estimates | partial | Typed estimate revisions, summary BOQ groups/items, resource assemblies with explicit currencies/price bases, repeated-building replacements including zero, secondary quantity explanation, proportional indirect cents and documented cost/selling pricing now work locally. Parent cap/share semantics, workbook/take-off mapping, resource/pool maintenance, exact legacy markup/rounding parity and full award/sales handover remain open. |
+| F040 | Tender & BOQ > Study versions | partial | Independent estimate approval locks version inputs and calculations; new revisions preserve stable BOQ keys, decisions and predecessor links. Comparisons explain quantity/direct/indirect/pricing changes; cancelled revision numbers are retained. Source historical version import and full parity remain open. |
+| F041 | Tender & BOQ > Estimate analysis | partial | Study cost/selling/margin findings, project/company latest-study reports and CSV reconcile to exact line calculations. Functional currency uses dated snapshots; scope and cancellation/revision population are explicit. Cap/share analysis, exact legacy pricing/rounding parity, pipeline forecasts and full reporting remain open. |
 | F042 | Sales & Quotations > Orders > Quotations | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F043 | Sales & Quotations > Orders > Orders | open | Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance. |
 | F044 | Sales & Quotations > Orders > Customers | foundation | Shared customer/supplier party roles and company-local contact/term foundation. Dedicated CRM/sales/accounting customer workflows, credit and sales pricing remain open. |

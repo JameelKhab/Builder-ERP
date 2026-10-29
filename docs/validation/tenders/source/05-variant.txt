@@ -1,0 +1,130 @@
+Browser tab: 32, Title: "DEMO ONLY [JD2] — Villa 11 variant (+20% quantities)", URL: "https://demo.jakh.net/jakh/action-626/4/jakh.estimate.building/2".
+1 AXWebArea DEMO ONLY [JD2] — Villa 11 variant (+20% quantities), URL: demo.jakh.net/jakh/action-626/4/jakh.estimate.building/2
+	2 container
+		3 container Description: ERP navigation, ID: jakh-sidebar
+			4 text JAKH ERP
+			5 text Contracting & construction
+			6 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			7 container Description: Modules, ID: jakh-sidebar-navigation
+				8 text MODULES
+				9 content list
+					10 button Dashboard
+					11 button (collapsed) Description: Reports, Secondary Actions: Expand
+					12 button My Approvals & Activities
+					13 button (collapsed) Description: CRM, Secondary Actions: Expand
+					14 container
+						15 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						16 content list jakh-menu-388
+							17 button BOQ workbook intake
+							18 button BOQ estimates
+							19 button Study versions
+							20 button Estimate analysis
+					21 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					22 button (collapsed) Description: Projects, Secondary Actions: Expand
+					23 button Project requisitions
+					24 button Project set-up
+					25 button Material returns
+					26 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					27 button Site receipts
+					28 button Site diaries
+					29 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					30 button Site materials & issues
+					31 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					32 button Payment certificates
+					33 button Advances & retention releases
+					34 button Final accounts & closeout
+					35 button Guarantees & bonds
+					36 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					37 button Subcontract order amendments
+					38 button Subcontractor applications
+					39 button Subcontract service entries
+					40 button Subcontract work corrections
+					41 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					42 button Labour & plant allocation
+					43 button Labour & plant actual feeds
+					44 button P6 schedule progress
+					45 button (collapsed) Description: Finance, Secondary Actions: Expand
+					46 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					47 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					48 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					49 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					50 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					51 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					52 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					53 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					54 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					55 button My Tasks
+					56 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					57 button (collapsed) Description: Administration, Secondary Actions: Expand
+			58 container
+				59 text JAKH Contracting Platform
+				60 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		61 container
+			62 button (collapsed) Messages 1, Secondary Actions: Expand
+				63 container Messages
+				64 text 1
+			65 button (collapsed) Activities 1, Secondary Actions: Expand
+				66 container Activities
+				67 text 1
+			68 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			69 button التبديل إلى العربية
+			70 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			71 button (collapsed) User is online, Secondary Actions: Expand
+				72 image
+					73 container User is online
+		74 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		75 button New
+		76 content list
+			77 button (collapsed) more_horiz, Secondary Actions: Expand
+				78 text more_horiz
+			79 container
+				80 text /
+				81 link Description: EST/2026/00004, Value: demo.jakh.net/jakh/action-626/4
+		82 text DEMO ONLY [JD2] — Villa 11 variant (+20% quantities)
+		83 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		84 container Pager
+			85 container
+				86 text 1  /  1
+			87 container
+				88 button (disabled) Previous
+					89 text arrow_back_ios_new
+				90 button (disabled) Next
+					91 text arrow_forward_ios
+		92 container
+			93 text Estimate
+			94 combo box (collapsed, settable) Estimate, Value: EST/2026/00004, ID: estimate_id_0, Secondary Actions: Expand
+			95 text Building number
+			96 text field (settable) Building number, Value: 11, ID: number_0
+			97 text Company
+			98 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+			99 text Name
+			100 text field (settable) Name, Value: DEMO ONLY [JD2] — Villa 11 variant (+20% quantities), ID: name_0
+			101 text Override
+			102 table
+				103 row
+					104 cell
+						105 text ID
+						106 text swap_vert
+				107 row
+					108 cell
+						109 text 4
+					110 cell
+						111 button Delete row
+							112 text delete
+				113 row
+					114 cell
+						115 text 5
+					116 cell
+						117 button Delete row
+							118 text delete
+				119 row
+					120 cell
+						121 text 6
+					122 cell
+						123 button Delete row
+							124 text delete
+				125 row
+					126 cell
+						127 button Add a line
+
+The focused UI element is 1 AXWebArea DEMO ONLY [JD2] — Villa 11 variant (+20% quantities), URL: demo.jakh.net/jakh/action-626/4/jakh.estimate.building/2

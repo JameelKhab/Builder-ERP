@@ -1,0 +1,29 @@
+"Builder ERP · Estimate study"
+"Estimate","EST-BA571E1D"
+"Revision","1"
+"Company","jakh"
+"Project","Pre-project"
+"Customer","Example · JAKH Contracting LLC development client"
+"Currency","AED"
+"State","Needs approval"
+"Pricing policy","builder-estimate-v1"
+"FX to company currency","1","2026-10-29","Functional currency · rate 1"
+"Basis","Disposable browser check: two building quantities, one explicit variant and reviewed unit cost."
+"Exclusions",""
+
+"Findings"
+"1 priced work items across 2 building(s); 1 explicit quantity override(s)."
+"Estimated cost AED 720.00 includes 20.00 allocated indirect costs. Selling value before tax is 950.40."
+"Margin is AED 230.40 (24.24% of selling value); it is not recorded revenue or cash."
+"CON-01 · Tower concrete: estimated cost AED 720.00."
+
+"Code","Description","Type","Unit","Total quantity","Direct","Indirect","Budget","Selling","Margin","Company budget","Company selling"
+"CON-01","Tower concrete","item","m3","7","700.00","20.00","720.00","950.40","230.40","720.00","950.40"
+
+"Resource line","Description","Kind","Unit","Consumption per primary unit","Rate","Price basis","Currency","FX to estimate","FX date","FX source"
+
+"Override line","Building","Replacement quantity","Reason"
+"CON-01","2","4","Additional pour for building 2"
+
+"Project handover",""
+"Draft budget",""

@@ -1,0 +1,214 @@
+Browser tab: 32, Title: "DEMO ONLY [JD2] — Structure", URL: "https://demo.jakh.net/jakh/action-626/4/jakh.estimate.line/5".
+1 AXWebArea DEMO ONLY [JD2] — Structure, URL: demo.jakh.net/jakh/action-626/4/jakh.estimate.line/5
+	2 container
+		3 container Description: ERP navigation, ID: jakh-sidebar
+			4 text JAKH ERP
+			5 text Contracting & construction
+			6 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			7 container Description: Modules, ID: jakh-sidebar-navigation
+				8 text MODULES
+				9 content list
+					10 button Dashboard
+					11 button (collapsed) Description: Reports, Secondary Actions: Expand
+					12 button My Approvals & Activities
+					13 button (collapsed) Description: CRM, Secondary Actions: Expand
+					14 container
+						15 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						16 content list jakh-menu-388
+							17 button BOQ workbook intake
+							18 button BOQ estimates
+							19 button Study versions
+							20 button Estimate analysis
+					21 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					22 button (collapsed) Description: Projects, Secondary Actions: Expand
+					23 button Project requisitions
+					24 button Project set-up
+					25 button Material returns
+					26 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					27 button Site receipts
+					28 button Site diaries
+					29 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					30 button Site materials & issues
+					31 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					32 button Payment certificates
+					33 button Advances & retention releases
+					34 button Final accounts & closeout
+					35 button Guarantees & bonds
+					36 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					37 button Subcontract order amendments
+					38 button Subcontractor applications
+					39 button Subcontract service entries
+					40 button Subcontract work corrections
+					41 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					42 button Labour & plant allocation
+					43 button Labour & plant actual feeds
+					44 button P6 schedule progress
+					45 button (collapsed) Description: Finance, Secondary Actions: Expand
+					46 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					47 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					48 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					49 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					50 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					51 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					52 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					53 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					54 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					55 button My Tasks
+					56 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					57 button (collapsed) Description: Administration, Secondary Actions: Expand
+			58 container
+				59 text JAKH Contracting Platform
+				60 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		61 container
+			62 button (collapsed) Messages 1, Secondary Actions: Expand
+				63 container Messages
+				64 text 1
+			65 button (collapsed) Activities 1, Secondary Actions: Expand
+				66 container Activities
+				67 text 1
+			68 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			69 button التبديل إلى العربية
+			70 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			71 button (collapsed) User is online, Secondary Actions: Expand
+				72 image
+					73 container User is online
+		74 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		75 button New
+		76 content list
+			77 button (collapsed) more_horiz, Secondary Actions: Expand
+				181 text more_horiz
+			79 container
+				182 text /
+				81 link Description: EST/2026/00004, Value: demo.jakh.net/jakh/action-626/4
+		82 text DEMO ONLY [JD2] — Structure
+		83 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		84 container Pager
+			85 container
+				86 text 1  /  3
+			87 container
+				88 button Previous
+					183 text arrow_back_ios_new
+				90 button Next
+					184 text arrow_forward_ios
+		92 container
+			93 text Estimate
+			94 combo box (collapsed, settable) Value: EST/2026/00004, Secondary Actions: Expand
+			95 text Currency
+			96 link Description: USD, Value: demo.jakh.net/odoo/res.currency/1
+			97 text Parent BOQ identity
+			98 text field (settable) Parent BOQ identity, ID: parent_uuid_0
+			99 container
+				100 checkbox (settable, integer) Parent value cap / summary, Value: 0, ID: is_group_0
+			101 text Import Row
+			102 text Code
+			103 text field (settable) Code, Value: JD2-STRUCTURE, ID: code_0
+			104 text Cost Code
+			105 combo box (collapsed, settable) Cost Code, Value: DEMO ONLY [JD2] — Structure, ID: cost_code_id_0, Secondary Actions: Expand
+			106 text Primary unit
+			107 combo box (collapsed, settable) Value: Units, Secondary Actions: Expand
+			108 text Direct unit cost
+			109 text field (settable) 0.000000
+			110 text Company
+			111 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+			112 text Line Uuid
+			113 text 1cadd8a6-1fc8-4d9a-86c4-173acf87d6e1
+			114 text Parent BOQ group
+			115 combo box (collapsed, settable) Parent BOQ group, ID: parent_line_id_0, Secondary Actions: Expand
+			116 text Share of parent (%)
+			117 text field (settable) Share of parent (%), Value: 0.000000, ID: allocation_percent_0
+			118 text Sequence
+			119 text field (settable) Sequence, Value: 10, ID: sequence_0
+			120 text Description
+			121 text field (settable) DEMO ONLY [JD2] — Structure
+			122 text Product
+			123 combo box (collapsed, settable) Product, Value: [JD2-A-STRUCTURE] DEMO ONLY [JD2] — Active Structure, ID: product_id_0, Secondary Actions: Expand
+			124 text Quantity per building
+			125 text field (settable) 10.000000
+			126 text Item markup (%)
+			127 text field (settable) Item markup (%), Value: 0.000000, ID: item_markup_percent_0
+			128 text Resources per primary unit
+			129 table
+				130 row
+					131 cell
+						132 text Description
+						185 text swap_vert
+				134 row
+					135 cell
+						136 text DEMO ONLY [JD2] — material
+					137 cell
+						138 button Delete row
+							186 text delete
+				140 row
+					141 cell
+						142 text DEMO ONLY [JD2] — labour
+					143 cell
+						144 button Delete row
+							187 text delete
+				146 row
+					147 cell
+						148 text DEMO ONLY [JD2] — equipment
+					149 cell
+						150 button Delete row
+							188 text delete
+				152 row
+					153 cell
+						154 text DEMO ONLY [JD2] — subcontract
+					155 cell
+						156 button Delete row
+							189 text delete
+				158 row
+					159 cell
+						160 button Add a line
+			161 text Secondary unit
+			162 combo box (collapsed, settable) Secondary unit, ID: secondary_uom_id_0, Secondary Actions: Expand
+			163 text Total Quantity
+			164 text 112.000000
+			165 text Effective Unit Cost
+			166 text 80.000000
+			167 text Sell Amount
+			168 text $ 13,009.92
+			169 text Indirect Allocated
+			170 text $ 896.00
+			171 text Secondary units per primary unit
+			172 text field (settable) Secondary units per primary unit, Value: 0.000000, ID: conversion_factor_0
+			173 text Secondary Quantity
+			174 text 0.000000
+			175 text Cost Amount
+			176 text $ 8,960.00
+			177 text Selling Unit Rate
+			178 text 116.160000
+			179 text Budget Total
+			180 text $ 9,856.00
+		190 container
+			191 heading Open: Resources per primary unit, Value: 4
+				192 text Open: Resources per primary unit
+			193 button Expand
+				194 text expand_content
+			195 button Close
+			196 container
+				197 text Line
+				198 container
+					199 combo box (collapsed, settable) Line, Value: DEMO ONLY [JD2] — Structure, ID: line_id_0, Secondary Actions: Expand
+				200 button Internal link
+					201 text open_in_browser
+				202 text Company
+				203 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+				204 text Resource Type
+				205 container
+					206 text field (settable) Resource Type, Value: Material, ID: resource_type_0
+				207 text Quantity
+				208 text field (settable) Quantity per building Quantity, Value: 1.000000, ID: quantity_0
+				209 text Resource unit
+				210 combo box (collapsed, settable) Primary unit Resource unit, ID: uom_id_0, Secondary Actions: Expand
+				211 text Estimate
+				212 link Description: EST/2026/00004, Value: demo.jakh.net/odoo/jakh.estimate/4
+				213 text Currency
+				214 link Description: USD, Value: demo.jakh.net/odoo/res.currency/1
+				215 text Description
+				216 text field (settable) Description Description, Value: DEMO ONLY [JD2] — material, ID: name_0
+				217 text Unit Cost
+				218 text field (settable) Direct unit cost Unit Cost, Value: 40.000000, ID: unit_cost_0
+			219 button Save
+			220 button Discard
+
+The focused UI element is 199 combo box (collapsed, settable) Line, Value: DEMO ONLY [JD2] — Structure, ID: line_id_0, Secondary Actions: Expand

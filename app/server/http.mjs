@@ -1,3 +1,4 @@
+import { estimates } from './estimates.mjs';
 import { payments } from './payments.mjs';
 import { payables } from './payables.mjs';
 import { ledger } from './ledger.mjs';
@@ -63,6 +64,7 @@ export function createApi(db, {
   app.use('/api/quality/cases/:id/evidence', express.json({
     limit: '3mb'
   }));
+  app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
   app.use(express.json({
     limit: '24kb'
   }));
@@ -139,6 +141,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.estimates = estimates(db, session.previewId || session.actorId, today);
     req.payments = payments(db, session.previewId || session.actorId, today);
     req.payables = payables(db, session.previewId || session.actorId, today);
     req.ledger = ledger(db, session.previewId || session.actorId, today);
@@ -148,6 +151,16 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/estimates/options',(req,res)=>res.json(req.estimates.options(req.query.company,req.query.project||null)));
+  app.get('/api/estimates/report',(req,res)=>res.json(req.estimates.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all'})));
+  app.get('/api/estimates/documents',(req,res)=>res.json(req.estimates.list(req.query.company,req.query.project||null)));
+  app.get('/api/estimates/documents/:id',(req,res)=>res.json(req.estimates.detail(req.params.id)));
+  app.get('/api/estimates/documents/:id/compare',(req,res)=>res.json(req.estimates.compare(req.params.id,req.query.from)));
+  app.post('/api/estimates/documents',(req,res)=>res.status(201).json(req.estimates.save(null,req.body)));
+  app.put('/api/estimates/documents/:id',(req,res)=>res.json(req.estimates.save(req.params.id,req.body)));
+  app.post('/api/estimates/documents/:id/decision',(req,res)=>res.json(req.estimates.decide(req.params.id,req.body)));
+  app.post('/api/estimates/documents/:id/revision',(req,res)=>res.status(201).json(req.estimates.revise(req.params.id,req.body)));
+  app.post('/api/estimates/documents/:id/handover',(req,res)=>res.json(req.estimates.handover(req.params.id,req.body)));
   app.get('/api/payments/options',(req,res)=>res.json(req.payments.options(req.query.company,req.query.project||null)));
   app.get('/api/payments/report',(req,res)=>res.json(req.payments.report(req.query.company,{project:req.query.project||null,to:req.query.to||undefined})));
   app.get('/api/payments/documents',(req,res)=>res.json(req.payments.list(req.query.company,req.query.project||null)));

@@ -1,0 +1,146 @@
+Browser tab: 33, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Tenders&area=Overview".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Tenders&area=Overview
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			5 button Builder ERP
+			6 text JAKH International Ltd
+			7 container Main navigation
+				8 button Home
+					9 image
+					10 text Home
+				11 button Access
+					12 image
+					13 text Access
+				14 button Organisation
+					15 image
+					16 text Organisation
+				47 button My Work
+					48 image
+					49 text My Work
+				50 button Tenders
+					51 image
+					52 text Tenders
+				53 button Projects
+					54 image
+					55 text Projects
+				56 button Company
+					57 image
+					58 text Company
+			25 text Built around your work.
+			26 text Local sample workspace
+		27 container
+			28 text Company
+			29 pop up button (collapsed, settable) Company, Value: JAKH International Ltd, Secondary Actions: Expand
+				30 menu
+					31 JAKH Contracting LLC
+					32 (selected) JAKH International Ltd
+			33 image
+			34 text field (settable) Search company records
+			35 button Search
+			36 button Explore examples
+				37 image
+				38 text Examples
+			39 button Your account and sign-in
+				40 text AA
+				41 text Ahmed Al Mansoori
+				42 text Project manager
+		43 container main-content
+			44 heading Tenders, Value: 1
+				45 text Tenders
+			46 text From opportunity to a confident bid.
+			59 text TENDERS
+			60 heading Estimates & BOQ, Value: 2
+				61 text Estimates & BOQ
+			62 text Price the work. Review the assumptions. Keep every approved revision.
+			63 button New estimate
+				64 image
+				65 text New estimate
+			66 container
+				67 text Scope
+				68 pop up button (collapsed, settable) Scope, Value: Authorised company scope, Secondary Actions: Expand
+					69 menu
+						70 (selected) Authorised company scope
+						71 Creek Offices
+			72 container
+				73 text Study status
+				74 pop up button (collapsed, settable) Study status, Value: All statuses, Secondary Actions: Expand
+					75 menu
+						76 (selected) All statuses
+						77 Draft
+						78 Needs approval
+						79 Changes requested
+						80 Approved
+						81 Cancelled
+			82 button Export findings
+				83 image
+				84 text Export findings
+			85 container
+				86 heading Register findings, Value: 3
+					87 text Register findings
+				88 text 4 latest studies in the authorised company scope; prior revisions are excluded. 1 approved, 1 awaiting approval. USD 102,094.40 estimated cost and USD 134,764.61 potential selling value across noncancelled studies. These are estimates, not committed contracts. Each study uses its recorded exchange-rate date. Figures are not retranslated at today's rates.
+			89 button Needs approval · Revision 2 Example · Reviewed villa estimate · Creek Offices Example · JAKH International Ltd development client · Creek Offices DEMO-REVIEW-CO-003 · Due 2026-12-01 Estimated cost USD 26,096.00 Selling USD 34,446.72
+				90 container
+					91 text Needs approval  · Revision  2
+				92 heading Example · Reviewed villa estimate · Creek Offices, Value: 3
+					93 text Example · Reviewed villa estimate · Creek Offices
+				94 container
+					95 text Example · JAKH International Ltd development client  ·  Creek Offices
+				96 text DEMO-REVIEW-CO-003
+				97 text  · Due 
+				98 text 2026-12-01
+				99 text Estimated cost
+				100 text USD 26,096.00
+				101 container
+					102 text Selling  USD 34,446.72
+				103 image
+			104 button Draft · Revision 1 Example · Foreign resource quote · Creek Offices Example · JAKH International Ltd development client · Creek Offices DEMO-FX-CO-003 · Due 2026-12-01 Estimated cost USD 25,054.40 Selling USD 33,071.81
+				105 container
+					106 text Draft  · Revision  1
+				107 heading Example · Foreign resource quote · Creek Offices, Value: 3
+					108 text Example · Foreign resource quote · Creek Offices
+				109 container
+					110 text Example · JAKH International Ltd development client  ·  Creek Offices
+				111 text DEMO-FX-CO-003
+				112 text  · Due 
+				113 text 2026-12-01
+				114 text Estimated cost
+				115 text USD 25,054.40
+				116 container
+					117 text Selling  USD 33,071.81
+				118 image
+			119 button Changes requested · Revision 1 Example · Estimate to finish · Creek Offices Example · JAKH International Ltd development client · Creek Offices DEMO-DRAFT-CO-003 · Due 2026-12-01 Estimated cost USD 25,072.00 Selling USD 33,095.04
+				120 container
+					121 text Changes requested  · Revision  1
+				122 heading Example · Estimate to finish · Creek Offices, Value: 3
+					123 text Example · Estimate to finish · Creek Offices
+				124 container
+					125 text Example · JAKH International Ltd development client  ·  Creek Offices
+				126 text DEMO-DRAFT-CO-003
+				127 text  · Due 
+				128 text 2026-12-01
+				129 text Estimated cost
+				130 text USD 25,072.00
+				131 container
+					132 text Selling  USD 33,095.04
+				133 image
+			134 button Approved · Revision 1 Example · Approved estimate ready for project setup Example · JAKH International Ltd development client · Pre-project study DEMO-SETUP-build · Due 2026-12-01 Estimated cost USD 25,872.00 Selling USD 34,151.04
+				135 container
+					136 text Approved  · Revision  1
+				137 heading Example · Approved estimate ready for project setup, Value: 3
+					138 text Example · Approved estimate ready for project setup
+				139 container
+					140 text Example · JAKH International Ltd development client  ·  Pre-project study
+				141 text DEMO-SETUP-build
+				142 text  · Due 
+				143 text 2026-12-01
+				144 text Estimated cost
+				145 text USD 25,872.00
+				146 container
+					147 text Selling  USD 34,151.04
+				148 image
+			149 text Latest revision of each study. Opportunities, workbook intake, parent-cap allocation and sales quotations remain separate requirements; earlier examples are retained below.
+			150 button (collapsed) Earlier opportunity and tender examples · read only, Secondary Actions: Expand
+				151 text Earlier opportunity and tender examples · read only
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Tenders&area=Overview

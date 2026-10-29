@@ -1,3 +1,4 @@
+import { estimates } from './estimates.mjs';
 import { payments } from './payments.mjs';
 import { payables } from './payables.mjs';
 import { ledger } from './ledger.mjs';
@@ -397,6 +398,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         budgets: []
       };
       return {
+        estimate_documents: access.has('tenders.read', company, project, !project) ? estimates(db, actorId, today).list(company, project) : [],
         payment_documents: access.has('payments.read', company, project, !project) ? payments(db, actorId, today).list(company, project) : [],
         payable_documents: access.has('ap.read', company, project, !project) ? payables(db, actorId, today).list(company, project) : [],
         ledger_entries: access.has('finance.read', company, project, !project) ? ledger(db, actorId, today).list(company, project) : [],
@@ -473,7 +475,8 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       })) : [];
       const payableRows = access.has('ap.read', company, null, true) ? payables(db, actorId, today).list(company).map(r => ({...r,display_reference:r.reference,vendor_name:r.vendor,category:'Supplier bills',status:r.state_label})) : [];
       const paymentRows = access.has('payments.read', company, null, true) ? payments(db, actorId, today).list(company).map(r => ({...r,vendor_name:r.vendor,category:'Payments & cash flow',status:r.state_label})) : [];
-      return [...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      const estimateRows = access.has('tenders.read', company, null, true) ? estimates(db, actorId, today).list(company).map(r=>({...r,display_reference:r.tender_reference,category:'Bids & estimates',status:r.state_label})) : [];
+      return [...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

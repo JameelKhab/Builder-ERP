@@ -1,3 +1,5 @@
+import { installEstimateExamples } from './estimates-examples.mjs';
+import { installEstimates } from './estimates-schema.mjs';
 import { installPaymentExamples } from './payments-examples.mjs';
 import { installPayments } from './payments-schema.mjs';
 import { installPayableExamples } from './payables-examples.mjs';
@@ -58,6 +60,7 @@ export function openDatabase(path = ':memory:', {
   installLedger(db);
   installPayables(db);
   installPayments(db);
+  installEstimates(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
@@ -66,6 +69,7 @@ export function openDatabase(path = ':memory:', {
     installLedgerExamples(db);
     installPayableExamples(db);
     installPaymentExamples(db);
+    installEstimateExamples(db);
   }
   return db;
 }

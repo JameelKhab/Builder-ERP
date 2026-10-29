@@ -1,5 +1,6 @@
 const areas = {
   pricing: 'Prices',
+  tenders: 'Estimates',
   cost: 'Cost reports',
   requests: 'Purchase requests',
   materials: 'Materials',

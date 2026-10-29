@@ -1,0 +1,21 @@
+✔ source arithmetic: eleven buildings, one variant, assemblies, indirect and ordered pricing (44.211958ms)
+✔ exact rational products, fractional price bases and largest-remainder allocation reconcile (0.870791ms)
+✔ zero overrides, foreign resource FX and multiple pricing stages remain explicit (24.676291ms)
+✔ invalid group cycles, units, references, rates, unsupported caps and duplicate overrides are rejected atomically (25.620666ms)
+✔ independent authority, stale saves and immutable approved input evidence (26.934042ms)
+✔ returned drafts refresh customer snapshots and preserve past decisions (28.436708ms)
+✔ revision copies stable identities, comparisons and latest-only reports never double count (33.95425ms)
+✔ company and project scope applies to detail, report, search, exports and writes (32.852083ms)
+✔ handover creates typed hierarchy, quantities and zero-release draft budget exactly once (34.558334ms)
+✔ handover rolls back on invalid project and rechecks revoked or insufficient estimate approval (27.098084ms)
+✔ foreign estimate authority uses functional currency and export neutralises formulas (26.1835ms)
+✔ additive examples provide approved, returned, FX and revised studies in each existing project (498.5425ms)
+✔ disabled reviewers cannot authorise handover and live author access is required for approval (29.443542ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 956.501583
