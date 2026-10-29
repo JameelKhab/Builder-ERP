@@ -18,3 +18,5 @@ Exact rational rounding and indirect-cent reconciliation; source numeric example
 The arithmetic and workflow tests do not certify cap/share formula parity, workbook migration, all sales/contract states or the full ERP. Those remain open in the comparison overlay. No browser credentials, access changes, external bids, contracts, real transfers, GitHub pushes or deployment were performed.
 
 Final check: 177 tests pass after active-project handover guidance was added. The final build passes. The USD company browser view shows four latest studies, USD 102,094.40 estimated cost and USD 134,764.61 potential selling value, with only Creek/project and company records. `browser-usd-company.txt` retains the observation. `desktop-estimate.png` shows the saved local Harbour revision; the final browser console has no warning/error entries. The temporary authoring server was stopped; the persistent preview remains running.
+
+Saved accessibility snapshots have trailing whitespace normalised; visible text and values are unchanged.

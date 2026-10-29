@@ -87,7 +87,7 @@ Browser tab: 33, Title: "Builder ERP · Construction workspace", URL: "http://12
 				94 container
 					95 text Example · JAKH International Ltd development client  ·  Creek Offices
 				96 text DEMO-REVIEW-CO-003
-				97 text  · Due 
+				97 text  · Due
 				98 text 2026-12-01
 				99 text Estimated cost
 				100 text USD 26,096.00
@@ -102,7 +102,7 @@ Browser tab: 33, Title: "Builder ERP · Construction workspace", URL: "http://12
 				109 container
 					110 text Example · JAKH International Ltd development client  ·  Creek Offices
 				111 text DEMO-FX-CO-003
-				112 text  · Due 
+				112 text  · Due
 				113 text 2026-12-01
 				114 text Estimated cost
 				115 text USD 25,054.40
@@ -117,7 +117,7 @@ Browser tab: 33, Title: "Builder ERP · Construction workspace", URL: "http://12
 				124 container
 					125 text Example · JAKH International Ltd development client  ·  Creek Offices
 				126 text DEMO-DRAFT-CO-003
-				127 text  · Due 
+				127 text  · Due
 				128 text 2026-12-01
 				129 text Estimated cost
 				130 text USD 25,072.00
@@ -132,7 +132,7 @@ Browser tab: 33, Title: "Builder ERP · Construction workspace", URL: "http://12
 				139 container
 					140 text Example · JAKH International Ltd development client  ·  Pre-project study
 				141 text DEMO-SETUP-build
-				142 text  · Due 
+				142 text  · Due
 				143 text 2026-12-01
 				144 text Estimated cost
 				145 text USD 25,872.00

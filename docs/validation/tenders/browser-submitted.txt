@@ -100,7 +100,7 @@ Browser tab: 34, Title: "Builder ERP · Construction workspace", URL: "http://12
 						228 cell
 							229 button (collapsed) CON-01 · Tower concrete, Secondary Actions: Expand
 								230 text CON-01
-								231 text  · 
+								231 text  ·
 								232 text Tower concrete
 						233 cell
 							234 text 7 m3
@@ -121,10 +121,10 @@ Browser tab: 34, Title: "Builder ERP · Construction workspace", URL: "http://12
 				249 text entry area (settable) Decision / revision reason
 				258 button (disabled) Withdraw for editing
 			252 button (collapsed) Revisions & comparison · 1, Secondary Actions: Expand
-				253 text Revisions & comparison · 
+				253 text Revisions & comparison ·
 				254 text 1
 			255 button (collapsed) Decision history · 2, Secondary Actions: Expand
-				256 text Decision history · 
+				256 text Decision history ·
 				257 text 2
 			46 button (collapsed) Earlier opportunity and tender examples · read only, Secondary Actions: Expand
 				181 text Earlier opportunity and tender examples · read only
