@@ -1,99 +1,64 @@
 # Builder ERP
 
-An original construction ERP for the complete journey from opportunity and tender to site delivery, handover, snagging and final settlement.
+An original construction ERP for the journey from bidding and tendering through site delivery, snagging, handover and final settlement. Built from scratch without copying or depending on Odoo application code.
 
-The priority is a simple interface with rich, traceable information. The replacement must be built from scratch without copying, adapting or depending on Odoo application code.
-
-## Continue on another laptop or account
-
-**[Read START-HERE.md](START-HERE.md)** for the self-contained handover: setup, implemented scope, validation, exact next step, remaining requirements and a prompt for a new coding assistant. No access to the previous chat or ChatGPT account is needed. This repository is the user-designated source of truth.
+**Continuing on another laptop or ChatGPT account? [Start here](START-HERE.md).** The handover contains setup instructions, the current state, remaining scope, the exact next step and a prompt for a new coding assistant. This repository is the user-designated source of truth; the previous chat and original Mac are not required.
 
 ## Current status
 
-**Correction after functional comparison:** the current application is a narrow local increment, not a full migration or functionally equivalent replacement. Implementation advanced before the detailed business-rule/data mapping required by the study. The [comparison and migration correction](docs/migration/README.md) now accounts for all 42 recorded primary areas and 267 recorded destination controls. It identifies missing operational/financial logic and proposed acceptance/data contracts. Navigation coverage is not verified workflow parity; most source rules and the real data migration remain to be completed.
+The latest application checkpoint is **`35b7ae1` — customer receipts and shared bank reconciliation**. **231 automated tests and the frontend build pass.** The saved example database is schema 15, with 99 business tables. This is still an incomplete ERP, not a production release or completed JAKH migration.
 
-**The first working local increment is implemented**, following the user's selection of [choice 2, Project briefing](docs/design/visual-directions.md), refined into clearer information categories. Open the running development app at **http://127.0.0.1:4173/**.
+The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 
-Working features include persistent purchase requests, vendor quote repricing/currencies, independent approval, company/project scopes, cost reports with deterministic findings, source breakdown and CSV export. Other construction registers are read-only synthetic examples. The **Examples** button opens a guide covering every available feature. A versioned pack adds **102 examples** across all three sample projects and both companies, including connected records and four purchase-request stages. See [example coverage](docs/implementation/examples.md). **The complete ERP is still in development; this is not a production release.** See [implemented scope and next increments](docs/implementation/local-increment-1.md).
+The original implementation advanced before a sufficient functional comparison. The [comparison and migration correction](docs/migration/README.md) records that gap and the complete required scope. Keep it distinct from the later implementation overlay; menu coverage and examples do not prove business-workflow parity.
 
-Discovery remains recorded in the 53-page Revision 4 study. The navigation has been reviewed in a browser, but has not been validated with representative users.
+## Working local subsets
 
-**Development and testing stay local. The user now authorises verified commits to GitHub as the project source of truth.** Keep the handover and coverage current. Do not deploy to jakh.net or change the existing demo; deployment still requires a separate explicit instruction. Earlier local-only sync decisions are historical and superseded.
+| Area | Implemented path and detailed limits |
+|---|---|
+| Access and identity | [Permission-based destinations](docs/implementation/access-and-destinations.md), [individual local accounts and reviewed access](docs/implementation/identity-local.md) |
+| Project foundations | [Companies, projects, locations, WBS and independent budget control](docs/implementation/foundations-local.md) |
+| Shared masters | [Contacts, reviewed supplier terms/currencies and catalogue/packs](docs/implementation/masters-local.md) |
+| Procurement and materials | [Demand → supplier quotes/FX → review → orders → deliveries/returns/consumption](docs/implementation/procurement-local.md) |
+| Quality | [NCR containment, investigation, corrective work and independent verification](docs/implementation/quality-local.md) |
+| Accounting | [General ledger and controlled reversals](docs/implementation/ledger-local.md), [matched supplier bills and return credits](docs/implementation/payables-local.md) |
+| Supplier settlement | [Payment/refund review, evidenced recording and independent bank matching](docs/implementation/payments-local.md) |
+| Estimating | [BOQ/resources/building overrides and revisions](docs/implementation/estimates-local.md), [reviewed XLSX/CSV intake with source lineage](docs/implementation/boq-intake-local.md) |
+| Offers and awards | [Approved estimate → offer → acceptance evidence → original contract BOQ](docs/implementation/commercial-local.md) |
+| Client certification | [Finance policy → cumulative measurement → three reviews → separate AR invoicing](docs/implementation/certificates-local.md) |
+| Customer receipts | [Invoice allocation → independent approval → recording → bank match/correction](docs/implementation/receipts-local.md) |
 
-The latest local increment adds an original **destination Home**, server-enforced domain/field permissions, reviewed existing-user access changes and read-only role preview. See [access and destination implementation](docs/implementation/access-and-destinations.md) for source evidence, comparison IDs, verification and remaining work. The later individual-sign-in increment is described below; full migration and production release remain open.
+These paths include service-enforced company/project permissions, exact currency calculations, independent financial authority, retained history, meaningful examples and report findings for their implemented populations. They do not complete the surrounding domains. See [validation evidence](docs/validation/) and [the project log](docs/project-log.md).
 
-The connected procurement increment now adds multi-line unpriced site demand, supplier quotes/FX, split allocations, independent review, local supplier orders, receipts/rejections, returns, material consumption and transaction-derived additions to cost reports. See [procurement implementation](docs/implementation/procurement-local.md) and the [complete implementation coverage register](docs/implementation/coverage.md). Every comparison function remains tracked; none is certified as full migration parity.
+**Next:** client advance requests/invoices and recovery derived from actual settled cash. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Credits, retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
 
-Company/project setup and budget control now add legal identities, locations, item/group WBS, original baselines, independent revisions and released buying capacity. See [foundation implementation](docs/implementation/foundations-local.md). This is another operational subset; the full comparison scope remains open.
+## Run locally
 
-Individual local accounts now support owner setup, reviewed activation, sessions/recovery and independent administration. See [identity implementation](docs/implementation/identity-local.md). A real two-user test approves a budget and purchase and reconciles the resulting commitment. The persistent preview has no configured real credentials yet; the user chooses those in the setup screen.
-
-Company contacts, independently reviewed supplier currencies/terms and catalogue/pack maintenance now connect to purchasing, with historical document snapshots and company-specific examples. See [master implementation](docs/implementation/masters-local.md). Full pricing/configuration and other retained ERP domains remain open.
-
-NCRs now support immediate containment, independent corrective-plan review, action evidence, verification/closure/reopening and scoped findings/export. See [NCR implementation](docs/implementation/quality-local.md). Other quality/HSE/inspection/document/handover scope remains open.
-
-Original general-ledger journals now support company accounts/periods, independent posting with separate authority, exact currency conversion, immutable history/reversals and project/company ledger findings. See [ledger implementation](docs/implementation/ledger-local.md). Broader customer advances/credits, tax and full bank/stock reconciliation and full migration remain open.
-
-Material supplier bills now match accepted receipt quantities, require independent AP posting authority, create original linked journals and support quantity return credits with exact source-value corrections. Company/project payable findings and CSV reconcile the subledger to AP control. See [payable implementation](docs/implementation/payables-local.md). Subcontract certificates/retention, wider bank/stock integration and full source migration remain open.
-
-Supplier payments/refunds now connect separate independent approval, evidenced offline recording, exact AP/bank/FX allocation, independent statement matching and retained corrections. Findings and CSV support project/company scope. See [settlement implementation](docs/implementation/payments-local.md). No bank transfers are executed; full cash classifications/forecasts, advance/credit processing, bank imports/fees/transfers and source migration remain open.
-
-Estimate studies now support original BOQ/resource pricing, building quantity exceptions, independent approval, immutable revisions/comparison and controlled project/WBS/draft-baseline handover. Scoped findings and CSV preserve recorded rates and distinguish estimated cost from selling value. See [estimating implementation](docs/implementation/estimates-local.md). Workbook/cap-share parity, CRM/sales/contracts and the full award handover remain open.
-
-BOQ workbook intake now stages XLSX/CSV with exact source references, all-file reconciliation, independent review and once-only append to a draft estimate. See [intake implementation](docs/implementation/boq-intake-local.md). Parent cap/share and assembly-workbook parity remain open.
-
-Reviewed offers and independently verified awards now connect approved estimates to immutable original client contract BOQ with explicit project allocation, retained acceptance evidence and company/project findings. See [commercial implementation](docs/implementation/commercial-local.md). Richer contract finance, retention releases, advance accounting and changes remain open.
-
-Client contracts now support independently activated finance policy, cumulative measurement, three independent certificate reviews and separately prepared/posted client invoices with project/company findings and AR/retention reconciliation. See [certificate implementation](docs/implementation/certificates-local.md). Advance invoicing/recovery, credits/corrections, variations, retention release and full source migration remain open.
-
-Customer receipts now connect posted invoices to multi-invoice allocation, independent approval, retained remittance evidence, exact AR/bank/FX journals, shared bank matching and immutable full corrections. See [receipt implementation](docs/implementation/receipts-local.md). Reports support project/company scope with findings and CSV. Actual advance invoicing/recovery, credits/unallocated cash, retention release and the full ERP/migration scope remain open.
-
-## Start here
-
-- [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
-- [Decisions](docs/decisions.md): user requirements, proposals and unresolved choices.
-- [Project log](docs/project-log.md): work completed, evidence and next steps.
-- [Full comparison register and correction report](docs/migration/README.md): every recorded source destination, actual Builder gap, required behaviour, migration data and acceptance examples.
-- [Current study](docs/study/JAKH-ERP-Read-Only-Study.pdf): the complete report; new company/currency/reporting/AI requirements are on pages 44-53.
-- [Study contents and history](docs/study/README.md): prior revisions, source evidence and authoring material.
-
-## Selected experience
-
-Start on **Home**, with permitted destinations grouped by Project delivery, Company operations and Administration. The existing **My Work, Tenders, Projects and Company** work areas remain available according to access.
-
-Within a project: **Overview, Plan, Site, Buying, Costs & Contracts, Documents, Handover**.
-
-Company and project scope remain visible. Different views open the same records. A user should see the next action immediately and be able to open quantities, costs, evidence, approvals and history without re-entering the same facts.
-
-The user selected the visual direction. Representative-user validation of labels and task completion remains necessary; see the study's twelve walkthroughs and usability criteria.
-
-## Project record
-
-Keep requirements, decisions, code, meaningful validation results and deliverables in this repository. Record corrections and uncertainty explicitly. Do not commit credentials, real bank/payment instructions, private environment files, dependency directories or transient render caches.
-
-The study sources are report-authoring tools, **not ERP application code**. No production deployment workflow is configured here.
-
-## Local development
-
-Use Node 24.x, at least 24.15 (see `app/.nvmrc`), then:
+Install Git and Node **24.x, at least 24.15** (`app/.nvmrc`), then:
 
 ```sh
-cd app
+git clone https://github.com/JameelKhab/Builder-ERP.git
+cd Builder-ERP/app
 npm ci
+npm test
+npm run build
 npm run local
 ```
 
-The launcher starts the frontend on `127.0.0.1:4173` and the API on `127.0.0.1:4174`. Both bind to loopback. Data is saved in `.work/data/builder.sqlite` at the repository root. Base data is seeded only when empty; the versioned example pack adds missing examples once without replacing existing records. Restarting preserves records. Do not delete that file to reset a workspace; archive a stopped development database first.
+Open **http://127.0.0.1:4173/**. The launcher starts both frontend and API, on loopback ports 4173 and 4174. `npm run dev` alone does not run the API. No OpenAI key, previous ChatGPT account or Odoo installation is required for the current application.
 
-The default local launcher retains an explicit synthetic preview until first-owner setup is completed from the profile. `npm run local -- --secure` starts owner setup/sign-in without sample login. After setup, the database always requires individual sign-in, even when restarted with the sample flag. The user chooses their own credentials. Network release, financial localisation and production security remain separate gates; keep this development app on loopback.
+An empty checkout creates the local SQLite database and adds fictional examples for both companies and all three projects. Data is saved under `.work/data/builder.sqlite` at the repository root; existing work is preserved on restart. The **Examples** button explains each available feature. Samples are not migrated production records.
 
-```sh
-npm test
-npm run build
-```
+Owner setup/sign-in is available from the profile or with `npm run local -- --secure`. The user chooses real credentials. Once owner setup is completed for a database, sample login remains disabled. Do not reset or replace a database to bypass sign-in. The private portable handover described in [START-HERE.md](START-HERE.md#what-moves-with-github-and-what-does-not) preserves the original saved demonstration workspace separately from source history.
 
-Latest validation on 29 October 2026: 231 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Dependencies are pinned in `app/package-lock.json`. The original Mac used cached packages because its certificate gateway prevented the first online install; TLS verification was not disabled. A fresh install, dependency/security review, financial localisation, representative-user/accessibility acceptance and full migration reconciliation remain release gates. The retained Sites worker serves static assets only; the frontend build does not deploy the Express/SQLite ERP backend.
 
-Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
+## Product and project rules
 
-The retained Sites starter worker serves static assets only. `npm run build` does not package the SQLite/Express backend for deployment. No deployment pipeline has been added.
+The user's priority is **easy to read, easy to operate, rich in information**. [Choice 2, Project briefing](docs/design/visual-directions.md) supplies the visual direction. Home shows permitted destinations; project work uses Overview, Plan, Site, Buying, Costs & Contracts, Documents and Handover. Keep one canonical record with clear next action and expandable evidence/history; avoid repetitive nested menus and tabs.
+
+Every report begins with findings calculated from the complete authorised filtered result. Future AI must explain supported facts and prepare reviewable drafts; it must not silently approve, post, pay, close or make external commitments. No external AI provider is connected yet.
+
+Read [AGENTS.md](AGENTS.md), [requirements](docs/requirements.md), [decisions](docs/decisions.md), [coverage](docs/implementation/coverage.md) and [original implementation contracts](docs/implementation/contracts/) before extending a domain. The [comparison PDF](docs/migration/Builder-ERP-Full-Comparison.pdf), [searchable 267-function register](docs/migration/Builder-ERP-Comparison-Register.html), [data contracts](docs/migration/Builder-ERP-Data-Contracts.csv) and [study history](docs/study/README.md) remain in Git.
+
+**Verified work may now be synced to this GitHub repository. Development stays local. Do not deploy to JAKH or mutate its existing demo.** Runtime databases, credentials, private environment files, dependency directories and scratch tools stay outside Git. Earlier local-only sync entries are historical and superseded by the user's 29 October handover instruction.

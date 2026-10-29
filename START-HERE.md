@@ -84,7 +84,7 @@ Every report begins with findings calculated from its complete authorised filter
 
 ## Verification at this checkpoint
 
-**231 automated tests pass; frontend build passes.** [Receipt evidence](docs/validation/receipts/verification.md) links tests, HTTP permissions, browser desktop/mobile/source navigation, exact foreign-currency settlement and recovery checks. The database recovery copy matches all 99 tables including evidence bytes; integrity/FKs pass and no real identities are configured in the saved example workspace. These results do not certify the whole ERP, full migration, full security or representative-user acceptance.
+**231 automated tests pass; frontend build passes.** A fresh clone from GitHub also passed a clean lockfile install using the available package cache, all 231 tests, the build and restoration of the 99-table saved workspace. See [handover verification](docs/validation/handover/README.md). [Receipt evidence](docs/validation/receipts/verification.md) links tests, HTTP permissions, browser desktop/mobile/source navigation, exact foreign-currency settlement and recovery checks. The database recovery copy matches all 99 tables including evidence bytes; integrity/FKs pass and no real identities are configured in the saved example workspace. These results do not certify the whole ERP, full migration, full security or representative-user acceptance.
 
 Run `npm test` and `npm run build` from `app/` after meaningful application changes. Financial mutations need meaningful service tests and real authenticated HTTP journeys. The static Sites output does not contain the Express/SQLite ERP backend. Do not deploy it as a completed application.
 
