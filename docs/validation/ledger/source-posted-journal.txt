@@ -1,3 +1,114 @@
 Browser tab: 19, Title: "PBNK1/2026/00086 (INV/2026/00017)", URL: "https://demo.jakh.net/jakh/action-604/account.move/456".
-There has been no change in the accessibility tree.
+0 AXWebArea PBNK1/2026/00086 (INV/2026/00017), URL: demo.jakh.net/jakh/action-604/account.move/456
+	1 container
+		67 button (collapsed) Description: Open navigation, Secondary Actions: Expand
+		68 container
+			69 button arrow_back
+				70 text arrow_back
+			71 text PBNK1/2026/00086 (INV/2026/00017)
+			72 button (collapsed) Messages 1, Secondary Actions: Expand
+				73 container Messages
+				74 text 1
+			75 button (collapsed) Activities, Secondary Actions: Expand
+				76 container Activities
+			77 button (collapsed) Description: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			78 button التبديل إلى العربية
+			79 button Toggle menu
+				80 image
+					81 container User is idle
+		66 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		82 container
+			83 button New
+			84 button (collapsed) Secondary Actions: Expand
+			85 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+			86 container Pager
+				87 container
+					88 button (disabled) Previous
+						89 text arrow_back_ios_new
+					90 button (disabled) Next
+						91 text arrow_forward_ios
+			92 container
+				93 button Reverse Entry
+				94 button (collapsed) arrow_drop_down, Help: More, Secondary Actions: Expand
+					95 text arrow_drop_down
+				96 button (collapsed) No Review, Secondary Actions: Expand
+				97 Statusbar
+					98 button (disabled, collapsed) chevron_forward Posted, Secondary Actions: Expand
+						99 text chevron_forward
+						100 text Posted
+			101 container
+				102 heading PBNK1/2026/00086, Value: 1
+					103 text PBNK1/2026/00086
+				104 text Reference
+				105 text field (settable) Reference, Value: INV/2026/00017, ID: ref_1
+				106 text Accounting Date Oct 22 Journal Bank
+				107 content list
+					108 tab (selectable, settable, boolean) Journal Items, Value: 0
+					109 tab (selectable, settable, boolean) Other Info, Value: 0
+				110 table
+					111 row
+						112 cell
+							113 text Account
+							114 text swap_vert
+						115 cell
+							116 text Partner
+							117 text swap_vert
+						118 cell
+							119 text Description
+							120 text swap_vert
+						121 cell
+							122 text Debit
+							123 text swap_vert
+						124 cell
+							125 text Credit
+							126 text swap_vert
+						127 cell
+							128 text Tax Grids
+						129 cell
+							130 button (collapsed) tune, Secondary Actions: Expand
+								131 text tune
+					132 row
+						133 cell
+							134 text 160100 Main Bank Account
+						135 cell
+							136 text Marina Gate Holdings (Demo)
+						137 cell
+							138 text Manual Payment: INV/2026/00017
+						139 cell
+							140 text 2,713,801.09 AED
+						141 cell
+							142 text 0.00 AED
+						143 cell
+						144 cell
+					145 row
+						146 cell
+							147 text 150100 Accounts Receivable
+						148 cell
+							149 text Marina Gate Holdings (Demo)
+						150 cell
+							151 text Manual Payment: INV/2026/00017
+						152 cell
+							153 text 0.00 AED
+						154 cell
+							155 text 2,713,801.09 AED
+						156 cell
+						157 cell
+					158 row
+						159 cell
+							160 text 2,713,801.09 AED
+						161 cell
+							162 text 2,713,801.09 AED
+			163 container
+				164 button Send message
+				165 button Log note
+				166 button Activity
+				167 button Search Messages
+				168 button Attach files
+					169 text attach_file
+				170 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+					171 text 0
+			172 container
+				173 text 😶
+				174 text No messages yet.
+
 The focused UI element is 0 AXWebArea PBNK1/2026/00086 (INV/2026/00017), URL: demo.jakh.net/jakh/action-604/account.move/456
