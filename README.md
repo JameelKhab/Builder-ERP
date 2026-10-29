@@ -6,7 +6,7 @@ An original construction ERP for the journey from bidding and tendering through 
 
 ## Current status
 
-The latest application step is the **[client advance request/invoice backend foundation](docs/implementation/advances-local.md)**. **246 automated tests and the frontend build pass.** Recovery allocations, the dedicated advance UI, reports and examples remain unfinished. The saved example database is schema 17, with 103 tables including schema_versions (102 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
+The latest application step is the **[connected client advance recovery](docs/implementation/advances-local.md)**. **253 automated tests and the frontend build pass.** Protected recovery is connected to certificates, invoices and receipt corrections. The dedicated advance UI, complete advance reports and permanent examples remain unfinished. The saved example database is schema 17, with 103 tables including schema_versions (102 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
 
 The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 

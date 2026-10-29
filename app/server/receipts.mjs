@@ -4,6 +4,7 @@ import { policy } from './access.mjs';
 import { ROLE_BY_ID } from '../shared/access.mjs';
 import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { payableRatio } from './payables.mjs';
+import { assertAdvancePaidProtection } from './advance-recovery.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`,
   now = () => new Date().toISOString();
@@ -232,6 +233,7 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         b = receivableBalance(db, i),
         control = account(a.control.id, r.company_id, !!r.reversal_of);
       requireThat(r.accounting_date >= b.latest_date, 'Receipt or reversal must follow all dependent settlement dates.');
+      if (r.reversal_of && i.advance_id) assertAdvancePaidProtection(db, i, { id: r.id, amount: a.amount });
       if (!r.reversal_of) {
         requireThat(JSON.stringify(control) === JSON.stringify(a.control) && b.open === a.open_snapshot && b.base_open === a.base_snapshot && b.latest_date === a.latest_date, 'Invoice balance or control changed. Return or withdraw and revise.', 409);
         requireThat(new D(a.amount).plus(reserved(i.id, r.id)).lte(b.open), 'Another approved receipt reserves this balance.', 409);

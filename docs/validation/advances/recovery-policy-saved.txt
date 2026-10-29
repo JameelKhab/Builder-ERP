@@ -1,0 +1,106 @@
+Browser tab: 50, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4196/#section=Company&area=Overview&category=certificates".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=certificates
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4196/#main-content
+		22 container
+			163 button Toggle main navigation
+				164 image
+			23 text Company
+			24 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				25 menu
+					26 (selected) JAKH Contracting LLC
+					27 JAKH International Ltd
+			28 image
+			29 text field (settable) Search company records
+			30 button Search
+			31 button Explore examples
+				32 image
+			34 button Your account and sign-in
+		38 container main-content
+			39 heading JAKH Contracting LLC, Value: 1
+				40 text JAKH Contracting LLC
+			41 text Company-wide operations and shared information
+			42 button All client certificates
+				43 image
+				44 text All client certificates
+			165 container
+				166 text CLIENT CONTRACT ·  CTR-A103CBAB
+			167 heading Example · Harbour Tower · awarded offer, Value: 2
+				168 text Example · Harbour Tower · awarded offer
+			169 container
+				170 text Harbour Tower  ·  AED 34,151.04
+			171 heading Ready for measurement, Value: 3
+				172 text Ready for measurement
+			173 container
+				174 text Retention  5 % · ceiling  AED 2,000 . Payment terms:  30  days from invoice.
+			175 container
+				176 text Recorded advance principal:  AED 100 . The contract allowance does not establish cash received.
+			177 container
+				178 text Recovery certified  AED 100  · posted  AED 100  · available for the next certificate  AED 0 .
+			179 container
+				180 heading Finance policy · revision 3 · draft, Value: 3
+					181 text Finance policy · revision   ·  draft
+				182 text Fictional browser example: release original advance tax separately from current work tax.
+				183 button Edit policy
+				184 container
+					185 text Reason for this decision
+					186 text entry area (settable) Reason for this decision
+				187 button (disabled) Submit policy
+				188 button (disabled) Cancel pending policy
+			189 heading Measurements, Value: 3
+				190 text Measurements
+			191 button Fictional work with advance recovery 2026-10-22 – 2026-10-29 · Certified AED 5,122.66 Invoice posted; customer settlement is separate
+				192 text Fictional work with advance recovery
+				193 container
+					194 text 2026-10-22  –  2026-10-29  ·  Certified
+				195 text AED 5,122.66
+				196 text Invoice posted; customer settlement is separate
+				197 image
+			198 button Example · Harbour Tower · measured work 3 2026-10-15 – 2026-10-21 · Certified AED 1,707.56 AR reviewer to post invoice
+				199 text Example · Harbour Tower · measured work 3
+				200 container
+					201 text 2026-10-15  –  2026-10-21  ·  Certified
+				202 text AED 1,707.56
+				203 text AR reviewer to post invoice
+				204 image
+			205 button Example · Harbour Tower · measured work 2 2026-10-08 – 2026-10-14 · Certified AED 3,415.10 AR preparer to finish invoice
+				206 text Example · Harbour Tower · measured work 2
+				207 container
+					208 text 2026-10-08  –  2026-10-14  ·  Certified
+				209 text AED 3,415.10
+				210 text AR preparer to finish invoice
+				211 image
+			212 button Example · Harbour Tower · measured work 1 2026-10-01 – 2026-10-07 · Certified AED 3,415.10 Invoice posted; customer settlement is separate
+				213 text Example · Harbour Tower · measured work 1
+				214 container
+					215 text 2026-10-01  –  2026-10-07  ·  Certified
+				216 text AED 3,415.10
+				217 text Invoice posted; customer settlement is separate
+				218 image
+			219 button (collapsed) Original BOQ · 3 items, Secondary Actions: Expand
+				220 text Original BOQ · 
+				221 text 3
+				222 text  items
+			238 container
+				239 button (expanded) Finance policy 3 · draft, Secondary Actions: Collapse
+					240 text Finance policy 
+					241 text 3
+					242 text  · 
+					243 text draft
+				244 text Fictional browser example: release original advance tax separately from current work tax. Exclusive tax  5 % on  measured gross . Advance tax:  Release original tax with recovery . Advance currency:  Not configured . receivable :  1300  ·  Example · Client receivable retention :  1310  ·  Example · Client retention receivable revenue :  4100  ·  Example · Measured client revenue tax :  2310  ·  Example · Output tax
+				245 button (collapsed) Review history · 1 events, Secondary Actions: Expand
+					246 text Review history · 
+					247 text 1
+					248 text  events
+			228 button (collapsed) Finance policy 2 · active, Secondary Actions: Expand
+				229 text Finance policy 
+				230 text 2
+				231 text  · 
+				232 text active
+			233 button (collapsed) Finance policy 1 · superseded, Secondary Actions: Expand
+				234 text Finance policy 
+				235 text 1
+				236 text  · 
+				237 text superseded
+
+The focused UI element is 239 button (expanded) Finance policy 3 · draft, Secondary Actions: Collapse

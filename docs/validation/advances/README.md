@@ -1,6 +1,6 @@
 # Advance foundation verification — 29 October 2026
 
-This evidence supports the request/invoice/receipt backend foundation only. Certificate recovery, dedicated UI, complete reporting/examples and full F092/source parity remain unfinished. See [implementation and exact continuation](../../implementation/advances-local.md).
+The foundation sections below are historical. The latest connected-recovery section supports request/invoice/receipt through protected certificate recovery. Dedicated advance UI, complete subledger reporting/examples and full F092/source parity remain unfinished. See [implementation and exact continuation](../../implementation/advances-local.md).
 
 - `tests-foundation.txt`: 241 passing tests, including nine advance domain journeys and one authenticated HTTP journey.
 - `build-foundation.txt`: successful frontend/static packaging build; not a backend deployment.
@@ -18,3 +18,14 @@ Source observations remain in `../receipts/source/` and `../certificates/source/
 - `build-recovery-foundation.txt`: frontend/static build passes.
 - `migration-recovery-groundwork.json`: scratch upgrade verified before upgrading the saved schema-16 database. Every original row/column across 102 tables remains; a separate restored schema-17 snapshot matches all 103 tables. Integrity/FKs pass; saved identities, sessions, advance requests and recovery rows remain zero.
 - Recovery service/UI/posting/reporting are still unfinished. The new allocation table is empty, future policy fields remain unconfigured, and the existing paid-advance certificate guard is retained. The continuation notes distinguish implemented groundwork from planned accounting.
+
+## Connected recovery — current checkpoint
+
+- `tests-connected-recovery.txt`: all 253 tests pass. Sixteen advance domain tests, five arithmetic/schema tests and one expanded authenticated HTTP journey cover the current advance/recovery subset alongside the broader suite. The HTTP journey uses separate individual roles for preparation, receipt approval/recording, measurement and three reviews, AR posting, and a denied protected-receipt reversal.
+- `build-connected-recovery.txt`: frontend/static build passes; local backend remains required.
+- `connected-recovery-data.json`: schema remains 17. All 103 saved tables are unchanged after reopening the current implementation. A separate consistent backup restored/reopened through examples matches all 103 tables, with clean integrity/FKs. Saved identities/sessions/advances/recoveries remain zero. No fictional recovery fixture was inserted into the saved workspace.
+- `recovery-certificate.png` / `.txt`: disposable browser example with 100.00 principal recovery, 5.00 original-tax release, 251.13 net work tax and 5,017.66 receivable. Source invoice navigation was verified. The initial ambiguous percentage/net-tax label was corrected before final capture.
+- `recovery-policy-form.txt`, `recovery-policy-saved.txt` / `.png`: selected original-tax policy changes the net-basis explanation; a draft saved with the selected accounts and treatment, while independent activation remains required. This was an isolated in-memory fixture, closed after verification. Browser label selectors were narrowed to resolve option-text ambiguity; an accidental empty-form submission was blocked by required fields and changed no data.
+- A 390-device-pixel viewport at the browser's existing zoom produced a 300-CSS-pixel document, with equal document/viewport widths and 16px body text. Browser capture scaling was inconsistent after emulation; no claim of complete mobile visual acceptance is made, and misleading mobile captures were discarded. Device overrides were cleared and the disposable tab/server closed.
+
+Core verification covers certified-but-unposted reservations, pending approved and draft reversal interaction, original carrying values and explicit tax/foreign policies, independent bank FX, tax-inclusive invoice caps, atomic certification rollback, stale/revoked authority, cutoff exclusions, multiple invoice sources, final residual cents, selected-invoice control reconciliation and matching CSV. Full advance entry/report/examples, credits/cancellation and source acceptance remain open.

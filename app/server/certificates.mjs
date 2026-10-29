@@ -1,5 +1,6 @@
 import { randomUUID, createHash } from 'node:crypto';
-import { advanceInvoiceCalculation, contractAdvancePaid } from './advances.mjs';
+import { advanceInvoiceCalculation } from './advances.mjs';
+import { recoveryQuote, freezeRecoveries, certifiedRecoveries, contractAdvancePosition } from './advance-recovery.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
@@ -130,12 +131,20 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       tax: percent.gt(0) ? account(i.tax_account, c.company_id, 'liability', 'tax') : null
     };
     requireThat(accounts.receivable.id !== accounts.retention.id, 'Use separate receivable and retention accounts.');
+    const taxMode = i.recovery_tax_mode || 'unconfigured', fxBasis = i.recovery_fx_basis || 'unconfigured';
+    requireThat(['unconfigured', 'original_tax'].includes(taxMode), 'Choose the advance-tax recovery policy.');
+    requireThat(['unconfigured', 'historical_consideration'].includes(fxBasis), 'Choose the advance currency policy.');
+    requireThat(!!i.fx_gain_account === !!i.fx_loss_account, 'Configure exchange gain and loss accounts together.');
+    if (i.fx_gain_account) {
+      accounts.fx_gain = account(i.fx_gain_account, c.company_id, 'income', 'general');
+      accounts.fx_loss = account(i.fx_loss_account, c.company_id, 'expense', 'general');
+      requireThat(accounts.fx_gain.id !== accounts.revenue.id, 'Exchange gains need a separate account from measured revenue.');
+    }
     return {
-      policy: 'builder-client-finance-v1',
-      accounts,
-      terms: c.terms,
-      tax_percent: percent.toString(),
-      tax_basis: i.tax_basis
+      policy: 'builder-client-finance-v1', accounts, terms: c.terms,
+      tax_percent: percent.toString(), tax_basis: i.tax_basis,
+      ...(taxMode !== 'unconfigured' ? { recovery_tax_mode: taxMode } : {}),
+      ...(fxBasis !== 'unconfigured' ? { recovery_fx_basis: fxBasis } : {})
     };
   }
   function currentPolicy(p) {
@@ -162,6 +171,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
         basis = text(input.basis, 'Tax and account basis');
       id = old?.id || uid('CFP');
       if (old) run("UPDATE contract_finance_policies SET state='draft',receivable_account=?,retention_account=?,revenue_account=?,tax_account=?,tax_percent=?,tax_basis=?,basis=?,snapshot=?,version=version+1 WHERE id=?", snap.accounts.receivable.id, snap.accounts.retention.id, snap.accounts.revenue.id, snap.accounts.tax?.id || null, snap.tax_percent, snap.tax_basis, basis, JSON.stringify(snap), id);else run("INSERT INTO contract_finance_policies(id,contract_id,company_id,project_id,revision,author_id,state,receivable_account,retention_account,revenue_account,tax_account,tax_percent,tax_basis,basis,snapshot,created_at) VALUES(?,?,?,?,?,?,'draft',?,?,?,?,?,?,?,?,?)", id, c.id, c.company_id, c.project_id, get('SELECT coalesce(max(revision),0)+1 n FROM contract_finance_policies WHERE contract_id=?', c.id).n, actorId, snap.accounts.receivable.id, snap.accounts.retention.id, snap.accounts.revenue.id, snap.accounts.tax?.id || null, snap.tax_percent, snap.tax_basis, basis, JSON.stringify(snap), now());
+      run('UPDATE contract_finance_policies SET recovery_tax_mode=?,recovery_fx_basis=?,fx_gain_account=?,fx_loss_account=? WHERE id=?', snap.recovery_tax_mode || 'unconfigured', snap.recovery_fx_basis || 'unconfigured', snap.accounts.fx_gain?.id || null, snap.accounts.fx_loss?.id || null, id);
       event('policy', policyRow(id), 'Finance policy prepared', input.reason);
       return contract(c.id);
     });
@@ -240,14 +250,14 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     requireThat(new D(gross).gt(0), 'Record positive new measured work.');
     const retentionCumulative = money(min(new D(cumulative).times(c.terms.retention_percent).div(100).toDecimalPlaces(2), c.terms.retention_cap)),
       retention = money(new D(retentionCumulative).minus(prev?.cumulative_retention || 0));
-    // Until frozen recovery allocations are installed, do not silently certify with
-    // zero recovery after a real advance receipt. This guard is a temporary dependency.
-    requireThat(new D(contractAdvancePaid(db, c.id, end)).isZero(), 'This contract has received advance principal. Complete the connected certificate recovery workflow before certifying further work.');
-    // No allowance or manually entered opening amount is accepted as received cash.
-    const recovery = '0.00',
+    const advanceRecovery = recoveryQuote(db, c, s, end, gross, retention);
+    const recovery = advanceRecovery?.principal || '0.00',
       net = money(new D(gross).minus(retention).minus(recovery)),
-      tax = money(new D(s.tax_basis === 'gross' ? gross : net).times(s.tax_percent).div(100)),
+      taxBasis = s.tax_basis === 'gross' ? gross : s.recovery_tax_mode === 'original_tax' ? new D(gross).minus(retention) : net,
+      workTax = money(new D(taxBasis).times(s.tax_percent).div(100)),
+      tax = money(new D(workTax).minus(advanceRecovery?.tax || '0')),
       total = money(new D(net).plus(tax));
+    requireThat(new D(total).gte(0), 'Recovery and tax cannot create a negative invoice; an authorised credit workflow is required.');
     const conversion = fx(c, input, end);
     return {
       policy: 'builder-certificate-v1',
@@ -264,13 +274,14 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       cumulative_retention: retentionCumulative,
       retention,
       recovery,
-      eligible_advance: '0.00',
+      eligible_advance: advanceRecovery?.eligible_principal || '0.00',
       net,
       tax,
       total,
       company_gross: money(new D(gross).times(conversion.rate)),
-      company_authority: money(new D(gross).plus(tax).times(conversion.rate)),
-      ...conversion
+      company_authority: money(new D(gross).plus(workTax).times(conversion.rate)),
+      ...conversion,
+      ...(advanceRecovery ? { work_tax: workTax, recovered_tax: advanceRecovery.tax, advance_recovery: advanceRecovery } : {})
     };
   }
   function evidenceFile(id, input) {
@@ -348,7 +359,10 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
         }[r.state];
         if (input.action === 'accept') {
           const s = validateMeasurement(r);
-          if (state === 'approved') for (const l of s.lines) run('INSERT INTO client_certificate_lines VALUES(?,?,?,?,?,?,?,?,?)', id, l.line_key, l.previous_quantity, l.cumulative_quantity, l.current_quantity, l.remaining_quantity, l.cumulative_amount, l.current_amount, JSON.stringify(l));
+          if (state === 'approved') {
+            for (const l of s.lines) run('INSERT INTO client_certificate_lines VALUES(?,?,?,?,?,?,?,?,?)', id, l.line_key, l.previous_quantity, l.cumulative_quantity, l.current_quantity, l.remaining_quantity, l.cumulative_amount, l.current_amount, JSON.stringify(l));
+            freezeRecoveries(db, r, s.advance_recovery, actorId, now());
+          }
         }
       }
       const fields = state === 'commercial' ? ['technical_by', actorId] : state === 'finance' ? ['commercial_by', actorId] : state === 'approved' ? ['finance_by', actorId] : null;
@@ -378,6 +392,8 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       retention: s.retention,
       recovery: s.recovery,
       tax: s.tax,
+      work_tax: s.work_tax ?? s.tax,
+      recovered_tax: s.recovered_tax || '0.00',
       total: s.total,
       company_gross: s.company_gross,
       company_authority: s.company_authority,
@@ -417,7 +433,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_cancel: r.author_id === actorId && can('certificates.write', r) && !['approved', 'cancelled'].includes(r.state),
       can_invoice: r.state === 'approved' && !s.invoice && can('ar.write', r),
       can_open_offer: can('sales.read', r),
-      findings: [`${r.currency} ${s.gross} new measured work; ${s.retention} retained; ${s.recovery} advance recovered.`, `${r.currency} ${s.tax} exclusive tax; ${s.total} due if this certified measurement is invoiced.`, r.state === 'approved' ? 'Quantities and deductions are frozen. Accounting and payment remain separate.' : 'This measurement is not yet certified or posted.', `Advance eligible in this measurement basis: ${r.currency} ${JSON.parse(r.snapshot).eligible_advance}. The allowance of ${contractData(r.contract_id).terms.advance_ceiling} does not establish cash received; current paid principal is shown on the contract.`]
+      findings: [`${r.currency} ${s.gross} new measured work; ${s.retention} retained; ${s.recovery} advance principal deducted.`, `${r.currency} ${s.work_tax} work tax less ${s.recovered_tax} original advance tax gives ${s.tax} net tax; certificate amount ${s.total}.`, r.state === 'approved' ? 'Quantities and deductions are frozen. Accounting and payment remain separate.' : 'This measurement is not yet certified or posted.', `Advance eligible in this measurement basis: ${r.currency} ${JSON.parse(r.snapshot).eligible_advance}. The allowance of ${contractData(r.contract_id).terms.advance_ceiling} does not establish cash received; current paid principal is shown on the contract.`]
     };
   }
   function contract(id) {
@@ -439,16 +455,16 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     } catch (e) {
       readiness = e.message;
     }
-    const paidAdvance = contractAdvancePaid(db, id, today());
-    if (new D(paidAdvance).gt(0)) readiness = 'Received advance needs the connected certificate recovery workflow';
+    const advancePosition = contractAdvancePosition(db, id, today());
     return {
       ...c,
       policies,
       active_policy_id: p?.id || null,
       readiness,
       can_configure: can('contracts.configure', c),
-      can_measure: can('certificates.write', c) && new D(paidAdvance).isZero(),
-      paid_advance_principal: paidAdvance,
+      can_measure: can('certificates.write', c),
+      paid_advance_principal: advancePosition.paid_principal,
+      advance_position: advancePosition,
       can_open_offer: can('sales.read', c),
       previous: previous ? summary(previous) : null,
       previous_lines: previous ? JSON.parse(previous.snapshot).lines : [],
@@ -499,6 +515,12 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       const current = get('SELECT * FROM ledger_accounts WHERE id=? AND company_id=?', a.id, c.company_id);
       requireThat(current?.active && current.type === a.type && current.purpose === a.purpose, 'A certified accounting account is inactive or changed; resolve before invoicing.');
     }
+    const recoveries = certifiedRecoveries(db, cert, s);
+    for (const allocation of recoveries) for (const a of Object.values(allocation.accounts).filter(Boolean)) {
+      const current = get('SELECT * FROM ledger_accounts WHERE id=? AND company_id=?', a.id, c.company_id);
+      requireThat(current?.active && current.type === a.type && current.purpose === a.purpose, 'An original advance account is inactive or changed; resolve before invoicing.');
+    }
+    const workTax = s.work_tax ?? s.tax;
     const lines = [{
       account: accounts.receivable,
       debit: s.total,
@@ -514,23 +536,38 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       debit: '0.00',
       credit: s.gross,
       description: 'Certified measured work'
-    }, ...(new D(s.tax).gt(0) ? [{
+    }, ...(new D(workTax).gt(0) ? [{
       account: accounts.tax,
       debit: '0.00',
-      credit: s.tax,
+      credit: workTax,
       description: 'Exclusive output tax'
-    }] : [])].filter(l => new D(l.debit).gt(0) || new D(l.credit).gt(0));
-    requireThat(new D(s.recovery).isZero(), 'Advance recovery requires its connected posting path.');
+    }] : []), ...recoveries.flatMap(a => [{ account: a.accounts.advance, debit: a.principal, credit: '0.00', description: `Advance principal recovered · ${a.invoice_id}`, carrying: a.base_principal, recovery_kind: 'principal', source_invoice: a.invoice_id }, ...(new D(a.tax).gt(0) ? [{ account: a.accounts.tax, debit: a.tax, credit: '0.00', description: `Original advance tax released · ${a.invoice_id}`, carrying: a.base_tax, recovery_kind: 'tax', source_invoice: a.invoice_id }] : [])])].filter(l => new D(l.debit).gt(0) || new D(l.credit).gt(0));
     const converted = convertJournal(lines.map(l => ({
         ...l,
         account_id: l.account.id
-      })), conversion.rate),
+      })), conversion.rate, { maxLines: 5000, allowZeroBase: recoveries.length > 0 }),
       journal = converted.lines.map((l, i) => ({
         ...l,
         account_code: lines[i].account.code,
         account_name: lines[i].account.name,
         account_type: lines[i].account.type
       }));
+    const revenue = journal.find(l => l.account_id === accounts.revenue.id);
+    for (const [i, original] of lines.entries()) if (original.recovery_kind) {
+      const line = journal[i], difference = new D(original.carrying).minus(line.base_debit);
+      line.base_debit = original.carrying;
+      line.rounding_adjustment = '0.00';
+      line.recovery_source = original.source_invoice;
+      line.carrying_basis = 'Original advance invoice';
+      if (original.recovery_kind === 'principal') revenue.base_credit = money(new D(revenue.base_credit).plus(difference));
+    }
+    const difference = sum(journal.map(l => l.base_debit)).minus(sum(journal.map(l => l.base_credit)));
+    if (!difference.isZero()) {
+      const a = difference.gt(0) ? accounts.fx_gain : accounts.fx_loss;
+      requireThat(a, 'An explicit exchange account is required for the original advance-tax carrying difference.');
+      journal.push({ account_id: a.id, account_code: a.code, account_name: a.name, account_type: a.type, description: 'Advance tax carrying exchange difference', debit: '0.00', credit: '0.00', base_debit: difference.gt(0) ? '0.00' : money(difference.abs()), base_credit: difference.gt(0) ? money(difference) : '0.00', rounding_adjustment: '0.00' });
+    }
+    requireThat(journal.every(l => new D(l.base_debit).gte(0) && new D(l.base_credit).gte(0)) && sum(journal.map(l => l.base_debit)).cmp(sum(journal.map(l => l.base_credit))) === 0, 'Recovered invoice accounting must remain non-negative and balanced.');
     return {
       snapshot: {
         certificate: s,
@@ -543,7 +580,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       total: s.total,
       company_total: journal.find(l => l.account_id === accounts.receivable.id)?.base_debit || '0.00',
       company_retention: journal.find(l => l.account_id === accounts.retention.id)?.base_debit || '0.00',
-      company_gross: converted.company_total,
+      company_gross: money(sum(journal.map(l => l.base_debit))),
       ...conversion
     };
   }
@@ -632,7 +669,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_open_journal: can('finance.read', r),
       settlement: r.state==='posted'&&access.has('customer_receipts.read',r.company_id,r.project_id)?receivableBalance(db,r):null,
       can_prepare_receipt: r.state==='posted'&&access.has('customer_receipts.write',r.company_id,r.project_id)&&new D(receivableBalance(db,r).open).gt(0),
-      findings: [r.advance_id ? `${r.currency} ${s.advance.principal} advance principal plus ${s.advance.tax} explicit tax gives ${r.total} receivable. Advance principal credits its liability control; no measured revenue or retention is created.` : `${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention, plus ${s.certificate.tax} tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
+      findings: [r.advance_id ? `${r.currency} ${s.advance.principal} advance principal plus ${s.advance.tax} explicit tax gives ${r.total} receivable. Advance principal credits its liability control; no measured revenue or retention is created.` : `${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention and ${s.certificate.recovery} advance principal, plus ${s.certificate.tax} net tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
     };
   }
   function invoiceList(company, project = null) {
@@ -688,16 +725,22 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
           currency,
           certified_gross: money(sum(approved.map(r => r.gross))),
           retained: money(sum(approved.map(r => r.retention))),
+          certified_recovery: money(sum(approved.map(r => r.recovery))),
+          recovered_tax: money(sum(approved.map(r => r.recovered_tax))),
           certified_due: money(sum(approved.map(r => r.total))),
           awaiting_posted_invoice: money(sum(approved.filter(r => r.invoice?.state !== 'posted').map(r => r.total))),
           pending_gross: money(sum(group.filter(r => !['approved', 'cancelled'].includes(r.state)).map(r => r.gross)))
         };
       });
     let ar = new D(0),
-      retention = new D(0);
+      retention = new D(0), recovery = new D(0), expectedRecovery = new D(0);
     for (const r of posted) {
       const snap = JSON.parse(get('SELECT snapshot FROM client_invoices WHERE id=?', r.id).snapshot);
+      const allocations = snap.certificate.advance_recovery?.allocations || [];
+      expectedRecovery = expectedRecovery.plus(sum(allocations.map(a => a.base_principal)));
+      const advanceAccounts = new Set(allocations.map(a => a.accounts.advance.id));
       for (const l of all('SELECT * FROM ledger_lines WHERE entry_id=?', r.journal_id)) {
+        if (advanceAccounts.has(l.account_id)) recovery = recovery.plus(new D(l.base_debit).minus(l.base_credit));
         if (l.account_id === snap.accounts.receivable.id) ar = ar.plus(new D(l.base_debit).minus(l.base_credit));
         if (l.account_id === snap.accounts.retention.id) retention = retention.plus(new D(l.base_debit).minus(l.base_credit));
       }
@@ -706,7 +749,10 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       posted_receivable: money(sum(posted.map(r => r.company_total))),
       posted_retention: money(sum(posted.map(r => r.company_retention))),
       ledger_receivable: money(ar),
-      ledger_retention: money(retention)
+      ledger_retention: money(retention),
+      posted_recovery: money(expectedRecovery),
+      ledger_recovery: money(recovery),
+      recovery_difference: money(expectedRecovery.minus(recovery))
     };
     totals.receivable_difference = money(new D(totals.posted_receivable).minus(ar));
     totals.retention_difference = money(new D(totals.posted_retention).minus(retention));
@@ -726,7 +772,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       invoices,
       currencies,
       totals: canAr ? totals : null,
-      findings: [`${rows.length} measurements match the period-end and status filters; ${rows.filter(r => r.state === 'approved').length} are certified.`, ...currencies.map(g => `${g.currency} ${g.certified_gross} certified gross; ${g.retained} held as retention; ${g.pending_gross} still awaiting certification; ${g.awaiting_posted_invoice} certified due has no posted invoice.`), ...(canAr ? [`${posted.length} posted invoices match the accounting-date filters: ${currency} ${totals.posted_receivable} receivable and ${totals.posted_retention} retention.`, `Selected invoice-to-ledger differences: AR ${totals.receivable_difference}; retention ${totals.retention_difference}.`] : []), 'Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash.']
+      findings: [`${rows.length} measurements match the period-end and status filters; ${rows.filter(r => r.state === 'approved').length} are certified.`, ...currencies.map(g => `${g.currency} ${g.certified_gross} certified gross; ${g.retained} held as retention; ${g.certified_recovery} advance principal and ${g.recovered_tax} original advance tax deducted; ${g.pending_gross} still awaiting certification; ${g.awaiting_posted_invoice} certified due has no posted invoice.`), ...(canAr ? [`${posted.length} posted invoices match the accounting-date filters: ${currency} ${totals.posted_receivable} receivable and ${totals.posted_retention} retention; ${totals.posted_recovery} advance liability cleared at original carrying value.`, `Selected invoice-to-ledger differences: AR ${totals.receivable_difference}; retention ${totals.retention_difference}; advance recovery ${totals.recovery_difference}.`] : []), 'Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash.']
     };
   }
   return {

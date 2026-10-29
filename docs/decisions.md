@@ -145,3 +145,7 @@ Keep one canonical client invoice source: approved certificate or approved advan
 ## 29 October 2026 — Recovery groundwork continuity
 
 Preserve exact partial-principal cents conservatively: floor to cents and exhaust principal/tax on final settlement. No saved advances exist and posted invoice/receipt amounts are unchanged. Schema 17 adds immutable future recovery rows and unconfigured tax/FX policy fields; no recovery service is active. Planned taxed recovery requires explicit original-tax policy. Planned foreign non-monetary recovery uses historical advance consideration for related revenue, with bank FX separate. These are original design choices pending connected implementation and acceptance; see the recovery contract and continuation notes. Keep the temporary guard until all protections are implemented.
+
+## 29 October 2026 — Connected advance recovery
+
+Certificate finance approval now atomically freezes invoice-level principal/tax/original carrying allocations; unposted certificates already reserve them. Explicit original-tax policy separates work tax and recovered tax. Foreign non-monetary principal uses historical consideration in related revenue, while original-tax carrying differences use separately selected gain/loss accounts. Pending approved cash reversals reduce availability and every reversal transition preserves certified principal/tax. The temporary paid-advance guard is replaced by these controls. Existing no-advance snapshots remain compatible. Dedicated advance UI/report/examples and approved correction paths remain open.

@@ -1094,7 +1094,7 @@
       "source_path": "Contracts & measured BOQ > Open Contracts & measured BOQ",
       "destination": "Project > Costs & Contracts > Client contract",
       "local_status": "partial",
-      "implemented_and_remaining": "Original independently verified awards retain project-allocated BOQ and terms; independently activated versioned finance policies now configure AR/retention/revenue and explicit exclusive tax. Variations, BOQ revisions, advances, corrections and full contract/source parity remain open.",
+      "implemented_and_remaining": "Original independently verified awards retain project-allocated BOQ and terms; independently activated versioned finance policies now configure AR/retention/revenue and explicit exclusive tax. Explicit original-tax/historical-consideration policies now govern protected advance recovery. Variations, BOQ revisions, full advance UI/reporting, corrections and full contract/source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/commercial-v1.md",
         "app/tests/commercial.test.mjs",
@@ -1307,7 +1307,7 @@
       "source_path": "Payment certificates",
       "destination": "Project > Costs & Contracts > Claims & certificates",
       "local_status": "partial",
-      "implemented_and_remaining": "Original cumulative measurements retain approved predecessors, exact current/remaining quantities and amounts, evidence, three independent review stages, cycles and finance freeze. Separate typed invoices and scope/findings/export are connected. Variations, advances/other deductions, negative corrections, reassignment, full source parity and migration remain open.",
+      "implemented_and_remaining": "Original cumulative measurements retain approved predecessors, exact current/remaining quantities and amounts, evidence, three independent review stages, cycles and finance freeze. Separate typed invoices and scope/findings/export are connected. Paid advances now have exact frozen recovery reservations and original-value invoice posting. Variations, other deductions, negative corrections, reassignment, full source parity and migration remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1324,7 +1324,7 @@
       "source_path": "Advances & retention releases",
       "destination": "Project > Costs & Contracts > Advances & retention",
       "local_status": "partial",
-      "implemented_and_remaining": "Typed advance request/independent approval, canonical liability invoice and receipt-derived principal/tax are tested backend foundations. Separate zero-default authority and aggregate original ceiling are enforced. Recovery allocations/posting/reversal protection, dedicated UI/reports/export/examples, retention release and full parity remain unfinished; paid-advance measurement is temporarily blocked. Schema-17 recovery table/policy groundwork and conservative partial-principal cents are verified, but no recovery allocation service is implemented.",
+      "implemented_and_remaining": "Advance request/independent approval, canonical liability invoice, receipt-derived principal/tax and protected certificate recovery now have service/HTTP verification. Certification freezes original principal/tax/carrying allocations before posting; explicit tax/FX policy, current authority and receipt-correction reservations apply. Certificate findings/export reconcile selected posted recovery. Dedicated advance UI/list/full subledger reports/export/examples, retention release, credits/cancellation and full parity remain unfinished.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1341,7 +1341,9 @@
         "app/tests/advances-api.test.mjs",
         "docs/validation/advances/README.md",
         "app/tests/advance-recovery-foundation.test.mjs",
-        "docs/implementation/advance-recovery-next-step.md"
+        "docs/implementation/advance-recovery-next-step.md",
+        "app/server/advance-recovery.mjs",
+        "docs/validation/advances/tests-connected-recovery.txt"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Recovery cannot exceed the actual outstanding advance under the policy.",
@@ -1726,7 +1728,7 @@
       "source_path": "Finance > Customers > Invoices",
       "destination": "Company > Finance · Invoices",
       "local_status": "partial",
-      "implemented_and_remaining": "Approved certificates explicitly create client invoice drafts; independent zero-default AR authority posts immutable balanced journals. Posted invoices now show actual receipt allocation and open balance and link to receipt preparation. Standalone/advance invoicing, credits, localisation/full aging, ownership transfer and source migration remain open.",
+      "implemented_and_remaining": "Approved certificates explicitly create client invoice drafts; independent zero-default AR authority posts immutable balanced journals. Posted invoices now show actual receipt allocation and open balance and link to receipt preparation. Canonical advance liability invoices and original-value certificate recovery postings are connected. Standalone invoicing, full advance UI/reporting, credits, localisation/full aging, ownership transfer and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1760,7 +1762,7 @@
       "source_path": "Finance > Customers > Payments",
       "destination": "Company > Finance · Payments",
       "local_status": "partial",
-      "implemented_and_remaining": "Original multi-invoice customer receipts now have separate independent approval, evidenced recording, exact AR/bank/FX postings, shared bank matching, linked full reversal, zero-default limits and scoped findings/CSV. Multi-project users see only authorised allocation totals; combined files/detail require full scope. Unallocated money, commercial refunds/credits, advance invoicing/recovery, write-offs and full source migration remain open.",
+      "implemented_and_remaining": "Original multi-invoice customer receipts now have separate independent approval, evidenced recording, exact AR/bank/FX postings, shared bank matching, linked full reversal, zero-default limits and scoped findings/CSV. Multi-project users see only authorised allocation totals; combined files/detail require full scope. Advance invoices share this receipt path; certified recovery now protects their cash from unsupported reversal. Unallocated money, commercial refunds/credits, write-offs and full source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/receipts-v1.md",
         "docs/implementation/receipts-local.md",
@@ -1922,7 +1924,7 @@
       "source_path": "Finance > Review > Control > Journal Items",
       "destination": "Company > Finance · Journal Items",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable general/AP/supplier-payment/client-invoice/customer-receipt journal lines retain frozen source, account and currency values. Receipt settlement reduces AR without recognising revenue twice; every project allocation balances independently, with exact FX/reversal values. Full analytic/tax/party accounting and source parity remain open.",
+      "implemented_and_remaining": "Immutable general/AP/supplier-payment/client-invoice/customer-receipt journal lines retain frozen source, account and currency values. Receipt settlement reduces AR without recognising revenue twice; every project allocation balances independently, with exact FX/reversal values. Advance recovery retains original liability/tax carrying values and historical non-monetary revenue treatment; related tax FX stays explicit. Full analytic/tax/party accounting and source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1956,7 +1958,7 @@
       "source_path": "Finance > Review > Control > Audit Trail",
       "destination": "Company > Finance · Audit Trail",
       "local_status": "partial",
-      "implemented_and_remaining": "Append-only typed financial/configuration events, original receipt evidence bytes/hash, retained full corrections, independent current authority and mixed-source bank match/unmatch history are operational. Full audit querying, external tamper resistance, lost-author reassignment and historical reconciliation reconstruction remain open.",
+      "implemented_and_remaining": "Append-only typed financial/configuration events, original receipt evidence bytes/hash, retained full corrections, independent current authority and mixed-source bank match/unmatch history are operational. Certified advance allocations are immutable and cash corrections preserve their principal/tax. Full audit querying, external tamper resistance, lost-author reassignment and historical reconciliation reconstruction remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -3843,7 +3845,7 @@
       "invariant": "Immutable approved BOQ; finance activation policy",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
+      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Full advance UI/reporting, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt and protected certificate recovery now have service/HTTP evidence, with frozen certification reservations, explicit tax/foreign policies, original carrying values, receipt-correction guards and certificate findings/export. Dedicated advance UI/full subledger reports/examples and full source acceptance remain unfinished (advances-local.md)."
     },
     {
       "id": "M16",
@@ -3853,7 +3855,7 @@
       "invariant": "Cumulative limits; finance freeze; explicit correction",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
+      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Full advance UI/reporting, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt and protected certificate recovery now have service/HTTP evidence, with frozen certification reservations, explicit tax/foreign policies, original carrying values, receipt-correction guards and certificate findings/export. Dedicated advance UI/full subledger reports/examples and full source acceptance remain unfinished (advances-local.md)."
     },
     {
       "id": "M17",
@@ -3917,7 +3919,7 @@
       "invariant": "Balanced posting; AP/AR/control/bank reconciliation",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original general ledger/accounts/periods; material bills/return credits; supplier payment/refund settlement; client certificate invoices; and customer multi-invoice receipts now have immutable typed journals, independent zero-default limits, exact transaction/carrying/bank/FX values, shared statement evidence and company/project reconciliation findings. Receipt files/hash and full corrections are retained. Advance invoices/recovery, credits/unallocated cash, retention release, subcontract/stock/GRNI, wider tax/revaluation, full cash classification/forecast and production import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
+      "local_notes": "Original general ledger/accounts/periods; material bills/return credits; supplier payment/refund settlement; client certificate invoices; and customer multi-invoice receipts now have immutable typed journals, independent zero-default limits, exact transaction/carrying/bank/FX values, shared statement evidence and company/project reconciliation findings. Receipt files/hash and full corrections are retained. Full advance UI/reporting, credits/unallocated cash, retention release, subcontract/stock/GRNI, wider tax/revaluation, full cash classification/forecast and production import/reconciliation remain open. Advance request/invoice/receipt and protected certificate recovery now have service/HTTP evidence, with frozen certification reservations, explicit tax/foreign policies, original carrying values, receipt-correction guards and certificate findings/export. Dedicated advance UI/full subledger reports/examples and full source acceptance remain unfinished (advances-local.md)."
     },
     {
       "id": "M24",
@@ -4003,7 +4005,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "Current scoped identity, reviewed access/financial limits, independent versioned decisions and retained evidence/history apply across implemented budget/procurement/master/NCR, ledger/AP/AR/payments/receipts, estimate/intake/offer/award/certificate stages. Receipt approval differs from recording, and bank reconciliation differs from each recorder. Limits default to zero; preview cannot mutate. Configurable multi-stage routes, reassignment/delegation/escalation, wider ERP coverage, external tamper resistance and source migration remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
+      "local_notes": "Current scoped identity, reviewed access/financial limits, independent versioned decisions and retained evidence/history apply across implemented budget/procurement/master/NCR, ledger/AP/AR/payments/receipts, estimate/intake/offer/award/certificate stages. Receipt approval differs from recording, and bank reconciliation differs from each recorder. Limits default to zero; preview cannot mutate. Configurable multi-stage routes, reassignment/delegation/escalation, wider ERP coverage, external tamper resistance and source migration remain open. Advance request/invoice/receipt and protected certificate recovery now have service/HTTP evidence, with frozen certification reservations, explicit tax/foreign policies, original carrying values, receipt-correction guards and certificate findings/export. Dedicated advance UI/full subledger reports/examples and full source acceptance remain unfinished (advances-local.md)."
     },
     {
       "id": "M33",

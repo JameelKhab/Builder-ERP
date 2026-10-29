@@ -1,0 +1,93 @@
+Browser tab: 50, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4196/#section=Company&area=Overview&category=certificates".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=certificates
+	229 container Please select an item in the list.
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4196/#main-content
+		22 container
+			163 button Toggle main navigation
+				164 image
+			23 text Company
+			24 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				25 menu
+					26 (selected) JAKH Contracting LLC
+					27 JAKH International Ltd
+			28 image
+			29 text field (settable) Search company records
+			30 button Search
+			31 button Explore examples
+				32 image
+			34 button Your account and sign-in
+		38 container main-content
+			39 heading JAKH Contracting LLC, Value: 1
+				40 text JAKH Contracting LLC
+			41 text Company-wide operations and shared information
+			42 button All client certificates
+				43 image
+				44 text All client certificates
+			165 container
+				166 heading Finance policy, Value: 2
+					167 text Finance policy
+				168 text Example · Harbour Tower · awarded offer  ·  AED 34,151.04
+				169 heading 1. Where amounts belong, Value: 3
+					170 text 1. Where amounts belong
+				171 container
+					172 text Client receivable
+					173 pop up button (collapsed, settable) Client receivable, Value: Choose account, Secondary Actions: Expand
+						174 menu
+							175 (selected) Choose account
+							176 1300 · Example · Client receivable
+							177 1310 · Example · Client retention receivable
+				178 container
+					179 text Retention receivable
+					180 pop up button (collapsed, settable) Retention receivable, Value: Choose account, Secondary Actions: Expand
+						181 menu
+							182 (selected) Choose account
+							183 1300 · Example · Client receivable
+							184 1310 · Example · Client retention receivable
+				185 container
+					186 text Measured revenue
+					187 pop up button (collapsed, settable) Measured revenue, Value: Choose account, Secondary Actions: Expand
+						188 menu
+							189 (selected) Choose account
+							190 4100 · Example · Measured client revenue
+							191 4190 · Example · Settlement exchange gain
+				192 text The chart is managed in Accounting. Retention has its own receivable account.
+				193 heading 2. Explicit tax treatment, Value: 3
+					194 text 2. Explicit tax treatment
+				195 container
+					196 text Exclusive tax %
+					197 text field (settable) Exclusive tax %, Value: 0
+				198 container
+					199 text Tax basis
+					200 pop up button (collapsed, settable) Tax basis, Value: Measured gross, Secondary Actions: Expand
+						201 menu
+							202 (selected) Measured gross
+							203 After retention, before advance recovery
+				204 container
+					205 text Output tax account
+					206 pop up button (collapsed, settable) Output tax account, Value: Choose account, Secondary Actions: Expand
+						207 menu
+							208 (selected) Choose account
+							209 2310 · Example · Output tax
+				210 container
+					211 text Basis for these accounts and tax treatment
+					212 text entry area (settable) Basis for these accounts and tax treatment
+				213 heading 3. Agreed deductions, Value: 3
+					214 text 3. Agreed deductions
+				215 container
+					216 text Retention  5 % up to  AED 2,000 . Advance allowance  AED 1,000 ; recovery  20 % only against a recorded eligible balance.
+				217 text These terms come from the accepted offer. This policy does not change the agreed contract.
+				218 container
+					219 text Tax already charged on advances
+					220 pop up button (collapsed, settable) Tax already charged on advances, Value: Release original advance tax as work is invoiced, Secondary Actions: Expand
+						221 menu
+							222 Not configured
+							223 (selected) Release original advance tax as work is invoiced
+				230 text Work tax is calculated before advance recovery. The tax already charged on the recovered advance is then deducted separately.
+				224 container
+					225 text Reason
+					226 text entry area (settable) Reason
+				227 button Save policy draft
+				228 button Cancel editing
+
+The focused UI element is 173 pop up button (collapsed, settable) Client receivable, Value: Choose account, Secondary Actions: Expand

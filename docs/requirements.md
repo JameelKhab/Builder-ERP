@@ -159,3 +159,5 @@ The user requires GitHub (JameelKhab/Builder-ERP) to hold the project source of 
 Request approval, canonical advance-liability invoicing and receipt-derived principal/tax now have service and authenticated HTTP verification. The full advance requirement still includes protected certificate recovery, original carrying values, tax/FX, correction handling, simple UI, scoped findings/export and complete examples. A temporary measurement guard prevents silently omitting recovery while that connection is unfinished. See `implementation/advances-local.md`; F092 and all wider requirements remain partial/unverified.
 
 The cross-laptop checkpoint also preserves schema-17 recovery groundwork and a detailed continuation plan. It does not accept F092 recovery: allocation/posting/reversal protection, reports, UI and examples remain required.
+
+Connected certificate recovery is now implemented with original principal/tax carrying, explicit policies, independent reservation/posting and receipt-correction protection. F092 remains partial pending the dedicated advance user flow, complete subledger reports, examples and source acceptance.

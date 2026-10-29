@@ -9,6 +9,9 @@ import { accessAdmin } from '../server/access-admin.mjs';
 import { estimates } from '../server/estimates.mjs';
 import { commercial } from '../server/commercial.mjs';
 import { sampleEstimate } from '../server/estimates-examples.mjs';
+import { recoveryQuote } from '../server/advance-recovery.mjs';
+import { certificatesReportCsv, certificateDetailCsv } from '../src/certificates-export.js';
+import { D, money, sum } from '../server/money.mjs';
 import { sampleOffer } from '../server/commercial-examples.mjs';
 
 const today = () => '2026-10-29', reason = 'Independent advance decision with original supporting evidence';
@@ -127,13 +130,23 @@ test('receipt reversal restores advance AR without deleting its original liabili
   assert.equal(f.db.prepare('SELECT base_credit FROM ledger_lines WHERE entry_id=? AND account_id=?').get(i.journal_id,f.account).base_credit,'111.11');
 });
 
-test('paid advances cannot silently leave later certificates at zero recovery while allocation integration is pending',t=>{
+test('paid advances are frozen at certification, cleared once at invoice posting, and protected from receipt reversal',t=>{
   const f=fixture(t),a=approved(f,{tax_percent:'0',principal:'100'}),i=invoice(f,a);receive(f,i,'100','ADV-RECOVERY-DEPENDENCY');
   const pending=f.db.prepare("SELECT * FROM client_certificates WHERE contract_id=? AND state='technical'").get(f.c.id);
   const technical=certificates(f.db,'example-technical-reviewer',today),maker=certificates(f.db,'example-measurer',today);
   let r=technical.decide(pending.id,{version:pending.version,action:'return',reason});
-  assert.throws(()=>maker.save(r.id,{...r,period_to:today(),reason}),/connected certificate recovery/);
-  const c=maker.contract(f.c.id);assert.equal(c.paid_advance_principal,'100.00');assert.equal(c.can_measure,false);
+  r=maker.save(r.id,{...r,period_to:today(),reason});assert.equal(r.recovery,'100.00');
+  r=certify(f,r);assert.equal(r.state,'approved');
+  assert.equal(f.db.prepare('SELECT principal FROM client_advance_recoveries WHERE certificate_id=?').get(r.id).principal,'100.00');
+  const original=f.db.prepare("SELECT * FROM client_receipts WHERE bank_reference='ADV-RECOVERY-DEPENDENCY'").get();
+  assert.throws(()=>receipts(f.db,'advance-writer',today).reverse(original.id,{version:original.version,accounting_date:today(),reason}),/Certified advance recovery/);
+  const ci=certificateInvoice(f,r);assert.equal(ci.state,'posted');
+  assert.equal(ci.journal.find(l=>l.account_id===f.account).debit,'100.00');
+  assert.equal(ci.total,'5022.66');
+  assert.equal(f.db.prepare('SELECT count(*) n FROM client_advance_recoveries WHERE certificate_id=?').get(r.id).n,1);
+  assert.equal(f.post.decideInvoice(ci.id,{version:1,action:'post',reason}).id,ci.id);
+  const c=maker.contract(f.c.id);assert.equal(c.paid_advance_principal,'100.00');assert.equal(c.can_measure,true);
+  assert.deepEqual(c.advance_position,{paid_principal:'100.00',certified_principal:'100.00',posted_principal:'100.00',available_principal:'0.00'});
   assert.equal(advanceSettlement(f.db,f.db.prepare('SELECT * FROM client_invoices WHERE id=?').get(i.id),'2026-10-28').paid_principal,'0.00');
 });
 test('reviewed access preserves explicit advance limits, rejects non-finance grants, and records the change',t=>{
@@ -165,4 +178,143 @@ test('foreign advance uses separate request, invoice and bank rates without reva
   const journal=f.db.prepare('SELECT * FROM ledger_lines WHERE entry_id=?').all(r.journal_id);
   assert.equal(journal.find(l=>l.description==='Customer settlement exchange difference').base_credit,'20.33');
   assert.equal(journal.some(l=>l.account_id===f.account),false);
+  f.c={...f.c,...c};
+  const gain=f.db.prepare("SELECT id FROM ledger_accounts WHERE company_id='jakh' AND type='income' AND purpose='general' AND id<>?").get(c.policies[0].revenue_account).id;
+  const loss=f.db.prepare("SELECT id FROM ledger_accounts WHERE company_id='jakh' AND type='expense' AND purpose='general'").get().id;
+  const attempted={contract_id:c.id,title:'Foreign recovery policy check',period_from:today(),period_to:today(),rate:'3.9',rate_date:today(),rate_source:reason,basis:reason,reason,...evidence,lines:c.lines.map(l=>({line_key:l.line_key,cumulative_quantity:l.quantity}))};
+  policyForRecovery(f);
+  assert.throws(()=>certificates(f.db,'example-measurer',today).save(null,attempted),/historical advance-consideration/);
+  policyForRecovery(f,{recovery_fx_basis:'historical_consideration'});
+  assert.throws(()=>certificates(f.db,'example-measurer',today).save(null,attempted),/both exchange/);
+  policyForRecovery(f,{recovery_fx_basis:'historical_consideration',fx_gain_account:gain,fx_loss_account:loss});
+  const measurer=certificates(f.db,'example-measurer',today);
+  let m=measurer.save(null,{contract_id:c.id,title:'Foreign advance recovery',period_from:today(),period_to:today(),rate:'3.9',rate_date:today(),rate_source:reason,basis:reason,reason,...evidence,lines:c.lines.map(l=>({line_key:l.line_key,cumulative_quantity:l.quantity}))});
+  assert.equal(m.recovery,'123.47');assert.equal(m.snapshot.recovered_tax,'6.17');m=certify(f,m);
+  f.db.prepare("UPDATE memberships SET ar_approval_limit='1000000' WHERE user_id='advance-approver'").run();
+  const ci=certificateInvoice(f,m,{rate:'3.9'});
+  const principal=ci.journal.find(l=>l.account_id===f.account),taxRelease=ci.journal.find(l=>l.account_id===f.tax && new D(l.debit).gt(0));
+  assert.equal(principal.base_debit,'456.84');assert.equal(taxRelease.base_debit,'22.83');
+  const expectedRevenue=money(new D(m.gross).plus(m.snapshot.work_tax).times('3.9').toDecimalPlaces(2).minus(new D(m.snapshot.work_tax).times('3.9').toDecimalPlaces(2)).minus('481.53').plus('456.84'));
+  assert.equal(ci.journal.find(l=>l.account_id===c.policies[0].revenue_account).base_credit,expectedRevenue);
+  const fx=ci.journal.find(l=>l.description==='Advance tax carrying exchange difference');assert.equal(fx.base_debit,'1.23');assert.equal(fx.account_id,loss);
+  assert.equal(money(sum(ci.journal.map(l=>l.base_debit))),money(sum(ci.journal.map(l=>l.base_credit))));
+  assert.equal(f.db.prepare('SELECT base_credit FROM ledger_lines WHERE entry_id=? AND description=?').get(r.journal_id,'Customer settlement exchange difference').base_credit,'20.33');
+});
+
+function policyForRecovery(f, extra = {}) {
+  const setup=certificates(f.db,'example-client-finance-author',today),review=certificates(f.db,'example-client-finance-reviewer',today);
+  const previous=setup.contract(f.c.id).policies[0];
+  let c=setup.savePolicy(null,{...previous,contract_id:f.c.id,recovery_tax_mode:'original_tax',...extra,reason});
+  c=setup.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'submit',reason});
+  return review.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'approve',reason});
+}
+function measurement(f, extra = {}) {
+  const maker=certificates(f.db,'example-measurer',today),technical=certificates(f.db,'example-technical-reviewer',today);
+  const pending=maker.list(f.company,f.c.project_id).find(r=>r.contract_id===f.c.id && r.state==='technical');
+  const r=technical.decide(pending.id,{version:pending.version,action:'return',reason});
+  return maker.save(r.id,{...r,period_to:today(),...extra,reason});
+}
+function certify(f,r) {
+  r=decide(certificates(f.db,'example-measurer',today),r,'submit');
+  for(const who of ['example-technical-reviewer','example-certificate-commercial','example-client-finance-reviewer']) r=decide(certificates(f.db,who,today),r,'accept');
+  return r;
+}
+function certificateInvoice(f,r,extra={}) {
+  let i=f.ar.saveInvoice(null,{certificate_id:r.id,invoice_date:today(),accounting_date:today(),due_date:today(),rate:'1',rate_date:today(),rate_source:reason,basis:reason,reason,...extra});
+  i=f.ar.decideInvoice(i.id,{version:i.version,action:'submit',reason});
+  return f.post.decideInvoice(i.id,{version:i.version,action:'post',reason});
+}
+test('taxed recovery requires elected policy, releases original tax once, and retains source history', t=>{
+  const f=fixture(t),a=approved(f,{principal:'100',tax_percent:'5'}),i=invoice(f,a);receive(f,i,'105','ADV-TAX-RECOVERY');
+  assert.throws(()=>measurement(f),/original advance-tax/);
+  policyForRecovery(f);
+  const maker=certificates(f.db,'example-measurer',today),pending=maker.list(f.company,f.c.project_id).find(r=>r.state==='returned');
+  let r=maker.save(pending.id,{...maker.detail(pending.id),period_to:today(),reason});
+  assert.equal(r.snapshot.work_tax,'256.13');assert.equal(r.snapshot.recovered_tax,'5.00');assert.equal(r.tax,'251.13');assert.equal(r.total,'5017.66');
+  assert.equal(f.db.prepare('SELECT count(*) n FROM client_advance_recoveries').get().n,0);
+  r=certify(f,r);
+  const original=f.db.prepare("SELECT * FROM client_receipts WHERE bank_reference='ADV-TAX-RECOVERY'").get();
+  assert.throws(()=>receipts(f.db,'advance-writer',today).reverse(original.id,{version:original.version,accounting_date:today(),reason}),/Certified advance recovery/);
+  const ci=certificateInvoice(f,r);
+  assert.equal(ci.journal.find(l=>l.account_id===f.tax && l.debit==='5.00').base_debit,'5.00');
+  assert.equal(ci.journal.find(l=>l.account_id===f.tax && l.credit!=='0.00').credit,'256.13');
+  assert.throws(()=>f.db.prepare('DELETE FROM client_advance_recoveries WHERE certificate_id=?').run(r.id),/retained/);
+});
+test('an approved pending reversal reduces recovery availability; a draft reversal cannot bypass later certification', t=>{
+  const f=fixture(t),a=approved(f,{principal:'100',tax_percent:'0'}),i=invoice(f,a),receipt=receive(f,i,'100','ADV-PENDING-REVERSE');
+  const writer=receipts(f.db,'advance-writer',today),review=receipts(f.db,'advance-approver',today);
+  let correction=writer.reverse(receipt.id,{version:receipt.version,accounting_date:today(),reason});
+  let r=measurement(f);assert.equal(r.recovery,'100.00');
+  correction=decide(review,decide(writer,correction,'submit'),'approve');
+  assert.throws(()=>decide(certificates(f.db,'example-measurer',today),r,'submit'),/basis.*changed/);
+  r=certificates(f.db,'example-measurer',today).save(r.id,{...r,reason});assert.equal(r.recovery,'0.00');
+  correction=decide(writer,correction,'withdraw');
+  assert.throws(()=>decide(certificates(f.db,'example-measurer',today),r,'submit'),/basis.*changed/);
+  r=certificates(f.db,'example-measurer',today).save(r.id,{...r,reason});r=certify(f,r);
+  assert.throws(()=>decide(writer,correction,'submit'),/Certified advance recovery/);
+  assert.equal(f.db.prepare('SELECT state FROM client_receipts WHERE id=?').get(correction.id).state,'draft');
+});
+test('new receipts invalidate a pending measurement and earlier cutoffs do not recover future cash',t=>{
+  const f=fixture(t),a=approved(f,{principal:'100',tax_percent:'0'}),i=invoice(f,a);
+  let r=measurement(f);assert.equal(r.recovery,'0.00');receive(f,i,'50','ADV-STALE-RECOVERY');
+  assert.throws(()=>decide(certificates(f.db,'example-measurer',today),r,'submit'),/basis.*changed/);
+  r=certificates(f.db,'example-measurer',today).save(r.id,{...r,reason});assert.equal(r.recovery,'50.00');
+  r=certificates(f.db,'example-measurer',today).save(r.id,{...r,period_to:'2026-10-28',rate_date:'2026-10-28',reason});assert.equal(r.recovery,'0.00');
+});
+
+test('approved but uninvoiced recovery reserves funds; later certificates consume only residual principal/tax cents',t=>{
+  const f=fixture(t);policyForRecovery(f);
+  const a=approved(f,{principal:'999.99',tax_percent:'5'}),i=invoice(f,a);receive(f,i,i.total,'ADV-RESIDUAL-CENTS');
+  const basis=certificates(f.db,'example-measurer',today).contract(f.c.id),pending=f.db.prepare("SELECT * FROM client_certificates WHERE contract_id=? AND state='technical'").get(f.c.id);
+  const half=JSON.parse(pending.lines_json).map(l=>({line_key:l.line_key,cumulative_quantity:new D(l.cumulative_quantity).plus(basis.previous_lines.find(x=>x.line_key===l.line_key).cumulative_quantity).div('2').toString()}));
+  let first=measurement(f,{period_to:'2026-10-29',lines:half});assert.equal(first.recovery,'512.26');assert.equal(first.snapshot.recovered_tax,'25.61');first=certify(f,first);
+  // The next business day is explicit in this isolated fixture; no system clock override.
+  const next=()=> '2026-10-30',maker=certificates(f.db,'example-measurer',next),c=maker.contract(f.c.id);
+  let second=maker.save(null,{contract_id:c.id,title:'Remaining work and advance',period_from:next(),period_to:next(),rate:'1',rate_date:next(),rate_source:reason,basis:reason,reason,...evidence,lines:c.lines.map(l=>({line_key:l.line_key,cumulative_quantity:l.quantity}))});
+  assert.equal(second.recovery,'487.73');assert.equal(second.snapshot.recovered_tax,'24.39');
+  second=decide(maker,second,'submit');for(const who of ['example-technical-reviewer','example-certificate-commercial','example-client-finance-reviewer']) second=decide(certificates(f.db,who,next),second,'accept');
+  const totals=f.db.prepare('SELECT principal,tax FROM client_advance_recoveries WHERE invoice_id=?').all(i.id);
+  assert.equal(money(sum(totals.map(r=>r.principal))),'999.99');assert.equal(money(sum(totals.map(r=>r.tax))),'50.00');
+  assert.equal(f.db.prepare('SELECT count(*) n FROM client_invoices WHERE certificate_id IN (?,?)').get(first.id,second.id).n,0);
+  assert.equal(maker.contract(c.id).advance_position.available_principal,'0.00');
+});
+test('recovery is atomic with finance certification and stale reviewer authority prevents reservation',t=>{
+  const f=fixture(t),a=approved(f,{principal:'100',tax_percent:'0'}),i=invoice(f,a);receive(f,i,'100','ADV-ATOMIC');
+  let r=measurement(f);r=decide(certificates(f.db,'example-measurer',today),r,'submit');r=decide(certificates(f.db,'example-technical-reviewer',today),r,'accept');r=decide(certificates(f.db,'example-certificate-commercial',today),r,'accept');
+  const finance=certificates(f.db,'example-client-finance-reviewer',today);
+  f.db.exec("CREATE TRIGGER injected_recovery_failure BEFORE INSERT ON client_advance_recoveries BEGIN SELECT RAISE(ABORT,'Injected recovery failure'); END");
+  assert.throws(()=>decide(finance,r,'accept'),/Injected/);
+  assert.equal(f.db.prepare('SELECT state FROM client_certificates WHERE id=?').get(r.id).state,'finance');
+  assert.equal(f.db.prepare('SELECT count(*) n FROM client_certificate_lines WHERE certificate_id=?').get(r.id).n,0);
+  assert.equal(f.db.prepare('SELECT count(*) n FROM client_advance_recoveries WHERE certificate_id=?').get(r.id).n,0);
+  f.db.exec('DROP TRIGGER injected_recovery_failure');
+  f.db.prepare("UPDATE users SET active=0 WHERE id='example-certificate-commercial'").run();
+  assert.throws(()=>decide(finance,r,'accept'),/earlier reviewer/);
+  f.db.prepare("UPDATE users SET active=1 WHERE id='example-certificate-commercial'").run();
+  r=decide(finance,r,'accept');assert.equal(r.state,'approved');
+});
+
+test('tax-inclusive recovery is capped to invoice capacity under differing original and work tax rates',t=>{
+  const f=fixture(t);policyForRecovery(f,{tax_percent:'0'});
+  const a=approved(f,{principal:'2',tax_percent:'100'}),i=invoice(f,a);receive(f,i,'4','ADV-CAP-TAX');
+  const c=certificates(f.db,'example-measurer',today).contract(f.c.id),policy=c.policies[0].snapshot;
+  const quote=recoveryQuote(f.db,{...c,terms:{...c.terms,recovery_percent:'100'}},policy,today(),'3.00','0.00');
+  assert.equal(quote.principal,'1.50');assert.equal(quote.tax,'1.50');
+  assert.equal(quote.allocations[0].base_principal,'1.50');assert.equal(quote.allocations[0].base_tax,'1.50');
+});
+test('multiple source invoices reconcile certified and posted recovery and export the same complete population',t=>{
+  const f=fixture(t);policyForRecovery(f);
+  const originals=[];
+  for (const [amount,ref] of [['100.01','MULTI-ONE'],['200.02','MULTI-TWO']]) {const a=approved(f,{principal:amount,tax_percent:'5'}),i=invoice(f,a);receive(f,i,i.total,ref);originals.push(i);}
+  let r=measurement(f);assert.equal(r.recovery,'300.03');assert.equal(r.snapshot.recovered_tax,'15.00');
+  assert.deepEqual(r.snapshot.advance_recovery.allocations.map(a=>a.invoice_id),originals.map(i=>i.id).sort());
+  r=certify(f,r);certificateInvoice(f,r);
+  const report=f.post.report('jakh',{project:'harbour'});
+  assert.equal(report.totals.posted_recovery,'300.03');assert.equal(report.totals.ledger_recovery,'300.03');assert.equal(report.totals.recovery_difference,'0.00');
+  assert.equal(report.currencies[0].certified_recovery,'300.03');assert.equal(report.currencies[0].recovered_tax,'15.00');
+  assert.ok(report.findings.some(f=>f.includes('300.03')&&f.includes('original')));
+  const detail=certificateDetailCsv(r),exported=certificatesReportCsv(report);
+  for(const i of originals) assert.ok(detail.includes(i.id));
+  assert.ok(exported.includes('Original advance tax released'));assert.ok(exported.includes('300.03'));
+  assert.equal(f.post.report('jakh',{project:'gardens'}).totals.posted_recovery,'0.00');
 });

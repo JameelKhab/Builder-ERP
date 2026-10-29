@@ -1,12 +1,14 @@
 # Resume protected client advance recovery
 
-29 October 2026. This is the exact continuation plan, preserved independently of the original chat. Read START-HERE.md and the original client-advances-v1 contract first. All 267 functions, 34 data contracts and 21 domains remain required. Do not infer full completion from the 246 passing subset tests.
+29 October 2026. This is the exact continuation plan, preserved independently of the original chat. Read START-HERE.md and the original client-advances-v1 contract first. All 267 functions, 34 data contracts and 21 domains remain required. Do not infer full completion from the 253 passing subset tests.
 
-## What is implemented
+## Current checkpoint
 
-Request approval → canonical advance invoice → recorded customer receipt works through services and authenticated HTTP. Schema 17 adds `client_advance_recoveries` and future policy fields (`recovery_tax_mode`, `recovery_fx_basis`, gain/loss accounts), but no allocation service or policy form consumes them. The allocation table is empty. `advance-balances.mjs` supplies conservative partial paid principal, residual paid tax and original liability carrying value. The existing certificate guard remains: paid advance principal blocks new measurement at its cutoff. Never merely remove this guard.
+Steps 1–5 below are now connected and covered by service/HTTP tests. The existing certificate UI includes recovery policy choices/source details and certificate reports reconcile posted advance principal. Schema remains 17. The temporary paid-advance guard has been replaced by the protected workflow. The detailed design below remains useful as its invariant checklist, not a list of five unfinished services.
 
-## Implement next, in this order
+**Continue at step 6:** dedicated advance list/options/report/export, clear request/invoice/receipt navigation, My Work/search and additive examples in every supplied scope. Retain the controls already implemented. Full source parity, credits/cancellation and recovered-certificate correction remain open. The saved workspace still has zero advances/recoveries; current scenarios are isolated test fixtures.
+
+## Connected design and remaining user flow
 
 1. **Policy election and source quote.** Extend policy validation, save, snapshots and UI. Require `original_tax` before recovering taxed advances and `historical_consideration` before foreign non-monetary recovery. Income/expense FX accounts must be valid company general accounts, distinct from measured revenue and supplied together. Require both for foreign taxed recovery. Preserve the old snapshot shape when new settings remain unconfigured so existing review cycles do not become stale without a relevant change.
 2. **Exact invoice-level allocation.** Current measured gross × original contract recovery percentage, rounded once, capped by paid/unreserved principal and gross less retention. Do not infer historical catch-up. Use paid receipts/corrections through period end, less approved pending reversal reservations; a draft reversal does not reserve. Allocate deterministically by source invoice date/ID. Subtract all already certified allocations, including those with invoices not yet posted. Each source's tax and original base carrying increment equals its cumulative original ratio less prior frozen amounts, with final cents exhausted. Cap principal plus released tax against the current invoice capacity so no negative invoice is created. Use exact decimal/integer cents, with binary search if needed for the tax-inclusive cap.

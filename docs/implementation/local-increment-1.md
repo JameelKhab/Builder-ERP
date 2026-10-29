@@ -122,3 +122,5 @@ Typed advance requests/independent approval, canonical liability invoices and re
 
 
 29 October continuity checkpoint: schema 17 adds recovery table/policy groundwork and conservative partial-principal cents; recovery services remain unimplemented and the paid-advance guard remains active. All 246 tests/build pass; all 102 prior tables are preserved and all 103 restored tables match. See [recovery continuation](advance-recovery-next-step.md).
+
+Connected recovery checkpoint: protected allocations, original-tax/historical-consideration posting, reversal reservations, certificate UI/findings/export and authenticated HTTP journeys now pass 253 tests. Schema remains 17. Dedicated advance UI/full report/examples remain next; see advances-local.md.

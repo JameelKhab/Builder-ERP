@@ -24,8 +24,8 @@ export const LEDGER_STATES = {
   posted: 'Posted',
   cancelled: 'Cancelled'
 };
-export function convertJournal(input, rate) {
-  requireThat(Array.isArray(input) && input.length >= 2 && input.length <= 50, 'Use 2 to 50 journal lines.');
+export function convertJournal(input, rate, { maxLines = 50, allowZeroBase = false } = {}) {
+  requireThat(Array.isArray(input) && input.length >= 2 && input.length <= maxLines, `Use 2 to ${maxLines} journal lines.`);
   const lines = input.map(l => {
     const debit = amt(l.debit),
       credit = amt(l.credit);
@@ -49,7 +49,7 @@ export function convertJournal(input, rate) {
     const difference = new D(base).minus(sum(lines.map(l => l[`base_${side}`])));
     target[`base_${side}`] = money(new D(target[`base_${side}`]).plus(difference));
     target.rounding_adjustment = money(difference);
-    requireThat(eligible.every(l => new D(l[`base_${side}`]).gt(0)), 'The rate rounds a line to zero. Combine related lines or revise the accounting rate.');
+    requireThat(eligible.every(l => allowZeroBase ? new D(l[`base_${side}`]).gte(0) : new D(l[`base_${side}`]).gt(0)), 'The rate rounds a line to zero. Combine related lines or revise the accounting rate.');
   }
   return {
     lines,
