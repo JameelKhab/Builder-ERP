@@ -1,23 +1,12 @@
 {
-  "tracked_files_checked": 471,
-  "issues": [
-    {
-      "path": "docs/study/JAKH-ERP-Read-Only-Study.pdf",
-      "finding": "Credential-like pattern; inspect privately"
-    },
-    {
-      "path": "docs/study/archive/study-authoring-history.zip!company_currency_ai_content.py",
-      "finding": "Credential-like archive pattern"
-    },
-    {
-      "path": "tools/study/company_currency_ai_content.py",
-      "finding": "Credential-like pattern; inspect privately"
-    }
-  ],
+  "history_blobs_checked": 833,
+  "archived_members_checked": 210,
+  "issues": [],
   "checks": [
-    "common token/private-key signatures",
+    "token-boundary-aware common credential/private-key signatures in all reachable Git blobs",
     "excluded credential/runtime filenames",
-    "text/bytes inside tracked ZIP evidence"
+    "contents of tracked ZIP evidence"
   ],
-  "limits": "Not a full secret, binary-image, dependency or security audit. Runtime database and local authentication configuration remain ignored."
+  "initial_check_correction": "An overly broad sk- pattern matched the middle of the NIST artificial-intelligence-risk-management URL in report sources/PDF. Added a token boundary; no credential was present in that match.",
+  "limits": "Not a full binary-image, dependency or security audit. Runtime database and local authentication configuration remain ignored."
 }
