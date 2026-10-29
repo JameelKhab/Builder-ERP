@@ -4,8 +4,8 @@ import { policy } from './access.mjs';
 import { ROLE_BY_ID } from '../shared/access.mjs';
 import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { convertJournal } from './ledger.mjs';
-import { receivableBalance } from './receivable-balance.mjs';
-import { payableRatio } from './payables.mjs';
+import { advanceSettlement } from './advance-balances.mjs';
+export { advanceSettlement, contractAdvancePaid } from './advance-balances.mjs';
 
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`;
 const now = () => new Date().toISOString();
@@ -93,21 +93,6 @@ export function advanceInvoiceCalculation(db, r, input, today) {
   const converted = convertJournal(lines.map(l => ({ ...l, account_id: l.account.id })), fx.rate);
   const journal = converted.lines.map((l, i) => ({ ...l, account_code: lines[i].account.code, account_name: lines[i].account.name, account_type: lines[i].account.type }));
   return { snapshot: { policy: 'builder-client-advance-invoice-v1', advance_id: r.id, advance: s, contract: c, accounts: s.accounts }, journal, total: r.total, company_total: journal.find(l => l.account_id === s.accounts.receivable.id).base_debit, company_gross: converted.company_total, company_retention: '0.00', ...fx };
-}
-
-// Paid principal is a fact, not permission to recover it: recovery reservations follow separately.
-export function advanceSettlement(db, invoice, cutoff = '9999-12-31') {
-  requireThat(invoice.advance_id && invoice.state === 'posted', 'A posted advance invoice is required.');
-  day(cutoff);
-  if (invoice.accounting_date > cutoff) return { settled: '0.00', paid_principal: '0.00', paid_tax: '0.00', paid_principal_carrying: '0.00', open_receivable: '0.00', latest_date: null };
-  const s = JSON.parse(invoice.snapshot), b = receivableBalance(db, invoice, cutoff);
-  const principal = payableRatio(b.settled, s.advance.principal, invoice.total);
-  const liability = JSON.parse(invoice.journal_json).find(l => l.account_id === s.accounts.advance.id).base_credit;
-  return { settled: b.settled, paid_principal: principal, paid_tax: money(new D(b.settled).minus(principal)), paid_principal_carrying: payableRatio(principal, liability, s.advance.principal), open_receivable: b.open, latest_date: b.latest_date };
-}
-
-export function contractAdvancePaid(db, contractId, cutoff) {
-  return money(sum(all(db, "SELECT * FROM client_invoices WHERE contract_id=? AND advance_id IS NOT NULL AND state='posted' AND accounting_date<=?", contractId, cutoff).map(i => advanceSettlement(db, i, cutoff).paid_principal)));
 }
 
 export function advances(db, actorId, today = () => now().slice(0, 10)) {

@@ -1,4 +1,5 @@
 import { installAdvances } from './advances-schema.mjs';
+import { installAdvanceRecovery } from './advance-recovery-schema.mjs';
 import { installReceipts } from './receipts-schema.mjs';
 import { installReceiptExamples } from './receipts-examples.mjs';
 import { installCertificateExamples } from './certificates-examples.mjs';
@@ -75,6 +76,7 @@ export function openDatabase(path = ':memory:', {
   installCertificates(db);
   installReceipts(db);
   installAdvances(db);
+  installAdvanceRecovery(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);

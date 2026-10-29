@@ -1324,7 +1324,7 @@
       "source_path": "Advances & retention releases",
       "destination": "Project > Costs & Contracts > Advances & retention",
       "local_status": "partial",
-      "implemented_and_remaining": "Typed advance request/independent approval, canonical liability invoice and receipt-derived principal/tax are tested backend foundations. Separate zero-default authority and aggregate original ceiling are enforced. Recovery allocations/posting/reversal protection, dedicated UI/reports/export/examples, retention release and full parity remain unfinished; paid-advance measurement is temporarily blocked.",
+      "implemented_and_remaining": "Typed advance request/independent approval, canonical liability invoice and receipt-derived principal/tax are tested backend foundations. Separate zero-default authority and aggregate original ceiling are enforced. Recovery allocations/posting/reversal protection, dedicated UI/reports/export/examples, retention release and full parity remain unfinished; paid-advance measurement is temporarily blocked. Schema-17 recovery table/policy groundwork and conservative partial-principal cents are verified, but no recovery allocation service is implemented.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1339,7 +1339,9 @@
         "docs/implementation/advances-local.md",
         "app/tests/advances.test.mjs",
         "app/tests/advances-api.test.mjs",
-        "docs/validation/advances/README.md"
+        "docs/validation/advances/README.md",
+        "app/tests/advance-recovery-foundation.test.mjs",
+        "docs/implementation/advance-recovery-next-step.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Recovery cannot exceed the actual outstanding advance under the policy.",

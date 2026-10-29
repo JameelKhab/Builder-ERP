@@ -119,3 +119,6 @@ Posted client invoices now connect to multi-invoice/project receipts, separate i
 ## 29 October 2026 — Client advance accounting foundation
 
 Typed advance requests/independent approval, canonical liability invoices and receipt-derived principal/tax now have service/HTTP verification, with schema-16 preservation and 241 passing tests/build. This is an intermediate backend checkpoint. Recovery allocations, the dedicated UI, reports/export and examples remain required; a temporary guard blocks measurement with paid advances. See [advance progress](advances-local.md) for the exact remaining work.
+
+
+29 October continuity checkpoint: schema 17 adds recovery table/policy groundwork and conservative partial-principal cents; recovery services remain unimplemented and the paid-advance guard remains active. All 246 tests/build pass; all 102 prior tables are preserved and all 103 restored tables match. See [recovery continuation](advance-recovery-next-step.md).

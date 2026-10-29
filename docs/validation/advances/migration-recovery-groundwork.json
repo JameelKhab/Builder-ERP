@@ -1,0 +1,1783 @@
+{
+  "date": "2026-10-29T11:06:57.664Z",
+  "change": "Schema-17 recovery groundwork only; allocation/posting services remain unfinished and temporary certificate guard remains active",
+  "scratch": {
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreign_keys": [],
+    "schema": 17,
+    "tables": 103,
+    "preserved": [
+      {
+        "table": "access_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "bank_matches",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "6169a5d0d832234c54dc6a4c26338d915df4ff68fe99760cd32038e6015c3345"
+      },
+      {
+        "table": "bank_receipt_matches",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "e0daf657020ab14664e720f54b31aa4a08a8515aabcdccdef6c3497422d397a3"
+      },
+      {
+        "table": "bank_rows",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "f9b33146430d23c03ec63f4dc170a24ce8d4070de1c58d38f9de72054c16e7da"
+      },
+      {
+        "table": "bank_statement_voids",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "bank_statements",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "c612bd32fa6fffa98137bf9878eb599ff8749883da720893326abfc92bd010e8"
+      },
+      {
+        "table": "boq_intake_checks",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "217a24398493624390bca296146a701737423a3d1b7a5a054f73410fa76c5fc6"
+      },
+      {
+        "table": "boq_intake_events",
+        "rows": 24,
+        "old_columns_unchanged": true,
+        "sha256": "33b7280f5dd6d2ff15af832918f87a83b9cdabcf35d781e2537f58a4508fa597"
+      },
+      {
+        "table": "boq_intake_files",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "0dff9a7bcd1ceb36ba2688b0fbed34b06d11a1807c94e10df9c02e210874d959"
+      },
+      {
+        "table": "boq_intake_lines",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "79ed1669775625b42330d3d1bd8311f404f5983930ec673920384a9e5997e061"
+      },
+      {
+        "table": "boq_intakes",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "08e971848eb9e10a60d75f99b220ced807971086de16c1ebb9aac21aa88c8552"
+      },
+      {
+        "table": "budget_documents",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "1acd10eff01e6668d8f8f6750666a70df94b42000015fb89950db617674fa0e8"
+      },
+      {
+        "table": "budget_facts",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "1740a0ee2aef755e0be487323f7616e51a22044aa6847d7d1d48b4649f4d7d74"
+      },
+      {
+        "table": "budget_lines",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "47303d99ae8c265c1bfef7646ff3664320751eff67d02c89495be154919abd6c"
+      },
+      {
+        "table": "catalogue_units",
+        "rows": 11,
+        "old_columns_unchanged": true,
+        "sha256": "46751aaf37f3a0321aaa91c8f1eb9b56b36e582fc1674c6ca522a41fd389380b"
+      },
+      {
+        "table": "client_advance_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_advance_evidence",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_advances",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_certificate_lines",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "6e70e32c8c2cb5670a17888f28eee80b7d451443c80f97674eae0f4a22eb0e48"
+      },
+      {
+        "table": "client_certificates",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "eb4728ff930497b63620ea97061fc254e5162f432179b0dd0a6862e5968c76bd"
+      },
+      {
+        "table": "client_contract_lines",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "9a877af9bfee43687b3ffee78cfdda4e43f614f1228820ea02bbac36ffd409c0"
+      },
+      {
+        "table": "client_contracts",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "c39f2394d103d92c835a12844e35e3f6b48a3ea39028fef91468ea85fef242d2"
+      },
+      {
+        "table": "client_finance_events",
+        "rows": 78,
+        "old_columns_unchanged": true,
+        "sha256": "7772cf2bc2c7d3b7293cf38257aae003d011c5654bbd7f5083e651be3345f2e4"
+      },
+      {
+        "table": "client_invoices",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "3aec3ea0da899ae10f3b9badc6f640f4c596d9a34a37c2b185840bb9b564d303"
+      },
+      {
+        "table": "client_measurement_evidence",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "f539a71eacefe00286107c2c564da25b8e80ebfac9048a1dfe56b151e8f213a9"
+      },
+      {
+        "table": "client_receipt_allocations",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "2b664c0a5b4fa263e818fc5902e55dc07cf5aaa16fb1654fa84bdceb14997a0b"
+      },
+      {
+        "table": "client_receipt_events",
+        "rows": 42,
+        "old_columns_unchanged": true,
+        "sha256": "14fe33741c789de3a153593b71654267ad37a78f9275c236ed7ece3b9fdd2f2d"
+      },
+      {
+        "table": "client_receipt_evidence",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "83ec6653302f965a1c402a57640c2318cdc445a7b1e1745a588fafc3988e5a44"
+      },
+      {
+        "table": "client_receipts",
+        "rows": 15,
+        "old_columns_unchanged": true,
+        "sha256": "64a7fa47ec1c220aa2579343b320f4ffbec02dcc335093df29d30ed4951d7091"
+      },
+      {
+        "table": "commercial_events",
+        "rows": 35,
+        "old_columns_unchanged": true,
+        "sha256": "1668492108fc06ee70ab5f0e8dcac2ece7747f814e39a0878b5cf6c7e67d4fcf"
+      },
+      {
+        "table": "companies",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "50826c6995bf3830b859fb22f7f4e5865b80296227c996e46046dc19bd4c9089"
+      },
+      {
+        "table": "construction_cost_facts",
+        "rows": 14,
+        "old_columns_unchanged": true,
+        "sha256": "170b53ff56347725eb223bad8bb84bfe8bb8ef9ce23215f4e73b51d96806b692"
+      },
+      {
+        "table": "contract_finance_policies",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "cfd0765514cd7aaf5a9c5f192b0867cdd92b081c24dce4c9b0fc8e361eca1d43"
+      },
+      {
+        "table": "cost_codes",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "0159be71ee0f82b9549efc68a9b9ecc850a70c45680fc529f6caee4ea38b0af1"
+      },
+      {
+        "table": "cost_items",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "bf33016d703ef13c8f4646c95af539f4e99eb60bc7e2dfad09cf69998f95bbce"
+      },
+      {
+        "table": "document_master_snapshots",
+        "rows": 59,
+        "old_columns_unchanged": true,
+        "sha256": "1f83ca5d5f52a79fd407f5f1ceed41f12389b98a2d973896643c0d72527a8d9f"
+      },
+      {
+        "table": "estimate_events",
+        "rows": 78,
+        "old_columns_unchanged": true,
+        "sha256": "2c2f12fa853d3a6e800b34beb29d0cb7263292d29b91b522f823a1dccd7d233c"
+      },
+      {
+        "table": "estimate_handover_lines",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "estimate_handovers",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "estimate_lines",
+        "rows": 119,
+        "old_columns_unchanged": true,
+        "sha256": "eb9067df23bdd6fcb3ecea33c84ae50bcff250a02a349364dbe4dc6697d3ffa9"
+      },
+      {
+        "table": "estimate_overrides",
+        "rows": 81,
+        "old_columns_unchanged": true,
+        "sha256": "e7a090d5e5a867817f98349bb5f42878fef478c67a096daa77340793a3d2518d"
+      },
+      {
+        "table": "estimate_resources",
+        "rows": 116,
+        "old_columns_unchanged": true,
+        "sha256": "8a92c7b4320c0624a55d09140aca633486181b8b38aaf6ab3fd49ae2210c6d9c"
+      },
+      {
+        "table": "estimate_versions",
+        "rows": 29,
+        "old_columns_unchanged": true,
+        "sha256": "bae1cc1bca01c7dde5da901dfe710c00ce48589b0e23209d5c8fcd9831046ac7"
+      },
+      {
+        "table": "events",
+        "rows": 29,
+        "old_columns_unchanged": true,
+        "sha256": "76ab171c150889f19ebc0586cf24b022feaeeb6bc40e580516110ab5075e4dda"
+      },
+      {
+        "table": "foundation_events",
+        "rows": 23,
+        "old_columns_unchanged": true,
+        "sha256": "eaa8a65727b10f8f364523a0f8aff097073b5ba9c39df971e90bce3792c421d9"
+      },
+      {
+        "table": "identities",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_codes",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_limits",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_sessions",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_state",
+        "rows": 1,
+        "old_columns_unchanged": true,
+        "sha256": "124e11faaafcdb80d8f7d2c665687ffe438cee0ef31dfe923a4621c9baf13bda"
+      },
+      {
+        "table": "ledger_accounts",
+        "rows": 26,
+        "old_columns_unchanged": true,
+        "sha256": "d9a86b163f6e1dbe88b341dfa96aa7ff85a6b977c9de57d0ba67777646b0c6b5"
+      },
+      {
+        "table": "ledger_entries",
+        "rows": 51,
+        "old_columns_unchanged": true,
+        "sha256": "e3f7eb98ba1e2679f4e56bd3ff502f5a4b1872778cfa3175d7886dc659909c30"
+      },
+      {
+        "table": "ledger_events",
+        "rows": 100,
+        "old_columns_unchanged": true,
+        "sha256": "07500cfbb171445cea552dd922e9da8b772dfd6fdcedbf1f59b73886487e16b7"
+      },
+      {
+        "table": "ledger_lines",
+        "rows": 129,
+        "old_columns_unchanged": true,
+        "sha256": "23afc904f4e70cff8e77883e3b29557a80dfcbced36765d1e7b7934d000d7520"
+      },
+      {
+        "table": "ledger_periods",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "0a3adbeb6df365ea7e5fc77af5e1f1284d6cb9122b3cbdd959cc68a897709f85"
+      },
+      {
+        "table": "ledger_sequences",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "309195b5c92f3cdd7c7cf44c7570110b7d672690cddd941658bf21993e5755ee"
+      },
+      {
+        "table": "master_events",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "955318d06cc8df4a3aa88808cf57d434bae3bad1fd906d2f5b88c5f0c558c3fe"
+      },
+      {
+        "table": "material_receipts",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "46a116aa4c57bd9fcfa3eeeb8c853e5e8f7d914f8cb65e9c8cfa6e37c5f78e8d"
+      },
+      {
+        "table": "material_request_lines",
+        "rows": 20,
+        "old_columns_unchanged": true,
+        "sha256": "e2eaebeef76bc10b6756b60ad75d43b867296a5b674a7c9eff3f0011d414cff6"
+      },
+      {
+        "table": "material_requests",
+        "rows": 17,
+        "old_columns_unchanged": true,
+        "sha256": "34888e5b963a2885573a1901fae3106d5b7406e70836072bfb9490161748b788"
+      },
+      {
+        "table": "memberships",
+        "rows": 49,
+        "old_columns_unchanged": true,
+        "sha256": "b71aaa3554d882c498673d86bd5eb8545db8e2b5fab5a6953e2b40c934d66c17"
+      },
+      {
+        "table": "parties",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "3e5160ee4e0f8730b4f70c8e6c462280b3b204d9a772fdaebebd7c6ff83d7dfa"
+      },
+      {
+        "table": "party_companies",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "b09c9a80978af860894ceabdce319d991f3bdbad60feb64baa059ac7ceb6b082"
+      },
+      {
+        "table": "payable_documents",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "acaeef2d2c54e81e4046038b936fcdfbc4cd186a285d86a7593e3348232e275e"
+      },
+      {
+        "table": "payable_events",
+        "rows": 49,
+        "old_columns_unchanged": true,
+        "sha256": "2f3bf19a9d4ea29877643be83034c9e04de9573e6ba9e83b3b49808dc18c8b4c"
+      },
+      {
+        "table": "payable_lines",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "cb01cac137b194b32daa836252fe7855685f9061528f463b43c7e6c6b26496c6"
+      },
+      {
+        "table": "payable_settings",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "6e17646bdbddf359c3004507b6c94db91e2512b2d05a2d9ec422b264bdcb6892"
+      },
+      {
+        "table": "payable_tax_codes",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "d28d6253bf01e7f64e0a86bdc2eb3d77495774ff58057fc4032d9106b79a79aa"
+      },
+      {
+        "table": "payment_allocations",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "ad9551efdc6eb556f7c9cd4362c7bde81154eb6087a03cbc9d1c5ba6eb28e77d"
+      },
+      {
+        "table": "payment_banks",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "f71b189ddc1bc77cbbde91a1e3bfef5e716dd072e98230c67634adf02e596646"
+      },
+      {
+        "table": "payment_events",
+        "rows": 101,
+        "old_columns_unchanged": true,
+        "sha256": "1c4c6e37cdd79ea136734278bb5abedb4c8f766b0acf6d7ad2ded175f5d65788"
+      },
+      {
+        "table": "payments",
+        "rows": 24,
+        "old_columns_unchanged": true,
+        "sha256": "4b7f5223b74a54898b3d7a43c53b305af076502a2e3d10d439be578ba8a6bd1a"
+      },
+      {
+        "table": "procurement_events",
+        "rows": 115,
+        "old_columns_unchanged": true,
+        "sha256": "aac12d223a5e23d3e301d276ec8ea33c14709880fa7e690d05713c7fcb26f01c"
+      },
+      {
+        "table": "product_categories",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "68c3147e55167b8ddb58ebe2e700a1c4019ddef8718fa676fb6c959a5a85efd6"
+      },
+      {
+        "table": "product_packs",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "3eeca99bc1285acc9753b538a237244afecfb0e276136d4c200dd59a072f9fcf"
+      },
+      {
+        "table": "products",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "3c838695c07f3b7477585e22c5a9a9208c26809011ae905afb16263954808dd8"
+      },
+      {
+        "table": "project_locations",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "8c245f04841adda9b9289d8f467794be5f24064bfc69518759603336b9792e0d"
+      },
+      {
+        "table": "projects",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "009f1a1d8084b474fa1d05dff16a2e41e8a0037271154d08190ad09b0df001a4"
+      },
+      {
+        "table": "purchase_order_lines",
+        "rows": 10,
+        "old_columns_unchanged": true,
+        "sha256": "a5e1a8b32ed25fdeb8e1194f2a135d1b8bf97b4d0db24afee27d7c77a9e18e0a"
+      },
+      {
+        "table": "purchase_orders",
+        "rows": 10,
+        "old_columns_unchanged": true,
+        "sha256": "e521fcec0753c6f8823c1d2f81937482435c2555168f6cd623df32a3d82ed291"
+      },
+      {
+        "table": "quality_actions",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "c5df3ebffa878127f57d0f56a56e3a26b2fae91a5ddce33efa54d48f6b89684f"
+      },
+      {
+        "table": "quality_cases",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "dfa44ce50777ca6dc0196338b5933d0e7f913dd1bd1872eb02feaf9ee993de30"
+      },
+      {
+        "table": "quality_events",
+        "rows": 119,
+        "old_columns_unchanged": true,
+        "sha256": "610d77ad36fa76ad4d495e2bc6ce04e53d329c7f71109b3f51137e5bc5cc039f"
+      },
+      {
+        "table": "quality_evidence",
+        "rows": 37,
+        "old_columns_unchanged": true,
+        "sha256": "3fd7d3beb11163ec24238f1818106ec6e38ffeba2c2f595bf424a0b183fd7724"
+      },
+      {
+        "table": "quality_impacts",
+        "rows": 76,
+        "old_columns_unchanged": true,
+        "sha256": "c8abfa85f4b80959983fdde7589d855cb8a288e01f498f9e21a7f877c8a96b0f"
+      },
+      {
+        "table": "quote_pack_details",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "f167c12e2fc74ded692fadb91c7fbc4b41ee2427cf8994b4cf647d0aa153689c"
+      },
+      {
+        "table": "records",
+        "rows": 107,
+        "old_columns_unchanged": true,
+        "sha256": "299cd345ef741f3cbf111c59481c47698272c438dda1c2daab42a9f5a5530fe6"
+      },
+      {
+        "table": "requests",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "85e378aa4581b0c2130037e9ed481f7ae7e508c09c3515f5001da50c30fd9aa5"
+      },
+      {
+        "table": "sales_acceptances",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "0745403e028fa8e9cb58a7482446e5cbf44c9716e9d98e5a24cba06806382e10"
+      },
+      {
+        "table": "sales_offer_lines",
+        "rows": 36,
+        "old_columns_unchanged": true,
+        "sha256": "6a4aeb0131eeb15b83ef75f36e3f49e1be43e76ec427ddb4a05f5e5c121cde10"
+      },
+      {
+        "table": "sales_offers",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "2ee39d5471d1f55fd19f5dd118a4004220fdd6e92b075d13fc0353b5033edfef"
+      },
+      {
+        "table": "sample_packs",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "1e6677142cd4724004ee7a076da7ac74d5659eb79b942ddbbf384778099f3093"
+      },
+      {
+        "table": "schema_versions",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "20c620f499c7781246f28531c9be9b3c44ffb142e7303cd1157b47e15521c622"
+      },
+      {
+        "table": "sourcing_allocations",
+        "rows": 15,
+        "old_columns_unchanged": true,
+        "sha256": "bfd31dd1bb8d7bbe4444219f26cb98eb67cb1d0e134b9eaa77a564c41bb7b0da"
+      },
+      {
+        "table": "stock_movements",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "5108a418d075cda58681f0300f5148d96e5001c18b1e2bcf2f40be8a50233c99"
+      },
+      {
+        "table": "supplier_quotes",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "6ce7b51553d109ec0bb4eb57f42cd6846de0145df732d8a541e2b709c86f0496"
+      },
+      {
+        "table": "supplier_term_decisions",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "f3c8f563d0447638389dd8b329d3508f181687c04e5b8a94849b53ee6df060e3"
+      },
+      {
+        "table": "supplier_terms",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "246939e5a9903f71cd0c45ad132ad2e609cca25f301b9ff15b35a196a2812c33"
+      },
+      {
+        "table": "users",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "3ded0680f7e52d2e9e70b20707281725f7de770d1a8c2325937e35cf514a440a"
+      },
+      {
+        "table": "vendors",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "b13da9ca16336944030653f001958cc396951c3adfb03810fdf3d8cfc831dbcf"
+      },
+      {
+        "table": "work_packages",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "cc300ce71c37358ed2205960702a59dba3bf0eec4f12303ef075578b23702e36"
+      }
+    ]
+  },
+  "saved": {
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreign_keys": [],
+    "schema": 17,
+    "tables": 103,
+    "preserved": [
+      {
+        "table": "access_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "bank_matches",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "6169a5d0d832234c54dc6a4c26338d915df4ff68fe99760cd32038e6015c3345"
+      },
+      {
+        "table": "bank_receipt_matches",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "e0daf657020ab14664e720f54b31aa4a08a8515aabcdccdef6c3497422d397a3"
+      },
+      {
+        "table": "bank_rows",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "f9b33146430d23c03ec63f4dc170a24ce8d4070de1c58d38f9de72054c16e7da"
+      },
+      {
+        "table": "bank_statement_voids",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "bank_statements",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "c612bd32fa6fffa98137bf9878eb599ff8749883da720893326abfc92bd010e8"
+      },
+      {
+        "table": "boq_intake_checks",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "217a24398493624390bca296146a701737423a3d1b7a5a054f73410fa76c5fc6"
+      },
+      {
+        "table": "boq_intake_events",
+        "rows": 24,
+        "old_columns_unchanged": true,
+        "sha256": "33b7280f5dd6d2ff15af832918f87a83b9cdabcf35d781e2537f58a4508fa597"
+      },
+      {
+        "table": "boq_intake_files",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "0dff9a7bcd1ceb36ba2688b0fbed34b06d11a1807c94e10df9c02e210874d959"
+      },
+      {
+        "table": "boq_intake_lines",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "79ed1669775625b42330d3d1bd8311f404f5983930ec673920384a9e5997e061"
+      },
+      {
+        "table": "boq_intakes",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "08e971848eb9e10a60d75f99b220ced807971086de16c1ebb9aac21aa88c8552"
+      },
+      {
+        "table": "budget_documents",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "1acd10eff01e6668d8f8f6750666a70df94b42000015fb89950db617674fa0e8"
+      },
+      {
+        "table": "budget_facts",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "1740a0ee2aef755e0be487323f7616e51a22044aa6847d7d1d48b4649f4d7d74"
+      },
+      {
+        "table": "budget_lines",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "47303d99ae8c265c1bfef7646ff3664320751eff67d02c89495be154919abd6c"
+      },
+      {
+        "table": "catalogue_units",
+        "rows": 11,
+        "old_columns_unchanged": true,
+        "sha256": "46751aaf37f3a0321aaa91c8f1eb9b56b36e582fc1674c6ca522a41fd389380b"
+      },
+      {
+        "table": "client_advance_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_advance_evidence",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_advances",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "client_certificate_lines",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "6e70e32c8c2cb5670a17888f28eee80b7d451443c80f97674eae0f4a22eb0e48"
+      },
+      {
+        "table": "client_certificates",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "eb4728ff930497b63620ea97061fc254e5162f432179b0dd0a6862e5968c76bd"
+      },
+      {
+        "table": "client_contract_lines",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "9a877af9bfee43687b3ffee78cfdda4e43f614f1228820ea02bbac36ffd409c0"
+      },
+      {
+        "table": "client_contracts",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "c39f2394d103d92c835a12844e35e3f6b48a3ea39028fef91468ea85fef242d2"
+      },
+      {
+        "table": "client_finance_events",
+        "rows": 78,
+        "old_columns_unchanged": true,
+        "sha256": "7772cf2bc2c7d3b7293cf38257aae003d011c5654bbd7f5083e651be3345f2e4"
+      },
+      {
+        "table": "client_invoices",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "3aec3ea0da899ae10f3b9badc6f640f4c596d9a34a37c2b185840bb9b564d303"
+      },
+      {
+        "table": "client_measurement_evidence",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "f539a71eacefe00286107c2c564da25b8e80ebfac9048a1dfe56b151e8f213a9"
+      },
+      {
+        "table": "client_receipt_allocations",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "2b664c0a5b4fa263e818fc5902e55dc07cf5aaa16fb1654fa84bdceb14997a0b"
+      },
+      {
+        "table": "client_receipt_events",
+        "rows": 42,
+        "old_columns_unchanged": true,
+        "sha256": "14fe33741c789de3a153593b71654267ad37a78f9275c236ed7ece3b9fdd2f2d"
+      },
+      {
+        "table": "client_receipt_evidence",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "83ec6653302f965a1c402a57640c2318cdc445a7b1e1745a588fafc3988e5a44"
+      },
+      {
+        "table": "client_receipts",
+        "rows": 15,
+        "old_columns_unchanged": true,
+        "sha256": "64a7fa47ec1c220aa2579343b320f4ffbec02dcc335093df29d30ed4951d7091"
+      },
+      {
+        "table": "commercial_events",
+        "rows": 35,
+        "old_columns_unchanged": true,
+        "sha256": "1668492108fc06ee70ab5f0e8dcac2ece7747f814e39a0878b5cf6c7e67d4fcf"
+      },
+      {
+        "table": "companies",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "50826c6995bf3830b859fb22f7f4e5865b80296227c996e46046dc19bd4c9089"
+      },
+      {
+        "table": "construction_cost_facts",
+        "rows": 14,
+        "old_columns_unchanged": true,
+        "sha256": "170b53ff56347725eb223bad8bb84bfe8bb8ef9ce23215f4e73b51d96806b692"
+      },
+      {
+        "table": "contract_finance_policies",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "cfd0765514cd7aaf5a9c5f192b0867cdd92b081c24dce4c9b0fc8e361eca1d43"
+      },
+      {
+        "table": "cost_codes",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "0159be71ee0f82b9549efc68a9b9ecc850a70c45680fc529f6caee4ea38b0af1"
+      },
+      {
+        "table": "cost_items",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "bf33016d703ef13c8f4646c95af539f4e99eb60bc7e2dfad09cf69998f95bbce"
+      },
+      {
+        "table": "document_master_snapshots",
+        "rows": 59,
+        "old_columns_unchanged": true,
+        "sha256": "1f83ca5d5f52a79fd407f5f1ceed41f12389b98a2d973896643c0d72527a8d9f"
+      },
+      {
+        "table": "estimate_events",
+        "rows": 78,
+        "old_columns_unchanged": true,
+        "sha256": "2c2f12fa853d3a6e800b34beb29d0cb7263292d29b91b522f823a1dccd7d233c"
+      },
+      {
+        "table": "estimate_handover_lines",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "estimate_handovers",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "estimate_lines",
+        "rows": 119,
+        "old_columns_unchanged": true,
+        "sha256": "eb9067df23bdd6fcb3ecea33c84ae50bcff250a02a349364dbe4dc6697d3ffa9"
+      },
+      {
+        "table": "estimate_overrides",
+        "rows": 81,
+        "old_columns_unchanged": true,
+        "sha256": "e7a090d5e5a867817f98349bb5f42878fef478c67a096daa77340793a3d2518d"
+      },
+      {
+        "table": "estimate_resources",
+        "rows": 116,
+        "old_columns_unchanged": true,
+        "sha256": "8a92c7b4320c0624a55d09140aca633486181b8b38aaf6ab3fd49ae2210c6d9c"
+      },
+      {
+        "table": "estimate_versions",
+        "rows": 29,
+        "old_columns_unchanged": true,
+        "sha256": "bae1cc1bca01c7dde5da901dfe710c00ce48589b0e23209d5c8fcd9831046ac7"
+      },
+      {
+        "table": "events",
+        "rows": 29,
+        "old_columns_unchanged": true,
+        "sha256": "76ab171c150889f19ebc0586cf24b022feaeeb6bc40e580516110ab5075e4dda"
+      },
+      {
+        "table": "foundation_events",
+        "rows": 23,
+        "old_columns_unchanged": true,
+        "sha256": "eaa8a65727b10f8f364523a0f8aff097073b5ba9c39df971e90bce3792c421d9"
+      },
+      {
+        "table": "identities",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_codes",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_events",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_limits",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_sessions",
+        "rows": 0,
+        "old_columns_unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "table": "identity_state",
+        "rows": 1,
+        "old_columns_unchanged": true,
+        "sha256": "124e11faaafcdb80d8f7d2c665687ffe438cee0ef31dfe923a4621c9baf13bda"
+      },
+      {
+        "table": "ledger_accounts",
+        "rows": 26,
+        "old_columns_unchanged": true,
+        "sha256": "d9a86b163f6e1dbe88b341dfa96aa7ff85a6b977c9de57d0ba67777646b0c6b5"
+      },
+      {
+        "table": "ledger_entries",
+        "rows": 51,
+        "old_columns_unchanged": true,
+        "sha256": "e3f7eb98ba1e2679f4e56bd3ff502f5a4b1872778cfa3175d7886dc659909c30"
+      },
+      {
+        "table": "ledger_events",
+        "rows": 100,
+        "old_columns_unchanged": true,
+        "sha256": "07500cfbb171445cea552dd922e9da8b772dfd6fdcedbf1f59b73886487e16b7"
+      },
+      {
+        "table": "ledger_lines",
+        "rows": 129,
+        "old_columns_unchanged": true,
+        "sha256": "23afc904f4e70cff8e77883e3b29557a80dfcbced36765d1e7b7934d000d7520"
+      },
+      {
+        "table": "ledger_periods",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "0a3adbeb6df365ea7e5fc77af5e1f1284d6cb9122b3cbdd959cc68a897709f85"
+      },
+      {
+        "table": "ledger_sequences",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "309195b5c92f3cdd7c7cf44c7570110b7d672690cddd941658bf21993e5755ee"
+      },
+      {
+        "table": "master_events",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "955318d06cc8df4a3aa88808cf57d434bae3bad1fd906d2f5b88c5f0c558c3fe"
+      },
+      {
+        "table": "material_receipts",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "46a116aa4c57bd9fcfa3eeeb8c853e5e8f7d914f8cb65e9c8cfa6e37c5f78e8d"
+      },
+      {
+        "table": "material_request_lines",
+        "rows": 20,
+        "old_columns_unchanged": true,
+        "sha256": "e2eaebeef76bc10b6756b60ad75d43b867296a5b674a7c9eff3f0011d414cff6"
+      },
+      {
+        "table": "material_requests",
+        "rows": 17,
+        "old_columns_unchanged": true,
+        "sha256": "34888e5b963a2885573a1901fae3106d5b7406e70836072bfb9490161748b788"
+      },
+      {
+        "table": "memberships",
+        "rows": 49,
+        "old_columns_unchanged": true,
+        "sha256": "b71aaa3554d882c498673d86bd5eb8545db8e2b5fab5a6953e2b40c934d66c17"
+      },
+      {
+        "table": "parties",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "3e5160ee4e0f8730b4f70c8e6c462280b3b204d9a772fdaebebd7c6ff83d7dfa"
+      },
+      {
+        "table": "party_companies",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "b09c9a80978af860894ceabdce319d991f3bdbad60feb64baa059ac7ceb6b082"
+      },
+      {
+        "table": "payable_documents",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "acaeef2d2c54e81e4046038b936fcdfbc4cd186a285d86a7593e3348232e275e"
+      },
+      {
+        "table": "payable_events",
+        "rows": 49,
+        "old_columns_unchanged": true,
+        "sha256": "2f3bf19a9d4ea29877643be83034c9e04de9573e6ba9e83b3b49808dc18c8b4c"
+      },
+      {
+        "table": "payable_lines",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "cb01cac137b194b32daa836252fe7855685f9061528f463b43c7e6c6b26496c6"
+      },
+      {
+        "table": "payable_settings",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "6e17646bdbddf359c3004507b6c94db91e2512b2d05a2d9ec422b264bdcb6892"
+      },
+      {
+        "table": "payable_tax_codes",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "d28d6253bf01e7f64e0a86bdc2eb3d77495774ff58057fc4032d9106b79a79aa"
+      },
+      {
+        "table": "payment_allocations",
+        "rows": 18,
+        "old_columns_unchanged": true,
+        "sha256": "ad9551efdc6eb556f7c9cd4362c7bde81154eb6087a03cbc9d1c5ba6eb28e77d"
+      },
+      {
+        "table": "payment_banks",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "f71b189ddc1bc77cbbde91a1e3bfef5e716dd072e98230c67634adf02e596646"
+      },
+      {
+        "table": "payment_events",
+        "rows": 101,
+        "old_columns_unchanged": true,
+        "sha256": "1c4c6e37cdd79ea136734278bb5abedb4c8f766b0acf6d7ad2ded175f5d65788"
+      },
+      {
+        "table": "payments",
+        "rows": 24,
+        "old_columns_unchanged": true,
+        "sha256": "4b7f5223b74a54898b3d7a43c53b305af076502a2e3d10d439be578ba8a6bd1a"
+      },
+      {
+        "table": "procurement_events",
+        "rows": 115,
+        "old_columns_unchanged": true,
+        "sha256": "aac12d223a5e23d3e301d276ec8ea33c14709880fa7e690d05713c7fcb26f01c"
+      },
+      {
+        "table": "product_categories",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "68c3147e55167b8ddb58ebe2e700a1c4019ddef8718fa676fb6c959a5a85efd6"
+      },
+      {
+        "table": "product_packs",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "3eeca99bc1285acc9753b538a237244afecfb0e276136d4c200dd59a072f9fcf"
+      },
+      {
+        "table": "products",
+        "rows": 9,
+        "old_columns_unchanged": true,
+        "sha256": "3c838695c07f3b7477585e22c5a9a9208c26809011ae905afb16263954808dd8"
+      },
+      {
+        "table": "project_locations",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "8c245f04841adda9b9289d8f467794be5f24064bfc69518759603336b9792e0d"
+      },
+      {
+        "table": "projects",
+        "rows": 3,
+        "old_columns_unchanged": true,
+        "sha256": "009f1a1d8084b474fa1d05dff16a2e41e8a0037271154d08190ad09b0df001a4"
+      },
+      {
+        "table": "purchase_order_lines",
+        "rows": 10,
+        "old_columns_unchanged": true,
+        "sha256": "a5e1a8b32ed25fdeb8e1194f2a135d1b8bf97b4d0db24afee27d7c77a9e18e0a"
+      },
+      {
+        "table": "purchase_orders",
+        "rows": 10,
+        "old_columns_unchanged": true,
+        "sha256": "e521fcec0753c6f8823c1d2f81937482435c2555168f6cd623df32a3d82ed291"
+      },
+      {
+        "table": "quality_actions",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "c5df3ebffa878127f57d0f56a56e3a26b2fae91a5ddce33efa54d48f6b89684f"
+      },
+      {
+        "table": "quality_cases",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "dfa44ce50777ca6dc0196338b5933d0e7f913dd1bd1872eb02feaf9ee993de30"
+      },
+      {
+        "table": "quality_events",
+        "rows": 119,
+        "old_columns_unchanged": true,
+        "sha256": "610d77ad36fa76ad4d495e2bc6ce04e53d329c7f71109b3f51137e5bc5cc039f"
+      },
+      {
+        "table": "quality_evidence",
+        "rows": 37,
+        "old_columns_unchanged": true,
+        "sha256": "3fd7d3beb11163ec24238f1818106ec6e38ffeba2c2f595bf424a0b183fd7724"
+      },
+      {
+        "table": "quality_impacts",
+        "rows": 76,
+        "old_columns_unchanged": true,
+        "sha256": "c8abfa85f4b80959983fdde7589d855cb8a288e01f498f9e21a7f877c8a96b0f"
+      },
+      {
+        "table": "quote_pack_details",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "f167c12e2fc74ded692fadb91c7fbc4b41ee2427cf8994b4cf647d0aa153689c"
+      },
+      {
+        "table": "records",
+        "rows": 107,
+        "old_columns_unchanged": true,
+        "sha256": "299cd345ef741f3cbf111c59481c47698272c438dda1c2daab42a9f5a5530fe6"
+      },
+      {
+        "table": "requests",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "85e378aa4581b0c2130037e9ed481f7ae7e508c09c3515f5001da50c30fd9aa5"
+      },
+      {
+        "table": "sales_acceptances",
+        "rows": 4,
+        "old_columns_unchanged": true,
+        "sha256": "0745403e028fa8e9cb58a7482446e5cbf44c9716e9d98e5a24cba06806382e10"
+      },
+      {
+        "table": "sales_offer_lines",
+        "rows": 36,
+        "old_columns_unchanged": true,
+        "sha256": "6a4aeb0131eeb15b83ef75f36e3f49e1be43e76ec427ddb4a05f5e5c121cde10"
+      },
+      {
+        "table": "sales_offers",
+        "rows": 12,
+        "old_columns_unchanged": true,
+        "sha256": "2ee39d5471d1f55fd19f5dd118a4004220fdd6e92b075d13fc0353b5033edfef"
+      },
+      {
+        "table": "sample_packs",
+        "rows": 13,
+        "old_columns_unchanged": true,
+        "sha256": "1e6677142cd4724004ee7a076da7ac74d5659eb79b942ddbbf384778099f3093"
+      },
+      {
+        "table": "schema_versions",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "20c620f499c7781246f28531c9be9b3c44ffb142e7303cd1157b47e15521c622"
+      },
+      {
+        "table": "sourcing_allocations",
+        "rows": 15,
+        "old_columns_unchanged": true,
+        "sha256": "bfd31dd1bb8d7bbe4444219f26cb98eb67cb1d0e134b9eaa77a564c41bb7b0da"
+      },
+      {
+        "table": "stock_movements",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "5108a418d075cda58681f0300f5148d96e5001c18b1e2bcf2f40be8a50233c99"
+      },
+      {
+        "table": "supplier_quotes",
+        "rows": 16,
+        "old_columns_unchanged": true,
+        "sha256": "6ce7b51553d109ec0bb4eb57f42cd6846de0145df732d8a541e2b709c86f0496"
+      },
+      {
+        "table": "supplier_term_decisions",
+        "rows": 2,
+        "old_columns_unchanged": true,
+        "sha256": "f3c8f563d0447638389dd8b329d3508f181687c04e5b8a94849b53ee6df060e3"
+      },
+      {
+        "table": "supplier_terms",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "246939e5a9903f71cd0c45ad132ad2e609cca25f301b9ff15b35a196a2812c33"
+      },
+      {
+        "table": "users",
+        "rows": 27,
+        "old_columns_unchanged": true,
+        "sha256": "3ded0680f7e52d2e9e70b20707281725f7de770d1a8c2325937e35cf514a440a"
+      },
+      {
+        "table": "vendors",
+        "rows": 7,
+        "old_columns_unchanged": true,
+        "sha256": "b13da9ca16336944030653f001958cc396951c3adfb03810fdf3d8cfc831dbcf"
+      },
+      {
+        "table": "work_packages",
+        "rows": 6,
+        "old_columns_unchanged": true,
+        "sha256": "cc300ce71c37358ed2205960702a59dba3bf0eec4f12303ef075578b23702e36"
+      }
+    ]
+  },
+  "restore": {
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "foreign_keys": [],
+    "schema": 17,
+    "tables": 103,
+    "matched": [
+      {
+        "table": "access_events",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "bank_matches",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "bank_receipt_matches",
+        "rows": 6,
+        "match": true
+      },
+      {
+        "table": "bank_rows",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "bank_statement_voids",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "bank_statements",
+        "rows": 4,
+        "match": true
+      },
+      {
+        "table": "boq_intake_checks",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "boq_intake_events",
+        "rows": 24,
+        "match": true
+      },
+      {
+        "table": "boq_intake_files",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "boq_intake_lines",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "boq_intakes",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "budget_documents",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "budget_facts",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "budget_lines",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "catalogue_units",
+        "rows": 11,
+        "match": true
+      },
+      {
+        "table": "client_advance_events",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "client_advance_evidence",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "client_advance_recoveries",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "client_advances",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "client_certificate_lines",
+        "rows": 27,
+        "match": true
+      },
+      {
+        "table": "client_certificates",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "client_contract_lines",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "client_contracts",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "client_finance_events",
+        "rows": 78,
+        "match": true
+      },
+      {
+        "table": "client_invoices",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "client_measurement_evidence",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "client_receipt_allocations",
+        "rows": 6,
+        "match": true
+      },
+      {
+        "table": "client_receipt_events",
+        "rows": 42,
+        "match": true
+      },
+      {
+        "table": "client_receipt_evidence",
+        "rows": 6,
+        "match": true
+      },
+      {
+        "table": "client_receipts",
+        "rows": 15,
+        "match": true
+      },
+      {
+        "table": "commercial_events",
+        "rows": 35,
+        "match": true
+      },
+      {
+        "table": "companies",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "construction_cost_facts",
+        "rows": 14,
+        "match": true
+      },
+      {
+        "table": "contract_finance_policies",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "cost_codes",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "cost_items",
+        "rows": 7,
+        "match": true
+      },
+      {
+        "table": "document_master_snapshots",
+        "rows": 59,
+        "match": true
+      },
+      {
+        "table": "estimate_events",
+        "rows": 78,
+        "match": true
+      },
+      {
+        "table": "estimate_handover_lines",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "estimate_handovers",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "estimate_lines",
+        "rows": 119,
+        "match": true
+      },
+      {
+        "table": "estimate_overrides",
+        "rows": 81,
+        "match": true
+      },
+      {
+        "table": "estimate_resources",
+        "rows": 116,
+        "match": true
+      },
+      {
+        "table": "estimate_versions",
+        "rows": 29,
+        "match": true
+      },
+      {
+        "table": "events",
+        "rows": 29,
+        "match": true
+      },
+      {
+        "table": "foundation_events",
+        "rows": 23,
+        "match": true
+      },
+      {
+        "table": "identities",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "identity_codes",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "identity_events",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "identity_limits",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "identity_sessions",
+        "rows": 0,
+        "match": true
+      },
+      {
+        "table": "identity_state",
+        "rows": 1,
+        "match": true
+      },
+      {
+        "table": "ledger_accounts",
+        "rows": 26,
+        "match": true
+      },
+      {
+        "table": "ledger_entries",
+        "rows": 51,
+        "match": true
+      },
+      {
+        "table": "ledger_events",
+        "rows": 100,
+        "match": true
+      },
+      {
+        "table": "ledger_lines",
+        "rows": 129,
+        "match": true
+      },
+      {
+        "table": "ledger_periods",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "ledger_sequences",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "master_events",
+        "rows": 18,
+        "match": true
+      },
+      {
+        "table": "material_receipts",
+        "rows": 13,
+        "match": true
+      },
+      {
+        "table": "material_request_lines",
+        "rows": 20,
+        "match": true
+      },
+      {
+        "table": "material_requests",
+        "rows": 17,
+        "match": true
+      },
+      {
+        "table": "memberships",
+        "rows": 49,
+        "match": true
+      },
+      {
+        "table": "parties",
+        "rows": 6,
+        "match": true
+      },
+      {
+        "table": "party_companies",
+        "rows": 7,
+        "match": true
+      },
+      {
+        "table": "payable_documents",
+        "rows": 18,
+        "match": true
+      },
+      {
+        "table": "payable_events",
+        "rows": 49,
+        "match": true
+      },
+      {
+        "table": "payable_lines",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "payable_settings",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "payable_tax_codes",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "payment_allocations",
+        "rows": 18,
+        "match": true
+      },
+      {
+        "table": "payment_banks",
+        "rows": 4,
+        "match": true
+      },
+      {
+        "table": "payment_events",
+        "rows": 101,
+        "match": true
+      },
+      {
+        "table": "payments",
+        "rows": 24,
+        "match": true
+      },
+      {
+        "table": "procurement_events",
+        "rows": 115,
+        "match": true
+      },
+      {
+        "table": "product_categories",
+        "rows": 4,
+        "match": true
+      },
+      {
+        "table": "product_packs",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "products",
+        "rows": 9,
+        "match": true
+      },
+      {
+        "table": "project_locations",
+        "rows": 13,
+        "match": true
+      },
+      {
+        "table": "projects",
+        "rows": 3,
+        "match": true
+      },
+      {
+        "table": "purchase_order_lines",
+        "rows": 10,
+        "match": true
+      },
+      {
+        "table": "purchase_orders",
+        "rows": 10,
+        "match": true
+      },
+      {
+        "table": "quality_actions",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "quality_cases",
+        "rows": 16,
+        "match": true
+      },
+      {
+        "table": "quality_events",
+        "rows": 119,
+        "match": true
+      },
+      {
+        "table": "quality_evidence",
+        "rows": 37,
+        "match": true
+      },
+      {
+        "table": "quality_impacts",
+        "rows": 76,
+        "match": true
+      },
+      {
+        "table": "quote_pack_details",
+        "rows": 7,
+        "match": true
+      },
+      {
+        "table": "records",
+        "rows": 107,
+        "match": true
+      },
+      {
+        "table": "requests",
+        "rows": 13,
+        "match": true
+      },
+      {
+        "table": "sales_acceptances",
+        "rows": 4,
+        "match": true
+      },
+      {
+        "table": "sales_offer_lines",
+        "rows": 36,
+        "match": true
+      },
+      {
+        "table": "sales_offers",
+        "rows": 12,
+        "match": true
+      },
+      {
+        "table": "sample_packs",
+        "rows": 13,
+        "match": true
+      },
+      {
+        "table": "schema_versions",
+        "rows": 17,
+        "match": true
+      },
+      {
+        "table": "sourcing_allocations",
+        "rows": 15,
+        "match": true
+      },
+      {
+        "table": "stock_movements",
+        "rows": 27,
+        "match": true
+      },
+      {
+        "table": "supplier_quotes",
+        "rows": 16,
+        "match": true
+      },
+      {
+        "table": "supplier_term_decisions",
+        "rows": 2,
+        "match": true
+      },
+      {
+        "table": "supplier_terms",
+        "rows": 7,
+        "match": true
+      },
+      {
+        "table": "users",
+        "rows": 27,
+        "match": true
+      },
+      {
+        "table": "vendors",
+        "rows": 7,
+        "match": true
+      },
+      {
+        "table": "work_packages",
+        "rows": 6,
+        "match": true
+      }
+    ]
+  },
+  "identities": 0,
+  "sessions": 0,
+  "advance_records": 0,
+  "recovery_records": 0
+}

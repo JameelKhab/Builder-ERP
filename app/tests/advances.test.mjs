@@ -54,7 +54,7 @@ test('approved advance is separate from AR, cash and revenue; canonical partial 
   assert.equal(f.db.prepare('SELECT count(*) n FROM ledger_entries').get().n,journals+1);
   assert.equal(f.writer.detail(r.id).received.paid_principal,'0.00');
   receive(f,i,'350.00','ADV-1');assert.equal(f.writer.detail(r.id).received.paid_principal,'333.33');
-  receive(f,i,'350.00','ADV-2');assert.equal(f.writer.detail(r.id).received.paid_principal,'666.67');
+  receive(f,i,'350.00','ADV-2');assert.equal(f.writer.detail(r.id).received.paid_principal,'666.66');
   receive(f,i,'349.99','ADV-3');const balance=f.writer.detail(r.id).received;
   assert.equal(balance.paid_principal,'999.99');assert.equal(balance.paid_tax,'50.00');assert.equal(balance.open_receivable,'0.00');
   assert.equal(balance.paid_principal_carrying,'999.99');

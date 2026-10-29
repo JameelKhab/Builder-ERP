@@ -4,7 +4,7 @@ The full scope is retained: **267 functions, 34 data contracts, 21 domains**. Th
 
 ## Current work
 
-Advance requests, independent approval, canonical liability invoices and paid-principal/tax facts now have tested service/HTTP foundations (241 tests; schema 16). Recovery allocations/posting/reversal protection, simple UI, complete reports/export and examples remain unfinished. A temporary guard prevents zero-recovery certification once advances have been paid. See `advances-local.md`.
+Advance requests, independent approval, canonical liability invoices and paid-principal/tax facts now have tested service/HTTP foundations (246 tests; schema 17 recovery groundwork). Recovery allocations/posting/reversal protection, simple UI, complete reports/export and examples remain unfinished. A temporary guard prevents zero-recovery certification once advances have been paid. See `advances-local.md`.
 
 Customer receipts now connect posted invoices to multi-invoice allocation, independent approval, retained remittance evidence, exact AR/bank/FX posting and shared statement matching/corrections. Project-only views restrict combined records while retaining their own amounts. Company/project findings, CSV, examples and 231 passing tests are recorded in `receipts-local.md`. Advances/recovery, credits/unallocated money, retention releases and complete ERP/migration acceptance remain open.
 
