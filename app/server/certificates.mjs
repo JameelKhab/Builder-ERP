@@ -1,4 +1,5 @@
 import { randomUUID, createHash } from 'node:crypto';
+import { receivableBalance } from './receivable-balance.mjs';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
 import { ROLE_BY_ID } from '../shared/access.mjs';
@@ -613,6 +614,8 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_submit: r.author_id === actorId && r.state === 'draft' && can('ar.write', r),
       can_review: invoiceReview(r),
       can_open_journal: can('finance.read', r),
+      settlement: r.state==='posted'&&access.has('customer_receipts.read',r.company_id,r.project_id)?receivableBalance(db,r):null,
+      can_prepare_receipt: r.state==='posted'&&access.has('customer_receipts.write',r.company_id,r.project_id)&&new D(receivableBalance(db,r).open).gt(0),
       findings: [`${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention, plus ${s.certificate.tax} tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
     };
   }

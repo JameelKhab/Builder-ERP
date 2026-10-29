@@ -1,0 +1,17 @@
+✔ one receipt settles two invoices, keeps revenue unchanged, and exhausts partial/final AR cents (445.62475ms)
+✔ receipt authority, independent recording, evidence and idempotent retry are enforced (444.219459ms)
+✔ over-allocation, stale balances, reservations and duplicate references fail atomically (383.583542ms)
+✔ mixed-project receipts require company authority and project reports reveal only their allocation (395.2145ms)
+✔ independent bank matching and linked reversal restore AR without resetting the original (438.19275ms)
+✔ foreign bank currency posts the actual company bank amount and separate FX gain; reversal retains original values (431.698167ms)
+✔ revoked author/reviewer, changed bank and closed periods invalidate financial continuation (474.179459ms)
+✔ bank rows match mixed customer and supplier inflows once, and both subledgers protect the same bank reference (407.839667ms)
+✔ complete cutoff findings, scoped search, CSV safety and additive examples stay aligned (407.242917ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3925.025916

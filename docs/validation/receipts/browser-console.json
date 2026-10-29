@@ -1,0 +1,12 @@
+{
+  "bankPreview": [
+    {
+      "level": "error",
+      "message": "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:4189/assets/Payments-6BApyQE2.js",
+      "timestamp": "2026-10-29T09:36:12.998Z",
+      "url": "http://127.0.0.1:4189/assets/index-DiKOeVep.js"
+    }
+  ],
+  "persistent": [],
+  "note": "The bank preview dynamic-import error occurred while rebuilding static assets; reloading the current build resolved it before final bank/source navigation."
+}

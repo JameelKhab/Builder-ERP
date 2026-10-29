@@ -145,3 +145,7 @@ Implementation progress (29 October 2026): commercial offers and independently v
 ## 29 October 2026 — Client measurement and accounting continuation
 
 Original contract finance activation, cumulative measured certificates and separate typed client invoices are implemented for the subset in `implementation/certificates-local.md`. Approval authority, actual advance balance, retention, invoice posting and cash remain separate facts. The entire comparison scope, including corrections, client receipts/advances, variations, retention releases, broader ERP and source migration, remains required.
+
+## 29 October 2026 — Customer settlement continuation
+
+Original customer receipt allocation, independent approval, evidenced recording, shared bank matching and immutable full corrections now connect posted certificate invoices to actual open receivables. Company/project findings and CSV retain the same scoped population. Actual advance request/invoicing/recovery, credits/unallocated cash, retention release and full company cash-flow/migration requirements remain open. See `implementation/receipts-local.md`.

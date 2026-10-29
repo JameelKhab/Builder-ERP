@@ -142,18 +142,20 @@ function MatchRow({
   row,
   payments,
   onMatch,
+  onOpen,
   busy,
   preview
 }) {
   const [ids, setIds] = useState([]),
     [reason, setReason] = useState('');
   const active = row.matches.filter(m => m.active);
-  return <details className='record-section'><summary>{row.date} · {row.direction === 'out' ? 'Out' : 'In'} {row.amount} · {row.reference} · {active.length ? 'Matched' : 'Needs match'}</summary>{active.map(m => <p key={m.id}>{m.title} · {m.bank_reference}</p>)}{!active.length && payments.map(p => <label className='ledger-check' key={p.id}><input type='checkbox' disabled={preview} checked={ids.includes(p.id)} onChange={e => setIds(e.target.checked ? [...ids, p.id] : ids.filter(x => x !== p.id))} />{p.title} · {amount(p.bank_amount, p.bank_currency)}</label>)}{!preview && <>{field('Reconciliation reason', <textarea value={reason} onChange={e => setReason(e.target.value)} />)}<button className='primary' disabled={busy || !reason.trim() || !active.length && !ids.length} onClick={() => onMatch({
+  return <details className='record-section'><summary>{row.date} · {row.direction === 'out' ? 'Out' : 'In'} {row.amount} · {row.reference} · {active.length ? 'Matched' : 'Needs match'}</summary>{active.map(m => <p key={m.source_type+'-'+m.id}><button className='text-button' onClick={()=>onOpen(m.payment_id||m.receipt_id)}>{m.title}</button> · {m.bank_reference}</p>)}{!active.length && payments.map(p => <label className='ledger-check' key={p.id}><input type='checkbox' disabled={preview} checked={ids.includes(p.id)} onChange={e => setIds(e.target.checked ? [...ids, p.id] : ids.filter(x => x !== p.id))} />{p.title} · {amount(p.bank_amount, p.bank_currency)}</label>)}{!preview && <>{field('Reconciliation reason', <textarea value={reason} onChange={e => setReason(e.target.value)} />)}<button className='primary' disabled={busy || !reason.trim() || !active.length && !ids.length} onClick={() => onMatch({
         version: row.version,
         action: active.length ? 'unmatch' : 'match',
-        payment_ids: ids,
+        payment_ids: ids.filter(id=>id.startsWith('PAY-')),
+        receipt_ids: ids.filter(id=>id.startsWith('CRC-')),
         reason
-      })}>{active.length ? 'Remove current match' : 'Match exact bank amount'}</button></>}<details><summary>Match history</summary>{row.matches.map(m => <p key={m.id}>{m.payment_id} · {m.active ? 'Active' : 'Removed'} · {m.at}</p>)}</details></details>;
+      })}>{active.length ? 'Remove current match' : 'Match exact bank amount'}</button></>}<details><summary>Match history</summary>{row.matches.map(m => <p key={m.source_type+'-'+m.id}>{m.payment_id||m.receipt_id} · {m.active ? 'Active' : 'Removed'} · {m.at}</p>)}</details></details>;
 }
 export default function Payments({
   company,
@@ -161,13 +163,15 @@ export default function Payments({
   preview,
   onOpen,
   initialRecord,
+  initialView,
   onChanged
 }) {
   const [listProject, setListProject] = useState(project?.id || ''),
     [listState, setListState] = useState('all');
   const [options, setOptions] = useState(null),
     [rows, setRows] = useState([]),
-    [tab, setTab] = useState('payments'),
+    [customerRows,setCustomerRows]=useState([]),
+    [tab, setTab] = useState(initialView||'payments'),
     [record, setRecord] = useState(null),
     [form, setForm] = useState(false),
     [report, setReport] = useState(null),
@@ -186,6 +190,7 @@ export default function Payments({
     const [o, r] = await Promise.all([api('/payments/options?' + query), api('/payments/documents?' + query)]);
     setOptions(o);
     setRows(r);
+    if(o.can_bank_read) setCustomerRows(await api('/customer-receipts/documents?company='+company.id));
     setCutoff(x => x || o.today);
     setReverseDate(x => x || o.today);
   };
@@ -218,6 +223,7 @@ export default function Payments({
         setRecord(d);
         setCutoff(o.today);
         setReverseDate(o.today);
+        if(initialView==='bank'&&o.can_bank_read) Promise.all([api('/payments/statements?company='+company.id),api('/customer-receipts/documents?company='+company.id)]).then(([statements,receipts])=>{if(live){setStatements(statements);setCustomerRows(receipts);}}).catch(e=>{if(live)setError(e.message);});
       }
     }).catch(e => {
       if (live) setError(e.message);
@@ -225,13 +231,13 @@ export default function Payments({
     return () => {
       live = false;
     };
-  }, [query, initialRecord]);
+  }, [query, initialRecord, initialView]);
   const go = t => act(async () => {
     setTab(t);
     setRecord(null);
     setForm(false);
     if (t === 'findings') setReport(await api('/payments/report?company=' + company.id + '&to=' + cutoff + (reportProject ? '&project=' + reportProject : '')));
-    if (t === 'bank') setStatements(await api('/payments/statements?company=' + company.id));
+    if (t === 'bank') {setStatements(await api('/payments/statements?company=' + company.id));setCustomerRows(await api('/customer-receipts/documents?company='+company.id));}
   });
   const decide = action => act(async () => {
     setRecord(await api(`/payments/documents/${record.id}/decision`, {
@@ -256,7 +262,7 @@ export default function Payments({
   if (!options) return <><ErrorBox message={error} /><p role='status'>Loading payments…</p></>;
   const shownRows = rows.filter(r => (!listProject || r.project_id === listProject) && (listState === 'all' || listState === 'needs-match' ? listState === 'all' || r.state === 'recorded' && !r.clearance : r.state === listState));
   const actions = record ? record.state === 'draft' || record.state === 'returned' ? record.can_write ? ['submit', 'cancel'] : [] : record.state === 'submitted' ? [...(record.can_review ? ['approve'] : []), ...(record.can_return ? ['return'] : []), ...(record.can_write ? ['withdraw'] : [])] : record.state === 'approved' ? [...(record.can_record ? ['record'] : []), ...(record.can_return ? ['return'] : []), ...(record.can_write ? ['withdraw'] : [])] : [] : [];
-  return <div className='ledger payments'><div className='section-heading'><div><h2><Wallet />Payments & cash flow</h2><p className='muted'>{project?.name || company.name} · Supplier payments and refunds</p></div>{options.can_write && !preview && !record && !form && tab === 'payments' && <button className='primary' onClick={() => setForm(true)}><Plus />New payment</button>}</div><p className='scope-note'>Prepare → Approve → Record transaction → Match bank. Approved plans are separate from cash. Builder ERP does not send money.</p><nav className='ledger-nav' aria-label='Payment views'>{[['payments', 'Payments'], ['findings', 'Cash findings'], ...(options.can_bank_read ? [['bank', 'Bank statements']] : []), ...(options.can_manage ? [['setup', 'Bank setup']] : [])].map(([k, l]) => <button key={k} className={tab === k ? 'active' : ''} onClick={() => go(k)}>{l}</button>)}</nav><ErrorBox message={error} />
+  return <div className='ledger payments'><div className='section-heading'><div><h2><Wallet />{tab==='bank'?'Bank statements':'Payments & cash flow'}</h2><p className='muted'>{project?.name || company.name} · {tab==='bank'?'Customer receipts and supplier settlement':'Supplier payments and refunds'}</p></div>{options.can_write && !preview && !record && !form && tab === 'payments' && <button className='primary' onClick={() => setForm(true)}><Plus />New payment</button>}</div><p className='scope-note'>{tab==='bank'?'Match recorded transactions to actual bank evidence. Each row retains its sources and reconciliation history.':'Prepare → Approve → Record transaction → Match bank. Approved plans are separate from cash. Builder ERP does not send money.'}</p><nav className='ledger-nav' aria-label='Payment views'>{[['payments', 'Payments'], ['findings', 'Cash findings'], ...(options.can_bank_read ? [['bank', 'Bank statements']] : []), ...(options.can_manage ? [['setup', 'Bank setup']] : [])].map(([k, l]) => <button key={k} className={tab === k ? 'active' : ''} onClick={() => go(k)}>{l}</button>)}</nav><ErrorBox message={error} />
  {form ? <><button className='back' onClick={() => setForm(false)}><ArrowLeft />Back to {record ? 'payment' : 'payments'}</button><h3>{record ? 'Revise payment' : 'Prepare payment'}</h3><PaymentForm key={record?.id || 'new'} record={record} options={options} busy={busy} onSave={body => act(async () => {
         const r = await api('/payments/documents' + (record ? '/' + record.id : ''), body, record ? 'PUT' : 'POST');
         await open(r.id);
@@ -286,7 +292,7 @@ export default function Payments({
           await api('/payments/statements', body);
           setStatements(await api('/payments/statements?company=' + company.id));
           setNewStatement(false);
-        })} /></> : <><div className='section-heading'><h3>Statement evidence</h3>{!preview && options.can_reconcile && <button className='secondary' onClick={() => setNewStatement(true)}>Add statement</button>}</div>{!statements.length && <Empty>No bank statement evidence yet.</Empty>}{statements.map(s => <section key={s.id}><h3>{s.reference} · {s.bank}</h3><p>{s.voided && 'Voided · '}{s.start_date}–{s.end_date} · Opening {amount(s.opening, s.currency)} → closing {amount(s.closing, s.currency)}</p>{s.rows.map(r => <MatchRow key={r.id + '-' + r.version} row={r} payments={rows.filter(p => p.state === 'recorded' && !p.clearance && p.bank_id === s.bank_id && p.direction === r.direction)} busy={busy} preview={preview || !options.can_reconcile || !!s.voided} onMatch={body => act(async () => {
+        })} /></> : <><div className='section-heading'><h3>Statement evidence</h3>{!preview && options.can_reconcile && <button className='secondary' onClick={() => setNewStatement(true)}>Add statement</button>}</div>{!statements.length && <Empty>No bank statement evidence yet.</Empty>}{statements.map(s => <section key={s.id}><h3>{s.reference} · {s.bank}</h3><p>{s.voided && 'Voided · '}{s.start_date}–{s.end_date} · Opening {amount(s.opening, s.currency)} → closing {amount(s.closing, s.currency)}</p>{s.rows.map(r => <MatchRow key={r.id + '-' + r.version} row={r} onOpen={onOpen} payments={[...rows,...customerRows].filter(p => p.state === 'recorded' && !p.clearance && p.bank_id === s.bank_id && p.direction === r.direction)} busy={busy} preview={preview || !options.can_reconcile || !!s.voided} onMatch={body => act(async () => {
             await api('/payments/statement-rows/' + r.id + '/decision', body);
             setStatements(await api('/payments/statements?company=' + company.id));
           })} />)}{s.voided ? <p>Voided with retained evidence: {s.voided.reason}</p> : !preview && options.can_reconcile && s.can_void && <details className='record-section'><summary>Correct this statement</summary><p>Remove all active matches first. A different reconciler must void the original; enter the replacement with a new reference.</p>{field('Statement correction reason', <textarea value={reason} onChange={e => setReason(e.target.value)} />)}<button className='secondary' disabled={busy || !reason.trim()} onClick={() => act(async () => {
@@ -301,5 +307,5 @@ export default function Payments({
           active: !b.active,
           reason: b.active ? 'Archive accounting bank for future preparation' : 'Restore accounting bank availability'
         }, 'PUT'))}>{b.active ? 'Archive' : 'Restore'}</button>}</div>)}{!preview && <BankForm options={options} busy={busy} onSave={body => act(() => api('/payments/banks', body))} />}</>}
- <p className='ledger-note'>Supplier settlement subset. Customer receipts, certificates, retention, bank integrations and complete cash forecasting remain in development.</p></div>;
+ <p className='ledger-note'>Supplier settlement and shared bank evidence. Customer receipts have their own destination; retention releases, bank integrations and full cash forecasting remain in development.</p></div>;
 }

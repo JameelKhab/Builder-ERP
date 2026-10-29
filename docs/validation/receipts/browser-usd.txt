@@ -1,0 +1,149 @@
+Browser tab: 46, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=customer-receipts
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			5 button Builder ERP
+			6 text JAKH International Ltd
+			7 container Main navigation
+				8 button Home
+					9 image
+					10 text Home
+				11 button Access
+					12 image
+					13 text Access
+				14 button Organisation
+					15 image
+					16 text Organisation
+				47 button My Work
+					48 image
+					49 text My Work
+				50 button Tenders
+					51 image
+					52 text Tenders
+				53 button Projects
+					54 image
+					55 text Projects
+				56 button Company
+					57 image
+					58 text Company
+			25 text Built around your work.
+			26 text Local sample workspace
+		27 container
+			28 text Company
+			29 pop up button (collapsed, settable) Company, Value: JAKH International Ltd, Secondary Actions: Expand
+				30 menu
+					31 JAKH Contracting LLC
+					32 (selected) JAKH International Ltd
+			33 image
+			34 text field (settable) Search company records
+			35 button Search
+			36 button Explore examples
+				37 image
+				38 text Examples
+			39 button Your account and sign-in
+				40 text AA
+				41 text Ahmed Al Mansoori
+				42 text Project manager
+		43 container main-content
+			44 heading JAKH International Ltd, Value: 1
+				45 text JAKH International Ltd
+			46 text Company-wide operations and shared information
+			59 text CUSTOMER MONEY
+			60 heading Customer receipts, Value: 2
+				61 text Customer receipts
+			62 text Follow a remittance from invoice allocation to bank evidence.
+			63 button Export findings
+				64 image
+				65 text Export findings
+			66 container
+				67 text Receipt project
+				68 pop up button (collapsed, settable) Receipt project, Value: All authorised projects, Secondary Actions: Expand
+					69 menu
+						70 (selected) All authorised projects
+						71 Creek Offices
+			72 container
+				73 text Accounting through
+				74 date field (settable) Accounting through, Value: 2026-10-29
+					75 container
+						76 stepper
+						77 stepper
+						78 stepper
+					79 pop up button Show date picker Show date picker
+			80 heading What this tells you, Value: 3
+				81 text What this tells you
+			82 content list
+				83 container
+					84 AXListMarker •
+					85 text 2 recorded receipts/corrections through 2026-10-29; 1000.00 USD received and 1000.00 reversed.
+				86 container
+					87 AXListMarker •
+					88 text 0.00 USD net receipts have current bank matches dated through the cutoff; 1 approved plans remain excluded from cash.
+				89 container
+					90 AXListMarker •
+					91 text USD 3415.10 remains receivable; 0.00 is past due. Settled 0.00 of posted 3415.10.
+				92 container
+					93 AXListMarker •
+					94 text AR source-to-ledger difference: 0.00 USD.
+			95 text Net recorded receipts
+			96 text USD 0
+			97 text Awaiting bank match
+			98 text USD 0
+			99 text Open receivables
+			100 text USD 3,415.10
+			101 heading Receipts and next actions, Value: 3
+				102 text Receipts and next actions
+			103 container
+				104 text Receipt status
+				105 pop up button (collapsed, settable) Receipt status, Value: All current states, Secondary Actions: Expand
+					106 menu
+						107 (selected) All current states
+						108 draft
+						109 submitted
+						110 approved
+						111 recorded
+						112 returned
+						113 cancelled
+			114 text Current workflow states; recorded cash and open items above use the accounting cutoff.
+			115 button Example · Creek Offices · Receipt draft for allocation Example · JAKH International Ltd development client · 2026-10-29 Preparer to finish and submit USD 300
+				116 text Example · Creek Offices · Receipt draft for allocation
+				117 container
+					118 text Example · JAKH International Ltd development client  ·  2026-10-29
+				119 text Preparer to finish and submit
+				120 text USD 300
+				121 image
+			122 button Example · Creek Offices · Receipt awaiting independent review Example · JAKH International Ltd development client · 2026-10-29 Finance reviewer to approve USD 400
+				123 text Example · Creek Offices · Receipt awaiting independent review
+				124 container
+					125 text Example · JAKH International Ltd development client  ·  2026-10-29
+				126 text Finance reviewer to approve
+				127 text USD 400
+				128 image
+			129 button Example · Creek Offices · Receipt approved, not yet recorded Example · JAKH International Ltd development client · 2026-10-29 Treasury to record actual receipt USD 500
+				130 text Example · Creek Offices · Receipt approved, not yet recorded
+				131 container
+					132 text Example · JAKH International Ltd development client  ·  2026-10-29
+				133 text Treasury to record actual receipt
+				134 text USD 500
+				135 image
+			136 button Reversal · Example · Creek Offices · Receipt later corrected Example · JAKH International Ltd development client · 2026-10-29 Bank matched USD 1,000
+				137 text Reversal · Example · Creek Offices · Receipt later corrected
+				138 container
+					139 text Example · JAKH International Ltd development client  ·  2026-10-29
+				140 text Bank matched
+				141 text USD 1,000
+				142 image
+			143 button Example · Creek Offices · Receipt later corrected Example · JAKH International Ltd development client · 2026-10-29 Reversed · original retained USD 1,000
+				144 text Example · Creek Offices · Receipt later corrected
+				145 container
+					146 text Example · JAKH International Ltd development client  ·  2026-10-29
+				147 text Reversed · original retained
+				148 text USD 1,000
+				149 image
+			150 button (collapsed) Open invoices · 1, Secondary Actions: Expand
+				151 text Open invoices ·
+				152 text 1
+			153 button (collapsed) Recorded allocations and report basis, Secondary Actions: Expand
+				154 text Recorded allocations and report basis
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=customer-receipts

@@ -24,7 +24,7 @@
       "source_path": "Reports > Ledger, trial balance & aging",
       "destination": "Project or Company > Reports · Ledger, trial balance & aging",
       "local_status": "partial",
-      "implemented_and_remaining": "Company/project ledger, material AP/settlement and selected client-invoice AR/retention reconciliation are implemented with findings/CSV. Full aging, receipts, revaluation, broader subledgers and imported source reconciliation remain open.",
+      "implemented_and_remaining": "Company/project ledger, material AP/settlement and client-invoice AR/retention/receipt reconciliation now have findings/CSV. Receipts report unpaid and overdue balances through cutoff. Full aging bands, credits, revaluation, broader subledgers and imported-source reconciliation remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -41,7 +41,12 @@
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Debits equal credits and AP/AR aging agrees to control accounts.",
@@ -53,12 +58,17 @@
       "source_path": "Reports > Company cash flow",
       "destination": "Project or Company > Reports · Company cash flow",
       "local_status": "partial",
-      "implemented_and_remaining": "Supplier cash movement findings by company/project separate approved plans, recorded out/in/net and current bank clearance, with source allocations and CSV. Customer cash, opening balances, charges/transfers, classification, forecasting and full company cash flow remain open.",
+      "implemented_and_remaining": "Separate supplier and customer cash movement findings distinguish approved plans, recorded cash and current bank clearance by project/company. Shared statements can match both typed sources. Consolidated opening balances, charges/transfers, classification, forecasting and full company cash flow remain open.",
       "evidence": [
         "docs/implementation/contracts/payments-v1.md",
         "app/tests/payments.test.mjs",
         "app/tests/payments-api.test.mjs",
-        "docs/validation/payments/verification.md"
+        "docs/validation/payments/verification.md",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A posted receipt and an uncleared bank item remain distinguishable.",
@@ -171,7 +181,7 @@
       "source_path": "Reports > Posted Ledger",
       "destination": "Project or Company > Reports · Posted Ledger",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable general, material-AP, supplier-settlement and typed client-invoice journals retain source links and accounting-date filters. Broader subledgers and source migration remain open.",
+      "implemented_and_remaining": "Immutable general, material-AP, supplier-settlement, client-invoice and customer-receipt journals retain source links and accounting-date filters. Broader subledgers and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -188,7 +198,12 @@
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Opening a cost fact reaches the bill or approved source movement.",
@@ -300,7 +315,7 @@
       "source_path": "My Approvals & Activities",
       "destination": "My Work > Approvals & activities",
       "local_status": "partial",
-      "implemented_and_remaining": "My Work/Home include independent offer review and acceptance verification alongside estimate, intake, buying, budget, master, NCR, ledger/AP/payment work. Separate zero-default commercial limits and live scope apply. Configurable routes, reassignment/delegation/escalation and wider ERP coverage remain open. Client certificate/AR workflow now has scoped queues, immutable linked history, separate limits and customer-only AR preparation; full parity remains open.",
+      "implemented_and_remaining": "Home/My Work include scoped estimate/intake/offer/award, buying/budget/master/NCR and ledger/AP/AR/certificate/customer-receipt decisions. Independent zero-default financial limits, live authority, record links and immutable history apply. Configurable routes, lost-author reassignment, delegation/escalation and wider ERP remain open.",
       "evidence": [
         "app/tests/procurement.test.mjs",
         "docs/implementation/contracts/payables-v1.md",
@@ -324,7 +339,12 @@
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One returned certificate produces one current task with its review stage.",
@@ -1303,13 +1323,18 @@
       "domain": "D12",
       "source_path": "Advances & retention releases",
       "destination": "Project > Costs & Contracts > Advances & retention",
-      "local_status": "open",
-      "implemented_and_remaining": "Original contract advance ceilings are retained, but no actual advance/receipt balance is inferred and certificate recovery stays zero until the connected subledger exists. Advance invoicing/settlement/recovery, retention release and full source parity remain open.",
+      "local_status": "partial",
+      "implemented_and_remaining": "Contract advance ceilings are retained without inferred cash. Fresh source evidence distinguishes advance request, invoice, payment and reconciliation. Certificate-invoice receipts now provide the settlement foundation; actual advance requests/invoices, settlement-derived recovery, retention release and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Recovery cannot exceed the actual outstanding advance under the policy.",
@@ -1694,12 +1719,17 @@
       "source_path": "Finance > Customers > Invoices",
       "destination": "Company > Finance · Invoices",
       "local_status": "partial",
-      "implemented_and_remaining": "Approved certificates explicitly create one client invoice draft; independent zero-default AR authority posts a balanced immutable source journal with separate date/FX and AR/retention reconciliation. Standalone invoicing, linked credits, receipts, localisation/aging, ownership transfer and source migration remain open.",
+      "implemented_and_remaining": "Approved certificates explicitly create client invoice drafts; independent zero-default AR authority posts immutable balanced journals. Posted invoices now show actual receipt allocation and open balance and link to receipt preparation. Standalone/advance invoicing, credits, localisation/full aging, ownership transfer and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A certificate retry cannot create duplicate receivables.",
@@ -1722,9 +1752,15 @@
       "domain": "D15",
       "source_path": "Finance > Customers > Payments",
       "destination": "Company > Finance · Payments",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Original multi-invoice customer receipts now have separate independent approval, evidenced recording, exact AR/bank/FX postings, shared bank matching, linked full reversal, zero-default limits and scoped findings/CSV. Multi-project users see only authorised allocation totals; combined files/detail require full scope. Unallocated money, commercial refunds/credits, advance invoicing/recovery, write-offs and full source migration remain open.",
+      "evidence": [
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "One receipt can settle two invoices without overstating revenue.",
       "source_verification_remaining": "Source posting rules, localisations, tax treatment, lock dates, currencies and multi-ledger purpose need validation. The demo is not the production accounting migration source. No opening balance, trial balance, AP/AR or bank reconciliation has been imported."
@@ -1879,7 +1915,7 @@
       "source_path": "Finance > Review > Control > Journal Items",
       "destination": "Company > Finance · Journal Items",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable general/AP/payment journal lines with frozen source/account/currency values and exact reversals. Project allocations balance independently. Full analytic/tax/party accounting and source parity remain open. Client certificate/AR workflow now has scoped queues, immutable linked history, separate limits and customer-only AR preparation; full parity remains open.",
+      "implemented_and_remaining": "Immutable general/AP/supplier-payment/client-invoice/customer-receipt journal lines retain frozen source, account and currency values. Receipt settlement reduces AR without recognising revenue twice; every project allocation balances independently, with exact FX/reversal values. Full analytic/tax/party accounting and source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1896,7 +1932,12 @@
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A project cost drill-down reaches balanced accounting evidence.",
@@ -1908,7 +1949,7 @@
       "source_path": "Finance > Review > Control > Audit Trail",
       "destination": "Company > Finance · Audit Trail",
       "local_status": "partial",
-      "implemented_and_remaining": "Append-only journal/AP/payment/configuration and statement-match evidence, live authority, original/reversal/source snapshots and non-destructive statement corrections. Full audit querying, external tamper resistance and historical reconciliation reconstruction remain open. Client certificate/AR workflow now has scoped queues, immutable linked history, separate limits and customer-only AR preparation; full parity remains open.",
+      "implemented_and_remaining": "Append-only typed financial/configuration events, original receipt evidence bytes/hash, retained full corrections, independent current authority and mixed-source bank match/unmatch history are operational. Full audit querying, external tamper resistance, lost-author reassignment and historical reconciliation reconstruction remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1925,7 +1966,12 @@
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Posted history cannot be silently edited or deleted.",
@@ -1949,12 +1995,17 @@
       "source_path": "Finance > Reporting > Management > Cashflow Analysis",
       "destination": "Company > Finance · Cashflow Analysis",
       "local_status": "partial",
-      "implemented_and_remaining": "Complete authorised supplier cash movement population and findings/CSV separate plans, recorded transactions and bank matches. Full cash policy/forecast/operating-investing-financing analysis and source migration remain open.",
+      "implemented_and_remaining": "Complete authorised supplier and customer cash movement reports separate approved plans, recorded transactions and current bank matches, with source rows/findings/CSV. Combined full-company classifications, policy, forecasts, operating/investing/financing analysis and source migration remain open.",
       "evidence": [
         "docs/implementation/contracts/payments-v1.md",
         "app/tests/payments.test.mjs",
         "app/tests/payments-api.test.mjs",
-        "docs/validation/payments/verification.md"
+        "docs/validation/payments/verification.md",
+        "docs/implementation/contracts/receipts-v1.md",
+        "docs/implementation/receipts-local.md",
+        "app/tests/receipts.test.mjs",
+        "app/tests/receipts-api.test.mjs",
+        "docs/validation/receipts/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Forecast receipts never enter actual-cash totals.",
@@ -3859,7 +3910,7 @@
       "invariant": "Balanced posting; AP/AR/control/bank reconciliation",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original immutable general ledger, explicit FX, independent posting/reversal, period/account controls and reports. AP/AR/open items, payments, bank/tax/stock/contract integration and production reconciliation remain open. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open. Typed client invoices now post independently from frozen certificates; separate certificate/AR limits, customer-only preparation, private exact journals and selected source-to-control reconciliation are tested. Full client cash/corrections and source migration remain open."
+      "local_notes": "Original general ledger/accounts/periods; material bills/return credits; supplier payment/refund settlement; client certificate invoices; and customer multi-invoice receipts now have immutable typed journals, independent zero-default limits, exact transaction/carrying/bank/FX values, shared statement evidence and company/project reconciliation findings. Receipt files/hash and full corrections are retained. Advance invoices/recovery, credits/unallocated cash, retention release, subcontract/stock/GRNI, wider tax/revaluation, full cash classification/forecast and production import/reconciliation remain open."
     },
     {
       "id": "M24",
@@ -3869,7 +3920,7 @@
       "invariant": "Count each cost once; choose approved cutoff version",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": " Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open."
+      "local_notes": "Supplier settlement and customer receipt facts preserve source/project/date and separate accounting, cash and clearance. Receipt allocation posts no new revenue/cost and approved plans remain outside cash. Full cost-fact/forecast integration, consolidated cash-flow classification, dated approved forecast versions and source migration remain open."
     },
     {
       "id": "M25",
@@ -3945,7 +3996,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open. Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Original offers and independently verified awards now retain exact estimate lineage, legal/customer/currency terms, original evidence and immutable project-allocated contract BOQ. Commercial authority is separate and defaults to zero. No finance activation, certification, AR, variations, full legacy parity or production import/reconciliation is implied. Typed client invoices now post independently from frozen certificates; separate certificate/AR limits, customer-only preparation, private exact journals and selected source-to-control reconciliation are tested. Full client cash/corrections and source migration remain open."
+      "local_notes": "Current scoped identity, reviewed access/financial limits, independent versioned decisions and retained evidence/history apply across implemented budget/procurement/master/NCR, ledger/AP/AR/payments/receipts, estimate/intake/offer/award/certificate stages. Receipt approval differs from recording, and bank reconciliation differs from each recorder. Limits default to zero; preview cannot mutate. Configurable multi-stage routes, reassignment/delegation/escalation, wider ERP coverage, external tamper resistance and source migration remain open."
     },
     {
       "id": "M33",
@@ -3982,7 +4033,7 @@
       "data": "Report definitions; source fact type/ID/date; metric versions; approved forecasts and snapshots; WBS/location allocation; cash-flow policies; saved filters and dashboard definitions; subscriptions and share permissions.",
       "verify": "Report joins, permission filters, reversal handling, snapshot dates, policy approval, scheduler and share-token behaviour remain untested in JAKH. No full report-result reconciliation or JAKH data import has occurred.",
       "example": "For one work item: revised budget 110,000; incurred 60,000; cash 45,000; remaining work 48,000; forecast 108,000; headroom 2,000. The report must explain the 15,000 cost/cash difference and never add total commitments to incurred cost. This is a proposed acceptance fixture, not a JAKH transaction.",
-      "local_implementation": "Cost reports include approved budget allocation facts, local order commitments and consumed-material cost; source links and deterministic findings. Posted accounting, dated forecast versions and other source reports remain open. Original ledger/trial-balance reports now reconcile current posted facts by accounting cutoff, with scoped findings/CSV; full report domain remains open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open. Supplier payments/refunds and independent bank evidence now connect to AP and typed ledger/cash findings; full finance and source parity remain open."
+      "local_implementation": "Cost reports include approved budget facts, local order commitments and material consumption. General ledger, AP/supplier settlement and certificate AR/customer receipts have scoped source-backed findings/CSV and selected control reconciliation. Report facts distinguish illustrative openings, actual postings, approved plans and cash/bank matches. Full KPI/dashboard populations, dated forecasts, consolidated cash policy and legacy report/source reconciliation remain open."
     },
     {
       "id": "D02",
@@ -4214,7 +4265,7 @@
       "data": "COA/journals/taxes/periods; invoice/bill lines; open items; credit notes; journal entries/items; payment allocations; bank statements/reconciliations; exchange rates; control-account links and analytic allocation.",
       "verify": "Source posting rules, localisations, tax treatment, lock dates, currencies and multi-ledger purpose need validation. The demo is not the production accounting migration source. No opening balance, trial balance, AP/AR or bank reconciliation has been imported.",
       "example": "A USD supplier bill is booked at one rate and partially paid at another. Record remaining USD liability, company-currency cash and realised FX separately; settle only the approved payment and reconcile the bank independently.",
-      "local_implementation": "Original general-ledger subset now posts balanced exact-currency journals with independent limits, immutable facts, period/account controls and traceable reversals. Company/project reports reconcile openings/movements/closings. Bills/invoices, AP/AR, payment allocation, bank clearance, tax, revaluation, stock valuation and source migration remain open. Material supplier bills/return credits now produce typed immutable ledger postings and company/project AP findings with source/control reconciliation; payment, stock valuation, subcontract/service deductions and full finance/source parity remain open. Supplier payments/refunds and independent bank evidence now connect to AP and typed ledger/cash findings; full finance and source parity remain open. Original client finance activation, cumulative measurement and independent typed invoicing now connect to company/project findings and ledger controls. See docs/implementation/certificates-local.md. Full domain/source parity remains open."
+      "local_implementation": "Original ledger/account/period controls, material AP/return credits, supplier settlements, contract finance/measurements/client AR and customer invoice receipts are operational subsets. Exact source journals, separate independent limits, retained evidence/corrections, shared customer/supplier bank matching and project/company findings/CSV are tested locally. Advances/recovery, credits/unallocated money, retention releases/final accounts, subcontract certificates, stock/GRNI, wider tax/revaluation, bank integrations and complete cash policies/forecasts remain open. Full source export/import/reconciliation and user/release acceptance remain open."
     },
     {
       "id": "D16",

@@ -1,0 +1,40 @@
+✔ one receipt settles two invoices, keeps revenue unchanged, and exhausts partial/final AR cents (409.1925ms)
+✔ receipt authority, independent recording, evidence and idempotent retry are enforced (403.666708ms)
+✔ over-allocation, stale balances, reservations and duplicate references fail atomically (407.790125ms)
+✔ mixed-project receipts require company authority and project reports reveal only their allocation (409.612958ms)
+✔ independent bank matching and linked reversal restore AR without resetting the original (426.683458ms)
+✔ foreign bank currency posts the actual company bank amount and separate FX gain; reversal retains original values (380.981ms)
+✔ revoked author/reviewer, changed bank and closed periods invalidate financial continuation (376.40375ms)
+✔ bank rows match mixed customer and supplier inflows once, and both subledgers protect the same bank reference (385.783125ms)
+✖ complete cutoff findings, scoped search, CSV safety and additive examples stay aligned (408.639666ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3705.421083
+
+✖ failing tests:
+
+test at app/tests/receipts.test.mjs:115:1
+✖ complete cutoff findings, scoped search, CSV safety and additive examples stay aligned (408.639666ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(csv.includes('"\'=HYPERLINK'))
+
+      at TestContext.<anonymous> (file:///Users/jameelkhabaze/Documents/Codex/Builder-ERP/app/tests/receipts.test.mjs:120:41)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

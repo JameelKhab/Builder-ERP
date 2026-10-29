@@ -1,0 +1,54 @@
+Browser tab: 47, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4189/#section=Company&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4189/#section=Company&category=customer-receipts
+	2 container Customer receipt
+		3 container
+			4 heading Customer receipt, Value: 2, ID: dialog-title
+				5 text Customer receipt
+			6 button Close dialog
+				7 image
+		8 button All customer receipts
+			9 image
+			10 text All customer receipts
+		11 container
+			12 text RECORDED RECEIPT  ·  CRC-82465422
+		13 heading Example · Harbour Tower · Receipt later corrected, Value: 2
+			14 text Example · Harbour Tower · Receipt later corrected
+		15 container
+			16 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+		17 button Open bank evidence
+		18 text Allocated to invoices
+		19 text AED 1,000
+		20 text Invoices covered
+		21 text 1
+		22 text Next action
+		23 text Reversed · original retained
+		24 heading What this tells you, Value: 3
+			25 text What this tells you
+		26 text AED 1,000 recorded in the ledger. Bank evidence matched on 2026-10-29.
+		27 text Receipt allocation reduces receivables and does not recognise revenue again.
+		28 heading Invoice allocations, Value: 3
+			29 text Invoice allocations
+		30 table
+			31 row
+				32 cell
+					33 text Invoice
+				34 cell
+					35 text Project
+				36 cell
+					37 text Allocated
+			38 row
+				39 cell
+					40 text Example · Harbour Tower · measured work 1
+					41 text CIN-24565053
+				42 cell
+					43 text Harbour Tower
+				44 cell
+					45 text AED 1,000
+		46 button (collapsed) Evidence and conversion, Secondary Actions: Expand
+			47 text Evidence and conversion
+		48 button (collapsed) History · 4 events, Secondary Actions: Expand
+			49 text History ·
+			50 text 4
+			51 text  events
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4189/#section=Company&category=customer-receipts

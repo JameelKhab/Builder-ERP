@@ -1,0 +1,113 @@
+Browser tab: 47, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4189/#section=Company&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4189/#section=Company&category=customer-receipts
+	2 container Bank evidence
+		3 container
+			4 heading Bank evidence, Value: 2, ID: dialog-title
+				5 text Bank evidence
+			6 button Close dialog
+				7 image
+		8 heading Bank statements, Value: 2
+			9 image
+			10 text Bank statements
+		11 container
+			12 text JAKH Contracting LLC  ·  Customer receipts and supplier settlement
+		13 text Match recorded transactions to actual bank evidence. Each row retains its sources and reconciliation history.
+		14 container Payment views
+			15 button Payments
+			16 button Cash findings
+			17 button Bank statements
+		18 heading Statement evidence, Value: 3
+			19 text Statement evidence
+		20 button Add statement
+		21 container
+			22 heading DEMO-STATEMENT-jakh · Example · Settlement bank, Value: 3
+				23 text DEMO-STATEMENT-jakh  ·  Example · Settlement bank
+			24 text 2026-10-29 – 2026-10-29  · Opening  AED 1,000,000  → closing  AED 999,350
+			25 button (collapsed) 2026-10-29 · Out 100.00 · DEMO-CLEARED-gardens · Matched, Secondary Actions: Expand
+				26 text 2026-10-29
+				27 text  ·
+				28 text Out
+				29 text 100.00
+				30 text  ·
+				31 text DEMO-CLEARED-gardens
+				32 text  ·
+				33 text Matched
+			34 button (collapsed) 2026-10-29 · Out 25.00 · DEMO-PENDING-gardens · Needs match, Secondary Actions: Expand
+				35 text 2026-10-29
+				36 text  ·
+				37 text Out
+				38 text 25.00
+				39 text  ·
+				40 text DEMO-PENDING-gardens
+				41 text  ·
+				42 text Needs match
+			43 button (collapsed) 2026-10-29 · Out 420.00 · DEMO-CLEARED-harbour · Matched, Secondary Actions: Expand
+				44 text 2026-10-29
+				45 text  ·
+				46 text Out
+				47 text 420.00
+				48 text  ·
+				49 text DEMO-CLEARED-harbour
+				50 text  ·
+				51 text Matched
+			52 button (collapsed) 2026-10-29 · Out 105.00 · DEMO-PENDING-harbour · Needs match, Secondary Actions: Expand
+				53 text 2026-10-29
+				54 text  ·
+				55 text Out
+				56 text 105.00
+				57 text  ·
+				58 text DEMO-PENDING-harbour
+				59 text  ·
+				60 text Needs match
+		61 container
+			62 heading DEMO-CLIENT-STATEMENT-jakh · Example · Receipt demonstration bank, Value: 3
+				63 text DEMO-CLIENT-STATEMENT-jakh  ·  Example · Receipt demonstration bank
+			64 text 2026-10-29 – 2026-10-29  · Opening  AED 0  → closing  AED 0
+			65 button (collapsed) 2026-10-29 · In 1000.00 · DEMO-CLIENT-gardens · Matched, Secondary Actions: Expand
+				66 text 2026-10-29
+				67 text  ·
+				68 text In
+				69 text 1000.00
+				70 text  ·
+				71 text DEMO-CLIENT-gardens
+				72 text  ·
+				73 text Matched
+			74 button (collapsed) 2026-10-29 · Out 1000.00 · DEMO-CLIENT-REV-gardens · Matched, Secondary Actions: Expand
+				75 text 2026-10-29
+				76 text  ·
+				77 text Out
+				78 text 1000.00
+				79 text  ·
+				80 text DEMO-CLIENT-REV-gardens
+				81 text  ·
+				82 text Matched
+			83 button (expanded) 2026-10-29 · In 1000.00 · DEMO-CLIENT-harbour · Matched, Secondary Actions: Collapse
+				84 text 2026-10-29
+				85 text  ·
+				86 text In
+				87 text 1000.00
+				88 text  ·
+				89 text DEMO-CLIENT-harbour
+				90 text  ·
+				91 text Matched
+			102 container
+				103 button Example · Harbour Tower · Receipt later corrected
+				104 text  ·  DEMO-CLIENT-harbour
+			105 container
+				106 text Reconciliation reason
+				107 text entry area (settable) Reconciliation reason
+			108 button (disabled) Remove current match
+			109 button (collapsed) Match history, Secondary Actions: Expand
+				110 text Match history
+			92 button (collapsed) 2026-10-29 · Out 1000.00 · DEMO-CLIENT-REV-harbour · Matched, Secondary Actions: Expand
+				93 text 2026-10-29
+				94 text  ·
+				95 text Out
+				96 text 1000.00
+				97 text  ·
+				98 text DEMO-CLIENT-REV-harbour
+				99 text  ·
+				100 text Matched
+		101 text Supplier settlement and shared bank evidence. Customer receipts have their own destination; retention releases, bank integrations and full cash forecasting remain in development.
+
+The focused UI element is 83 button (expanded) 2026-10-29 · In 1000.00 · DEMO-CLIENT-harbour · Matched, Secondary Actions: Collapse

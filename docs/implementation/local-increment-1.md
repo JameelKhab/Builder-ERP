@@ -111,3 +111,7 @@ Approved estimate scope now connects to versioned commercial offers, separate in
 ## 29 October 2026 — Client certificates and invoices
 
 Original contracts now continue through independently activated finance policies, cumulative measured work, technical/commercial/finance review and separate AR invoice preparation/posting. Exact quantity/retention/tax/FX rules, immutable evidence and journals, zero-default authority, project/company findings/export and three-project examples are connected. See [certificate implementation](certificates-local.md). All 221 tests and the build pass; recovery matches 94 business tables. Actual customer advances/receipts, credits/corrections, retention release, changed BOQ and full ERP/migration acceptance remain open.
+
+## 29 October 2026 — Customer receipts and bank evidence
+
+Posted client invoices now connect to multi-invoice/project receipts, separate independent approval, retained remittance evidence, exact AR/bank/FX posting, shared customer/supplier statement matching and immutable full reversals. Reports/findings/CSV, source links, scoped queues/search and examples are connected. See [receipt implementation](receipts-local.md). 231 tests and the frontend build pass; the recovery copy matches 99 business tables. Advances/recovery, credits/unallocated money, retention release and the entire wider comparison/migration scope remain open.

@@ -28,19 +28,21 @@ Company contacts, independently reviewed supplier currencies/terms and catalogue
 
 NCRs now support immediate containment, independent corrective-plan review, action evidence, verification/closure/reopening and scoped findings/export. See [NCR implementation](docs/implementation/quality-local.md). Other quality/HSE/inspection/document/handover scope remains open.
 
-Original general-ledger journals now support company accounts/periods, independent posting with separate authority, exact currency conversion, immutable history/reversals and project/company ledger findings. See [ledger implementation](docs/implementation/ledger-local.md). Typed customer invoices/receipts, broader tax, full bank/stock reconciliation and full migration remain open.
+Original general-ledger journals now support company accounts/periods, independent posting with separate authority, exact currency conversion, immutable history/reversals and project/company ledger findings. See [ledger implementation](docs/implementation/ledger-local.md). Broader customer advances/credits, tax and full bank/stock reconciliation and full migration remain open.
 
 Material supplier bills now match accepted receipt quantities, require independent AP posting authority, create original linked journals and support quantity return credits with exact source-value corrections. Company/project payable findings and CSV reconcile the subledger to AP control. See [payable implementation](docs/implementation/payables-local.md). Subcontract certificates/retention, wider bank/stock integration and full source migration remain open.
 
-Supplier payments/refunds now connect separate independent approval, evidenced offline recording, exact AP/bank/FX allocation, independent statement matching and retained corrections. Findings and CSV support project/company scope. See [settlement implementation](docs/implementation/payments-local.md). No bank transfers are executed; full cash classifications/forecasts, AR, bank imports/fees/transfers and source migration remain open.
+Supplier payments/refunds now connect separate independent approval, evidenced offline recording, exact AP/bank/FX allocation, independent statement matching and retained corrections. Findings and CSV support project/company scope. See [settlement implementation](docs/implementation/payments-local.md). No bank transfers are executed; full cash classifications/forecasts, advance/credit processing, bank imports/fees/transfers and source migration remain open.
 
 Estimate studies now support original BOQ/resource pricing, building quantity exceptions, independent approval, immutable revisions/comparison and controlled project/WBS/draft-baseline handover. Scoped findings and CSV preserve recorded rates and distinguish estimated cost from selling value. See [estimating implementation](docs/implementation/estimates-local.md). Workbook/cap-share parity, CRM/sales/contracts and the full award handover remain open.
 
 BOQ workbook intake now stages XLSX/CSV with exact source references, all-file reconciliation, independent review and once-only append to a draft estimate. See [intake implementation](docs/implementation/boq-intake-local.md). Parent cap/share and assembly-workbook parity remain open.
 
-Reviewed offers and independently verified awards now connect approved estimates to immutable original client contract BOQ with explicit project allocation, retained acceptance evidence and company/project findings. See [commercial implementation](docs/implementation/commercial-local.md). Contract finance activation, certificates, AR, retention/advance accounting and changes remain open.
+Reviewed offers and independently verified awards now connect approved estimates to immutable original client contract BOQ with explicit project allocation, retained acceptance evidence and company/project findings. See [commercial implementation](docs/implementation/commercial-local.md). Richer contract finance, retention releases, advance accounting and changes remain open.
 
-Client contracts now support independently activated finance policy, cumulative measurement, three independent certificate reviews and separately prepared/posted client invoices with project/company findings and AR/retention reconciliation. See [certificate implementation](docs/implementation/certificates-local.md). Advances/receipts, corrections, variations, retention release and full source migration remain open.
+Client contracts now support independently activated finance policy, cumulative measurement, three independent certificate reviews and separately prepared/posted client invoices with project/company findings and AR/retention reconciliation. See [certificate implementation](docs/implementation/certificates-local.md). Advance invoicing/recovery, credits/corrections, variations, retention release and full source migration remain open.
+
+Customer receipts now connect posted invoices to multi-invoice allocation, independent approval, retained remittance evidence, exact AR/bank/FX journals, shared bank matching and immutable full corrections. See [receipt implementation](docs/implementation/receipts-local.md). Reports support project/company scope with findings and CSV. Actual advance invoicing/recovery, credits/unallocated cash, retention release and the full ERP/migration scope remain open.
 
 ## Start here
 
@@ -86,7 +88,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 221 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 231 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

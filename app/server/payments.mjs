@@ -313,7 +313,7 @@ export function payments(db, actorId, today = () => now().slice(0, 10)) {
       if (input.action === 'record') {
         requireThat(r.state === 'approved' && can('payments.record', r) && actorId !== r.approved_by && reviewer(r, r.approved_by), 'Recording requires a different person and current independent payment authority.', 403);
         const ref = text(input.bank_reference, 'Actual bank reference', 120);
-        requireThat(!get('SELECT id FROM payments WHERE bank_id=? AND reference_key=?', r.bank_id, ref.toLocaleLowerCase('en')), 'This bank reference is already recorded.', 409);
+        requireThat(!get('SELECT id FROM payments WHERE bank_id=? AND reference_key=?', r.bank_id, ref.toLocaleLowerCase('en')) && !get('SELECT id FROM client_receipts WHERE bank_id=? AND reference_key=?', r.bank_id, ref.toLocaleLowerCase('en')), 'This bank reference is already recorded.', 409);
         post(r, ref, text(input.evidence, 'Transaction evidence', 2000));
       } else {
         if (input.action === 'submit') {
@@ -492,7 +492,7 @@ export function payments(db, actorId, today = () => now().slice(0, 10)) {
       can_void: s.author_id !== actorId,
       rows: all('SELECT * FROM bank_rows WHERE statement_id=? ORDER BY date,rowid', s.id).map(r => ({
         ...r,
-        matches: all('SELECT m.*,p.title,p.bank_reference FROM bank_matches m JOIN payments p ON p.id=m.payment_id WHERE row_id=? ORDER BY m.id', r.id)
+        matches: [...all("SELECT m.*,p.title,p.bank_reference,'payment' source_type FROM bank_matches m JOIN payments p ON p.id=m.payment_id WHERE row_id=? ORDER BY m.id", r.id), ...all("SELECT m.*,p.title,p.bank_reference,'receipt' source_type FROM bank_receipt_matches m JOIN client_receipts p ON p.id=m.receipt_id WHERE row_id=? ORDER BY m.id", r.id)]
       }))
     }));
   }
@@ -504,6 +504,7 @@ export function payments(db, actorId, today = () => now().slice(0, 10)) {
       requireThat(r.author_id !== actorId, 'Another reconciler must void the statement.', 403);
       requireThat(!get('SELECT statement_id FROM bank_statement_voids WHERE statement_id=?', id), 'Statement already voided.', 409);
       requireThat(!get('SELECT m.id FROM bank_matches m JOIN bank_rows r ON r.id=m.row_id WHERE r.statement_id=? AND m.active=1', id), 'Unmatch every row before voiding statement evidence.');
+      requireThat(!get('SELECT m.id FROM bank_receipt_matches m JOIN bank_rows r ON r.id=m.row_id WHERE r.statement_id=? AND m.active=1', id), 'Unmatch every customer receipt before voiding statement evidence.');
       const reason = text(input.reason, 'Correction reason');
       run('INSERT INTO bank_statement_voids(statement_id,actor_id,reason,at) VALUES(?,?,?,?)', id, actorId, reason, now());
       event('statement', r, 'statement voided', reason);
@@ -519,24 +520,30 @@ export function payments(db, actorId, today = () => now().slice(0, 10)) {
       version(r, input.version);
       const reason = text(input.reason, 'Reconciliation reason');
       if (input.action === 'unmatch') {
-        requireThat(get('SELECT id FROM bank_matches WHERE row_id=? AND active=1', id), 'No active match.');
+        requireThat(get('SELECT id FROM bank_matches WHERE row_id=? AND active=1', id) || get('SELECT id FROM bank_receipt_matches WHERE row_id=? AND active=1', id), 'No active match.');
         requireThat(!get('SELECT m.id FROM bank_matches m JOIN payments p ON p.id=m.payment_id WHERE m.row_id=? AND m.active=1 AND p.recorded_by=?', id, actorId), 'Unmatching requires an independent reconciler.');
+        requireThat(!get('SELECT m.id FROM bank_receipt_matches m JOIN client_receipts p ON p.id=m.receipt_id WHERE m.row_id=? AND m.active=1 AND p.recorded_by=?', id, actorId), 'Unmatching customer receipts requires an independent reconciler.');
         run('UPDATE bank_matches SET active=0 WHERE row_id=? AND active=1', id);
+        run('UPDATE bank_receipt_matches SET active=0 WHERE row_id=? AND active=1', id);
       } else {
-        requireThat(input.action === 'match' && !get('SELECT id FROM bank_matches WHERE row_id=? AND active=1', id), 'Row is already matched.');
-        requireThat(Array.isArray(input.payment_ids) && input.payment_ids.length > 0 && new Set(input.payment_ids).size === input.payment_ids.length, 'Choose distinct recorded payments.');
-        const ps = input.payment_ids.map(row);
+        requireThat(input.action === 'match' && !get('SELECT id FROM bank_matches WHERE row_id=? AND active=1', id) && !get('SELECT id FROM bank_receipt_matches WHERE row_id=? AND active=1', id), 'Row is already matched.');
+        const paymentIds=input.payment_ids??[],receiptIds=input.receipt_ids??[];
+        requireThat(Array.isArray(paymentIds)&&Array.isArray(receiptIds)&&paymentIds.length+receiptIds.length>0&&paymentIds.length+receiptIds.length<=100&&new Set(paymentIds).size===paymentIds.length&&new Set(receiptIds).size===receiptIds.length, 'Choose distinct recorded transactions.');
+        const ps = paymentIds.map(row),rs=receiptIds.map(receiptId=>{const receipt=get('SELECT * FROM client_receipts WHERE id=?',receiptId);requireThat(receipt&&access.has('customer_receipts.read',receipt.company_id,receipt.project_id),'Customer receipt is unavailable.',404);return receipt;});
         for (const p of ps) {
           requireThat(p.state === 'recorded' && p.bank_id === r.bank_id && p.recorded_by !== actorId && !cleared(p.id) && p.accounting_date <= r.date && (effect(p) > 0 ? 'out' : 'in') === r.direction, 'Matching needs uncleared transactions from this bank, date and direction, and an independent reconciler.');
         }
-        requireThat(sum(ps.map(p => p.bank_amount)).cmp(r.amount) === 0, 'Selected bank amounts must exactly equal the statement row.');
+        for(const receipt of rs) requireThat(receipt.state==='recorded'&&receipt.bank_id===r.bank_id&&receipt.recorded_by!==actorId&&!get('SELECT id FROM bank_receipt_matches WHERE receipt_id=? AND active=1',receipt.id)&&receipt.accounting_date<=r.date&&(receipt.reversal_of?'out':'in')===r.direction,'Matching needs uncleared customer receipts from this bank, date and direction, and an independent reconciler.');
+        requireThat(sum([...ps,...rs].map(p => p.bank_amount)).cmp(r.amount) === 0, 'Selected bank amounts must exactly equal the statement row.');
         for (const p of ps) run('INSERT INTO bank_matches(row_id,payment_id,active,actor_id,at) VALUES(?,?,1,?,?)', id, p.id, actorId, now());
+        for (const receipt of rs) run('INSERT INTO bank_receipt_matches(row_id,receipt_id,active,actor_id,at) VALUES(?,?,1,?,?)', id, receipt.id, actorId, now());
       }
       run('UPDATE bank_rows SET version=version+1 WHERE id=?', id);
       event('bank-row', {
         ...r,
         version: r.version + 1,
-        matches: all('SELECT * FROM bank_matches WHERE row_id=?', id)
+        matches: all('SELECT * FROM bank_matches WHERE row_id=?', id),
+        receipt_matches: all('SELECT * FROM bank_receipt_matches WHERE row_id=?', id)
       }, input.action, reason);
       return statements(r.company_id).flatMap(s => s.rows).find(x => x.id === id);
     });

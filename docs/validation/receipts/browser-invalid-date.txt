@@ -1,0 +1,127 @@
+Browser tab: 46, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=customer-receipts
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			5 button Builder ERP
+			6 text JAKH Contracting LLC
+			7 container Main navigation
+				8 button Home
+					9 image
+					10 text Home
+				11 button Access
+					12 image
+					13 text Access
+				14 button Organisation
+					15 image
+					16 text Organisation
+				17 button My Work
+					18 image
+					47 text My Work
+				19 button Tenders
+					20 image
+					48 text Tenders
+				21 button Projects
+					22 image
+					49 text Projects
+				23 button Company
+					24 image
+					50 text Company
+			25 text Built around your work.
+			26 text Local sample workspace
+		27 container
+			28 text Company
+			29 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				30 menu
+					31 (selected) JAKH Contracting LLC
+					32 JAKH International Ltd
+			33 image
+			34 text field (settable) Search company records
+			35 button Search
+			36 button Explore examples
+				37 image
+				38 text Examples
+			39 button Your account and sign-in
+				40 text AA
+				41 text Ahmed Al Mansoori
+				42 text Project manager
+		43 container main-content
+			44 heading JAKH Contracting LLC, Value: 1
+				45 text JAKH Contracting LLC
+			46 text Company-wide operations and shared information
+			143 container
+				144 image
+				145 text Report cutoff cannot be future.
+			51 text CUSTOMER MONEY
+			52 heading Customer receipts, Value: 2
+				53 text Customer receipts
+			54 text Follow a remittance from invoice allocation to bank evidence.
+			55 button (disabled) Export findings
+				56 image
+				57 text Export findings
+			58 container
+				59 text Receipt project
+				60 pop up button (collapsed, settable) Receipt project, Value: Harbour Tower, Secondary Actions: Expand
+					61 menu
+						62 All authorised projects
+						63 Garden Residences
+						64 (selected) Harbour Tower
+			65 container
+				66 text Accounting through
+				67 date field (settable) Accounting through, Value: 2026-11-01
+					68 container
+						69 stepper
+						70 stepper
+						71 stepper
+					72 pop up button Show date picker Show date picker
+			94 heading Receipts and next actions, Value: 3
+				95 text Receipts and next actions
+			96 container
+				97 text Receipt status
+				98 pop up button (collapsed, settable) Receipt status, Value: All current states, Secondary Actions: Expand
+					99 menu
+						100 (selected) All current states
+						101 draft
+						102 submitted
+						103 approved
+						104 recorded
+						105 returned
+						106 cancelled
+			107 text Current workflow states; recorded cash and open items above use the accounting cutoff.
+			108 button Example · Harbour Tower · Receipt draft for allocation Example · JAKH Contracting LLC development client · 2026-10-29 Preparer to finish and submit AED 300
+				109 text Example · Harbour Tower · Receipt draft for allocation
+				110 container
+					111 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+				112 text Preparer to finish and submit
+				113 text AED 300
+				114 image
+			115 button Example · Harbour Tower · Receipt awaiting independent review Example · JAKH Contracting LLC development client · 2026-10-29 Finance reviewer to approve AED 400
+				116 text Example · Harbour Tower · Receipt awaiting independent review
+				117 container
+					118 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+				119 text Finance reviewer to approve
+				120 text AED 400
+				121 image
+			122 button Example · Harbour Tower · Receipt approved, not yet recorded Example · JAKH Contracting LLC development client · 2026-10-29 Treasury to record actual receipt AED 500
+				123 text Example · Harbour Tower · Receipt approved, not yet recorded
+				124 container
+					125 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+				126 text Treasury to record actual receipt
+				127 text AED 500
+				128 image
+			129 button Reversal · Example · Harbour Tower · Receipt later corrected Example · JAKH Contracting LLC development client · 2026-10-29 Bank matched AED 1,000
+				130 text Reversal · Example · Harbour Tower · Receipt later corrected
+				131 container
+					132 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+				133 text Bank matched
+				134 text AED 1,000
+				135 image
+			136 button Example · Harbour Tower · Receipt later corrected Example · JAKH Contracting LLC development client · 2026-10-29 Reversed · original retained AED 1,000
+				137 text Example · Harbour Tower · Receipt later corrected
+				138 container
+					139 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+				140 text Reversed · original retained
+				141 text AED 1,000
+				142 image
+
+The focused UI element is 69 stepper

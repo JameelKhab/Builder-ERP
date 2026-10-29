@@ -117,3 +117,7 @@ Original Builder layout leads with offer value, validity and next step. Offer fo
 ## 29 October 2026 — Client certificates and AR
 
 Verified isolated quantity-surveyor edit/submission and AR due-date revision/submission through the browser; the respective authors see no approval/posting control. Reduced editing to four BOQ columns and hid same-currency FX entry. Screenshot inspection caught unstyled summary values; corrected the component to use existing three-card styling. Persistent report/record layouts, project/company filters, export and responsive evidence are in `docs/validation/certificates`. These are implementation checks, not representative-user acceptance.
+
+## 29 October 2026 — Customer receipts
+
+The receipt form derives same-currency bank amounts, shows invoice count instead of a duplicate total, and exposes one clear next action. Browser saved/submitted a disposable two-project AED 300.30 receipt without self-approval/recording. Verified project findings/actual CSV, invalid cutoff recovery, separate USD company, direct bank route and original-source links. Mobile filters stack and a measured 390px viewport has 390px document width. Browser-level resizing did not apply to the target tab initially; tab-specific viewport/capture verified the actual layout and was cleared afterwards. Bank matching and financial posting are verified by service/HTTP tests, not a real browser transaction. Evidence: `../docs/validation/receipts/`. Full representative-user/accessibility acceptance remains open.

@@ -1,3 +1,5 @@
+import { installReceipts } from './receipts-schema.mjs';
+import { installReceiptExamples } from './receipts-examples.mjs';
 import { installCertificateExamples } from './certificates-examples.mjs';
 import { installCertificates } from './certificates-schema.mjs';
 import { installCommercialExamples } from './commercial-examples.mjs';
@@ -70,6 +72,7 @@ export function openDatabase(path = ':memory:', {
   installBoqIntake(db);
   installCommercial(db);
   installCertificates(db);
+  installReceipts(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
@@ -82,6 +85,7 @@ export function openDatabase(path = ':memory:', {
     installBoqExamples(db);
     installCommercialExamples(db);
     installCertificateExamples(db);
+    installReceiptExamples(db);
   }
   return db;
 }

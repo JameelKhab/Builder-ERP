@@ -1,0 +1,22 @@
+{
+  "captured": "2026-10-29",
+  "method": "Read-only JAKH advance request, invoice, receipt and payment journal observations; no business mutations or application code",
+  "files": [
+    {
+      "file": "advance-invoice.txt",
+      "sha256": "e320d9d8fd9b2e21e810c2f9fab04e4f22891547210b2def2dbbe3e19a8b47cd"
+    },
+    {
+      "file": "advance.txt",
+      "sha256": "123c8d900dd6c5f3bd353a2779a1f4b2ec4c588cbd1a833d1e353219a9b890f0"
+    },
+    {
+      "file": "customer-payment.txt",
+      "sha256": "5d38ee9a54641e0e26ccd0ab1671c8de35359e8e95364c4c7b2e5e4523784b44"
+    },
+    {
+      "file": "receipt-journal.txt",
+      "sha256": "de7e74f1c0c7fbf43dc4f514d756440e5147b40fd04b59b28f27af31a4e1aeb4"
+    }
+  ]
+}

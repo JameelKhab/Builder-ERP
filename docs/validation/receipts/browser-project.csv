@@ -1,0 +1,28 @@
+"Builder ERP · Customer receipts & receivables"
+"Company","jakh","JAKH Contracting LLC"
+"Project","harbour"
+"Through","2026-10-29"
+"Company currency","AED"
+
+"Findings"
+"2 recorded receipts/corrections through 2026-10-29; 1000.00 AED received and 1000.00 reversed."
+"0.00 AED net receipts have current bank matches dated through the cutoff; 1 approved plans remain excluded from cash."
+"AED 3415.10 remains receivable; 0.00 is past due. Settled 0.00 of posted 3415.10."
+"AR source-to-ledger difference: 0.00 AED."
+
+"Receipt","Title","Invoice","Invoice title","Project","Date","Customer","Direction","Invoice currency","Allocated","Company carrying amount","Bank currency","Bank amount","Company bank amount","FX gain / loss","Bank match","Journal"
+"CRC-B31CCF8A","Example · Harbour Tower · Receipt later corrected","CIN-5701F0CB","Example · Harbour Tower · measured work 1","harbour","2026-10-29","Example · JAKH Contracting LLC development client","in","AED","1000.00","1000.00","AED","1000.00","1000.00","0.00","DEMO-CLIENT-STATEMENT-jakh","JRN-C3B0E561"
+"CRC-99D93863","Reversal · Example · Harbour Tower · Receipt later corrected","CIN-5701F0CB","Example · Harbour Tower · measured work 1","harbour","2026-10-29","Example · JAKH Contracting LLC development client","out","AED","1000.00","1000.00","AED","1000.00","1000.00","0.00","DEMO-CLIENT-STATEMENT-jakh","JRN-3DB87AAB"
+
+"Invoice","Project","Customer","Currency","Posted","Settled","Open","Company open","Due"
+"CIN-5701F0CB","harbour","Example · JAKH Contracting LLC development client","AED","3415.10","0.00","3415.10","3415.10","2026-11-30"
+
+"Approved plans — not cash","Currency","Amount","Bank currency","Bank amount"
+"CRC-752E6559","AED","500.00","AED","500.00"
+
+"AR control reconciliation","{""source_open"":""3415.10"",""ledger_open"":""3415.10"",""difference"":""0.00""}"
+"Definitions and limits"
+"Only posted client invoices and recorded receipts/corrections are included. Retention, unallocated cash, advance invoices and credits require their separate connected paths."
+"Receipt amounts are movements, not bank opening/closing balances or a full company cash-flow classification."
+"Clearance uses currently active matches dated through cutoff; historical match decisions are retained in audit and are not reconstructed."
+"Selected project allocations only."

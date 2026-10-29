@@ -1,3 +1,4 @@
+import { receipts } from './receipts.mjs';
 import { certificates } from './certificates.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
@@ -67,6 +68,7 @@ export function createApi(db, {
   app.use('/api/quality/cases/:id/evidence', express.json({
     limit: '3mb'
   }));
+  app.use('/api/customer-receipts/documents', express.json({limit:'3mb'}));
   app.use('/api/certificates/measurements', express.json({limit:'3mb'}));
   app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
@@ -147,6 +149,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.customerReceipts = receipts(db, session.previewId || session.actorId, today);
     req.certificates = certificates(db, session.previewId || session.actorId, today);
     req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
@@ -160,6 +163,15 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/customer-receipts/options',(req,res)=>res.json(req.customerReceipts.options(req.query.company,req.query.project||null)));
+  app.get('/api/customer-receipts/documents',(req,res)=>res.json(req.customerReceipts.list(req.query.company,req.query.project||null)));
+  app.get('/api/customer-receipts/report',(req,res)=>res.json(req.customerReceipts.report(req.query.company,{project:req.query.project||null,to:req.query.to})));
+  app.get('/api/customer-receipts/documents/:id',(req,res)=>res.json(req.customerReceipts.detail(req.params.id)));
+  app.post('/api/customer-receipts/documents',(req,res)=>res.status(201).json(req.customerReceipts.save(null,req.body)));
+  app.put('/api/customer-receipts/documents/:id',(req,res)=>res.json(req.customerReceipts.save(req.params.id,req.body)));
+  app.post('/api/customer-receipts/documents/:id/decision',(req,res)=>res.json(req.customerReceipts.decide(req.params.id,req.body)));
+  app.post('/api/customer-receipts/documents/:id/reversal',(req,res)=>res.status(201).json(req.customerReceipts.reverse(req.params.id,req.body)));
+  app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
   app.get('/api/certificates/report',(req,res)=>res.json(req.certificates.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all',from:req.query.from||null,to:req.query.to||null})));
   app.get('/api/certificates/contracts/:id',(req,res)=>res.json(req.certificates.contract(req.params.id)));

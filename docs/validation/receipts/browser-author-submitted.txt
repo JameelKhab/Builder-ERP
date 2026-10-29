@@ -1,0 +1,105 @@
+Browser tab: 47, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4188/#section=Company&area=Overview&category=customer-receipts".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4188/#section=Company&area=Overview&category=customer-receipts
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4188/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button My Work
+					11 image
+					12 text My Work
+				13 button Projects
+					14 image
+					15 text Projects
+				16 button Company
+					17 image
+					18 text Company
+			19 text Built around your work.
+			20 text Local sample workspace
+		21 container
+			22 text Company
+			23 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				24 menu
+					25 (selected) JAKH Contracting LLC
+					26 JAKH International Ltd
+			27 image
+			28 text field (settable) Search company records
+			29 button Search
+			30 button Explore examples
+				31 image
+				32 text Examples
+			33 button Your account and sign-in
+				34 text R·
+				35 text Rania · example receipt preparer
+				36 text Accounts receivable clerk
+		37 container main-content
+			38 heading JAKH Contracting LLC, Value: 1
+				39 text JAKH Contracting LLC
+			40 text Company-wide operations and shared information
+			41 button All customer receipts
+				42 image
+				43 text All customer receipts
+			44 container
+				45 text NEEDS APPROVAL  ·  CRC-DB2DD721
+			46 heading Browser check · two-invoice customer remittance, Value: 2
+				47 text Browser check · two-invoice customer remittance
+			48 container
+				49 text Example · JAKH Contracting LLC development client  ·  2026-10-29
+			50 text Allocated to invoices
+			51 text AED 300.30
+			52 text Invoices covered
+			53 text 2
+			54 text Next action
+			55 text Finance reviewer to approve
+			56 heading What this tells you, Value: 3
+				57 text What this tells you
+			58 text This plan has not created accounting or received cash.
+			59 text Receipt allocation reduces receivables and does not recognise revenue again.
+			61 heading Invoice allocations, Value: 3
+				62 text Invoice allocations
+			63 table
+				64 row
+					65 cell
+						66 text Invoice
+					67 cell
+						68 text Project
+					69 cell
+						70 text Allocated
+					71 cell
+						72 text Company carrying amount
+				73 row
+					74 cell
+						75 button Example · Harbour Tower · measured work 1
+						76 text CIN-028EF870
+					77 cell
+						78 text Harbour Tower
+					79 cell
+						80 text AED 100.10
+					81 cell
+						82 text AED 100.10
+				83 row
+					84 cell
+						85 button Example · Garden Residences · measured work 1
+						86 text CIN-7C14C156
+					87 cell
+						88 text Garden Residences
+					89 cell
+						90 text AED 200.20
+					91 cell
+						92 text AED 200.20
+			104 container
+				105 text Reason for this decision
+				106 text entry area (settable) Reason for this decision
+				107 button (disabled) Withdraw for revision
+			98 button (collapsed) Evidence and conversion, Secondary Actions: Expand
+				99 text Evidence and conversion
+			100 button (collapsed) History · 2 events, Secondary Actions: Expand
+				101 text History ·
+				102 text 2
+				103 text  events
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4188/#section=Company&area=Overview&category=customer-receipts

@@ -57,3 +57,7 @@ The examples are fictional and clearly identified. Most registers remain **read-
 ## Client certificate pack — 29 October 2026
 
 `client-certificates-v1` is additive: three independently activated fictional contract finance policies, twelve measurements and nine invoices across all three supplied projects and both companies. One invoice is posted, one remains draft and one awaits AR review per project; the fourth measurement awaits independent technical review. Source BOQ/allocations are the immutable original commercial examples. No advance cash is inferred from their allowances. Six dedicated fictional staff have no credentials. Use Home → Client certificates or project Costs & Contracts → Client certificates, and expand policy/evidence/history for detail. The example guide and My Work/search use these canonical records.
+
+## Customer receipt pack — 29 October 2026
+
+`customer-receipts-v1` adds fifteen fictional receipts across three projects/two companies: draft, submitted, approved but unrecorded, recorded original and recorded full reversal in each project. Six evidence files, six immutable source journals and two matched fictional bank statements demonstrate the connected route. The paired corrections leave net AR unchanged. Three fictional staff have no credentials and existing approval limits stay zero. Home/Company/project Costs & Contracts → Customer receipts and invoice → Prepare receipt use canonical records. Installation is additive and idempotent; examples do not claim JAKH data migration.

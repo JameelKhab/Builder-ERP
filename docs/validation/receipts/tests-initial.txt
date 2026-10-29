@@ -1,0 +1,513 @@
+
+> builder-erp@0.0.0 test
+> node --test tests/*.test.mjs
+
+✔ site engineer has operational destinations without commercial, HR or admin access (852.894375ms)
+✔ pricing is withheld across request lookup, workspace, search, preview and linked records (879.411083ms)
+✔ HR and system administration do not imply financial access; unknown records fail closed (674.648167ms)
+✔ every role has an explicit available capability contract and auditors cannot mutate (765.533292ms)
+✔ a role in one project cannot widen reporting or record access in another (698.741333ms)
+✔ reviewed access changes are atomic, versioned, reasoned and recorded with before/after (712.801ms)
+✔ invalid grants cannot expand authority or partially replace existing permissions (800.886417ms)
+✔ revocation takes effect for an existing service and disabled reviewers receive no work (879.618625ms)
+✔ purchase pricing does not grant budget, forecast or cash access through request details (583.257791ms)
+✔ removing all grants leaves an active account with no visible companies, projects or records (570.807125ms)
+✖ HTTP boundary requires a session, blocks cross-origin writes and scopes direct endpoints (48.681334ms)
+✖ access preview is administrator-only, server-enforced read-only, and revocation invalidates sessions (770.49525ms)
+✖ a normal session cannot impersonate another user and logout revokes its token (27.969084ms)
+✔ XLSX reads stored/deflated cells and rejects cached formulas at row validation; CSV preserves quoted text and Arabic headings (6.637125ms)
+✔ file parser rejects ZIP bombs, checksums, traversal, external payloads, DTDs and invalid CSV (59.326375ms)
+✔ invalid unit is quarantined with workbook/sheet/row/cell and no target changes (54.856417ms)
+✔ clean intake needs independent review and commits once with exact totals/product/source lineage (49.397083ms)
+✔ multiple files reconcile atomically and cross-file duplicate codes block all rows (58.061625ms)
+✔ missing/zero/mismatched expected totals, currencies and unit dimensions never silently reconcile (41.928125ms)
+✔ formulas, duplicate headers, unknown columns and legacy caps/shares are blockers (50.863209ms)
+✔ a new mapping check retains earlier error evidence and clears previous review (36.732875ms)
+✔ estimate changes, master changes and reviewer revocation invalidate a previously reviewed intake (47.475541ms)
+✔ scope and author controls apply to list, detail, download, check history and mutations (48.701042ms)
+✔ source lineage survives approved revisions and historical snapshots do not follow later product names (44.081541ms)
+✔ examples cover each project/company with blocked, ready-for-review and committed intake; reinstall preserves all work (927.382375ms)
+✔ XLSX date/percentage formats, hidden rows and cached formulas cannot become valid cost inputs (41.196959ms)
+✔ intake export includes scoped findings, exact file totals, source rows and neutralised spreadsheet formulas (33.895917ms)
+✖ individual HTTP accounts prepare evidence, review each stage, invoice and post with scope and preview protection (2597.13025ms)
+✔ cumulative measurement follows approved predecessor, independent stages and separate typed client invoice (805.049958ms)
+✔ measurement ceiling, full line set, periods, stale versions and immutable evidence are enforced (849.402916ms)
+✔ returns preserve cycles, all reviewers are independent and live earlier authority is rechecked (719.87325ms)
+✔ finance policy needs independent contract authority and current account snapshots (791.399583ms)
+✔ whole final quantity exhausts authoritative line cents and retention, not rounded unit rates (806.733125ms)
+✔ missing measurement evidence blocks submission and replaced evidence stays available (706.756375ms)
+✔ project/company scope applies to contracts, evidence, invoices, search and complete report (770.855833ms)
+✔ invoice posting checks independent separate limit, period, current author, immutability and exact FX (822.837958ms)
+✔ reports separate accounting date population, preserve filtered totals and reject invalid ranges (566.320625ms)
+✔ additive examples are idempotent and every supplied project has an invoiced, draft and review example (593.507167ms)
+✔ foreign contract and separately dated invoice FX preserve balanced company AR and retention cents (443.221084ms)
+✔ certificate and invoice findings export the complete filtered population with safe spreadsheet text (492.280125ms)
+✔ retention stops at its agreed cap and exclusive net-basis tax uses the net measured amount (515.333541ms)
+✔ fully retained zero-tax work posts retention and revenue without manufacturing an AR balance (442.51675ms)
+✔ approved estimate → reviewed offer → evidenced award retains exact BOQ, terms and separate draft cost/cash (67.381375ms)
+✔ new commercial limits default to zero and author/evidence recorder cannot approve own work (42.334542ms)
+✔ foreign currency keeps source amounts and saved rate; authority and reports use company value (40.377459ms)
+✔ invalid terms and duplicate offer creation roll back without changing original scope (36.401458ms)
+✔ approval and acceptance respect expiry, approval date and real calendar dates; late recording is explicit (45.3295ms)
+✔ withdrawal, requested changes, revisions and all old snapshots remain distinct (42.576875ms)
+✔ a newer estimate revision blocks stale offer approval and a new offer revision carries the latest amounts (40.603208ms)
+✔ revoked authority and customer/company changes invalidate further commitment (41.122542ms)
+✔ evidence and allocations are scoped, complete and frozen; changed WBS requires a new submission (45.506875ms)
+✔ pending acceptance blocks revision/withdrawal and successful retries create one immutable original contract (48.72925ms)
+✔ project scope controls lists, findings, evidence, contract and search; company-origin award becomes visible to its project (62.691458ms)
+✔ report findings/CSV use full filtered latest population, explicit dates and spreadsheet-safe text (46.294125ms)
+✔ commercial examples cover every supplied company/project and reinstall without overwriting work (885.824667ms)
+✔ one client acceptance reference cannot award two studies; cancellation retains evidence and permits correction (39.724541ms)
+✔ company identity, source reviewer and recorder revocation are checked before award without partial contract creation (34.322792ms)
+✔ rounding boundaries and negative values use half away from zero (1.266916ms)
+✔ cent round-trip for positive and negative values (2.836167ms)
+✔ exact decimal string serialization preserves integer zeros and fractional precision (0.292917ms)
+✔ money uses exact decimal arithmetic and rounds the document amount before conversion (2.999416ms)
+✔ company and project permissions apply to direct lookup, search, reports and creation (58.842542ms)
+✔ cross-company vendor, project and cost-item references are rejected (23.928959ms)
+✔ currency and price come from the selected company vendor quote, not client amounts (33.873542ms)
+✔ vendor optional estimates use company currency; missing quantity and price are rejected (28.208583ms)
+✔ stale rates and expired quotations block repricing and approval (40.093125ms)
+✔ independent approval persists a versioned event and does not manufacture costs or cash (24.748084ms)
+✔ changed vendor terms cannot be approved using an earlier request snapshot (31.165959ms)
+✔ self approval and role escalation via client payload are forbidden (20.474041ms)
+✔ submission does not route to a reviewer outside the company (19.947166ms)
+✔ return, reprice, resubmit and approval preserve history and enforce current revision (28.127959ms)
+✔ concurrent reviewers cannot approve the same revision twice (29.040458ms)
+✔ budget reservations are transactional and prevent another approval exceeding allowance (34.705375ms)
+✔ approval limits apply to converted company amount (28.141958ms)
+✔ the complete report, source rows and findings share one versioned snapshot (28.323792ms)
+✔ company reports include non-project overheads and do not mix legal currencies (33.271833ms)
+✔ missing forecasts remain unknown, never zero or an apparently complete partial total (26.771875ms)
+✔ invalid dates and oversized descriptions fail without creating records (33.368334ms)
+✔ history cannot be edited or deleted through normal database statements (26.821042ms)
+✔ local changes survive database reopen without fixture reseeding (38.978125ms)
+✖ individual HTTP users prepare, independently approve and hand over a scoped estimate; API reports and previews stay controlled (1376.358958ms)
+✔ source arithmetic: eleven buildings, one variant, assemblies, indirect and ordered pricing (45.342459ms)
+✔ exact rational products, fractional price bases and largest-remainder allocation reconcile (1.028666ms)
+✔ zero overrides, foreign resource FX and multiple pricing stages remain explicit (33.16825ms)
+✔ invalid group cycles, units, references, rates, unsupported caps and duplicate overrides are rejected atomically (37.372375ms)
+✔ independent authority, stale saves and immutable approved input evidence (33.930791ms)
+✔ returned drafts refresh customer snapshots and preserve past decisions (39.979709ms)
+✔ revision copies stable identities, comparisons and latest-only reports never double count (35.471916ms)
+✔ company and project scope applies to detail, report, search, exports and writes (45.118625ms)
+✔ handover creates typed hierarchy, quantities and zero-release draft budget exactly once (39.577375ms)
+✔ handover rolls back on invalid project and rechecks revoked or insufficient estimate approval (39.981125ms)
+✔ foreign estimate authority uses functional currency and export neutralises formulas (37.154333ms)
+✔ additive examples provide approved, returned, FX and revised studies in each existing project (892.144542ms)
+✔ disabled reviewers cannot authorise handover and live author access is required for approval (55.871167ms)
+✔ active project studies direct users to budget changes instead of offering duplicate setup (25.010875ms)
+✔ every visible feature has examples in every sample company and project (1177.275208ms)
+✔ example records contain substantive detail, history and resolvable scoped relationships (879.717375ms)
+✔ expanded examples respect company and project permissions, including related work (816.309042ms)
+✔ request examples reconcile currencies and have valid independent approval histories (692.468ms)
+✔ installing examples upgrades existing data once without overwriting work or financial snapshots (763.757666ms)
+✖ foundation HTTP endpoints enforce organisation scope, price redaction, preview and budget lookup (853.283208ms)
+✖ a new baseline funds an actual request and order through HTTP while preserving cash and original budget (47.83975ms)
+✔ organisation administration is separate, currencies fixed, new companies have no automatic grants (46.211958ms)
+✔ project dates, uniqueness, immutable company and company-wide creation rights are enforced (30.742875ms)
+✔ location and WBS hierarchies reject cycles, foreign parents, group purchasing and duplicate codes (25.962084ms)
+✔ original baseline covers all leaves, excludes group double counting and remains unknown before approval (30.678542ms)
+✔ baseline rejects omissions and stale work additions; independent approval never uses purchase authority (23.82225ms)
+✔ revisions preserve original, freeze submitted content, prevent duplicate and competing approval (34.23375ms)
+✔ budget reductions cannot underfund opening commitments, incurred cost, reservations or local orders (35.139166ms)
+✔ approval checks live costs after submission and rolls back all facts if any line is invalid (37.451875ms)
+✔ gross changes determine authority; offsetting revisions cannot conceal a high value change (36.492416ms)
+✔ budget and setup services enforce current scope, redaction and revocation across direct endpoints (27.975458ms)
+✔ budget approval grants are reviewed separately with before-after history and validation (29.094292ms)
+✔ foundation examples are meaningful, additive and idempotent with separate fictional reviewer (893.623833ms)
+✖ two authenticated people independently approve a budget and purchase, then reports reconcile the transaction (37.712708ms)
+✖ HTTP rejects sample backdoors, unsafe origins/hosts and preview writes; cookie identity cannot be spoofed (30.549833ms)
+✖ company/project grants, session revocation and price redaction apply to activated accounts through HTTP (20.187584ms)
+✔ password hashing uses distinct salts, fixed work factors, Unicode normalization and strict length validation (1294.806708ms)
+✔ first owner is installed once with explicitly selected scope and no financial approval authority (259.744291ms)
+✔ concurrent first-owner attempts have one winner and no second identity or grants (294.67875ms)
+✔ provisioning is reviewed and atomic; activation grants no extra authority and consumes its code once (1036.69625ms)
+✔ existing identity binding records previous labels and preserves referenced transaction identity (264.121833ms)
+✔ activation expiry, replacement and recovery invalidate old codes but preserve roles (1612.180958ms)
+✔ password change revokes every session and old code; one-use recovery requires a fresh sign-in (1257.301625ms)
+✔ sensitive administration requires fresh password; preview cannot change identity or inspect personal sessions (410.369ms)
+✔ another administrator can maintain owner business scope, but self elevation and direct admin disable remain blocked (784.32925ms)
+✔ login errors are generic and rate limits persist; current revocations win over password hashing (1785.576458ms)
+✔ activation and password reauthentication recheck revocation after asynchronous hashing (533.425708ms)
+✔ sessions survive service restart and enforce idle, absolute, own-session and access-version boundaries (562.418041ms)
+✔ implementation coverage retains all comparison functions and data contracts without certifying samples as parity (6.481208ms)
+✖ authenticated HTTP journals require separate independent authority, post/reverse, reconcile reports/exports and reject preview writes (1788.612708ms)
+✔ general journals post independently, preserve balanced currencies and source history and reverse at their actual cutoff (37.355166ms)
+✔ exact foreign rounding assigns residual cents visibly and rejects malformed or unbalanced lines (0.287583ms)
+✔ approval has its own limit, author cannot self-post, stale/repeated writes never create extra facts or numbers (41.064875ms)
+✔ account and period configuration gates posting; submitted account revisions require renewed preparation (41.29825ms)
+✔ configuration blocks overlapping periods, fixed account identity, invalid scopes and manual subledger control postings (36.61525ms)
+✔ posted data and audit evidence resist update/delete; cancelled reversal can be recreated without duplicating active reversals (29.629584ms)
+✔ project and company scopes protect detail, reports, configuration and search; ledger never overwrites operational cost (68.861958ms)
+✔ current revocation, independent return and author withdrawal preserve history and exclude drafts from reports (40.096291ms)
+✔ journal authority is separately reviewed and cannot be attached to an ineligible role (28.307875ms)
+✖ additive examples cover every project, are idempotent and export all facts/findings with safe text (980.214541ms)
+✔ account-filtered findings use only matching pending journals and project reports state their exact boundary (40.732791ms)
+✖ master HTTP endpoints enforce live scope, pricing redaction and read-only preview (796.868084ms)
+✖ a newly maintained supplier and product flow through local HTTP purchase approval, exact pack issue and searchable history (39.640125ms)
+✔ supplier has one party/customer identity, company-local terms and independent activation (31.970709ms)
+✔ project-scoped grants cannot maintain company masters, and unpriced readers cannot see terms or proposals (24.534084ms)
+✔ shared identity links existing authorised party while confidential company terms stay separate (28.748ms)
+✔ stale terms require return and a fresh proposal; future/expired/currency inputs cannot activate (31.869709ms)
+✔ pack quote uses approved currency and exact ratio arithmetic across partial awards and receipts (39.294833ms)
+✔ forbidden currency and mismatched/retired packs fail without adding a quotation (25.711083ms)
+✔ supplier block is checked at sourcing, approval, issue and legacy request gates but permits existing deliveries (45.751625ms)
+✔ historical supplier/address/product/unit/pack snapshots survive rename and archive (33.701125ms)
+✔ new products enforce unit precision, service separation and immutable definitions (40.398041ms)
+✔ category rename/archive preserves product references and history is immutable (29.706791ms)
+✔ example pack installs once, retains pending reviews and demonstrates one party in two companies (862.904292ms)
+✔ pending purchasing rechecks current supplier identity/address, while retired pack history stays fixed (38.994125ms)
+✔ shared legal identity changes invalidate pending company terms and effective-date expiry stops new purchasing (47.950542ms)
+✖ authenticated supplier bill and partial return credit post independently through HTTP; scopes, source integrity and exports reconcile (1245.855166ms)
+✔ matched supplier bill posts once, balances both currencies, freezes source and leaves cash/operational cost unchanged (61.353708ms)
+✔ receipt ceilings exclude rejected and returned stock, include consumed stock and recheck competing submissions atomically (50.831416ms)
+✔ separate AP authority, current role/scope and independent preparer are enforced; old limits do not imply AP posting (26.760166ms)
+✔ source identity and legal reference are controlled; invalid dates, quantity precision, taxes and price variances fail without a draft (49.680667ms)
+✔ exact price basis and configured nonrecoverable tax do not round a unit price before multiplication (29.9905ms)
+✔ tax/account/control version changes require preparation again, while blocked new-purchase suppliers still permit issued-order liabilities (29.680792ms)
+✔ return credits require physical overbilling, preserve original values and exhaust cents exactly across partial credits (65.871208ms)
+✔ returns before billing cannot be reused to claim credit; concurrent drafts refresh residual cents after another credit posts (49.755417ms)
+✔ period close blocks submitted payables, closed periods block posting and failed posting consumes no number (33.75825ms)
+✔ AP clerk scope hides general ledger, customer/HR, foreign documents, source lots, search and export data (41.766125ms)
+✔ posted documents, lines and history are immutable; scoped report and CSV reconcile credits by accounting date (47.749458ms)
+✔ AP access limit defaults to zero, validates role and persists through independent reviewed grant changes (30.478875ms)
+✔ payable examples are additive, independent, scoped to every supplied project and idempotent (821.737459ms)
+✖ individual HTTP identities independently prepare, approve, record and reconcile; scope, preview and complete CSV stay aligned (1300.391583ms)
+✔ payments keep approval separate from cash, exact partial balance, FX and typed control (60.91625ms)
+✔ payment reservations, stale balance and final residual exhaust transaction and carrying cents (39.348916ms)
+✔ post-payment supplier credit becomes negative balance, refund settles original carrying amounts (65.189791ms)
+✔ independent bank matching, duplicate rejection, clearance and reversal retain all facts (61.539167ms)
+✔ least privilege, independent limit, live revocation, company/project scope and bank evidence arithmetic (46.247291ms)
+✔ same-currency bank amounts, duplicate actual reference and closed periods are guarded (42.631417ms)
+✔ two payments match one bank row exactly; recording author cannot reconcile after a role change (45.326875ms)
+✔ foreign bank snapshots retain original currency, scope and gain; future cutoffs and config changes fail safely (46.697375ms)
+✔ multi-bill multi-project payment balances each project and restricts its full batch to company scope (56.615333ms)
+✔ statement correction keeps original evidence, requires another reconciler and releases the period for replacement (46.324041ms)
+✔ payment reversal exactly offsets original account postings, including exchange differences (45.823875ms)
+✔ payment examples cover all projects, partial/cleared/refund/reversal/planned states without real identities or cost duplication (773.608084ms)
+✔ bank auditors have read-only statement access; payment limits remain separate and period closure respects pending plans (55.391458ms)
+✔ money display preserves exact long amounts and fractional unit prices (0.4205ms)
+✖ typed procurement HTTP routes share session scope, price redaction and read-only access preview (726.573334ms)
+✖ a request created over HTTP persists quantity without a vendor, currency or client-supplied identity (31.798834ms)
+✔ nested service operations roll back together and example upgrades are idempotent (931.973542ms)
+✔ site demand supports several unpriced lines, scoped work and locations, and revisions before submission (47.656167ms)
+✔ invalid quantity, dates, cross-company masters and cross-project work cannot create partial requests (28.450208ms)
+✔ quotes use vendor currency and same-currency rate 1; server computes a balanced split award (31.863375ms)
+✔ unbalanced allocations, duplicate quotes, foreign quotes and wrong state fail atomically (36.7305ms)
+✔ requester and sourcing author cannot approve; authority is evaluated at the approval revision (40.490292ms)
+✔ expired quote and stale FX block approval without reserving funds (32.582625ms)
+✔ released budget, typed and legacy reservations share one capacity and cancellation releases it (38.274292ms)
+✔ order issue splits vendor/currency, converts reservation once and preserves frozen pricing (39.420833ms)
+✔ partial receipt, rejection, return and issue keep quantities, value, cost and cash distinct (30.508708ms)
+✔ receipt and stock commands retry safely and reject key reuse with changed payload (42.436166ms)
+✔ over-receipt, over-return, consumed-stock return and stale revisions cannot corrupt stock (37.022042ms)
+✔ last lot consumption takes residual cents exactly and posted evidence cannot be rewritten (32.580417ms)
+✔ read-only auditor, unpriced site user and foreign scope have separate service permissions (36.095ms)
+✔ revoked grants apply to an already-created procurement service, search and direct orders (35.592958ms)
+✖ HTTP quality upload/download, full correction and independent closure preserve scope, hash and report/export facts (965.518583ms)
+✔ NCR full independent lifecycle, evidence hash and reopen preserve complete earlier history (1039.816917ms)
+✔ draft and plan gates require evidence, scoped independent assignments and explicit consequences (657.835917ms)
+✔ failed verification reopens an action and demands fresh action and independent verification evidence (652.380584ms)
+✔ case, plan, action and file operations reject stale versions, wrong owners and revoked scope (437.056083ms)
+✔ project and company boundaries apply to direct records, files, reports and search (527.243375ms)
+✔ uploads reject malformed, active-content, overlarge and mismatched files; contents never appear in record JSON (521.436416ms)
+✔ company reports use full filtered population, count reopened cases once and retain consequence follow-ups (442.819708ms)
+✔ quality examples are additive, cover every project and leave cash and cost facts unchanged (460.944833ms)
+✔ review withdrawal and reassignment recover lost authority without skipping verification or erasing evidence (427.662833ms)
+✔ historic action completers cannot become verifier after failed work is reassigned (406.586416ms)
+✔ immediate containment can be recorded before the root cause and corrective plan are known (401.827583ms)
+✔ changing containment invalidates earlier plan evidence before review (413.456375ms)
+✖ individual HTTP identities allocate, approve, record and download receipt evidence with scopes and read-only preview (2009.26325ms)
+✔ one receipt settles two invoices, keeps revenue unchanged, and exhausts partial/final AR cents (939.35475ms)
+✔ receipt authority, independent recording, evidence and idempotent retry are enforced (553.891041ms)
+✔ over-allocation, stale balances, reservations and duplicate references fail atomically (616.28575ms)
+✔ mixed-project receipts require company authority and project reports reveal only their allocation (466.799291ms)
+✔ independent bank matching and linked reversal restore AR without resetting the original (512.768875ms)
+✔ foreign bank currency posts the actual company bank amount and separate FX gain; reversal retains original values (508.910917ms)
+✔ revoked author/reviewer, changed bank and closed periods invalidate financial continuation (436.795417ms)
+✔ bank rows match mixed customer and supplier inflows once, and both subledgers protect the same bank reference (442.152667ms)
+✔ complete cutoff findings, scoped search, CSV safety and additive examples stay aligned (441.388417ms)
+✔ export includes full-scope findings before all rows, even when the UI is paginated (41.348375ms)
+✔ serves existing static assets without a fallback (19.891958ms)
+✔ falls back to index.html for an unknown app route (2.192375ms)
+✔ does not turn missing API or write requests into the app shell (0.349458ms)
+✔ emits the files required by Sites packaging (2.8825ms)
+ℹ tests 231
+ℹ suites 0
+ℹ pass 211
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11903.05925
+
+✖ failing tests:
+
+test at tests/api.test.mjs:5:1
+✖ HTTP boundary requires a session, blocks cross-origin writes and scopes direct endpoints (48.681334ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/api.test.mjs:64:1
+✖ access preview is administrator-only, server-enforced read-only, and revocation invalidates sessions (770.49525ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/api.test.mjs:120:1
+✖ a normal session cannot impersonate another user and logout revokes its token (27.969084ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/certificates-api.test.mjs:9:1
+✖ individual HTTP accounts prepare evidence, review each stage, invoice and post with scope and preview protection (2597.13025ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/estimates-api.test.mjs:10:1
+✖ individual HTTP users prepare, independently approve and hand over a scoped estimate; API reports and previews stay controlled (1376.358958ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/foundations-api.test.mjs:35:1
+✖ foundation HTTP endpoints enforce organisation scope, price redaction, preview and budget lookup (853.283208ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/foundations-api.test.mjs:61:1
+✖ a new baseline funds an actual request and order through HTTP while preserving cash and original budget (47.83975ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/identity-api.test.mjs:97:1
+✖ two authenticated people independently approve a budget and purchase, then reports reconcile the transaction (37.712708ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/identity-api.test.mjs:234:1
+✖ HTTP rejects sample backdoors, unsafe origins/hosts and preview writes; cookie identity cannot be spoofed (30.549833ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/identity-api.test.mjs:284:1
+✖ company/project grants, session revocation and price redaction apply to activated accounts through HTTP (20.187584ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/ledger-api.test.mjs:8:1
+✖ authenticated HTTP journals require separate independent authority, post/reverse, reconcile reports/exports and reject preview writes (1788.612708ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/ledger.test.mjs:418:1
+✖ additive examples cover every project, are idempotent and export all facts/findings with safe text (980.214541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  3 !== 2
+
+      at TestContext.<anonymous> (file:///Users/jameelkhabaze/Documents/Codex/Builder-ERP/app/tests/ledger.test.mjs:435:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/masters-api.test.mjs:4:1
+✖ master HTTP endpoints enforce live scope, pricing redaction and read-only preview (796.868084ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/masters-api.test.mjs:10:1
+✖ a newly maintained supplier and product flow through local HTTP purchase approval, exact pack issue and searchable history (39.640125ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/payables-api.test.mjs:7:1
+✖ authenticated supplier bill and partial return credit post independently through HTTP; scopes, source integrity and exports reconcile (1245.855166ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/payments-api.test.mjs:8:1
+✖ individual HTTP identities independently prepare, approve, record and reconcile; scope, preview and complete CSV stay aligned (1300.391583ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/procurement-api.test.mjs:13:1
+✖ typed procurement HTTP routes share session scope, price redaction and read-only access preview (726.573334ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/procurement-api.test.mjs:27:1
+✖ a request created over HTTP persists quantity without a vendor, currency or client-supplied identity (31.798834ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/quality-api.test.mjs:3:1
+✖ HTTP quality upload/download, full correction and independent closure preserve scope, hash and report/export facts (965.518583ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/receipts-api.test.mjs:6:1
+✖ individual HTTP identities allocate, approve, record and download receipt evidence with scopes and read-only preview (2009.26325ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+      at listenInCluster (node:net:2224:12)
+      at node:net:2448:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }

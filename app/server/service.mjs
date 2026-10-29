@@ -1,3 +1,4 @@
+import { receipts } from './receipts.mjs';
 import { certificates } from './certificates.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
@@ -402,6 +403,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       };
       return {
         client_certificates: access.has('certificates.read',company,project,!project) ? certificates(db,actorId,today).list(company,project) : [],
+        client_receipts: access.has('customer_receipts.read',company,project,!project) ? receipts(db,actorId,today).list(company,project) : [],
         client_invoices: access.has('ar.read',company,project,!project) ? certificates(db,actorId,today).invoiceList(company,project) : [],
         commercial_offers: access.has('sales.read',company,project,!project) ? commercial(db,actorId,today).list(company,project) : [],
         estimate_documents: access.has('tenders.read', company, project, !project) ? estimates(db, actorId, today).list(company, project) : [],
@@ -483,11 +485,12 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       const payableRows = access.has('ap.read', company, null, true) ? payables(db, actorId, today).list(company).map(r => ({...r,display_reference:r.reference,vendor_name:r.vendor,category:'Supplier bills',status:r.state_label})) : [];
       const paymentRows = access.has('payments.read', company, null, true) ? payments(db, actorId, today).list(company).map(r => ({...r,vendor_name:r.vendor,category:'Payments & cash flow',status:r.state_label})) : [];
       const certificateRows = access.has('certificates.read',company,null,true) ? certificates(db,actorId,today).list(company).map(r=>({...r,category:'Client certificates',status:r.state_label})) : [];
+      const clientReceiptRows = access.has('customer_receipts.read',company,null,true) ? receipts(db,actorId,today).list(company).filter(r=>r.can_open).map(r=>({...r,category:'Customer receipts',customer_name:r.customer,status:r.state_label})) : [];
       const clientInvoiceRows = access.has('ar.read',company,null,true) ? certificates(db,actorId,today).invoiceList(company).map(r=>({...r,category:'Client invoices',status:r.state_label})) : [];
       const commercialRows = access.has('sales.read',company,null,true) ? commercial(db,actorId,today).list(company).map(r=>({...r,category:'Quotations & awards',status:r.state_label})) : [];
       const estimateRows = access.has('tenders.read', company, null, true) ? estimates(db, actorId, today).list(company).map(r=>({...r,display_reference:r.tender_reference,category:'Bids & estimates',status:r.state_label})) : [];
       const intakeRows = access.has('tenders.read', company, null, true) ? boqIntake(db,actorId,today).list(company).map(r=>({...r,id:r.estimate_id,display_reference:r.id,title:`BOQ intake · ${r.title}`,category:'Workbook intake',status:r.state_label})) : [];
-      return [...certificateRows, ...clientInvoiceRows, ...intakeRows, ...commercialRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      return [...certificateRows, ...clientInvoiceRows,...clientReceiptRows, ...intakeRows, ...commercialRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.customer_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }
