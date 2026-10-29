@@ -40,3 +40,7 @@ The first install used cached packages because this laptop's TLS gateway prevent
 The Vite starter's Sites files remain intact for provenance, but its worker serves static assets only. Do not upload that build and expect the Express/SQLite service to exist. No hosting target, production credentials, CI deployment or remote sync is configured by this increment.
 
 Production readiness additionally requires identity/roles, policy administration, audit/revision storage, financial localisation, secure document storage, DB migration/concurrency strategy, backup recovery, monitoring, dependency/security review, accessibility/user testing and migration reconciliation. Deployment still needs a later explicit user instruction.
+
+## BOQ intake · schema 12
+
+Original bounded ZIP/XML/CSV parsing feeds immutable staged files, saved checks and row provenance. Tender role scope follows the owning estimate; independent data review is separate from estimate financial authority. Atomic append revalidates current estimate version, master snapshots, exact calculation and reviewer authority. Candidate data never mutates a draft before commitment. File download, check history, search, queues and exports share scope. Optional product snapshots on estimate lines preserve catalogue identity; approved revisions stay immutable. See contracts/boq-intake-v1.md.

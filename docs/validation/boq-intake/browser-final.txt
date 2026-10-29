@@ -1,0 +1,305 @@
+Browser tab: 37, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Tenders&area=Overview".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Tenders&area=Overview
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			5 button Builder ERP
+			6 text JAKH Contracting LLC
+			7 container Main navigation
+				8 button Home
+					9 image
+					10 text Home
+				11 button Access
+					12 image
+					13 text Access
+				14 button Organisation
+					15 image
+					16 text Organisation
+				17 button My Work
+					18 image
+					19 text My Work
+				20 button Tenders
+					21 image
+					22 text Tenders
+				23 button Projects
+					24 image
+					25 text Projects
+				26 button Company
+					27 image
+					28 text Company
+			29 text Built around your work.
+			30 text Local sample workspace
+		31 container
+			32 text Company
+			33 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				34 menu
+					35 (selected) JAKH Contracting LLC
+					36 JAKH International Ltd
+			37 image
+			38 text field (settable) Search company records
+			39 button Search
+			40 button Explore examples
+				41 image
+				42 text Examples
+			43 button Your account and sign-in
+				44 text AA
+				45 text Ahmed Al Mansoori
+				46 text Project manager
+		47 container main-content
+			48 heading Tenders, Value: 1
+				49 text Tenders
+			50 text From opportunity to a confident bid.
+			54 button All estimates
+				55 image
+				56 text All estimates
+			57 container
+				58 text EST-E77794E7  · REVISION  1  ·  DRAFT
+			59 heading Example · BOQ workbook intake · Harbour Tower, Value: 2
+				60 text Example · BOQ workbook intake · Harbour Tower
+			61 container
+				62 text Example · JAKH Contracting LLC development client  ·  DEMO-INTAKE-HT-001  · Due  2026-12-01
+			63 button Export study
+				64 image
+				65 text Export study
+			66 text Estimated cost
+			67 text AED 4,350.00
+			68 container
+				69 text Includes  AED 100.00  indirect
+			70 text Selling before tax
+			71 text AED 5,742.00
+			72 text Estimated margin
+			73 text AED 1,392.00
+			74 container
+				75 text 24.24 % of selling
+			76 container
+				77 heading Study findings, Value: 3
+					78 text Study findings
+				79 text 4 priced work items across 2 building(s); 0 explicit quantity override(s). Estimated cost AED 4350.00 includes 100.00 allocated indirect costs. Selling value before tax is 5742.00. Margin is AED 1392.00 (24.24% of selling value); it is not recorded revenue or cash. STR · Structure assembly: estimated cost AED 1637.65. FIN · Finishes: estimated cost AED 1637.65. MEP · MEP work package: estimated cost AED 1023.53. Prepared by  Ahmed Al Mansoori .  AED  1 =  AED 1  ·  2026-10-29 .
+			80 button Edit estimate
+			81 container
+				82 heading Work breakdown, Value: 3
+					83 text Work breakdown
+				84 text Open an item for its resource calculations, building exceptions and quantity basis.
+				85 table
+					86 row
+						87 cell
+							88 text Work item
+						89 cell
+							90 text Quantity
+						91 cell
+							92 text Direct cost
+						93 cell
+							94 text Indirect
+						95 cell
+							96 text Estimated cost
+						97 cell
+							98 text Selling
+					99 row
+						100 cell
+							101 container
+								102 text WORKS  ·  Construction work
+						103 cell
+							104 text Summary
+						105 cell
+							106 text AED 4,200.00
+						107 cell
+							108 text AED 98.83
+						109 cell
+							110 text AED 4,298.83
+						111 cell
+							112 text AED 5,674.46
+					113 row
+						114 cell
+							115 button (collapsed) STR · Structure assembly, Secondary Actions: Expand
+								116 text STR
+								117 text  ·
+								118 text Structure assembly
+						119 cell
+							120 text 20 m3
+						121 cell
+							122 text AED 1,600.00
+						123 cell
+							124 text AED 37.65
+						125 cell
+							126 text AED 1,637.65
+						127 cell
+							128 text AED 2,161.70
+					129 row
+						130 cell
+							131 button (collapsed) FIN · Finishes, Secondary Actions: Expand
+								132 text FIN
+								133 text  ·
+								134 text Finishes
+						135 cell
+							136 text 40 m2
+						137 cell
+							138 text AED 1,600.00
+						139 cell
+							140 text AED 37.65
+						141 cell
+							142 text AED 1,637.65
+						143 cell
+							144 text AED 2,161.70
+					145 row
+						146 cell
+							147 button (collapsed) MEP · MEP work package, Secondary Actions: Expand
+								148 text MEP
+								149 text  ·
+								150 text MEP work package
+						151 cell
+							152 text 2 lump
+						153 cell
+							154 text AED 1,000.00
+						155 cell
+							156 text AED 23.53
+						157 cell
+							158 text AED 1,023.53
+						159 cell
+							160 text AED 1,351.06
+					161 row
+						162 cell
+							163 button (collapsed) IMPORTED-EXAMPLE · Fictional imported work, Secondary Actions: Expand
+								164 text IMPORTED-EXAMPLE
+								165 text  ·
+								166 text Fictional imported work
+						167 cell
+							168 text 4 unit
+						169 cell
+							170 text AED 50.00
+						171 cell
+							172 text AED 1.17
+						173 cell
+							174 text AED 51.17
+						175 cell
+							176 text AED 67.54
+			177 container
+				178 heading BOQ workbook intake, Value: 3
+					179 text BOQ workbook intake
+				180 text Upload → Check → Independent review → Add to draft
+				181 button Upload BOQ
+					182 image
+					183 text Upload BOQ
+				184 text Keep workbook rows separate until every file reconciles. Quantities are
+				185 container
+					186 text per building ×  2
+				187 text ; rates are in
+				188 text AED
+				189 text .
+				190 button (collapsed) File format & examples, Secondary Actions: Expand
+					191 text File format & examples
+				192 button Example-HT-001-REVIEW-ME.csv Needs intake review · 1 file(s)
+					193 text Example-HT-001-REVIEW-ME.csv
+					194 text Needs intake review
+					195 text  ·
+					196 text 1
+					197 text  file(s)
+					198 image
+				199 button Example-HT-001-CHECK-UNIT.csv Needs correction · 1 file(s) · 2 issues
+					200 text Example-HT-001-CHECK-UNIT.csv
+					201 text Needs correction
+					202 text  ·
+					203 text 1
+					204 text  file(s)
+					205 text  · 2 issues
+					206 image
+				207 button Example-HT-001-IMPORTED-EXAMPLE.csv Added to draft · 1 file(s)
+					208 text Example-HT-001-IMPORTED-EXAMPLE.csv
+					209 text Added to draft
+					210 text  ·
+					211 text 1
+					212 text  file(s)
+					213 image
+				232 text INTAKE-C863126B-C6E  ·  NEEDS CORRECTION
+				233 heading Correct the source or mapping, Value: 4
+					234 text Correct the source or mapping
+				235 button Close intake
+				236 heading Saved check findings, Value: 4
+					237 text Saved check findings
+				238 text 2 issues block the entire intake. Nothing has been added to the estimate. Quantities are per building × 2. Direct totals exclude indirect costs and markups; all rates are AED. The estimate currently has 5 rows. This intake appends items and retains existing assemblies and building exceptions.
+				239 button Export findings & issues
+					240 image
+					241 text Export findings & issues
+				242 button (collapsed) Example-HT-001-CHECK-UNIT.csv · CSV · Header row 1, Secondary Actions: Expand
+					243 text Example-HT-001-CHECK-UNIT.csv
+					244 text  ·
+					245 text CSV
+					246 text  · Header row
+					247 text 1
+				248 table Rows and files to correct · Nothing is partially imported
+					249 text Rows and files to correct · Nothing is partially imported
+					250 row
+						251 cell
+							252 text Source
+						253 cell
+							254 text Correction needed
+					255 row
+						256 cell
+							257 text Example-HT-001-CHECK-UNIT.csv
+							258 container
+								259 text CSV · row 2 · E2
+						260 cell
+							261 text Unknown or ambiguous unit “unknown-unit”. Use a catalogue unit.
+					262 row
+						263 cell
+							264 text Batch
+						265 cell
+							266 text No valid items are available to append.
+				267 table File reconciliation · AED
+					268 container
+						269 text File reconciliation ·  AED
+					270 row
+						271 cell
+							272 text File / sheet
+						273 cell
+							274 text Rows
+						275 cell
+							276 text Expected direct
+						277 cell
+							278 text Calculated direct
+						279 cell
+							280 text Difference
+						281 cell
+							282 text Selection
+					283 row
+						284 cell
+							285 text Example-HT-001-CHECK-UNIT.csv
+							286 text CSV
+						287 cell
+							288 text 1  ·  1  issues
+						289 cell
+							290 text 50.00
+						291 cell
+							292 text 50.00
+						293 cell
+							294 text 0.00
+						295 cell
+							296 text 0  preamble rows; other sheets:  none
+				297 text Reason for this action
+				298 text entry area (settable) Reason for this action
+				299 button (disabled) Check all files
+				300 button (disabled) Cancel intake
+				301 button (collapsed) Intake history · 2, Secondary Actions: Expand
+					302 text Intake history ·
+					303 text 2
+			214 button (collapsed) Imported item sources · 1, Secondary Actions: Expand
+				215 text Imported item sources ·
+				216 text 1
+			217 button (collapsed) Pricing basis, assumptions & exclusions, Secondary Actions: Expand
+				218 text Pricing basis, assumptions & exclusions
+			219 container
+				220 heading Next step, Value: 3
+					221 text Next step
+				222 text Decision / revision reason
+				223 text entry area (settable) Decision / revision reason
+				224 button (disabled) Submit for independent review
+				225 button (disabled) Cancel draft
+			226 button (collapsed) Revisions & comparison · 1, Secondary Actions: Expand
+				227 text Revisions & comparison ·
+				228 text 1
+			229 button (collapsed) Decision history · 2, Secondary Actions: Expand
+				230 text Decision history ·
+				231 text 2
+			52 button (collapsed) Earlier opportunity and tender examples · read only, Secondary Actions: Expand
+				53 text Earlier opportunity and tender examples · read only
+
+The focused UI element is 199 button Example-HT-001-CHECK-UNIT.csv Needs correction · 1 file(s) · 2 issues

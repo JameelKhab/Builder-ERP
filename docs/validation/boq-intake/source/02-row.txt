@@ -1,0 +1,226 @@
+Browser tab: 35, Title: "DEMO ONLY [JD2] — Review three practice BOQ rows", URL: "https://demo.jakh.net/jakh/action-630/2".
+0 AXWebArea DEMO ONLY [JD2] — Review three practice BOQ rows, URL: demo.jakh.net/jakh/action-630/2
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 container
+						14 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						15 content list jakh-menu-388
+							16 button BOQ workbook intake
+							17 button BOQ estimates
+							18 button Study versions
+							19 button Estimate analysis
+					20 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					21 button (collapsed) Description: Projects, Secondary Actions: Expand
+					22 button Project requisitions
+					23 button Project set-up
+					24 button Material returns
+					25 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					26 button Site receipts
+					27 button Site diaries
+					28 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					29 button Site materials & issues
+					30 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					31 button Payment certificates
+					32 button Advances & retention releases
+					33 button Final accounts & closeout
+					34 button Guarantees & bonds
+					35 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					36 button Subcontract order amendments
+					37 button Subcontractor applications
+					38 button Subcontract service entries
+					39 button Subcontract work corrections
+					40 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					41 button Labour & plant allocation
+					42 button Labour & plant actual feeds
+					43 button P6 schedule progress
+					44 button (collapsed) Description: Finance, Secondary Actions: Expand
+					45 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					46 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					47 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					48 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					49 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					50 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					51 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					52 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					53 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					54 button My Tasks
+					55 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					56 button (collapsed) Description: Administration, Secondary Actions: Expand
+			57 container
+				58 text JAKH Contracting Platform
+				59 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		60 container
+			61 button (collapsed) Messages 1, Secondary Actions: Expand
+				62 container Messages
+				63 text 1
+			64 button (collapsed) Activities 1, Secondary Actions: Expand
+				65 container Activities
+				66 text 1
+			67 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			68 button التبديل إلى العربية
+			69 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			70 button (collapsed) User is online, Secondary Actions: Expand
+				71 image
+					72 container User is online
+		73 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		74 button New
+		75 content list
+			76 link Description: Reviewed BOQ intake, Value: demo.jakh.net/jakh/action-630
+		77 text DEMO ONLY [JD2] — Review three practice BOQ rows
+		78 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		79 button calculate Estimate
+			195 text calculate
+			81 text Estimate
+		82 container Pager
+			83 container
+				84 text 1  /  1
+			85 container
+				86 button (disabled) Previous
+					196 text arrow_back_ios_new
+				88 button (disabled) Next
+					197 text arrow_forward_ios
+		90 container
+			91 button Approve reviewed intake
+			92 button Reset preview / mapping
+			93 button fa-download Download BOQ template
+				198 text fa-download
+				95 text Download BOQ template
+			96 Statusbar
+				97 radio button (disabled) Committed, Value: 0
+				98 radio button (disabled) Reviewed, Value: 0
+				99 radio button (disabled) Previewed, Value: 1
+				100 radio button (disabled) Draft mapping, Value: 0
+			101 text Name
+			102 text DEMO ONLY [JD2] — Review three practice BOQ rows
+			103 text Estimate
+			104 link Description: EST/2026/00005, Value: demo.jakh.net/odoo/jakh.estimate/5
+			105 text Company
+			106 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+			107 text Currency
+			108 link Description: USD, Value: demo.jakh.net/odoo/res.currency/1
+			109 text Error Count
+			110 text 0
+			111 text Common English and Arabic headings are recognised automatically, wherever the heading row is in the first 20 rows; map a column only if its heading differs. Every leaf must resolve an existing unit, product reference and company cost code. Parent groups cap child values and are not counted twice. Formula cells are rejected; supply reviewed values. All files commit together only after a clean reconciliation.
+			112 table
+				113 row
+					114 cell
+						115 text Filename
+						199 text swap_vert
+					117 cell
+						118 text Sheet (blank = first sheet)
+						200 text swap_vert
+					120 cell
+						121 text Header Row
+						201 text swap_vert
+					123 cell
+						124 text Expected Direct Total
+						202 text swap_vert
+				126 row
+					127 cell
+						128 text DEMO-ONLY-practice-BOQ.xlsx
+					129 cell
+					130 cell
+						131 text 1
+					132 cell
+						133 text $ 23,100.00
+			134 text Company currency: USD
+Workbook DEMO-ONLY-practice-BOQ.xlsx · 3 rows · 0 errors · quantity 341.0 · direct cost 23100.0
+Combined BOQ: direct cost 23100.00 · cost budget 25410.00 · selling value 33541.20
+			135 container
+				136 checkbox (settable, integer) I reconciled each file and approve these rows for the draft BOQ, Value: 0, ID: confirmed_0
+			137 text Reviewed By
+			138 text Reviewed At
+			139 text Committed At
+			140 table
+				141 row
+					142 cell
+						143 text File
+						203 text swap_vert
+					145 cell
+						146 text Source Sheet
+						204 text swap_vert
+					148 cell
+						149 text Source Row
+						205 text swap_vert
+					151 cell
+						152 text Code
+						206 text swap_vert
+					154 cell
+						155 button (collapsed) tune, Secondary Actions: Expand
+							207 text tune
+				157 row
+					158 cell
+						159 text jakh.boq.import.file,2
+					160 cell
+						161 text BOQ
+					162 cell
+						163 text 2
+					164 cell
+						165 text PRACTICE-STRUCTURE
+					166 cell
+				167 row
+					168 cell
+						169 text jakh.boq.import.file,2
+					170 cell
+						171 text BOQ
+					172 cell
+						173 text 3
+					174 cell
+						175 text PRACTICE-FINISHES
+					176 cell
+				177 row
+					178 cell
+						179 text jakh.boq.import.file,2
+					180 cell
+						181 text BOQ
+					182 cell
+						183 text 4
+					184 cell
+						185 text PRACTICE-MEP
+					186 cell
+			187 button Send message
+			188 button Log note
+			189 button Search Messages
+			190 button Attach files
+				208 text attach_file
+			192 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+				193 text 0
+			194 text 😶 No messages yet.
+		209 container
+			210 heading Open: Row, Value: 4
+				211 text Open: Row
+			212 button Expand
+				213 text expand_content
+			214 button Close
+			215 container
+				216 text Batch
+				217 link Description: DEMO ONLY [JD2] — Review three practice BOQ rows, Value: demo.jakh.net/odoo/jakh.boq.import.batch/2
+				218 text File
+				219 link Description: jakh.boq.import.file,2, Value: demo.jakh.net/odoo/jakh.boq.import.file/2
+				220 text Source Row
+				221 text 2
+				222 text Line Uuid
+				223 text 90c4cdb6-9056-4f31-bde0-d5093f547a66
+				224 text Values Json
+				225 text {"code":"PRACTICE-STRUCTURE","name":"DEMO ONLY [JD2] — Structure","uom_id":1,"is_group":false,"quantity":10,"unit_cost":80,"product_id":8,"cost_code_id":4,"allocation_percent":0}
+				226 text Company
+				227 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+				228 text Source Sheet
+				229 text BOQ
+				230 text Code
+				231 text PRACTICE-STRUCTURE
+				232 text Payload Json
+				233 text {"id":"90c4cdb6-9056-4f31-bde0-d5093f547a66","uom":"Units","code":"PRACTICE-STRUCTURE","is_group":false,"quantity":10,"cost_code":"JD2-STRUCTURE","unit_cost":80,"product_id":8,"description":"DEMO ONLY [JD2] — Structure","parent_uuid":"","allocation_percent":0}
+			234 button Close
+
+The focused UI element is 234 button Close

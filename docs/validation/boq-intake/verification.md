@@ -1,0 +1,14 @@
+# BOQ intake verification — 29 October 2026
+
+- Source evidence: read-only JAKH reviewed intake `https://demo.jakh.net/jakh/action-630/2`, row payload/provenance and file mapping forms. Source template downloaded for specification inspection only; no source upload, mapping reset, review or commitment. English/Arabic headings, unit/product/cost resolution, rejected formulas, reconciliation and all-file commit were visible intended rules; enforcement was not exercised.
+- `test-results.txt`: 191 tests pass after final parser/export changes. `app/tests/boq-intake.test.mjs` has 14 focused tests; authenticated intake actions are also covered in `estimates-api.test.mjs`. The first sandboxed full-suite run failed on loopback permissions and one now-obsolete sample count; authorised loopback execution and updated added-example assertions pass. No failure was ignored.
+- `build-results.txt`: frontend build and retained static packaging pass. Static packaging is not backend deployment readiness.
+- `browser-upload-check.txt`: actual file chooser/upload/check on disposable in-memory loopback instance. Two direct items, total 110.00 AED; resulting draft preview 4,460.00 cost / 5,887.20 selling. No author approval/commit action before independent review. No persistent user record was used for this mutation.
+- `browser-working-example.csv` and `browser-findings-export.csv`: actual browser downloads. Findings include source sheet/cell, file totals and zero reconciliation difference despite a blocked unit; no partial import is implied. Formula injection is neutralised on exports.
+- `migration-recovery.json`: backup before schema 12, all prior values in 77 tables preserved, 82 recovered tables equal including blobs, integrity/FK checks pass, zero credentials. Examples are additive and do not migrate source data.
+- ZIP reader is original bounded code using Node's zlib and checksum. XML parser is unmodified sax 1.6.1 from the bundled runtime, with license/provenance in `app/vendor/sax/`; registry installation failed certificate validation, and TLS validation was never disabled. Full dependency/security review remains a release gate.
+- Full ERP/parity, source migration, parent caps/shares, assembly-workbook mapping and representative-user/accessibility acceptance remain open.
+
+Final visual evidence: browser-desktop.png, browser-mobile.png and browser-final.txt. browser-checks.json records 390px viewport/document width and an empty warning/error log. Corrected mobile error-table truncation by stacking source and correction cells; desktop retains the compact table.
+
+Saved browser CSV/text evidence is normalised to LF/trailing-whitespace-free text for Git review; cell contents and values are unchanged. Original uploads remain byte-for-byte in the database. Source-file hashes are recorded in source-sha256.json.

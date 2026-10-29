@@ -108,6 +108,7 @@ export function estimates(db, actorId, today = () => now().slice(0, 10)) {
         lines: all('SELECT * FROM estimate_handover_lines WHERE version_id=?', h.version_id)
       } : null,
       revisions: all('SELECT id,revision,state,title FROM estimate_versions WHERE study_id=? ORDER BY revision', r.study_id),
+      intake_sources: all('SELECT i.batch_id,i.file_id,i.line_key,i.source_sheet,i.source_row,i.snapshot,f.filename,f.sha256 FROM boq_intake_lines i JOIN boq_intake_files f ON f.id=i.file_id WHERE i.study_id=?', r.study_id).filter(s => get('SELECT key FROM estimate_lines WHERE version_id=? AND key=?', r.id, s.line_key)).map(s => ({...s,snapshot:JSON.parse(s.snapshot)})),
       history: all('SELECT e.id,e.action,e.reason,e.at,u.name actor FROM estimate_events e JOIN users u ON u.id=e.actor_id WHERE e.version_id=? ORDER BY e.id', r.id)
     };
   };
@@ -163,12 +164,16 @@ export function estimates(db, actorId, today = () => now().slice(0, 10)) {
       requireThat(['item', 'group'].includes(l.kind), 'Choose item or summary group.');
       requireThat(get('SELECT id FROM cost_codes WHERE id=? AND company_id=?', l.cost_code_id, c), 'Choose a cost code in this company.');
       const group = l.kind === 'group';
+      const product = l.product_id ? get('SELECT id,company_id,code,name,uom,version,active FROM products WHERE id=? AND company_id=?', l.product_id,c) : null;
+      if (l.product_id) requireThat(product?.active && product.uom === l.unit && !group, 'Referenced product must be active in this company and use the same unit.');
       return {
         key,
         position,
         code: cde,
         description: text(l.description, 'BOQ description'),
         kind: l.kind,
+        product_id: product?.id || null,
+        product_snapshot: product ? JSON.stringify(product) : null,
         parent_key: l.parent_key || null,
         cost_code_id: l.cost_code_id,
         unit: unit(group ? 'lump' : l.unit),

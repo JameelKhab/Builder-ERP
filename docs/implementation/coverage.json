@@ -301,7 +301,10 @@
         "docs/implementation/contracts/estimates-v1.md",
         "app/tests/estimates.test.mjs",
         "app/tests/estimates-api.test.mjs",
-        "docs/validation/tenders/verification.md"
+        "docs/validation/tenders/verification.md",
+        "docs/implementation/contracts/boq-intake-v1.md",
+        "app/tests/boq-intake.test.mjs",
+        "docs/validation/boq-intake/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One returned certificate produces one current task with its review stage.",
@@ -508,12 +511,17 @@
       "domain": "D04",
       "source_path": "Tender & BOQ > BOQ workbook intake",
       "destination": "Tenders > Estimates · Import BOQ",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Original XLSX/CSV staging retains source bytes/hash, mapped sheet/row/cell, product/unit/company cost references, exact all-file reconciliation, independent data review and once-only append to an unchanged draft. Findings/export, scoped history/download and project examples work locally. Parent caps/shares, assembly/override sheets, source-specific migration and full parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/boq-intake-v1.md",
+        "app/tests/boq-intake.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/boq-intake/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "An invalid UOM is quarantined with workbook/sheet/row evidence.",
-      "source_verification_remaining": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas."
+      "source_verification_remaining": "Reviewed intake, row provenance and file-mapping forms inspected read-only. Source enforcement, parent caps/shares, richer import payloads and production source reconciliation remain unverified."
     },
     {
       "id": "F039",
@@ -526,7 +534,10 @@
         "docs/implementation/contracts/estimates-v1.md",
         "app/tests/estimates.test.mjs",
         "app/tests/estimates-api.test.mjs",
-        "docs/validation/tenders/verification.md"
+        "docs/validation/tenders/verification.md",
+        "docs/implementation/contracts/boq-intake-v1.md",
+        "app/tests/boq-intake.test.mjs",
+        "docs/validation/boq-intake/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A repeated-floor variant changes its quantities without altering other floors.",
@@ -543,7 +554,10 @@
         "docs/implementation/contracts/estimates-v1.md",
         "app/tests/estimates.test.mjs",
         "app/tests/estimates-api.test.mjs",
-        "docs/validation/tenders/verification.md"
+        "docs/validation/tenders/verification.md",
+        "docs/implementation/contracts/boq-intake-v1.md",
+        "app/tests/boq-intake.test.mjs",
+        "docs/validation/boq-intake/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Changing a resource rate creates a new study version.",
@@ -3615,7 +3629,7 @@
       "invariant": "Approved version immutable; preserve calculation order",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Direct-item workbook intake now retains reviewed source lineage; see boq-intake-local.md. Full migration/parity remains open."
     },
     {
       "id": "M08",
@@ -3625,7 +3639,7 @@
       "invariant": "Compare parent caps, variants and totals before acceptance",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Direct-item workbook intake now retains reviewed source lineage; see boq-intake-local.md. Full migration/parity remains open."
     },
     {
       "id": "M09",
@@ -3934,7 +3948,7 @@
       "data": "Workbook/row mappings; estimate headers; BOQ groups/lines; assembly components; rates and dates; location quantities; indirect pools; pricing order; versions; approvals; quotation/project/WBS crosswalk.",
       "verify": "Verify import validation, parent caps/shares, repeated-building exceptions, resource conversion, rounding and exact markup order with saved examples. Inspect hidden detail forms before implementing formulas.",
       "example": "Ten typical floors and two modified floors share an assembly. Reprice steel without overwriting the accepted tender; compare the new version, approve it, and hand over exact location quantities and the approved budget basis.",
-      "local_implementation": " Original BOQ/assembly/override calculation, independent version approval/comparison, scoped findings/export and project/WBS/draft-budget handover now work locally. Workbook intake, parent cap/share parity, full pricing/configuration and sales/contract handover remain open."
+      "local_implementation": " Original BOQ/assembly/override calculation, independent version approval/comparison, scoped findings/export and project/WBS/draft-budget handover now work locally. Workbook intake, parent cap/share parity, full pricing/configuration and sales/contract handover remain open. Reviewed direct-item XLSX/CSV intake is now operational; parent/share and assembly payload parity remains open."
     },
     {
       "id": "D05",

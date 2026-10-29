@@ -148,10 +148,27 @@ test('individual HTTP users prepare, independently approve and hand over a scope
   const h = res.body.handover;
   assert.equal(db.prepare('SELECT state FROM budget_documents WHERE id=?').get(h.budget_id).state, 'draft');
   assert.equal(db.prepare('SELECT count(*) n FROM budget_facts WHERE document_id=?').get(h.budget_id).n, 0);
+  const target=(await writer('/estimates/documents',{...input,title:'HTTP workbook intake'})).body;
+  const product=db.prepare("SELECT * FROM products WHERE company_id='jakh' AND active=1 LIMIT 1").get(),cost=db.prepare("SELECT * FROM cost_codes WHERE company_id='jakh' LIMIT 1").get();
+  const contents=`Code,Description,Quantity,Unit cost,Unit,Cost code,Product\nHTTP-BOQ,Fictional imported item,2,12.50,${product.uom},${cost.code},${product.code}\n`;
+  const uploadBody={estimate_id:target.id,estimate_version:target.version,reason:'HTTP workbook intake',files:[{filename:'HTTP-example.csv',base64:Buffer.from(contents).toString('base64')}]};
+  res=await writer('/boq-intakes/upload',uploadBody);assert.equal(res.status,201,JSON.stringify(res.body));let batch=res.body;
+  assert.equal((await restricted('/boq-intakes/'+batch.id)).status,404);
+  assert.equal((await restricted('/boq-files/'+batch.files[0].id)).status,404);
+  res=await writer(`/boq-intakes/${batch.id}/check`,{version:batch.version,reason:'HTTP exact row checks',configs:batch.configs.map(c=>({...c,expected_total:'275.00'}))});assert.equal(res.status,200,JSON.stringify(res.body));batch=res.body;
+  assert.equal(batch.result.issues.length,0);
+  assert.equal((await writer(`/boq-intakes/${batch.id}/decision`,{version:batch.version,action:'review',confirmed:true,reason:'Self review attempt'})).status,403);
+  assert.ok((await reviewer('/workspace?company=jakh')).body.boq_intakes.some(b=>b.id===batch.id&&b.can_review));
+  res=await reviewer(`/boq-intakes/${batch.id}/decision`,{version:batch.version,action:'review',confirmed:true,reason:'Independent HTTP file reconciliation'});assert.equal(res.status,200,JSON.stringify(res.body));batch=res.body;
+  const commitVersion=batch.version;res=await writer(`/boq-intakes/${batch.id}/commit`,{version:commitVersion,reason:'Add independently checked rows'});assert.equal(res.status,200,JSON.stringify(res.body));assert.equal(res.body.state,'committed');
+  assert.equal((await writer(`/boq-intakes/${batch.id}/commit`,{version:commitVersion,reason:'Retry safely'})).body.committed_version,res.body.committed_version);
+  const changed=(await writer('/estimates/documents/'+target.id)).body;assert.equal(changed.lines.length,target.lines.length+1);assert.equal(changed.intake_sources.length,1);
   const preview = await admin('/access/preview', {
     user_id: r.author_id
   });
   assert.equal(preview.status, 200, JSON.stringify(preview.body));
   assert.equal((await admin('/estimates/documents', input)).status, 403);
   assert.equal((await admin('/estimates/documents/' + r.id)).status, 200);
+  assert.equal((await admin('/boq-intakes/upload',uploadBody)).status,403);
+  assert.equal((await admin(`/boq-intakes/${batch.id}/check`,{version:batch.version,reason:'Read only preview',configs:batch.configs})).status,403);
 });

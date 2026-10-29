@@ -1,3 +1,4 @@
+import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
 import { payments } from './payments.mjs';
 import { payables } from './payables.mjs';
@@ -65,6 +66,7 @@ export function createApi(db, {
     limit: '3mb'
   }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
+  app.use('/api/boq-intakes/upload', express.json({ limit: '9mb' }));
   app.use(express.json({
     limit: '24kb'
   }));
@@ -142,6 +144,7 @@ export function createApi(db, {
     });
     req.service = createService(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
+    req.boqIntake = boqIntake(db, session.previewId || session.actorId, today);
     req.payments = payments(db, session.previewId || session.actorId, today);
     req.payables = payables(db, session.previewId || session.actorId, today);
     req.ledger = ledger(db, session.previewId || session.actorId, today);
@@ -151,6 +154,15 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/boq-intakes',(req,res)=>res.json(req.boqIntake.list(req.query.company,req.query.project||null)));
+  app.get('/api/boq-intakes/options/:estimate',(req,res)=>res.json(req.boqIntake.options(req.params.estimate)));
+  app.post('/api/boq-intakes/upload',(req,res)=>res.status(201).json(req.boqIntake.upload(req.body.estimate_id,req.body)));
+  app.get('/api/boq-intakes/:id',(req,res)=>res.json(req.boqIntake.detail(req.params.id)));
+  app.post('/api/boq-intakes/:id/check',(req,res)=>res.json(req.boqIntake.check(req.params.id,req.body)));
+  app.post('/api/boq-intakes/:id/decision',(req,res)=>res.json(req.boqIntake.decide(req.params.id,req.body)));
+  app.post('/api/boq-intakes/:id/commit',(req,res)=>res.json(req.boqIntake.commit(req.params.id,req.body)));
+  app.get('/api/boq-intakes/:id/checks/:check',(req,res)=>res.json(req.boqIntake.previousCheck(req.params.id,req.params.check)));
+  app.get('/api/boq-files/:id',(req,res)=>{const f=req.boqIntake.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="BOQ-source.${/\.xlsx$/i.test(f.filename)?'xlsx':'csv'}"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/estimates/options',(req,res)=>res.json(req.estimates.options(req.query.company,req.query.project||null)));
   app.get('/api/estimates/report',(req,res)=>res.json(req.estimates.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all'})));
   app.get('/api/estimates/documents',(req,res)=>res.json(req.estimates.list(req.query.company,req.query.project||null)));

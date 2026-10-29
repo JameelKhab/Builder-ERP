@@ -1,0 +1,311 @@
+Browser tab: 36, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4187/#section=Tenders&area=Overview".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4187/#section=Tenders&area=Overview
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4187/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Access
+					11 image
+					12 text Access
+				13 button Organisation
+					14 image
+					15 text Organisation
+				16 button My Work
+					17 image
+					18 text My Work
+				19 button Tenders
+					20 image
+					21 text Tenders
+				22 button Projects
+					23 image
+					24 text Projects
+				25 button Company
+					26 image
+					27 text Company
+			28 text Built around your work.
+			29 text Local sample workspace
+		30 container
+			31 text Company
+			32 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				33 menu
+					34 (selected) JAKH Contracting LLC
+					35 JAKH International Ltd
+			36 image
+			37 text field (settable) Search company records
+			38 button Search
+			39 button Explore examples
+				40 image
+				41 text Examples
+			42 button Your account and sign-in
+				43 text AA
+				44 text Ahmed Al Mansoori
+				45 text Project manager
+		46 container main-content
+			47 heading Tenders, Value: 1
+				48 text Tenders
+			49 text From opportunity to a confident bid.
+			53 button All estimates
+				54 image
+				55 text All estimates
+			56 container
+				57 text EST-39404BDC  · REVISION  1  ·  DRAFT
+			58 heading Example · BOQ workbook intake · Harbour Tower, Value: 2
+				59 text Example · BOQ workbook intake · Harbour Tower
+			60 container
+				61 text Example · JAKH Contracting LLC development client  ·  DEMO-INTAKE-HT-001  · Due  2026-12-01
+			62 button Export study
+				63 image
+				64 text Export study
+			65 text Estimated cost
+			66 text AED 4,350.00
+			67 container
+				68 text Includes  AED 100.00  indirect
+			69 text Selling before tax
+			70 text AED 5,742.00
+			71 text Estimated margin
+			72 text AED 1,392.00
+			73 container
+				74 text 24.24 % of selling
+			75 container
+				76 heading Study findings, Value: 3
+					77 text Study findings
+				78 text 4 priced work items across 2 building(s); 0 explicit quantity override(s). Estimated cost AED 4350.00 includes 100.00 allocated indirect costs. Selling value before tax is 5742.00. Margin is AED 1392.00 (24.24% of selling value); it is not recorded revenue or cash. STR · Structure assembly: estimated cost AED 1637.65. FIN · Finishes: estimated cost AED 1637.65. MEP · MEP work package: estimated cost AED 1023.53. Prepared by  Ahmed Al Mansoori .  AED  1 =  AED 1  ·  2026-10-29 .
+			79 button Edit estimate
+			80 container
+				81 heading Work breakdown, Value: 3
+					82 text Work breakdown
+				83 text Open an item for its resource calculations, building exceptions and quantity basis.
+				84 table
+					85 row
+						86 cell
+							87 text Work item
+						88 cell
+							89 text Quantity
+						90 cell
+							91 text Direct cost
+						92 cell
+							93 text Indirect
+						94 cell
+							95 text Estimated cost
+						96 cell
+							97 text Selling
+					98 row
+						99 cell
+							100 container
+								101 text WORKS  ·  Construction work
+						102 cell
+							103 text Summary
+						104 cell
+							105 text AED 4,200.00
+						106 cell
+							107 text AED 98.83
+						108 cell
+							109 text AED 4,298.83
+						110 cell
+							111 text AED 5,674.46
+					112 row
+						113 cell
+							114 button (collapsed) STR · Structure assembly, Secondary Actions: Expand
+								115 text STR
+								116 text  ·
+								117 text Structure assembly
+						118 cell
+							119 text 20 m3
+						120 cell
+							121 text AED 1,600.00
+						122 cell
+							123 text AED 37.65
+						124 cell
+							125 text AED 1,637.65
+						126 cell
+							127 text AED 2,161.70
+					128 row
+						129 cell
+							130 button (collapsed) FIN · Finishes, Secondary Actions: Expand
+								131 text FIN
+								132 text  ·
+								133 text Finishes
+						134 cell
+							135 text 40 m2
+						136 cell
+							137 text AED 1,600.00
+						138 cell
+							139 text AED 37.65
+						140 cell
+							141 text AED 1,637.65
+						142 cell
+							143 text AED 2,161.70
+					144 row
+						145 cell
+							146 button (collapsed) MEP · MEP work package, Secondary Actions: Expand
+								147 text MEP
+								148 text  ·
+								149 text MEP work package
+						150 cell
+							151 text 2 lump
+						152 cell
+							153 text AED 1,000.00
+						154 cell
+							155 text AED 23.53
+						156 cell
+							157 text AED 1,023.53
+						158 cell
+							159 text AED 1,351.06
+					160 row
+						161 cell
+							162 button (collapsed) IMPORTED-EXAMPLE · Fictional imported work, Secondary Actions: Expand
+								163 text IMPORTED-EXAMPLE
+								164 text  ·
+								165 text Fictional imported work
+						166 cell
+							167 text 4 unit
+						168 cell
+							169 text AED 50.00
+						170 cell
+							171 text AED 1.17
+						172 cell
+							173 text AED 51.17
+						174 cell
+							175 text AED 67.54
+			176 container
+				177 heading BOQ workbook intake, Value: 3
+					178 text BOQ workbook intake
+				179 text Upload → Check → Independent review → Add to draft
+				180 button Upload BOQ
+					181 image
+					182 text Upload BOQ
+				183 text Keep workbook rows separate until every file reconciles. Quantities are
+				184 container
+					185 text per building ×  2
+				186 text ; rates are in
+				187 text AED
+				188 text .
+				189 button (expanded) File format & examples, Secondary Actions: Collapse
+					190 text File format & examples
+				231 text Use XLSX or UTF-8 comma-separated CSV. Up to 5 files, 2 MiB each and 6 MiB combined. Each file selects one sheet; headings must be within its first 20 rows. The resulting estimate supports 200 BOQ rows.
+				232 text Required columns: Code, Description, Quantity, Unit. Add Unit cost, Cost code and Product reference. Product and cost code can use explicit defaults. A missing Unit cost column means zero cost. Blank rate cells in an existing column require correction.
+				233 text Formula cells, unknown columns, parent caps/shares, merged or hidden data need a reviewed source copy. Assemblies and building exceptions already in the estimate are retained. Use a new estimate revision before changing approved work.
+				234 button Download working example
+				235 button Download unit-error example
+				236 container
+					237 text Both examples contain two fictional items. Expected direct total:  AED 110.00 . Change their codes if already present. Check the product and unit before use.
+				238 button INTAKE-50881496-10D Checked · 1 file(s)
+					239 text INTAKE-50881496-10D
+					240 text Checked
+					241 text  ·
+					242 text 1
+					243 text  file(s)
+					244 image
+				191 button INTAKE-A2CBA88B-80E Checked · 1 file(s)
+					192 text INTAKE-A2CBA88B-80E
+					193 text Checked
+					194 text  ·
+					195 text 1
+					196 text  file(s)
+					197 image
+				198 button INTAKE-FBCC6FE9-9B5 Checked · 1 file(s) · 2 issues
+					199 text INTAKE-FBCC6FE9-9B5
+					200 text Checked
+					201 text  ·
+					202 text 1
+					203 text  file(s)
+					204 text  · 2 issues
+					205 image
+				206 button INTAKE-463DA7E4-408 Added to draft · 1 file(s)
+					207 text INTAKE-463DA7E4-408
+					208 text Added to draft
+					209 text  ·
+					210 text 1
+					211 text  file(s)
+					212 image
+				245 text INTAKE-50881496-10D  ·  CHECKED
+				246 heading Check the selected files, Value: 4
+					247 text Check the selected files
+				248 button Close intake
+				386 heading Intake findings, Value: 4
+					387 text Intake findings
+				388 text 2 items in 1 file reconcile. Independent intake review is required before adding them. Quantities are per building × 2. Direct totals exclude indirect costs and markups; all rates are AED. The estimate currently has 5 rows. This intake appends items and retains existing assemblies and building exceptions.
+				389 button Export findings & issues
+					390 image
+					391 text Export findings & issues
+				249 button (collapsed) Builder-ERP-BOQ-example.csv · CSV · Header row 1, Secondary Actions: Expand
+					250 text Builder-ERP-BOQ-example.csv
+					251 text  ·
+					252 text CSV
+					253 text  · Header row
+					254 text 1
+				392 table File reconciliation · AED
+					393 container
+						394 text File reconciliation ·  AED
+					395 row
+						396 cell
+							397 text File / sheet
+						398 cell
+							399 text Rows
+						400 cell
+							401 text Expected direct
+						402 cell
+							403 text Calculated direct
+						404 cell
+							405 text Difference
+						406 cell
+							407 text Selection
+					408 row
+						409 cell
+							410 text Builder-ERP-BOQ-example.csv
+							411 text CSV
+						412 cell
+							413 text 2  ·  0  issues
+						414 cell
+							415 text 110.00
+						416 cell
+							417 text 110.00
+						418 cell
+							419 text 0.00
+						420 cell
+							421 text 0  preamble rows; other sheets:  none
+							422 text 10 unit
+				423 button (collapsed) Valid candidate items · 2, Secondary Actions: Expand
+					424 text Valid candidate items ·
+					425 text 2
+				426 heading Resulting estimate after adding these rows, Value: 4
+					427 text Resulting estimate after adding these rows
+				428 text Estimated cost
+				429 text AED 4,460.00
+				430 text  · Selling
+				431 text AED 5,887.20
+				432 text The fixed indirect pool is redistributed across all items by direct cost. No budget is released and no estimate approval is implied. Reason for this action
+				380 text entry area (settable) Reason for this action
+				381 button (disabled) Check all files
+				382 button (disabled) Cancel intake
+				433 text Next: another tender reviewer checks the intake. Estimate approval remains a separate step.
+				383 button (collapsed) Intake history · 2, Secondary Actions: Expand
+					384 text Intake history ·
+					385 text 2
+			213 button (collapsed) Imported item sources · 1, Secondary Actions: Expand
+				214 text Imported item sources ·
+				215 text 1
+			216 button (collapsed) Pricing basis, assumptions & exclusions, Secondary Actions: Expand
+				217 text Pricing basis, assumptions & exclusions
+			218 container
+				219 heading Next step, Value: 3
+					220 text Next step
+				221 text Decision / revision reason
+				222 text entry area (settable) Decision / revision reason
+				223 button (disabled) Submit for independent review
+				224 button (disabled) Cancel draft
+			225 button (collapsed) Revisions & comparison · 1, Secondary Actions: Expand
+				226 text Revisions & comparison ·
+				227 text 1
+			228 button (collapsed) Decision history · 2, Secondary Actions: Expand
+				229 text Decision history ·
+				230 text 2
+			51 button (collapsed) Earlier opportunity and tender examples · read only, Secondary Actions: Expand
+				52 text Earlier opportunity and tender examples · read only
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4187/#section=Tenders&area=Overview

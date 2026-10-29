@@ -6,6 +6,7 @@ import { calculateEstimate } from '../server/estimates-calculation.mjs';
 import { estimateRegisterCsv, estimateDetailCsv } from './estimates-export.js';
 import './ledger.css';
 import './estimates.css';
+import BoqIntake from './BoqIntake.jsx';
 const cash = (v, c) => `${c} ${Number(v || 0).toLocaleString('en-GB', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
@@ -306,6 +307,7 @@ export default function Estimates({
 }) {
   const [options, setOptions] = useState(null),
     [report, setReport] = useState(null),
+    [intakes,setIntakes] = useState([]),
     [selected, setSelected] = useState(null),
     [editing, setEditing] = useState(false),
     [project, setProject] = useState(''),
@@ -323,16 +325,18 @@ export default function Estimates({
     });
   }, [selected?.id, selected?.version, editing]);
   const query = `company=${encodeURIComponent(company.id)}&project=${encodeURIComponent(project)}`;
-  const load = () => Promise.all([api('/estimates/options?' + query), api('/estimates/report?' + query + '&state=' + state)]).then(([o, r]) => {
+  const load = () => Promise.all([api('/estimates/options?' + query), api('/estimates/report?' + query + '&state=' + state),api('/boq-intakes?'+query)]).then(([o, r, i]) => {
     setOptions(o);
     setReport(r);
+    setIntakes(i);
   });
   useEffect(() => {
     let live = true;
-    Promise.all([api('/estimates/options?' + query), api('/estimates/report?' + query + '&state=' + state)]).then(([o, r]) => {
+    Promise.all([api('/estimates/options?' + query), api('/estimates/report?' + query + '&state=' + state),api('/boq-intakes?'+query)]).then(([o, r, i]) => {
       if (live) {
         setOptions(o);
         setReport(r);
+        setIntakes(i);
       }
     }).catch(e => live && setError(e.message));
     return () => {
@@ -396,7 +400,9 @@ export default function Estimates({
  {selected.handover_blocker && <p className='muted'>{selected.handover_blocker}</p>}{showHandover && <HandoverForm record={selected} options={options} busy={busy} onCancel={() => setShowHandover(false)} onSubmit={v => perform(() => api(`/estimates/documents/${selected.id}/handover`, v), 'Project setup and draft baseline created. Released capacity remains zero.')} />}
  {selected.handover && <section className='record-section'><h3>Project handover recorded</h3><p>{selected.handover.project_id} · Draft baseline {selected.handover.budget_id}. Independent budget approval and spending release are still required.</p>{selected.handover.can_open_budget && <button className='secondary' onClick={() => onOpen?.(selected.handover.budget_id)}>Open baseline</button>}<p className='muted'>No client acceptance or contract was inferred from this estimate.</p></section>}
  <section className='record-section'><h3>Work breakdown</h3><p className='muted'>Open an item for its resource calculations, building exceptions and quantity basis.</p><div className='table-wrap'><table className='data-table'><thead><tr><th>Work item</th><th>Quantity</th><th>Direct cost</th><th>Indirect</th><th>Estimated cost</th><th>Selling</th></tr></thead><tbody>{selected.calculation.rows.map(l => <tr key={l.key} className={l.kind === 'group' ? 'estimate-group' : ''}><td>{l.kind === 'group' ? <strong>{l.code} · {l.description}</strong> : <details><summary>{l.code} · {l.description}</summary><div className='estimate-line-detail'><p>Default {l.quantity} {l.unit} × {selected.buildings} buildings; final quantity {l.total_quantity} {l.unit}.</p>{l.secondary_unit && <p>Secondary quantity {l.secondary_quantity} {l.secondary_unit} · factor {l.conversion}.</p>}<p>Item markup {l.item_markup}%; selling rate {l.selling_rate} {selected.currency}/{l.unit}.</p>{l.mode === 'direct' ? <p>Direct unit cost {l.direct_rate} {selected.currency}.</p> : l.resources.map(r => <div className='estimate-component' key={r.key}><strong>{r.description} · {r.kind}</strong><p>{r.consumption} {r.unit} per {l.unit} × {l.total_quantity} {l.unit}; quoted {r.unit_rate} {r.currency} per {r.price_basis} {r.unit}.</p><p>FX {r.rate} to {selected.currency} · {r.rate_date} · {r.rate_source}. Extended cost {cash(r.amount, selected.currency)}.</p></div>)}{l.overrides.map(v => <p key={v.building}>Building {v.building}: {v.quantity} {l.unit} replaces {l.quantity}. {v.reason}</p>)}</div></details>}</td><td>{l.kind === 'item' ? `${l.total_quantity} ${l.unit}` : 'Summary'}</td><td>{cash(l.direct, selected.currency)}</td><td>{cash(l.indirect, selected.currency)}</td><td>{cash(l.budget, selected.currency)}</td><td>{cash(l.selling, selected.currency)}</td></tr>)}</tbody></table></div></section>
- <details className='record-section'><summary>Pricing basis, assumptions & exclusions</summary><p>{selected.basis}</p><p>{selected.exclusions || 'No exclusions recorded.'}</p><p>Direct + proportional indirect → {selected.overhead}% overhead → {selected.profit}% profit → item markup → {selected.header_markup}% header markup. Values exclude tax.</p><p>Company currency estimated cost {cash(selected.calculation.totals.company_budget, selected.company_currency)}. FX source: {selected.rate_source}.</p><p className='muted'>Parent-cap/share allocation and workbook intake remain separate implementation requirements.</p></details>
+ <BoqIntake key={selected.id} estimate={selected} api={api} preview={preview} onApplied={async()=>{await open(selected.id);await load();onChanged?.();}} />
+ {!!selected.intake_sources?.length&&<details className='record-section'><summary>Imported item sources · {selected.intake_sources.length}</summary>{selected.intake_sources.map(s=><div className='estimate-history' key={s.batch_id+s.line_key}><strong>{s.snapshot.line.code} · {s.filename}</strong><p>{s.source_sheet} · row {s.source_row} · {s.batch_id}</p><p>Imported product: {JSON.parse(s.snapshot.line.product_snapshot).code}. Original direct rate {s.snapshot.line.direct_rate} {selected.currency}; quantity {s.snapshot.line.quantity} per building. Later edits remain in estimate history.</p><a href={'/api/boq-files/'+s.file_id} download>Download original workbook</a></div>)}</details>}
+ <details className='record-section'><summary>Pricing basis, assumptions & exclusions</summary><p>{selected.basis}</p><p>{selected.exclusions || 'No exclusions recorded.'}</p><p>Direct + proportional indirect → {selected.overhead}% overhead → {selected.profit}% profit → item markup → {selected.header_markup}% header markup. Values exclude tax.</p><p>Company currency estimated cost {cash(selected.calculation.totals.company_budget, selected.company_currency)}. FX source: {selected.rate_source}.</p><p className='muted'>Parent-cap/share allocation requires further source verification.</p></details>
  {!preview && (selected.can_edit || selected.can_review || selected.can_withdraw || selected.can_revise) && <section className='record-section'><h3>Next step</h3>{field('Decision / revision reason', <textarea rows={2} value={reason} onChange={e => setReason(e.target.value)} />)}<div className='inline-actions'>{selected.can_edit && <><button className='primary' disabled={busy || !reason.trim()} onClick={() => decide('submit')}>Submit for independent review</button><button className='secondary' disabled={busy || !reason.trim()} onClick={() => decide('cancel')}>Cancel draft</button></>}{selected.can_review && <><button className='primary' disabled={busy || !reason.trim()} onClick={() => decide('approve')}>Approve & lock study</button><button className='secondary' disabled={busy || !reason.trim()} onClick={() => decide('return')}>Request changes</button></>}{selected.can_withdraw && <button className='secondary' disabled={busy || !reason.trim()} onClick={() => decide('withdraw')}>Withdraw for editing</button>}{selected.can_revise && <button className='primary' disabled={busy || !reason.trim()} onClick={() => perform(() => api(`/estimates/documents/${selected.id}/revision`, {
             version: selected.version,
             reason
@@ -418,6 +424,7 @@ export default function Estimates({
  <div className='estimate-filters'>{field('Scope', <select value={project} onChange={e => setProject(e.target.value)}><option value=''>Authorised company scope</option>{options.projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select>)}{field('Study status', <select value={state} onChange={e => setState(e.target.value)}>{[['all', 'All statuses'], ['draft', 'Draft'], ['submitted', 'Needs approval'], ['returned', 'Changes requested'], ['approved', 'Approved'], ['cancelled', 'Cancelled']].map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select>)}<button className='secondary' onClick={() => download('Builder-ERP-estimate-register.csv', estimateRegisterCsv(report))}><Download />Export findings</button></div>
  <section className='estimate-findings'><h3>Register findings</h3>{report.findings.map(f => <p key={f}>{f}</p>)}</section>
  {report.rows.length ? <div className='estimate-register'>{report.rows.map(r => <button className='estimate-card' key={r.id} onClick={() => open(r.id)}><div><span className={'estimate-state ' + r.state}>{r.state_label} · Revision {r.revision}</span><h3>{r.title}</h3><p>{r.customer} · {r.project || 'Pre-project study'}</p><small>{r.tender_reference} · Due {r.due}</small></div><div className='estimate-card-value'><span>Estimated cost</span><strong>{cash(r.totals.budget, r.currency)}</strong><small>Selling {cash(r.totals.selling, r.currency)}</small></div><ArrowRight size={22} /></button>)}</div> : <Empty>No estimates match this authorised scope and status.</Empty>}
- <p className='footnote muted'>Latest revision of each study. Opportunities, workbook intake, parent-cap allocation and sales quotations remain separate requirements; earlier examples are retained below.</p>
+ {!!intakes.length&&<details className='record-section'><summary>Workbook intake · {intakes.filter(i=>!['committed','cancelled'].includes(i.state)).length} open</summary><p className='muted'>{intakes.filter(i=>!['committed','cancelled'].includes(i.state)).length} open intake(s) in this scope. File checks and estimate approval are separate.</p><div className='boq-batches'>{intakes.map(i=><button className='boq-batch' key={i.id} onClick={()=>open(i.estimate_id)}><strong>{i.title}</strong><span>{i.state_label} · {i.file_count} file(s){i.issue_count?` · ${i.issue_count} issues`:''}{i.stale?' · Recheck required':''} · {i.id}</span><ArrowRight/></button>)}</div></details>}
+ <p className='footnote muted'>Latest revision of each study. Opportunities, parent-cap allocation and sales quotations remain separate requirements; earlier examples are retained below.</p>
  </>}</div>;
 }

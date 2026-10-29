@@ -11,6 +11,7 @@ The user clarified that this means a **full proper migration**, preserving the s
 ## Experience requirements
 
 - Product name: **Builder ERP**.
+- BOQ workbook intake retains original files and row provenance, requires all-file reconciliation and independent review before modifying a draft, and does not silently discard unsupported caps, shares, formulas or units. See the original intake contract for the current implemented subset.
 - Include a meaningful, accessible example for each provided feature, with sufficient detail to explain its use. Populated company/project examples should show different states and related records. Clearly identify read-only examples and unfinished workflows.
 
 - Selected direction uses global navigation: My Work, Tenders, Projects, Company.

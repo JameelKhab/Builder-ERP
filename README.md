@@ -36,6 +36,8 @@ Supplier payments/refunds now connect separate independent approval, evidenced o
 
 Estimate studies now support original BOQ/resource pricing, building quantity exceptions, independent approval, immutable revisions/comparison and controlled project/WBS/draft-baseline handover. Scoped findings and CSV preserve recorded rates and distinguish estimated cost from selling value. See [estimating implementation](docs/implementation/estimates-local.md). Workbook/cap-share parity, CRM/sales/contracts and the full award handover remain open.
 
+BOQ workbook intake now stages XLSX/CSV with exact source references, all-file reconciliation, independent review and once-only append to a draft estimate. See [intake implementation](docs/implementation/boq-intake-local.md). Parent cap/share and assembly-workbook parity remain open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
@@ -80,7 +82,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 162 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 191 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

@@ -117,3 +117,7 @@ Payment approval, recording an offline transaction and bank clearance are distin
 ## 29 October 2026 — Estimate control and handover
 
 Original estimate studies preserve explicit resource/currency/price-basis calculations and replacement building quantities. Approved versions lock and new revisions retain stable BOQ identities. Estimate authority is separate and defaults to zero. Project setup copies estimated cost to a draft baseline with zero released capacity; it does not imply client acceptance or a sales contract. Source cap/share behaviour and exact legacy item/header combination remain unverified and cannot be silently imported as summary groups. Sequential Builder pricing is explicitly versioned. See implementation/contracts/estimates-v1.md.
+
+## 29 October 2026 — Reviewed workbook intake
+
+Original XLSX/CSV intake appends direct items only after all-file reconciliation and independent data review. Original files and saved checks remain immutable; estimate/master/reviewer changes invalidate commitment. Rates use the estimate currency, quantities are per building, and product units are never inferred. Parent caps/shares remain quarantined pending source verification. Automatic mapping is progressive detail; filename and next action lead the intake card. These are implementation policies, not certified source enforcement.

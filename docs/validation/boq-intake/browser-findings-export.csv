@@ -1,0 +1,17 @@
+﻿"Builder ERP — BOQ intake findings","INTAKE-BF30BFD1-CC1","Example · BOQ workbook intake · Harbour Tower","Needs correction"
+"2 issues block the entire intake. Nothing has been added to the estimate."
+"Quantities are per building × 2. Direct totals exclude indirect costs and markups; all rates are AED."
+"The estimate currently has 5 rows. This intake appends items and retains existing assemblies and building exceptions."
+"Currency","AED","Buildings","2","Checked estimate version","2"
+
+"File reconciliation"
+"Filename","Sheet","Header row","Rows","Expected direct","Calculated direct","Difference","Issues","Excluded sheets","Preamble rows"
+"Example-HT-001-CHECK-UNIT.csv","CSV","1","1","50.00","50.00","0.00","1","","0"
+
+"Issues"
+"Filename","Sheet","Row","Cell","Finding"
+"Example-HT-001-CHECK-UNIT.csv","CSV","2","E2","Unknown or ambiguous unit “unknown-unit”. Use a catalogue unit."
+"Batch","","","","No valid items are available to append."
+
+"Candidate items — not added until reviewed and committed"
+"Filename","Sheet","Row","Code","Description","Unit","Quantity per building","Direct unit cost","Total direct","Product","Cost code"

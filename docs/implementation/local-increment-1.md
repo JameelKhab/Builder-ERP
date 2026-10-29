@@ -99,3 +99,7 @@ Added an operational general-ledger subset: company accounts/periods, exact-curr
 ## 29 October 2026 — Material supplier accounting continuation
 
 Added receipt-matched supplier bills, configured exclusive tax, independent separate AP authority, immutable source journals, physical-return credits and project/company payable findings/CSV. Supplier-specific clerk permissions, My Work, search, source links and three-project examples are connected. See payables-local.md and contracts/payables-v1.md. This is an operational subset; payment, bank/stock, subcontract certificates/deductions and the full comparison/migration scope remain open.
+
+## 29 October 2026 — BOQ workbook intake continuation
+
+Original reviewed XLSX/CSV staging now connects source-row validation, exact all-file reconciliation, independent review and atomic once-only draft append. Company/product/unit controls, saved check history, findings/export and project examples are included. See [BOQ intake implementation](boq-intake-local.md). Parent caps/shares, richer workbook payloads and the full ERP/migration scope remain open.

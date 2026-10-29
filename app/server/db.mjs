@@ -1,3 +1,5 @@
+import { installBoqIntake } from './boq-intake-schema.mjs';
+import { installBoqExamples } from './boq-intake-examples.mjs';
 import { installEstimateExamples } from './estimates-examples.mjs';
 import { installEstimates } from './estimates-schema.mjs';
 import { installPaymentExamples } from './payments-examples.mjs';
@@ -61,6 +63,7 @@ export function openDatabase(path = ':memory:', {
   installPayables(db);
   installPayments(db);
   installEstimates(db);
+  installBoqIntake(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
@@ -70,6 +73,7 @@ export function openDatabase(path = ':memory:', {
     installPayableExamples(db);
     installPaymentExamples(db);
     installEstimateExamples(db);
+    installBoqExamples(db);
   }
   return db;
 }
