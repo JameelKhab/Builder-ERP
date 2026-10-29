@@ -1,3 +1,4 @@
+import { payables } from './payables.mjs';
 import { ledger } from './ledger.mjs';
 import { quality } from './quality.mjs';
 import { masters } from './masters.mjs';
@@ -137,6 +138,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.payables = payables(db, session.previewId || session.actorId, today);
     req.ledger = ledger(db, session.previewId || session.actorId, today);
     req.quality = quality(db, session.previewId || session.actorId, today);
     req.masters = masters(db, session.previewId || session.actorId, today);
@@ -144,6 +146,17 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/payables/options', (req,res)=>res.json(req.payables.options(req.query.company,req.query.project||null)));
+  app.get('/api/payables/sources', (req,res)=>res.json(req.payables.sources(req.query.company,req.query.project||null)));
+  app.get('/api/payables/report', (req,res)=>res.json(req.payables.report(req.query.company,{project:req.query.project||null,to:req.query.to||undefined})));
+  app.get('/api/payables/documents', (req,res)=>res.json(req.payables.list(req.query.company,req.query.project||null)));
+  app.get('/api/payables/documents/:id', (req,res)=>res.json(req.payables.detail(req.params.id)));
+  app.post('/api/payables/documents', (req,res)=>res.status(201).json(req.payables.save(null,req.body)));
+  app.put('/api/payables/documents/:id', (req,res)=>res.json(req.payables.save(req.params.id,req.body)));
+  app.post('/api/payables/documents/:id/decision', (req,res)=>res.json(req.payables.decide(req.params.id,req.body)));
+  app.put('/api/payables/settings/:company', (req,res)=>res.json(req.payables.settings(req.params.company,req.body)));
+  app.post('/api/payables/taxes', (req,res)=>res.status(201).json(req.payables.tax(null,req.body)));
+  app.put('/api/payables/taxes/:id', (req,res)=>res.json(req.payables.tax(req.params.id,req.body)));
   app.get('/api/ledger/options', (req, res) => res.json(req.ledger.options(req.query.company, req.query.project || null)));
   app.get('/api/ledger/report', (req, res) => res.json(req.ledger.report(req.query.company, {
     project: req.query.project || null,

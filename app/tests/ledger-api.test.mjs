@@ -81,8 +81,8 @@ test('authenticated HTTP journals require separate independent authority, post/r
     site = await client('ledger.site'),
     owner = await client('ledger.owner');
   const opts = (await author('/ledger/options?company=jakh')).body;
-  const expense = opts.accounts.find(a => a.type === 'expense'),
-    liability = opts.accounts.find(a => a.type === 'liability');
+  const expense = ledger(db, users[1].user_id, () => '2026-10-29').account(null, {company_id:'jakh',code:'5199',name:'HTTP isolated test expense',type:'expense',purpose:'general',active:true,reason:'Dedicated test source to isolate the reversal result'}),
+    liability = opts.accounts.find(a => a.type === 'liability' && a.purpose === 'general');
   let response = await author('/ledger/entries', {
     company_id: 'jakh',
     project_id: 'harbour',

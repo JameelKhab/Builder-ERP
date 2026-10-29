@@ -12,7 +12,7 @@ async function client(t,db,actorId){
 }
 test('typed procurement HTTP routes share session scope, price redaction and read-only access preview',async t=>{
  const db=openDatabase(':memory:',{examples:true});t.after(()=>db.close());const admin=await client(t,db,'ahmed'),site=await client(t,db,'mohammed');
- let res=await site('/procurement?company=jakh&project=harbour');assert.equal(res.status,200);assert.equal(res.body.requests.length,3);assert.equal(res.body.orders.length,2);assert.ok(res.body.requests.every(r=>!('quotes'in r)&&!('company_amount'in r)));
+ let res=await site('/procurement?company=jakh&project=harbour');assert.equal(res.status,200);assert.equal(res.body.requests.length,4);assert.equal(res.body.orders.length,3);assert.ok(res.body.requests.every(r=>!('quotes'in r)&&!('company_amount'in r)));
  const o=res.body.orders[0],r=res.body.requests.find(r=>r.state==='awaiting_approval');
  assert.equal((await site('/purchase-orders/'+o.id)).body.company_amount,undefined);
  assert.equal((await site('/procurement?company=build')).status,404);

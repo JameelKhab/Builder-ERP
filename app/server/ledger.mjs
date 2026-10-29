@@ -77,7 +77,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
     return r;
   };
   const independent = r => r.author_id !== actorId;
-  const review = r => can('ledger.post', r) && independent(r) && new D(limit(r)).gte(r.company_total) && new D(limit(r)).gt(0);
+  const review = r => r.source_type === 'manual' && can('ledger.post', r) && independent(r) && new D(limit(r)).gte(r.company_total) && new D(limit(r)).gt(0);
   const periodFor = r => {
     const p = get('SELECT * FROM ledger_periods WHERE company_id=? AND start_date<=? AND end_date>=?', r.company_id, r.accounting_date, r.accounting_date);
     requireThat(p?.state === 'open', 'The accounting date needs an open company period.');
@@ -106,10 +106,10 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
       project: r.project_id ? get('SELECT name FROM projects WHERE id=?', r.project_id).name : 'Company · unallocated',
       author: get('SELECT name FROM users WHERE id=?', r.author_id).name,
       poster: r.posted_by ? get('SELECT name FROM users WHERE id=?', r.posted_by).name : null,
-      can_write: can('ledger.write', r) && r.author_id === actorId,
+      can_write: r.source_type === 'manual' && can('ledger.write', r) && r.author_id === actorId,
       can_review: review(r),
       can_return: can('ledger.post', r) && independent(r),
-      can_reverse: can('ledger.write', r) && r.state === 'posted' && !r.reversal_of && !get("SELECT id FROM ledger_entries WHERE reversal_of=? AND state<>'cancelled'", id),
+      can_reverse: r.source_type === 'manual' && can('ledger.write', r) && r.state === 'posted' && !r.reversal_of && !get("SELECT id FROM ledger_entries WHERE reversal_of=? AND state<>'cancelled'", id),
       posting_limit: can('ledger.post', r) ? limit(r) : '0.00',
       reversal: get("SELECT id,number,state FROM ledger_entries WHERE reversal_of=? AND state<>'cancelled'", id) || null,
       history: history('journal', id)
@@ -205,6 +205,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
       if (input.action === 'close') {
         requireThat(r.state === 'open', 'Period is already closed.');
         requireThat(!get("SELECT id FROM ledger_entries WHERE company_id=? AND state='submitted' AND accounting_date BETWEEN ? AND ?", r.company_id, r.start_date, r.end_date), 'Return or post submitted journals before closing this period.');
+        requireThat(!get("SELECT id FROM payable_documents WHERE company_id=? AND state='submitted' AND accounting_date BETWEEN ? AND ?", r.company_id, r.start_date, r.end_date), 'Return or post submitted supplier bills and credits before closing this period.');
         run("UPDATE ledger_periods SET state='closed',closed_by=?,closed_at=?,version=version+1 WHERE id=?", actorId, now(), id);
       } else {
         requireThat(r.state === 'closed', 'Period is already open.');
@@ -229,6 +230,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
       access.requireCap('ledger.write', r.company_id, r.project_id);
       requireScope(r.company_id, r.project_id);
       if (old) {
+        requireThat(old.source_type === 'manual', 'Use the source document to correct a typed journal.');
         version(old, input.version);
         requireThat(old.author_id === actorId && ['draft', 'returned'].includes(old.state), 'Only the author can edit a draft or returned journal.', 403);
         requireThat(!old.reversal_of, 'Reversal amounts are frozen. Cancel and prepare a new reversal.');
@@ -278,6 +280,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
   function decide(id, input) {
     return transaction(db, () => {
       const r = row(id);
+      requireThat(r.source_type === 'manual', 'Use the source document to correct a typed journal.');
       version(r, input.version);
       const reason = txt(input.reason, 'Decision reason', 2000);
       const author = r.author_id === actorId && can('ledger.write', r);
@@ -323,6 +326,7 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
   function reverse(id, input) {
     return transaction(db, () => {
       const r = row(id);
+      requireThat(r.source_type === 'manual', 'Use the source document to correct a typed journal.');
       version(r, input.version);
       access.requireCap('ledger.write', r.company_id, r.project_id);
       requireThat(r.state === 'posted' && !r.reversal_of, 'Only an original posted journal can be reversed.');

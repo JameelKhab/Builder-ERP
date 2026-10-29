@@ -133,7 +133,8 @@ export function Ledger({
   project,
   preview = false,
   initialRecord,
-  onChanged = () => {}
+  onChanged = () => {},
+  onOpen
 }) {
   const [options, setOptions] = useState(null),
     [entries, setEntries] = useState([]),
@@ -301,13 +302,13 @@ export function Ledger({
           ...l,
           currency: record.currency
         }))} currency={company.currency} />
- <section className='ledger-source'><h3>Source & accounting basis</h3><p><strong>{record.source_reference}</strong></p><p>{record.explanation}</p><p>{record.currency !== company.currency ? <>1 {record.currency} = {record.rate} {company.currency} · </> : null}{dateLabel(record.rate_date)} · {record.rate_source}</p>{record.posted_by && <p>Posted by {record.poster} · {new Date(record.posted_at).toLocaleString('en-GB')}</p>}</section>
+ <section className='ledger-source'><h3>Source & accounting basis</h3>{record.source_type === 'payable' && onOpen && <button className='text-button' onClick={() => onOpen(record.source_id)}>Open supplier bill or credit<ArrowRight/></button>}<p><strong>{record.source_reference}</strong></p><p>{record.explanation}</p><p>{record.currency !== company.currency ? <>1 {record.currency} = {record.rate} {company.currency} · </> : null}{dateLabel(record.rate_date)} · {record.rate_source}</p>{record.posted_by && <p>Posted by {record.poster} · {new Date(record.posted_at).toLocaleString('en-GB')}</p>}</section>
  <details className='record-section'><summary>Review history · {record.history.length} events</summary>{record.history.map(h => <article key={h.id}><strong>{h.action} · {h.actor}</strong><p>{h.reason}</p><small>{new Date(h.at).toLocaleString('en-GB')} · Version {h.snapshot.version}</small><details><summary>Saved version</summary><pre>{JSON.stringify({
                   ...h.snapshot,
                   lines_json: undefined,
                   lines: JSON.parse(h.snapshot.lines_json)
                 }, null, 2)}</pre></details></article>)}</details></section>}
- {!record && !form && !decision && screen === 'journals' && <><label className='field ledger-filter'>Journal stage<select value={state} onChange={e => setState(e.target.value)}>{['all', 'draft', 'submitted', 'returned', 'posted', 'cancelled'].map(s => <option key={s} value={s}>{s === 'all' ? 'All stages' : s === 'submitted' ? 'Independent review' : s[0].toUpperCase() + s.slice(1)}</option>)}</select></label><div className='ledger-register'>{entries.filter(r => state === 'all' || r.state === state).map(r => <button className='ledger-row' key={r.id} onClick={() => open(r.id)}><span><small>{r.number || r.id} · {dateLabel(r.accounting_date)}</small><strong>{r.title}</strong><small>{r.project}</small></span><span><strong>{amount(r.company_total, company.currency)}</strong><small>{r.state_label}{r.reversal_of ? ' · Reversal' : ''}</small></span><ArrowRight /></button>)}</div>{!entries.length && <Empty>No general journals yet. An accounting controller sets up accounts and an open period before the first draft.</Empty>}<p className='ledger-note'>This ledger is separate from illustrative cost openings. Supplier bills, tax, bank payments and reconciliation remain in the wider ERP build.</p></>}
+ {!record && !form && !decision && screen === 'journals' && <><label className='field ledger-filter'>Journal stage<select value={state} onChange={e => setState(e.target.value)}>{['all', 'draft', 'submitted', 'returned', 'posted', 'cancelled'].map(s => <option key={s} value={s}>{s === 'all' ? 'All stages' : s === 'submitted' ? 'Independent review' : s[0].toUpperCase() + s.slice(1)}</option>)}</select></label><div className='ledger-register'>{entries.filter(r => state === 'all' || r.state === state).map(r => <button className='ledger-row' key={r.id} onClick={() => open(r.id)}><span><small>{r.number || r.id} · {dateLabel(r.accounting_date)}</small><strong>{r.title}</strong><small>{r.project}</small></span><span><strong>{amount(r.company_total, company.currency)}</strong><small>{r.state_label}{r.reversal_of ? ' · Reversal' : ''}</small></span><ArrowRight /></button>)}</div>{!entries.length && <Empty>No general journals yet. An accounting controller sets up accounts and an open period before the first draft.</Empty>}<p className='ledger-note'>This ledger is separate from illustrative cost openings. Receipt-matched supplier bills and return credits post here. Bank payments, stock valuation and reconciliation remain in the wider ERP build.</p></>}
  {!record && !form && !decision && screen === 'reports' && <><div className='ledger-field-grid'><label className='field'>Report project<select disabled={!!project} value={filters.project} onChange={e => setFilters({
               ...filters,
               project: e.target.value

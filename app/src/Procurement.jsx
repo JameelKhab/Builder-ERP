@@ -62,7 +62,8 @@ export function Procurement({
   projects,
   preview = false,
   initialTab = 'requests',
-  initialRecord = null
+  initialRecord = null,
+  onOpen
 }) {
   const [data, setData] = useState(null),
     [tab, setTab] = useState(initialTab),
@@ -190,13 +191,14 @@ export function Procurement({
  {r.can_price && r.quotes?.length > 0 && <details className="proc-history"><summary>All supplier quotations · {r.quotes.length}</summary>{r.quotes.map(q => <div key={q.id}><strong>{q.vendor} · {q.product}</strong><p>{numberText(q.quantity)} {q.uom} · {q.pack ? `${q.pack.quoted_quantity} ${q.pack.pack_name} at ${amount(q.pack.quoted_price, q.currency)} per quoted unit` : `${amount(q.unit_price, q.currency)} each`} · Lead time {q.lead_days} days</p><small>{q.reference}{q.pack?.supplier_code ? ` · Supplier item ${q.pack.supplier_code}` : ''} · Valid until {q.valid_until} · {q.id}</small></div>)}</details>}
  </> : <>
  <button className="text-button" onClick={() => open('request', r.request_id)}>Open originating request {r.request_id}<ArrowRight size={17} /></button>
+ {onOpen && r.payable_documents?.length > 0 && <details className='proc-history'><summary>Linked supplier bills & credits · {r.payable_documents.length}</summary>{r.payable_documents.map(d => <button className='budget-work-link' key={d.id} onClick={() => onOpen(d.id)}><strong>{d.reference}</strong><span>{d.kind} · {d.state}</span><ArrowRight/></button>)}</details>}
  <Lines lines={r.lines} order priced={r.can_price} currency={r.currency} />
  {!preview && r.can_receive && !mode && <button className="primary" onClick={() => setMode('receipt')}>Record delivery</button>}
  {mode === 'receipt' && <ReceiptForm order={r} busy={busy} onCancel={() => setMode('')} onSave={body => act(`/purchase-orders/${r.id}/receipts`, {
             ...body,
             version: r.version
           })} />}
- <section className="proc-section"><h3>Receipts & available stock</h3>{!r.receipts.length ? <Empty>No deliveries recorded yet.</Empty> : r.receipts.map(lot => <div className="proc-lot" key={lot.id}><div><h4>{lot.delivery_reference}</h4><p>{r.lines.find(l => l.id === lot.order_line_id)?.product} · {lot.receiver}</p><small>{lot.id} · {new Date(lot.received_at).toLocaleString()}</small></div><dl><div><dt>Accepted</dt><dd>{lot.accepted} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div><div><dt>Rejected</dt><dd>{lot.rejected} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div><div><dt>Available</dt><dd>{lot.available} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div>{r.can_price && <div><dt>Stock value</dt><dd>{amount(lot.stock_value, company.currency)}</dd></div>}</dl>{lot.reason && <p className="footnote">{lot.reason}</p>}{!preview && r.can_move && Number(lot.available) > 0 && !mode && <div className="proc-actions"><button className="secondary" onClick={() => setMode(`issue:${lot.id}`)}>Record material use</button><button className="text-button" onClick={() => setMode(`return:${lot.id}`)}>Return to supplier</button></div>}{mode.endsWith(`:${lot.id}`) && <MovementForm order={r} lot={lot} data={data} kind={mode.split(':')[0]} busy={busy} onCancel={() => setMode('')} onSave={body => act(`/material-receipts/${lot.id}/movements`, {
+ <section className="proc-section"><h3>Receipts & available stock</h3>{!r.receipts.length ? <Empty>No deliveries recorded yet.</Empty> : r.receipts.map(lot => <div className="proc-lot" key={lot.id}><div><h4>{lot.delivery_reference}</h4><p>{r.lines.find(l => l.id === lot.order_line_id)?.product} · {lot.receiver}</p><small>{lot.id} · {new Date(lot.received_at).toLocaleString()}</small></div><dl><div><dt>Accepted</dt><dd>{lot.accepted} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div><div><dt>Rejected</dt><dd>{lot.rejected} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div><div><dt>Available</dt><dd>{lot.available} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div><div><dt>Net billed</dt><dd>{lot.net_billed || '0'} <small>{r.lines.find(l => l.id === lot.order_line_id)?.uom}</small></dd></div>{r.can_price && <div><dt>Stock value</dt><dd>{amount(lot.stock_value, company.currency)}</dd></div>}</dl>{lot.reason && <p className="footnote">{lot.reason}</p>}{!preview && r.can_move && Number(lot.available) > 0 && !mode && <div className="proc-actions"><button className="secondary" onClick={() => setMode(`issue:${lot.id}`)}>Record material use</button><button className="text-button" onClick={() => setMode(`return:${lot.id}`)}>Return to supplier</button></div>}{mode.endsWith(`:${lot.id}`) && <MovementForm order={r} lot={lot} data={data} kind={mode.split(':')[0]} busy={busy} onCancel={() => setMode('')} onSave={body => act(`/material-receipts/${lot.id}/movements`, {
                 ...body,
                 version: r.version
               })} />}</div>)}</section>

@@ -421,7 +421,7 @@ test('additive examples cover every project, are idempotent and export all facts
   });
   t.after(() => db.close());
   const svc = ledger(db, 'ahmed', today),
-    counts = () => db.prepare('SELECT count(*) n FROM ledger_entries').get().n;
+    counts = () => db.prepare('SELECT count(*) n FROM ledger_entries WHERE source_type=\'manual\'').get().n;
   assert.equal(counts(), 12);
   installLedgerExamples(db);
   assert.equal(counts(), 12);
@@ -429,13 +429,13 @@ test('additive examples cover every project, are idempotent and export all facts
     const r = svc.report(p.company_id, {
       project: p.id
     });
-    assert.equal(svc.list(p.company_id, p.id).length, 4);
-    assert.equal(r.rows.length, 9);
+    assert.equal(svc.list(p.company_id, p.id).length, 6);
+    assert.equal(r.rows.length, 15);
     assert.equal(r.findings[2].source_ids.length, 1);
     assert.equal(r.findings[3].source_ids.length, 1);
     const csv = ledgerCsv(r);
     assert.ok(csv.indexOf('Findings') < csv.indexOf('Posted journal lines'));
-    assert.equal(csv.split('\r\n').filter(l => l.includes('GL/2026/')).length, 9);
+    assert.equal(csv.split('\r\n').filter(l => l.includes('GL/2026/')).length, 15);
     r.rows[0].description = '=UNSAFE()';
     assert.ok(ledgerCsv(r).includes("'=UNSAFE()"));
   }

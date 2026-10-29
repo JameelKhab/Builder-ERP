@@ -18,7 +18,7 @@ test('every visible feature has examples in every sample company and project', t
     const scope = service.workspace(project.company_id, project.id);
     for (const [area, categories] of Object.entries(CATEGORIES)) {
       for (const [category] of categories) {
-        const rows = category === 'General ledger' ? scope.ledger_entries : category === 'Quality & safety' ? scope.quality_cases : category === 'Project setup' ? scope.project_setup : category === 'Budget control' ? scope.budget_documents : category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
+        const rows = category === 'Supplier bills' ? scope.payable_documents : category === 'General ledger' ? scope.ledger_entries : category === 'Quality & safety' ? scope.quality_cases : category === 'Project setup' ? scope.project_setup : category === 'Budget control' ? scope.budget_documents : category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
         assert.ok(rows.length >= (['Project setup','Budget control','Cost report', 'Purchase requests','Orders & deliveries'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
       }
     }
@@ -95,7 +95,7 @@ test('installing examples upgrades existing data once without overwriting work o
   assert.equal(updated.record('NCR-018').title, 'Preserved title');
   const afterReport=updated.report('jakh');
   for(const row of report.rows){const after=afterReport.rows.find(r=>r.id===row.id);for(const key of ['original_budget','revised_budget','opening_committed','opening_incurred','cash','forecast'])assert.equal(after[key],row[key]);}
-  assert.equal(afterReport.totals.committed,'32105280.00');
+  assert.equal(afterReport.totals.committed,'32107080.00');
   assert.equal(afterReport.totals.incurred,'25351880.00');
   const factCount=db.prepare('SELECT count(*) n FROM construction_cost_facts').get().n;
   const count = () => db.prepare('SELECT COUNT(*) n FROM records').get().n;

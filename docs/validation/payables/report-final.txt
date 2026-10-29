@@ -1,0 +1,149 @@
+Browser tab: 27, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&category=payables".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&category=payables
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Access
+					11 image
+					12 text Access
+				13 button Organisation
+					14 image
+					15 text Organisation
+				38 button My Work
+					39 image
+					40 text My Work
+				41 button Tenders
+					42 image
+					43 text Tenders
+				44 button Projects
+					45 image
+					46 text Projects
+				47 button Company
+					48 image
+					49 text Company
+			16 text Built around your work.
+			17 text Local sample workspace
+		18 container
+			19 text Company
+			20 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				21 menu
+					22 (selected) JAKH Contracting LLC
+					23 JAKH International Ltd
+			24 image
+			25 text field (settable) Search company records
+			26 button Search
+			27 button Explore examples
+				28 image
+				29 text Examples
+			30 button Your account and sign-in
+				31 text AA
+				32 text Ahmed Al Mansoori
+				33 text Project manager
+		34 container main-content
+			35 heading JAKH Contracting LLC, Value: 1
+				36 text JAKH Contracting LLC
+			37 text Company-wide operations and shared information
+			50 container
+				51 text SUPPLIER ACCOUNTING ·  JAKH CONTRACTING LLC
+				52 heading Supplier bills, Value: 1
+					53 text Supplier bills
+				54 text Match accepted work, review the liability, follow the correction.
+				55 container Supplier accounting views
+					56 button Bills & credits
+					57 button Findings & balances
+				58 container
+					59 text Report project
+					60 pop up button (collapsed, settable) Report project, Value: All authorised projects, Secondary Actions: Expand
+						61 menu
+							62 (selected) All authorised projects
+							63 Garden Residences
+							64 Harbour Tower
+				65 container
+					66 text Accounting through
+					67 date field (settable) Accounting through, Value: 2026-10-29
+						68 container
+							69 stepper
+							70 stepper
+							71 stepper
+						72 pop up button Show date picker Show date picker
+				73 button Update report
+				74 button Export findings & rows
+					75 image
+					76 text Export findings & rows
+				77 text FINDINGS ·  AUTHORISED COMPANY PROJECTS  · THROUGH  2026-10-29
+				78 heading AED 1,162 payable before settlement, Value: 2
+					79 text AED 1,162  payable before settlement
+				80 content list
+					81 container
+						82 AXListMarker • 
+						83 text 2 posted supplier bills; 2 posted return credits through 2026-10-29.
+					84 container
+						85 AXListMarker • 
+						86 text 1162.00 AED remains payable before cash settlement; past-due bills: 0.
+					87 container
+						88 AXListMarker • 
+						89 text Unbilled accepted receipt lots: 5. Billed returns awaiting credit: 2.
+					90 container
+						91 AXListMarker • 
+						92 text Documents awaiting review: 2. Linked AP control difference: 0.00.
+				93 text AED 226.80  open EUR 226.80  open Original bills AED 1,291.11 Return credits AED 129.11 Past due AED 0 AP control difference AED 0
+				94 heading Bill balances, Value: 3
+					95 text Bill balances
+				96 container Accounting table · scroll to compare all columns
+					97 table
+						98 row
+							99 cell
+								100 text Supplier bill
+							101 cell
+								102 text Project / due
+							103 cell
+								104 text Original
+							105 cell
+								106 text Credited
+							107 cell
+								108 text Open
+							109 cell
+								110 text Open ·  AED
+						111 row
+							112 cell
+								113 button DEMO-BILL-gardens
+								114 text Gulf Reinforcement LLC
+							115 cell
+								116 text Garden Residences
+								117 text 2026-10-29
+							118 cell
+								119 text AED 252
+							120 cell
+								121 text AED 25.20
+							122 cell
+								123 text AED 226.80
+							124 cell
+								125 text 226.80
+						126 row
+							127 cell
+								128 button DEMO-BILL-harbour
+								129 text EuroSteel Supplies
+							130 cell
+								131 text Harbour Tower
+								132 text 2026-10-29
+							133 cell
+								134 text EUR 252
+							135 cell
+								136 text EUR 25.20
+							137 cell
+								138 text EUR 226.80
+							139 cell
+								140 text 935.20
+				141 button (collapsed) 7 receipt exceptions · unbilled or return credit needed, Secondary Actions: Expand
+					142 text 7
+					143 text  receipt exceptions · unbilled or return credit needed
+				144 button (collapsed) Report basis and current scope, Secondary Actions: Expand
+					145 text Report basis and current scope
+
+The focused UI element is 57 button Findings & balances

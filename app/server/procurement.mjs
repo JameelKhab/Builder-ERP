@@ -384,6 +384,7 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
       return {
         ...r,
         available: b.quantity.toString(),
+        net_billed: sum(all("SELECT l.quantity,d.kind FROM payable_lines l JOIN payable_documents d ON d.id=l.document_id WHERE l.receipt_id=? AND d.state='posted'",r.id).map(l => l.kind === 'bill' ? l.quantity : new D(0).minus(l.quantity))).toString(),
         ...(priced ? {
           stock_value: money(b.value)
         } : {
@@ -400,6 +401,7 @@ export function procurement(db, actorId, today = () => new Date().toISOString().
         company_value: undefined,
         reason: 'Operational movement recorded.'
       }),
+      payable_documents: access.has('ap.read',o.company_id,o.project_id) ? all('SELECT id,reference,kind,state FROM payable_documents WHERE order_id=?',id) : [],
       can_price: priced,
       can_receive: o.state === 'issued' && access.has('receipts.write', o.company_id, o.project_id),
       can_move: access.has('stock.write', o.company_id, o.project_id),

@@ -1,0 +1,32 @@
+"Builder ERP · Supplier payable report"
+"Company","JAKH Contracting LLC"
+"Project scope","harbour"
+"Accounting through","2026-10-29"
+"Functional currency","AED"
+
+"Findings"
+"1 posted supplier bills; 1 posted return credits through 2026-10-29."
+"935.20 AED remains payable before cash settlement; 0 bills have passed their due date."
+"3 receipt lots have unbilled accepted quantities; 1 have billed returns awaiting credit."
+"1 documents await review. Linked AP control difference: 0.00."
+
+"Limitations"
+"Material receipt bills and quantity return credits only. Payments and settlements are not implemented here; open amounts do not claim actual cash movement."
+"Invoice classification is explicit. Automatic stock valuation/GRNI, subcontract certificates, retention, price-only credits and legal tax localisation remain open."
+"Posted bill accounting is separate from the operational cost report; it does not add the same material cost twice."
+"Receipt exceptions use operational UTC event dates; financial balances use accounting dates."
+"Selected project only."
+
+"Bill ID","Supplier reference","Supplier","Project","Accounting date","Due date","Currency","Original","Credited","Open","Functional original","Functional credited","Functional open","Overdue","Journal ID"
+"AP-61D084B6","DEMO-BILL-harbour","EuroSteel Supplies","Harbour Tower","2026-10-29","2026-10-29","EUR","252.00","25.20","226.80","1039.11","103.91","935.20","No","JRN-D67925E6"
+
+"Linked return credits"
+"Bill ID","Credit ID","Supplier reference","Transaction amount","Functional amount"
+"AP-61D084B6","AP-EA3EB82C","DEMO-CREDIT-harbour","25.20","103.91"
+
+"Receipt exceptions"
+"Receipt ID","Order ID","Product","UOM","Net accepted","Net billed","Unbilled quantity","Return credit quantity"
+"RCV-44B049F6","PO-97ED9F83","Concrete block 200 mm","unit","25","0","25","0"
+"RCV-40FE5983","PO-C69DDD50","Concrete block 200 mm","unit","25","0","25","0"
+"RCV-A1A64700","PO-F02AFE20","Concrete block 200 mm","unit","17","18","0","1"
+"RCV-792C3316","PO-F02AFE20","Concrete block 200 mm","unit","4","0","4","0"

@@ -95,3 +95,7 @@ A connected original NCR workflow now adds immediate containment, independent pl
 ## 29 October 2026 — General ledger continuation
 
 Added an operational general-ledger subset: company accounts/periods, exact-currency journals, independent authority and posting, immutable facts, reversal links, project/company findings and CSV. Home → Accounting and the project General ledger view open canonical records. See ledger-local.md and contracts/ledger-v1.md. Full finance and ERP remain open against 267 functions/34 contracts/21 domains.
+
+## 29 October 2026 — Material supplier accounting continuation
+
+Added receipt-matched supplier bills, configured exclusive tax, independent separate AP authority, immutable source journals, physical-return credits and project/company payable findings/CSV. Supplier-specific clerk permissions, My Work, search, source links and three-project examples are connected. See payables-local.md and contracts/payables-v1.md. This is an operational subset; payment, bank/stock, subcontract certificates/deductions and the full comparison/migration scope remain open.

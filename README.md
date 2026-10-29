@@ -28,7 +28,9 @@ Company contacts, independently reviewed supplier currencies/terms and catalogue
 
 NCRs now support immediate containment, independent corrective-plan review, action evidence, verification/closure/reopening and scoped findings/export. See [NCR implementation](docs/implementation/quality-local.md). Other quality/HSE/inspection/document/handover scope remains open.
 
-Original general-ledger journals now support company accounts/periods, independent posting with separate authority, exact currency conversion, immutable history/reversals and project/company ledger findings. See [ledger implementation](docs/implementation/ledger-local.md). Typed invoices/bills, payments, tax, bank/stock reconciliation and full migration remain open.
+Original general-ledger journals now support company accounts/periods, independent posting with separate authority, exact currency conversion, immutable history/reversals and project/company ledger findings. See [ledger implementation](docs/implementation/ledger-local.md). Typed customer invoices, payments, broader tax, bank/stock reconciliation and full migration remain open.
+
+Material supplier bills now match accepted receipt quantities, require independent AP posting authority, create original linked journals and support quantity return credits with exact source-value corrections. Company/project payable findings and CSV reconcile the subledger to AP control. See [payable implementation](docs/implementation/payables-local.md). Subcontract certificates/retention, settlement, bank/stock integration and full source migration remain open.
 
 ## Start here
 
@@ -74,7 +76,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 134 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms and catalogue screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 148 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger and supplier bill screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 
