@@ -1,0 +1,898 @@
+{
+  "stage": "Advance request/invoice service foundation; recovery and full UI not accepted",
+  "source_schema": 15,
+  "target_schema": 16,
+  "original_domain_tables_unchanged": 98,
+  "schema_versions": "original 15 rows retained; version 16 added on upgrade only",
+  "source_tables_including_schema_versions": 99,
+  "target_tables_including_schema_versions": 102,
+  "injected_failure": "before replacement of client_invoices; transaction rolled back and FK enforcement restored",
+  "integrity": "ok",
+  "foreign_key_violations": 0,
+  "new_financial_authority": "zero by default",
+  "saved_real_identities": 0,
+  "tables": [
+    {
+      "table": "access_events",
+      "original_columns": 7,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "bank_matches",
+      "original_columns": 6,
+      "rows": 3,
+      "sha256": "5b80305cf1018f3b67dd9c1925d41ec85bb47b3a2194fdbc7b280dde81a1a403",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "bank_receipt_matches",
+      "original_columns": 6,
+      "rows": 6,
+      "sha256": "8bf935dbe5ff7542829ac4a901f909532751172a2f000fcb2f44d0ce4a6ec40c",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "bank_rows",
+      "original_columns": 7,
+      "rows": 12,
+      "sha256": "01af8be3d66dc0d46d8cc8829c02bb6242eaf39ac3533329cf71013f3d2e99e4",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "bank_statement_voids",
+      "original_columns": 4,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "bank_statements",
+      "original_columns": 10,
+      "rows": 4,
+      "sha256": "f4b60cacd8adda6e29cf66c7df1ed861eeb08b43d1dc79fa19f0bb7abfd7fb78",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "boq_intake_checks",
+      "original_columns": 8,
+      "rows": 9,
+      "sha256": "ac6443e5e047daa8432489808ffafb7c58f3bad556700e96bb82e78bfd3ebad3",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "boq_intake_events",
+      "original_columns": 7,
+      "rows": 24,
+      "sha256": "60dd087044059cb81815834a790febef8e00f18a484101e93c0198d3a1288b99",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "boq_intake_files",
+      "original_columns": 6,
+      "rows": 9,
+      "sha256": "e5db91afcead739250edc15ce94598248c5024590abb2e86b73894b376e4dc5e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "boq_intake_lines",
+      "original_columns": 8,
+      "rows": 3,
+      "sha256": "ff697a0a6ac3cefd6f79d13e859cbc17b1cb4aec3b98731df7be0500dd19d730",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "boq_intakes",
+      "original_columns": 10,
+      "rows": 9,
+      "sha256": "21d8cc157c28c33e671918cfdd55fc1feba22e2bd1f9828db2083ceb126e2ab7",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "budget_documents",
+      "original_columns": 15,
+      "rows": 9,
+      "sha256": "e9c65217a7513af7f81b06b78fb98dacd71c8753873bc0407120b7037ed9d4d2",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "budget_facts",
+      "original_columns": 8,
+      "rows": 3,
+      "sha256": "7594c57bca0424c14e651efb962c160fd07c61237f10b30f6c04702d8297dcc5",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "budget_lines",
+      "original_columns": 9,
+      "rows": 9,
+      "sha256": "1959da60e999dc696a8eb7a725d0571cfd0048e84f299e4ab748c721d1503ab7",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "catalogue_units",
+      "original_columns": 4,
+      "rows": 11,
+      "sha256": "61fae5fb431d54f68ef86141150f406568852c000cb1e10310b485e6f6d836fc",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_certificate_lines",
+      "original_columns": 9,
+      "rows": 27,
+      "sha256": "5e30d9ef645e980242515a87eba1c11bb787ee4de32c24443dcc9d76654f4c6b",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_certificates",
+      "original_columns": 26,
+      "rows": 12,
+      "sha256": "473dc13a354c5a531b8ded1cc5bca3ab8f4e4da58152ab05f7849d6e558bc049",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_contract_lines",
+      "original_columns": 5,
+      "rows": 9,
+      "sha256": "dc1ca5eb6f3534f1206fd723e198f3512ccb828899267b48601c487200903e0a",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_contracts",
+      "original_columns": 12,
+      "rows": 3,
+      "sha256": "4f743626434e3281cb87793d17798642f1d25ab70d72339882492f70636bf0d6",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_finance_events",
+      "original_columns": 10,
+      "rows": 78,
+      "sha256": "beca0f4798d26b73ebffecedad48e2c0ce19a241dbddddc36f350b7b283ce5dc",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_invoices",
+      "original_columns": 28,
+      "rows": 9,
+      "sha256": "410ef459263e35b0627122cf36da90fd1308a14875518d2039c7de9f828d0682",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_measurement_evidence",
+      "original_columns": 7,
+      "rows": 12,
+      "sha256": "5e79be2aa557e6cfc2d942a3a182c2547fc615e3ab9522b961430093fe2314ca",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_receipt_allocations",
+      "original_columns": 9,
+      "rows": 6,
+      "sha256": "9a65f7b5e52468f1ca1b684420a1695ca62043935191f0b6d6c81ba029640b1a",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_receipt_events",
+      "original_columns": 9,
+      "rows": 42,
+      "sha256": "289f2ae53fb48165d08f5ba7ed50c60cb8ec05309dc26ff20c305323c2baa94d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_receipt_evidence",
+      "original_columns": 7,
+      "rows": 6,
+      "sha256": "bcf139b9ef101d56715929b18137f43a6deb34c6166dd968dee4bf6f94dc2f9d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "client_receipts",
+      "original_columns": 29,
+      "rows": 15,
+      "sha256": "e8927c40b670ee73255c3b80fcb53a5f91989b6e789ce4fdb8b441f0dd51f94e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "commercial_events",
+      "original_columns": 8,
+      "rows": 35,
+      "sha256": "7aeb749eca20fcc3aa0f77cf461b0504dad928e66b7f0a262230d2694b91c9c5",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "companies",
+      "original_columns": 7,
+      "rows": 2,
+      "sha256": "17d3b84e7e0ef131ef366f6705154c33caa05cc9254e9bffef4a8950c99f087d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "construction_cost_facts",
+      "original_columns": 9,
+      "rows": 14,
+      "sha256": "e5b8d99c8b8cad108d4ac1553ec9c2496a58356537d839dc4673e44be41e6095",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "contract_finance_policies",
+      "original_columns": 19,
+      "rows": 3,
+      "sha256": "05990a965bc7c435d62fd1818bfc45db94d9f9d4ab23dc824b2517a84731df61",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "cost_codes",
+      "original_columns": 4,
+      "rows": 2,
+      "sha256": "72f154e9bc622d7502998b3d271bb3bfdb67d9ab671f206474d9782258556af6",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "cost_items",
+      "original_columns": 13,
+      "rows": 7,
+      "sha256": "afcdaef96444c397aa0aa66215e4ac07fd5a3b9fe9ca90fe65d7b42b42698a3e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "document_master_snapshots",
+      "original_columns": 4,
+      "rows": 59,
+      "sha256": "ad692f5d6577ceb052206504f1bb9db6a0b6cd627be9c08836b3b3ed8a4ec4d2",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_events",
+      "original_columns": 7,
+      "rows": 78,
+      "sha256": "a9b1c322484bd15290814d24a671fc95b6015d993cc77833de32e21938764eb9",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_handover_lines",
+      "original_columns": 4,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_handovers",
+      "original_columns": 9,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_lines",
+      "original_columns": 17,
+      "rows": 119,
+      "sha256": "1b78933af01bb268f9d39873a5ac5e1e5b665ded9bd9991b0c57ca8ba599400d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_overrides",
+      "original_columns": 5,
+      "rows": 81,
+      "sha256": "da260aa35e0260aef860793eafd5ca723ed4aaf0132a25e20a43b5ebf333c8da",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_resources",
+      "original_columns": 13,
+      "rows": 116,
+      "sha256": "e9c19feb9a4349a2ff09b4dbc1fcbd0aaf6cdfe852a83034f3884c4c705682e2",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "estimate_versions",
+      "original_columns": 29,
+      "rows": 29,
+      "sha256": "425f51f1db7d1c81f27f1a90079d84f4d1044a0c38a68b3c4abf209261f5965b",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "events",
+      "original_columns": 7,
+      "rows": 29,
+      "sha256": "5c61430fe585c59454105f4be0f061b4868c6d8d90f03c4396c3b4c6527210f1",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "foundation_events",
+      "original_columns": 12,
+      "rows": 23,
+      "sha256": "b8ef1da5673679dee68f15a54292213e169fe78de6c1a52170aff89b9496a3fd",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identities",
+      "original_columns": 6,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identity_codes",
+      "original_columns": 8,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identity_events",
+      "original_columns": 6,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identity_limits",
+      "original_columns": 3,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identity_sessions",
+      "original_columns": 11,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "identity_state",
+      "original_columns": 3,
+      "rows": 1,
+      "sha256": "2e0a97d153562a23ace01cabe0c3219dc3dc7d7f7c4a0d991840e27e081276a3",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_accounts",
+      "original_columns": 8,
+      "rows": 26,
+      "sha256": "c86e23c09b722e0f76220241175c057376a64e9ee930642548e2af97a23c12ba",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_entries",
+      "original_columns": 25,
+      "rows": 51,
+      "sha256": "818d6bc9069b47fba31574c8c2b3b0a1bb1772093f8ac3c0f7141720c07373d0",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_events",
+      "original_columns": 10,
+      "rows": 100,
+      "sha256": "1686415307cdabe1aaadc68924817851ff271067b945f2d9e2050ea00a8dd6c3",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_lines",
+      "original_columns": 15,
+      "rows": 129,
+      "sha256": "78e463690315c41c95b290b417e767d123bc620406221df975696408cc39821f",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_periods",
+      "original_columns": 9,
+      "rows": 2,
+      "sha256": "2596bb75c80fb7284d26262c2a071263942d00514a256e45f5fb8bd814bbe426",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "ledger_sequences",
+      "original_columns": 3,
+      "rows": 2,
+      "sha256": "d5998c96b5632aa85cea99f8b9e5c79aa389c2d508aa124c4f8bcc2637432c1d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "master_events",
+      "original_columns": 11,
+      "rows": 18,
+      "sha256": "2c29c443e477999513657b8e89a833915854fd9443ab58ebd483926a855baf0e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "material_receipts",
+      "original_columns": 13,
+      "rows": 13,
+      "sha256": "0530c48b807c08952ce90ec2a1795172b1df29a968f3608eb6db8f1d6a61c3d7",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "material_request_lines",
+      "original_columns": 9,
+      "rows": 20,
+      "sha256": "ab837257b4733c924225864de3bb6946a0793c1105cf53082835c410b6cc2db9",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "material_requests",
+      "original_columns": 10,
+      "rows": 17,
+      "sha256": "6148ee2bb358cdd3f4b9aa573b9204f05a546898d63b3d1f0d45c1d122e38f05",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "memberships",
+      "original_columns": 15,
+      "rows": 49,
+      "sha256": "93bfecd4fc07be205daec1686fec06de8b03f809cf6f7398c37bf390ab9d9e9d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "parties",
+      "original_columns": 3,
+      "rows": 6,
+      "sha256": "827dafd88b01828cb91896127153aed4ed42e5087ccc31714e7b8b240e2ac676",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "party_companies",
+      "original_columns": 15,
+      "rows": 7,
+      "sha256": "80fe0f53e51572630ff934772e298981e4e408b92ab56cef2b01ab9bb448d50b",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payable_documents",
+      "original_columns": 30,
+      "rows": 18,
+      "sha256": "f961770a5454c9e407fb9a482bf209079ed9b58ec79cad85caa4d13e9b97a0cb",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payable_events",
+      "original_columns": 10,
+      "rows": 49,
+      "sha256": "88d117f9f59e42560215dbe4770bc7503175c6dee6432e209b5d2608fbe24d6f",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payable_lines",
+      "original_columns": 6,
+      "rows": 12,
+      "sha256": "c18b260dd0827a528ab0316a86a60ee28bd14f9c278c0754d59340ee90692259",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payable_settings",
+      "original_columns": 3,
+      "rows": 2,
+      "sha256": "cbce7fe9f72bb56c0e25c2798a1858bdf17875bf3a8c1fc1355bba706f0b34cd",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payable_tax_codes",
+      "original_columns": 11,
+      "rows": 2,
+      "sha256": "c64118178651a4cb497da8caf7e65ac1bf9169f7096efcfdb67769c39fae3cf6",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payment_allocations",
+      "original_columns": 9,
+      "rows": 18,
+      "sha256": "8c6264942eba56a2ae947364d1422bb216cb492293298d012f683e70bf0f8cad",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payment_banks",
+      "original_columns": 9,
+      "rows": 4,
+      "sha256": "fad85ffe57f9bbc064b3099b8f263fae249d3bbf84d97e92ea1090af9591d521",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payment_events",
+      "original_columns": 10,
+      "rows": 101,
+      "sha256": "9a87c9cb679a4ea7c06007c1dce62d291906c886f4754a9c4c95e14a88eac205",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "payments",
+      "original_columns": 30,
+      "rows": 24,
+      "sha256": "99a8bf47a958996cbbd66efc0be6a72220fb0083e309a1b5d132fa244af133e8",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "procurement_events",
+      "original_columns": 10,
+      "rows": 115,
+      "sha256": "d5123c8242123e51adb24de3df207e62fc02be7eeb7cf6b586f1439d6c58a7ff",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "product_categories",
+      "original_columns": 5,
+      "rows": 4,
+      "sha256": "1c2d1f305db27f9b1820962de805a6cb268f82222567642b1bd8dfa2029ea833",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "product_packs",
+      "original_columns": 7,
+      "rows": 3,
+      "sha256": "44e37328a3850e3521d6c0e2b0ecb1a56ba5148ab800eef502d958038ae41192",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "products",
+      "original_columns": 11,
+      "rows": 9,
+      "sha256": "3ab4bce65a1f6c43fb25ad5ddf161521b87ad1fdd799e4b797bcd121b3d55e29",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "project_locations",
+      "original_columns": 8,
+      "rows": 13,
+      "sha256": "0636af5ce5d0aa60e2f53ab43ce1c818bbc7107f7d50c7fd1249d15c7b9f0afa",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "projects",
+      "original_columns": 15,
+      "rows": 3,
+      "sha256": "57e747b52a8a82f15863f1f2850d3a33cfa014fccac7ac83400370f4795492d0",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "purchase_order_lines",
+      "original_columns": 11,
+      "rows": 10,
+      "sha256": "a549e53379b5fe31a3dbdc1b44796c3f21a3f9f860b914df90e77ff262c5eacd",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "purchase_orders",
+      "original_columns": 10,
+      "rows": 10,
+      "sha256": "94f03856e22209ecb7335f878bd37710d6657be25caef017d38529ea36bf7bdb",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quality_actions",
+      "original_columns": 10,
+      "rows": 12,
+      "sha256": "17b25b63a00c1b03f3b0c4941234797e72d2b556708b7fdd30acb38bf99c0fd8",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quality_cases",
+      "original_columns": 28,
+      "rows": 16,
+      "sha256": "1b6c30627adc900d6e2c0d8098804df9819e4044d32e47fcbd9cb67e99f3314c",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quality_events",
+      "original_columns": 9,
+      "rows": 119,
+      "sha256": "424223c0b7e553ee239a834323fac1538bee77ed30ff9a08df6d7db455264bbc",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quality_evidence",
+      "original_columns": 14,
+      "rows": 37,
+      "sha256": "5ee9d445bd6a4373ea1b74cbd5dac7297d90c3bcb443f26febe9047cd13c78d3",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quality_impacts",
+      "original_columns": 7,
+      "rows": 76,
+      "sha256": "1c139554c6ba8b3dc96c3fcfaca4a38fde5c174434c863fdd798df298029f9a8",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "quote_pack_details",
+      "original_columns": 7,
+      "rows": 7,
+      "sha256": "b88cc218b50e79a5e1da4b558e2c5e3b2904a4dd5ec9cec902806518cd06cb2b",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "records",
+      "original_columns": 12,
+      "rows": 107,
+      "sha256": "92f91fdc85168d4e863365b1a926e039c9996f288f966e5d912a9b2132f41d99",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "requests",
+      "original_columns": 23,
+      "rows": 13,
+      "sha256": "05735449346bbf9f23b9534f539dcc99a0a2585a9371d1f0b51c0efe50d42b96",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "sales_acceptances",
+      "original_columns": 21,
+      "rows": 4,
+      "sha256": "b5acddd51476371243ab4f79fd7c5e7b5cadde0377e20102daab6b795a87c273",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "sales_offer_lines",
+      "original_columns": 11,
+      "rows": 36,
+      "sha256": "232dff95aa1118b709df605f07ee18011ce625f74340b644446a419ef24a3460",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "sales_offers",
+      "original_columns": 33,
+      "rows": 12,
+      "sha256": "0a82309bf762ee7534accea814e892d491cc18beddb4ce2e3387cfd0adfbb284",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "sample_packs",
+      "original_columns": 2,
+      "rows": 13,
+      "sha256": "7acbedd0ababbcbec35ff065db76e79ad2ce1f4041ecd85fd1553f1f869925bd",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "sourcing_allocations",
+      "original_columns": 7,
+      "rows": 15,
+      "sha256": "6cbe71b8dc8a98c07e74ca05f83f6c33195045eec9c81a9407cc9bb0542b449d",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "stock_movements",
+      "original_columns": 12,
+      "rows": 27,
+      "sha256": "102b235248a8c763ffbfb68a6299211c100549a5da5b1eb9108d1f14ad0db00f",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "supplier_quotes",
+      "original_columns": 16,
+      "rows": 16,
+      "sha256": "57cdae30e44146d622c1820afa1bb3bd473a142b460cab2e11efdab312d99afd",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "supplier_term_decisions",
+      "original_columns": 6,
+      "rows": 2,
+      "sha256": "1bf2f29d4605c3c178f2dcd7adfe1f635abedd04e90546224e8fdc93e0f1003b",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "supplier_terms",
+      "original_columns": 13,
+      "rows": 7,
+      "sha256": "9292389b4c06974398d3d70b8312ef8a9f4cb31df984b096018e08c2e1ed038e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "users",
+      "original_columns": 7,
+      "rows": 27,
+      "sha256": "bc7a7e4e8f2ee770376653dc9a48db9801130c6e7a6d2c7da3d0943b565d3d34",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "vendors",
+      "original_columns": 9,
+      "rows": 7,
+      "sha256": "b24e7bd06c3b216da65eabcc0069f8d082d92aae6e5a95481e5e042ea0eecd1e",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    },
+    {
+      "table": "work_packages",
+      "original_columns": 11,
+      "rows": 6,
+      "sha256": "4c17da9fd98405d5158d08e44130d14c78c66a98aef050b27daaae2319be31fb",
+      "upgrade_equal": true,
+      "rollback_equal": true,
+      "saved_workspace_equal": true
+    }
+  ]
+}

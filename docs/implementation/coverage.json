@@ -1324,7 +1324,7 @@
       "source_path": "Advances & retention releases",
       "destination": "Project > Costs & Contracts > Advances & retention",
       "local_status": "partial",
-      "implemented_and_remaining": "Contract advance ceilings are retained without inferred cash. Fresh source evidence distinguishes advance request, invoice, payment and reconciliation. Certificate-invoice receipts now provide the settlement foundation; actual advance requests/invoices, settlement-derived recovery, retention release and full source parity remain open.",
+      "implemented_and_remaining": "Typed advance request/independent approval, canonical liability invoice and receipt-derived principal/tax are tested backend foundations. Separate zero-default authority and aggregate original ceiling are enforced. Recovery allocations/posting/reversal protection, dedicated UI/reports/export/examples, retention release and full parity remain unfinished; paid-advance measurement is temporarily blocked.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1334,7 +1334,12 @@
         "docs/implementation/receipts-local.md",
         "app/tests/receipts.test.mjs",
         "app/tests/receipts-api.test.mjs",
-        "docs/validation/receipts/verification.md"
+        "docs/validation/receipts/verification.md",
+        "docs/implementation/contracts/client-advances-v1.md",
+        "docs/implementation/advances-local.md",
+        "app/tests/advances.test.mjs",
+        "app/tests/advances-api.test.mjs",
+        "docs/validation/advances/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Recovery cannot exceed the actual outstanding advance under the policy.",
@@ -3836,7 +3841,7 @@
       "invariant": "Immutable approved BOQ; finance activation policy",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open."
+      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
     },
     {
       "id": "M16",
@@ -3846,7 +3851,7 @@
       "invariant": "Cumulative limits; finance freeze; explicit correction",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open."
+      "local_notes": "Original awarded BOQ and terms now connect to versioned independent finance policy, cumulative certified measurements/immutable evidence and separate client-invoice posting. Current authority, exact previous/current/remaining amounts, periods, source snapshots and AR/retention reconciliation are tested. Advances, variations/revisions, corrections/reassignment, retention release and actual import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
     },
     {
       "id": "M17",
@@ -3910,7 +3915,7 @@
       "invariant": "Balanced posting; AP/AR/control/bank reconciliation",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Original general ledger/accounts/periods; material bills/return credits; supplier payment/refund settlement; client certificate invoices; and customer multi-invoice receipts now have immutable typed journals, independent zero-default limits, exact transaction/carrying/bank/FX values, shared statement evidence and company/project reconciliation findings. Receipt files/hash and full corrections are retained. Advance invoices/recovery, credits/unallocated cash, retention release, subcontract/stock/GRNI, wider tax/revaluation, full cash classification/forecast and production import/reconciliation remain open."
+      "local_notes": "Original general ledger/accounts/periods; material bills/return credits; supplier payment/refund settlement; client certificate invoices; and customer multi-invoice receipts now have immutable typed journals, independent zero-default limits, exact transaction/carrying/bank/FX values, shared statement evidence and company/project reconciliation findings. Receipt files/hash and full corrections are retained. Advance invoices/recovery, credits/unallocated cash, retention release, subcontract/stock/GRNI, wider tax/revaluation, full cash classification/forecast and production import/reconciliation remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
     },
     {
       "id": "M24",
@@ -3996,7 +4001,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "Current scoped identity, reviewed access/financial limits, independent versioned decisions and retained evidence/history apply across implemented budget/procurement/master/NCR, ledger/AP/AR/payments/receipts, estimate/intake/offer/award/certificate stages. Receipt approval differs from recording, and bank reconciliation differs from each recorder. Limits default to zero; preview cannot mutate. Configurable multi-stage routes, reassignment/delegation/escalation, wider ERP coverage, external tamper resistance and source migration remain open."
+      "local_notes": "Current scoped identity, reviewed access/financial limits, independent versioned decisions and retained evidence/history apply across implemented budget/procurement/master/NCR, ledger/AP/AR/payments/receipts, estimate/intake/offer/award/certificate stages. Receipt approval differs from recording, and bank reconciliation differs from each recorder. Limits default to zero; preview cannot mutate. Configurable multi-stage routes, reassignment/delegation/escalation, wider ERP coverage, external tamper resistance and source migration remain open. Advance request/invoice/receipt backend foundation is implemented; protected recovery/UI/report/example acceptance remains unfinished (advances-local.md)."
     },
     {
       "id": "M33",

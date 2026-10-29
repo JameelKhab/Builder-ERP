@@ -1,4 +1,5 @@
 import { randomUUID, createHash } from 'node:crypto';
+import { advanceInvoiceCalculation, contractAdvancePaid } from './advances.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
@@ -239,6 +240,9 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     requireThat(new D(gross).gt(0), 'Record positive new measured work.');
     const retentionCumulative = money(min(new D(cumulative).times(c.terms.retention_percent).div(100).toDecimalPlaces(2), c.terms.retention_cap)),
       retention = money(new D(retentionCumulative).minus(prev?.cumulative_retention || 0));
+    // Until frozen recovery allocations are installed, do not silently certify with
+    // zero recovery after a real advance receipt. This guard is a temporary dependency.
+    requireThat(new D(contractAdvancePaid(db, c.id, end)).isZero(), 'This contract has received advance principal. Complete the connected certificate recovery workflow before certifying further work.');
     // No allowance or manually entered opening amount is accepted as received cash.
     const recovery = '0.00',
       net = money(new D(gross).minus(retention).minus(recovery)),
@@ -413,7 +417,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_cancel: r.author_id === actorId && can('certificates.write', r) && !['approved', 'cancelled'].includes(r.state),
       can_invoice: r.state === 'approved' && !s.invoice && can('ar.write', r),
       can_open_offer: can('sales.read', r),
-      findings: [`${r.currency} ${s.gross} new measured work; ${s.retention} retained; ${s.recovery} advance recovered.`, `${r.currency} ${s.tax} exclusive tax; ${s.total} due if this certified measurement is invoiced.`, r.state === 'approved' ? 'Quantities and deductions are frozen. Accounting and payment remain separate.' : 'This measurement is not yet certified or posted.', `Eligible recorded client advance: ${r.currency} 0.00. The allowance of ${contractData(r.contract_id).terms.advance_ceiling} does not establish cash received.`]
+      findings: [`${r.currency} ${s.gross} new measured work; ${s.retention} retained; ${s.recovery} advance recovered.`, `${r.currency} ${s.tax} exclusive tax; ${s.total} due if this certified measurement is invoiced.`, r.state === 'approved' ? 'Quantities and deductions are frozen. Accounting and payment remain separate.' : 'This measurement is not yet certified or posted.', `Advance eligible in this measurement basis: ${r.currency} ${JSON.parse(r.snapshot).eligible_advance}. The allowance of ${contractData(r.contract_id).terms.advance_ceiling} does not establish cash received; current paid principal is shown on the contract.`]
     };
   }
   function contract(id) {
@@ -435,13 +439,16 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     } catch (e) {
       readiness = e.message;
     }
+    const paidAdvance = contractAdvancePaid(db, id, today());
+    if (new D(paidAdvance).gt(0)) readiness = 'Received advance needs the connected certificate recovery workflow';
     return {
       ...c,
       policies,
       active_policy_id: p?.id || null,
       readiness,
       can_configure: can('contracts.configure', c),
-      can_measure: can('certificates.write', c),
+      can_measure: can('certificates.write', c) && new D(paidAdvance).isZero(),
+      paid_advance_principal: paidAdvance,
       can_open_offer: can('sales.read', c),
       previous: previous ? summary(previous) : null,
       previous_lines: previous ? JSON.parse(previous.snapshot).lines : [],
@@ -540,34 +547,43 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       ...conversion
     };
   }
+  function invoiceSource(input) {
+    requireThat(!(input.advance_id && input.certificate_id), 'Choose one invoice source: certificate or advance.');
+    if (!input.advance_id) return row(input.certificate_id);
+    const r = get('SELECT * FROM client_advances WHERE id=?', input.advance_id);
+    requireThat(r && can('ar.read', r), 'Approved advance is unavailable.', 404);
+    return r;
+  }
+  const calculateInvoice = (source, input) => input.advance_id ? advanceInvoiceCalculation(db, source, input, today) : invoiceCalc(source, input);
   function saveInvoice(id, input) {
     return transaction(db, () => {
       const old = id ? invoiceRow(id) : null,
-        cert = row(old?.certificate_id || input.certificate_id);
+        sourceInput = old ? { ...input, advance_id: old.advance_id, certificate_id: old.certificate_id } : input,
+        cert = invoiceSource(sourceInput);
       access.requireCap('ar.write', cert.company_id, cert.project_id);
-      requireThat(cert.state === 'approved', 'Only a finance-approved certificate can be invoiced.');
+      requireThat(cert.state === 'approved', 'Only an approved certificate or advance can be invoiced.');
       if (!old) {
-        const existing = get('SELECT id FROM client_invoices WHERE certificate_id=?', cert.id);
+        const existing = sourceInput.advance_id ? get('SELECT id FROM client_invoices WHERE advance_id=?', cert.id) : get('SELECT id FROM client_invoices WHERE certificate_id=?', cert.id);
         if (existing) return invoice(existing.id);
       } else {
         version(old, input.version);
         requireThat(old.author_id === actorId && ['draft', 'returned'].includes(old.state), 'Only the invoice author may revise unsubmitted accounting details.', 403);
       }
-      const s = invoiceCalc(cert, input),
+      const s = calculateInvoice(cert, sourceInput),
         title = text(input.title || cert.title, 'Invoice title', 200),
         basis = text(input.basis, 'Invoice accounting basis');
       id = old?.id || uid('CIN');
       const c = contractData(cert.contract_id);
-      if (old) run("UPDATE client_invoices SET title=?,invoice_date=?,accounting_date=?,due_date=?,rate=?,rate_date=?,rate_source=?,basis=?,snapshot=?,journal_json=?,total=?,company_total=?,company_gross=?,company_retention=?,state='draft',version=version+1 WHERE id=?", title, input.invoice_date, input.accounting_date, input.due_date, s.rate, s.rate_date, s.rate_source, basis, JSON.stringify(s.snapshot), JSON.stringify(s.journal), s.total, s.company_total, s.company_gross, s.company_retention, id);else run("INSERT INTO client_invoices(id,certificate_id,contract_id,company_id,project_id,customer_id,title,invoice_date,accounting_date,due_date,currency,rate,rate_date,rate_source,basis,snapshot,journal_json,total,company_total,company_gross,company_retention,author_id,state,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'draft',?)", id, cert.id, c.id, c.company_id, c.project_id, c.customer_id, title, input.invoice_date, input.accounting_date, input.due_date, c.currency, s.rate, s.rate_date, s.rate_source, basis, JSON.stringify(s.snapshot), JSON.stringify(s.journal), s.total, s.company_total, s.company_gross, s.company_retention, actorId, now());
-      event('invoice', invoiceRow(id), old ? 'Invoice revised' : 'Invoice prepared from certified work', input.reason);
+      if (old) run("UPDATE client_invoices SET title=?,invoice_date=?,accounting_date=?,due_date=?,rate=?,rate_date=?,rate_source=?,basis=?,snapshot=?,journal_json=?,total=?,company_total=?,company_gross=?,company_retention=?,state='draft',version=version+1 WHERE id=?", title, input.invoice_date, input.accounting_date, input.due_date, s.rate, s.rate_date, s.rate_source, basis, JSON.stringify(s.snapshot), JSON.stringify(s.journal), s.total, s.company_total, s.company_gross, s.company_retention, id);else run("INSERT INTO client_invoices(id,certificate_id,advance_id,contract_id,company_id,project_id,customer_id,title,invoice_date,accounting_date,due_date,currency,rate,rate_date,rate_source,basis,snapshot,journal_json,total,company_total,company_gross,company_retention,author_id,state,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'draft',?)", id, sourceInput.advance_id ? null : cert.id, sourceInput.advance_id || null, c.id, c.company_id, c.project_id, c.customer_id, title, input.invoice_date, input.accounting_date, input.due_date, c.currency, s.rate, s.rate_date, s.rate_source, basis, JSON.stringify(s.snapshot), JSON.stringify(s.journal), s.total, s.company_total, s.company_gross, s.company_retention, actorId, now());
+      event('invoice', invoiceRow(id), old ? 'Invoice revised' : sourceInput.advance_id ? 'Invoice prepared from approved advance' : 'Invoice prepared from certified work', input.reason);
       return invoice(id);
     });
   }
   const invoiceReview = r => r.state === 'submitted' && r.author_id !== actorId && authority(actorId, 'ar.post', r, 'ar_approval_limit', r.company_gross);
   function post(r) {
-    const cert = row(r.certificate_id),
-      calc = invoiceCalc(cert, r);
-    requireThat(JSON.stringify(calc.journal) === r.journal_json && calc.company_total === r.company_total, 'The accounting basis changed; return and revise the invoice.', 409);
+    const cert = invoiceSource(r),
+      calc = calculateInvoice(cert, r);
+    requireThat(JSON.stringify(calc.journal) === r.journal_json && calc.company_total === r.company_total && JSON.stringify(calc.snapshot) === r.snapshot, 'The accounting basis changed; return and revise the invoice.', 409);
     requireThat(authority(r.author_id, 'ar.write', r), 'The invoice author no longer has current authority.', 409);
     const period = get("SELECT * FROM ledger_periods WHERE company_id=? AND state='open' AND start_date<=? AND end_date>=?", r.company_id, r.accounting_date, r.accounting_date);
     requireThat(period, 'The accounting date needs an open company period.');
@@ -581,7 +597,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     run("INSERT INTO ledger_entries(id,company_id,project_id,title,accounting_date,currency,rate,rate_date,rate_source,source_reference,explanation,lines_json,total,company_total,author_id,state,created_at,source_type,source_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'submitted',?,'client_invoice',?)", id, r.company_id, r.project_id, r.title, r.accounting_date, r.currency, r.rate, r.rate_date, r.rate_source, r.id, r.basis, r.journal_json, total, r.company_gross, r.author_id, now(), r.id);
     calc.journal.forEach((l, i) => run('INSERT INTO ledger_lines(id,entry_id,company_id,project_id,account_id,ordinal,account_code,account_name,account_type,description,debit,credit,base_debit,base_credit,rounding_adjustment) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', `${id}-${i + 1}`, id, r.company_id, r.project_id, l.account_id, i + 1, l.account_code, l.account_name, l.account_type, l.description, l.debit, l.credit, l.base_debit, l.base_credit, l.rounding_adjustment));
     run("UPDATE ledger_entries SET state='posted',number=?,period_id=?,posted_by=?,posted_at=?,version=version+1 WHERE id=?", number, period.id, actorId, now(), id);
-    run('INSERT INTO ledger_events(entity_type,entity_id,company_id,project_id,actor_id,action,reason,snapshot,at) VALUES(?,?,?,?,?,?,?,?,?)', 'journal', id, r.company_id, r.project_id, actorId, 'Client invoice posted', `Typed certified invoice ${r.id}; independent AR authority`, JSON.stringify(get('SELECT * FROM ledger_entries WHERE id=?', id)), now());
+    run('INSERT INTO ledger_events(entity_type,entity_id,company_id,project_id,actor_id,action,reason,snapshot,at) VALUES(?,?,?,?,?,?,?,?,?)', 'journal', id, r.company_id, r.project_id, actorId, 'Client invoice posted', `Typed ${r.advance_id ? 'advance' : 'certified'} invoice ${r.id}; independent AR authority`, JSON.stringify(get('SELECT * FROM ledger_entries WHERE id=?', id)), now());
     run("UPDATE client_invoices SET state='posted',journal_id=?,posted_by=?,posted_at=?,version=version+1 WHERE id=?", id, actorId, now(), r.id);
   }
   function decideInvoice(id, input) {
@@ -591,7 +607,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       version(r, input.version);
       if (input.action === 'submit') {
         requireThat(r.author_id === actorId && r.state === 'draft' && can('ar.write', r), 'Only the author can submit a draft invoice.', 403);
-        invoiceCalc(row(r.certificate_id), r);
+        calculateInvoice(invoiceSource(r), r);
         run("UPDATE client_invoices SET state='submitted',version=version+1 WHERE id=?", id);
       } else {
         requireThat(invoiceReview(r), 'Independent AR posting authority is required.', 403);
@@ -616,7 +632,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_open_journal: can('finance.read', r),
       settlement: r.state==='posted'&&access.has('customer_receipts.read',r.company_id,r.project_id)?receivableBalance(db,r):null,
       can_prepare_receipt: r.state==='posted'&&access.has('customer_receipts.write',r.company_id,r.project_id)&&new D(receivableBalance(db,r).open).gt(0),
-      findings: [`${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention, plus ${s.certificate.tax} tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
+      findings: [r.advance_id ? `${r.currency} ${s.advance.principal} advance principal plus ${s.advance.tax} explicit tax gives ${r.total} receivable. Advance principal credits its liability control; no measured revenue or retention is created.` : `${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention, plus ${s.certificate.tax} tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
     };
   }
   function invoiceList(company, project = null) {
@@ -624,6 +640,8 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     return all('SELECT * FROM client_invoices WHERE company_id=? ORDER BY created_at DESC', company).filter(r => (!project || r.project_id === project) && can('ar.read', r)).map(r => ({
       id: r.id,
       title: r.title,
+      advance_id: r.advance_id,
+      certificate_id: r.certificate_id,
       company_id: r.company_id,
       project_id: r.project_id,
       state: r.state,
@@ -647,7 +665,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     if (to) day(to);
     requireThat(!from || !to || from <= to, 'Report dates are reversed.');
     const rows = list(company, project).filter(r => (state === 'all' || r.state === state) && (!from || r.period_to >= from) && (!to || r.period_to <= to));
-    const invoices = access.has('ar.read', company, project, !project) ? all('SELECT * FROM client_invoices WHERE company_id=?', company).filter(r => (!project || r.project_id === project) && can('ar.read', r) && (!from || r.accounting_date >= from) && (!to || r.accounting_date <= to)).map(r => ({
+    const invoices = access.has('ar.read', company, project, !project) ? all('SELECT * FROM client_invoices WHERE company_id=? AND certificate_id IS NOT NULL', company).filter(r => (!project || r.project_id === project) && can('ar.read', r) && (!from || r.accounting_date >= from) && (!to || r.accounting_date <= to)).map(r => ({
       id: r.id,
       title: r.title,
       certificate_id: r.certificate_id,

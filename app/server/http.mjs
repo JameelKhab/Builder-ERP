@@ -1,5 +1,6 @@
 import { receipts } from './receipts.mjs';
 import { certificates } from './certificates.mjs';
+import { advances } from './advances.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
@@ -70,6 +71,7 @@ export function createApi(db, {
   }));
   app.use('/api/customer-receipts/documents', express.json({limit:'3mb'}));
   app.use('/api/certificates/measurements', express.json({limit:'3mb'}));
+  app.use('/api/client-advances/documents', express.json({limit:'3mb'}));
   app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
   app.use('/api/boq-intakes/upload', express.json({ limit: '9mb' }));
@@ -151,6 +153,7 @@ export function createApi(db, {
     req.service = createService(db, session.previewId || session.actorId, today);
     req.customerReceipts = receipts(db, session.previewId || session.actorId, today);
     req.certificates = certificates(db, session.previewId || session.actorId, today);
+    req.advances = advances(db, session.previewId || session.actorId, today);
     req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
     req.boqIntake = boqIntake(db, session.previewId || session.actorId, today);
@@ -173,6 +176,11 @@ export function createApi(db, {
   app.post('/api/customer-receipts/documents/:id/reversal',(req,res)=>res.status(201).json(req.customerReceipts.reverse(req.params.id,req.body)));
   app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
+  app.get('/api/client-advances/documents/:id',(req,res)=>res.json(req.advances.detail(req.params.id)));
+  app.post('/api/client-advances/documents',(req,res)=>res.status(201).json(req.advances.save(null,req.body)));
+  app.put('/api/client-advances/documents/:id',(req,res)=>res.json(req.advances.save(req.params.id,req.body)));
+  app.post('/api/client-advances/documents/:id/decision',(req,res)=>res.json(req.advances.decide(req.params.id,req.body)));
+  app.get('/api/client-advances/evidence/:id',(req,res)=>{const f=req.advances.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="advance-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/report',(req,res)=>res.json(req.certificates.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all',from:req.query.from||null,to:req.query.to||null})));
   app.get('/api/certificates/contracts/:id',(req,res)=>res.json(req.certificates.contract(req.params.id)));
   app.post('/api/certificates/policies',(req,res)=>res.status(201).json(req.certificates.savePolicy(null,req.body)));

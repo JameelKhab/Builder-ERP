@@ -1,3 +1,4 @@
+import { installAdvances } from './advances-schema.mjs';
 import { installReceipts } from './receipts-schema.mjs';
 import { installReceiptExamples } from './receipts-examples.mjs';
 import { installCertificateExamples } from './certificates-examples.mjs';
@@ -73,6 +74,7 @@ export function openDatabase(path = ':memory:', {
   installCommercial(db);
   installCertificates(db);
   installReceipts(db);
+  installAdvances(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);

@@ -4,7 +4,7 @@ This editable baseline accompanies the [53-page Revision 4 study](study/JAKH-ERP
 
 ## Objective and boundaries
 
-Create an original construction ERP for the journey from tendering to handover, defect obligations and final settlement. Use no Odoo application code. Prioritise simple navigation, clear next actions and rich, source-linked information. Work and commit locally; the user has deferred GitHub syncing. Do not push until instructed, deploy to jakh.net or modify the demo.
+Create an original construction ERP for the journey from tendering to handover, defect obligations and final settlement. Use no Odoo application code. Prioritise simple navigation, clear next actions and rich, source-linked information. Develop locally and sync verified work to JameelKhab/Builder-ERP under the user’s 29 October continuity instruction. Do not deploy to jakh.net or modify the demo.
 
 The user clarified that this means a **full proper migration**, preserving the strong existing JAKH business logic. The first local increment does not meet that scope. The [267-destination comparison](migration/README.md) records the correction: original implementation must preserve functions, data relationships, approved versions, quantities/balances, histories, permissions, reports and exceptions. Simplifying navigation is not permission to reduce business capability. Exact source-export/schema mapping and reconciliation remain unfinished; proposed mappings are not executed migration work.
 
@@ -153,3 +153,7 @@ Original customer receipt allocation, independent approval, evidenced recording,
 ## 29 October 2026 — Portability and repository continuity
 
 The user requires GitHub (JameelKhab/Builder-ERP) to hold the project source of truth and a self-contained resumption summary. Another laptop or ChatGPT account must be able to continue using the repository alone. Verified commits may now be pushed; deployment remains unauthorised. START-HERE.md covers setup, exact current state and remaining scope. A separate private portable archive preserves the saved runtime workspace; no credential is committed.
+
+## 29 October 2026 — Client advance foundation continuation
+
+Request approval, canonical advance-liability invoicing and receipt-derived principal/tax now have service and authenticated HTTP verification. The full advance requirement still includes protected certificate recovery, original carrying values, tax/FX, correction handling, simple UI, scoped findings/export and complete examples. A temporary measurement guard prevents silently omitting recovery while that connection is unfinished. See `implementation/advances-local.md`; F092 and all wider requirements remain partial/unverified.

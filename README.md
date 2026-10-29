@@ -6,7 +6,7 @@ An original construction ERP for the journey from bidding and tendering through 
 
 ## Current status
 
-The latest application checkpoint is **`35b7ae1` — customer receipts and shared bank reconciliation**. **231 automated tests and the frontend build pass.** The saved example database is schema 15, with 99 business tables. This is still an incomplete ERP, not a production release or completed JAKH migration.
+The latest application step is the **[client advance request/invoice backend foundation](docs/implementation/advances-local.md)**. **241 automated tests and the frontend build pass.** Recovery allocations, the dedicated advance UI, reports and examples remain unfinished. The saved example database is schema 16, with 102 tables including schema_versions (101 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
 
 The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 
@@ -30,7 +30,7 @@ The original implementation advanced before a sufficient functional comparison. 
 
 These paths include service-enforced company/project permissions, exact currency calculations, independent financial authority, retained history, meaningful examples and report findings for their implemented populations. They do not complete the surrounding domains. See [validation evidence](docs/validation/) and [the project log](docs/project-log.md).
 
-**Next:** client advance requests/invoices and recovery derived from actual settled cash. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Credits, retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
+**Next:** complete certificate recovery from actual settled advances, with original liability carrying values, tax/FX, reversal protection, a simple UI, full findings/export and examples. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Credits, retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
 
 ## Run locally
 

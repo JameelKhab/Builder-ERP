@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-10-29T10:43:01.019541+00:00",
+  "schema": 16,
+  "matched_tables_including_schema_versions": 102,
+  "identities": 0,
+  "identity_sessions": 0,
+  "integrity": "ok",
+  "foreign_keys": [],
+  "sha256": "77d2fdc07733dc145f372861d87f27ba5ce3fa69841fa62cc189999b0a5646ff",
+  "delivery": "Private consistent SQLite backup and isolated reopen; database excluded from Git."
+}

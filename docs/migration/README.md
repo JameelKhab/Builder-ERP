@@ -36,4 +36,4 @@ Before accepting a domain, connect its F-numbers and M-numbers to verified forms
 
 The latest user direction adds a permission-dependent Home with an original Builder appearance. Retain the existing work areas beneath it and add discoverable named destinations for all meaningful work. See [the access/destination progress overlay](../implementation/access-and-destinations.md); this historical comparison remains frozen to its stated application baseline. Use typed entities and canonical linked transactions rather than generic JSON cards. Maintain full supporting ERP and administration scope. Complete connected operational journeys and migration/recovery rehearsal before claiming replacement readiness.
 
-All work remains local and committed. No GitHub push or deployment is authorised now. Source bundles do not contain the ignored runtime SQLite database.
+Development remains local. The user’s 29 October instruction authorises verified GitHub sync to JameelKhab/Builder-ERP; deployment remains unauthorised. Source bundles do not contain the ignored runtime SQLite database.

@@ -13,6 +13,7 @@ const areas = {
   ledger: 'General ledger',
   ap: 'Supplier bills',
   ar: 'Client invoices',
+  advances: 'Client advances',
   certificates: 'Client certificates',
   contracts: 'Contract finance',
   customer_receipts: 'Customer receipts',

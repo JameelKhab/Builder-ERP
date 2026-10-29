@@ -115,3 +115,7 @@ Original contracts now continue through independently activated finance policies
 ## 29 October 2026 — Customer receipts and bank evidence
 
 Posted client invoices now connect to multi-invoice/project receipts, separate independent approval, retained remittance evidence, exact AR/bank/FX posting, shared customer/supplier statement matching and immutable full reversals. Reports/findings/CSV, source links, scoped queues/search and examples are connected. See [receipt implementation](receipts-local.md). 231 tests and the frontend build pass; the recovery copy matches 99 business tables. Advances/recovery, credits/unallocated money, retention release and the entire wider comparison/migration scope remain open.
+
+## 29 October 2026 — Client advance accounting foundation
+
+Typed advance requests/independent approval, canonical liability invoices and receipt-derived principal/tax now have service/HTTP verification, with schema-16 preservation and 241 passing tests/build. This is an intermediate backend checkpoint. Recovery allocations, the dedicated UI, reports/export and examples remain required; a temporary guard blocks measurement with paid advances. See [advance progress](advances-local.md) for the exact remaining work.
