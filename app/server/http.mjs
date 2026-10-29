@@ -1,3 +1,4 @@
+import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
 import { payments } from './payments.mjs';
@@ -65,6 +66,7 @@ export function createApi(db, {
   app.use('/api/quality/cases/:id/evidence', express.json({
     limit: '3mb'
   }));
+  app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
   app.use('/api/boq-intakes/upload', express.json({ limit: '9mb' }));
   app.use(express.json({
@@ -143,6 +145,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
     req.boqIntake = boqIntake(db, session.previewId || session.actorId, today);
     req.payments = payments(db, session.previewId || session.actorId, today);
@@ -154,6 +157,18 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/commercial/options',(req,res)=>res.json(req.commercial.options(req.query.company,req.query.project||null)));
+  app.get('/api/commercial/report',(req,res)=>res.json(req.commercial.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all',from:req.query.from||null,to:req.query.to||null})));
+  app.get('/api/commercial/offers/:id',(req,res)=>res.json(req.commercial.detail(req.params.id)));
+  app.get('/api/commercial/offers/:id/allocations',(req,res)=>res.json(req.commercial.allocationOptions(req.params.id,req.query.project)));
+  app.post('/api/commercial/offers',(req,res)=>res.status(201).json(req.commercial.save(null,req.body)));
+  app.put('/api/commercial/offers/:id',(req,res)=>res.json(req.commercial.save(req.params.id,req.body)));
+  app.post('/api/commercial/offers/:id/decision',(req,res)=>res.json(req.commercial.decide(req.params.id,req.body)));
+  app.post('/api/commercial/offers/:id/revision',(req,res)=>res.status(201).json(req.commercial.revise(req.params.id,req.body)));
+  app.post('/api/commercial/acceptances',(req,res)=>res.status(201).json(req.commercial.recordAcceptance(req.body.offer_id,req.body)));
+  app.post('/api/commercial/acceptances/:id/decision',(req,res)=>res.json(req.commercial.decideAcceptance(req.params.id,req.body)));
+  app.get('/api/commercial/evidence/:id',(req,res)=>{const f=req.commercial.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="acceptance-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
+  app.get('/api/commercial/contracts/:id',(req,res)=>res.json(req.commercial.contract(req.params.id)));
   app.get('/api/boq-intakes',(req,res)=>res.json(req.boqIntake.list(req.query.company,req.query.project||null)));
   app.get('/api/boq-intakes/options/:estimate',(req,res)=>res.json(req.boqIntake.options(req.params.estimate)));
   app.post('/api/boq-intakes/upload',(req,res)=>res.status(201).json(req.boqIntake.upload(req.body.estimate_id,req.body)));

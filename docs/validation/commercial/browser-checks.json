@@ -1,0 +1,17 @@
+{
+  "desktop": {
+    "height": 692,
+    "page": 984,
+    "width": 984
+  },
+  "mobile": {
+    "height": 649,
+    "page": 300,
+    "width": 300
+  },
+  "console": [],
+  "acceptance": "ACC-04F55506",
+  "draft": "OFR-4B935616",
+  "csv": "browser-project-report.csv",
+  "rangeErrorCorrectable": true
+}

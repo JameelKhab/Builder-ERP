@@ -1,0 +1,143 @@
+Browser tab: 39, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=commercial".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=commercial
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		66 container
+			67 button Builder ERP
+			68 text JAKH Contracting LLC
+			69 container Main navigation
+				70 button Home
+					71 image
+					72 text Home
+				73 button Access
+					74 image
+					75 text Access
+				76 button Organisation
+					77 image
+					78 text Organisation
+				79 button My Work
+					80 image
+					81 text My Work
+				82 button Tenders
+					83 image
+					84 text Tenders
+				85 button Projects
+					86 image
+					87 text Projects
+				88 button Company
+					89 image
+					90 text Company
+		4 container
+			7 text Company
+			8 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				9 menu
+					10 (selected) JAKH Contracting LLC
+					11 JAKH International Ltd
+			12 image
+			13 text field (settable) Search company records
+			14 button Search
+			15 button Explore examples
+				16 image
+				91 text Examples
+		18 container main-content
+			19 heading JAKH Contracting LLC, Value: 1
+				20 text JAKH Contracting LLC
+			21 text Company-wide operations and shared information
+			92 container
+				93 image
+				94 text Offer draft saved for independent review.
+			95 button All quotations & awards
+				96 image
+				97 text All quotations & awards
+			98 container
+				99 text OFR-4B935616  · REVISION  1
+			100 heading Example · Harbour Tower · draft offer, Value: 2
+				101 text Example · Harbour Tower · draft offer
+			102 container
+				103 text Example · JAKH Contracting LLC development client  ·  Draft offer
+			104 button Export record
+				105 image
+				106 text Export record
+			107 text Offer before tax
+			108 text AED 34,151.04
+			109 text Original approved scope
+			110 text Valid through
+			111 text 2026-12-31
+			112 container
+				113 text Offered  2026-10-29
+			114 text Next step
+			115 text Draft offer
+			116 text Independent review required
+			117 container
+				118 heading Record findings, Value: 3
+					119 text Record findings
+				120 text AED 34,151.04 before tax from approved estimate EST-33FCFA4A; 3 work items. Offer valid 2026-10-29 to 2026-12-31. Draft offer. Retention 5% capped at AED 2,000.00; advance ceiling AED 1,000.00, recovery 20%. These are terms, not cash or receivable balances. Commercial approval is internal; no client acceptance or contract is inferred.
+			121 button Edit offer
+			122 button Source estimate
+			123 container
+				124 heading Offer decision, Value: 3
+					125 text Offer decision
+				126 text Decision reason
+				127 text entry area (settable) Decision reason
+				128 button (disabled) Submit for commercial review
+				129 button (disabled) Withdraw offer
+			130 container
+				131 heading Offer work items, Value: 3
+					132 text Offer work items
+				133 text Line amounts reconcile exactly to the estimate. Unit rates are displayed for reference; rounded rates do not replace the line amounts.
+				134 table
+					135 row
+						136 cell
+							137 text Work item
+						138 cell
+							139 text Quantity
+						140 cell
+							141 text Unit rate
+						142 cell
+							143 text Before tax
+					144 row
+						145 cell
+							146 text STR
+							147 text Structure assembly
+						148 cell
+							149 text 112 m3
+						150 cell
+							151 text 116.160000
+						152 cell
+							153 text AED 13,009.92
+					154 row
+						155 cell
+							156 text FIN
+							157 text Finishes
+						158 cell
+							159 text 224 m2
+						160 cell
+							161 text 58.080000
+						162 cell
+							163 text AED 13,009.92
+					164 row
+						165 cell
+							166 text MEP
+							167 text MEP work package
+						168 cell
+							169 text 11.2 lump
+						170 cell
+							171 text 726.000000
+						172 cell
+							173 text AED 8,131.20
+			178 container
+				179 button (expanded) Scope, terms & currency evidence, Secondary Actions: Collapse
+					180 text Scope, terms & currency evidence
+				181 heading Included scope, Value: 4
+					182 text Included scope
+				183 text Fictional study. Ten standard villas plus one variant. Resource costs and quantity exceptions are explicit.
+				184 heading Exclusions, Value: 4
+					185 text Exclusions
+				186 text Tax, client acceptance, bonds and contract finance terms require separate review.
+				187 heading Commercial terms, Value: 4
+					188 text Commercial terms
+				189 text Fictional local example. Monthly measured work; payment 45 days from invoice. All values exclude tax. No external offer or agreement is made. Payment:  45  days from invoice date. Retention:  5 %, cap  AED 2,000 . Advance ceiling:  AED 1,000 ; recovery  20 %. AED  1 =  AED 1  ·  2026-10-29  ·  Functional currency · fictional estimate JAKH Contracting LLC  ·  Registration not recorded
+			176 button (collapsed) Revisions & decision history, Secondary Actions: Expand
+				177 text Revisions & decision history
+
+The focused UI element is 179 button (expanded) Scope, terms & currency evidence, Secondary Actions: Collapse

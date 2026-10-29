@@ -42,7 +42,7 @@ test('individual HTTP users prepare, independently approve and hand over a scope
         project_id: project,
         role_id: role,
         approval_limit: '0',
-        estimate_approval_limit: limit
+        estimate_approval_limit: limit, commercial_approval_limit: limit
       }]
     });
     await auth.activate({
@@ -77,7 +77,7 @@ test('individual HTTP users prepare, independently approve and hand over a scope
       if (res.headers.get('set-cookie')) cookie = res.headers.get('set-cookie').split(';')[0];
       return {
         status: res.status,
-        body: await res.json()
+        body: res.headers.get('content-type')?.includes('application/json') ? await res.json() : Buffer.from(await res.arrayBuffer()), headers: res.headers
       };
     };
     assert.equal((await call('/auth/login', {
@@ -163,11 +163,27 @@ test('individual HTTP users prepare, independently approve and hand over a scope
   const commitVersion=batch.version;res=await writer(`/boq-intakes/${batch.id}/commit`,{version:commitVersion,reason:'Add independently checked rows'});assert.equal(res.status,200,JSON.stringify(res.body));assert.equal(res.body.state,'committed');
   assert.equal((await writer(`/boq-intakes/${batch.id}/commit`,{version:commitVersion,reason:'Retry safely'})).body.committed_version,res.body.committed_version);
   const changed=(await writer('/estimates/documents/'+target.id)).body;assert.equal(changed.lines.length,target.lines.length+1);assert.equal(changed.intake_sources.length,1);
+  const offerInput={estimate_id:r.id,title:'HTTP offer from approved study',offered_on:today(),valid_until:'2026-12-31',payment_days:30,retention_percent:'5',retention_cap:'2000',advance_ceiling:'1000',recovery_percent:'20',terms:'Fictional measured-work terms for HTTP verification',basis:r.basis,exclusions:r.exclusions,reason:'Prepare an original local offer'};
+  res=await writer('/commercial/offers',offerInput);assert.equal(res.status,201,JSON.stringify(res.body));let offer=res.body;
+  res=await writer(`/commercial/offers/${offer.id}/decision`,{version:offer.version,action:'submit',reason:'Commercial terms ready for review'});assert.equal(res.status,200);offer=res.body;
+  assert.equal((await writer(`/commercial/offers/${offer.id}/decision`,{version:offer.version,action:'approve',reason:'Self approval'})).status,403);
+  assert.ok((await reviewer('/workspace?company=jakh')).body.commercial_offers.some(o=>o.id===offer.id&&o.can_review));
+  res=await reviewer(`/commercial/offers/${offer.id}/decision`,{version:offer.version,action:'approve',reason:'Independent commercial authority'});assert.equal(res.status,200,JSON.stringify(res.body));offer=res.body;
+  const evidenceText='FICTIONAL ACCEPTANCE for '+offer.id;
+  res=await writer('/commercial/acceptances',{offer_id:offer.id,version:offer.version,project_id:h.project_id,accepted_on:today(),reference:'HTTP-ACCEPT-001',signatory:'Fictional client',description:'Agrees to this exact offer revision',filename:'http-acceptance.txt',base64:Buffer.from(evidenceText).toString('base64'),mapping:offer.lines.map(l=>({line_key:l.line_key,work_package_id:h.lines.find(m=>m.line_key===l.line_key).work_package_id,location_id:null})),reason:'Record fictional client evidence'});
+  assert.equal(res.status,201,JSON.stringify(res.body));offer=res.body;const acc=offer.acceptances[0];
+  assert.equal((await restricted('/commercial/offers/'+offer.id)).status,404);assert.equal((await restricted('/commercial/evidence/'+acc.id)).status,404);
+  const file=await reviewer('/commercial/evidence/'+acc.id);assert.equal(file.status,200);assert.equal(file.body.toString(),evidenceText);assert.equal(file.headers.get('x-content-sha256'),acc.sha256);assert.match(file.headers.get('content-disposition'),/attachment/);
+  res=await reviewer(`/commercial/acceptances/${acc.id}/decision`,{version:acc.version,action:'verify',confirmed:true,reason:'Verified date, scope and exact terms'});assert.equal(res.status,200,JSON.stringify(res.body));offer=res.body;assert.equal(offer.state,'awarded');assert.equal(offer.contract.original_value,r.calculation.totals.selling);
+  assert.equal((await reviewer(`/commercial/acceptances/${acc.id}/decision`,{version:acc.version,action:'verify',confirmed:true,reason:'Safe retry'})).body.contract.id,offer.contract.id);
+  assert.equal((await restricted('/commercial/contracts/'+offer.contract.id)).status,404);assert.equal((await writer('/commercial/report?company=jakh&project='+h.project_id)).body.totals.awarded,offer.company_amount);
+  assert.equal(db.prepare('SELECT count(*) n FROM budget_facts WHERE document_id=?').get(h.budget_id).n,0);
   const preview = await admin('/access/preview', {
     user_id: r.author_id
   });
   assert.equal(preview.status, 200, JSON.stringify(preview.body));
   assert.equal((await admin('/estimates/documents', input)).status, 403);
+  assert.equal((await admin('/commercial/offers',offerInput)).status,403);
   assert.equal((await admin('/estimates/documents/' + r.id)).status, 200);
   assert.equal((await admin('/boq-intakes/upload',uploadBody)).status,403);
   assert.equal((await admin(`/boq-intakes/${batch.id}/check`,{version:batch.version,reason:'Read only preview',configs:batch.configs})).status,403);

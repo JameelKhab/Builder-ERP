@@ -38,6 +38,8 @@ Estimate studies now support original BOQ/resource pricing, building quantity ex
 
 BOQ workbook intake now stages XLSX/CSV with exact source references, all-file reconciliation, independent review and once-only append to a draft estimate. See [intake implementation](docs/implementation/boq-intake-local.md). Parent cap/share and assembly-workbook parity remain open.
 
+Reviewed offers and independently verified awards now connect approved estimates to immutable original client contract BOQ with explicit project allocation, retained acceptance evidence and company/project findings. See [commercial implementation](docs/implementation/commercial-local.md). Contract finance activation, certificates, AR, retention/advance accounting and changes remain open.
+
 ## Start here
 
 - [Requirements](docs/requirements.md): confirmed scope, proposed structure and acceptance criteria.
@@ -82,7 +84,7 @@ npm test
 npm run build
 ```
 
-Latest validation on 29 October 2026: 191 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
+Latest validation on 29 October 2026: 206 tests passed; frontend build passed; individual sign-in, scoped destinations, account review, supplier terms/catalogue, NCRs, ledger, supplier bill and payment/bank screens checked in the browser. See [design QA](app/design-qa.md) and [architecture](docs/implementation/architecture.md).
 
 Dependencies are pinned in `app/package-lock.json`. This laptop's certificate gateway prevented an online install, so the first install used cached registry packages without disabling TLS. No vulnerability-audit result is claimed. A clean dependency/security review remains a release gate.
 

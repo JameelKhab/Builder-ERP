@@ -1,0 +1,134 @@
+Browser tab: 39, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=commercial".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=commercial
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		66 container
+			67 button Builder ERP
+			68 text JAKH Contracting LLC
+			69 container Main navigation
+				70 button Home
+					71 image
+					72 text Home
+				73 button Access
+					74 image
+					75 text Access
+				76 button Organisation
+					77 image
+					78 text Organisation
+				79 button My Work
+					80 image
+					81 text My Work
+				82 button Tenders
+					83 image
+					84 text Tenders
+				85 button Projects
+					86 image
+					87 text Projects
+				88 button Company
+					89 image
+					90 text Company
+		4 container
+			7 text Company
+			8 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				9 menu
+					10 (selected) JAKH Contracting LLC
+					11 JAKH International Ltd
+			12 image
+			13 text field (settable) Search company records
+			14 button Search
+			15 button Explore examples
+				16 image
+				91 text Examples
+		18 container main-content
+			19 heading JAKH Contracting LLC, Value: 1
+				20 text JAKH Contracting LLC
+			21 text Company-wide operations and shared information
+			92 button All quotations & awards
+				93 image
+				94 text All quotations & awards
+			95 container
+				96 text OFR-9183390E  · REVISION  1
+			97 heading Example · Harbour Tower · acceptance offer, Value: 2
+				98 text Example · Harbour Tower · acceptance offer
+			99 container
+				100 text Example · JAKH Contracting LLC development client  ·  Approved offer
+			101 button Export record
+				102 image
+				103 text Export record
+			104 text Offer before tax
+			105 text AED 34,151.04
+			106 text Original approved scope
+			107 text Valid through
+			108 text 2026-12-31
+			109 container
+				110 text Offered  2026-10-29
+			111 text Next step
+			112 text Verify acceptance
+			113 text Independent review required
+			114 container
+				115 heading Record findings, Value: 3
+					116 text Record findings
+				117 text AED 34,151.04 before tax from approved estimate EST-28FDA203; 3 work items. Offer valid 2026-10-29 to 2026-12-31. Approved offer. Retention 5% capped at AED 2,000.00; advance ceiling AED 1,000.00, recovery 20%. These are terms, not cash or receivable balances. Commercial approval is internal; no client acceptance or contract is inferred.
+			118 button Source estimate
+			119 container
+				120 text CLIENT ACCEPTANCE ·  SUBMITTED
+				121 heading UI-TEST-ACCEPT-20261029, Value: 3
+					122 text UI-TEST-ACCEPT-20261029
+				123 text Fictional UI test representative  · Accepted  2026-10-29  · Recorded by  Ahmed Al Mansoori
+				124 link Description: Download evidence, Value: 127.0.0.1:4173/api/commercial/evidence/ACC-04F55506
+				125 text Synthetic browser verification only. Illustrative scope and terms match this offer; no real client agreement.
+				126 button (collapsed) File identity & work allocations, Secondary Actions: Expand
+					127 text File identity & work allocations
+				128 text Acceptance review reason
+				129 text entry area (settable) Acceptance review reason
+				130 button (disabled) Cancel pending acceptance
+			131 container
+				132 heading Offer work items, Value: 3
+					133 text Offer work items
+				134 text Line amounts reconcile exactly to the estimate. Unit rates are displayed for reference; rounded rates do not replace the line amounts.
+				135 table
+					136 row
+						137 cell
+							138 text Work item
+						139 cell
+							140 text Quantity
+						141 cell
+							142 text Unit rate
+						143 cell
+							144 text Before tax
+					145 row
+						146 cell
+							147 text STR
+							148 text Structure assembly
+						149 cell
+							150 text 112 m3
+						151 cell
+							152 text 116.160000
+						153 cell
+							154 text AED 13,009.92
+					155 row
+						156 cell
+							157 text FIN
+							158 text Finishes
+						159 cell
+							160 text 224 m2
+						161 cell
+							162 text 58.080000
+						163 cell
+							164 text AED 13,009.92
+					165 row
+						166 cell
+							167 text MEP
+							168 text MEP work package
+						169 cell
+							170 text 11.2 lump
+						171 cell
+							172 text 726.000000
+						173 cell
+							174 text AED 8,131.20
+			175 button (collapsed) Scope, terms & currency evidence, Secondary Actions: Expand
+				176 text Scope, terms & currency evidence
+			177 button (collapsed) Revisions & decision history, Secondary Actions: Expand
+				178 text Revisions & decision history
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=commercial

@@ -287,7 +287,7 @@
       "source_path": "My Approvals & Activities",
       "destination": "My Work > Approvals & activities",
       "local_status": "partial",
-      "implemented_and_remaining": "My Work and Home include independent purchase/budget/master/NCR/journal/AP/payment/estimate reviews, author drafts and authorised payment recording. Live scope, separate limits and maker/checker controls apply. Configurable routes, delegation/escalation, reassignment and broader workflow coverage remain open.",
+      "implemented_and_remaining": "My Work/Home include independent offer review and acceptance verification alongside estimate, intake, buying, budget, master, NCR, ledger/AP/payment work. Separate zero-default commercial limits and live scope apply. Configurable routes, reassignment/delegation/escalation and wider ERP coverage remain open.",
       "evidence": [
         "app/tests/procurement.test.mjs",
         "docs/implementation/contracts/payables-v1.md",
@@ -304,7 +304,10 @@
         "docs/validation/tenders/verification.md",
         "docs/implementation/contracts/boq-intake-v1.md",
         "app/tests/boq-intake.test.mjs",
-        "docs/validation/boq-intake/verification.md"
+        "docs/validation/boq-intake/verification.md",
+        "docs/implementation/contracts/commercial-v1.md",
+        "app/tests/commercial.test.mjs",
+        "docs/validation/commercial/verification.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One returned certificate produces one current task with its review stage.",
@@ -585,9 +588,14 @@
       "domain": "D05",
       "source_path": "Sales & Quotations > Orders > Quotations",
       "destination": "Tenders > Quotations",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Original offers now carry current approved estimate BOQ, exact net amounts, legal/customer snapshots, currency/rate and reviewed dates/payment/retention/advance terms. Independent commercial approval, returns, withdrawal and superseding revisions are operational. Standalone quotations, product price lists, tax/discount rules, templates, external issue/client portal and full source parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/commercial-v1.md",
+        "app/tests/commercial.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/commercial/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "An expired offer cannot be silently treated as the accepted contract.",
       "source_verification_remaining": "Confirm quotation revision policy, order confirmation, cancellation, invoicing basis, payment settings and whether repeated product/customer menus open the same records."
@@ -597,9 +605,14 @@
       "domain": "D05",
       "source_path": "Sales & Quotations > Orders > Orders",
       "destination": "Tenders > Awards & orders",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Dated client acceptance evidence and explicit project/WBS/location mapping now require independent verification before a once-only original contract is created. Duplicate references, stale scope/authority and post-expiry acceptance are blocked; late recording is explicit. General sales order amendment, delivery/invoicing and full sales parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/commercial-v1.md",
+        "app/tests/commercial.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/commercial/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "An accepted quote creates a linked order once.",
       "source_verification_remaining": "Confirm quotation revision policy, order confirmation, cancellation, invoicing basis, payment settings and whether repeated product/customer menus open the same records."
@@ -653,9 +666,14 @@
       "domain": "D05",
       "source_path": "Sales & Quotations > Reporting > Sales",
       "destination": "Tenders > Quotations & awards · Sales",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Project/company offer findings and CSV use the full authorised latest-offer population, offer-date/state filters, saved company FX, separate valid approved potential and original awarded value. Draft/withdrawn/expired offers do not inflate those totals. Revenue/invoice/product/team reporting, contract changes and full source-report parity remain open.",
+      "evidence": [
+        "docs/implementation/contracts/commercial-v1.md",
+        "app/tests/commercial.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/commercial/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Cancelled orders are excluded according to a visible report rule.",
       "source_verification_remaining": "Confirm quotation revision policy, order confirmation, cancellation, invoicing basis, payment settings and whether repeated product/customer menus open the same records."
@@ -1038,9 +1056,14 @@
       "domain": "D11",
       "source_path": "Contracts & measured BOQ > Open Contracts & measured BOQ",
       "destination": "Project > Costs & Contracts > Client contract",
-      "local_status": "open",
-      "implemented_and_remaining": "Comparison requirement remains in scope. Existing sample register or navigation is not operational acceptance.",
-      "evidence": [],
+      "local_status": "partial",
+      "implemented_and_remaining": "Immutable original client contract/BOQ now follows verified acceptance, retaining offer/estimate/terms/evidence and project work allocation. Retention and advance ceilings are terms only. Contracts explicitly await finance configuration; measured certificates, tax/control accounts, retention/advance balances, BOQ revisions/variations, closure and full source migration remain open.",
+      "evidence": [
+        "docs/implementation/contracts/commercial-v1.md",
+        "app/tests/commercial.test.mjs",
+        "app/tests/estimates-api.test.mjs",
+        "docs/validation/commercial/verification.md"
+      ],
       "parity_status": "unverified",
       "source_acceptance_example": "Award quantities/rates remain traceable after a later approved revision.",
       "source_verification_remaining": "Verify overmeasurement, negative corrections, simultaneous certificates, tax/deduction bases, approvals by different people, invoice idempotency and prior-period credit adjustments. Review actual BOQ-revision forms before defining migration columns."
@@ -3583,7 +3606,7 @@
       "invariant": "Direct award and tender handover preserve provenance",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Original offers and independently verified awards now retain exact estimate lineage, legal/customer/currency terms, original evidence and immutable project-allocated contract BOQ. Commercial authority is separate and defaults to zero. No finance activation, certification, AR, variations, full legacy parity or production import/reconciliation is implied."
     },
     {
       "id": "M03",
@@ -3649,7 +3672,7 @@
       "invariant": "Idempotent handover; budgets require independent release",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
+      "local_notes": " Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Original offers and independently verified awards now retain exact estimate lineage, legal/customer/currency terms, original evidence and immutable project-allocated contract BOQ. Commercial authority is separate and defaults to zero. No finance activation, certification, AR, variations, full legacy parity or production import/reconciliation is implied."
     },
     {
       "id": "M10",
@@ -3701,11 +3724,12 @@
     {
       "id": "M15",
       "subject": "Client contract",
-      "status": "open",
+      "status": "partial",
       "required_fields": "BOQ quantities/rates/location, deduction caps/accounts, approvals",
       "invariant": "Immutable approved BOQ; finance activation policy",
       "source_import_status": "not_started",
-      "reconciliation_status": "not_run"
+      "reconciliation_status": "not_run",
+      "local_notes": " Original offers and independently verified awards now retain exact estimate lineage, legal/customer/currency terms, original evidence and immutable project-allocated contract BOQ. Commercial authority is separate and defaults to zero. No finance activation, certification, AR, variations, full legacy parity or production import/reconciliation is implied."
     },
     {
       "id": "M16",
@@ -3864,7 +3888,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open. Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open."
+      "local_notes": "NCR versioned plan/verification decisions and cycle snapshots extend the earlier procurement/budget/access controls; configurable routes and delegation remain open. Separate reviewed ledger limits and independent posting, with current scope and preview controls. Material receipt bills and return credits now connect approved order/receipt snapshots, explicit accounting FX/exclusive tax, separately authorised immutable source journals and reconciled AP findings. Payment/stock/service-certificate integration and source migration remain open. Supplier settlement increment adds immutable payment/refund allocations and source journals, separate approval/recording/bank clearance, exact carrying/actual/FX differences, multi-project isolation, statement correction and findings/export. Full cash policy, AR, bank/stock, broader source mapping and migration remain open. Original typed estimate versions/resources/building overrides and independent approval now preserve snapshots and exact pricing. Approved-study project/WBS/draft-baseline handover is idempotent and releases zero spending. Workbook/cap/share parity, full quotations/contracts handover and source migration remain open. Original offers and independently verified awards now retain exact estimate lineage, legal/customer/currency terms, original evidence and immutable project-allocated contract BOQ. Commercial authority is separate and defaults to zero. No finance activation, certification, AR, variations, full legacy parity or production import/reconciliation is implied."
     },
     {
       "id": "M33",
@@ -3963,7 +3987,8 @@
       "preserve": "Carry estimate version, exclusions, quantities, currency, validity, tax basis, terms and acceptance into an order and client contract. Templates, price rules, customer history and amendment authority remain accessible.",
       "data": "Quotes/orders/lines; estimate revision; customers; products/pricelists; validity/terms/taxes; acceptance; templates; invoice and contract links.",
       "verify": "Confirm quotation revision policy, order confirmation, cancellation, invoicing basis, payment settings and whether repeated product/customer menus open the same records.",
-      "example": "The accepted tower quote creates one linked order and contract. A revised offer remains visibly separate until accepted; the original approved estimate and offer remain readable."
+      "example": "The accepted tower quote creates one linked order and contract. A revised offer remains visibly separate until accepted; the original approved estimate and offer remain readable.",
+      "local_implementation": "Approved estimate → versioned offer/terms → independent commercial approval → dated client evidence and project allocation → independent verification → original contract is implemented locally, with report findings, CSV, examples and service/HTTP/browser/recovery evidence. Standalone/pricelist/tax/template/sales-team/outbound/delivery/invoice scope and full source parity remain open."
     },
     {
       "id": "D06",
@@ -4063,7 +4088,8 @@
       "preserve": "Separate claimed, technically accepted, commercially reviewed, certified, invoiced, due, paid and cleared. Snapshot contract rates/quantities and approved variation entitlement at cutoff. Enforce cumulative limits and explicit corrections; preserve previous approved periods and review cycles.",
       "data": "Contract header/finance terms; original/revised BOQ/locations; unit rates; certificate periods/lines; previous/current/cumulative quantities; deductions; approval route/cycles; invoice/credit links.",
       "verify": "Verify overmeasurement, negative corrections, simultaneous certificates, tax/deduction bases, approvals by different people, invoice idempotency and prior-period credit adjustments. Review actual BOQ-revision forms before defining migration columns.",
-      "example": "Previously certified 40 m3; cumulative accepted 55 m3; current period is 15 m3. Returning the submission must not change the approved 40. One approved certificate can generate only the intended invoice, even after a retry."
+      "example": "Previously certified 40 m3; cumulative accepted 55 m3; current period is 15 m3. Returning the submission must not change the approved 40. One approved certificate can generate only the intended invoice, even after a retry.",
+      "local_implementation": " Original client contract snapshots and allocated BOQ now follow verified award; finance activation/certificates/retention/advances/variations/final accounts remain open. See commercial-local.md."
     },
     {
       "id": "D12",
@@ -4099,7 +4125,8 @@
       "preserve": "One package holds scope/BOQ, subcontractor, award/order, revisions, applications, accepted measurements, certificates, deductions, bills, payments and balance. Requested, accepted and certified quantities differ. Correct previously accepted work via traceable adjustment; never overwrite paid history.",
       "data": "Package/award/PO lines; applications and claimed quantities; service entries and acceptance; amendments; corrections; finance agreements; certificates/deductions; bills/credits/payments; guarantees and closeout.",
       "verify": "Verify amendment authority, overmeasurement, disputed quantities, backcharges, retention caps, advance recovery, bill limits, correction/reversal and settlement gates. Menus alone do not verify those exceptions.",
-      "example": "Claim 120 m2, accept 100, return 20 with reason. At AED 200/m2, gross is 20,000; a 10% retention is 2,000 before tax/other agreed deductions. The bill and subsequent correction retain links to approved measurements."
+      "example": "Claim 120 m2, accept 100, return 20 with reason. At AED 200/m2, gross is 20,000; a 10% retention is 2,000 before tax/other agreed deductions. The bill and subsequent correction retain links to approved measurements.",
+      "local_implementation": ""
     },
     {
       "id": "D14",

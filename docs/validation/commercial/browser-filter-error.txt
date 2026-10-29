@@ -1,0 +1,94 @@
+Browser tab: 39, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=commercial".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=commercial
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		66 container
+			67 button Builder ERP
+			68 text JAKH Contracting LLC
+			69 container Main navigation
+				70 button Home
+					71 image
+					72 text Home
+				73 button Access
+					74 image
+					75 text Access
+				76 button Organisation
+					77 image
+					78 text Organisation
+				79 button My Work
+					80 image
+					81 text My Work
+				82 button Tenders
+					83 image
+					84 text Tenders
+				85 button Projects
+					86 image
+					87 text Projects
+				88 button Company
+					89 image
+					90 text Company
+		4 container
+			7 text Company
+			8 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				9 menu
+					10 (selected) JAKH Contracting LLC
+					11 JAKH International Ltd
+			12 image
+			13 text field (settable) Search company records
+			14 button Search
+			15 button Explore examples
+				16 image
+				91 text Examples
+		18 container main-content
+			19 heading JAKH Contracting LLC, Value: 1
+				20 text JAKH Contracting LLC
+			21 text Company-wide operations and shared information
+			92 container
+				93 image
+				94 text Report dates are reversed.
+			22 text COMMERCIAL WORK
+			23 heading Quotations & awards, Value: 2
+				24 text Quotations & awards
+			25 text Approved scope → clear offer → evidenced acceptance → original contract.
+			26 button (disabled) Export findings
+				27 image
+				28 text Export findings
+			29 button Prepare offer
+				30 image
+				31 text Prepare offer
+			32 container
+				33 text Report project
+				34 pop up button (collapsed, settable) Report project, Value: Harbour Tower, Secondary Actions: Expand
+					35 menu
+						36 All authorised company records
+						37 Garden Residences
+						38 (selected) Harbour Tower
+			39 container
+				40 text Offer state
+				41 pop up button (collapsed, settable) Offer state, Value: All states, Secondary Actions: Expand
+					42 menu
+						43 (selected) All states
+						44 Draft offers
+						45 Commercial review
+						46 Changes requested
+						47 Approved offers
+						48 Awarded contracts
+						49 Withdrawn
+			50 container
+				51 text Offer date from
+				52 date field (settable) Offer date from, Value: 2027-01-02
+					53 container
+						54 stepper
+						55 stepper
+						56 stepper
+					57 pop up button Show date picker Show date picker
+			58 container
+				59 text Offer date to
+				60 date field (settable) Offer date to, Value: 2026-11-01
+					61 container
+						62 stepper
+						63 stepper
+						64 stepper
+					65 pop up button Show date picker Show date picker
+
+The focused UI element is 54 stepper

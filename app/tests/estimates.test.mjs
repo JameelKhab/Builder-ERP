@@ -334,13 +334,13 @@ test('additive examples provide approved, returned, FX and revised studies in ea
   const before = db.prepare('SELECT count(*) n FROM estimate_versions').get().n;
   installEstimateExamples(db);
   assert.equal(db.prepare('SELECT count(*) n FROM estimate_versions').get().n, before);
-  assert.equal(before, 17);
+  assert.equal(before, 29);
   assert.deepEqual(db.prepare('PRAGMA foreign_key_check').all(), []);
   for (const p of db.prepare('SELECT * FROM projects').all()) {
     const r = estimates(db, 'ahmed', today).report(p.company_id, {
       project: p.id
     });
-    assert.equal(r.rows.length, 4);
+    assert.equal(r.rows.length, 8);
     assert.ok(r.rows.some(x => x.state === 'returned'));
     assert.ok(r.rows.some(x => x.revision === 2));
   }

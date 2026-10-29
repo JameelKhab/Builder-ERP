@@ -103,3 +103,7 @@ Added receipt-matched supplier bills, configured exclusive tax, independent sepa
 ## 29 October 2026 — BOQ workbook intake continuation
 
 Original reviewed XLSX/CSV staging now connects source-row validation, exact all-file reconciliation, independent review and atomic once-only draft append. Company/product/unit controls, saved check history, findings/export and project examples are included. See [BOQ intake implementation](boq-intake-local.md). Parent caps/shares, richer workbook payloads and the full ERP/migration scope remain open.
+
+## 29 October 2026 — Reviewed offers and original awards
+
+Approved estimate scope now connects to versioned commercial offers, separate independent authority, dated client acceptance evidence and once-only creation of immutable original contract BOQ allocated to project work. Company/project findings, CSV, My Work/search, canonical links and examples are included. See [commercial implementation](commercial-local.md). Contracts await finance configuration; certification, AR, advance/retention accounting, changes and full ERP/migration acceptance remain open.

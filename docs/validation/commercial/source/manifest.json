@@ -1,0 +1,26 @@
+{
+  "read_on": "2026-10-29",
+  "mode": "read-only UI observations; no source application code",
+  "files": [
+    {
+      "file": "01-order.txt",
+      "sha256": "52ee8d6db81d4d4182de98c0cd568a9fbd814c1d7b559d860283205e9990eee4"
+    },
+    {
+      "file": "02-contract.txt",
+      "sha256": "ad451834287b77f75478d6c51d77849fa08ad4dfe16ce257f94a7afb7c73cdb4"
+    },
+    {
+      "file": "03-finance-policy.txt",
+      "sha256": "28d1d2477925c84626bd6d262ecb4a69377063a1c5910da5367b9c376581d8ba"
+    },
+    {
+      "file": "04-cash-closeout.txt",
+      "sha256": "eaf1b0f71853e334624024a0e4060d805f4d48e8208094f6301b88ddd5e6af56"
+    },
+    {
+      "file": "05-boq-history.txt",
+      "sha256": "2e5b82dfe5564f5ee9cde8294d15b6f71274cefa7dc41185ef1c4d46346e7a09"
+    }
+  ]
+}

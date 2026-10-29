@@ -139,3 +139,5 @@ The local original NCR subset now connects requirement/location/WBS, immediate c
 ## 29 October 2026 — Original general ledger
 
 Implemented company accounts/periods, original exact-currency journal preparation and independent posting/reversal, immutable source snapshots, scoped ledger/trial-balance findings and export. Explicit separate journal authority defaults to zero. Tax, bills/invoices, AP/AR/payments, bank/stock reconciliation, WBS accounting allocation and full source migration remain required; no illustrative balance counts as posted accounting.
+
+Implementation progress (29 October 2026): commercial offers and independently verified awards now retain approved-estimate scope, exact values, company/currency identity, validity/payment/retention/advance terms and original acceptance evidence. Original contracts remain pending finance configuration. This implements a subset of M09/M15; the full construction, supporting ERP and migration acceptance requirements above remain unchanged. See implementation/commercial-local.md.

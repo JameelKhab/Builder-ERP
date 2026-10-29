@@ -44,3 +44,7 @@ Production readiness additionally requires identity/roles, policy administration
 ## BOQ intake · schema 12
 
 Original bounded ZIP/XML/CSV parsing feeds immutable staged files, saved checks and row provenance. Tender role scope follows the owning estimate; independent data review is separate from estimate financial authority. Atomic append revalidates current estimate version, master snapshots, exact calculation and reviewer authority. Candidate data never mutates a draft before commitment. File download, check history, search, queues and exports share scope. Optional product snapshots on estimate lines preserve catalogue identity; approved revisions stay immutable. See contracts/boq-intake-v1.md.
+
+## Offers and awards · schema 13
+
+Six typed tables hold versioned offers, immutable source BOQ lines, independently verified acceptance evidence, original contracts/allocations and commercial events. Exact line totals and saved company FX preserve estimate lineage without re-multiplying rounded unit rates. Reviewed commercial limits default to zero. Current source/customer/company/reviewer and project allocation checks precede commitment; transactional once-only award preserves accepted snapshots. Reports, search, exports and original-file downloads share company/project scope. Contract finance activation and measurement/AR/variation subledgers remain separate required work. See contracts/commercial-v1.md.

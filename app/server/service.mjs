@@ -1,3 +1,4 @@
+import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
 import { payments } from './payments.mjs';
@@ -399,6 +400,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         budgets: []
       };
       return {
+        commercial_offers: access.has('sales.read',company,project,!project) ? commercial(db,actorId,today).list(company,project) : [],
         estimate_documents: access.has('tenders.read', company, project, !project) ? estimates(db, actorId, today).list(company, project) : [],
         boq_intakes: access.has('tenders.read', company, project, !project) ? boqIntake(db, actorId, today).list(company, project) : [],
         payment_documents: access.has('payments.read', company, project, !project) ? payments(db, actorId, today).list(company, project) : [],
@@ -477,9 +479,10 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       })) : [];
       const payableRows = access.has('ap.read', company, null, true) ? payables(db, actorId, today).list(company).map(r => ({...r,display_reference:r.reference,vendor_name:r.vendor,category:'Supplier bills',status:r.state_label})) : [];
       const paymentRows = access.has('payments.read', company, null, true) ? payments(db, actorId, today).list(company).map(r => ({...r,vendor_name:r.vendor,category:'Payments & cash flow',status:r.state_label})) : [];
+      const commercialRows = access.has('sales.read',company,null,true) ? commercial(db,actorId,today).list(company).map(r=>({...r,category:'Quotations & awards',status:r.state_label})) : [];
       const estimateRows = access.has('tenders.read', company, null, true) ? estimates(db, actorId, today).list(company).map(r=>({...r,display_reference:r.tender_reference,category:'Bids & estimates',status:r.state_label})) : [];
       const intakeRows = access.has('tenders.read', company, null, true) ? boqIntake(db,actorId,today).list(company).map(r=>({...r,id:r.estimate_id,display_reference:r.id,title:`BOQ intake · ${r.title}`,category:'Workbook intake',status:r.state_label})) : [];
-      return [...intakeRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      return [...intakeRows, ...commercialRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

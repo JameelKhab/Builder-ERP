@@ -88,6 +88,8 @@ export function estimates(db, actorId, today = () => now().slice(0, 10)) {
     return {
       ...r,
       ...inputRows(r),
+      commercial_offers: access.has('sales.read',r.company_id,r.project_id) ? all('SELECT id,title,revision,state FROM sales_offers WHERE study_id=? ORDER BY revision DESC',r.study_id) : [],
+      can_prepare_offer: r.state==='approved' && latest(r) && can('sales.write',r) && !get("SELECT id FROM sales_offers WHERE study_id=? AND state NOT IN('withdrawn','superseded')",r.study_id),
       customer: JSON.parse(r.customer_snapshot),
       calculation: JSON.parse(r.calculation),
       state_label: ESTIMATE_STATES[r.state],

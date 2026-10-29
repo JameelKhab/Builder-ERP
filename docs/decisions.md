@@ -121,3 +121,7 @@ Original estimate studies preserve explicit resource/currency/price-basis calcul
 ## 29 October 2026 — Reviewed workbook intake
 
 Original XLSX/CSV intake appends direct items only after all-file reconciliation and independent data review. Original files and saved checks remain immutable; estimate/master/reviewer changes invalidate commitment. Rates use the estimate currency, quantities are per building, and product units are never inferred. Parent caps/shares remain quarantined pending source verification. Automatic mapping is progressive detail; filename and next action lead the intake card. These are implementation policies, not certified source enforcement.
+
+## 29 October 2026 — Commercial offers and original awards
+
+An approved estimate supplies exact scope and selling amounts; the offer separately records validity and commercial terms. Offer/award authority is independent and zero by default. Retained client acceptance evidence is reviewed by someone other than both the offer author and evidence recorder. Only that verification creates an immutable original project-allocated contract. Expired acceptance cannot be silently accepted; late recording of in-time acceptance is visibly flagged. Finance activation, invoice/retention/advance/cash balances and budget release remain distinct. These original controls strengthen independence compared with the optional role-overlap setting visible in the sampled JAKH contract. Full source enforcement/parity and contract-finance rules remain open.
