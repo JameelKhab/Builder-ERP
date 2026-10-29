@@ -1,0 +1,26 @@
+"Builder ERP · Client certificates & invoices"
+"Company","jakh"
+"Project","harbour"
+"Company currency","AED"
+"As of","2026-10-29"
+"From","Any","To","Any","Certificate status","all"
+
+"Findings"
+"4 measurements match the period-end and status filters; 3 are certified."
+"AED 8537.76 certified gross; 426.89 held as retention; 5122.66 still awaiting certification; 5122.67 certified due has no posted invoice."
+"1 posted invoices match the accounting-date filters: AED 3415.10 receivable and 170.76 retention."
+"Selected invoice-to-ledger differences: AR 0.00; retention 0.00."
+"Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash."
+
+"Certificate","Title","Contract","Project","Period from","Period to","State","Currency","New gross","Retention","Recovery","Tax","Due if invoiced","Company gross","Invoice","Invoice state"
+"CER-686EFBE4","Example · Harbour Tower · measured work 4","CTR-C2CA0ABD","harbour","2026-10-22","2026-10-28","Technical review","AED","5122.66","256.13","0.00","256.13","5122.66","5122.66","",""
+"CER-256307F7","Example · Harbour Tower · measured work 3","CTR-C2CA0ABD","harbour","2026-10-15","2026-10-21","Certified","AED","1707.56","85.38","0.00","85.38","1707.56","1707.56","CIN-E9E67412","submitted"
+"CER-F8A70268","Example · Harbour Tower · measured work 2","CTR-C2CA0ABD","harbour","2026-10-08","2026-10-14","Certified","AED","3415.10","170.75","0.00","170.76","3415.11","3415.10","CIN-DB4C7DF7","draft"
+"CER-23B5D167","Example · Harbour Tower · measured work 1","CTR-C2CA0ABD","harbour","2026-10-01","2026-10-07","Certified","AED","3415.10","170.76","0.00","170.76","3415.10","3415.10","CIN-5701F0CB","posted"
+
+"Invoice","Certificate","Project","Accounting date","Due date","State","Currency","Receivable","Company receivable","Company retention","Journal"
+"CIN-DB4C7DF7","CER-F8A70268","harbour","2026-10-14","2026-11-30","draft","AED","3415.11","3415.11","170.75",""
+"CIN-5701F0CB","CER-23B5D167","harbour","2026-10-07","2026-11-30","posted","AED","3415.10","3415.10","170.76","JRN-0A28A4F6"
+"CIN-E9E67412","CER-256307F7","harbour","2026-10-21","2026-11-30","submitted","AED","1707.56","1707.56","85.38",""
+
+"Reconciliation (selected posted invoices)","{""posted_receivable"":""3415.10"",""posted_retention"":""170.76"",""ledger_receivable"":""3415.10"",""ledger_retention"":""170.76"",""receivable_difference"":""0.00"",""retention_difference"":""0.00""}"

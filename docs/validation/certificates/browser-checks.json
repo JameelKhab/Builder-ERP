@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-29T08:37:38.788Z",
+  "previous_desktop": {
+    "width": 1280,
+    "height": 720,
+    "page_width": 1280
+  },
+  "mobile": {
+    "height": 844,
+    "page": 390,
+    "tables": [
+      {
+        "content": 768,
+        "width": 354
+      }
+    ],
+    "width": 390
+  },
+  "current_window": {
+    "height": 761,
+    "page": 572,
+    "width": 572
+  },
+  "company_scope": "USD company shows only Creek Offices; 4 measurements and 3 invoices; AR and retention ledger differences zero",
+  "project_scope": "Harbour Tower: 4 measurements and 3 invoices; CSV reconciled to findings",
+  "invalid_dates": "report results hidden and export disabled; correction restores results",
+  "console": [],
+  "forms": "Disposable measurement and AR preparer checks; no approvals or posting in browser",
+  "source": "Read-only JAKH captures recorded separately in source/manifest.json"
+}

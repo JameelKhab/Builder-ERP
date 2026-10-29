@@ -1,0 +1,166 @@
+Browser tab: 42, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4188/#section=Company&category=certificates".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4188/#section=Company&category=certificates
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4188/#main-content
+		4 container
+			5 button Builder ERP
+			6 text JAKH Contracting LLC
+			7 container Main navigation
+				8 button Home
+					9 image
+					10 text Home
+				11 button My Work
+					12 image
+					13 text My Work
+				14 button Projects
+					15 image
+					16 text Projects
+				17 button Company
+					18 image
+					19 text Company
+			20 text Built around your work.
+			21 text Local sample workspace
+		22 container
+			23 text Company
+			24 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				25 menu
+					26 (selected) JAKH Contracting LLC
+					27 JAKH International Ltd
+			28 image
+			29 text field (settable) Search company records
+			30 button Search
+			31 button Explore examples
+				32 image
+				33 text Examples
+			34 button Your account and sign-in
+				35 text S·
+				36 text Salma · example quantity surveyor
+				37 text Quantity surveyor
+		38 container main-content
+			39 heading JAKH Contracting LLC, Value: 1
+				40 text JAKH Contracting LLC
+			41 text Company-wide operations and shared information
+			47 button All client certificates
+				48 image
+				49 text All client certificates
+			50 container
+				51 text TECHNICAL REVIEW  ·  CER-99A9FF63
+			52 heading Example · Harbour Tower · measured work 4, Value: 2
+				53 text Example · Harbour Tower · measured work 4
+			54 container
+				55 text 2026-10-22  –  2026-10-28  · Review cycle  2
+			56 button Client contract
+			57 container
+				58 text New measured gross AED 5,145.89
+			59 container
+				60 text Retention held AED 257.29
+			61 container
+				62 text Next action Project manager to review
+			63 heading What this tells you, Value: 3
+				64 text What this tells you
+			65 content list
+				66 container
+					67 AXListMarker •
+					68 text AED 5145.89 new measured work; 257.29 retained; 0.00 advance recovered.
+				69 container
+					70 AXListMarker •
+					71 text AED 257.29 exclusive tax; 5145.89 due if this certified measurement is invoiced.
+				72 container
+					73 AXListMarker •
+					74 text This measurement is not yet certified or posted.
+				75 container
+					76 AXListMarker •
+					77 text Eligible recorded client advance: AED 0.00. The allowance of 1000.00 does not establish cash received.
+			79 button Export measurement
+				80 image
+				81 text Export measurement
+			82 container
+				83 heading Measured work, Value: 3
+					84 text Measured work
+				85 table
+					86 row
+						87 cell
+							88 text Work item
+						89 cell
+							90 text Contract
+						91 cell
+							92 text Previous
+						93 cell
+							94 text Cumulative installed
+						95 cell
+							96 text This period
+						97 cell
+							98 text Remaining
+						99 cell
+							100 text Current gross
+					101 row
+						102 cell
+							103 text STR
+							104 text Structure assembly
+							105 text Concrete frame / Reinforcement
+						106 cell
+							107 text 112 m3
+						108 cell
+							109 text 28
+						110 cell
+							111 text 45
+						112 cell
+							113 text 17
+						114 cell
+							115 text 67
+						116 cell
+							117 text AED 1,974.72
+					118 row
+						119 cell
+							120 text FIN
+							121 text Finishes
+							122 text Concrete frame / Reinforcement
+						123 cell
+							124 text 224 m2
+						125 cell
+							126 text 56
+						127 cell
+							128 text 89.6
+						129 cell
+							130 text 33.6
+						131 cell
+							132 text 134.4
+						133 cell
+							134 text AED 1,951.49
+					135 row
+						136 cell
+							137 text MEP
+							138 text MEP work package
+							139 text Concrete frame / Reinforcement
+						140 cell
+							141 text 11.2 lump
+						142 cell
+							143 text 2.8
+						144 cell
+							145 text 4.48
+						146 cell
+							147 text 1.68
+						148 cell
+							149 text 6.72
+						150 cell
+							151 text AED 1,219.68
+				152 text Fictional installed quantities from a local measurement sheet; original BOQ only. No production work is asserted.
+			153 container
+				154 heading Measurement evidence, Value: 3
+					155 text Measurement evidence
+				156 link Description: fictional-measurement.txt, Value: 127.0.0.1:4188/api/certificates/evidence/CFE-E4A4DF75
+				157 text Current evidence  ·  112  bytes
+				158 button (collapsed) File fingerprint, Secondary Actions: Expand
+					159 text File fingerprint
+			160 container
+				161 text Reason for this decision
+				162 text entry area (settable) Reason for this decision, Value: Browser verification: submit the fictional corrected quantities for independent technical review.
+				164 button Cancel unapproved measurement
+			165 button (collapsed) Deductions, tax and approval currency, Secondary Actions: Expand
+				166 text Deductions, tax and approval currency
+			167 button (collapsed) Review history · 6 events, Secondary Actions: Expand
+				168 text Review history ·
+				169 text 6
+				170 text  events
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4188/#section=Company&category=certificates

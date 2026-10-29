@@ -1,0 +1,322 @@
+Browser tab: 40, Title: "DEMO ONLY [JD2] — Measured owner certificate", URL: "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4".
+0 AXWebArea DEMO ONLY [JD2] — Measured owner certificate, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 container
+						14 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						15 content list jakh-menu-388
+							16 button BOQ workbook intake
+							17 button BOQ estimates
+							18 button Study versions
+							19 button Estimate analysis
+					20 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					21 button (collapsed) Description: Projects, Secondary Actions: Expand
+					22 button Project requisitions
+					23 button Project set-up
+					24 button Material returns
+					25 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					26 button Site receipts
+					27 button Site diaries
+					28 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					29 button Site materials & issues
+					30 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					31 button Payment certificates
+					32 button Advances & retention releases
+					33 button Final accounts & closeout
+					34 button Guarantees & bonds
+					35 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					36 button Subcontract order amendments
+					37 button Subcontractor applications
+					38 button Subcontract service entries
+					39 button Subcontract work corrections
+					40 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					41 button Labour & plant allocation
+					42 button Labour & plant actual feeds
+					43 button P6 schedule progress
+					44 button (collapsed) Description: Finance, Secondary Actions: Expand
+					45 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					46 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					47 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					48 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					49 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					50 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					51 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					52 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					53 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					54 button My Tasks
+					55 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					56 button (collapsed) Description: Administration, Secondary Actions: Expand
+			57 container
+				58 text JAKH Contracting Platform
+				59 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		60 container
+			61 button (collapsed) Messages 1, Secondary Actions: Expand
+				62 container Messages
+				63 text 1
+			64 button (collapsed) Activities 1, Secondary Actions: Expand
+				65 container Activities
+				66 text 1
+			67 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			68 button التبديل إلى العربية
+			69 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			70 button (collapsed) User is online, Secondary Actions: Expand
+				71 image
+					72 container User is online
+		73 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		74 content list
+			75 button (collapsed) more_horiz, Secondary Actions: Expand
+				76 text more_horiz
+			77 container
+				78 text /
+				79 link Description: Client certificates, Value: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate
+		80 text DEMO ONLY [JD2] — Measured owner certificate
+		81 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		82 container
+			83 button description Contract
+				84 text description
+				85 text Contract
+			86 button folder_open Project
+				87 text folder_open
+				88 text Project
+			89 button edit_square Client invoice
+				90 text edit_square
+				91 text Client invoice
+		92 container Pager
+			93 container
+				94 text 1  /  2
+			95 container
+				96 button Previous
+					97 text arrow_back_ios_new
+				98 button Next
+					99 text arrow_forward_ios
+		100 container
+			101 button Create / open draft invoice
+			102 button Register payment
+			103 button Acknowledge native credit
+			104 Statusbar
+				105 button (disabled, collapsed) chevron_forward Draft invoice created, Secondary Actions: Expand
+					106 text chevron_forward
+					107 text Draft invoice created
+			108 text Enter every BOQ item's cumulative installed quantity. Previous gross and quantities come from prior approved certificates. Draft invoices are posted only through native accounting permissions and controls.
+			109 text Name
+			110 text DEMO ONLY [JD2] — Measured owner certificate
+			111 text Contract
+			112 link Description: DEMO ONLY [JD2] — 11 Villas, one variant, active site, Value: demo.jakh.net/odoo/jakh.project.contract/3
+			113 text Date
+			114 text Oct 17
+			115 text Company
+			116 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+			117 text Approved By
+			118 link Description: DEMO ONLY [JD2] — Finance, Value: demo.jakh.net/odoo/res.users/17
+			119 text Approval Sequence
+			120 text 2
+			121 text Next review stage
+			122 text Approved
+			123 text Submission cycle
+			124 text 1
+			125 container
+				126 checkbox (disabled, settable, integer) Independent approval required, Value: 0, ID: independent_review_snapshot_0
+			127 text Submitted At
+			128 text Oct 17, 6:12 PM
+			129 text Approved At
+			130 text Oct 17, 6:12 PM
+			131 text REVIEW AND CORRECTION
+			132 table
+				133 row
+					134 cell
+						135 text Contract Line
+						136 text swap_vert
+					137 cell
+						138 text Previously certified quantity
+						139 text swap_vert
+					140 cell
+						141 text Cumulative Quantity
+						142 text swap_vert
+					143 cell
+						144 text Current period quantity
+						145 text swap_vert
+					146 cell
+						147 text Remaining quantity
+						148 text swap_vert
+					149 cell
+						150 button (collapsed) tune, Secondary Actions: Expand
+							151 text tune
+				152 row
+					153 cell
+						154 text DEMO ONLY [JD2] — Structure
+					155 cell
+						156 text 0.000000
+					157 cell
+						158 text 28.000000
+					159 cell
+						160 text 28.000000
+					161 cell
+						162 text 84.000000
+					163 cell
+				164 row
+					165 cell
+						166 text DEMO ONLY [JD2] — Finishes
+					167 cell
+						168 text 0.000000
+					169 cell
+						170 text 56.000000
+					171 cell
+						172 text 56.000000
+					173 cell
+						174 text 168.000000
+					175 cell
+				176 row
+					177 cell
+						178 text DEMO ONLY [JD2] — Mep
+					179 cell
+						180 text 0.000000
+					181 cell
+						182 text 2.800000
+					183 cell
+						184 text 2.800000
+					185 cell
+						186 text 8.400000
+					187 cell
+			188 text APPROVED OWNER VARIATIONS
+			189 text Variation Line
+			190 table
+				191 row
+					192 cell
+						193 text Variation
+						194 text swap_vert
+					195 cell
+						196 text Previously certified quantity
+						197 text swap_vert
+					198 cell
+						199 text Cumulative Quantity
+						200 text swap_vert
+					201 cell
+						202 text Current period quantity
+						203 text swap_vert
+					204 cell
+						205 text Remaining quantity
+						206 text swap_vert
+					207 cell
+						208 button (collapsed) tune, Secondary Actions: Expand
+							209 text tune
+				210 row
+					211 cell
+						212 text DEMO ONLY [JD2] — Approved additional entrance works
+					213 cell
+						214 text 0.000000
+					215 cell
+						216 text 0.500000
+					217 cell
+						218 text 0.500000
+					219 cell
+						220 text 1.500000
+					221 cell
+			222 text Cumulative Gross
+			223 text $ 8,562.76
+			224 text Previous Gross
+			225 text $ 0.00
+			226 text Period Gross
+			227 text $ 8,562.76
+			228 text Retention Amount
+			229 text $ 428.14
+			230 text Recovery Amount
+			231 text $ 1,000.00
+			232 text Other Deductions
+			233 text $ 0.00
+			234 text Deduction Reason
+			235 text Net Before Tax
+			236 text $ 7,134.62
+			237 text Invoice
+			238 link Description: JD2S/2026/00002, Value: demo.jakh.net/odoo/account.move/45
+			239 text Previous, current and remaining quantities are frozen at finance approval. A returned submission keeps its review history; correcting the draft starts a new submission cycle.
+			240 text REVIEW HISTORY
+			241 text Review history
+			242 table
+				243 row
+					244 cell
+						245 text Cycle
+						246 text swap_vert
+					247 cell
+						248 text Stage
+						249 text swap_vert
+					250 cell
+						251 text Decision
+						252 text swap_vert
+					253 cell
+						254 text Reviewer
+						255 text swap_vert
+					256 cell
+						257 text Reviewed At
+						258 text swap_vert
+					259 cell
+						260 text Note
+						261 text swap_vert
+				262 row
+					263 cell
+						264 text 1
+					265 cell
+						266 text Finance approval
+					267 cell
+						268 text Finance approved
+					269 cell
+						270 text DEMO ONLY [JD2] — Finance
+					271 cell
+						272 text Oct 17, 6:12 PM
+					273 cell
+				274 row
+					275 cell
+						276 text 1
+					277 cell
+						278 text Commercial review
+					279 cell
+						280 text Review accepted
+					281 cell
+						282 text DEMO ONLY [JD2] — Project Manager
+					283 cell
+						284 text Oct 17, 6:12 PM
+					285 cell
+				286 row
+					287 cell
+						288 text 1
+					289 cell
+						290 text Technical review
+					291 cell
+						292 text Review accepted
+					293 cell
+						294 text DEMO ONLY [JD2] — Technical
+					295 cell
+						296 text Oct 17, 6:12 PM
+					297 cell
+				298 row
+					299 cell
+						300 text 1
+					301 cell
+						302 text Technical review
+					303 cell
+						304 text Submitted
+					305 cell
+						306 text DEMO ONLY [JD2] — Technical
+					307 cell
+						308 text Oct 17, 6:12 PM
+					309 cell
+			310 button Send message
+			311 button Log note
+			312 button Activity
+			313 button Search Messages
+			314 button Attach files
+				315 text attach_file
+			316 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+				317 text 0
+			318 text 😶 No messages yet.
+
+The focused UI element is 0 AXWebArea DEMO ONLY [JD2] — Measured owner certificate, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4

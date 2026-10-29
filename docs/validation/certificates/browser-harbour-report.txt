@@ -1,0 +1,175 @@
+Browser tab: 44, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&category=certificates".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&category=certificates
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Access
+					11 image
+					12 text Access
+				13 button Organisation
+					14 image
+					15 text Organisation
+				16 button My Work
+					17 image
+					46 text My Work
+				18 button Tenders
+					19 image
+					47 text Tenders
+				20 button Projects
+					21 image
+					48 text Projects
+				22 button Company
+					23 image
+					49 text Company
+			24 text Built around your work.
+			25 text Local sample workspace
+		26 container
+			27 text Company
+			28 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				29 menu
+					30 (selected) JAKH Contracting LLC
+					31 JAKH International Ltd
+			32 image
+			33 text field (settable) Search company records
+			34 button Search
+			35 button Explore examples
+				36 image
+				37 text Examples
+			38 button Your account and sign-in
+				39 text AA
+				40 text Ahmed Al Mansoori
+				41 text Project manager
+		42 container main-content
+			43 heading JAKH Contracting LLC, Value: 1
+				44 text JAKH Contracting LLC
+			45 text Company-wide operations and shared information
+			50 text CLIENT WORK & BILLING
+			51 heading Client certificates, Value: 2
+				52 text Client certificates
+			53 text Measure work once. Follow its review, invoice and accounting status here.
+			54 button Export findings
+				55 image
+				56 text Export findings
+			57 container
+				58 text Project
+				59 pop up button (collapsed, settable) Project, Value: Harbour Tower, Secondary Actions: Expand
+					60 menu
+						61 All authorised projects
+						62 Garden Residences
+						63 (selected) Harbour Tower
+			64 container
+				65 text Measurement status
+				66 pop up button (collapsed, settable) Measurement status, Value: All measurement states, Secondary Actions: Expand
+					67 menu
+						68 (selected) All measurement states
+						69 draft
+						70 technical
+						71 commercial
+						72 finance
+						73 returned
+						74 approved
+						75 cancelled
+			76 container
+				77 text From
+				78 date field (settable) From, Value: 2026-10-01
+					79 container
+						92 stepper
+						93 stepper
+						94 stepper
+					83 pop up button Show date picker Show date picker
+			84 container
+				85 text Through
+				86 date field (settable) Through, Value: 2026-10-29
+					87 container
+						88 stepper
+						89 stepper
+						90 stepper
+					91 pop up button Show date picker Show date picker
+			95 heading What this tells you, Value: 3
+				118 text What this tells you
+			119 content list
+				120 container
+					121 AXListMarker •
+					122 text 4 measurements match the period-end and status filters; 3 are certified.
+				123 container
+					124 AXListMarker •
+					125 text AED 8537.76 certified gross; 426.89 held as retention; 5122.66 still awaiting certification; 5122.67 certified due has no posted invoice.
+				126 container
+					127 AXListMarker •
+					128 text 1 posted invoices match the accounting-date filters: AED 3415.10 receivable and 170.76 retention.
+				129 container
+					130 AXListMarker •
+					131 text Selected invoice-to-ledger differences: AR 0.00; retention 0.00.
+				132 container
+					133 AXListMarker •
+					134 text Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash.
+			96 container
+				97 heading Contracts · start or continue work, Value: 3
+					135 text Contracts · start or continue work
+				98 button Example · Harbour Tower · awarded offer Harbour Tower · Finance policy recorded AED 34,151.04
+					136 text Example · Harbour Tower · awarded offer
+					137 container
+						138 text Harbour Tower  ·  Finance policy recorded
+					139 text AED 34,151.04
+					99 image
+			100 container
+				101 heading Measurements · 4, Value: 3
+					140 text Measurements ·  4
+				102 button Example · Harbour Tower · measured work 4 2026-10-22 – 2026-10-28 · Technical review AED 5,122.66 Project manager to review
+					141 text Example · Harbour Tower · measured work 4
+					142 container
+						143 text 2026-10-22  –  2026-10-28  ·  Technical review
+					144 text AED 5,122.66
+					145 text Project manager to review
+					103 image
+				104 button Example · Harbour Tower · measured work 3 2026-10-15 – 2026-10-21 · Certified AED 1,707.56 AR reviewer to post invoice
+					146 text Example · Harbour Tower · measured work 3
+					147 container
+						148 text 2026-10-15  –  2026-10-21  ·  Certified
+					149 text AED 1,707.56
+					150 text AR reviewer to post invoice
+					105 image
+				106 button Example · Harbour Tower · measured work 2 2026-10-08 – 2026-10-14 · Certified AED 3,415.10 AR preparer to finish invoice
+					151 text Example · Harbour Tower · measured work 2
+					152 container
+						153 text 2026-10-08  –  2026-10-14  ·  Certified
+					154 text AED 3,415.10
+					155 text AR preparer to finish invoice
+					107 image
+				108 button Example · Harbour Tower · measured work 1 2026-10-01 – 2026-10-07 · Certified AED 3,415.10 Invoice posted; customer settlement is separate
+					156 text Example · Harbour Tower · measured work 1
+					157 container
+						158 text 2026-10-01  –  2026-10-07  ·  Certified
+					159 text AED 3,415.10
+					160 text Invoice posted; customer settlement is separate
+					109 image
+			110 container
+				111 heading Client invoices · 3, Value: 3
+					161 text Client invoices ·
+				162 text Filtered by accounting date. Posted charges are separate from customer receipts.
+				112 button Example · Harbour Tower · measured work 2 CIN-DB4C7DF7 · draft · Due 2026-11-30 AED 3,415.11
+					163 text Example · Harbour Tower · measured work 2
+					164 container
+						165 text CIN-DB4C7DF7  ·  draft  · Due  2026-11-30
+					166 text AED 3,415.11
+					113 image
+				114 button Example · Harbour Tower · measured work 1 CIN-5701F0CB · posted · Due 2026-11-30 AED 3,415.10
+					167 text Example · Harbour Tower · measured work 1
+					168 container
+						169 text CIN-5701F0CB  ·  posted  · Due  2026-11-30
+					170 text AED 3,415.10
+					115 image
+				116 button Example · Harbour Tower · measured work 3 CIN-E9E67412 · submitted · Due 2026-11-30 AED 1,707.56
+					171 text Example · Harbour Tower · measured work 3
+					172 container
+						173 text CIN-E9E67412  ·  submitted  · Due  2026-11-30
+					174 text AED 1,707.56
+					117 image
+
+The focused UI element is 92 stepper

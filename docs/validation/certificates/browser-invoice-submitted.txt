@@ -1,0 +1,75 @@
+Browser tab: 43, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4189/#section=Company&category=certificates".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4189/#section=Company&category=certificates
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4189/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Projects
+					11 image
+					12 text Projects
+				13 button Company
+					14 image
+					15 text Company
+			16 text Built around your work.
+			17 text Local sample workspace
+		18 container
+			19 text Company
+			20 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				21 menu
+					22 (selected) JAKH Contracting LLC
+					23 JAKH International Ltd
+			24 image
+			25 text field (settable) Search company records
+			26 button Search
+			27 button Explore examples
+				28 image
+				29 text Examples
+			30 button Your account and sign-in
+				31 text H·
+				32 text Hana · example accounts receivable clerk
+				33 text Accounts receivable clerk
+		34 container main-content
+			35 heading JAKH Contracting LLC, Value: 1
+				36 text JAKH Contracting LLC
+			37 text Company-wide operations and shared information
+			43 button All client certificates
+				44 image
+				45 text All client certificates
+			46 container
+				47 text CLIENT INVOICE ·  SUBMITTED  ·  CIN-9210D384
+			48 heading Example · Harbour Tower · measured work 2, Value: 2
+				49 text Example · Harbour Tower · measured work 2
+			50 container
+				51 text Invoice  2026-10-14  · Due  2026-12-14
+			52 button Certified measurement
+			53 container
+				54 text Client receivable AED 3,415.11
+			55 container
+				56 text Company carrying value AED 3,415.11
+			57 container
+				58 text Accounting state Independent AR review
+			59 heading What this tells you, Value: 3
+				60 text What this tells you
+			61 content list
+				62 container
+					63 AXListMarker •
+					64 text AED 3415.10 measured work less 170.75 retention, plus 170.76 tax gives 3415.11 client receivable.
+				65 container
+					66 AXListMarker •
+					67 text This invoice is not posted and does not yet affect the ledger.
+				68 container
+					69 AXListMarker •
+					70 text No customer receipt or clearance is implied.
+			76 button (collapsed) Accounting lines and rate evidence, Secondary Actions: Expand
+				77 text Accounting lines and rate evidence
+			78 button (collapsed) Review history · 3 events, Secondary Actions: Expand
+				79 text Review history ·
+				80 text 3
+				81 text  events
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4189/#section=Company&category=certificates

@@ -53,3 +53,7 @@ The examples are fictional and clearly identified. Most registers remain **read-
 - Browser checks opened the guide, selected Garden Residences, inspected its populated quality register, opened an NCR and followed its drawing link, switched to the USD company, inspected all four purchase-request stages and the returned request's history, and opened My Work from the mobile guide.
 - Desktop/mobile captures verify the Builder ERP brand, examples launcher and guide. At 390 CSS pixels the document and dialog had no horizontal overflow. The browser's temporary pinch/pan capture scale was normalised for the final mobile capture; the user's 130% browser zoom was retained.
 - Frontend build passed. No deployment, remote push or change to the old ERP was performed.
+
+## Client certificate pack — 29 October 2026
+
+`client-certificates-v1` is additive: three independently activated fictional contract finance policies, twelve measurements and nine invoices across all three supplied projects and both companies. One invoice is posted, one remains draft and one awaits AR review per project; the fourth measurement awaits independent technical review. Source BOQ/allocations are the immutable original commercial examples. No advance cash is inferred from their allowances. Six dedicated fictional staff have no credentials. Use Home → Client certificates or project Costs & Contracts → Client certificates, and expand policy/evidence/history for detail. The example guide and My Work/search use these canonical records.

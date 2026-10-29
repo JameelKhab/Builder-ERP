@@ -1,0 +1,22 @@
+✔ cumulative measurement follows approved predecessor, independent stages and separate typed client invoice (428.656542ms)
+✔ measurement ceiling, full line set, periods, stale versions and immutable evidence are enforced (378.577417ms)
+✔ returns preserve cycles, all reviewers are independent and live earlier authority is rechecked (554.335166ms)
+✔ finance policy needs independent contract authority and current account snapshots (375.026875ms)
+✔ whole final quantity exhausts authoritative line cents and retention, not rounded unit rates (377.717875ms)
+✔ missing measurement evidence blocks submission and replaced evidence stays available (474.434209ms)
+✔ project/company scope applies to contracts, evidence, invoices, search and complete report (398.13925ms)
+✔ invoice posting checks independent separate limit, period, current author, immutability and exact FX (383.266792ms)
+✔ reports separate accounting date population, preserve filtered totals and reject invalid ranges (379.003541ms)
+✔ additive examples are idempotent and every supplied project has an invoiced, draft and review example (386.445416ms)
+✔ foreign contract and separately dated invoice FX preserve balanced company AR and retention cents (402.485916ms)
+✔ certificate and invoice findings export the complete filtered population with safe spreadsheet text (388.720208ms)
+✔ retention stops at its agreed cap and exclusive net-basis tax uses the net measured amount (388.888041ms)
+✔ fully retained zero-tax work posts retention and revenue without manufacturing an AR balance (383.056875ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5793.632625

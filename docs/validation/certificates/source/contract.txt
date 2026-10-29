@@ -1,0 +1,295 @@
+Browser tab: 40, Title: "DEMO ONLY [JD2] — 11 Villas, one variant, active site", URL: "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3".
+0 AXWebArea DEMO ONLY [JD2] — 11 Villas, one variant, active site, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 container
+						14 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						15 content list jakh-menu-388
+							16 button BOQ workbook intake
+							17 button BOQ estimates
+							18 button Study versions
+							19 button Estimate analysis
+					20 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					21 button (collapsed) Description: Projects, Secondary Actions: Expand
+					22 button Project requisitions
+					23 button Project set-up
+					24 button Material returns
+					25 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					26 button Site receipts
+					27 button Site diaries
+					28 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					29 button Site materials & issues
+					30 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					31 button Payment certificates
+					32 button Advances & retention releases
+					33 button Final accounts & closeout
+					34 button Guarantees & bonds
+					35 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					36 button Subcontract order amendments
+					37 button Subcontractor applications
+					38 button Subcontract service entries
+					39 button Subcontract work corrections
+					40 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					41 button Labour & plant allocation
+					42 button Labour & plant actual feeds
+					43 button P6 schedule progress
+					44 button (collapsed) Description: Finance, Secondary Actions: Expand
+					45 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					46 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					47 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					48 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					49 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					50 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					51 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					52 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					53 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					54 button My Tasks
+					55 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					56 button (collapsed) Description: Administration, Secondary Actions: Expand
+			57 container
+				58 text JAKH Contracting Platform
+				59 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		60 container
+			61 button (collapsed) Messages 1, Secondary Actions: Expand
+				62 container Messages
+				63 text 1
+			64 button (collapsed) Activities 1, Secondary Actions: Expand
+				65 container Activities
+				66 text 1
+			67 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			68 button التبديل إلى العربية
+			69 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			70 button (collapsed) User is idle, Secondary Actions: Expand
+				71 image
+					72 container User is idle
+		73 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		74 container
+			75 button New
+			76 content list
+				77 button (collapsed) more_horiz, Secondary Actions: Expand
+					78 text more_horiz
+				79 container
+					80 text /
+					81 link Description: S00003, Value: demo.jakh.net/jakh/action-626/4/sale.order/3
+			82 text DEMO ONLY [JD2] — 11 Villas, one variant, active site
+			83 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+			84 button description 2 Client certificates
+				85 text description
+				86 container
+					87 text 2 Client certificates
+			88 button payments 1 Advances / Retention
+				89 text payments
+				90 container
+					91 text 1 Advances / Retention
+			92 button flag 0 Final accounts
+				93 text flag
+				94 container
+					95 text 0 Final accounts
+			96 button folder_open Project
+				97 text folder_open
+				98 text Project
+			99 button (collapsed) More arrow_drop_down, Secondary Actions: Expand
+				100 text More
+				101 text arrow_drop_down
+			102 container Pager
+				103 container
+					104 text 1  /  1
+				105 container
+					106 button (disabled) Previous
+						107 text arrow_back_ios_new
+					108 button (disabled) Next
+						109 text arrow_forward_ios
+			110 container
+				111 button Revise BOQ
+				112 button Current consolidated BOQ
+				113 Statusbar
+					114 radio button (disabled) Closed, Value: 0
+					115 radio button (disabled) Active, Value: 1
+					116 radio button (disabled) Finance configuration, Value: 0
+			117 container
+				118 text This release measures an immutable customer BOQ in company currency. Finance explicitly configures control accounts, tax treatment and deduction caps. The advance ceiling does not assert that cash has been received.
+				119 text Name
+				120 text DEMO ONLY [JD2] — 11 Villas, one variant, active site
+				121 text Project
+				122 link Description: DEMO ONLY [JD2] — 11 Villas, one variant, active site, Value: demo.jakh.net/odoo/project.project/3
+				123 text Partner
+				124 link Description: DEMO ONLY [JD2] — 11 Villas Client, Value: demo.jakh.net/odoo/res.partner/22
+				125 text Sale Order
+				126 link Description: S00003, Value: demo.jakh.net/odoo/sale.order/3
+				127 text Company
+				128 link Description: My Company, Value: demo.jakh.net/odoo/res.company/1
+				129 text Currency
+				130 link Description: USD, Value: demo.jakh.net/odoo/res.currency/1
+				131 text Finance Approved By
+				132 link Description: DEMO ONLY [JD2] — Director, Value: demo.jakh.net/odoo/res.users/12
+				133 text Original contract value
+				134 text $ 34,151.04
+				135 text Revised contract value
+				136 text $ 34,251.04
+				137 container
+					138 text Certificate approval route ?
+				139 text Technical review → commercial review → finance approval
+				140 container
+					141 text Require different people for certificate approvals ?
+				142 container
+					143 checkbox (disabled, settable, integer) Require different people for certificate approvals?, Value: 0, ID: certificate_independent_review_0
+				144 text This contract uses role-based approval. A user with several roles may complete several stages. Enable independent review before activation when separate people must approve.
+				145 content list
+					146 tab (selectable, settable, boolean) Contract BOQ, Value: 0
+					147 tab (selectable, settable, boolean) Finance policy, Value: 0
+					148 tab (selectable, settable, boolean) Cash and closeout, Value: 0
+					149 tab (selectable, settable, boolean) BOQ revision history, Value: 0
+				150 table
+					151 row
+						152 cell
+							153 text Code
+							154 text swap_vert
+						155 cell
+							156 text Name
+							157 text swap_vert
+						158 cell
+							159 text Wbs
+							160 text swap_vert
+						161 cell
+							162 text Location
+							163 text swap_vert
+						164 cell
+							165 text Discipline
+							166 text swap_vert
+						167 cell
+							168 text Uom
+							169 text swap_vert
+						170 cell
+							171 text Quantity
+							172 text swap_vert
+						173 cell
+							174 text Drawing status
+						175 cell
+							176 text Award direct unit cost
+							177 text swap_vert
+						178 cell
+							179 text Award direct cost
+							180 text swap_vert
+						181 cell
+							182 text Award cost budget
+							183 text swap_vert
+						184 cell
+							185 text Unit Price
+							186 text swap_vert
+						187 cell
+							188 button (collapsed) tune, Secondary Actions: Expand
+								189 text tune
+					190 row
+						191 cell
+							192 text JD2-STRUCTURE
+						193 cell
+							194 text DEMO ONLY [JD2] — Structure
+						195 cell
+							196 text DEMO ONLY [JD2] — Structure
+						197 cell
+						198 cell
+							199 text DEMO ONLY [JD2] — Civil and structure
+						200 cell
+							201 text Units
+						202 cell
+							203 text 112.000000
+						204 cell
+							205 text No drawing
+						206 cell
+						207 cell
+							208 text 80.000000
+						209 cell
+							210 text 8,960.00
+						211 cell
+							212 text 9,856.00
+						213 cell
+							214 text 116.160000
+						215 cell
+							216 button fa-building-o Building budgets
+								217 text fa-building-o
+								218 text Building budgets
+						219 cell
+					220 row
+						221 cell
+							222 text JD2-FINISHES
+						223 cell
+							224 text DEMO ONLY [JD2] — Finishes
+						225 cell
+							226 text DEMO ONLY [JD2] — Finishes
+						227 cell
+						228 cell
+							229 text DEMO ONLY [JD2] — Civil and structure
+						230 cell
+							231 text Units
+						232 cell
+							233 text 224.000000
+						234 cell
+							235 text No drawing
+						236 cell
+						237 cell
+							238 text 40.000000
+						239 cell
+							240 text 8,960.00
+						241 cell
+							242 text 9,856.00
+						243 cell
+							244 text 58.080000
+						245 cell
+							246 button fa-building-o Building budgets
+								247 text fa-building-o
+								248 text Building budgets
+						249 cell
+					250 row
+						251 cell
+							252 text JD2-MEP
+						253 cell
+							254 text DEMO ONLY [JD2] — Mep
+						255 cell
+							256 text DEMO ONLY [JD2] — Mep
+						257 cell
+						258 cell
+							259 text DEMO ONLY [JD2] — Civil and structure
+						260 cell
+							261 text Units
+						262 cell
+							263 text 11.200000
+						264 cell
+							265 text No drawing
+						266 cell
+						267 cell
+							268 text 500.000000
+						269 cell
+							270 text 5,600.00
+						271 cell
+							272 text 6,160.00
+						273 cell
+							274 text 726.000000
+						275 cell
+							276 button fa-building-o Building budgets
+								277 text fa-building-o
+								278 text Building budgets
+						279 cell
+			280 container
+				281 button Send message
+				282 button Log note
+				283 button Activity
+				284 button Search Messages
+				285 button Attach files
+					286 text attach_file
+				287 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+					288 text 0
+			289 container
+				290 text 😶
+				291 text No messages yet.
+
+The focused UI element is 0 AXWebArea DEMO ONLY [JD2] — 11 Villas, one variant, active site, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3

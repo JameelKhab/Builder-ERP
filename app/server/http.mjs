@@ -1,3 +1,4 @@
+import { certificates } from './certificates.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
@@ -66,6 +67,7 @@ export function createApi(db, {
   app.use('/api/quality/cases/:id/evidence', express.json({
     limit: '3mb'
   }));
+  app.use('/api/certificates/measurements', express.json({limit:'3mb'}));
   app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
   app.use('/api/boq-intakes/upload', express.json({ limit: '9mb' }));
@@ -145,6 +147,7 @@ export function createApi(db, {
       error: 'Access preview is read only. Return to your workspace to make changes.'
     });
     req.service = createService(db, session.previewId || session.actorId, today);
+    req.certificates = certificates(db, session.previewId || session.actorId, today);
     req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
     req.boqIntake = boqIntake(db, session.previewId || session.actorId, today);
@@ -157,6 +160,21 @@ export function createApi(db, {
     req.procurement = procurement(db, session.previewId || session.actorId, today);
     next();
   });
+  app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
+  app.get('/api/certificates/report',(req,res)=>res.json(req.certificates.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all',from:req.query.from||null,to:req.query.to||null})));
+  app.get('/api/certificates/contracts/:id',(req,res)=>res.json(req.certificates.contract(req.params.id)));
+  app.post('/api/certificates/policies',(req,res)=>res.status(201).json(req.certificates.savePolicy(null,req.body)));
+  app.put('/api/certificates/policies/:id',(req,res)=>res.json(req.certificates.savePolicy(req.params.id,req.body)));
+  app.post('/api/certificates/policies/:id/decision',(req,res)=>res.json(req.certificates.decidePolicy(req.params.id,req.body)));
+  app.get('/api/certificates/measurements/:id',(req,res)=>res.json(req.certificates.detail(req.params.id)));
+  app.post('/api/certificates/measurements',(req,res)=>res.status(201).json(req.certificates.save(null,req.body)));
+  app.put('/api/certificates/measurements/:id',(req,res)=>res.json(req.certificates.save(req.params.id,req.body)));
+  app.post('/api/certificates/measurements/:id/decision',(req,res)=>res.json(req.certificates.decide(req.params.id,req.body)));
+  app.get('/api/certificates/evidence/:id',(req,res)=>{const f=req.certificates.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="measurement-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
+  app.get('/api/certificates/invoices/:id',(req,res)=>res.json(req.certificates.invoice(req.params.id)));
+  app.post('/api/certificates/invoices',(req,res)=>res.status(201).json(req.certificates.saveInvoice(null,req.body)));
+  app.put('/api/certificates/invoices/:id',(req,res)=>res.json(req.certificates.saveInvoice(req.params.id,req.body)));
+  app.post('/api/certificates/invoices/:id/decision',(req,res)=>res.json(req.certificates.decideInvoice(req.params.id,req.body)));
   app.get('/api/commercial/options',(req,res)=>res.json(req.commercial.options(req.query.company,req.query.project||null)));
   app.get('/api/commercial/report',(req,res)=>res.json(req.commercial.report(req.query.company,{project:req.query.project||null,state:req.query.state||'all',from:req.query.from||null,to:req.query.to||null})));
   app.get('/api/commercial/offers/:id',(req,res)=>res.json(req.commercial.detail(req.params.id)));

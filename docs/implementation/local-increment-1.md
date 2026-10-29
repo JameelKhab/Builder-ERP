@@ -107,3 +107,7 @@ Original reviewed XLSX/CSV staging now connects source-row validation, exact all
 ## 29 October 2026 — Reviewed offers and original awards
 
 Approved estimate scope now connects to versioned commercial offers, separate independent authority, dated client acceptance evidence and once-only creation of immutable original contract BOQ allocated to project work. Company/project findings, CSV, My Work/search, canonical links and examples are included. See [commercial implementation](commercial-local.md). Contracts await finance configuration; certification, AR, advance/retention accounting, changes and full ERP/migration acceptance remain open.
+
+## 29 October 2026 — Client certificates and invoices
+
+Original contracts now continue through independently activated finance policies, cumulative measured work, technical/commercial/finance review and separate AR invoice preparation/posting. Exact quantity/retention/tax/FX rules, immutable evidence and journals, zero-default authority, project/company findings/export and three-project examples are connected. See [certificate implementation](certificates-local.md). All 221 tests and the build pass; recovery matches 94 business tables. Actual customer advances/receipts, credits/corrections, retention release, changed BOQ and full ERP/migration acceptance remain open.

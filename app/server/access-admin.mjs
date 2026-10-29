@@ -59,7 +59,13 @@ export function accessAdmin(db, actorId) {
         const commercialLimit = g.commercial_approval_limit ?? '0.00';
         requireThat(typeof commercialLimit === 'string' && /^\d{1,12}(\.\d{1,2})?$/.test(commercialLimit), 'Commercial authority must be non-negative with at most two decimals.');
         requireThat(new D(commercialLimit).isZero() || role.capabilities.includes('sales.approve'), 'This role cannot approve offers or awards. Set commercial authority to zero.');
+        const certificateLimit = g.certificate_approval_limit ?? '0.00', arLimit = g.ar_approval_limit ?? '0.00';
+        for (const [value,label,allowed] of [[certificateLimit,'Certificate',role.capabilities.some(c=>['certificates.commercial','certificates.finance','contracts.configure'].includes(c))],[arLimit,'AR',role.capabilities.includes('ar.post')]]) {
+          requireThat(typeof value==='string' && /^\d{1,12}(\.\d{1,2})?$/.test(value),label+' authority must be non-negative with at most two decimals.');
+          requireThat(new D(value).isZero() || allowed,label+' authority is unavailable for this role.');
+        }
         return {
+          certificate_approval_limit: money(certificateLimit), ar_approval_limit: money(arLimit),
           commercial_approval_limit: money(commercialLimit),
           estimate_approval_limit: money(estimateLimit),
           payment_approval_limit: money(paymentLimit),
@@ -75,7 +81,7 @@ export function accessAdmin(db, actorId) {
         };
       });
       db.prepare('DELETE FROM memberships WHERE user_id=?').run(id);
-      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit,ledger_approval_limit,ap_approval_limit,payment_approval_limit,estimate_approval_limit,commercial_approval_limit) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit, g.ledger_approval_limit, g.ap_approval_limit, g.payment_approval_limit, g.estimate_approval_limit, g.commercial_approval_limit);
+      for (const g of grants) db.prepare('INSERT INTO memberships(user_id,company_id,project_id,role_id,can_approve,approval_limit,budget_approval_limit,ledger_approval_limit,ap_approval_limit,payment_approval_limit,estimate_approval_limit,commercial_approval_limit,certificate_approval_limit,ar_approval_limit) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)').run(g.user_id, g.company_id, g.project_id, g.role_id, g.can_approve, g.approval_limit, g.budget_approval_limit, g.ledger_approval_limit, g.ap_approval_limit, g.payment_approval_limit, g.estimate_approval_limit, g.commercial_approval_limit, g.certificate_approval_limit, g.ar_approval_limit);
       db.prepare('UPDATE users SET active=?,access_version=access_version+1 WHERE id=?').run(input.active ? 1 : 0, id);
       const after = snapshot(id);
       db.prepare('INSERT INTO access_events(actor_id,user_id,before_json,after_json,reason,at) VALUES(?,?,?,?,?,?)').run(actorId, id, JSON.stringify(before), JSON.stringify(after), input.reason.trim(), new Date().toISOString());

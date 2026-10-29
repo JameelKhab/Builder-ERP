@@ -1,0 +1,151 @@
+Browser tab: 40, Title: "Client certificates", URL: "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate".
+0 AXWebArea Client certificates, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 container
+						14 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						15 content list jakh-menu-388
+							16 button BOQ workbook intake
+							17 button BOQ estimates
+							18 button Study versions
+							19 button Estimate analysis
+					20 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					21 button (collapsed) Description: Projects, Secondary Actions: Expand
+					22 button Project requisitions
+					23 button Project set-up
+					24 button Material returns
+					25 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					26 button Site receipts
+					27 button Site diaries
+					28 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					29 button Site materials & issues
+					30 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					31 button Payment certificates
+					32 button Advances & retention releases
+					33 button Final accounts & closeout
+					34 button Guarantees & bonds
+					35 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					36 button Subcontract order amendments
+					37 button Subcontractor applications
+					38 button Subcontract service entries
+					39 button Subcontract work corrections
+					40 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					41 button Labour & plant allocation
+					42 button Labour & plant actual feeds
+					43 button P6 schedule progress
+					44 button (collapsed) Description: Finance, Secondary Actions: Expand
+					45 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					46 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					47 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					48 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					49 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					50 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					51 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					52 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					53 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					54 button My Tasks
+					55 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					56 button (collapsed) Description: Administration, Secondary Actions: Expand
+			57 container
+				58 text JAKH Contracting Platform
+				59 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		60 container
+			61 button (collapsed) Messages 1, Secondary Actions: Expand
+				62 container Messages
+				63 text 1
+			64 button (collapsed) Activities 1, Secondary Actions: Expand
+				65 container Activities
+				66 text 1
+			67 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			68 button التبديل إلى العربية
+			69 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			70 button (collapsed) User is online, Secondary Actions: Expand
+				71 image
+					72 container User is online
+		73 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		74 content list
+			75 button (collapsed) more_horiz, Secondary Actions: Expand
+				76 text more_horiz
+			77 container
+				78 text /
+				79 link Description: DEMO ONLY [JD2] — 11 Villas, one variant, active site, Value: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3
+		80 text Client certificates
+		81 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		82 container
+			83 button Search...
+			84 search text field (settable)
+			85 button (collapsed) Description: Toggle Search Panel, Secondary Actions: Expand
+		86 container Pager
+			87 container
+				88 text 1-2  /  2
+			89 container
+				90 button (disabled) Previous
+					91 text arrow_back_ios_new
+				92 button (disabled) Next
+					93 text arrow_forward_ios
+		94 table
+			95 row
+				96 cell
+					97 checkbox (settable, integer) Value: 0, ID: checkbox-comp-2
+				98 cell
+					99 text Name
+					100 text swap_vert
+				101 cell
+					102 text Contract
+					103 text swap_vert
+				104 cell
+					105 text Date
+					106 text swap_vert
+				107 cell
+					108 text State
+					109 text swap_vert
+				110 cell
+					111 text Period Gross
+					112 text swap_vert
+				113 cell
+					114 text Net Before Tax
+					115 text swap_vert
+			116 row
+				117 cell
+					118 container
+						119 checkbox (settable, integer) Value: 0, ID: checkbox-comp-3
+				120 cell
+					121 text DEMO ONLY [JD2] — Measured owner certificate
+				122 cell
+					123 text DEMO ONLY [JD2] — 11 Villas, one variant, active site
+				124 cell
+					125 text Oct 17
+				126 cell
+					127 text Draft invoice created
+				128 cell
+					129 text $ 8,562.76
+				130 cell
+					131 text $ 7,134.62
+			132 row
+				133 cell
+					134 container
+						135 checkbox (settable, integer) Value: 0, ID: checkbox-comp-4
+				136 cell
+					137 text DEMO ONLY [JD2] — Next owner measurement awaiting review
+				138 cell
+					139 text DEMO ONLY [JD2] — 11 Villas, one variant, active site
+				140 cell
+					141 text Oct 17
+				142 cell
+					143 text Submitted
+				144 cell
+					145 text $ 0.00
+				146 cell
+					147 text $ 0.00
+
+The focused UI element is 84 search text field (settable)

@@ -1,0 +1,207 @@
+Browser tab: 40, Title: "JD2S/2026/00002", URL: "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4/account.move/45".
+0 AXWebArea JD2S/2026/00002, URL: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4/account.move/45
+	1 container
+		2 container Description: ERP navigation, ID: jakh-sidebar
+			3 text JAKH ERP
+			4 text Contracting & construction
+			5 button (expanded) Description: Collapse navigation, Secondary Actions: Collapse
+			6 container Description: Modules, ID: jakh-sidebar-navigation
+				7 text MODULES
+				8 content list
+					9 button Dashboard
+					10 button (collapsed) Description: Reports, Secondary Actions: Expand
+					11 button My Approvals & Activities
+					12 button (collapsed) Description: CRM, Secondary Actions: Expand
+					13 container
+						14 button (expanded) Description: Tender & BOQ, Secondary Actions: Collapse
+						15 content list jakh-menu-388
+							16 button BOQ workbook intake
+							17 button BOQ estimates
+							18 button Study versions
+							19 button Estimate analysis
+					20 button (collapsed) Description: Sales & Quotations, Secondary Actions: Expand
+					21 button (collapsed) Description: Projects, Secondary Actions: Expand
+					22 button Project requisitions
+					23 button Project set-up
+					24 button Material returns
+					25 button (collapsed) Description: WBS & Budgets, Secondary Actions: Expand
+					26 button Site receipts
+					27 button Site diaries
+					28 button (collapsed) Description: Contracts & measured BOQ, Secondary Actions: Expand
+					29 button Site materials & issues
+					30 button (collapsed) Description: Purchasing, Secondary Actions: Expand
+					31 button Payment certificates
+					32 button Advances & retention releases
+					33 button Final accounts & closeout
+					34 button Guarantees & bonds
+					35 button (collapsed) Description: Subcontract finance, Secondary Actions: Expand
+					36 button Subcontract order amendments
+					37 button Subcontractor applications
+					38 button Subcontract service entries
+					39 button Subcontract work corrections
+					40 button (collapsed) Description: Stores & Receipts, Secondary Actions: Expand
+					41 button Labour & plant allocation
+					42 button Labour & plant actual feeds
+					43 button P6 schedule progress
+					44 button (collapsed) Description: Finance, Secondary Actions: Expand
+					45 button (collapsed) Description: Quality, HSE & Specifications, Secondary Actions: Expand
+					46 button (collapsed) Description: People & HR, Secondary Actions: Expand
+					47 button (collapsed) Description: Time Off, Secondary Actions: Expand
+					48 button (collapsed) Description: Attendance, Secondary Actions: Expand
+					49 button (collapsed) Description: Timesheets, Secondary Actions: Expand
+					50 button (collapsed) Description: Plant & Equipment, Secondary Actions: Expand
+					51 button (collapsed) Description: Fleet, Secondary Actions: Expand
+					52 button (collapsed) Description: Contacts & Masters, Secondary Actions: Expand
+					53 button (collapsed) Description: Team Discussions, Secondary Actions: Expand
+					54 button My Tasks
+					55 button (collapsed) Description: Users & Access, Secondary Actions: Expand
+					56 button (collapsed) Description: Administration, Secondary Actions: Expand
+			57 container
+				58 text JAKH Contracting Platform
+				59 link Description: Help & product information, Value: demo.jakh.net/jakh/help
+		60 container
+			61 button (collapsed) Messages 1, Secondary Actions: Expand
+				62 container Messages
+				63 text 1
+			64 button (collapsed) Activities 1, Secondary Actions: Expand
+				65 container Activities
+				66 text 1
+			67 button (collapsed) View as, Help: See the ERP as a designation's demonstration user, Secondary Actions: Expand
+			68 button التبديل إلى العربية
+			69 button (collapsed) JAKH Demo Contracting LLC, Secondary Actions: Expand
+			70 button (collapsed) User is online, Secondary Actions: Expand
+				71 image
+					72 container User is online
+		73 text Sample data for a JAKH ERP demonstration. Changes are erased every night at 02:00 UAE time. Other demo visitors can see what you enter; do not enter real business information.
+		74 content list
+			75 button (collapsed) more_horiz, Secondary Actions: Expand
+				301 text more_horiz
+			77 container
+				302 text /
+				79 link Description: DEMO ONLY [JD2] — Measured owner certificate, Value: demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4
+		80 text JD2S/2026/00002
+		81 button (collapsed) Description: Actions menu, Secondary Actions: Expand
+		82 container
+			83 button menu 1 Payments
+				303 text menu
+				85 container
+					86 text 1 Payments
+			87 button menu Journal Items
+				304 text menu
+				89 text Journal Items
+			90 button description Client certificate
+				305 text description
+				92 text Client certificate
+		93 container Pager
+			94 container
+				95 text 1  /  1
+			96 container
+				97 button (disabled) Previous
+					306 text arrow_back_ios_new
+				99 button (disabled) Next
+					307 text arrow_forward_ios
+		101 container
+			102 button Send
+			103 button Print
+			104 button Preview
+			105 button Credit Note
+			106 button Reset to Draft
+			107 button (collapsed) No Review, Secondary Actions: Expand
+			108 Statusbar
+				109 radio button (disabled) Posted, Value: 1
+				110 radio button (disabled) Draft, Value: 0
+			111 text PAID
+			112 text Customer Invoice
+			113 heading JD2S/2026/00002, Value: 1
+				114 text JD2S/2026/00002
+			115 text Customer
+			116 link Description: DEMO ONLY [JD2] — 11 Villas Client, Value: demo.jakh.net/odoo/res.partner/22
+			117 text Invoice Date
+			118 text Oct 17
+			119 text Due Date
+			120 button Due Date, ID: invoice_date_due_0
+			121 text Currency
+			122 link Description: USD, Value: demo.jakh.net/odoo/res.currency/1
+			123 content list
+				124 tab (selectable, settable, boolean) Invoice Lines, Value: 0
+				125 tab (selectable, settable, boolean) Journal Items, Value: 0
+				126 tab (selectable, settable, boolean) Other Info, Value: 0
+			233 table
+				234 row
+					235 cell
+						236 text Account
+						308 text swap_vert
+					238 cell
+						239 text Description
+						309 text swap_vert
+					241 cell
+						242 text Debit
+						310 text swap_vert
+					244 cell
+						245 text Credit
+						311 text swap_vert
+					247 cell
+						248 text Tax Grids
+					249 cell
+						250 button (collapsed) tune, Secondary Actions: Expand
+							312 text tune
+				252 row
+					253 cell
+						254 text DEMO ONLY [JD2] — Measured work revenue
+					255 cell
+						256 text DEMO ONLY [JD2] — Measured owner certificate — certified period gross
+					257 cell
+						258 text $ 0.00
+					259 cell
+						260 text $ 8,562.76
+					261 cell
+					262 cell
+				263 row
+					264 cell
+						265 text DEMO ONLY [JD2] — Owner retention receivable
+					266 cell
+						267 text Retention control
+					268 cell
+						269 text $ 428.14
+					270 cell
+						271 text $ 0.00
+					272 cell
+					273 cell
+				274 row
+					275 cell
+						276 text DEMO ONLY [JD2] — Owner advance liability
+					277 cell
+						278 text Advance recovery
+					279 cell
+						280 text $ 1,000.00
+					281 cell
+						282 text $ 0.00
+					283 cell
+					284 cell
+				285 row
+					286 cell
+						287 text DEMO ONLY [JD2] — Receivables
+					288 cell
+						289 text JD2S/2026/00002
+					290 cell
+						291 text $ 7,134.62
+					292 cell
+						293 text $ 0.00
+					294 cell
+					295 cell
+				296 row
+					297 cell
+						298 text $ 8,562.76
+					299 cell
+						300 text $ 8,562.76
+			223 button Send message
+			224 button Log note
+			225 button Activity
+			226 button Search Messages
+			227 button Attach files
+				313 text attach_file
+			229 button (collapsed) 0, Help: Show Followers, Secondary Actions: Expand
+				230 text 0
+			231 text 😶 No messages yet.
+
+The focused UI element is 125 tab (selectable, settable, boolean) Journal Items, Value: 0

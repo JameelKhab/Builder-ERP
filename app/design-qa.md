@@ -113,3 +113,7 @@ Verified actual CSV download/upload/check in an isolated in-memory local preview
 ## 29 October — Quotations & awards
 
 Original Builder layout leads with offer value, validity and next step. Offer form separates scope, dates/payment and retention/advance; record details disclose terms, file identity/allocations and history. Browser saved a synthetic draft payment term of 45 days, uploaded fictional acceptance evidence, mapped three work items and observed pending independent review without a self-verification button. Report project/date filters and full CSV were checked; an invalid range hides stale figures and disables export while controls remain usable. Desktop and narrow-width screenshots, actual viewport dimensions and console checks are retained in validation/commercial. Access and Commercial are lazy-loaded. No representative-user usability acceptance or full ERP readiness is claimed.
+
+## 29 October 2026 — Client certificates and AR
+
+Verified isolated quantity-surveyor edit/submission and AR due-date revision/submission through the browser; the respective authors see no approval/posting control. Reduced editing to four BOQ columns and hid same-currency FX entry. Screenshot inspection caught unstyled summary values; corrected the component to use existing three-card styling. Persistent report/record layouts, project/company filters, export and responsive evidence are in `docs/validation/certificates`. These are implementation checks, not representative-user acceptance.

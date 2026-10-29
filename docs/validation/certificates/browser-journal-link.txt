@@ -1,0 +1,83 @@
+Browser tab: 44, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&category=certificates".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&category=certificates
+	1 container General ledger
+		2 container
+			3 heading General ledger, Value: 2, ID: dialog-title
+				4 text General ledger
+			5 button Close dialog
+				6 image
+		7 container
+			8 text JAKH CONTRACTING LLC  ·  AUTHORISED COMPANY SCOPE
+		9 heading General ledger, Value: 2
+			10 image
+			11 text General ledger
+		12 text Prepare, independently review, then post. Follow every balance to its journal.
+		13 container
+			14 button Journal register
+				15 image
+				16 text Journal register
+			17 text GL/2026/000028  ·  POSTED
+			18 heading Example · Harbour Tower · measured work 1, Value: 3
+				19 text Example · Harbour Tower · measured work 1
+			20 text Harbour Tower  ·  07 Oct 2026  · Prepared by  Hana · example accounts receivable clerk Equal debit & credit AED 3,585.86
+			21 table
+				22 row
+					23 cell
+						24 text Account & description
+					25 cell
+						26 text AED  debit
+					27 cell
+						28 text AED  credit
+				29 row
+					30 cell
+						31 container
+							32 text 1300  ·  Example · Client receivable
+						33 text Certified client receivable
+					34 cell
+						35 text 3415.10
+					36 cell
+						37 text 0.00
+				38 row
+					39 cell
+						40 container
+							41 text 1310  ·  Example · Client retention receivable
+						42 text Contract retention held
+					43 cell
+						44 text 170.76
+					45 cell
+						46 text 0.00
+				47 row
+					48 cell
+						49 container
+							50 text 4100  ·  Example · Measured client revenue
+						51 text Certified measured work
+					52 cell
+						53 text 0.00
+					54 cell
+						55 text 3415.10
+				56 row
+					57 cell
+						58 container
+							59 text 2310  ·  Example · Output tax
+						60 text Exclusive output tax
+					61 cell
+						62 text 0.00
+					63 cell
+						64 text 170.76
+			65 heading Source & accounting basis, Value: 3
+				66 text Source & accounting basis
+			67 button Open client invoice
+				68 text Open client invoice
+				69 image
+			70 text CIN-5701F0CB
+			71 text Fictional invoice from certified work; not sent to a client.
+			72 container
+				73 text 07 Oct 2026  ·  Same-currency example invoice
+			74 container
+				75 text Posted by  Maha · example client finance reviewer  ·  29/10/2026, 11:56:46
+			76 button (collapsed) Review history · 1 events, Secondary Actions: Expand
+				77 text Review history ·
+				78 text 1
+				79 text  events
+
+The focused UI element is 5 button Close dialog

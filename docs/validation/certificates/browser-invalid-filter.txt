@@ -1,0 +1,98 @@
+Browser tab: 44, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&category=certificates".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&category=certificates
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button Access
+					11 image
+					12 text Access
+				13 button Organisation
+					14 image
+					15 text Organisation
+				16 button My Work
+					17 image
+					46 text My Work
+				18 button Tenders
+					19 image
+					47 text Tenders
+				20 button Projects
+					21 image
+					48 text Projects
+				22 button Company
+					23 image
+					49 text Company
+			24 text Built around your work.
+			25 text Local sample workspace
+		26 container
+			27 text Company
+			28 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				29 menu
+					30 (selected) JAKH Contracting LLC
+					31 JAKH International Ltd
+			32 image
+			33 text field (settable) Search company records
+			34 button Search
+			35 button Explore examples
+				36 image
+				37 text Examples
+			38 button Your account and sign-in
+				39 text AA
+				40 text Ahmed Al Mansoori
+				41 text Project manager
+		42 container main-content
+			43 heading JAKH Contracting LLC, Value: 1
+				44 text JAKH Contracting LLC
+			45 text Company-wide operations and shared information
+			92 container
+				93 image
+				94 text Report dates are reversed.
+			50 text CLIENT WORK & BILLING
+			51 heading Client certificates, Value: 2
+				52 text Client certificates
+			53 text Measure work once. Follow its review, invoice and accounting status here.
+			54 button (disabled) Export findings
+				55 image
+				56 text Export findings
+			57 container
+				58 text Project
+				59 pop up button (collapsed, settable) Project, Value: Harbour Tower, Secondary Actions: Expand
+					60 menu
+						61 All authorised projects
+						62 Garden Residences
+						63 (selected) Harbour Tower
+			64 container
+				65 text Measurement status
+				66 pop up button (collapsed, settable) Measurement status, Value: All measurement states, Secondary Actions: Expand
+					67 menu
+						68 (selected) All measurement states
+						69 draft
+						70 technical
+						71 commercial
+						72 finance
+						73 returned
+						74 approved
+						75 cancelled
+			76 container
+				77 text From
+				78 date field (settable) From, Value: 2026-11-01
+					79 container
+						80 stepper
+						81 stepper
+						82 stepper
+					83 pop up button Show date picker Show date picker
+			84 container
+				85 text Through
+				86 date field (settable) Through, Value: 2026-10-29
+					87 container
+						88 stepper
+						89 stepper
+						90 stepper
+					91 pop up button Show date picker Show date picker
+
+The focused UI element is 88 stepper

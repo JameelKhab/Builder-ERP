@@ -1,0 +1,42 @@
+✔ cumulative measurement follows approved predecessor, independent stages and separate typed client invoice (467.877042ms)
+✔ measurement ceiling, full line set, periods, stale versions and immutable evidence are enforced (646.466542ms)
+✔ returns preserve cycles, all reviewers are independent and live earlier authority is rechecked (521.922833ms)
+✔ finance policy needs independent contract authority and current account snapshots (481.039583ms)
+✔ whole final quantity exhausts authoritative line cents and retention, not rounded unit rates (421.727459ms)
+✔ missing measurement evidence blocks submission and replaced evidence stays available (415.324792ms)
+✔ project/company scope applies to contracts, evidence, invoices, search and complete report (392.210959ms)
+✔ invoice posting checks independent separate limit, period, current author, immutability and exact FX (396.576708ms)
+✔ reports separate accounting date population, preserve filtered totals and reject invalid ranges (378.254541ms)
+✔ additive examples are idempotent and every supplied project has an invoiced, draft and review example (363.609667ms)
+✖ foreign contract and separately dated invoice FX preserve balanced company AR and retention cents (388.680584ms)
+✔ certificate and invoice findings export the complete filtered population with safe spreadsheet text (376.034625ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5351.774125
+
+✖ failing tests:
+
+test at app/tests/certificates.test.mjs:76:1
+✖ foreign contract and separately dated invoice FX preserve balanced company AR and retention cents (388.680584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '126358.84'
+  - '126358.85'
+             ^
+
+      at TestContext.<anonymous> (file:///Users/jameelkhabaze/Documents/Codex/Builder-ERP/app/tests/certificates.test.mjs:81:295)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '126358.84',
+    expected: '126358.85',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

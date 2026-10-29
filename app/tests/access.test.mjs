@@ -183,7 +183,7 @@ test('invalid grants cannot expand authority or partially replace existing permi
     company_id: 'build'
   }], [{
     ...grant,
-    role_id: 'ar_clerk'
+    role_id: 'payroll_officer'
   }], [{
     ...grant,
     approval_limit: '100'

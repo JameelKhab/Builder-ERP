@@ -1,0 +1,145 @@
+Browser tab: 44, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=certificates".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=certificates
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		30 container
+			100 button Toggle main navigation
+				101 image
+			31 text Company
+			32 pop up button (collapsed, settable) Company, Value: JAKH International Ltd, Secondary Actions: Expand
+				33 menu
+					34 JAKH Contracting LLC
+					35 (selected) JAKH International Ltd
+			36 image
+			37 text field (settable) Search company records
+			38 button Search
+			39 button Explore examples
+				40 image
+			42 button Your account and sign-in
+		46 container main-content
+			47 heading JAKH International Ltd, Value: 1
+				48 text JAKH International Ltd
+			49 text Company-wide operations and shared information
+			102 text CLIENT WORK & BILLING
+			103 heading Client certificates, Value: 2
+				104 text Client certificates
+			105 text Measure work once. Follow its review, invoice and accounting status here.
+			106 button Export findings
+				107 image
+				108 text Export findings
+			109 container
+				110 text Project
+				111 pop up button (collapsed, settable) Project, Value: All authorised projects, Secondary Actions: Expand
+					112 menu
+						113 (selected) All authorised projects
+						114 Creek Offices
+			115 container
+				116 text Measurement status
+				117 pop up button (collapsed, settable) Measurement status, Value: All measurement states, Secondary Actions: Expand
+					118 menu
+						119 (selected) All measurement states
+						120 draft
+						121 technical
+						122 commercial
+						123 finance
+						124 returned
+						125 approved
+						126 cancelled
+			127 container
+				128 text From
+				129 date field (settable) From
+					130 container
+						131 stepper
+						132 stepper
+						133 stepper
+					134 pop up button Show date picker Show date picker
+			135 container
+				136 text Through
+				137 date field (settable) Through
+					138 container
+						139 stepper
+						140 stepper
+						141 stepper
+					142 pop up button Show date picker Show date picker
+			143 heading What this tells you, Value: 3
+				144 text What this tells you
+			145 content list
+				146 container
+					147 AXListMarker •
+					148 text 4 measurements match the period-end and status filters; 3 are certified.
+				149 container
+					150 AXListMarker •
+					151 text USD 8537.76 certified gross; 426.89 held as retention; 5122.66 still awaiting certification; 5122.67 certified due has no posted invoice.
+				152 container
+					153 AXListMarker •
+					154 text 1 posted invoices match the accounting-date filters: USD 3415.10 receivable and 170.76 retention.
+				155 container
+					156 AXListMarker •
+					157 text Selected invoice-to-ledger differences: AR 0.00; retention 0.00.
+				158 container
+					159 AXListMarker •
+					160 text Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash.
+			161 container
+				162 heading Contracts · start or continue work, Value: 3
+					163 text Contracts · start or continue work
+				164 button Example · Creek Offices · awarded offer Creek Offices · Finance policy recorded USD 34,151.04
+					165 text Example · Creek Offices · awarded offer
+					166 container
+						167 text Creek Offices  ·  Finance policy recorded
+					168 text USD 34,151.04
+					169 image
+			170 container
+				171 heading Measurements · 4, Value: 3
+					172 text Measurements ·  4
+				173 button Example · Creek Offices · measured work 4 2026-10-22 – 2026-10-28 · Technical review USD 5,122.66 Project manager to review
+					174 text Example · Creek Offices · measured work 4
+					175 container
+						176 text 2026-10-22  –  2026-10-28  ·  Technical review
+					177 text USD 5,122.66
+					178 text Project manager to review
+					179 image
+				180 button Example · Creek Offices · measured work 3 2026-10-15 – 2026-10-21 · Certified USD 1,707.56 AR reviewer to post invoice
+					181 text Example · Creek Offices · measured work 3
+					182 container
+						183 text 2026-10-15  –  2026-10-21  ·  Certified
+					184 text USD 1,707.56
+					185 text AR reviewer to post invoice
+					186 image
+				187 button Example · Creek Offices · measured work 2 2026-10-08 – 2026-10-14 · Certified USD 3,415.10 AR preparer to finish invoice
+					188 text Example · Creek Offices · measured work 2
+					189 container
+						190 text 2026-10-08  –  2026-10-14  ·  Certified
+					191 text USD 3,415.10
+					192 text AR preparer to finish invoice
+					193 image
+				194 button Example · Creek Offices · measured work 1 2026-10-01 – 2026-10-07 · Certified USD 3,415.10 Invoice posted; customer settlement is separate
+					195 text Example · Creek Offices · measured work 1
+					196 container
+						197 text 2026-10-01  –  2026-10-07  ·  Certified
+					198 text USD 3,415.10
+					199 text Invoice posted; customer settlement is separate
+					200 image
+			201 container
+				202 heading Client invoices · 3, Value: 3
+					203 text Client invoices ·
+				204 text Filtered by accounting date. Posted charges are separate from customer receipts.
+				205 button Example · Creek Offices · measured work 2 CIN-21660D22 · draft · Due 2026-11-30 USD 3,415.11
+					206 text Example · Creek Offices · measured work 2
+					207 container
+						208 text CIN-21660D22  ·  draft  · Due  2026-11-30
+					209 text USD 3,415.11
+					210 image
+				211 button Example · Creek Offices · measured work 1 CIN-1C5686BA · posted · Due 2026-11-30 USD 3,415.10
+					212 text Example · Creek Offices · measured work 1
+					213 container
+						214 text CIN-1C5686BA  ·  posted  · Due  2026-11-30
+					215 text USD 3,415.10
+					216 image
+				217 button Example · Creek Offices · measured work 3 CIN-732BD4DF · submitted · Due 2026-11-30 USD 1,707.56
+					218 text Example · Creek Offices · measured work 3
+					219 container
+						220 text CIN-732BD4DF  ·  submitted  · Due  2026-11-30
+					221 text USD 1,707.56
+					222 image
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=certificates

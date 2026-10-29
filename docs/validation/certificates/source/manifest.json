@@ -1,0 +1,30 @@
+{
+  "captured": "2026-10-29",
+  "method": "Read-only JAKH browser accessibility observations; no source code or business mutations",
+  "files": [
+    {
+      "file": "approved-certificate.txt",
+      "sha256": "40e19aa325379d6ed509f10a1b2327e9ff0449ca37a63ee704ed4cf6e77d5a28"
+    },
+    {
+      "file": "contract.txt",
+      "sha256": "b1560de0b7133df8432e99b6f8862443256892172688063a8648ae5d6818e002"
+    },
+    {
+      "file": "invoice-journal.txt",
+      "sha256": "5bb155bf124e076b6b915034bdd766969a46d4eacdfbea9e200355646492c459"
+    },
+    {
+      "file": "invoice.txt",
+      "sha256": "c2377e76d019a7144145812ba157d87745aac0f07a19e44d5dbfe548fa2d758b"
+    },
+    {
+      "file": "pending-certificate.txt",
+      "sha256": "11654990c27491b07988cb447033afb8362d468a4e0703a5c62c17328076eb50"
+    },
+    {
+      "file": "register.txt",
+      "sha256": "8ff64d0fc78aa1a20132fefac9d4203281d95c25502ca8ce1a504100ad9c3f0f"
+    }
+  ]
+}

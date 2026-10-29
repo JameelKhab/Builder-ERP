@@ -141,3 +141,7 @@ The local original NCR subset now connects requirement/location/WBS, immediate c
 Implemented company accounts/periods, original exact-currency journal preparation and independent posting/reversal, immutable source snapshots, scoped ledger/trial-balance findings and export. Explicit separate journal authority defaults to zero. Tax, bills/invoices, AP/AR/payments, bank/stock reconciliation, WBS accounting allocation and full source migration remain required; no illustrative balance counts as posted accounting.
 
 Implementation progress (29 October 2026): commercial offers and independently verified awards now retain approved-estimate scope, exact values, company/currency identity, validity/payment/retention/advance terms and original acceptance evidence. Original contracts remain pending finance configuration. This implements a subset of M09/M15; the full construction, supporting ERP and migration acceptance requirements above remain unchanged. See implementation/commercial-local.md.
+
+## 29 October 2026 — Client measurement and accounting continuation
+
+Original contract finance activation, cumulative measured certificates and separate typed client invoices are implemented for the subset in `implementation/certificates-local.md`. Approval authority, actual advance balance, retention, invoice posting and cash remain separate facts. The entire comparison scope, including corrections, client receipts/advances, variations, retention releases, broader ERP and source migration, remains required.

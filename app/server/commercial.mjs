@@ -144,7 +144,7 @@ export function commercial(db, actorId, today = () => now().slice(0, 10)) {
         ...l,
         snapshot: JSON.parse(l.snapshot)
       })),
-      state_label: 'Finance setup required'
+      state_label: get("SELECT id FROM contract_finance_policies WHERE contract_id=? AND state='active'",id) ? 'Finance policy active' : 'Finance setup required', can_open_finance: can('certificates.read',r)
     };
   };
   const detail = id => {

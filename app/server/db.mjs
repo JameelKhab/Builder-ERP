@@ -1,3 +1,5 @@
+import { installCertificateExamples } from './certificates-examples.mjs';
+import { installCertificates } from './certificates-schema.mjs';
 import { installCommercialExamples } from './commercial-examples.mjs';
 import { installCommercial } from './commercial-schema.mjs';
 import { installBoqIntake } from './boq-intake-schema.mjs';
@@ -67,6 +69,7 @@ export function openDatabase(path = ':memory:', {
   installEstimates(db);
   installBoqIntake(db);
   installCommercial(db);
+  installCertificates(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);
@@ -78,6 +81,7 @@ export function openDatabase(path = ':memory:', {
     installEstimateExamples(db);
     installBoqExamples(db);
     installCommercialExamples(db);
+    installCertificateExamples(db);
   }
   return db;
 }
