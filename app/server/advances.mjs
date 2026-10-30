@@ -169,7 +169,7 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
       can_invoice: position.can_invoice,
       evidence: all(db, 'SELECT id,filename,sha256,length(bytes) size,created_at FROM client_advance_evidence WHERE advance_id=? ORDER BY created_at,id', id),
       history: all(db, 'SELECT e.*,u.name actor FROM client_advance_events e JOIN users u ON u.id=e.actor_id WHERE advance_id=? ORDER BY e.id', id),
-      findings: [`${r.currency} ${r.principal} requested principal and ${r.tax} explicit exclusive tax.`, `${r.currency} ${approvedPrincipal(r.contract_id)} approved principal against the original ceiling ${s.contract.terms.advance_ceiling}; approval does not establish cash.`, received ? `${r.currency} ${received.settled} actually recorded against the invoice, including ${received.paid_principal} principal; certificate recovery is a separate controlled allocation.` : 'No posted advance receipt balance exists.'] };
+      findings: [`${r.currency} ${r.principal} requested principal and ${r.tax} explicit exclusive tax.`, `${r.currency} ${approvedPrincipal(r.contract_id)} approved principal against the original ceiling ${s.contract.terms.advance_ceiling}; approval does not establish cash.`, received ? `${r.currency} ${received.settled} recorded as receipts and ${received.credit_received || '0.00'} applied as noncash credit. Funded principal is ${received.paid_principal}; recovery is a separate controlled allocation.` : 'No posted advance receipt balance exists.'] };
   }
   function save(id, input) {
     return transaction(db, () => {

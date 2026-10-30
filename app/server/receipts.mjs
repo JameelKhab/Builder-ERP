@@ -5,6 +5,7 @@ import { ROLE_BY_ID } from '../shared/access.mjs';
 import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { payableRatio } from './payables.mjs';
 import { assertAdvancePaidProtection } from './advance-recovery.mjs';
+import { creditReserved, protectCreditReceipt } from './customer-credit-state.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`,
   now = () => new Date().toISOString();
@@ -102,14 +103,14 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
       company_total: i.company_total,
       accounting_date: i.accounting_date,
       due_date: i.due_date,
-      settled: b.settled,
+      settled: b.settled, funded:b.funded, credit_received:b.credit_received, credit_applied:b.credit_applied, refunded:b.refunded,
       base_settled: b.base_settled,
       credited:b.credited,base_credited:b.base_credited,credit_id:b.credit_id,credit_journal_id:b.credit_journal_id,
       debit_open:b.debit_open,customer_credit:b.customer_credit,
       open: b.open,
       base_open: b.base_open,
       latest_date: b.latest_date,
-      reserved: reserved(i.id)
+      reserved: money(new D(reserved(i.id)).plus(creditReserved(db,i.id,-1)))
     };
   };
   function balances(c, p = null, to = '9999-12-31') {
@@ -236,10 +237,11 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         b = receivableBalance(db, i),
         control = account(a.control.id, r.company_id, !!r.reversal_of);
       requireThat(r.accounting_date >= b.latest_date, 'Receipt or reversal must follow all dependent settlement dates.');
+      if (r.reversal_of) protectCreditReceipt(db,i.id);
       if (r.reversal_of && i.advance_id) assertAdvancePaidProtection(db, i, { id: r.id, amount: a.amount });
       if (!r.reversal_of) {
         requireThat(JSON.stringify(control) === JSON.stringify(a.control) && b.open === a.open_snapshot && b.base_open === a.base_snapshot && b.latest_date === a.latest_date, 'Invoice balance or control changed. Return or withdraw and revise.', 409);
-        requireThat(new D(a.amount).plus(reserved(i.id, r.id)).lte(b.open), 'Another approved receipt reserves this balance.', 409);
+        requireThat(new D(a.amount).plus(reserved(i.id, r.id)).plus(creditReserved(db,i.id,-1)).lte(b.open), 'Another approved receipt reserves this balance.', 409);
       }
     }
     return {
@@ -325,7 +327,7 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         requireThat(r.state === 'approved' && can('record', r) && actorId !== r.approved_by && reviewer(r, r.approved_by), 'Recording needs a different person and current receipt approval authority.', 403);
         const ref = text(input.bank_reference, 'Actual bank reference', 120),
           key = ref.toLocaleLowerCase('en');
-        requireThat(!get('SELECT id FROM client_receipts WHERE bank_id=? AND reference_key=?', r.bank_id, key) && !get('SELECT id FROM payments WHERE bank_id=? AND reference_key=?', r.bank_id, key), 'This bank reference is already recorded.', 409);
+        requireThat(!get('SELECT id FROM client_receipts WHERE bank_id=? AND reference_key=?', r.bank_id, key) && !get('SELECT id FROM payments WHERE bank_id=? AND reference_key=?', r.bank_id, key) && !get('SELECT id FROM client_credit_settlements WHERE bank_id=? AND reference_key=?', r.bank_id, key), 'This bank reference is already recorded.', 409);
         post(r, ref, file(input.file));
       } else {
         if (input.action === 'submit') {
@@ -527,6 +529,7 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         invoiced: money(sum(rr.map(i => i.total))),
         credited: money(sum(rr.map(i=>i.credited))),
         settled: money(sum(rr.map(i => i.settled))),
+        credit_received:money(sum(rr.map(i=>i.credit_received))),credit_applied:money(sum(rr.map(i=>i.credit_applied))),refunded:money(sum(rr.map(i=>i.refunded))),
         open: money(sum(rr.map(i => i.open))),
         debit_open:money(sum(rr.map(i=>i.debit_open))),customer_credit:money(sum(rr.map(i=>i.customer_credit))),
         overdue: money(sum(rr.filter(i => i.due_date < to).map(i => i.debit_open)))
@@ -546,6 +549,11 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         const controls = [...new Set(p.allocations.filter(a => a.project_id === projectId).map(a => a.control.id))];
         for (const a of controls) ledgerOpen = ledgerOpen.plus(sum(all('SELECT base_debit,base_credit FROM ledger_lines WHERE entry_id=? AND project_id=? AND account_id=?', r.journal_id, projectId, a).map(l => new D(l.base_debit).minus(l.base_credit))));
       }
+    }
+    const seenCredit=new Set();
+    for(const i of open) for(const l of receivableBalance(db,get('SELECT * FROM client_invoices WHERE id=?',i.id),to).credit_legs) {
+      const key=JSON.stringify([l.journal_id,l.project_id,l.account_id]);if(seenCredit.has(key))continue;seenCredit.add(key);
+      ledgerOpen=ledgerOpen.plus(sum(all('SELECT base_debit,base_credit FROM ledger_lines WHERE entry_id=? AND project_id=? AND account_id=?',l.journal_id,l.project_id,l.account_id).map(x=>new D(x.base_debit).minus(x.base_credit))));
     }
     const reconciliation = {
       source_open: sourceOpen,
@@ -569,8 +577,8 @@ export function receipts(db, actorId, today = () => now().slice(0, 10)) {
         uncleared: money(new D(net).minus(cleared)),
         fx: money(sum(rows.map(r => r.fx)))
       },
-      findings: [`${new Set(rows.map(r => r.receipt_id)).size} recorded receipts/corrections through ${to}; ${incoming} ${company(c).currency} received and ${out} reversed.`, `${cleared} ${company(c).currency} net receipts have current bank matches dated through the cutoff; ${planned.length} approved plans remain excluded from cash.`, ...groups.map(g => `${g.currency} ${g.debit_open} remains receivable; ${g.overdue} is past due. Customer credit ${g.customer_credit} awaits separate settlement. Original charges ${g.invoiced}, credits ${g.credited}, net recorded cash ${g.settled}; signed net AR ${g.open}.`), `AR source-to-ledger difference: ${reconciliation.difference} ${company(c).currency}.`],
-      limitations: ['Posted client invoices, linked full credits and recorded receipts/corrections are included. Measured-work and advance invoices share this receipt path. Partial credits, refund/reallocation, retention release and unallocated cash remain unfinished.', 'Receipt amounts are movements, not bank opening/closing balances or a full company cash-flow classification.', 'Clearance uses currently active matches dated through cutoff; historical match decisions are retained in audit and are not reconstructed.', project ? 'Selected project allocations only.' : access.has('customer_receipts.read', c) ? 'All company project allocations.' : 'Only your authorised project allocations; not the complete legal-company statement.']
+      findings: [`${new Set(rows.map(r => r.receipt_id)).size} recorded receipts/corrections through ${to}; ${incoming} ${company(c).currency} received and ${out} reversed.`, `${cleared} ${company(c).currency} net receipts have current bank matches dated through the cutoff; ${planned.length} approved plans remain excluded from cash.`, ...groups.map(g => `${g.currency} ${g.debit_open} remains receivable; ${g.overdue} is past due. Customer credit ${g.customer_credit} awaits separate settlement. Original charges ${g.invoiced}, credits ${g.credited}, net recorded cash ${g.settled}, credit received ${g.credit_received}, credit applied ${g.credit_applied}, refunded ${g.refunded}; signed net AR ${g.open}.`), `AR source-to-ledger difference: ${reconciliation.difference} ${company(c).currency}.`],
+      limitations: ['Posted client invoices, linked full credits and recorded receipts/corrections are included. Measured-work and advance invoices share this receipt path. Recorded customer-credit allocation/refund effects are included in AR; receipt cash totals exclude them. Partial credits, retention release and unallocated cash remain unfinished.', 'Receipt amounts are movements, not bank opening/closing balances or a full company cash-flow classification.', 'Clearance uses currently active matches dated through cutoff; historical match decisions are retained in audit and are not reconstructed.', project ? 'Selected project allocations only.' : access.has('customer_receipts.read', c) ? 'All company project allocations.' : 'Only your authorised project allocations; not the complete legal-company statement.']
     };
   }
   return {

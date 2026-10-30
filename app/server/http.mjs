@@ -1,6 +1,7 @@
 import { receipts } from './receipts.mjs';
 import { certificates } from './certificates.mjs';
 import { advances } from './advances.mjs';
+import { customerCredits } from './customer-credits.mjs';
 import { clientCorrections } from './client-corrections.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
@@ -73,6 +74,7 @@ export function createApi(db, {
   app.use('/api/customer-receipts/documents', express.json({limit:'3mb'}));
   app.use('/api/certificates/measurements', express.json({limit:'3mb'}));
   app.use('/api/client-advances/documents', express.json({limit:'3mb'}));
+  app.use('/api/customer-credits/documents', express.json({limit:'3mb'}));
   app.use('/api/client-corrections/documents', express.json({limit:'3mb'}));
   app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
@@ -156,6 +158,7 @@ export function createApi(db, {
     req.customerReceipts = receipts(db, session.previewId || session.actorId, today);
     req.certificates = certificates(db, session.previewId || session.actorId, today);
     req.advances = advances(db, session.previewId || session.actorId, today);
+    req.customerCredits = customerCredits(db, session.previewId || session.actorId, today);
     req.clientCorrections = clientCorrections(db, session.previewId || session.actorId, today);
     req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
@@ -180,6 +183,14 @@ export function createApi(db, {
   app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
   app.get('/api/client-advances/options',(req,res)=>res.json(req.advances.options(req.query.company,req.query.project||null)));
+  app.get('/api/customer-credits/options',(req,res)=>res.json(req.customerCredits.options(req.query.company,req.query.project||null)));
+  app.get('/api/customer-credits/documents',(req,res)=>res.json(req.customerCredits.list(req.query.company,req.query.project||null)));
+  app.get('/api/customer-credits/report',(req,res)=>res.json(req.customerCredits.report(req.query.company,{project:req.query.project||null,currency:req.query.currency||null,to:req.query.to})));
+  app.get('/api/customer-credits/documents/:id',(req,res)=>res.json(req.customerCredits.detail(req.params.id)));
+  app.post('/api/customer-credits/documents',(req,res)=>res.status(201).json(req.customerCredits.save(null,req.body)));
+  app.put('/api/customer-credits/documents/:id',(req,res)=>res.json(req.customerCredits.save(req.params.id,req.body)));
+  app.post('/api/customer-credits/documents/:id/decision',(req,res)=>res.json(req.customerCredits.decide(req.params.id,req.body)));
+  app.get('/api/customer-credits/evidence/:id',(req,res)=>{const f=req.customerCredits.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="credit-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/client-corrections/options',(req,res)=>res.json(req.clientCorrections.options(req.query.company,req.query.project||null)));
   app.get('/api/client-corrections/documents',(req,res)=>res.json(req.clientCorrections.list(req.query.company,req.query.project||null)));
   app.get('/api/client-corrections/report',(req,res)=>res.json(req.clientCorrections.report(req.query.company,{project:req.query.project||null,currency:req.query.currency||null,to:req.query.to})));

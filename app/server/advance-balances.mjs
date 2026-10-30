@@ -21,8 +21,9 @@ export function advanceSettlement(db, invoice, cutoff = '9999-12-31') {
   requireThat(typeof cutoff === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(cutoff) && !Number.isNaN(Date.parse(cutoff)) && new Date(cutoff).toISOString().slice(0, 10) === cutoff, 'Enter a valid calendar date.');
   if (invoice.accounting_date > cutoff) return { settled: '0.00', paid_principal: '0.00', paid_tax: '0.00', paid_principal_carrying: '0.00', open_receivable: '0.00', latest_date: null };
   const b = receivableBalance(db, invoice, cutoff);
-  if(b.credit_id) return {settled:b.settled,paid_principal:'0.00',paid_tax:'0.00',paid_principal_carrying:'0.00',open_receivable:b.open,customer_credit:b.customer_credit,latest_date:b.latest_date};
-  return { ...advancePaidComponents(invoice, b.settled), open_receivable: b.open, latest_date: b.latest_date };
+  const creditFacts=b.credit_legs.length?{funded:b.funded,credit_received:b.credit_received}:{};
+  if(b.credit_id) return {settled:b.settled,...creditFacts,paid_principal:'0.00',paid_tax:'0.00',paid_principal_carrying:'0.00',open_receivable:b.open,customer_credit:b.customer_credit,latest_date:b.latest_date};
+  return { ...advancePaidComponents(invoice, b.funded), settled:b.settled, ...creditFacts, open_receivable: b.open, latest_date: b.latest_date };
 }
 
 export function contractAdvancePaid(db, contractId, cutoff) {

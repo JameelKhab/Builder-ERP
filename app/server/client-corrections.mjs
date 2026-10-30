@@ -2,6 +2,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
 import { advanceAuthority } from './advances.mjs';
+import { creditPlans } from './customer-credit-state.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 import { appliedCorrection, effectiveCertificate, effectiveRecoveries } from './client-correction-state.mjs';
 import { D, money, sum, requireThat } from './money.mjs';
@@ -82,12 +83,15 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
     const recoveries = invoice && isAdvance ? effectiveRecoveries(db, invoice.id) : !isAdvance ? all('SELECT * FROM client_advance_recoveries WHERE certificate_id=? ORDER BY ordinal', s.id) : [];
     if (isAdvance && recoveries.length) blockers.push(`Correct the certified recovery first: ${recoveries.map(r => r.certificate_id).join(', ')}.`);
     const settlement = invoice?.state === 'posted' ? receivableBalance(db, invoice) : null;
+    // Preserve pre-credit-settlement review signatures when no new financial fact exists.
+    if(settlement && !settlement.credit_legs.length)for(const key of ['funded','credit_received','credit_applied','refunded','credit_legs'])delete settlement[key];
     const pendingReceipts = invoice ? all("SELECT id,version,payload,reversal_of FROM client_receipts WHERE state='approved' ORDER BY id").filter(r => JSON.parse(r.payload).allocations.some(a => a.invoice_id === invoice.id)).map(r => ({
       id: r.id,
       version: r.version,
       reversal_of: r.reversal_of
     })) : [];
     if (pendingReceipts.length) blockers.push(`Return, cancel or record approved cash plans first: ${pendingReceipts.map(r => r.id).join(', ')}.`);
+    if(invoice&&creditPlans(db,invoice.id).length)blockers.push('Return, cancel or record approved customer credit settlements before correcting this source.');
     const lastCorrection = get("SELECT max(effective_date) date FROM client_corrections WHERE contract_id=? AND state='applied'", s.contract_id)?.date;
     const earliest = [s.request_date || s.period_to, invoice?.accounting_date, settlement?.latest_date, lastCorrection].filter(Boolean).sort().at(-1);
     day(effectiveDate);
@@ -127,7 +131,7 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
       credit_total: journal.length ? invoice.total : '0.00',
       credit_base: journal.length ? invoice.company_total : '0.00',
       credit_exposure: money(sum(journal.map(l => l.base_debit))),
-      customer_credit_after: settlement ? settlement.settled : '0.00',
+      customer_credit_after: settlement ? (settlement.funded??settlement.settled) : '0.00',
       journal,
       earliest_date: earliest,
       blockers
@@ -273,7 +277,7 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
       can_cancel: r.author_id === actorId && !['applied', 'cancelled'].includes(r.state) && canWrite(r),
       evidence: all('SELECT id,filename,sha256,length(bytes) size,created_at FROM client_correction_evidence WHERE correction_id=? ORDER BY created_at,id', id),
       history: all('SELECT e.*,u.name actor FROM client_correction_events e JOIN users u ON u.id=e.actor_id WHERE correction_id=? ORDER BY e.id', id),
-      findings: [s.journal.length ? `${r.currency} ${s.credit_total} full invoice credit; original functional carrying ${s.credit_base}.` : 'No posted invoice is affected, so this source withdrawal has no accounting credit.', s.settlement ? `${r.currency} ${s.customer_credit_after} cash in the retained review basis remains after this correction. No cash is refunded. Open the original invoice for its current balance.` : 'No recorded customer cash is affected by this correction.', r.certificate_id ? (r.state==='applied'?'This measurement and its certified recovery are withdrawn; original records remain.':'Measurement and its certified recovery will be withdrawn together at application; original records remain.') : (r.state==='applied'?'The approved advance has been withdrawn; original approval and evidence remain.':'The approved advance will be withdrawn at application; original approval and evidence remain.')]
+      findings: [s.journal.length ? `${r.currency} ${s.credit_total} full invoice credit; original functional carrying ${s.credit_base}.` : 'No posted invoice is affected, so this source withdrawal has no accounting credit.', s.settlement ? `${r.currency} ${s.customer_credit_after} net funding in the retained review basis remains after this correction. No cash is refunded. Open the original invoice for its current balance.` : 'No recorded customer funding is affected by this correction.', r.certificate_id ? (r.state==='applied'?'This measurement and its certified recovery are withdrawn; original records remain.':'Measurement and its certified recovery will be withdrawn together at application; original records remain.') : (r.state==='applied'?'The approved advance has been withdrawn; original approval and evidence remain.':'The approved advance will be withdrawn at application; original approval and evidence remain.')]
     };
   }
   function list(company, project = null) {

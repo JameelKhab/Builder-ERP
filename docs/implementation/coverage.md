@@ -1,5 +1,8 @@
 # Builder ERP implementation coverage — 30 October 2026
 
+Latest step (30 October): Customer-credit allocation/refund service/API now has independent zero-default authority, exact carrying/FX, cross-project balancing, reservations, retained evidence, bank matching and scoped AR findings/CSV (schema 19). Dedicated credit UI/examples, settlement reversals, ownership handover and full source parity remain open. See [credit validation](../validation/customer-credits/README.md). Earlier checkpoint summaries below remain historical.
+
+
 Latest local step (30 October): Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. See [workspace validation](../validation/correction-workspace/README.md). All 267 functions, 34 contracts and 21 domains remain tracked; no full parity is certified.
 
 

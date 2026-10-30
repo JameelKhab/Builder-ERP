@@ -17,7 +17,7 @@ function protectedAmounts(db, invoiceId) {
   return Object.fromEntries(['principal', 'tax', 'base_principal', 'base_tax'].map(k => [k, money(sum(allocations.map(a => a[k])))]));
 }
 export function assertAdvancePaidProtection(db, invoice, reversal = null) {
-  const protectedBalance = protectedAmounts(db, invoice.id), paid = receivableBalance(db, invoice).settled;
+  const protectedBalance = protectedAmounts(db, invoice.id), paid = receivableBalance(db, invoice).funded;
   const reserved = sum(pendingAdvanceReversals(db, invoice.id, reversal?.id).map(r => r.amount));
   const projected = new D(paid).minus(reserved).minus(reversal?.amount || '0');
   requireThat(projected.gte(0), 'Other approved corrections reserve this advance receipt balance.', 409);
@@ -29,7 +29,7 @@ function sources(db, contractId, cutoff) {
     const snapshot = JSON.parse(invoice.snapshot), journal = JSON.parse(invoice.journal_json);
     const paid = advanceSettlement(db, invoice, cutoff), previous = protectedAmounts(db, invoice.id);
     const pending = pendingAdvanceReversals(db, invoice.id);
-    const usable = advancePaidComponents(invoice, money(positive(new D(paid.settled).minus(sum(pending.map(r => r.amount))))));
+    const usable = advancePaidComponents(invoice, money(positive(new D(paid.funded??paid.settled).minus(sum(pending.map(r => r.amount))))));
     return { invoice_id: invoice.id, advance_id: invoice.advance_id, invoice_date: invoice.invoice_date, accounting_date: invoice.accounting_date,
       currency: invoice.currency, principal: snapshot.advance.principal, tax: snapshot.advance.tax,
       base_principal: journal.find(l => l.account_id === snapshot.accounts.advance.id).base_credit,
@@ -43,7 +43,7 @@ export function recoveryQuote(db, contract, policy, cutoff, gross, retention) {
   const all = sources(db, contract.id, cutoff);
   // Keep pre-advance certificate snapshots compatible; unpaid invoices alone are
   // not an eligible balance and must not invalidate an existing measurement.
-  if (!all.some(s => new D(s.paid.settled).gt(0) || new D(s.previous.principal).gt(0) || s.pending.length)) return null;
+  if (!all.some(s => new D(s.paid.funded??s.paid.settled).gt(0) || new D(s.previous.principal).gt(0) || s.pending.length)) return null;
   const eligible = money(sum(all.map(s => s.available_principal)));
   const netBefore = new D(gross).minus(retention);
   let target = min(money(new D(gross).times(contract.terms.recovery_percent).div(100)), eligible, netBefore);

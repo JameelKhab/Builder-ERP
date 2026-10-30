@@ -3,6 +3,7 @@ import { installAdvanceExamples } from './advances-examples.mjs';
 import { installAdvances } from './advances-schema.mjs';
 import { installAdvanceRecovery } from './advance-recovery-schema.mjs';
 import { installClientCorrections } from './client-corrections-schema.mjs';
+import { installCustomerCredits } from './customer-credits-schema.mjs';
 import { installReceipts } from './receipts-schema.mjs';
 import { installReceiptExamples } from './receipts-examples.mjs';
 import { installCertificateExamples } from './certificates-examples.mjs';
@@ -81,6 +82,7 @@ export function openDatabase(path = ':memory:', {
   installAdvances(db);
   installAdvanceRecovery(db);
   installClientCorrections(db);
+  installCustomerCredits(db);
   if (examples) {
     installProcurementExamples(db);
     installFoundationExamples(db);

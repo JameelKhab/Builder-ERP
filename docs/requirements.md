@@ -175,3 +175,8 @@ Full source-annulment service/API now independently reviews advance or certified
 ## 30 October 2026 — Client correction workspace
 
 Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. The form preserves context after save, shows blockers before acceptance and distinguishes unbilled withdrawal from an invoice credit. Existing users/limits/data remain intact; only new explicitly fictional examples and synthetic reviewers are added. See `implementation/correction-workspace-local.md` (from docs/).
+
+
+## 30 October 2026 — Customer credit settlement foundation
+
+Customer-credit allocation/refund service/API now has independent zero-default authority, exact carrying/FX, cross-project balancing, reservations, retained evidence, bank matching and scoped AR findings/CSV (schema 19). Dedicated credit UI/examples, settlement reversals, ownership handover and full source parity remain open. Actual cash and noncash funding remain distinct. The full original scope is unchanged; see `implementation/customer-credits-local.md`.

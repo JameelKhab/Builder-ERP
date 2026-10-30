@@ -48,3 +48,8 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 ## Client correction checkpoint
 
 Follow `../docs/implementation/contracts/client-corrections-v1.md`. Schema 18 full-annulment service/API now preserves original records, exact original credits and effective measurement/recovery release atomically; cash remains customer credit. Keep source order/dependency, current separate reviewers/limits and dated balances. Correction UI/reports/CSV, My Work/search and additive examples are connected; refunds/reallocation, partial/forward changes and ownership handover remain next. `npm test` uses a test-only Date bootstrap; never import it from runtime launchers or weaken accounting date guards.
+
+
+## Customer credit foundation
+
+Follow `../docs/implementation/contracts/customer-credits-v1.md`. Schema 19 separates credit allocation/refund approval, recording and independent bank match, with zero-default customer_credit_approval_limit. Preserve original carrying/residuals, cross-project balanced transfer, cash versus noncash advance funding and shared reservations/reversal protection. Legacy review snapshots must remain compatible when no new facts exist. UI/examples, settlement reversals and ownership handover are unfinished; see customer-credits-local.md.

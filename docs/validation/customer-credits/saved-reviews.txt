@@ -1,0 +1,195 @@
+Browser tab: 46, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=client-corrections".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=client-corrections
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			5 button Toggle main navigation
+				6 image
+			7 text Company
+			8 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				9 menu
+					10 (selected) JAKH Contracting LLC
+					11 JAKH International Ltd
+			12 image
+			13 text field (settable) Search company records
+			14 button Search
+			15 button Explore examples
+				16 image
+			17 button Your account and sign-in
+		18 container main-content
+			19 heading JAKH Contracting LLC, Value: 1
+				20 text JAKH Contracting LLC
+			21 text Company-wide operations and shared information
+			22 container
+				23 text CONTROLLED CLIENT CHANGES
+				24 heading Client corrections, Value: 2
+					25 text Client corrections
+				26 text Correct approved advances or certified work, with the original records kept intact.
+				27 button Request correction
+					28 image
+					29 text Request correction
+				30 checkbox Requests & next actions, Value: 1
+				31 checkbox Correction report, Value: 0
+				32 text Project
+				33 pop up button (collapsed, settable) Project, Value: All authorised projects, Secondary Actions: Expand
+					34 menu
+						35 (selected) All authorised projects
+						36 Garden Residences
+						37 Harbour Tower
+				38 text Request status
+				39 pop up button (collapsed, settable) Request status, Value: All corrections, Secondary Actions: Expand
+					40 menu
+						41 (selected) All corrections
+						42 Draft
+						43 Technical review
+						44 Commercial review
+						45 Finance review
+						46 Changes requested
+						47 Applied
+						48 Cancelled
+				49 button Example · Harbour Tower · Blocked · correct certified recovery first Harbour Tower · Draft correction Correct the certified recovery first: CER-EE8FF974. AED 200 Proposed invoice credit
+					50 text Example · Harbour Tower · Blocked · correct certified recovery first
+					51 container
+						52 text Harbour Tower  ·  Draft correction
+					53 text Correct the certified recovery first: CER-EE8FF974.
+					54 text AED 200
+					55 text Proposed invoice credit
+					56 image
+				57 button Example · Harbour Tower · Certified period awaiting technical review Harbour Tower · Technical review Independent technical reviewer AED 0 No accounting credit
+					58 text Example · Harbour Tower · Certified period awaiting technical review
+					59 container
+						60 text Harbour Tower  ·  Technical review
+					61 text Independent technical reviewer
+					62 text AED 0
+					63 text No accounting credit
+					64 image
+				65 button Example · Harbour Tower · Paid invoice credited · cash retained Harbour Tower · Applied · originals retained Review the credit and settle any customer credit separately AED 315 Posted credit
+					66 text Example · Harbour Tower · Paid invoice credited · cash retained
+					67 container
+						68 text Harbour Tower  ·  Applied · originals retained
+					69 text Review the credit and settle any customer credit separately
+					70 text AED 315
+					71 text Posted credit
+					72 image
+				73 button Example · Harbour Tower · Certified recovery withdrawn with exact credit Harbour Tower · Applied · originals retained Review the credit and settle any customer credit separately AED 539.59 Posted credit
+					74 text Example · Harbour Tower · Certified recovery withdrawn with exact credit
+					75 container
+						76 text Harbour Tower  ·  Applied · originals retained
+					77 text Review the credit and settle any customer credit separately
+					78 text AED 539.59
+					79 text Posted credit
+					80 image
+				81 button Example · Harbour Tower · Cancelled request · source stays approved Harbour Tower · Cancelled request History retained; no correction applied AED 0 No accounting credit
+					82 text Example · Harbour Tower · Cancelled request · source stays approved
+					83 container
+						84 text Harbour Tower  ·  Cancelled request
+					85 text History retained; no correction applied
+					86 text AED 0
+					87 text No accounting credit
+					88 image
+				89 button Example · Harbour Tower · Returned · revise evidence and impact Harbour Tower · Changes requested Author to revise the basis and start a fresh review AED 0 No accounting credit
+					90 text Example · Harbour Tower · Returned · revise evidence and impact
+					91 container
+						92 text Harbour Tower  ·  Changes requested
+					93 text Author to revise the basis and start a fresh review
+					94 text AED 0
+					95 text No accounting credit
+					96 image
+				97 button Example · Harbour Tower · Awaiting independent finance review Harbour Tower · Finance review Independent finance reviewer to apply the correction AED 84 Proposed invoice credit
+					98 text Example · Harbour Tower · Awaiting independent finance review
+					99 container
+						100 text Harbour Tower  ·  Finance review
+					101 text Independent finance reviewer to apply the correction
+					102 text AED 84
+					103 text Proposed invoice credit
+					104 image
+				105 button Example · Harbour Tower · Unpaid full credit · originals retained Harbour Tower · Applied · originals retained Review the credit and settle any customer credit separately AED 126 Posted credit
+					106 text Example · Harbour Tower · Unpaid full credit · originals retained
+					107 container
+						108 text Harbour Tower  ·  Applied · originals retained
+					109 text Review the credit and settle any customer credit separately
+					110 text AED 126
+					111 text Posted credit
+					112 image
+				113 button Example · Harbour Tower · Unbilled cancellation · no accounting Harbour Tower · Applied · originals retained Source withdrawn; original evidence retained AED 0 No accounting credit
+					114 text Example · Harbour Tower · Unbilled cancellation · no accounting
+					115 container
+						116 text Harbour Tower  ·  Applied · originals retained
+					117 text Source withdrawn; original evidence retained
+					118 text AED 0
+					119 text No accounting credit
+					120 image
+				121 button Example · Garden Residences · Blocked · correct certified recovery first Garden Residences · Draft correction Correct the certified recovery first: CER-8BF0F82D. AED 200 Proposed invoice credit
+					122 text Example · Garden Residences · Blocked · correct certified recovery first
+					123 container
+						124 text Garden Residences  ·  Draft correction
+					125 text Correct the certified recovery first: CER-8BF0F82D.
+					126 text AED 200
+					127 text Proposed invoice credit
+					128 image
+				129 button Example · Garden Residences · Certified period awaiting technical review Garden Residences · Technical review Independent technical reviewer AED 0 No accounting credit
+					130 text Example · Garden Residences · Certified period awaiting technical review
+					131 container
+						132 text Garden Residences  ·  Technical review
+					133 text Independent technical reviewer
+					134 text AED 0
+					135 text No accounting credit
+					136 image
+				137 button Example · Garden Residences · Paid invoice credited · cash retained Garden Residences · Applied · originals retained Review the credit and settle any customer credit separately AED 315 Posted credit
+					138 text Example · Garden Residences · Paid invoice credited · cash retained
+					139 container
+						140 text Garden Residences  ·  Applied · originals retained
+					141 text Review the credit and settle any customer credit separately
+					142 text AED 315
+					143 text Posted credit
+					144 image
+				145 button Example · Garden Residences · Certified recovery withdrawn with exact credit Garden Residences · Applied · originals retained Review the credit and settle any customer credit separately AED 539.59 Posted credit
+					146 text Example · Garden Residences · Certified recovery withdrawn with exact credit
+					147 container
+						148 text Garden Residences  ·  Applied · originals retained
+					149 text Review the credit and settle any customer credit separately
+					150 text AED 539.59
+					151 text Posted credit
+					152 image
+				153 button Example · Garden Residences · Cancelled request · source stays approved Garden Residences · Cancelled request History retained; no correction applied AED 0 No accounting credit
+					154 text Example · Garden Residences · Cancelled request · source stays approved
+					155 container
+						156 text Garden Residences  ·  Cancelled request
+					157 text History retained; no correction applied
+					158 text AED 0
+					159 text No accounting credit
+					160 image
+				161 button Example · Garden Residences · Returned · revise evidence and impact Garden Residences · Changes requested Author to revise the basis and start a fresh review AED 0 No accounting credit
+					162 text Example · Garden Residences · Returned · revise evidence and impact
+					163 container
+						164 text Garden Residences  ·  Changes requested
+					165 text Author to revise the basis and start a fresh review
+					166 text AED 0
+					167 text No accounting credit
+					168 image
+				169 button Example · Garden Residences · Awaiting independent finance review Garden Residences · Finance review Independent finance reviewer to apply the correction AED 84 Proposed invoice credit
+					170 text Example · Garden Residences · Awaiting independent finance review
+					171 container
+						172 text Garden Residences  ·  Finance review
+					173 text Independent finance reviewer to apply the correction
+					174 text AED 84
+					175 text Proposed invoice credit
+					176 image
+				177 button Example · Garden Residences · Unpaid full credit · originals retained Garden Residences · Applied · originals retained Review the credit and settle any customer credit separately AED 126 Posted credit
+					178 text Example · Garden Residences · Unpaid full credit · originals retained
+					179 container
+						180 text Garden Residences  ·  Applied · originals retained
+					181 text Review the credit and settle any customer credit separately
+					182 text AED 126
+					183 text Posted credit
+					184 image
+				185 button Example · Garden Residences · Unbilled cancellation · no accounting Garden Residences · Applied · originals retained Source withdrawn; original evidence retained AED 0 No accounting credit
+					186 text Example · Garden Residences · Unbilled cancellation · no accounting
+					187 container
+						188 text Garden Residences  ·  Applied · originals retained
+					189 text Source withdrawn; original evidence retained
+					190 text AED 0
+					191 text No accounting credit
+					192 image
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=client-corrections

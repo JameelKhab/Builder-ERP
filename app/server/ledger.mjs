@@ -164,7 +164,8 @@ export function ledger(db, actorId, today = () => now().slice(0, 10)) {
       const company = old?.company_id || input.company_id;
       access.requireCap('ledger.manage', company);
       if (old) version(old, input.version);
-      requireThat(['asset', 'liability', 'equity', 'income', 'expense'].includes(input.type) && ['general', 'bank', 'payable', 'receivable', 'tax', 'stock', 'client_advance'].includes(input.purpose), 'Choose a valid account type and purpose.');
+      requireThat(['asset', 'liability', 'equity', 'income', 'expense'].includes(input.type) && ['general', 'bank', 'payable', 'receivable', 'tax', 'stock', 'client_advance', 'client_credit_transfer'].includes(input.purpose), 'Choose a valid account type and purpose.');
+      requireThat(input.purpose !== 'client_credit_transfer' || input.type === 'asset', 'Credit transfer control must be an asset account.');
       requireThat(input.purpose !== 'client_advance' || input.type === 'liability', 'Client advance control must be a liability account.');
       const code = txt(input.code, 'Account code', 20),
         name = txt(input.name, 'Account name', 120);

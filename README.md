@@ -6,7 +6,7 @@ An original construction ERP for the journey from bidding and tendering through 
 
 ## Current status
 
-The latest application step is the **[client correction workspace](docs/implementation/correction-workspace-local.md)**. **269 automated tests and the frontend build pass.** Preparation, impact/blocker review, independent decisions, source/evidence/history links, My Work/search, reports/CSV and 27 additive examples connect to exact original invoice credits and measurement/recovery withdrawal. Recorded cash stays separate. Customer-credit allocation/refunds, partial/forward adjustments and ownership handover remain next. The saved schema-18 example database has 106 tables. This is still an incomplete ERP, not a production release or completed JAKH migration.
+The latest step is the **[customer-credit accounting foundation](docs/implementation/customer-credits-local.md)**. Customer-credit allocation/refund service/API now has independent zero-default authority, exact carrying/FX, cross-project balancing, reservations, retained evidence, bank matching and scoped AR findings/CSV (schema 19). Dedicated credit UI/examples, settlement reversals, ownership handover and full source parity remain open. All 279 automated tests and the frontend build pass. The saved database has 111 tables. This remains an incomplete ERP, not a production release or completed migration.
 
 The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 
@@ -32,7 +32,7 @@ The original implementation advanced before a sufficient functional comparison. 
 
 These paths include service-enforced company/project permissions, exact currency calculations, independent financial authority, retained history, meaningful examples and report findings for their implemented populations. They do not complete the surrounding domains. See [validation evidence](docs/validation/) and [the project log](docs/project-log.md).
 
-**Next:** customer-credit reallocation/refunds, partial/forward adjustments and ownership handover. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
+**Next:** customer-credit UI/examples, exact settlement reversals, partial/forward adjustments and ownership handover. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
 
 ## Run locally
 

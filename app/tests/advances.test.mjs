@@ -5,6 +5,8 @@ import assert from 'node:assert/strict';
 import { openDatabase } from '../server/db.mjs';
 import { advances, advanceSettlement } from '../server/advances.mjs';
 import { certificates } from '../server/certificates.mjs';
+import { customerCredits } from '../server/customer-credits.mjs';
+import { receivableBalance } from '../server/receivable-balance.mjs';
 import { clientCorrections } from '../server/client-corrections.mjs';
 import { receipts } from '../server/receipts.mjs';
 import { ledger } from '../server/ledger.mjs';
@@ -219,6 +221,19 @@ test('foreign advance uses separate request, invoice and bank rates without reva
   const final=f.writer.report('jakh',{project:'harbour',currency:'USD'});assert.equal(final.rows[0].base_liability,'0.00');assert.equal(final.rows[0].customer_credit,'129.64');assert.equal(final.reconciliation.difference,'0.00');assert.equal(final.tax_reconciliation.difference,'0.00');
   assert.equal(receipts(f.db,'advance-approver',today).report('jakh',{project:'harbour'}).reconciliation.difference,'0.00');
   assert.equal(f.db.prepare('SELECT base_credit FROM ledger_lines WHERE entry_id=? AND description=?').get(r.journal_id,'Customer settlement exchange difference').base_credit,'20.33','A full credit must not reverse original bank FX');
+  // Transfer an original USD credit to new USD invoices at different historical rates.
+  const targetA=invoice(f,approved(f,{contract_id:c.id,principal:'100',rate:'3.8'}),{rate:'3.9'}),targetB=invoice(f,approved(f,{contract_id:c.id,principal:'100',rate:'3.9'}),{rate:'4'});
+  const transfer=ledger(f.db,'example-client-finance-reviewer',today).account(null,{company_id:'jakh',code:'1397',name:'Foreign credit transfer',type:'asset',purpose:'client_credit_transfer',active:true,reason});
+  f.db.prepare("UPDATE memberships SET customer_credit_approval_limit='1000000' WHERE user_id='advance-approver'").run();
+  const cm=customerCredits(f.db,'advance-writer',today),cr=customerCredits(f.db,'advance-approver',today),cc=customerCredits(f.db,'example-receipt-recorder',today);
+  const settle=allocations=>{let x=cm.save(null,{company_id:'jakh',kind:'allocation',source_invoice_id:i.id,title:'Foreign credit allocation',accounting_date:today(),basis:reason,allocations,transfer_account:transfer.id,gain_account:gain,loss_account:loss,file:evidence});x=decide(cr,decide(cm,x,'submit'),'approve');return decide(cc,x,'record');};
+  let allocated=settle([{invoice_id:targetA.id,amount:'100'}]);
+  assert.equal(allocated.payload.legs[0].base_amount,'370.00');assert.equal(allocated.payload.legs[1].base_amount,'390.00');assert.equal(f.db.prepare('SELECT base_debit FROM ledger_lines WHERE entry_id=? AND account_id=?').get(allocated.journal_id,loss).base_debit,'20.00');
+  settle([{invoice_id:targetA.id,amount:'5'},{invoice_id:targetB.id,amount:'24.64'}]);
+  const source=f.db.prepare('SELECT * FROM client_invoices WHERE id=?').get(i.id);assert.equal(receivableBalance(f.db,source).customer_credit,'0.00');assert.equal(receivableBalance(f.db,source).base_open,'0.00');assert.equal(advanceSettlement(f.db,f.db.prepare('SELECT * FROM client_invoices WHERE id=?').get(targetA.id)).paid_principal,'100.00');
+  assert.equal(cm.report('jakh',{currency:'USD'}).reconciliation.difference,'0.00');assert.equal(receipts(f.db,'advance-approver',today).report('jakh').reconciliation.difference,'0.00');
+  const fundedMeasurement=measurer.save(null,{...attempted,title:'Measurement recovers noncash funded advances'});assert.ok(fundedMeasurement.snapshot.advance_recovery.allocations.some(a=>a.invoice_id===targetA.id));
+
 });
 
 function policyForRecovery(f, extra = {}) {

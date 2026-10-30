@@ -1,0 +1,10 @@
+{
+  "old_tables": 106,
+  "new_tables": 111,
+  "all_old_columns_and_rows_preserved": true,
+  "all_new_limits_zero": true,
+  "idempotent": true,
+  "integrity": "ok",
+  "foreign_keys": 0,
+  "saved_database_untouched": true
+}
