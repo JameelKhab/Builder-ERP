@@ -1,0 +1,93 @@
+Browser tab: 55, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4196/#section=Company&area=Overview&category=client-corrections".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=client-corrections
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4196/#main-content
+		3 container
+			4 button Builder ERP
+			5 text JAKH Contracting LLC
+			6 container Main navigation
+				7 button Home
+					8 image
+					9 text Home
+				10 button My Work
+					11 image
+					12 text My Work
+				13 button Projects
+					14 image
+					15 text Projects
+				16 button Company
+					17 image
+					18 text Company
+			19 text Built around your work.
+			20 text Local sample workspace
+		21 container
+			22 text Company
+			23 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				24 menu
+					25 (selected) JAKH Contracting LLC
+					26 JAKH International Ltd
+			27 image
+			28 text field (settable) Search company records
+			29 button Search
+			30 button Explore examples
+				31 image
+				32 text Examples
+			33 button Your account and sign-in
+				34 text L·
+				35 text Lina · example correction preparer
+				36 text Accounts receivable clerk
+		37 container main-content
+			38 heading JAKH Contracting LLC, Value: 1
+				39 text JAKH Contracting LLC
+			40 text Company-wide operations and shared information
+			41 button All client corrections
+				42 image
+				43 text All client corrections
+			44 container
+				45 text CLIENT CORRECTION ·  CCR-1F8746A6
+				46 heading Browser example · new unbilled request, Value: 2
+					47 text Browser example · new unbilled request
+				48 text Harbour Tower  ·  Draft correction  · Effective  2026-10-30
+				49 button Revise correction
+				50 text Next action Resolve the blockers before submitting or accepting Proposed full invoice credit AED 0 Cash retained in this review basis AED 0 Source Approved advance Prepared by  Lina · example correction preparer
+				51 heading Before this can proceed, Value: 3
+					52 text Before this can proceed
+				53 text Attach original correction evidence before submitting.
+				54 text Reviewers can return the request. Its author can revise the basis and start a fresh review.
+				55 heading What this tells you, Value: 3
+					56 text What this tells you
+				57 content list
+					58 container
+						59 AXListMarker •
+						60 text AED 0.00 full invoice credit; original functional carrying 0.00.
+					61 container
+						62 AXListMarker •
+						63 text AED 0.00 cash in the retained review basis remains after this correction. No cash is refunded. Open the original invoice for its current balance.
+					64 container
+						65 AXListMarker •
+						66 text The approved advance will be withdrawn at application; original approval and evidence remain.
+				67 heading Reason and intended outcome, Value: 3
+					68 text Reason and intended outcome
+				69 text Fictional withdrawal to verify evidence is required before submission.
+				70 button Original advance
+					71 text Original
+					72 text advance
+				73 heading Supporting evidence, Value: 3
+					74 text Supporting evidence
+				75 text No evidence attached. Add it before submission.
+				76 heading Your next action, Value: 3
+					77 text Your next action
+				78 container
+					79 text Reason for this decision
+					80 text entry area (settable) Reason for this decision
+				81 button (disabled) Submit for finance review
+					82 text Submit for  finance  review
+				83 button (disabled) Cancel this request
+				84 button (collapsed) Review route and history · 1 events, Secondary Actions: Expand
+					85 text Review route and history ·
+					86 text 1
+					87 text  events
+				88 button (collapsed) Exact accounting and recovery impact, Secondary Actions: Expand
+					89 text Exact accounting and recovery impact
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=client-corrections

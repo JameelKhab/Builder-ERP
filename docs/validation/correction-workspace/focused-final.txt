@@ -1,0 +1,22 @@
+✔ individual HTTP identities approve advances, recover paid advances through independent certificates and AR, block unsupported cash corrections and enforce scope (7489.480666ms)
+✔ correction examples are additive, scoped, reconciled and connected to sources and every project guide (2737.252291ms)
+✔ correction options, My Work, search and reports enforce source scope and separate preparation/review authority (1862.6815ms)
+✔ complete correction findings and CSV preserve cutoff, separate currencies, safety and original cash (1523.874666ms)
+✔ approved unbilled cancellation releases allowance without rewriting approval or inventing accounting (1710.812916ms)
+✔ unpaid advance credit reverses exact original lines and respects report cutoff (1523.608958ms)
+✔ recovered advance needs linked certificate credit; paid cash survives as customer credit and every control reconciles (1106.768ms)
+✔ withdrawal of an uninvoiced certified replacement releases recovery and blocks retained draft invoice (1005.68525ms)
+✔ approved cash plans block credit; later recorded cash makes earlier correction basis stale (1046.280625ms)
+✔ certificate accounting reports include dated credits independently from original invoice date (990.596167ms)
+✔ later certificates block earlier annulment and the three review stages remain independent/current (1050.832125ms)
+✔ changed invoice or receipt invalidates the entire reviewed basis; returns permit fresh review (1011.206334ms)
+✔ closed periods and injected journal failure cannot leave a partial credit or released recovery (1022.175542ms)
+✔ source scope, evidence, separate credit authority and original author departure are enforced correctly (1021.932167ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11662.111417

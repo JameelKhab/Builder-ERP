@@ -180,8 +180,9 @@ export function createApi(db, {
   app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
   app.get('/api/client-advances/options',(req,res)=>res.json(req.advances.options(req.query.company,req.query.project||null)));
+  app.get('/api/client-corrections/options',(req,res)=>res.json(req.clientCorrections.options(req.query.company,req.query.project||null)));
   app.get('/api/client-corrections/documents',(req,res)=>res.json(req.clientCorrections.list(req.query.company,req.query.project||null)));
-  app.get('/api/client-corrections/report',(req,res)=>res.json(req.clientCorrections.report(req.query.company,{project:req.query.project||null,to:req.query.to})));
+  app.get('/api/client-corrections/report',(req,res)=>res.json(req.clientCorrections.report(req.query.company,{project:req.query.project||null,currency:req.query.currency||null,to:req.query.to})));
   app.get('/api/client-corrections/documents/:id',(req,res)=>res.json(req.clientCorrections.detail(req.params.id)));
   app.post('/api/client-corrections/documents',(req,res)=>res.status(201).json(req.clientCorrections.save(null,req.body)));
   app.put('/api/client-corrections/documents/:id',(req,res)=>res.json(req.clientCorrections.save(req.params.id,req.body)));

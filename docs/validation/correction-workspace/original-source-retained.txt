@@ -1,0 +1,37 @@
+Browser tab: 56, Title: "Builder ERP · Construction workspace", URL: "http://localhost:4197/#section=My+Work&area=Overview".
+0 AXWebArea Builder ERP · Construction workspace, URL: localhost:4197/#section=My+Work&area=Overview
+	1 container Client advance
+		2 container
+			3 heading Client advance, Value: 2, ID: dialog-title
+				4 text Client advance
+			5 button Close dialog
+				6 image
+		7 button All client advances
+			8 image
+			9 text All client advances
+		10 container
+			11 text CLIENT ADVANCE ·  CAD-FC50D654
+			12 heading Example · Harbour Tower · Funding reason needs clarification, Value: 2
+				13 text Example · Harbour Tower · Funding reason needs clarification
+			14 text Harbour Tower  ·  Example · JAKH Contracting LLC development client  ·  Annulled · history retained
+			15 button Contract & finance policy
+			16 text Next action Annulled; settle any remaining customer credit separately Requested principal AED 60 Plus tax  AED 3 Paid principal AED 0 Open invoice  AED 0 Posted recovery AED 0 Certified  AED 0
+			17 heading What this tells you, Value: 3
+				18 text What this tells you
+			19 text AED 60.00 requested principal and 3.00 explicit exclusive tax.
+			20 text AED 130.00 approved principal against the original ceiling 1000.00; approval does not establish cash.
+			21 text No posted advance receipt balance exists.
+			22 text Available for certification now:
+			23 text AED 0
+			24 text . Invoiced principal still held as liability:  AED 0 .
+			25 button Open correction
+			26 button (collapsed) Receipts and recovery trail · 0, Secondary Actions: Expand
+				27 text Receipts and recovery trail ·
+				28 text 0
+			29 button (collapsed) Agreement, accounting basis and original evidence, Secondary Actions: Expand
+				30 text Agreement, accounting basis and original evidence
+			31 button (collapsed) Decision history · 3, Secondary Actions: Expand
+				32 text Decision history ·
+				33 text 3
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: localhost:4197/#section=My+Work&area=Overview

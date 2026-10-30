@@ -1,4 +1,11 @@
 // Internal queries. Public callers must authorise source company/project access.
+export function correctionEntry(db, access, source, kind) {
+  const advance=kind==='advance', key=advance?'advance_id':'certificate_id';
+  const readable=access.has('ar.read',source.company_id,source.project_id) && access.has(advance?'advances.read':'certificates.read',source.company_id,source.project_id);
+  if (!readable) return {correction_request_id:null,can_prepare_correction:false};
+  const existing=db.prepare(`SELECT id FROM client_corrections WHERE ${key}=? AND state<>'cancelled'`).get(source.id);
+  return {correction_request_id:existing?.id||null,can_prepare_correction:!existing && source.state==='approved' && (advance?access.has('advances.write',source.company_id,source.project_id):access.has('certificates.write',source.company_id,source.project_id)||access.has('ar.write',source.company_id,source.project_id))};
+}
 export function appliedCorrection(db, source, to = '9999-12-31') {
   return db.prepare("SELECT * FROM client_corrections WHERE state='applied' AND effective_date<=? AND (advance_id=? OR certificate_id=?)").get(to, source.advance_id || null, source.certificate_id || null) || null;
 }

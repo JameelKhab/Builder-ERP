@@ -6,7 +6,7 @@ An original construction ERP for the journey from bidding and tendering through 
 
 ## Current status
 
-The latest application step is the **[connected client correction service/API](docs/implementation/client-corrections-local.md)**. **266 automated tests and the frontend build pass.** Full annulment preserves original records, reverses original invoice values exactly and releases related measurement/recovery together. Cash remains separate as customer credit. The dedicated correction UI, permanent correction examples, refunds/reallocation and partial adjustments remain unfinished. The saved example database is schema 18, with 106 tables including schema_versions (105 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
+The latest application step is the **[client correction workspace](docs/implementation/correction-workspace-local.md)**. **269 automated tests and the frontend build pass.** Preparation, impact/blocker review, independent decisions, source/evidence/history links, My Work/search, reports/CSV and 27 additive examples connect to exact original invoice credits and measurement/recovery withdrawal. Recorded cash stays separate. Customer-credit allocation/refunds, partial/forward adjustments and ownership handover remain next. The saved schema-18 example database has 106 tables. This is still an incomplete ERP, not a production release or completed JAKH migration.
 
 The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 
@@ -26,11 +26,13 @@ The original implementation advanced before a sufficient functional comparison. 
 | Estimating | [BOQ/resources/building overrides and revisions](docs/implementation/estimates-local.md), [reviewed XLSX/CSV intake with source lineage](docs/implementation/boq-intake-local.md) |
 | Offers and awards | [Approved estimate → offer → acceptance evidence → original contract BOQ](docs/implementation/commercial-local.md) |
 | Client certification | [Finance policy → cumulative measurement → three reviews → separate AR invoicing](docs/implementation/certificates-local.md) |
+| Client advances | [Request/invoice/receipt, protected recovery and reports](docs/implementation/advances-local.md) |
+| Client corrections | [Full source withdrawal, independent review, exact credits and report findings](docs/implementation/correction-workspace-local.md) |
 | Customer receipts | [Invoice allocation → independent approval → recording → bank match/correction](docs/implementation/receipts-local.md) |
 
 These paths include service-enforced company/project permissions, exact currency calculations, independent financial authority, retained history, meaningful examples and report findings for their implemented populations. They do not complete the surrounding domains. See [validation evidence](docs/validation/) and [the project log](docs/project-log.md).
 
-**Next:** complete correction preparation/review UI, scoped My Work/search and meaningful examples, followed by customer-credit reallocation/refunds, partial/forward adjustments and ownership handover. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
+**Next:** customer-credit reallocation/refunds, partial/forward adjustments and ownership handover. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
 
 ## Run locally
 
@@ -62,3 +64,5 @@ Every report begins with findings calculated from the complete authorised filter
 Read [AGENTS.md](AGENTS.md), [requirements](docs/requirements.md), [decisions](docs/decisions.md), [coverage](docs/implementation/coverage.md) and [original implementation contracts](docs/implementation/contracts/) before extending a domain. The [comparison PDF](docs/migration/Builder-ERP-Full-Comparison.pdf), [searchable 267-function register](docs/migration/Builder-ERP-Comparison-Register.html), [data contracts](docs/migration/Builder-ERP-Data-Contracts.csv) and [study history](docs/study/README.md) remain in Git.
 
 **Verified work may now be synced to this GitHub repository. Development stays local. Do not deploy to JAKH or mutate its existing demo.** Runtime databases, credentials, private environment files, dependency directories and scratch tools stay outside Git. Earlier local-only sync entries are historical and superseded by the user's 29 October handover instruction.
+
+Latest checkpoint (30 October): Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. See [correction workspace progress](docs/implementation/correction-workspace-local.md).

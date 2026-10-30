@@ -1,0 +1,48 @@
+Browser tab: 56, Title: "Builder ERP · Construction workspace", URL: "http://localhost:4197/#section=My+Work&area=Overview".
+0 AXWebArea Builder ERP · Construction workspace, URL: localhost:4197/#section=My+Work&area=Overview
+	1 container Client correction
+		2 container
+			3 heading Client correction, Value: 2, ID: dialog-title
+				4 text Client correction
+			5 button Close dialog
+				6 image
+		7 button All client corrections
+			8 image
+			9 text All client corrections
+		10 container
+			11 text CLIENT CORRECTION ·  CCR-B2D08AED
+			12 heading Browser example · revised unbilled correction, Value: 2
+				13 text Browser example · revised unbilled correction
+			14 text Harbour Tower  ·  Applied · originals retained  · Effective  2026-10-30 Next action Review the credit and settle any customer credit separately Applied invoice credit AED 0 Cash retained when applied AED 0 Source Approved advance Prepared by  Lina · example correction preparer
+			15 heading What this tells you, Value: 3
+				16 text What this tells you
+			17 content list
+				18 container
+					19 AXListMarker •
+					20 text AED 0.00 full invoice credit; original functional carrying 0.00.
+				21 container
+					22 AXListMarker •
+					23 text AED 0.00 cash in the retained review basis remains after this correction. No cash is refunded. Open the original invoice for its current balance.
+				24 container
+					25 AXListMarker •
+					26 text The approved advance has been withdrawn; original approval and evidence remain.
+			27 heading Reason and intended outcome, Value: 3
+				28 text Reason and intended outcome
+			29 text FICTIONAL correction walkthrough. No real agreement, invoice, receipt, refund or bank transaction.
+			30 button Original advance
+				31 text Original
+				32 text advance
+			33 heading Supporting evidence, Value: 3
+				34 text Supporting evidence
+			35 link Description: fictional-correction-evidence.txt, Value: localhost:4197/api/client-corrections/evidence/CCE-2D3D0AD5
+			36 text Current basis  ·  98  bytes
+			37 button (collapsed) File fingerprint, Secondary Actions: Expand
+				38 text File fingerprint
+			49 button (collapsed) Review route and history · 6 events, Secondary Actions: Expand
+				50 text Review route and history ·
+				51 text 6
+				52 text  events
+			53 button (collapsed) Exact accounting and recovery impact, Secondary Actions: Expand
+				54 text Exact accounting and recovery impact
+
+The focused UI element is 0 AXWebArea Builder ERP · Construction workspace, URL: localhost:4197/#section=My+Work&area=Overview

@@ -9,6 +9,23 @@ import { receipts } from './receipts.mjs';
 import { ledger } from './ledger.mjs';
 import { D } from './money.mjs';
 export const ADVANCE_EXAMPLES = 'client-advances-v1';
+export function createAdvanceExampleContract(db, p, date, reason, tag='mobilisation') {
+  const today=()=>date, evidence={filename:'fictional-client-basis.txt',base64:Buffer.from(reason).toString('base64')};
+  const em=estimates(db,'ahmed',today),er=estimates(db,'example-estimate-reviewer',today),offers=commercial(db,'ahmed',today),or=commercial(db,'example-commercial-reviewer',today);
+  const setup=certificates(db,'example-client-finance-author',today),finance=certificates(db,'example-client-finance-reviewer',today);
+  const act=(svc,r,action)=>svc.decide(r.id,{version:r.version,action,reason});
+      const company=db.prepare('SELECT * FROM companies WHERE id=?').get(p.company_id),customer=db.prepare("SELECT party_id FROM party_companies WHERE company_id=? AND reference='DEMO-EST-CLIENT'").get(company.id).party_id;
+      let e=em.save(null,{...sampleEstimate(company,customer,date,p.id),title:`Example · ${p.name} · ${tag} contract`,tender_reference:'DEMO-'+tag+'-'+p.code});e=act(er,act(em,e,'submit'),'approve');
+      let o=offers.save(null,sampleOffer(e,date));o=act(or,act(offers,o,'submit'),'approve');
+      const w=db.prepare("SELECT id FROM work_packages WHERE project_id=? AND kind='item' AND cost_code_id=? ORDER BY id LIMIT 1").get(p.id,company.id+'-GENERAL');
+      o=offers.recordAcceptance(o.id,{version:o.version,project_id:p.id,mapping:o.lines.map(l=>({line_key:l.line_key,work_package_id:w.id,location_id:null})),reference:'DEMO-'+tag+'-'+p.code,accepted_on:date,signatory:'Fictional client representative',description:reason,...evidence,reason});
+      or.decideAcceptance(o.acceptances[0].id,{version:1,action:'verify',confirmed:true,reason});
+      const contract=db.prepare('SELECT id FROM client_contracts WHERE offer_id=?').get(o.id);
+      const account=purpose=>db.prepare('SELECT id FROM ledger_accounts WHERE company_id=? AND code=?').get(company.id,purpose).id;
+      let c=setup.savePolicy(null,{contract_id:contract.id,receivable_account:account('1300'),retention_account:account('1310'),revenue_account:account('4100'),tax_account:account('2310'),tax_percent:'5',tax_basis:'gross',recovery_tax_mode:'original_tax',recovery_fx_basis:'unconfigured',basis:reason,reason});
+      c=setup.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'submit',reason});c=finance.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'approve',reason});
+  return {company,contract:c,account};
+}
 export function installAdvanceExamples(db) {
   if (db.prepare('SELECT id FROM sample_packs WHERE id=?').get(ADVANCE_EXAMPLES)) return;
   transaction(db,()=>{
@@ -21,8 +38,7 @@ export function installAdvanceExamples(db) {
       for(const company of ['jakh','build'])db.prepare("INSERT INTO memberships(user_id,company_id,project_id,role_id,advance_approval_limit) VALUES(?,?,'*',?,?)").run(id,company,role,role==='financial_controller'?'1000000':'0');
     }
     const advance=advances(db,'example-advance-author',today),review=advances(db,'example-advance-reviewer',today);
-    const em=estimates(db,'ahmed',today),er=estimates(db,'example-estimate-reviewer',today),offers=commercial(db,'ahmed',today),or=commercial(db,'example-commercial-reviewer',today);
-    const setup=certificates(db,'example-client-finance-author',today),finance=certificates(db,'example-client-finance-reviewer',today),ar=certificates(db,'example-client-accountant',today),measure=certificates(db,'example-measurer',today);
+    const finance=certificates(db,'example-client-finance-reviewer',today),ar=certificates(db,'example-client-accountant',today),measure=certificates(db,'example-measurer',today);
     const act=(s,r,action)=>s.decide(r.id,{version:r.version,action,reason});
     const inv=(source,title,post=true)=>{
       let r=ar.saveInvoice(null,{...source,title,invoice_date:date,accounting_date:date,due_date:date,rate:'1',rate_date:date,rate_source:reason,basis:reason,reason});
@@ -31,16 +47,7 @@ export function installAdvanceExamples(db) {
     const controls={};
     for(const company of ['jakh','build'])controls[company]=ledger(db,'example-client-finance-author',today).account(null,{company_id:company,code:'2390',name:'Example · Client mobilisation advance',type:'liability',purpose:'client_advance',active:true,reason}).id;
     for(const p of db.prepare("SELECT * FROM projects WHERE id IN ('harbour','gardens','creek') ORDER BY id").all()){
-      const company=db.prepare('SELECT * FROM companies WHERE id=?').get(p.company_id),customer=db.prepare("SELECT party_id FROM party_companies WHERE company_id=? AND reference='DEMO-EST-CLIENT'").get(company.id).party_id;
-      let e=em.save(null,{...sampleEstimate(company,customer,date,p.id),title:`Example · ${p.name} · mobilisation contract`,tender_reference:'DEMO-ADV-'+p.code});e=act(er,act(em,e,'submit'),'approve');
-      let o=offers.save(null,sampleOffer(e,date));o=act(or,act(offers,o,'submit'),'approve');
-      const w=db.prepare("SELECT id FROM work_packages WHERE project_id=? AND kind='item' AND cost_code_id=? ORDER BY id LIMIT 1").get(p.id,company.id+'-GENERAL');
-      o=offers.recordAcceptance(o.id,{version:o.version,project_id:p.id,mapping:o.lines.map(l=>({line_key:l.line_key,work_package_id:w.id,location_id:null})),reference:'DEMO-ADV-'+p.code,accepted_on:date,signatory:'Fictional client representative',description:reason,...evidence,reason});
-      or.decideAcceptance(o.acceptances[0].id,{version:1,action:'verify',confirmed:true,reason});
-      const contract=db.prepare('SELECT id FROM client_contracts WHERE offer_id=?').get(o.id);
-      const account=purpose=>db.prepare('SELECT id FROM ledger_accounts WHERE company_id=? AND code=?').get(company.id,purpose).id;
-      let c=setup.savePolicy(null,{contract_id:contract.id,receivable_account:account('1300'),retention_account:account('1310'),revenue_account:account('4100'),tax_account:account('2310'),tax_percent:'5',tax_basis:'gross',recovery_tax_mode:'original_tax',recovery_fx_basis:'unconfigured',basis:reason,reason});
-      c=setup.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'submit',reason});c=finance.decidePolicy(c.policies[0].id,{version:c.policies[0].version,action:'approve',reason});
+      const {company,contract:c,account}=createAdvanceExampleContract(db,p,date,reason);
       const request=(label,principal)=>advance.save(null,{contract_id:c.id,title:`Example · ${p.name} · ${label}`,request_date:date,principal,tax_percent:'5',advance_account:controls[company.id],tax_account:account('2310'),rate:'1',rate_date:date,rate_source:reason,basis:reason,...evidence,reason});
       request('Draft for mobilisation planning','60');
       act(advance,request('Agreement awaiting independent review','80'),'submit');

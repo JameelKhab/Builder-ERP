@@ -2,7 +2,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import { advanceInvoiceCalculation } from './advances.mjs';
 import { recoveryQuote, freezeRecoveries, certifiedRecoveries, contractAdvancePosition } from './advance-recovery.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
-import { appliedCorrection, effectiveCertificate } from './client-correction-state.mjs';
+import { appliedCorrection, effectiveCertificate, correctionEntry } from './client-correction-state.mjs';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
 import { ROLE_BY_ID } from '../shared/access.mjs';
@@ -427,6 +427,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     return {
       ...r,
       ...s,
+      ...correctionEntry(db,access,r,'certificate'),
       lines: JSON.parse(r.lines_json),
       snapshot: JSON.parse(r.snapshot),
       contract: contractData(r.contract_id),

@@ -1,0 +1,547 @@
+{
+  "at": "2026-10-30T10:47:42.511Z",
+  "mode": "scratch",
+  "schema": 18,
+  "original_tables": 106,
+  "original_rows_preserved": true,
+  "numbering": "Only advanced for newly posted fictional journals",
+  "restored_tables_equal": 106,
+  "integrity": "ok",
+  "foreign_keys": 0,
+  "identities": 0,
+  "corrections": 27,
+  "advances": 42,
+  "recoveries": 9,
+  "tables": [
+    {
+      "name": "access_events",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "bank_matches",
+      "rows": 3,
+      "sha256": "08007538db28a11c875e53193d5974a454fcdefab46161256e18ce3aa7a8a0bd"
+    },
+    {
+      "name": "bank_receipt_matches",
+      "rows": 6,
+      "sha256": "95f88c8e4df839f0e299f8dc1622e22d391728a6f3cec2dcd92a276c097de180"
+    },
+    {
+      "name": "bank_rows",
+      "rows": 12,
+      "sha256": "2201e5fc38b0f47e710b9fb1a3a342fc99a0eb81bd99b526ba47de4040f039d4"
+    },
+    {
+      "name": "bank_statement_voids",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "bank_statements",
+      "rows": 4,
+      "sha256": "a6bfbd5a65b685818af68f6ea3d9c9463701fe0952a1eae4702f19e324bd7751"
+    },
+    {
+      "name": "boq_intake_checks",
+      "rows": 9,
+      "sha256": "bb8f11477b6ff9499d0c30346b0cc97d12a59bf37e51675bd8983ec77f2c16aa"
+    },
+    {
+      "name": "boq_intake_events",
+      "rows": 24,
+      "sha256": "c3be52a02f30dbf1c472e953735b6b5061b33839145e6caacafb8486349f933a"
+    },
+    {
+      "name": "boq_intake_files",
+      "rows": 9,
+      "sha256": "e3ce610e089479fc85d4e6cc167a6154cb702c180f95b9f46f5a918df95ac333"
+    },
+    {
+      "name": "boq_intake_lines",
+      "rows": 3,
+      "sha256": "5d6847678df22486f67e84fabb1ed5a2e3b8a85cb22303a596a520a8e3be7df5"
+    },
+    {
+      "name": "boq_intakes",
+      "rows": 9,
+      "sha256": "dda4f33bee90f52569000c01114588ed8c2b5e5a387627f18e20fcf591b366b0"
+    },
+    {
+      "name": "budget_documents",
+      "rows": 9,
+      "sha256": "1afc7ae8fa1ca05b4388ed7b9cdecc4e08f1fd0ac70bfde618f3b22239eb74ba"
+    },
+    {
+      "name": "budget_facts",
+      "rows": 3,
+      "sha256": "aa5adf2ac8ec122f526da9d0e2274b9c5fc7df3a2172ccd5963883c51ff72a94"
+    },
+    {
+      "name": "budget_lines",
+      "rows": 9,
+      "sha256": "85f6f07d1bbf9637180418c2c04655acb22349f82709ca6baf44b38796f2e015"
+    },
+    {
+      "name": "catalogue_units",
+      "rows": 11,
+      "sha256": "58226817cc3448e8c7d4457744e136ee082712d2607759e99210d7bcaa65593e"
+    },
+    {
+      "name": "client_advance_events",
+      "rows": 114,
+      "sha256": "391619f8052212de1da7872c053b062f1f8075e3fdef8715a6772eba32d183d9"
+    },
+    {
+      "name": "client_advance_evidence",
+      "rows": 42,
+      "sha256": "6ff01d569c8a2ec456b408730e02530fd710ff6b5b960caee032aaf053620186"
+    },
+    {
+      "name": "client_advance_recoveries",
+      "rows": 9,
+      "sha256": "bb4637c07fe6cab9c255b03845cd3dd0a66ae15c206bb03e4f3f61e6ff287efd"
+    },
+    {
+      "name": "client_advances",
+      "rows": 42,
+      "sha256": "01005d784ce6f1fff1dfe8318b8b85ab8717d6c2d252c7c3e9d860772dab0a21"
+    },
+    {
+      "name": "client_certificate_lines",
+      "rows": 63,
+      "sha256": "6aeb3ffc88ee2ad26b6dc36d742772d185f8484cbd0f2964d96579169426ffbc"
+    },
+    {
+      "name": "client_certificates",
+      "rows": 24,
+      "sha256": "d8e5123074c18feaae2e783975a7a65bb3732846f523271a3c83e7357e652b95"
+    },
+    {
+      "name": "client_contract_lines",
+      "rows": 36,
+      "sha256": "21be936269d77a96292c7ba8bb7e17072b91e6ccb32bc5be80b65ad8be7573bf"
+    },
+    {
+      "name": "client_contracts",
+      "rows": 12,
+      "sha256": "8075ed7c4c99f824360a9e0030c137947777c7e6b4684371676f9641f1e2f609"
+    },
+    {
+      "name": "client_correction_events",
+      "rows": 72,
+      "sha256": "577dfe427878ad09655d3879f1c87705cb4cbc933692d0a520a203c29d67cbfc"
+    },
+    {
+      "name": "client_correction_evidence",
+      "rows": 27,
+      "sha256": "84ed0b109741078182d9884351cd0965d106f6bf93d5f1277824674474d1ac8f"
+    },
+    {
+      "name": "client_corrections",
+      "rows": 27,
+      "sha256": "8197f3469dff2946983312f977aad1bf69220c4231ce4d2c63acaa0d8e19a22c"
+    },
+    {
+      "name": "client_finance_events",
+      "rows": 237,
+      "sha256": "bcdcd2e8f88bc9cdcf9216e914126fd3a459cd47a2c3fe1535eb187e62f7ffc7"
+    },
+    {
+      "name": "client_invoices",
+      "rows": 33,
+      "sha256": "9d5bb4797e2ef8f6ce5313d6de81999786727463fce301af87ed033fed27ba4e"
+    },
+    {
+      "name": "client_measurement_evidence",
+      "rows": 24,
+      "sha256": "d8b5466fb41670714c80f2eb714f1056f156837df2f4c00dcbbb35017e98821e"
+    },
+    {
+      "name": "client_receipt_allocations",
+      "rows": 15,
+      "sha256": "5b7ef2d1715eae6aa9e747967e34a86890003338555748243b9c8e537ce831b5"
+    },
+    {
+      "name": "client_receipt_events",
+      "rows": 78,
+      "sha256": "83e92d1ad1c96834612c039ec98118184116c24bbd39fc07382ca79420d97bb9"
+    },
+    {
+      "name": "client_receipt_evidence",
+      "rows": 15,
+      "sha256": "63042dd6dca66271422fb1bd7c4fb9e7f4d4302b378ef154932a77e0def5507d"
+    },
+    {
+      "name": "client_receipts",
+      "rows": 24,
+      "sha256": "1cb57569980f696885b79c8ec20c424ae68e92391dba34c0eb35ecf150aae0c1"
+    },
+    {
+      "name": "commercial_events",
+      "rows": 80,
+      "sha256": "bafbdd0338d53d618d54bd09c0dc8c186c272cc5600b056540a031946489a6ec"
+    },
+    {
+      "name": "companies",
+      "rows": 2,
+      "sha256": "abb08b3b341793129c5a8e4d9083a0452f563af529136c67c56753dbfde88d11"
+    },
+    {
+      "name": "construction_cost_facts",
+      "rows": 14,
+      "sha256": "623d9319d0b7f9155a1a03b45029496727eb8954ce953a7616b5c672605ce2e6"
+    },
+    {
+      "name": "contract_finance_policies",
+      "rows": 12,
+      "sha256": "4b45727a6c64c54217caeef78251385bec75fcbe507ca41737dece280ac88ec5"
+    },
+    {
+      "name": "cost_codes",
+      "rows": 2,
+      "sha256": "6a77cff4746a7932fcd6f14be8b773adb33ad35b07b8e530a0a4f551b7d7a0e3"
+    },
+    {
+      "name": "cost_items",
+      "rows": 7,
+      "sha256": "e9791834f71add6c0a335d676ae50ac2182021bfe89d75a51c506125bb11dbc6"
+    },
+    {
+      "name": "document_master_snapshots",
+      "rows": 59,
+      "sha256": "5d45a2dd5e3575aa4845785e035fa02093d7b283cbe89003a9bc48a451b1338b"
+    },
+    {
+      "name": "estimate_events",
+      "rows": 105,
+      "sha256": "00191384986ff75eeccf267f3034b24e35086303d6c19a2b706b2f296245f18b"
+    },
+    {
+      "name": "estimate_handover_lines",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "estimate_handovers",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "estimate_lines",
+      "rows": 155,
+      "sha256": "21a7a41b79a786731cc8a8e6d3d7a3454b081929f547b59d99d2565453b8ca3f"
+    },
+    {
+      "name": "estimate_overrides",
+      "rows": 108,
+      "sha256": "7a4b67ecd34308ce8636e85a1f845cd978021e5850ceb3d8176f8fa312d2a8cb"
+    },
+    {
+      "name": "estimate_resources",
+      "rows": 152,
+      "sha256": "1783a28e7c98da51d5a919bed66c9a97f44d80010f0ff113ba86d635bc85105f"
+    },
+    {
+      "name": "estimate_versions",
+      "rows": 38,
+      "sha256": "71ff38d6434bca6ef111ff8cf93843cb8f46e69515170ba6485941853ad41746"
+    },
+    {
+      "name": "events",
+      "rows": 29,
+      "sha256": "a0da576c2f78e5e5c8f7386ba081420ee76fc347f3964cc1071ebd8baad514fd"
+    },
+    {
+      "name": "foundation_events",
+      "rows": 23,
+      "sha256": "bc1671e90f1548ecb8aaffedd051950c1319d734388b502c96c5218d0be4f2fa"
+    },
+    {
+      "name": "identities",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "identity_codes",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "identity_events",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "identity_limits",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "identity_sessions",
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "identity_state",
+      "rows": 1,
+      "sha256": "8b2dba2cac6e717d066f311eaa98fe3c2bd6a45f03b4bda7acf7580cc205b194"
+    },
+    {
+      "name": "ledger_accounts",
+      "rows": 28,
+      "sha256": "fbfa33684b32c2662b47bb7abbb2d8b7ab709b6d6a824f6ebcdb15b4b85a22bc"
+    },
+    {
+      "name": "ledger_entries",
+      "rows": 93,
+      "sha256": "d6b5663917439dceadce419b2b465f2e580e43177691dcab2dc327bf6b9422ea"
+    },
+    {
+      "name": "ledger_events",
+      "rows": 144,
+      "sha256": "76e022df349cf35a104ee00dcb49ce08d34cc0c739e5c354829e4e9d8622916e"
+    },
+    {
+      "name": "ledger_lines",
+      "rows": 270,
+      "sha256": "8145a745a78b97c3b4a7e44269f1a3a629626722637c4cab1b10dacff66a7879"
+    },
+    {
+      "name": "ledger_periods",
+      "rows": 2,
+      "sha256": "762371cb17be4f573d254ccd5495edc7c63b5906d3085c4a1565c1dd321b77ab"
+    },
+    {
+      "name": "ledger_sequences",
+      "rows": 2,
+      "sha256": "f9dc9b71b74d38e4bfc522a85dea0d9b80f0673be19a47ceb2d97ebb7e018931"
+    },
+    {
+      "name": "master_events",
+      "rows": 18,
+      "sha256": "5469cb17a16d48b81209857f90fb87dfeb310de50554ba31eeb36746b92cfda7"
+    },
+    {
+      "name": "material_receipts",
+      "rows": 13,
+      "sha256": "adda86f30e3a14178021148deccb4c897cb6e40869c61c99c8a29e142356ee60"
+    },
+    {
+      "name": "material_request_lines",
+      "rows": 20,
+      "sha256": "b1ca3cb684c5c781072a450e06a24217fa7b34e9a0e4733641a7b398f3926765"
+    },
+    {
+      "name": "material_requests",
+      "rows": 17,
+      "sha256": "3e493dd279bcf75f1ebd462cd4c692d396f046bcdbb0054c15544eaeeb5c4bbe"
+    },
+    {
+      "name": "memberships",
+      "rows": 57,
+      "sha256": "83e6c92b27a3ec8371b47be2a9d1fd32540924826f18ea56c4b348995aeb5811"
+    },
+    {
+      "name": "parties",
+      "rows": 6,
+      "sha256": "0c3054b961f559ccdd531c301fc85b25269017cac79a11c63b4dc57edb578bf9"
+    },
+    {
+      "name": "party_companies",
+      "rows": 7,
+      "sha256": "4e1f4dfdd86b93b6a378e18f9e5a7087df2c3cf1d5eedeb54d1cfd88d2ab46be"
+    },
+    {
+      "name": "payable_documents",
+      "rows": 18,
+      "sha256": "d920f8b7d22282bba28ed487a5a6fe14a0e065a12340f41d98b59c79264c911d"
+    },
+    {
+      "name": "payable_events",
+      "rows": 49,
+      "sha256": "2e5f29a03a5b8d20016d594b28e87d5b2b9c41658f47448b2b79f19d36308a4c"
+    },
+    {
+      "name": "payable_lines",
+      "rows": 12,
+      "sha256": "21e8f4bde81e2896bb00f0166f83b2eba96fbd9506c49fbff1ab1fbd19828b91"
+    },
+    {
+      "name": "payable_settings",
+      "rows": 2,
+      "sha256": "7417d25dec3c96a7fdb294984044e4395ad15bff91f864f8b4fc6ab939f16208"
+    },
+    {
+      "name": "payable_tax_codes",
+      "rows": 2,
+      "sha256": "6ee9b513599cdb1b20b883ddcb641fd161addcb264816e40a60df6776c57cac6"
+    },
+    {
+      "name": "payment_allocations",
+      "rows": 18,
+      "sha256": "f536288080f0f1dc98b125587e89d12f3f9264001358b4f75307c806869f8f6a"
+    },
+    {
+      "name": "payment_banks",
+      "rows": 4,
+      "sha256": "bfb92f436f454f09064c76e321ee7953c121bc8560faa7445fd02d78151a0e27"
+    },
+    {
+      "name": "payment_events",
+      "rows": 101,
+      "sha256": "63b12149e7a10a13cfd3edba0af75a88cf30d75bec162ce4e0da0777cfee574c"
+    },
+    {
+      "name": "payments",
+      "rows": 24,
+      "sha256": "fc726a4752ddeb5d3c327000e5a6f37d40ab62f184aa2cce60265a566e3c59ec"
+    },
+    {
+      "name": "procurement_events",
+      "rows": 115,
+      "sha256": "f045218e42165587032f80db1c66e3008d8b2e7854e3b6284e927b1bd3363547"
+    },
+    {
+      "name": "product_categories",
+      "rows": 4,
+      "sha256": "2564c4ff934621be18ecfa1cbe2104e416ff9f2180ba41f71d1ae4156a6ad406"
+    },
+    {
+      "name": "product_packs",
+      "rows": 3,
+      "sha256": "96abaf1a55efdfd806ed65f582d92e480649d982a45765aebccbdfaeab8ded20"
+    },
+    {
+      "name": "products",
+      "rows": 9,
+      "sha256": "c77bff31a787e09b77500c395cd187210f59d6ebe69c0188c6d5406c3e0e4da1"
+    },
+    {
+      "name": "project_locations",
+      "rows": 13,
+      "sha256": "a75dd9e9f8d78a9a6fc8b22f2957898b1053181d12ca2555a46f33260fda103d"
+    },
+    {
+      "name": "projects",
+      "rows": 3,
+      "sha256": "d42a587555a92b3528fee9c2b4297abacb7cb7de973810a714e25399c478ff58"
+    },
+    {
+      "name": "purchase_order_lines",
+      "rows": 10,
+      "sha256": "155452af802e3c519bf963aeac36f05a2c07beaa8e9a1c717f0da9cd22a1a5f5"
+    },
+    {
+      "name": "purchase_orders",
+      "rows": 10,
+      "sha256": "fc87ae455c2da2c68351c84577ab4a33e23eac449a81daae81c749d926eb568e"
+    },
+    {
+      "name": "quality_actions",
+      "rows": 12,
+      "sha256": "49a0344097739f59a7f7ad8aafadbcd04c1429be6a0e5bb0bc9f853533037982"
+    },
+    {
+      "name": "quality_cases",
+      "rows": 16,
+      "sha256": "35631518c867b932c8eae918df9db706ea9890d845b0181c88ca4debaad792a5"
+    },
+    {
+      "name": "quality_events",
+      "rows": 119,
+      "sha256": "20a73956392f05ce2509dd8730645f77168bd6115adc0a2fe390550bd649a8bd"
+    },
+    {
+      "name": "quality_evidence",
+      "rows": 37,
+      "sha256": "bc2a68a1ec9895e400b93af1b2933ee22e3465b7d7b1dd6fc9f0d705c8c79da9"
+    },
+    {
+      "name": "quality_impacts",
+      "rows": 76,
+      "sha256": "d10083a02fdb24e33056d10c871c47db2a89fe66588ab4d565af697b544431d4"
+    },
+    {
+      "name": "quote_pack_details",
+      "rows": 7,
+      "sha256": "6155c78a77dda614e7628f1fc303dbbe71d48598ac85a5fff78586e2b3365400"
+    },
+    {
+      "name": "records",
+      "rows": 107,
+      "sha256": "af1e37e3d80ce72c192eb07af4e32a0ebd5f95e81f4df811811ec71ae6c9f3cf"
+    },
+    {
+      "name": "requests",
+      "rows": 13,
+      "sha256": "907e769aa3402de48062b43e4ffa4c7f816c2f6c2ff63370ba9418d5bb89d956"
+    },
+    {
+      "name": "sales_acceptances",
+      "rows": 13,
+      "sha256": "66e52fd35ba377cb85171c6ea1a83f2f0b724df9c3fb2682a9d6567d90d55d10"
+    },
+    {
+      "name": "sales_offer_lines",
+      "rows": 63,
+      "sha256": "2d82696e6287d0a5146fdeba49507e3634de283f0be5883e44c708ae42f5eb85"
+    },
+    {
+      "name": "sales_offers",
+      "rows": 21,
+      "sha256": "99e82e45b090af99c0ec0d029d7a42abea794f785d0e2d5b45ef3c69bcfa7745"
+    },
+    {
+      "name": "sample_packs",
+      "rows": 15,
+      "sha256": "ec7f7561e3d254a460c48765245d2c9aacd6f30ffd21bcd4df1440b1b9c54c05"
+    },
+    {
+      "name": "schema_versions",
+      "rows": 18,
+      "sha256": "2b603c18ab308f4caa1dc8d8738ff52ae1711b4e65dbd99ab6081e033338226d"
+    },
+    {
+      "name": "sourcing_allocations",
+      "rows": 15,
+      "sha256": "5e7a0733471c5a843878b3470bcdce59b91337195b1fd425deb008756e6ffd37"
+    },
+    {
+      "name": "stock_movements",
+      "rows": 27,
+      "sha256": "cc4012b4b6f93a7de4c718d759dad119bd4f62b0bfb21abfe81340b55fce083a"
+    },
+    {
+      "name": "supplier_quotes",
+      "rows": 16,
+      "sha256": "174308a062bbd4d2b2b5e5540faac152fafc23ef01dc12f566423e01f58d5f9e"
+    },
+    {
+      "name": "supplier_term_decisions",
+      "rows": 2,
+      "sha256": "8510e35018e735540722920a7fcfcd4318a61168982bd700a58029a188d3a781"
+    },
+    {
+      "name": "supplier_terms",
+      "rows": 7,
+      "sha256": "7929f23ee8b2ebacd1f1bb2db5faa9f987a0f640b56e660035704e61bd480e3d"
+    },
+    {
+      "name": "users",
+      "rows": 31,
+      "sha256": "42186189c56ef556ba7e323b9372970fed644b53ba931539f914bea026e36e17"
+    },
+    {
+      "name": "vendors",
+      "rows": 7,
+      "sha256": "987ae4dbeed2a25e84a247f3ba1002cc7524f59b38d73ebe28cb747349af099f"
+    },
+    {
+      "name": "work_packages",
+      "rows": 6,
+      "sha256": "500970eb4a117d93df4d2677f72fe93bfab00c82d226105ae97d5d8e2678908e"
+    }
+  ]
+}

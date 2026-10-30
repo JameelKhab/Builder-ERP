@@ -1,0 +1,7 @@
+.correction-blockers { padding: 1rem 1.25rem; border: 1px solid #dfb58b; border-radius: 12px; background: #fff7ee; margin: 1.25rem 0; }
+.correction-blockers h3 { margin-top: 0; }
+.correction-confirm { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1rem; line-height: 1.5; }
+.correction-confirm input { width: 20px; height: 20px; flex: 0 0 20px; margin-top: .2rem; }
+.corrections-page .certificate-evidence code { overflow-wrap: anywhere; }
+.corrections-page .certificate-row span { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 720px) { .corrections-page .certificate-filters { display: grid; grid-template-columns: 1fr; } .corrections-page .inline-actions { flex-wrap: wrap; } }

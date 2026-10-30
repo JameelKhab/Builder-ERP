@@ -162,3 +162,8 @@ Certificate finance approval now atomically freezes invoice-level principal/tax/
 ## 30 October 2026 — Original full-annulment corrections
 
 A full source annulment is distinct from a partial/forward adjustment. Last effective certified periods are unwound with independent technical/commercial/finance review; original records stay immutable. Exact original invoice journals reverse atomically with operational recovery release. Paid cash remains as a labelled customer credit; refund/reallocation must be independently built. Existing zero-default advance/certificate/AR limits govern their respective decisions. Later/pending measurements and approved cash plans block application. Test-only dates are deterministic; actual runtime date controls are preserved. Sales acceptance lists use insertion order for equal timestamps.
+
+
+## 30 October 2026 — Client correction workspace
+
+Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. The form preserves context after save, shows blockers before acceptance and distinguishes unbilled withdrawal from an invoice credit. Existing users/limits/data remain intact; only new explicitly fictional examples and synthetic reviewers are added. See `implementation/correction-workspace-local.md` (from docs/).

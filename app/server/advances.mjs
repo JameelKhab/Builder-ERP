@@ -6,7 +6,7 @@ import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { convertJournal } from './ledger.mjs';
 import { advanceSettlement } from './advance-balances.mjs';
 import { advancePosition, advanceReport } from './advance-report.mjs';
-import { appliedCorrection } from './client-correction-state.mjs';
+import { appliedCorrection, correctionEntry } from './client-correction-state.mjs';
 export { advanceSettlement, contractAdvancePaid } from './advance-balances.mjs';
 
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`;
@@ -160,7 +160,7 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
       const can_open = allocations.every(a => access.has('customer_receipts.read', r.company_id, a.project_id));
       return selected.map(a => ({ id: x.id, title: can_open ? x.title : 'Receipt allocation', date: x.accounting_date, amount: a.amount, reversal: !!x.reversal_of, can_open }));
     }) : [];
-    return { ...r, ...position, snapshot: s, invoice: invoice && { ...position.invoice, total: invoice.total, company_total: invoice.company_total, can_open: access.has('ar.read', r.company_id, r.project_id) }, received, receipt_links,
+    return { ...r, ...position, ...correctionEntry(db,access,r,'advance'), snapshot: s, invoice: invoice && { ...position.invoice, total: invoice.total, company_total: invoice.company_total, can_open: access.has('ar.read', r.company_id, r.project_id) }, received, receipt_links,
       can_open_contract: access.has('certificates.read', r.company_id, r.project_id),
       can_open_certificate: access.has('certificates.read', r.company_id, r.project_id),
       can_edit: r.author_id === actorId && ['draft','returned'].includes(r.state) && can('write', r),

@@ -170,3 +170,8 @@ The authorised original-code implementation now includes the Client advances des
 ## 30 October 2026 — Full correction foundation
 
 Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open. The complete comparison scope and source-migration requirements are unchanged.
+
+
+## 30 October 2026 — Client correction workspace
+
+Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. The form preserves context after save, shows blockers before acceptance and distinguishes unbilled withdrawal from an invoice credit. Existing users/limits/data remain intact; only new explicitly fictional examples and synthetic reviewers are added. See `implementation/correction-workspace-local.md` (from docs/).

@@ -1,5 +1,8 @@
 # Client corrections — connected service checkpoint
 
+This is the retained backend checkpoint. The subsequent [correction workspace](correction-workspace-local.md) completes its dedicated UI/report/examples step and records the current next work.
+
+
 30 October 2026. **Backend/API and existing balance/report views are implemented; the dedicated correction preparation/review UI, My Work/search and permanent examples are next.** This is not a completed correction feature, full credit lifecycle or source-parity acceptance. The complete 267-function/34-contract/21-domain objective remains open.
 
 ## What now works

@@ -90,6 +90,11 @@ test('individual HTTP identities approve advances, recover paid advances through
   const correctionInput={certificate_id:certificate.id,title:'Evidenced full correction of certified period',effective_date:today(),basis:reason,reason,filename:'credit-basis.txt',base64:evidence.toString('base64'),state:'applied',journal_id:'forged'};
   response=await writer('/client-corrections/documents',correctionInput);assert.equal(response.status,201,JSON.stringify(response.body));let credit=response.body;assert.equal(credit.state,'draft');assert.equal(credit.journal_id,null);
   assert.equal((await other('/client-corrections/documents/'+credit.id)).status,404);assert.equal((await other('/client-corrections/evidence/'+credit.evidence_id)).status,404);
+  const correctionOptions=await writer('/client-corrections/options?company=jakh&project=harbour');
+  assert.equal(correctionOptions.status,200);assert.ok(correctionOptions.body.sources.every(r=>r.project_id==='harbour'));
+  assert.equal(correctionOptions.body.sources.find(r=>r.id===certificate.id).existing_correction.id,credit.id);
+  assert.equal((await other('/client-corrections/options?company=jakh&project=harbour')).status,404);
+  assert.equal((await writer('/client-corrections/report?company=jakh&project=harbour&currency=USD')).body.rows.length,0);
   const creditFile=await writer('/client-corrections/evidence/'+credit.evidence_id);assert.deepEqual(creditFile.body,evidence);
   response=await writer(`/client-corrections/documents/${credit.id}/decision`,{version:credit.version,action:'submit',reason});assert.equal(response.status,200,JSON.stringify(response.body));credit=response.body;
   assert.equal((await writer(`/client-corrections/documents/${credit.id}/decision`,{version:credit.version,action:'accept',reason})).status,403);

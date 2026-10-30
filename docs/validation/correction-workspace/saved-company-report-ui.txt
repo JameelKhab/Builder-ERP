@@ -1,0 +1,74 @@
+Browser tab: 46, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=client-corrections".
+0 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=client-corrections
+	1 container root
+		2 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		3 container
+			4 button Toggle main navigation
+				5 image
+			6 text Company
+			7 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				8 menu
+					9 (selected) JAKH Contracting LLC
+					10 JAKH International Ltd
+			11 image
+			12 text field (settable) Search company records
+			13 button Search
+			14 button Explore examples
+				15 image
+			16 button Your account and sign-in
+		17 container main-content
+			18 heading JAKH Contracting LLC, Value: 1
+				19 text JAKH Contracting LLC
+			20 text Company-wide operations and shared information
+			21 container
+				22 text CONTROLLED CLIENT CHANGES
+				23 heading Client corrections, Value: 2
+					24 text Client corrections
+				25 text Correct approved advances or certified work, with the original records kept intact.
+				26 button Request correction
+					27 image
+					28 text Request correction
+				29 checkbox Requests & next actions, Value: 0
+				30 checkbox Correction report, Value: 1
+				31 text Project
+				32 pop up button (collapsed, settable) Project, Value: All authorised projects, Secondary Actions: Expand
+					33 menu
+						34 (selected) All authorised projects
+						35 Garden Residences
+						36 Harbour Tower
+				37 text Currency
+				38 pop up button (collapsed, settable) Currency, Value: All · kept separate, Secondary Actions: Expand
+					39 menu
+						40 (selected) All · kept separate
+						41 AED
+				42 text Effective through
+				43 date field (settable) Effective through, Value: 2026-10-30
+					44 container
+						45 stepper
+						46 stepper
+						47 stepper
+					48 pop up button Show date picker Show date picker
+				49 heading What this tells you, Value: 3
+					50 text What this tells you
+				51 content list
+					52 container
+						53 AXListMarker •
+						54 text 18 correction requests dated through 2026-10-30; 8 applied, including 6 posted credits.
+					55 container
+						56 AXListMarker •
+						57 text 1961.18 AED credited from original carrying values; selected AR ledger credits 1961.18; difference 0.00.
+					58 container
+						59 AXListMarker •
+						60 text Cash is unchanged by these corrections. Customer receipts reports show debit balances and customer credits separately; refunds and reallocations are separate work.
+				61 button Export complete report
+					62 image
+					63 text Export complete report
+				64 text Applied invoice credits ·
+				65 text AED 1,961.18
+				66 button (collapsed) Records behind the findings · 18, Secondary Actions: Expand
+					67 text Records behind the findings ·
+					68 text 18
+				69 button (collapsed) Report definitions and scope, Secondary Actions: Expand
+					70 text Report definitions and scope
+
+The focused UI element is 30 checkbox Correction report, Value: 1

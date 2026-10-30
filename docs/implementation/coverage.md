@@ -1,12 +1,15 @@
 # Builder ERP implementation coverage — 30 October 2026
 
+Latest local step (30 October): Client correction entry/detail/review, source links, My Work/search, scoped project/company findings/CSV and 27 additive examples across both companies/all three projects are now connected. Exact independent full source withdrawal preserves originals and retained cash. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. See [workspace validation](../validation/correction-workspace/README.md). All 267 functions, 34 contracts and 21 domains remain tracked; no full parity is certified.
+
+
 The full scope is retained: **267 functions, 34 data contracts, 21 domains**. This is a current implementation overlay on the historical comparison. No function is certified as migrated or full parity. “Partial” describes a tested subset; “foundation” describes shared models/controls, not a finished screen. The ERP goal remains active.
 
-## Current work
+## Current work and earlier domain checkpoints
 
-Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open. Schema 18; 266 passing tests and build. See `client-corrections-local.md`.
+Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Correction entry/detail/review UI, project/company findings and CSV, My Work/search and 27 additive examples are connected. Customer-credit allocation/refunds, partial/forward adjustments, ownership handover and full source parity remain open. Schema 18; 269 passing tests and build. See `correction-workspace-local.md`.
 
-Advance requests, canonical invoices, actual receipts and protected certificate recovery now have connected service/HTTP evidence (256 tests; schema 17). Original principal/tax carrying, explicit policy, frozen reservations and receipt-reversal guards apply. Certificate findings/export reconcile posted recovery; the dedicated advance workspace, full-population reports/CSV and additive examples are now connected; credits, retention and full parity remain unfinished. See `advances-local.md`.
+Earlier advance checkpoint: requests, canonical invoices, actual receipts and protected certificate recovery have connected service/HTTP evidence (256 tests; schema 17 at that checkpoint). Original principal/tax carrying, explicit policy, frozen reservations and receipt-reversal guards apply. Certificate findings/export reconcile posted recovery; the dedicated advance workspace, full-population reports/CSV and additive examples are now connected; credits, retention and full parity remain unfinished. See `advances-local.md`.
 
 Customer receipts now connect posted invoices to multi-invoice allocation, independent approval, retained remittance evidence, exact AR/bank/FX posting and shared statement matching/corrections. Project-only views restrict combined records while retaining their own amounts. Company/project findings, CSV, examples and 231 passing tests are recorded in `receipts-local.md`. Advances/recovery, credits/unallocated money, retention releases and complete ERP/migration acceptance remain open.
 

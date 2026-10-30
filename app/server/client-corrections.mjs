@@ -16,6 +16,8 @@ const day = v => {
   return v;
 };
 const max = (...values) => money(values.map(v => new D(v)).reduce((a, b) => a.gte(b) ? a : b));
+const labels = { draft: 'Draft correction', returned: 'Changes requested', technical: 'Technical review', commercial: 'Commercial review', finance: 'Finance review', applied: 'Applied · originals retained', cancelled: 'Cancelled request' };
+const next = { draft: 'Author to check impact, attach evidence and submit', returned: 'Author to revise the basis and start a fresh review', technical: 'Independent technical reviewer', commercial: 'Independent commercial reviewer', finance: 'Independent finance reviewer to apply the correction', applied: 'Review the credit and settle any customer credit separately', cancelled: 'History retained; no correction applied' };
 export function clientCorrections(db, actorId, today = () => now().slice(0, 10)) {
   const access = policy(db, actorId);
   access.actor();
@@ -24,6 +26,19 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
     run = (q, ...v) => db.prepare(q).run(...v);
   const canRead = r => access.has(r.advance_id ? 'advances.read' : 'certificates.read', r.company_id, r.project_id) && access.has('ar.read', r.company_id, r.project_id);
   const canWrite = (r, who = actorId) => r.advance_id ? advanceAuthority(db, who, 'advances.write', r) : advanceAuthority(db, who, 'certificates.write', r) || advanceAuthority(db, who, 'ar.write', r);
+  function scope(company, project) {
+    requireThat(get('SELECT id FROM companies WHERE id=?', company) && access.has('ar.read', company, project, !project), 'Correction scope is unavailable.', 404);
+    if (project) requireThat(get('SELECT id FROM projects WHERE id=? AND company_id=?', project, company), 'Project is unavailable.', 404);
+  }
+  function options(company, project = null) {
+    scope(company, project);
+    const projects = all('SELECT id,name FROM projects WHERE company_id=? ORDER BY name', company).filter(p => canRead({company_id:company,project_id:p.id,advance_id:true}) || canRead({company_id:company,project_id:p.id}));
+    const sources = [['client_advances','advance_id'],['client_certificates','certificate_id']].flatMap(([table,key]) => all(`SELECT * FROM ${table} WHERE company_id=? AND state='approved' ORDER BY rowid DESC`,company).filter(s => (!project || s.project_id===project) && canRead({...s,[key]:s.id}) && canWrite({...s,[key]:s.id})).map(s => {
+      const existing=get(`SELECT id,state FROM client_corrections WHERE ${key}=? AND state<>'cancelled'`,s.id);
+      return {id:s.id,kind:key==='advance_id'?'advance':'certificate',title:s.title,project_id:s.project_id,project:projects.find(p=>p.id===s.project_id)?.name,currency:s.currency,existing_correction:existing||null};
+    }));
+    return {company:get('SELECT id,name,currency FROM companies WHERE id=?',company),today:today(),projects,sources,can_write:sources.some(s=>!s.existing_correction)};
+  }
   const row = id => {
     const r = get('SELECT * FROM client_corrections WHERE id=?', id);
     requireThat(r && canRead(r), 'Client correction is unavailable.', 404);
@@ -226,34 +241,45 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
       return detail(id);
     });
   }
-  function detail(id) {
-    const r = row(id),
-      s = JSON.parse(r.snapshot);
-    let blockers = s.blockers;
+  function readiness(r) {
+    const s=JSON.parse(r.snapshot);
+    let blockers = [];
     if (!['applied', 'cancelled'].includes(r.state)) {
       try {
-        blockers = calculate(r, r.effective_date).blockers;
+        validate(r);
+        if (s.journal.length && !get("SELECT id FROM ledger_periods WHERE company_id=? AND state='open' AND start_date<=? AND end_date>=?",r.company_id,r.effective_date,r.effective_date)) blockers.push('The effective date needs an open company accounting period.');
       } catch (e) {
         blockers = [e.message];
       }
     }
+    return blockers;
+  }
+  function detail(id) {
+    const r=row(id),s=JSON.parse(r.snapshot),blockers=readiness(r);
     return {
       ...r,
       snapshot: s,
       blockers,
+      state_label: labels[r.state], next_action: blockers.length ? 'Resolve the blockers before submitting or accepting' : r.state==='applied'&&!r.journal_id?'Source withdrawn; original evidence retained':next[r.state],
+      today: today(), company_currency:get('SELECT currency FROM companies WHERE id=?',r.company_id).currency,
+      project:get('SELECT name FROM projects WHERE id=?',r.project_id).name,
+      author:get('SELECT name FROM users WHERE id=?',r.author_id).name,
+      can_open_journal:access.has('finance.read',r.company_id,r.project_id),
+      can_open_receipts:access.has('customer_receipts.read',r.company_id,r.project_id),
+      can_accept:stageAuthority(r,actorId) && !blockers.length,
       can_edit: r.author_id === actorId && ['draft', 'returned'].includes(r.state) && canWrite(r),
       can_submit: r.author_id === actorId && r.state === 'draft' && canWrite(r),
       can_review: stageAuthority(r, actorId),
       can_cancel: r.author_id === actorId && !['applied', 'cancelled'].includes(r.state) && canWrite(r),
       evidence: all('SELECT id,filename,sha256,length(bytes) size,created_at FROM client_correction_evidence WHERE correction_id=? ORDER BY created_at,id', id),
       history: all('SELECT e.*,u.name actor FROM client_correction_events e JOIN users u ON u.id=e.actor_id WHERE correction_id=? ORDER BY e.id', id),
-      findings: [`${r.currency} ${s.credit_total} full invoice credit; original functional carrying ${s.credit_base}.`, `${r.currency} ${s.customer_credit_after} recorded cash remains a customer credit after application. No cash is refunded by this correction.`, r.certificate_id ? 'Measurement and its certified recovery become ineffective together at application; original records remain.' : 'The approved advance is withdrawn at application; original approval and funding evidence remain.']
+      findings: [s.journal.length ? `${r.currency} ${s.credit_total} full invoice credit; original functional carrying ${s.credit_base}.` : 'No posted invoice is affected, so this source withdrawal has no accounting credit.', s.settlement ? `${r.currency} ${s.customer_credit_after} cash in the retained review basis remains after this correction. No cash is refunded. Open the original invoice for its current balance.` : 'No recorded customer cash is affected by this correction.', r.certificate_id ? (r.state==='applied'?'This measurement and its certified recovery are withdrawn; original records remain.':'Measurement and its certified recovery will be withdrawn together at application; original records remain.') : (r.state==='applied'?'The approved advance has been withdrawn; original approval and evidence remain.':'The approved advance will be withdrawn at application; original approval and evidence remain.')]
     };
   }
   function list(company, project = null) {
-    requireThat(access.has('ar.read', company, project, !project), 'Correction scope is unavailable.', 404);
+    scope(company,project);
     return all('SELECT * FROM client_corrections WHERE company_id=? ORDER BY created_at DESC,id', company).filter(r => (!project || r.project_id === project) && canRead(r)).map(r => {
-      const s = JSON.parse(r.snapshot);
+      const s = JSON.parse(r.snapshot),blockers=readiness(r);
       return {
         id: r.id,
         title: r.title,
@@ -263,6 +289,10 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
         certificate_id: r.certificate_id,
         invoice_id: r.invoice_id,
         state: r.state,
+        state_label:labels[r.state],next_action:blockers.length?blockers[0]:r.state==='applied'&&!r.journal_id?'Source withdrawn; original evidence retained':next[r.state],total:s.credit_total,blockers,
+        project:get('SELECT name FROM projects WHERE id=?',r.project_id).name,
+        contract_id:r.contract_id,
+        source_title:s.source.title,
         currency: r.currency,
         effective_date: r.effective_date,
         credit_total: s.credit_total,
@@ -281,11 +311,13 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
   }
   function report(company, {
     project = null,
+    currency: filterCurrency = null,
     to = today()
   } = {}) {
     day(to);
     requireThat(to <= today(), 'Report cutoff cannot be future.');
-    const rows = list(company, project).filter(r => r.effective_date <= to),
+    requireThat(filterCurrency===null || /^[A-Z]{3}$/.test(filterCurrency),'Choose a three-letter currency.');
+    const rows = list(company, project).filter(r => r.effective_date <= to && (!filterCurrency || r.currency===filterCurrency)),
       applied = rows.filter(r => r.state === 'applied');
     const currency = get('SELECT currency FROM companies WHERE id=?', company).currency;
     let ledgerCredit = new D(0);
@@ -298,6 +330,8 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
       ledger = money(ledgerCredit);
     return {
       company_id: company,
+      company_name:get('SELECT name FROM companies WHERE id=?',company).name,
+      currency:filterCurrency,
       project_id: project,
       to,
       company_currency: currency,
@@ -316,6 +350,7 @@ export function clientCorrections(db, actorId, today = () => now().slice(0, 10))
     };
   }
   return {
+    options,
     save,
     decide,
     detail,
