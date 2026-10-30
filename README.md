@@ -6,7 +6,7 @@ An original construction ERP for the journey from bidding and tendering through 
 
 ## Current status
 
-The latest application step is the **[Client advances workspace and connected recovery](docs/implementation/advances-local.md)**. **256 automated tests and the frontend build pass.** Protected recovery is connected to certificates, invoices and receipt corrections. The dedicated advance UI, scoped findings/CSV, principal and original-tax reconciliation, My Work/search and examples in every supplied project are now connected. Credits, approved cancellation, retention and full source parity remain unfinished. The saved example database is schema 17, with 103 tables including schema_versions (102 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
+The latest application step is the **[connected client correction service/API](docs/implementation/client-corrections-local.md)**. **266 automated tests and the frontend build pass.** Full annulment preserves original records, reverses original invoice values exactly and releases related measurement/recovery together. Cash remains separate as customer credit. The dedicated correction UI, permanent correction examples, refunds/reallocation and partial adjustments remain unfinished. The saved example database is schema 18, with 106 tables including schema_versions (105 domain tables). This is still an incomplete ERP, not a production release or completed JAKH migration.
 
 The full scope remains **267 functions, 34 data contracts and 21 domains**. [Implementation coverage](docs/implementation/coverage.md) records every function and its supporting evidence. No row is certified as full migration parity. Some visible registers still contain read-only synthetic examples, and no production source export/import/reconciliation has occurred.
 
@@ -30,7 +30,7 @@ The original implementation advanced before a sufficient functional comparison. 
 
 These paths include service-enforced company/project permissions, exact currency calculations, independent financial authority, retained history, meaningful examples and report findings for their implemented populations. They do not complete the surrounding domains. See [validation evidence](docs/validation/) and [the project log](docs/project-log.md).
 
-**Next:** complete certificate recovery from actual settled advances, with original liability carrying values, tax/FX, reversal protection, a simple UI, full findings/export and examples. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Credits, retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
+**Next:** complete correction preparation/review UI, scoped My Work/search and meaningful examples, followed by customer-credit reallocation/refunds, partial/forward adjustments and ownership handover. The [handover](START-HERE.md#where-to-pick-up-next) identifies the evidence, files, controls and wider required work. Retention releases, variations, subcontracts, programme/site/handover, assets/people/supporting ERP, full reports/KPIs, governed AI and actual migration remain in scope.
 
 ## Run locally
 

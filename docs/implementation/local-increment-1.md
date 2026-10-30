@@ -126,3 +126,8 @@ Typed advance requests/independent approval, canonical liability invoices and re
 Connected recovery checkpoint: protected allocations, original-tax/historical-consideration posting, reversal reservations, certificate UI/findings/export and authenticated HTTP journeys now pass 253 tests. Schema remains 17. Dedicated advance UI/full report/examples remain next; see advances-local.md.
 
 Client advances workspace checkpoint: dedicated request/evidence/approval UI, shared invoice form, scoped list/options/findings/CSV, original principal/tax reconciliation, My Work/search and 21 permanent examples across both companies/all three projects. 256 tests/build pass; scratch and saved restore match all 103 tables. Desktop/narrow entry/report checks retained. Credits/approved cancellation, recovered-certificate correction, ownership handover, retention and full parity remain open.
+
+
+## 30 October 2026 — Correction backend checkpoint
+
+Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open. See `client-corrections-local.md` and `../validation/client-corrections/README.md`. 266 tests, build, saved schema-18 upgrade and 106-table restore verified.

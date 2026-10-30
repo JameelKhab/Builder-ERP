@@ -2,6 +2,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import { advanceInvoiceCalculation } from './advances.mjs';
 import { recoveryQuote, freezeRecoveries, certifiedRecoveries, contractAdvancePosition } from './advance-recovery.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
+import { appliedCorrection, effectiveCertificate } from './client-correction-state.mjs';
 import { transaction } from './db.mjs';
 import { policy } from './access.mjs';
 import { ROLE_BY_ID } from '../shared/access.mjs';
@@ -26,7 +27,8 @@ export const CERTIFICATE_STATES = {
   finance: 'Finance approval',
   returned: 'Returned for correction',
   approved: 'Certified',
-  cancelled: 'Cancelled'
+  cancelled: 'Cancelled',
+  corrected: 'Annulled · history retained'
 };
 export function certificates(db, actorId, today = () => now().slice(0, 10)) {
   const access = policy(db, actorId);
@@ -114,7 +116,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     return r;
   };
   const activePolicy = id => get("SELECT * FROM contract_finance_policies WHERE contract_id=? AND state='active'", id);
-  const prior = id => get("SELECT * FROM client_certificates WHERE contract_id=? AND state='approved' ORDER BY period_to DESC,approved_at DESC,id DESC LIMIT 1", id);
+  const prior = id => effectiveCertificate(db,id);
   function account(id, c, type, purpose) {
     const a = get('SELECT * FROM ledger_accounts WHERE id=? AND company_id=?', id, c);
     requireThat(a?.active && a.type === type && a.purpose === purpose, `Choose an active ${type} / ${purpose} account in this company.`);
@@ -375,14 +377,16 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
   function summary(r) {
     const s = JSON.parse(r.snapshot),
       inv = get('SELECT id,state,total,company_total,journal_id FROM client_invoices WHERE certificate_id=?', r.id);
+    const correction=appliedCorrection(db,{certificate_id:r.id});
     return {
       id: r.id,
       contract_id: r.contract_id,
       company_id: r.company_id,
       project_id: r.project_id,
       title: r.title,
-      state: r.state,
-      state_label: CERTIFICATE_STATES[r.state],
+      state: correction?'corrected':r.state,
+      original_state:r.state,correction_id:correction?.id||null,
+      state_label: correction?'Annulled · history retained':CERTIFICATE_STATES[r.state],
       period_from: r.period_from,
       period_to: r.period_to,
       currency: r.currency,
@@ -403,7 +407,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
         ...inv,
         can_open: can('ar.read', r)
       } : null,
-      next_action: r.state === 'approved' ? inv ? inv.state === 'posted' ? 'Invoice posted; customer settlement is separate' : inv.state === 'submitted' ? 'AR reviewer to post invoice' : 'AR preparer to finish invoice' : 'Prepare the client invoice' : {
+      next_action: correction?'Correction applied; replacement measurement needs fresh review':r.state === 'approved' ? inv ? inv.state === 'posted' ? 'Invoice posted; customer settlement is separate' : inv.state === 'submitted' ? 'AR reviewer to post invoice' : 'AR preparer to finish invoice' : 'Prepare the client invoice' : {
         draft: 'Complete evidence and submit',
         technical: 'Project manager to review',
         commercial: 'Commercial manager to review',
@@ -431,7 +435,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       can_edit: s.my_draft,
       can_submit: r.author_id === actorId && r.state === 'draft' && can('certificates.write', r),
       can_cancel: r.author_id === actorId && can('certificates.write', r) && !['approved', 'cancelled'].includes(r.state),
-      can_invoice: r.state === 'approved' && !s.invoice && can('ar.write', r),
+      can_invoice: !s.correction_id && r.state === 'approved' && !s.invoice && can('ar.write', r),
       can_open_offer: can('sales.read', r),
       findings: [`${r.currency} ${s.gross} new measured work; ${s.retention} retained; ${s.recovery} advance principal deducted.`, `${r.currency} ${s.work_tax} work tax less ${s.recovered_tax} original advance tax gives ${s.tax} net tax; certificate amount ${s.total}.`, r.state === 'approved' ? 'Quantities and deductions are frozen. Accounting and payment remain separate.' : 'This measurement is not yet certified or posted.', `Advance eligible in this measurement basis: ${r.currency} ${JSON.parse(r.snapshot).eligible_advance}. The allowance of ${contractData(r.contract_id).terms.advance_ceiling} does not establish cash received; current paid principal is shown on the contract.`]
     };
@@ -591,7 +595,12 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
     requireThat(r && can('ar.read', r), 'Approved advance is unavailable.', 404);
     return r;
   }
-  const calculateInvoice = (source, input) => input.advance_id ? advanceInvoiceCalculation(db, source, input, today) : invoiceCalc(source, input);
+  const calculateInvoice = (source, input) => {
+    requireThat(!appliedCorrection(db,input),'The source was annulled. Retain this invoice as history; prepare a new reviewed source.',409);
+    const correctionDate=get("SELECT max(effective_date) date FROM client_corrections WHERE contract_id=? AND state='applied'",source.contract_id)?.date;
+    requireThat(!correctionDate || input.accounting_date>=correctionDate,`Invoice accounting date must follow the contract correction on ${correctionDate}.`,409);
+    return input.advance_id ? advanceInvoiceCalculation(db, source, input, today) : invoiceCalc(source, input);
+  };
   function saveInvoice(id, input) {
     return transaction(db, () => {
       const old = id ? invoiceRow(id) : null,
@@ -599,6 +608,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
         cert = invoiceSource(sourceInput);
       access.requireCap('ar.write', cert.company_id, cert.project_id);
       requireThat(cert.state === 'approved', 'Only an approved certificate or advance can be invoiced.');
+      requireThat(!appliedCorrection(db,sourceInput),'The source was annulled. Prepare a new reviewed source.',409);
       if (!old) {
         const existing = sourceInput.advance_id ? get('SELECT id FROM client_invoices WHERE advance_id=?', cert.id) : get('SELECT id FROM client_invoices WHERE certificate_id=?', cert.id);
         if (existing) return invoice(existing.id);
@@ -616,7 +626,7 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       return invoice(id);
     });
   }
-  const invoiceReview = r => r.state === 'submitted' && r.author_id !== actorId && authority(actorId, 'ar.post', r, 'ar_approval_limit', r.company_gross);
+  const invoiceReview = r => r.state === 'submitted' && !appliedCorrection(db,r) && r.author_id !== actorId && authority(actorId, 'ar.post', r, 'ar_approval_limit', r.company_gross);
   function post(r) {
     const cert = invoiceSource(r),
       calc = calculateInvoice(cert, r);
@@ -658,18 +668,20 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
   function invoice(id) {
     const r = invoiceRow(id),
       s = JSON.parse(r.snapshot);
+    const correction=appliedCorrection(db,r);
     return {
       ...r,
+      correction_id:correction?.id||null,credit_journal_id:correction?.journal_id||null,effective_state:correction?(correction.journal_id?'credited':'cancelled'):r.state,
       snapshot: s,
       journal: JSON.parse(r.journal_json),
       history: history('invoice', id),
-      can_edit: r.author_id === actorId && ['draft', 'returned'].includes(r.state) && can('ar.write', r),
-      can_submit: r.author_id === actorId && r.state === 'draft' && can('ar.write', r),
+      can_edit: !correction && r.author_id === actorId && ['draft', 'returned'].includes(r.state) && can('ar.write', r),
+      can_submit: !correction && r.author_id === actorId && r.state === 'draft' && can('ar.write', r),
       can_review: invoiceReview(r),
       can_open_journal: can('finance.read', r),
       settlement: r.state==='posted'&&access.has('customer_receipts.read',r.company_id,r.project_id)?receivableBalance(db,r):null,
       can_prepare_receipt: r.state==='posted'&&access.has('customer_receipts.write',r.company_id,r.project_id)&&new D(receivableBalance(db,r).open).gt(0),
-      findings: [r.advance_id ? `${r.currency} ${s.advance.principal} advance principal plus ${s.advance.tax} explicit tax gives ${r.total} receivable. Advance principal credits its liability control; no measured revenue or retention is created.` : `${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention and ${s.certificate.recovery} advance principal, plus ${s.certificate.tax} net tax gives ${r.total} client receivable.`, r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', 'No customer receipt or clearance is implied.']
+      findings: [r.advance_id ? `${r.currency} ${s.advance.principal} advance principal plus ${s.advance.tax} explicit tax gives ${r.total} original receivable. Advance principal credits its liability control; no measured revenue or retention is created.` : `${r.currency} ${s.certificate.gross} measured work less ${s.certificate.retention} retention and ${s.certificate.recovery} advance principal, plus ${s.certificate.tax} net tax gives ${r.total} original client receivable.`, correction?`${correction.id} annulled this source on ${correction.effective_date}${correction.journal_id?'; a linked credit reverses the original journal':''}. Recorded cash remains separately accounted for.`:r.state === 'posted' ? `${get('SELECT currency FROM companies WHERE id=?', r.company_id).currency} ${r.company_total} posted to AR; ${r.company_retention} posted to retention.` : 'This invoice is not posted and does not yet affect the ledger.', correction?'Current customer cash and credit balance remain separate; bank clearance stays with each receipt.':'No customer receipt or clearance is implied.']
     };
   }
   function invoiceList(company, project = null) {
@@ -682,12 +694,13 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       company_id: r.company_id,
       project_id: r.project_id,
       state: r.state,
-      state_label: r.state === 'submitted' ? 'Independent AR review' : r.state,
+      correction_id:appliedCorrection(db,r)?.id||null,
+      state_label: appliedCorrection(db,r)?(r.state==='posted'?'Credited · original retained':'Cancelled · source annulled'):r.state === 'submitted' ? 'Independent AR review' : r.state,
       currency: r.currency,
       total: r.total,
       company_total: r.company_total,
       can_review: invoiceReview(r),
-      my_draft: r.author_id === actorId && ['draft', 'returned'].includes(r.state) && can('ar.write', r)
+      my_draft: !appliedCorrection(db,r) && r.author_id === actorId && ['draft', 'returned'].includes(r.state) && can('ar.write', r)
     }));
   }
   function report(company, {
@@ -717,7 +730,11 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       company_retention: r.company_retention,
       journal_id: r.journal_id
     })) : [];
-    const posted = invoices.filter(r => r.state === 'posted'),
+    const credits=access.has('ar.read',company,project,!project)?all("SELECT * FROM client_corrections WHERE company_id=? AND certificate_id IS NOT NULL AND state='applied' AND journal_id IS NOT NULL ORDER BY effective_date,id",company).filter(r=>(!project||r.project_id===project)&&can('ar.read',r)&&(!from||r.effective_date>=from)&&(!to||r.effective_date<=to)).map(r=>{
+      const i=JSON.parse(r.snapshot).invoice;
+      return {id:r.id,source_invoice_id:i.id,title:r.title,certificate_id:r.certificate_id,contract_id:r.contract_id,project_id:r.project_id,state:'posted',accounting_date:r.effective_date,currency:r.currency,total:money(new D(0).minus(i.total)),company_total:money(new D(0).minus(i.company_total)),company_retention:money(new D(0).minus(i.company_retention)),journal_id:r.journal_id};
+    }):[];
+    const posted = [...invoices.filter(r => r.state === 'posted'),...credits],
       currencies = [...new Set(rows.map(r => r.currency))].sort().map(currency => {
         const group = rows.filter(r => r.currency === currency),
           approved = group.filter(r => r.state === 'approved');
@@ -729,15 +746,15 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
           recovered_tax: money(sum(approved.map(r => r.recovered_tax))),
           certified_due: money(sum(approved.map(r => r.total))),
           awaiting_posted_invoice: money(sum(approved.filter(r => r.invoice?.state !== 'posted').map(r => r.total))),
-          pending_gross: money(sum(group.filter(r => !['approved', 'cancelled'].includes(r.state)).map(r => r.gross)))
+          pending_gross: money(sum(group.filter(r => !['approved', 'cancelled', 'corrected'].includes(r.state)).map(r => r.gross)))
         };
       });
     let ar = new D(0),
       retention = new D(0), recovery = new D(0), expectedRecovery = new D(0);
     for (const r of posted) {
-      const snap = JSON.parse(get('SELECT snapshot FROM client_invoices WHERE id=?', r.id).snapshot);
+      const snap = JSON.parse(get('SELECT snapshot FROM client_invoices WHERE id=?', r.source_invoice_id||r.id).snapshot);
       const allocations = snap.certificate.advance_recovery?.allocations || [];
-      expectedRecovery = expectedRecovery.plus(sum(allocations.map(a => a.base_principal)));
+      expectedRecovery = expectedRecovery.plus(sum(allocations.map(a => new D(a.base_principal).times(r.source_invoice_id?-1:1))));
       const advanceAccounts = new Set(allocations.map(a => a.accounts.advance.id));
       for (const l of all('SELECT * FROM ledger_lines WHERE entry_id=?', r.journal_id)) {
         if (advanceAccounts.has(l.account_id)) recovery = recovery.plus(new D(l.base_debit).minus(l.base_credit));
@@ -770,9 +787,10 @@ export function certificates(db, actorId, today = () => now().slice(0, 10)) {
       as_of: today(),
       rows,
       invoices,
+      credits,
       currencies,
       totals: canAr ? totals : null,
-      findings: [`${rows.length} measurements match the period-end and status filters; ${rows.filter(r => r.state === 'approved').length} are certified.`, ...currencies.map(g => `${g.currency} ${g.certified_gross} certified gross; ${g.retained} held as retention; ${g.certified_recovery} advance principal and ${g.recovered_tax} original advance tax deducted; ${g.pending_gross} still awaiting certification; ${g.awaiting_posted_invoice} certified due has no posted invoice.`), ...(canAr ? [`${posted.length} posted invoices match the accounting-date filters: ${currency} ${totals.posted_receivable} receivable and ${totals.posted_retention} retention; ${totals.posted_recovery} advance liability cleared at original carrying value.`, `Selected invoice-to-ledger differences: AR ${totals.receivable_difference}; retention ${totals.retention_difference}; advance recovery ${totals.recovery_difference}.`] : []), 'Certificate status filters apply to measurements. Invoice figures use accounting dates independently; they are posted charges, not receipts or cleared cash.']
+      findings: [`${rows.length} measurements match the period-end and status filters; ${rows.filter(r => r.state === 'approved').length} are currently effective certified periods.`, ...currencies.map(g => `${g.currency} ${g.certified_gross} certified gross; ${g.retained} held as retention; ${g.certified_recovery} advance principal and ${g.recovered_tax} original advance tax deducted; ${g.pending_gross} still awaiting certification; ${g.awaiting_posted_invoice} certified due has no posted invoice.`), ...(canAr ? [`${posted.length-credits.length} posted invoices and ${credits.length} credits match the accounting-date filters: net ${currency} ${totals.posted_receivable} receivable and ${totals.posted_retention} retention; ${totals.posted_recovery} advance liability cleared at original carrying value.`, `Selected invoice/credit-to-ledger differences: AR ${totals.receivable_difference}; retention ${totals.retention_difference}; advance recovery ${totals.recovery_difference}.`] : []), 'Certificate status is current. Period filters select measured periods; accounting dates independently select invoices and credits. These are net posted charges, not receipts or cleared cash.']
     };
   }
   return {

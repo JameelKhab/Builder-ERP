@@ -1,0 +1,48 @@
+Browser tab: 54, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4196/#section=Company&area=Overview&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=customer-receipts
+	2 container Client certificates
+		3 container
+			4 heading Client certificates, Value: 2, ID: dialog-title
+				5 text Client certificates
+			6 button Close dialog
+				7 image
+		8 button All client certificates
+			9 image
+			10 text All client certificates
+		11 container
+			12 text CLIENT INVOICE ·  CREDITED  ·  CIN-521C710C
+		13 heading Example · Harbour Tower · Mobilisation release · partial receipt and recovery, Value: 2
+			14 text Example · Harbour Tower · Mobilisation release · partial receipt and recovery
+		15 container
+			16 text Invoice  2026-10-30  · Due  2026-10-30
+		17 button Approved advance request
+		18 text Original client receivable
+		19 text AED 315
+		20 text Original advance principal
+		21 text AED 300
+		22 text Accounting state
+		23 text Credited; cash retained
+		24 heading What this tells you, Value: 3
+			25 text What this tells you
+		26 content list
+			27 container
+				28 AXListMarker •
+				29 text AED 300.00 advance principal plus 15.00 explicit tax gives 315.00 original receivable. Advance principal credits its liability control; no measured revenue or retention is created.
+			30 container
+				31 AXListMarker •
+				32 text CCR-31FA4E1D annulled this source on 2026-10-30; a linked credit reverses the original journal. Recorded cash remains separately accounted for.
+			33 container
+				34 AXListMarker •
+				35 text Current customer cash and credit balance remain separate; bank clearance stays with each receipt.
+		36 container
+			37 text Recorded cash  AED 210  · Credited  AED 315  · Debit outstanding  AED 0  · Customer credit  AED 210 . Bank clearance remains on the receipt.
+		38 button Original invoice journal
+		39 button Open credit journal
+		40 button (collapsed) Accounting lines and rate evidence, Secondary Actions: Expand
+			41 text Accounting lines and rate evidence
+		42 button (collapsed) Review history · 3 events, Secondary Actions: Expand
+			43 text Review history ·
+			44 text 3
+			45 text  events
+
+The focused UI element is 6 button Close dialog

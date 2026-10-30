@@ -1,6 +1,7 @@
 import { receipts } from './receipts.mjs';
 import { certificates } from './certificates.mjs';
 import { advances } from './advances.mjs';
+import { clientCorrections } from './client-corrections.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
 import { estimates } from './estimates.mjs';
@@ -72,6 +73,7 @@ export function createApi(db, {
   app.use('/api/customer-receipts/documents', express.json({limit:'3mb'}));
   app.use('/api/certificates/measurements', express.json({limit:'3mb'}));
   app.use('/api/client-advances/documents', express.json({limit:'3mb'}));
+  app.use('/api/client-corrections/documents', express.json({limit:'3mb'}));
   app.use('/api/commercial/acceptances', express.json({ limit: '3mb' }));
   app.use('/api/estimates/documents', express.json({ limit: '2mb' }));
   app.use('/api/boq-intakes/upload', express.json({ limit: '9mb' }));
@@ -154,6 +156,7 @@ export function createApi(db, {
     req.customerReceipts = receipts(db, session.previewId || session.actorId, today);
     req.certificates = certificates(db, session.previewId || session.actorId, today);
     req.advances = advances(db, session.previewId || session.actorId, today);
+    req.clientCorrections = clientCorrections(db, session.previewId || session.actorId, today);
     req.commercial = commercial(db, session.previewId || session.actorId, today);
     req.estimates = estimates(db, session.previewId || session.actorId, today);
     req.boqIntake = boqIntake(db, session.previewId || session.actorId, today);
@@ -177,6 +180,13 @@ export function createApi(db, {
   app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
   app.get('/api/client-advances/options',(req,res)=>res.json(req.advances.options(req.query.company,req.query.project||null)));
+  app.get('/api/client-corrections/documents',(req,res)=>res.json(req.clientCorrections.list(req.query.company,req.query.project||null)));
+  app.get('/api/client-corrections/report',(req,res)=>res.json(req.clientCorrections.report(req.query.company,{project:req.query.project||null,to:req.query.to})));
+  app.get('/api/client-corrections/documents/:id',(req,res)=>res.json(req.clientCorrections.detail(req.params.id)));
+  app.post('/api/client-corrections/documents',(req,res)=>res.status(201).json(req.clientCorrections.save(null,req.body)));
+  app.put('/api/client-corrections/documents/:id',(req,res)=>res.json(req.clientCorrections.save(req.params.id,req.body)));
+  app.post('/api/client-corrections/documents/:id/decision',(req,res)=>res.json(req.clientCorrections.decide(req.params.id,req.body)));
+  app.get('/api/client-corrections/evidence/:id',(req,res)=>{const f=req.clientCorrections.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="correction-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/client-advances/documents',(req,res)=>res.json(req.advances.list(req.query.company,req.query.project||null)));
   app.get('/api/client-advances/report',(req,res)=>res.json(req.advances.report(req.query.company,{project:req.query.project||null,currency:req.query.currency||null,to:req.query.to})));
   app.get('/api/client-advances/documents/:id',(req,res)=>res.json(req.advances.detail(req.params.id)));

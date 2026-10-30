@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import { openDatabase } from '../server/db.mjs';
 import { advances, advanceSettlement } from '../server/advances.mjs';
 import { certificates } from '../server/certificates.mjs';
+import { clientCorrections } from '../server/client-corrections.mjs';
 import { receipts } from '../server/receipts.mjs';
 import { ledger } from '../server/ledger.mjs';
 import { accessAdmin } from '../server/access-admin.mjs';
@@ -207,6 +208,17 @@ test('foreign advance uses separate request, invoice and bank rates without reva
   assert.equal(advanceReport.rows[0].base_recovered,'456.84');assert.equal(advanceReport.rows[0].paid_principal,'123.47');
   assert.equal(advanceReport.reconciliation.difference,'0.00');assert.equal(advanceReport.reconciliation.ledger_liability,'0.00');
   const excluded=f.writer.report('jakh',{currency:'AED'});assert.equal(excluded.rows.length,0);assert.equal(excluded.reconciliation.ledger_liability,'0.00');
+  const correctionMaker=clientCorrections(f.db,'advance-writer',today);
+  let correction=correctionMaker.save(null,{certificate_id:m.id,title:'Full foreign certificate correction',effective_date:today(),basis:reason,reason,...evidence});
+  correction=decide(correctionMaker,correction,'submit');
+  for(const who of ['example-technical-reviewer','example-certificate-commercial','example-client-finance-reviewer'])correction=decide(clientCorrections(f.db,who,today),correction,'accept');
+  const reverseLines=f.db.prepare('SELECT * FROM ledger_lines WHERE entry_id=? ORDER BY ordinal').all(correction.journal_id);
+  for(const [index,line] of reverseLines.entries())for(const [key,opposite] of [['debit','credit'],['credit','debit'],['base_debit','base_credit'],['base_credit','base_debit']])assert.equal(line[key],ci.journal[index][opposite]);
+  const afterCertificate=f.writer.report('jakh',{project:'harbour',currency:'USD'});assert.equal(afterCertificate.reconciliation.difference,'0.00');assert.equal(afterCertificate.tax_reconciliation.difference,'0.00');assert.equal(afterCertificate.rows[0].base_liability,'456.84');
+  correction=correctionMaker.save(null,{advance_id:a.id,title:'Full foreign advance credit after recovery correction',effective_date:today(),basis:reason,reason,...evidence});correction=decide(clientCorrections(f.db,'advance-approver',today),decide(correctionMaker,correction,'submit'),'accept');
+  const final=f.writer.report('jakh',{project:'harbour',currency:'USD'});assert.equal(final.rows[0].base_liability,'0.00');assert.equal(final.rows[0].customer_credit,'129.64');assert.equal(final.reconciliation.difference,'0.00');assert.equal(final.tax_reconciliation.difference,'0.00');
+  assert.equal(receipts(f.db,'advance-approver',today).report('jakh',{project:'harbour'}).reconciliation.difference,'0.00');
+  assert.equal(f.db.prepare('SELECT base_credit FROM ledger_lines WHERE entry_id=? AND description=?').get(r.journal_id,'Customer settlement exchange difference').base_credit,'20.33','A full credit must not reverse original bank FX');
 });
 
 function policyForRecovery(f, extra = {}) {

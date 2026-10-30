@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-30T10:15:08.857185+00:00",
+  "mode": "read-only business evidence",
+  "limits": "Nightly demo reset; source IDs now identify JD2 sample records. Credit form discarded. Cancel/acknowledge and certificate acknowledge were not clicked. Enforcement and completion remain unverified.",
+  "files": [
+    {
+      "file": "paid-invoice.txt",
+      "url": "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4/account.move/45",
+      "sha256": "531914b3c131d4b4b75cedbf012b5d0be1f035f01298b571d569457d13dd8fb6"
+    },
+    {
+      "file": "credit-wizard.txt",
+      "url": "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4/account.move/45",
+      "sha256": "e60f0712e96cb04032224a7350a5d2aa406230b4841abae1c13f5c0425b9be1f"
+    },
+    {
+      "file": "advance.txt",
+      "url": "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.contract.cash.document/4",
+      "sha256": "11020fa98fdd98f60739baf881d7512d780e73396d0010dc6ae4b13a93c99c4b"
+    },
+    {
+      "file": "certificate.txt",
+      "url": "https://demo.jakh.net/jakh/action-626/4/sale.order/3/jakh.project.contract/3/jakh.payment.certificate/4",
+      "sha256": "71ea1bdb66a0462b919b76097c2acf13a0b806414d8a49a980029dc12de30099"
+    }
+  ],
+  "normalisation": "Accessibility text with trailing whitespace removed; visible wording retained."
+}

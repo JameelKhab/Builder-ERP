@@ -2,6 +2,7 @@ import { D, money, sum, requireThat } from './money.mjs';
 import { advancePaidComponents, advanceSettlement } from './advance-balances.mjs';
 import { receivableBalance } from './receivable-balance.mjs';
 import { payableRatio } from './payables.mjs';
+import { appliedCorrection, effectiveRecoveries } from './client-correction-state.mjs';
 const min = (...values) => values.map(v => new D(v)).reduce((a, b) => a.lte(b) ? a : b);
 const positive = v => new D(v).gt(0) ? new D(v) : new D(0);
 const CENT = 10n ** 10n;
@@ -12,7 +13,7 @@ export function pendingAdvanceReversals(db, invoiceId, exclude = '') {
     .flatMap(r => JSON.parse(r.payload).allocations.filter(a => a.invoice_id === invoiceId).map(a => ({ id: r.id, version: r.version, accounting_date: r.accounting_date, amount: a.amount })));
 }
 function protectedAmounts(db, invoiceId) {
-  const allocations = rows(db, 'SELECT * FROM client_advance_recoveries WHERE invoice_id=? ORDER BY certificate_id', invoiceId);
+  const allocations = effectiveRecoveries(db, invoiceId);
   return Object.fromEntries(['principal', 'tax', 'base_principal', 'base_tax'].map(k => [k, money(sum(allocations.map(a => a[k])))]));
 }
 export function assertAdvancePaidProtection(db, invoice, reversal = null) {
@@ -24,7 +25,7 @@ export function assertAdvancePaidProtection(db, invoice, reversal = null) {
   requireThat(new D(remaining.paid_principal).gte(protectedBalance.principal) && new D(remaining.paid_tax).gte(protectedBalance.tax), 'Certified advance recovery protects this receipt. Resolve the certified recovery through an authorised credit/correction workflow before reversing its cash.', 409);
 }
 function sources(db, contractId, cutoff) {
-  return rows(db, "SELECT * FROM client_invoices WHERE contract_id=? AND advance_id IS NOT NULL AND state='posted' AND accounting_date<=? ORDER BY invoice_date,id", contractId, cutoff).map(invoice => {
+  return rows(db, "SELECT * FROM client_invoices WHERE contract_id=? AND advance_id IS NOT NULL AND state='posted' AND accounting_date<=? ORDER BY invoice_date,id", contractId, cutoff).filter(i=>!appliedCorrection(db,i)).map(invoice => {
     const snapshot = JSON.parse(invoice.snapshot), journal = JSON.parse(invoice.journal_json);
     const paid = advanceSettlement(db, invoice, cutoff), previous = protectedAmounts(db, invoice.id);
     const pending = pendingAdvanceReversals(db, invoice.id);
@@ -93,6 +94,6 @@ export function certifiedRecoveries(db, certificate, snapshot) {
 }
 export function contractAdvancePosition(db, contractId, cutoff) {
   const all = sources(db, contractId, cutoff);
-  const posted = rows(db, "SELECT r.principal FROM client_advance_recoveries r JOIN client_invoices i ON i.certificate_id=r.certificate_id WHERE i.state='posted' AND i.contract_id=? AND i.accounting_date<=?", contractId, cutoff);
+  const posted = rows(db, "SELECT r.principal,r.certificate_id FROM client_advance_recoveries r JOIN client_invoices i ON i.certificate_id=r.certificate_id WHERE i.state='posted' AND i.contract_id=? AND i.accounting_date<=?", contractId, cutoff).filter(r=>!appliedCorrection(db,r,cutoff));
   return { paid_principal: money(sum(all.map(s => s.paid.paid_principal))), certified_principal: money(sum(all.map(s => s.previous.principal))), posted_principal: money(sum(posted.map(r => r.principal))), available_principal: money(sum(all.map(s => s.available_principal))) };
 }

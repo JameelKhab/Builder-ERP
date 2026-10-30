@@ -83,6 +83,29 @@ test('individual HTTP identities approve advances, recover paid advances through
   const report=(await review('/certificates/report?company=jakh&project=harbour')).body;assert.equal(report.totals.recovery_difference,'0.00');assert.equal(report.totals.posted_recovery,'100.01');
   assert.equal((await other('/certificates/invoices/'+i.id)).status,404);
   assert.equal((await writer('/ledger/options?company=jakh')).status,404);
+  // A paid certificate credit releases its recovery atomically but never erases cash.
+  response=await writer('/customer-receipts/documents',{company_id:'jakh',bank_id:options.banks[0].id,title:'Partial payment of measured work',accounting_date:today(),bank_amount:'100',bank_rate:'1',rate_date:today(),rate_source:reason,explanation:reason,allocations:[{invoice_id:ci.id,amount:'100'}]});assert.equal(response.status,201,JSON.stringify(response.body));let workCash=response.body;
+  for(const [actor,action] of [[writer,'submit'],[review,'approve']]){response=await actor(`/customer-receipts/documents/${workCash.id}/decision`,{version:workCash.version,action,reason});assert.equal(response.status,200,JSON.stringify(response.body));workCash=response.body;}
+  response=await record(`/customer-receipts/documents/${workCash.id}/decision`,{version:workCash.version,action:'record',reason,bank_reference:'HTTP-WORK-CASH',file:{filename:'work-remittance.txt',base64:evidence.toString('base64')}});assert.equal(response.status,200,JSON.stringify(response.body));workCash=response.body;
+  const correctionInput={certificate_id:certificate.id,title:'Evidenced full correction of certified period',effective_date:today(),basis:reason,reason,filename:'credit-basis.txt',base64:evidence.toString('base64'),state:'applied',journal_id:'forged'};
+  response=await writer('/client-corrections/documents',correctionInput);assert.equal(response.status,201,JSON.stringify(response.body));let credit=response.body;assert.equal(credit.state,'draft');assert.equal(credit.journal_id,null);
+  assert.equal((await other('/client-corrections/documents/'+credit.id)).status,404);assert.equal((await other('/client-corrections/evidence/'+credit.evidence_id)).status,404);
+  const creditFile=await writer('/client-corrections/evidence/'+credit.evidence_id);assert.deepEqual(creditFile.body,evidence);
+  response=await writer(`/client-corrections/documents/${credit.id}/decision`,{version:credit.version,action:'submit',reason});assert.equal(response.status,200,JSON.stringify(response.body));credit=response.body;
+  assert.equal((await writer(`/client-corrections/documents/${credit.id}/decision`,{version:credit.version,action:'accept',reason})).status,403);
+  for(const actor of [technical,commercial,review]){response=await actor(`/client-corrections/documents/${credit.id}/decision`,{version:credit.version,action:'accept',reason});assert.equal(response.status,200,JSON.stringify(response.body));credit=response.body;}
+  assert.equal(credit.state,'applied');assert.ok(credit.journal_id);
+  assert.equal((await writer('/certificates/invoices/'+ci.id)).body.settlement.customer_credit,'100.00');
+  assert.equal((await writer('/customer-receipts/documents/'+workCash.id)).body.state,'recorded');
+  response=await writer('/client-corrections/documents',{...correctionInput,certificate_id:undefined,advance_id:a.id,title:'Annul funded advance after recovery correction'});assert.equal(response.status,201,JSON.stringify(response.body));let advanceCredit=response.body;
+  for(const [actor,action] of [[writer,'submit'],[review,'accept']]){response=await actor(`/client-corrections/documents/${advanceCredit.id}/decision`,{version:advanceCredit.version,action,reason});assert.equal(response.status,200,JSON.stringify(response.body));advanceCredit=response.body;}
+  assert.equal((await writer('/certificates/invoices/'+i.id)).body.settlement.customer_credit,'100.01');
+  const correctionReport=(await review('/client-corrections/report?company=jakh&project=harbour')).body;assert.equal(correctionReport.rows.length,2);assert.equal(correctionReport.reconciliation.difference,'0.00');
+  assert.equal((await other('/client-corrections/report?company=jakh')).body.rows.length,0);
+  assert.equal((await other('/client-corrections/report?company=jakh&project=harbour')).status,404);
+  for(const path of ['/customer-receipts/report?company=jakh&project=harbour','/client-advances/report?company=jakh&project=harbour'])assert.equal((await review(path)).body.reconciliation.difference,'0.00');
+  const correctedReport=(await review('/certificates/report?company=jakh&project=harbour')).body;assert.equal(correctedReport.totals.recovery_difference,'0.00');assert.equal(correctedReport.totals.receivable_difference,'0.00');assert.equal(correctedReport.totals.retention_difference,'0.00');assert.equal(correctedReport.totals.posted_recovery,'0.00');
   assert.equal((await admin('/access/preview',{user_id:a.author_id})).status,200);
   assert.equal((await admin('/client-advances/documents',payload)).status,403);
+  assert.equal((await admin('/client-corrections/documents',correctionInput)).status,403);
 });

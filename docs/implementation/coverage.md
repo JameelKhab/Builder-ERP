@@ -1,8 +1,10 @@
-# Builder ERP implementation coverage — 29 October 2026
+# Builder ERP implementation coverage — 30 October 2026
 
 The full scope is retained: **267 functions, 34 data contracts, 21 domains**. This is a current implementation overlay on the historical comparison. No function is certified as migrated or full parity. “Partial” describes a tested subset; “foundation” describes shared models/controls, not a finished screen. The ERP goal remains active.
 
 ## Current work
+
+Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open. Schema 18; 266 passing tests and build. See `client-corrections-local.md`.
 
 Advance requests, canonical invoices, actual receipts and protected certificate recovery now have connected service/HTTP evidence (256 tests; schema 17). Original principal/tax carrying, explicit policy, frozen reservations and receipt-reversal guards apply. Certificate findings/export reconcile posted recovery; the dedicated advance workspace, full-population reports/CSV and additive examples are now connected; credits, retention and full parity remain unfinished. See `advances-local.md`.
 

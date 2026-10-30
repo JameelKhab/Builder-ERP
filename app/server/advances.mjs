@@ -6,6 +6,7 @@ import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { convertJournal } from './ledger.mjs';
 import { advanceSettlement } from './advance-balances.mjs';
 import { advancePosition, advanceReport } from './advance-report.mjs';
+import { appliedCorrection } from './client-correction-state.mjs';
 export { advanceSettlement, contractAdvancePaid } from './advance-balances.mjs';
 
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`;
@@ -79,6 +80,7 @@ function requestCalculation(db, c, input, today) {
 // Internal accounting helper. Public callers must authorise the request/invoice scope first.
 export function advanceInvoiceCalculation(db, r, input, today) {
   requireThat(r?.state === 'approved', 'Only an independently approved advance can be invoiced.');
+  requireThat(!appliedCorrection(db,{advance_id:r.id}),'The advance was annulled. Prepare a new reviewed source.',409);
   const s = JSON.parse(r.snapshot), c = s.contract;
   requireThat(advanceAuthority(db, r.author_id, 'advances.write', r), 'Advance author no longer has current scope.', 409);
   requireThat(advanceAuthority(db, r.approved_by, 'advances.approve', r, 'advance_approval_limit', r.company_total), 'Advance approver no longer has sufficient authority.', 409);
@@ -103,7 +105,7 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
   const row = id => { const r = get(db, 'SELECT * FROM client_advances WHERE id=?', id); requireThat(r && can('read', r), 'Client advance is unavailable.', 404); return r; };
   const version = (r, value) => requireThat(Number.isSafeInteger(value) && value === r.version, 'Advance changed. Reload before continuing.', 409);
   const event = (r, action, reason) => run('INSERT INTO client_advance_events(advance_id,company_id,project_id,actor_id,action,reason,snapshot,at) VALUES(?,?,?,?,?,?,?,?)', r.id, r.company_id, r.project_id, actorId, action, text(reason, 'Reason'), JSON.stringify(r), now());
-  const approvedPrincipal = (contract, exclude = '') => money(sum(all(db, "SELECT principal FROM client_advances WHERE contract_id=? AND state='approved' AND id<>?", contract, exclude).map(r => r.principal)));
+  const approvedPrincipal = (contract, exclude = '') => money(sum(all(db, "SELECT id,principal FROM client_advances WHERE contract_id=? AND state='approved' AND id<>?", contract, exclude).filter(r=>!appliedCorrection(db,{advance_id:r.id})).map(r => r.principal)));
   const reviewer = r => r.state === 'submitted' && r.author_id !== actorId && advanceAuthority(db, actorId, 'advances.approve', r, 'advance_approval_limit', r.company_total);
 
   const scope = (c, p) => {
@@ -112,14 +114,15 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
   };
   function summary(r, cutoff = today()) {
     const s = JSON.parse(r.snapshot), position = advancePosition(db, r, cutoff);
+    const correction=appliedCorrection(db,{advance_id:r.id});
     const labels = { draft: 'Draft request', returned: 'Changes requested', submitted: 'Needs advance approval', approved: 'Approved request', cancelled: 'Cancelled request' };
-    const can_invoice = r.state === 'approved' && !position.invoice && access.has('ar.write', r.company_id, r.project_id);
+    const can_invoice = !correction && r.state === 'approved' && !position.invoice && access.has('ar.write', r.company_id, r.project_id);
     return { id: r.id, title: r.title, company_id: r.company_id, project_id: r.project_id, contract_id: r.contract_id,
       project: s.contract.project, customer: s.contract.customer, currency: r.currency, request_date: r.request_date,
-      principal: r.principal, tax: r.tax, total: r.total, state: r.state, state_label: labels[r.state],
-      approved_principal: r.state === 'approved' ? r.principal : '0.00',
+      principal: r.principal, tax: r.tax, total: r.total, state: r.state, state_label: correction?'Annulled · history retained':labels[r.state],correction_id:correction?.id||null,
+      approved_principal: !correction && r.state === 'approved' ? r.principal : '0.00',
       can_review: reviewer(r), can_invoice, my_draft: r.author_id === actorId && ['draft','returned'].includes(r.state) && can('write', r),
-      next_action: r.state === 'approved' ? !position.invoice ? 'Prepare client invoice' : position.invoice.state !== 'posted' ? 'Finish independent invoice posting' : new D(position.open_receivable).gt(0) ? 'Record customer receipt' : new D(position.current_available).gt(0) ? 'Recover against measured work' : new D(position.current_certified).gt(position.recovered_principal) ? 'Post certified recovery invoice' : 'Recovery posted' : { draft: 'Author to finish and submit', submitted: 'Independent finance reviewer', returned: 'Author to revise and resubmit', cancelled: 'History retained' }[r.state],
+      next_action: correction?'Annulled; settle any remaining customer credit separately':r.state === 'approved' ? !position.invoice ? 'Prepare client invoice' : position.invoice.state !== 'posted' ? 'Finish independent invoice posting' : new D(position.open_receivable).gt(0) ? 'Record customer receipt' : new D(position.current_available).gt(0) ? 'Recover against measured work' : new D(position.current_certified).gt(position.recovered_principal) ? 'Post certified recovery invoice' : 'Recovery posted' : { draft: 'Author to finish and submit', submitted: 'Independent finance reviewer', returned: 'Author to revise and resubmit', cancelled: 'History retained' }[r.state],
       ...position };
   }
   function list(c, p = null) {
@@ -163,7 +166,7 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
       can_edit: r.author_id === actorId && ['draft','returned'].includes(r.state) && can('write', r),
       can_submit: r.author_id === actorId && r.state === 'draft' && can('write', r), can_review: reviewer(r),
       can_cancel: r.author_id === actorId && ['draft','submitted','returned'].includes(r.state) && can('write', r),
-      can_invoice: r.state === 'approved' && !invoice && access.has('ar.write', r.company_id, r.project_id),
+      can_invoice: position.can_invoice,
       evidence: all(db, 'SELECT id,filename,sha256,length(bytes) size,created_at FROM client_advance_evidence WHERE advance_id=? ORDER BY created_at,id', id),
       history: all(db, 'SELECT e.*,u.name actor FROM client_advance_events e JOIN users u ON u.id=e.actor_id WHERE advance_id=? ORDER BY e.id', id),
       findings: [`${r.currency} ${r.principal} requested principal and ${r.tax} explicit exclusive tax.`, `${r.currency} ${approvedPrincipal(r.contract_id)} approved principal against the original ceiling ${s.contract.terms.advance_ceiling}; approval does not establish cash.`, received ? `${r.currency} ${received.settled} actually recorded against the invoice, including ${received.paid_principal} principal; certificate recovery is a separate controlled allocation.` : 'No posted advance receipt balance exists.'] };

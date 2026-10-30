@@ -165,7 +165,7 @@ export function commercial(db, actorId, today = () => now().slice(0, 10)) {
       can_withdraw: ['submitted', 'approved'].includes(r.state) && r.author_id === actorId && can('sales.write', r) && !p,
       can_revise: ['approved', 'withdrawn', 'returned'].includes(r.state) && can('sales.write', r) && !p && !get("SELECT id FROM sales_offers WHERE study_id=? AND revision>? AND state<>'withdrawn'", r.study_id, r.revision),
       can_record: r.state === 'approved' && can('sales.write', r) && !p,
-      acceptances: all('SELECT * FROM sales_acceptances WHERE offer_id=? ORDER BY created_at DESC', id).filter(a => can('sales.read', a)).map(a => presentAcceptance({
+      acceptances: all('SELECT * FROM sales_acceptances WHERE offer_id=? ORDER BY created_at DESC,rowid DESC', id).filter(a => can('sales.read', a)).map(a => presentAcceptance({
         ...a,
         company_amount: r.company_amount
       })),

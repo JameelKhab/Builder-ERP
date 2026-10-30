@@ -1,0 +1,12 @@
+# Client correction verification — 30 October 2026
+
+This validates the full-annulment service/API and existing balance/report displays, not the complete customer-credit feature or migration parity. See the implementation contract and progress record.
+
+- `source/`: freshly read paid invoice, discarded credit wizard, paid advance and approved certificate. `manifest.json` records URLs, hashes and observation limits. No source business mutation or Odoo-code inspection.
+- `tests.txt`: 266 passing tests through `npm test`, including ten new service cases and extended authenticated HTTP/foreign-currency flows. `focused-final.txt` repeats the affected API/service cases after the display-field clarification. `build.txt`: successful frontend build.
+- `data-check.json`: schema-17 → 18 scratch upgrade preserves all old rows; restored 106-table copy matches; injected migration finalisation failure rolls back every new object. `saved-data-check.json` records the actual saved upgrade/restore after stopping the server.
+- `credited-invoice-ui.txt`, `credited-invoice-ui.png`, `credited-cash-ui.png`: disposable sample browser observation. An AED 315 original invoice is fully credited; AED 210 recorded cash remains as customer credit. `credit-journal-ui.txt` verifies that the separate credit link opens the posted AED 315 reversal, with AED 300 liability and AED 15 tax debits and the correction source. No correction was applied to the saved business database through this browser.
+
+The initial complete suite failed because older fixtures used 29 October while example installers used the real date. A test-only Date bootstrap now aligns them; no product date checks were weakened. It also exposed an actual same-millisecond acceptance-order ambiguity, repaired with a stable insertion-order tie-breaker. The [Node Date mocking API](https://nodejs.org/docs/latest-v24.x/api/test.html#dates) supports mocking Date independently from HTTP/timeout timers. Two early coding errors (unsupported decimal comparison shorthand and an event INSERT placeholder count) were corrected before the passing run.
+
+Remaining acceptance: dedicated correction UI/review walkthrough, permanent examples, My Work/search, customer-credit refund/reallocation, partial/forward adjustments, ownership handover, retention/final-account dependencies, wider mobile/accessibility/representative-user acceptance, source enforcement verification and production migration/reconciliation. All comparison rows remain unverified for full parity.

@@ -1,7 +1,7 @@
 {
   "scope_source": "docs/migration/comparison.json",
   "source_baseline": "3d941a0",
-  "updated": "2026-10-29",
+  "updated": "2026-10-30",
   "completion_rule": "Full local workflows, permissions, exceptions, examples, reconciliation and representative-user acceptance; no completion by menu/sample count.",
   "functions": [
     {
@@ -1311,12 +1311,15 @@
       "source_path": "Payment certificates",
       "destination": "Project > Costs & Contracts > Claims & certificates",
       "local_status": "partial",
-      "implemented_and_remaining": "Original cumulative measurements retain approved predecessors, exact current/remaining quantities and amounts, evidence, three independent review stages, cycles and finance freeze. Separate typed invoices and scope/findings/export are connected. Paid advances now have exact frozen recovery reservations and original-value invoice posting. Variations, other deductions, negative corrections, reassignment, full source parity and migration remain open.",
+      "implemented_and_remaining": "Original cumulative measurements retain approved predecessors, exact current/remaining quantities and amounts, evidence, three independent review stages, cycles and finance freeze. Separate typed invoices and scope/findings/export are connected. Paid advances now have exact frozen recovery reservations and original-value invoice posting. Variations, other deductions, negative corrections, reassignment, full source parity and migration remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
         "app/tests/certificates.test.mjs",
-        "app/tests/certificates-api.test.mjs"
+        "app/tests/certificates-api.test.mjs",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Previous 40 plus current 15 equals cumulative 55, frozen on approval.",
@@ -1328,7 +1331,7 @@
       "source_path": "Advances & retention releases",
       "destination": "Project > Costs & Contracts > Advances & retention",
       "local_status": "partial",
-      "implemented_and_remaining": "Advance request/independent approval, canonical liability invoice, actual principal/tax receipts and protected recovery are connected to a dedicated UI, scoped list/options/findings/CSV, original principal/tax control reconciliation, My Work/search and additive examples in all supplied scopes. Credits/approved cancellation, recovered-certificate correction, retention release, ownership handover and full parity remain unfinished.",
+      "implemented_and_remaining": "Advance request/independent approval, canonical liability invoice, actual principal/tax receipts and protected recovery are connected to a dedicated UI, scoped list/options/findings/CSV, original principal/tax control reconciliation, My Work/search and additive examples in all supplied scopes. Credits/approved cancellation, recovered-certificate correction, retention release, ownership handover and full parity remain unfinished. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1348,7 +1351,10 @@
         "docs/implementation/advance-recovery-next-step.md",
         "app/server/advance-recovery.mjs",
         "docs/validation/advances/tests-connected-recovery.txt",
-        "app/tests/advances-examples.test.mjs"
+        "app/tests/advances-examples.test.mjs",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Recovery cannot exceed the actual outstanding advance under the policy.",
@@ -1733,7 +1739,7 @@
       "source_path": "Finance > Customers > Invoices",
       "destination": "Company > Finance · Invoices",
       "local_status": "partial",
-      "implemented_and_remaining": "Approved certificates or advances create canonical client invoice drafts and separate immutable AR postings. Shared invoice form, actual receipt allocation, original-value recovery and scoped advance principal/tax reconciliation are connected. Standalone invoices, credits, localisation/full aging, ownership handover and source migration remain open.",
+      "implemented_and_remaining": "Approved certificates or advances create canonical client invoice drafts and separate immutable AR postings. Shared invoice form, actual receipt allocation, original-value recovery and scoped advance principal/tax reconciliation are connected. Standalone invoices, credits, localisation/full aging, ownership handover and source migration remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/certificates-v1.md",
         "docs/implementation/certificates-local.md",
@@ -1747,7 +1753,10 @@
         "app/tests/advances.test.mjs",
         "app/tests/advances-api.test.mjs",
         "app/tests/advances-examples.test.mjs",
-        "docs/validation/advances/README.md"
+        "docs/validation/advances/README.md",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A certificate retry cannot create duplicate receivables.",
@@ -1771,13 +1780,16 @@
       "source_path": "Finance > Customers > Payments",
       "destination": "Company > Finance · Payments",
       "local_status": "partial",
-      "implemented_and_remaining": "Original multi-invoice customer receipts now have separate independent approval, evidenced recording, exact AR/bank/FX postings, shared bank matching, linked full reversal, zero-default limits and scoped findings/CSV. Multi-project users see only authorised allocation totals; combined files/detail require full scope. Advance invoices share this receipt path; certified recovery now protects their cash from unsupported reversal. Unallocated money, commercial refunds/credits, write-offs and full source migration remain open.",
+      "implemented_and_remaining": "Original multi-invoice customer receipts now have separate independent approval, evidenced recording, exact AR/bank/FX postings, shared bank matching, linked full reversal, zero-default limits and scoped findings/CSV. Multi-project users see only authorised allocation totals; combined files/detail require full scope. Advance invoices share this receipt path; certified recovery now protects their cash from unsupported reversal. Unallocated money, commercial refunds/credits, write-offs and full source migration remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/receipts-v1.md",
         "docs/implementation/receipts-local.md",
         "app/tests/receipts.test.mjs",
         "app/tests/receipts-api.test.mjs",
-        "docs/validation/receipts/verification.md"
+        "docs/validation/receipts/verification.md",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "One receipt can settle two invoices without overstating revenue.",
@@ -1933,7 +1945,7 @@
       "source_path": "Finance > Review > Control > Journal Items",
       "destination": "Company > Finance · Journal Items",
       "local_status": "partial",
-      "implemented_and_remaining": "Immutable general/AP/supplier-payment/client-invoice/customer-receipt journal lines retain frozen source, account and currency values. Receipt settlement reduces AR without recognising revenue twice; every project allocation balances independently, with exact FX/reversal values. Advance recovery retains original liability/tax carrying values and historical non-monetary revenue treatment; related tax FX stays explicit. Full analytic/tax/party accounting and source parity remain open.",
+      "implemented_and_remaining": "Immutable general/AP/supplier-payment/client-invoice/customer-receipt journal lines retain frozen source, account and currency values. Receipt settlement reduces AR without recognising revenue twice; every project allocation balances independently, with exact FX/reversal values. Advance recovery retains original liability/tax carrying values and historical non-monetary revenue treatment; related tax FX stays explicit. Full analytic/tax/party accounting and source parity remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1955,7 +1967,10 @@
         "docs/implementation/receipts-local.md",
         "app/tests/receipts.test.mjs",
         "app/tests/receipts-api.test.mjs",
-        "docs/validation/receipts/verification.md"
+        "docs/validation/receipts/verification.md",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "A project cost drill-down reaches balanced accounting evidence.",
@@ -1967,7 +1982,7 @@
       "source_path": "Finance > Review > Control > Audit Trail",
       "destination": "Company > Finance · Audit Trail",
       "local_status": "partial",
-      "implemented_and_remaining": "Append-only typed financial/configuration events, original receipt evidence bytes/hash, retained full corrections, independent current authority and mixed-source bank match/unmatch history are operational. Certified advance allocations are immutable and cash corrections preserve their principal/tax. Full audit querying, external tamper resistance, lost-author reassignment and historical reconciliation reconstruction remain open.",
+      "implemented_and_remaining": "Append-only typed financial/configuration events, original receipt evidence bytes/hash, retained full corrections, independent current authority and mixed-source bank match/unmatch history are operational. Certified advance allocations are immutable and cash corrections preserve their principal/tax. Full audit querying, external tamper resistance, lost-author reassignment and historical reconciliation reconstruction remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/ledger-v1.md",
         "app/tests/ledger.test.mjs",
@@ -1989,7 +2004,10 @@
         "docs/implementation/receipts-local.md",
         "app/tests/receipts.test.mjs",
         "app/tests/receipts-api.test.mjs",
-        "docs/validation/receipts/verification.md"
+        "docs/validation/receipts/verification.md",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Posted history cannot be silently edited or deleted.",
@@ -2013,7 +2031,7 @@
       "source_path": "Finance > Reporting > Management > Cashflow Analysis",
       "destination": "Company > Finance · Cashflow Analysis",
       "local_status": "partial",
-      "implemented_and_remaining": "Complete authorised supplier and customer cash movement reports separate approved plans, recorded transactions and current bank matches, with source rows/findings/CSV. Combined full-company classifications, policy, forecasts, operating/investing/financing analysis and source migration remain open.",
+      "implemented_and_remaining": "Complete authorised supplier and customer cash movement reports separate approved plans, recorded transactions and current bank matches, with source rows/findings/CSV. Combined full-company classifications, policy, forecasts, operating/investing/financing analysis and source migration remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open.",
       "evidence": [
         "docs/implementation/contracts/payments-v1.md",
         "app/tests/payments.test.mjs",
@@ -2023,7 +2041,10 @@
         "docs/implementation/receipts-local.md",
         "app/tests/receipts.test.mjs",
         "app/tests/receipts-api.test.mjs",
-        "docs/validation/receipts/verification.md"
+        "docs/validation/receipts/verification.md",
+        "docs/implementation/client-corrections-local.md",
+        "app/tests/client-corrections.test.mjs",
+        "docs/validation/client-corrections/README.md"
       ],
       "parity_status": "unverified",
       "source_acceptance_example": "Forecast receipts never enter actual-cash totals.",
@@ -3854,7 +3875,7 @@
       "invariant": "Immutable approved BOQ; finance activation policy",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md."
+      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open."
     },
     {
       "id": "M16",
@@ -3864,7 +3885,7 @@
       "invariant": "Cumulative limits; finance freeze; explicit correction",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md."
+      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open."
     },
     {
       "id": "M17",
@@ -3928,7 +3949,7 @@
       "invariant": "Balanced posting; AP/AR/control/bank reconciliation",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md."
+      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open."
     },
     {
       "id": "M24",
@@ -3938,7 +3959,7 @@
       "invariant": "Count each cost once; choose approved cutoff version",
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
-      "local_notes": "Supplier settlement and customer receipt facts preserve source/project/date and separate accounting, cash and clearance. Receipt allocation posts no new revenue/cost and approved plans remain outside cash. Full cost-fact/forecast integration, consolidated cash-flow classification, dated approved forecast versions and source migration remain open."
+      "local_notes": "Supplier settlement and customer receipt facts preserve source/project/date and separate accounting, cash and clearance. Receipt allocation posts no new revenue/cost and approved plans remain outside cash. Full cost-fact/forecast integration, consolidated cash-flow classification, dated approved forecast versions and source migration remain open. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open."
     },
     {
       "id": "M25",
@@ -4014,7 +4035,7 @@
       "source_import_status": "not_started",
       "reconciliation_status": "not_run",
       "local_implementation": "Individual authenticated actors, explicit role/scope/limit changes, independent business decisions, recent password confirmation, version-aware session revocation and append-only identity/access evidence. Multi-stage policy/delegation and source import/reconciliation remain open.",
-      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md."
+      "local_notes": "Client contract/measurement/invoice/receipt/advance/recovery subsets retain immutable evidence, independent authority and original carrying values. Dedicated Client advances UI/list/options/findings/CSV, principal and selected original-tax ledger reconciliation, My Work/search and additive examples are now implemented and tested. Approved cancellation/credits, recovered-certificate correction, ownership handover, retention release and actual source import/reconciliation remain open. See advances-local.md. Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open."
     },
     {
       "id": "M33",

@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "local": "node scripts/local.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --import ./tests/helpers/test-clock.mjs --test tests/*.test.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "5.3.0",

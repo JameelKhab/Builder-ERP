@@ -165,3 +165,8 @@ Connected certificate recovery is now implemented with original principal/tax ca
 ## 29 October 2026 — Client advances workspace checkpoint
 
 The authorised original-code implementation now includes the Client advances destination, scoped request/list/options/report/export, original evidence and history, shared invoice preparation, receipt/recovery links, My Work/search and meaningful examples in both companies/all supplied projects. Principal and original advance-tax reconciliation preserve accounting cutoff, currency, project scope and original carrying values. Current approval/certification columns are labelled as current workflow decisions. Approved cancellation/credits, recovered-certificate correction, retention and source parity remain requirements, not implied completions. The full 267-function/34-contract/21-domain goal is unchanged.
+
+
+## 30 October 2026 — Full correction foundation
+
+Full source-annulment service/API now independently reviews advance or certified-period corrections, posts exact original credits, releases effective measurement/recovery atomically and retains cash as customer credit. Cutoff AR/advance principal/tax/retention/recovery findings and CSV reconcile. Dedicated correction UI, permanent examples, My Work/search, refund/reallocation, partial/forward adjustments, handover and full source parity remain open. The complete comparison scope and source-migration requirements are unchanged.

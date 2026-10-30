@@ -1,0 +1,72 @@
+Browser tab: 54, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4196/#section=Company&area=Overview&category=customer-receipts".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=customer-receipts
+	2 container General ledger
+		3 container
+			4 heading General ledger, Value: 2, ID: dialog-title
+				5 text General ledger
+			6 button Close dialog
+				7 image
+		8 container
+			9 text JAKH CONTRACTING LLC  ·  AUTHORISED COMPANY SCOPE
+		10 heading General ledger, Value: 2
+			11 image
+			12 text General ledger
+		13 text Prepare, independently review, then post. Follow every balance to its journal.
+		14 container
+			15 button Journal register
+				16 image
+				17 text Journal register
+			18 text GL/2026/000042  ·  POSTED
+			19 heading Example · Cancelled funded advance, Value: 3
+				20 text Example · Cancelled funded advance
+			21 text Harbour Tower  ·  30 Oct 2026  · Prepared by  Sara · example advance preparer Equal debit & credit AED 315
+			22 button Open original journal
+			23 table
+				24 row
+					25 cell
+						26 text Account & description
+					27 cell
+						28 text AED  debit
+					29 cell
+						30 text AED  credit
+				31 row
+					32 cell
+						33 container
+							34 text 1300  ·  Example · Client receivable
+						35 text Client advance receivable
+					36 cell
+						37 text 0.00
+					38 cell
+						39 text 315.00
+				40 row
+					41 cell
+						42 container
+							43 text 2390  ·  Example · Client mobilisation advance
+						44 text Client advance liability; not earned revenue
+					45 cell
+						46 text 300.00
+					47 cell
+						48 text 0.00
+				49 row
+					50 cell
+						51 container
+							52 text 2310  ·  Example · Output tax
+						53 text Explicit exclusive tax on client advance
+					54 cell
+						55 text 15.00
+					56 cell
+						57 text 0.00
+			58 heading Source & accounting basis, Value: 3
+				59 text Source & accounting basis
+			60 text CCR-31FA4E1D
+			61 text FICTIONAL disposable browser correction evidence; no saved workspace mutation.
+			62 container
+				63 text 30 Oct 2026  ·  Exact original invoice carrying values
+			64 container
+				65 text Posted by  Maha · example client finance reviewer  ·  30/10/2026, 14:16:18
+			66 button (collapsed) Review history · 1 events, Secondary Actions: Expand
+				67 text Review history ·
+				68 text 1
+				69 text  events
+
+The focused UI element is 1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4196/#section=Company&area=Overview&category=customer-receipts
