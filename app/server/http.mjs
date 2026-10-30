@@ -176,6 +176,9 @@ export function createApi(db, {
   app.post('/api/customer-receipts/documents/:id/reversal',(req,res)=>res.status(201).json(req.customerReceipts.reverse(req.params.id,req.body)));
   app.get('/api/customer-receipts/evidence/:id',(req,res)=>{const f=req.customerReceipts.download(req.params.id);res.set({'Content-Type':'application/octet-stream','Content-Disposition':`attachment; filename="receipt-evidence"; filename*=UTF-8''${encodeURIComponent(f.filename)}`,'X-Content-SHA256':f.sha256});res.send(Buffer.from(f.bytes));});
   app.get('/api/certificates/options',(req,res)=>res.json(req.certificates.options(req.query.company,req.query.project||null)));
+  app.get('/api/client-advances/options',(req,res)=>res.json(req.advances.options(req.query.company,req.query.project||null)));
+  app.get('/api/client-advances/documents',(req,res)=>res.json(req.advances.list(req.query.company,req.query.project||null)));
+  app.get('/api/client-advances/report',(req,res)=>res.json(req.advances.report(req.query.company,{project:req.query.project||null,currency:req.query.currency||null,to:req.query.to})));
   app.get('/api/client-advances/documents/:id',(req,res)=>res.json(req.advances.detail(req.params.id)));
   app.post('/api/client-advances/documents',(req,res)=>res.status(201).json(req.advances.save(null,req.body)));
   app.put('/api/client-advances/documents/:id',(req,res)=>res.json(req.advances.save(req.params.id,req.body)));

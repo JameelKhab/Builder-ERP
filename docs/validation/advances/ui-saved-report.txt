@@ -1,0 +1,96 @@
+Browser tab: 46, Title: "Builder ERP · Construction workspace", URL: "http://127.0.0.1:4173/#section=Company&area=Overview&category=client-advances".
+1 AXWebArea Builder ERP · Construction workspace, URL: 127.0.0.1:4173/#section=Company&area=Overview&category=client-advances
+	2 container root
+		3 link Description: Skip to workspace, Value: 127.0.0.1:4173/#main-content
+		4 container
+			94 button Toggle main navigation
+				95 image
+			18 text Company
+			7 pop up button (collapsed, settable) Company, Value: JAKH Contracting LLC, Secondary Actions: Expand
+				8 menu
+					9 (selected) JAKH Contracting LLC
+					19 JAKH International Ltd
+			10 image
+			11 text field (settable) Search company records
+			12 button Search
+			13 button Explore examples
+				14 image
+			96 button Your account and sign-in
+		16 container main-content
+			17 heading JAKH Contracting LLC, Value: 1
+				20 text JAKH Contracting LLC
+			21 text Company-wide operations and shared information
+			22 container
+				23 text MOBILISATION FUNDING
+				24 heading Client advances, Value: 2
+					25 text Client advances
+				26 text Follow each advance from request to receipt and recovery.
+				27 button Request advance
+					28 image
+					29 text Request advance
+				30 checkbox Requests & next actions, Value: 0
+				31 checkbox Advance report, Value: 1
+				32 text Project
+				33 pop up button (collapsed, settable) Project, Value: All authorised projects, Secondary Actions: Expand
+					34 menu
+						35 (selected) All authorised projects
+						36 Garden Residences
+						37 Harbour Tower
+				38 text Currency
+				39 pop up button (collapsed, settable) Currency, Value: All · kept separate, Secondary Actions: Expand
+					40 menu
+						41 (selected) All · kept separate
+						42 AED
+				43 text Accounting through
+				44 date field (settable) Accounting through, Value: 2026-10-30
+					45 container
+						46 stepper
+						47 stepper
+						48 stepper
+					49 pop up button Show date picker Show date picker
+				50 heading What this tells you, Value: 3
+					51 text What this tells you
+				52 text 14 advance requests dated through 2026-10-30. Approval and certification columns show current workflow decisions; accounting amounts use the cutoff.
+				53 text AED: invoiced principal 900.00; paid principal 400.00; posted recovery 273.20. Paid but unrecovered 126.80; remaining invoiced liability 626.80.
+				54 text Advance liability source 626.80 and ledger 626.80 AED; difference 0.00. Unpaid invoices remain part of the liability.
+				55 text Selected advance tax: 31.34 AED originally charged and not yet released; selected ledger lines 31.34; difference 0.00. This excludes tax on measured work.
+				56 text 0 requests need your approval; 0 approved requests can be invoiced in this scope.
+				57 button Export complete report
+					58 image
+					59 text Export complete report
+				60 heading AED · principal position, Value: 3
+					61 text AED  · principal position
+				62 table
+					63 row
+						64 cell
+							65 text Current approved
+						66 cell
+							67 text Invoiced
+						68 cell
+							69 text Paid
+						70 cell
+							71 text Posted recovery
+						72 cell
+							73 text Paid unrecovered
+						74 cell
+							75 text Liability
+					76 row
+						77 cell
+							78 text AED 1,100
+						79 cell
+							80 text AED 900
+						81 cell
+							82 text AED 400
+						83 cell
+							84 text AED 273.20
+						85 cell
+							86 text AED 126.80
+						87 cell
+							88 text AED 626.80
+				89 button (collapsed) Requests behind the findings · 14, Secondary Actions: Expand
+					90 text Requests behind the findings ·
+					91 text 14
+				92 button (collapsed) Report definitions and scope, Secondary Actions: Expand
+					93 text Report definitions and scope
+
+The focused UI element is 31 checkbox Advance report, Value: 1

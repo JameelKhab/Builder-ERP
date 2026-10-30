@@ -6,7 +6,7 @@
 
 Steps 1–5 below are now connected and covered by service/HTTP tests. The existing certificate UI includes recovery policy choices/source details and certificate reports reconcile posted advance principal. Schema remains 17. The temporary paid-advance guard has been replaced by the protected workflow. The detailed design below remains useful as its invariant checklist, not a list of five unfinished services.
 
-**Continue at step 6:** dedicated advance list/options/report/export, clear request/invoice/receipt navigation, My Work/search and additive examples in every supplied scope. Retain the controls already implemented. Full source parity, credits/cancellation and recovered-certificate correction remain open. The saved workspace still has zero advances/recoveries; current scenarios are isolated test fixtures.
+**Step 6 is now implemented; see advances-local.md. Continue with controlled corrections and retention:** dedicated advance list/options/report/export, clear request/invoice/receipt navigation, My Work/search and additive examples in every supplied scope. Retain the controls already implemented. Full source parity, credits/cancellation and recovered-certificate correction remain open. The saved workspace now has 21 fictional advances and three recovery allocations.
 
 ## Connected design and remaining user flow
 
@@ -21,4 +21,9 @@ Steps 1–5 below are now connected and covered by service/HTTP tests. The exist
 
 Cover partial/final recovery, tiny taxed invoices, policy changes, historical foreign consideration, bank FX independence, original-tax release, differing tax rates, exact residuals, multiple advance invoices, certified-but-unposted reservations, approved pending reversals, draft reversal overtaken by certification, repeated posting, immutable source history, stale/revoked authority, period locks, company/project privacy, reports/exports and authenticated HTTP. Verify simple desktop/mobile flows and saved database backup/upgrade/restore. Update coverage and handover, commit and push the verified increment.
 
-The saved schema-17 workspace has no advance requests or recovery allocations. Historical posted invoice/receipt amounts were not changed by the partial-principal calculation refinement. The code remains local; GitHub publication is authorised, deployment and JAKH mutation are not. Do not include credentials or the runtime database in the public repository.
+The saved schema-17 workspace now includes the additive advance example pack. Historical posted invoice/receipt amounts were not changed by the partial-principal calculation refinement. The code remains local; GitHub publication is authorised, deployment and JAKH mutation are not. Do not include credentials or the runtime database in the public repository.
+
+
+## Completed workspace step
+
+List/options/findings/CSV, shared invoice form, original-tax and principal reconciliation, source links, My Work/search and additive examples are implemented. 256 tests and build pass. See START-HERE.md for the next active step: evidence-backed approved cancellation/credits and recovered-certificate correction, followed by retention and the full ERP backlog. The earlier numbered design remains a record of implemented invariants, not a new instruction to rebuild those services.

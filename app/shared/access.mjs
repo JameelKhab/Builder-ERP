@@ -20,6 +20,8 @@ export const CATEGORY_CAPABILITY = {
   'Client contracts': 'sales.read',
   'Client certificates': 'certificates.read',
   certificates: 'certificates.read',
+  'Client advances': 'advances.read',
+  'client-advances': 'advances.read',
   'Customer receipts': 'customer_receipts.read',
   'customer-receipts': 'customer_receipts.read',
   commercial: 'sales.read',
@@ -105,6 +107,15 @@ export const DESTINATIONS = [{
   section: 'Company',
   category: 'quality',
   icon: 'ShieldCheck'
+}, {
+  id: 'client-advances',
+  group: 'Company operations',
+  title: 'Client advances',
+  description: 'Request, invoice, receive and recover mobilisation funding.',
+  cap: 'advances.read',
+  section: 'Company',
+  category: 'client-advances',
+  icon: 'Wallet'
 }, {
   id: 'customer-receipts',
   group: 'Company operations',

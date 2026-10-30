@@ -29,3 +29,18 @@ Source observations remain in `../receipts/source/` and `../certificates/source/
 - A 390-device-pixel viewport at the browser's existing zoom produced a 300-CSS-pixel document, with equal document/viewport widths and 16px body text. Browser capture scaling was inconsistent after emulation; no claim of complete mobile visual acceptance is made, and misleading mobile captures were discarded. Device overrides were cleared and the disposable tab/server closed.
 
 Core verification covers certified-but-unposted reservations, pending approved and draft reversal interaction, original carrying values and explicit tax/foreign policies, independent bank FX, tax-inclusive invoice caps, atomic certification rollback, stale/revoked authority, cutoff exclusions, multiple invoice sources, final residual cents, selected-invoice control reconciliation and matching CSV. Full advance entry/report/examples, credits/cancellation and source acceptance remain open.
+
+## Client advances UI/report/examples — current checkpoint
+
+- `tests-ui-workspace.txt`: 256 tests pass, including 18 advance service tests, extended authenticated HTTP report/list/options permission checks and additive example preservation. Cutoff tests retain a currently certified request before its accounting date while excluding later financial values. Foreign original principal/tax carrying and selected tax-ledger reconciliation are checked.
+- `build-ui-workspace.txt`: current frontend/static build passes; the backend remains local.
+- `ui-data-check.json`: upgrade of a consistent scratch copy preserves original rows in all 103 tables except the required company journal sequence increments; all 103 tables match a separate restore.
+- `ui-saved-data.json`: the same checks on the saved workspace and separate restore, with clean integrity/FKs, 21 fictional advances, three recovery allocations and zero real identities. Before-install backup retained privately.
+- `ui-invoice-draft.png/.txt`: disposable browser prepared AED 100 principal + 5 tax through the shared invoice form and opened its canonical draft. No cash/posting implied.
+- `ui-report.png/.txt`: company findings and principal control reconciliation. Later original-tax reconciliation is additionally covered in the current service/HTTP test run and saved-workspace preview.
+- `ui-narrow-draft.png/.txt`: a fictional request saved from the phone-sized form and remained in its detail view. This draft exists only in the disposable browser fixture.
+- `ui-narrow-report.png`, `ui-narrow-metrics.json`: readable full 390-CSS-pixel report, 16px body text, equal document/viewport width and full-width vertically stacked filters. The monetary table scrolls within its own container. Default browser screenshot scaling was inconsistent; explicit CSS-dimension CDP clipping produced the verified image. Device emulation was cleared afterward.
+
+The new pack is enabled by the real local launcher and complete-feature example test; earlier isolated accounting fixtures keep their previous baseline. All saved original users, policies and accounting documents remain intact. Full credit/cancellation/reassignment/retention/source migration and user acceptance are still open.
+
+- `ui-saved-report.png/.txt` and `ui-export-check.json`: refreshed saved-workspace report on 30 October shows AED 626.80 remaining principal and AED 31.34 unreleased original advance tax, both with zero ledger differences. The browser CSV download contains the same complete 14-request company population. The local sample session was refreshed after expiry; no identity or business-data reset.

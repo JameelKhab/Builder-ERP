@@ -12,13 +12,13 @@ import { exampleGroups } from '../src/example-guide.js';
 
 const today = () => '2026-10-28';
 test('every visible feature has examples in every sample company and project', t => {
-  const db = openDatabase(':memory:', { examples: true }); t.after(() => db.close());
+  const db = openDatabase(':memory:', { examples: true, advanceExamples: true }); t.after(() => db.close());
   const service = createService(db, 'ahmed', today);
   for (const project of service.bootstrap().projects) {
     const scope = service.workspace(project.company_id, project.id);
     for (const [area, categories] of Object.entries(CATEGORIES)) {
       for (const [category] of categories) {
-        const rows = category === 'Customer receipts' ? scope.client_receipts : category === 'Client certificates' ? scope.client_certificates : category === 'Client contracts' ? scope.commercial_offers : category === 'Supplier bills' ? scope.payable_documents : category === 'General ledger' ? scope.ledger_entries : category === 'Quality & safety' ? scope.quality_cases : category === 'Project setup' ? scope.project_setup : category === 'Budget control' ? scope.budget_documents : category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
+        const rows = category === 'Client advances' ? scope.client_advances : category === 'Customer receipts' ? scope.client_receipts : category === 'Client certificates' ? scope.client_certificates : category === 'Client contracts' ? scope.commercial_offers : category === 'Supplier bills' ? scope.payable_documents : category === 'General ledger' ? scope.ledger_entries : category === 'Quality & safety' ? scope.quality_cases : category === 'Project setup' ? scope.project_setup : category === 'Budget control' ? scope.budget_documents : category === 'Purchase requests' ? scope.material_requests : category === 'Orders & deliveries' ? scope.purchase_orders : category === 'Cost report' ? scope.report.rows : scope.records.filter(r => r.area === area && r.category === category);
         assert.ok(rows.length >= (['Project setup','Budget control','Cost report', 'Purchase requests','Orders & deliveries'].includes(category) ? 1 : 2), `${project.id} / ${category} lacks examples`);
       }
     }

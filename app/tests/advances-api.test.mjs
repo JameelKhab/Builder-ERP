@@ -72,6 +72,14 @@ test('individual HTTP identities approve advances, recover paid advances through
   response=await review(`/certificates/invoices/${ci.id}/decision`,{version:ci.version,action:'post',reason});assert.equal(response.status,200,JSON.stringify(response.body));ci=response.body;
   assert.equal(ci.journal.find(l=>l.account_id===account.id).base_debit,'100.01');
   response=await writer(`/customer-receipts/documents/${receipt.id}/reversal`,{version:receipt.version,accounting_date:today(),reason});assert.equal(response.status,409,JSON.stringify(response.body));assert.match(response.body.error,/Certified advance recovery/);
+  const advancesReport=await review('/client-advances/report?company=jakh&project=harbour&currency=AED&to='+today());
+  assert.equal(advancesReport.status,200);assert.equal(advancesReport.body.rows[0].paid_principal,'100.01');
+  assert.equal(advancesReport.body.rows[0].recovered_principal,'100.01');assert.equal(advancesReport.body.reconciliation.difference,'0.00');
+  assert.equal((await other('/client-advances/report?company=jakh&project=harbour')).status,404);
+  assert.equal((await other('/client-advances/report?company=jakh')).body.rows.length,0);
+  assert.equal((await other('/client-advances/options?company=jakh')).body.contracts.some(c=>c.project_id==='harbour'),false);
+  assert.equal((await writer('/client-advances/documents?company=jakh&project=harbour')).body.length,1);
+  assert.equal((await writer('/client-advances/report?company=jakh&to=2026-02-30')).status,422);
   const report=(await review('/certificates/report?company=jakh&project=harbour')).body;assert.equal(report.totals.recovery_difference,'0.00');assert.equal(report.totals.posted_recovery,'100.01');
   assert.equal((await other('/certificates/invoices/'+i.id)).status,404);
   assert.equal((await writer('/ledger/options?company=jakh')).status,404);

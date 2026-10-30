@@ -5,6 +5,7 @@ import { ROLE_BY_ID } from '../shared/access.mjs';
 import { D, decimal, money, sum, requireThat } from './money.mjs';
 import { convertJournal } from './ledger.mjs';
 import { advanceSettlement } from './advance-balances.mjs';
+import { advancePosition, advanceReport } from './advance-report.mjs';
 export { advanceSettlement, contractAdvancePaid } from './advance-balances.mjs';
 
 const uid = p => `${p}-${randomUUID().slice(0, 8).toUpperCase()}`;
@@ -105,10 +106,60 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
   const approvedPrincipal = (contract, exclude = '') => money(sum(all(db, "SELECT principal FROM client_advances WHERE contract_id=? AND state='approved' AND id<>?", contract, exclude).map(r => r.principal)));
   const reviewer = r => r.state === 'submitted' && r.author_id !== actorId && advanceAuthority(db, actorId, 'advances.approve', r, 'advance_approval_limit', r.company_total);
 
+  const scope = (c, p) => {
+    requireThat(get(db, 'SELECT id FROM companies WHERE id=?', c) && access.has('advances.read', c, p, !p), 'Advance scope is unavailable.', 404);
+    if (p) requireThat(get(db, 'SELECT id FROM projects WHERE id=? AND company_id=?', p, c), 'Project is unavailable.', 404);
+  };
+  function summary(r, cutoff = today()) {
+    const s = JSON.parse(r.snapshot), position = advancePosition(db, r, cutoff);
+    const labels = { draft: 'Draft request', returned: 'Changes requested', submitted: 'Needs advance approval', approved: 'Approved request', cancelled: 'Cancelled request' };
+    const can_invoice = r.state === 'approved' && !position.invoice && access.has('ar.write', r.company_id, r.project_id);
+    return { id: r.id, title: r.title, company_id: r.company_id, project_id: r.project_id, contract_id: r.contract_id,
+      project: s.contract.project, customer: s.contract.customer, currency: r.currency, request_date: r.request_date,
+      principal: r.principal, tax: r.tax, total: r.total, state: r.state, state_label: labels[r.state],
+      approved_principal: r.state === 'approved' ? r.principal : '0.00',
+      can_review: reviewer(r), can_invoice, my_draft: r.author_id === actorId && ['draft','returned'].includes(r.state) && can('write', r),
+      next_action: r.state === 'approved' ? !position.invoice ? 'Prepare client invoice' : position.invoice.state !== 'posted' ? 'Finish independent invoice posting' : new D(position.open_receivable).gt(0) ? 'Record customer receipt' : new D(position.current_available).gt(0) ? 'Recover against measured work' : new D(position.current_certified).gt(position.recovered_principal) ? 'Post certified recovery invoice' : 'Recovery posted' : { draft: 'Author to finish and submit', submitted: 'Independent finance reviewer', returned: 'Author to revise and resubmit', cancelled: 'History retained' }[r.state],
+      ...position };
+  }
+  function list(c, p = null) {
+    scope(c, p);
+    return all(db, 'SELECT * FROM client_advances WHERE company_id=? ORDER BY request_date DESC,created_at DESC,id', c).filter(r => (!p || p === r.project_id) && can('read', r)).map(r => summary(r));
+  }
+  function options(c, p = null) {
+    scope(c, p);
+    return { company: get(db, 'SELECT * FROM companies WHERE id=?', c), today: today(),
+      projects: all(db, 'SELECT id,name FROM projects WHERE company_id=? ORDER BY name', c).filter(r => access.has('advances.read', c, r.id)),
+      can_write: access.has('advances.write', c, p, !p),
+      accounts: all(db, "SELECT id,code,name,type,purpose FROM ledger_accounts WHERE company_id=? AND active=1 AND purpose IN ('client_advance','tax') AND type='liability' ORDER BY code", c),
+      contracts: all(db, 'SELECT id,company_id,project_id FROM client_contracts WHERE company_id=? ORDER BY rowid DESC', c).filter(r => (!p || p === r.project_id) && can('read', r)).map(r => {
+        const contract = contractData(db, r.id), approved = approvedPrincipal(r.id);
+        const active = get(db, "SELECT id FROM contract_finance_policies WHERE contract_id=? AND state='active'", r.id);
+        return { ...contract, finance_ready: !!active, approved_principal: approved,
+          remaining_allowance: money(new D(contract.terms.advance_ceiling).minus(approved)),
+          can_write: can('write', r), can_open: access.has('certificates.read', c, r.project_id) };
+      }) };
+  }
+  function report(c, { project = null, currency = null, to = today() } = {}) {
+    scope(c, project); day(to); requireThat(to <= today(), 'Report cutoff cannot be future.');
+    requireThat(currency === null || /^[A-Z]{3}$/.test(currency), 'Choose a three-letter currency.');
+    const rows = all(db, 'SELECT * FROM client_advances WHERE company_id=? AND request_date<=? ORDER BY request_date,id', c, to)
+      .filter(r => (!project || project === r.project_id) && (!currency || currency === r.currency) && can('read', r)).map(r => summary(r, to));
+    return advanceReport(db, access, get(db, 'SELECT * FROM companies WHERE id=?', c), project, currency, to, rows);
+  }
+
   function detail(id) {
     const r = row(id), s = JSON.parse(r.snapshot), invoice = get(db, 'SELECT * FROM client_invoices WHERE advance_id=?', id);
     const received = invoice?.state === 'posted' ? advanceSettlement(db, invoice) : null;
-    return { ...r, snapshot: s, invoice: invoice && { id: invoice.id, state: invoice.state, total: invoice.total, company_total: invoice.company_total, can_open: access.has('ar.read', r.company_id, r.project_id) }, received,
+    const position = summary(r);
+    const receipt_links = invoice ? all(db, "SELECT id,title,payload,accounting_date,reversal_of FROM client_receipts WHERE state='recorded' ORDER BY accounting_date,id").flatMap(x => {
+      const allocations = JSON.parse(x.payload).allocations, selected = allocations.filter(a => a.invoice_id === invoice.id);
+      const can_open = allocations.every(a => access.has('customer_receipts.read', r.company_id, a.project_id));
+      return selected.map(a => ({ id: x.id, title: can_open ? x.title : 'Receipt allocation', date: x.accounting_date, amount: a.amount, reversal: !!x.reversal_of, can_open }));
+    }) : [];
+    return { ...r, ...position, snapshot: s, invoice: invoice && { ...position.invoice, total: invoice.total, company_total: invoice.company_total, can_open: access.has('ar.read', r.company_id, r.project_id) }, received, receipt_links,
+      can_open_contract: access.has('certificates.read', r.company_id, r.project_id),
+      can_open_certificate: access.has('certificates.read', r.company_id, r.project_id),
       can_edit: r.author_id === actorId && ['draft','returned'].includes(r.state) && can('write', r),
       can_submit: r.author_id === actorId && r.state === 'draft' && can('write', r), can_review: reviewer(r),
       can_cancel: r.author_id === actorId && ['draft','submitted','returned'].includes(r.state) && can('write', r),
@@ -166,5 +217,5 @@ export function advances(db, actorId, today = () => now().slice(0, 10)) {
     });
   }
   function download(id) { const e = get(db, 'SELECT * FROM client_advance_evidence WHERE id=?', id); requireThat(e, 'Evidence is unavailable.', 404); row(e.advance_id); return e; }
-  return { save, decide, detail, download };
+  return { save, decide, detail, download, list, options, report };
 }

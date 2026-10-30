@@ -1,3 +1,5 @@
+import { advancesCsv } from '../src/advances-export.js';
+import { createService } from '../server/service.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { openDatabase } from '../server/db.mjs';
@@ -199,6 +201,12 @@ test('foreign advance uses separate request, invoice and bank rates without reva
   const fx=ci.journal.find(l=>l.description==='Advance tax carrying exchange difference');assert.equal(fx.base_debit,'1.23');assert.equal(fx.account_id,loss);
   assert.equal(money(sum(ci.journal.map(l=>l.base_debit))),money(sum(ci.journal.map(l=>l.base_credit))));
   assert.equal(f.db.prepare('SELECT base_credit FROM ledger_lines WHERE entry_id=? AND description=?').get(r.journal_id,'Customer settlement exchange difference').base_credit,'20.33');
+  const advanceReport=f.writer.report('jakh',{project:'harbour',currency:'USD'});
+  assert.equal(advanceReport.tax_reconciliation.difference,'0.00');assert.equal(advanceReport.tax_reconciliation.source_unreleased_tax,'0.00');
+  assert.equal(advanceReport.rows.length,1);assert.equal(advanceReport.rows[0].base_invoiced,'456.84');
+  assert.equal(advanceReport.rows[0].base_recovered,'456.84');assert.equal(advanceReport.rows[0].paid_principal,'123.47');
+  assert.equal(advanceReport.reconciliation.difference,'0.00');assert.equal(advanceReport.reconciliation.ledger_liability,'0.00');
+  const excluded=f.writer.report('jakh',{currency:'AED'});assert.equal(excluded.rows.length,0);assert.equal(excluded.reconciliation.ledger_liability,'0.00');
 });
 
 function policyForRecovery(f, extra = {}) {
@@ -317,4 +325,37 @@ test('multiple source invoices reconcile certified and posted recovery and expor
   for(const i of originals) assert.ok(detail.includes(i.id));
   assert.ok(exported.includes('Original advance tax released'));assert.ok(exported.includes('300.03'));
   assert.equal(f.post.report('jakh',{project:'gardens'}).totals.posted_recovery,'0.00');
+});
+
+test('advance report separates unpaid liability, actual principal, certified reservations and posted recovery with complete CSV', t=>{
+  const f=fixture(t), r=approved(f,{principal:'100',tax_percent:'5',title:'=unsafe spreadsheet title',request_date:'2026-10-28',rate_date:'2026-10-28'}), i=invoice(f,r);
+  const before=f.writer.report('jakh',{project:'harbour'});
+  assert.equal(before.rows[0].paid_principal,'0.00');assert.equal(before.rows[0].liability_principal,'100.00');
+  assert.deepEqual(before.reconciliation,{source_liability:'100.00',ledger_liability:'100.00',difference:'0.00'});
+  receive(f,i,'52.50','ADV-REPORT');policyForRecovery(f);
+  const cert=certify(f,measurement(f));
+  let report=f.writer.report('jakh',{project:'harbour',currency:'AED'}), row=report.rows[0];
+  assert.equal(row.paid_principal,'50.00');assert.equal(row.paid_tax,'2.50');assert.equal(row.current_certified,'50.00');
+  assert.equal(row.current_available,'0.00');assert.equal(row.recovered_principal,'0.00');assert.equal(row.liability_principal,'100.00');
+  certificateInvoice(f,cert);report=f.writer.report('jakh',{project:'harbour'});row=report.rows[0];
+  assert.equal(row.recovered_principal,'50.00');assert.equal(row.recovered_tax,'2.50');assert.equal(row.paid_unrecovered,'0.00');
+  assert.deepEqual(report.tax_reconciliation,{source_unreleased_tax:'2.50',ledger_unreleased_tax:'2.50',difference:'0.00'});
+  assert.equal(row.open_receivable,'52.50');assert.equal(row.base_liability,'50.00');assert.equal(report.reconciliation.difference,'0.00');
+  const csv=advancesCsv(report);assert.ok(csv.includes("'=unsafe spreadsheet title"));assert.ok(csv.includes(cert.id));assert.ok(csv.includes(i.id));assert.ok(csv.includes('Company liability'));assert.ok(csv.includes(report.findings[1]));
+  const past=f.writer.report('jakh',{to:'2026-10-28'});assert.equal(past.rows.length,1);assert.equal(past.rows[0].current_certified,'50.00');assert.equal(past.rows[0].paid_principal,'0.00');assert.equal(past.rows[0].invoiced_principal,'0.00');assert.equal(past.reconciliation.source_liability,'0.00');assert.equal(past.reconciliation.ledger_liability,'0.00');
+  assert.throws(()=>f.writer.report('jakh',{to:'2026-02-30'}),/valid calendar/);assert.throws(()=>f.writer.report('jakh',{to:'2026-10-30'}),/future/);assert.throws(()=>f.writer.report('jakh',{currency:'aed'}),/currency/);
+  const detail=f.writer.detail(r.id);assert.equal(detail.receipt_links.length,1);assert.equal(detail.recoveries[0].certificate_id,cert.id);
+});
+
+test('advance list, options, reports, search and workspace enforce scope and current authority',t=>{
+  const f=fixture(t),r=approved(f,{principal:'100',tax_percent:'0'});invoice(f,r);
+  const other=advances(f.db,'advance-other',today);
+  assert.equal(other.list('jakh').length,0);assert.equal(other.report('jakh').reconciliation.ledger_liability,'0.00');
+  assert.ok(other.options('jakh').contracts.every(c=>c.project_id==='gardens'));
+  for(const fn of ['list','options']){assert.throws(()=>other[fn]('build'),/unavailable/);assert.throws(()=>other[fn]('jakh','harbour'),/unavailable/);}
+  assert.throws(()=>other.report('jakh',{project:'harbour'}),/unavailable/);
+  const reader=createService(f.db,'advance-other',today);assert.equal(reader.search('jakh',r.id).length,0);assert.equal(reader.workspace('jakh').client_advances.length,0);
+  const own=createService(f.db,'advance-writer',today);assert.equal(own.search('jakh',r.id)[0].id,r.id);assert.equal(own.workspace('jakh','harbour').client_advances.length,1);
+  f.db.prepare("UPDATE memberships SET role_id='site_engineer' WHERE user_id='advance-writer'").run();
+  assert.throws(()=>f.writer.options('jakh'),/unavailable/);assert.equal(own.workspace('jakh').client_advances.length,0);
 });

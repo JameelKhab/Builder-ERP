@@ -161,3 +161,7 @@ Request approval, canonical advance-liability invoicing and receipt-derived prin
 The cross-laptop checkpoint also preserves schema-17 recovery groundwork and a detailed continuation plan. It does not accept F092 recovery: allocation/posting/reversal protection, reports, UI and examples remain required.
 
 Connected certificate recovery is now implemented with original principal/tax carrying, explicit policies, independent reservation/posting and receipt-correction protection. F092 remains partial pending the dedicated advance user flow, complete subledger reports, examples and source acceptance.
+
+## 29 October 2026 — Client advances workspace checkpoint
+
+The authorised original-code implementation now includes the Client advances destination, scoped request/list/options/report/export, original evidence and history, shared invoice preparation, receipt/recovery links, My Work/search and meaningful examples in both companies/all supplied projects. Principal and original advance-tax reconciliation preserve accounting cutoff, currency, project scope and original carrying values. Current approval/certification columns are labelled as current workflow decisions. Approved cancellation/credits, recovered-certificate correction, retention and source parity remain requirements, not implied completions. The full 267-function/34-contract/21-domain goal is unchanged.

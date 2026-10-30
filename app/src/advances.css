@@ -1,0 +1,15 @@
+.advance-next { display:flex; gap:1rem; flex-wrap:wrap; padding:1rem; margin:1rem 0; background:#eef5f1; border-left:3px solid #32745c; border-radius:6px; }
+.advance-views { margin:1rem 0; }
+.advance-card small { white-space:normal; }
+.advance-card > span { min-width:0; overflow-wrap:anywhere; }
+.advance-trail { display:flex; flex-wrap:wrap; gap:.5rem 1rem; padding:.8rem 0; border-bottom:1px solid #e4e8e5; }
+.advance-trail p { flex-basis:100%; margin:0; }
+.advance-hash { display:block; overflow-wrap:anywhere; color:#68736d; margin-top:.3rem; }
+.advances-page .field select { max-width:100%; }
+@media(max-width:640px) {
+ .advances-page .offer-overview { grid-template-columns:1fr; }
+ .advances-page .offer-fields, .advances-page .certificate-filters { display:grid; grid-template-columns:1fr; }
+ .advance-card { grid-template-columns:minmax(0,1fr) 20px; }
+ .advance-card > span:nth-child(2) { grid-row:2; text-align:left; }
+ .advance-card > svg { grid-column:2; grid-row:1; }
+}
