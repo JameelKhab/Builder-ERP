@@ -1,4 +1,5 @@
 import { installCorrectionExamples } from './client-corrections-examples.mjs';
+import { installCustomerCreditExamples } from './customer-credits-examples.mjs';
 import { installAdvanceExamples } from './advances-examples.mjs';
 import { installAdvances } from './advances-schema.mjs';
 import { installAdvanceRecovery } from './advance-recovery-schema.mjs';
@@ -34,7 +35,7 @@ import { seed } from './seed.mjs';
 import { installAccess } from './access.mjs';
 import { installExamples } from './examples.mjs';
 export function openDatabase(path = ':memory:', {
-  examples = false, advanceExamples = false, correctionExamples = false
+  examples = false, advanceExamples = false, correctionExamples = false, creditExamples = false
 } = {}) {
   const db = new DatabaseSync(path);
   db.exec(`PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
@@ -98,6 +99,7 @@ export function openDatabase(path = ':memory:', {
     installReceiptExamples(db);
     if (advanceExamples || correctionExamples) installAdvanceExamples(db);
     if (correctionExamples) installCorrectionExamples(db);
+    if (creditExamples) installCustomerCreditExamples(db);
   }
   return db;
 }

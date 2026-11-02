@@ -377,6 +377,9 @@ export function customerCredits(db, actorId, today = () => now().slice(0, 10)) {
       history: all('SELECT e.id,e.action,e.reason,e.at,u.name actor FROM client_credit_events e JOIN users u ON u.id=e.actor_id WHERE settlement_id=? ORDER BY e.id', id),
       clearance: clearance(id),
       can_edit: r.author_id === actorId && can('write', r) && ['draft', 'returned'].includes(r.state),
+      can_submit: r.author_id === actorId && can('write', r) && r.state === 'draft' && !blockers.length,
+      can_withdraw: r.author_id === actorId && can('write', r) && ['submitted', 'approved'].includes(r.state),
+      can_cancel: r.author_id === actorId && can('write', r) && ['draft', 'returned'].includes(r.state),
       can_approve: r.state === 'submitted' && reviewer(r) && !blockers.length,
       can_return: ['submitted', 'approved'].includes(r.state) && can('approve', r) && actorId !== r.author_id,
       can_record: r.state === 'approved' && can('record', r) && actorId !== r.approved_by && reviewer(r, r.approved_by) && !blockers.length,
@@ -396,7 +399,8 @@ export function customerCredits(db, actorId, today = () => now().slice(0, 10)) {
       currency: r.currency,
       total: r.total,
       accounting_date: r.accounting_date,
-      author_id: r.author_id
+      author_id: r.author_id,
+      source_invoice_id: r.source_invoice_id
     }));
   }
   function options(c, p = null) {

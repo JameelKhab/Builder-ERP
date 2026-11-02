@@ -1,6 +1,7 @@
 import { clientCorrections } from './client-corrections.mjs';
 import { advances } from './advances.mjs';
 import { receipts } from './receipts.mjs';
+import { customerCredits } from './customer-credits.mjs';
 import { certificates } from './certificates.mjs';
 import { commercial } from './commercial.mjs';
 import { boqIntake } from './boq-intake.mjs';
@@ -408,6 +409,7 @@ export function createService(db, actorId, today = () => new Date().toISOString(
         client_corrections: access.has('ar.read',company,project,!project) ? clientCorrections(db,actorId,today).list(company,project) : [],
         client_advances: access.has('advances.read',company,project,!project) ? advances(db,actorId,today).list(company,project) : [],
         client_receipts: access.has('customer_receipts.read',company,project,!project) ? receipts(db,actorId,today).list(company,project) : [],
+        customer_credits: access.has('customer_receipts.read',company,project,!project) ? customerCredits(db,actorId,today).list(company,project) : [],
         client_invoices: access.has('ar.read',company,project,!project) ? certificates(db,actorId,today).invoiceList(company,project) : [],
         commercial_offers: access.has('sales.read',company,project,!project) ? commercial(db,actorId,today).list(company,project) : [],
         estimate_documents: access.has('tenders.read', company, project, !project) ? estimates(db, actorId, today).list(company, project) : [],
@@ -492,11 +494,12 @@ export function createService(db, actorId, today = () => new Date().toISOString(
       const correctionRows = access.has('ar.read',company,null,true) ? clientCorrections(db,actorId,today).list(company).map(r=>({...r,category:'Client corrections',status:r.state_label,display_reference:[r.advance_id,r.certificate_id,r.invoice_id].filter(Boolean).join(' ')})) : [];
       const clientAdvanceRows = access.has('advances.read',company,null,true) ? advances(db,actorId,today).list(company).map(r=>({...r,category:'Client advances',customer_name:r.customer,status:r.state_label})) : [];
       const clientReceiptRows = access.has('customer_receipts.read',company,null,true) ? receipts(db,actorId,today).list(company).filter(r=>r.can_open).map(r=>({...r,category:'Customer receipts',customer_name:r.customer,status:r.state_label})) : [];
+      const customerCreditRows = access.has('customer_receipts.read',company,null,true) ? customerCredits(db,actorId,today).list(company).map(r=>({...r,category:'Customer credits',status:r.state.replaceAll('_',' '),display_reference:r.source_invoice_id})) : [];
       const clientInvoiceRows = access.has('ar.read',company,null,true) ? certificates(db,actorId,today).invoiceList(company).map(r=>({...r,category:'Client invoices',status:r.state_label})) : [];
       const commercialRows = access.has('sales.read',company,null,true) ? commercial(db,actorId,today).list(company).map(r=>({...r,category:'Quotations & awards',status:r.state_label})) : [];
       const estimateRows = access.has('tenders.read', company, null, true) ? estimates(db, actorId, today).list(company).map(r=>({...r,display_reference:r.tender_reference,category:'Bids & estimates',status:r.state_label})) : [];
       const intakeRows = access.has('tenders.read', company, null, true) ? boqIntake(db,actorId,today).list(company).map(r=>({...r,id:r.estimate_id,display_reference:r.id,title:`BOQ intake · ${r.title}`,category:'Workbook intake',status:r.state_label})) : [];
-      return [...correctionRows,...clientAdvanceRows, ...certificateRows, ...clientInvoiceRows,...clientReceiptRows, ...intakeRows, ...commercialRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.customer_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
+      return [...correctionRows,...customerCreditRows,...clientAdvanceRows, ...certificateRows, ...clientInvoiceRows,...clientReceiptRows, ...intakeRows, ...commercialRows, ...estimateRows, ...paymentRows, ...payableRows, ...ledgerRows, ...qualityRows, ...records(company), ...requests(company), ...typed, ...budgetDocs, ...masterRows].filter(r => [r.id, r.display_reference, r.title, r.location, r.owner, r.vendor_name, r.customer_name, r.category].filter(Boolean).join(' ').toLowerCase().includes(q)).slice(0, 30);
     }
   };
 }

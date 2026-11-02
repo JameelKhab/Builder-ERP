@@ -22,6 +22,8 @@ export const CATEGORY_CAPABILITY = {
   certificates: 'certificates.read',
   'Client corrections': 'ar.read',
   'client-corrections': 'ar.read',
+  'Customer credits': 'customer_receipts.read',
+  'customer-credits': 'customer_receipts.read',
   'Client advances': 'advances.read',
   'client-advances': 'advances.read',
   'Customer receipts': 'customer_receipts.read',
@@ -117,6 +119,15 @@ export const DESTINATIONS = [{
   cap: 'advances.read',
   section: 'Company',
   category: 'client-advances',
+  icon: 'Wallet'
+}, {
+  id: 'customer-credits',
+  group: 'Company operations',
+  title: 'Customer credits',
+  description: 'Apply retained credit or review a refund with clear evidence.',
+  cap: 'customer_receipts.read',
+  section: 'Company',
+  category: 'customer-credits',
   icon: 'Wallet'
 }, {
   id: 'customer-receipts',

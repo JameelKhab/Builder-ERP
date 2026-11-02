@@ -29,6 +29,8 @@ const EstimatesPage = lazy(() => import('./Estimates.jsx'));
 const Estimates = props => <Suspense fallback={<p role='status'>Loading estimates…</p>}><EstimatesPage {...props}/></Suspense>;
 const ReceiptsPage = lazy(() => import('./Receipts.jsx'));
 const Receipts = props => <Suspense fallback={<p role='status'>Loading customer receipts…</p>}><ReceiptsPage {...props}/></Suspense>;
+const CustomerCreditsPage = lazy(() => import('./CustomerCredits.jsx'));
+const CustomerCredits = props => <Suspense fallback={<p role='status'>Loading customer credits…</p>}><CustomerCreditsPage {...props}/></Suspense>;
 const PaymentsPage = lazy(() => import('./Payments.jsx'));
 const Payments = props => <Suspense fallback={<p role='status'>Loading payments…</p>}><PaymentsPage {...props}/></Suspense>;
 const PayablesPage = lazy(() => import('./Payables.jsx'));
@@ -165,6 +167,7 @@ export function App({
     if (/^CCR-[A-F0-9]{8}$/.test(id) || /^CCRNEW:(CAD|CER)-[A-F0-9]{8}$/.test(id)) { setModal({type:'client-corrections',title:'Client correction',id}); return; }
     if (/^CAD-[A-F0-9]{8}$/.test(id)) { setModal({type:'client-advances',title:'Client advance',id}); return; }
     if (/^CRC-[A-F0-9]{8}$/.test(id)) { setModal({type:'customer-receipts',title:'Customer receipt',id}); return; }
+    if (/^CCS-[A-F0-9]{8}$/.test(id) || /^CCSNEW:CIN-[A-F0-9]{8}$/.test(id)) { setModal({type:'customer-credits',title:'Customer credit',id}); return; }
     if (/^RCN:CIN-[A-F0-9]{8}$/.test(id)) { setModal({type:'customer-receipts',title:'Prepare customer receipt',invoice:id.slice(4)}); return; }
     if (/^PAY-[A-F0-9]{8}$/.test(id)) { setModal({type:'payments',title:'Payments & cash flow',id}); return; }
     if (/^AP-[A-F0-9]{8}$/.test(id)) { setModal({type:'payables',title:'Supplier bills',id}); return; }
@@ -413,6 +416,7 @@ export function App({
     if (route.area === 'Overview') return overview();
     if (['Purchase requests', 'Orders & deliveries'].includes(route.category)) return <Procurement onOpen={openRecord} key={companyId + projectId + route.category} company={company} project={project} projects={boot.projects.filter(p => p.company_id === companyId)} preview={!!boot.preview} initialTab={route.category === 'Orders & deliveries' ? 'orders' : 'requests'} />;
     if (route.category === 'Client corrections') return <Corrections key={companyId+projectId} company={company} project={project} preview={!!boot.preview} onOpen={openRecord}/>;
+    if (route.category === 'Customer credits') return <CustomerCredits key={companyId+projectId} company={company} project={project} preview={!!boot.preview} onChanged={reloadFoundations} onOpen={openRecord}/>;
     if (route.category === 'Client advances') return <Advances key={companyId+projectId} company={company} project={project} preview={!!boot.preview} onOpen={openRecord}/>;
     if (route.category === 'Customer receipts') return <Receipts key={companyId+projectId} company={company} project={project} preview={!!boot.preview} onOpen={openRecord}/>;
     if (route.category === 'Payments & cash flow') return <><Payments key={companyId+projectId} company={company} project={project} preview={!!boot.preview} onOpen={openRecord}/><details className='record-section'><summary>Earlier commercial and cash planning examples · read only</summary><RecordTable rows={workspace.records.filter(r => r.category === 'Payments & cash flow')} onOpen={openRecord}/></details></>;
@@ -446,6 +450,7 @@ export function App({
   function companyArea() {
     if (route.category && !canCategory(caps, route.category)) return <Empty>This destination is not available for your role in this company.</Empty>;
     if (route.category === 'client-corrections') return <Corrections key={companyId} company={company} preview={!!boot.preview} onOpen={openRecord}/>;
+    if (route.category === 'customer-credits') return <CustomerCredits key={companyId} company={company} preview={!!boot.preview} onChanged={reloadFoundations} onOpen={openRecord}/>;
     if (route.category === 'client-advances') return <Advances key={companyId} company={company} preview={!!boot.preview} onOpen={openRecord}/>;
     if (route.category === 'customer-receipts') return <Receipts key={companyId} company={company} preview={!!boot.preview} onOpen={openRecord}/>;
     if (route.category === 'Payments & cash flow') return <><Payments key={companyId} company={company} preview={!!boot.preview} onOpen={openRecord}/><details className='record-section'><summary>Earlier commercial and cash planning examples · read only</summary><RecordTable rows={workspace.records.filter(r => r.category === 'Payments & cash flow')} onOpen={openRecord}/></details></>;
@@ -481,6 +486,7 @@ export function App({
     if (modal.type === 'client-corrections') return <Corrections key={companyId+modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id.startsWith('CCRNEW:')?null:modal.id} initialSource={modal.id.startsWith('CCRNEW:')?modal.id.slice(7):null} onChanged={refresh} onOpen={openRecord}/>;
     if (modal.type === 'client-advances') return <Advances key={companyId+modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id} onChanged={refresh} onOpen={openRecord}/>;
     if (modal.type === 'customer-receipts') return <Receipts key={companyId+(modal.id||modal.invoice)} company={company} preview={!!boot.preview} initialRecord={modal.id} initialInvoice={modal.invoice} onChanged={refresh} onOpen={openRecord}/>;
+    if (modal.type === 'customer-credits') return <CustomerCredits key={companyId+modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id.startsWith('CCSNEW:')?null:modal.id} initialSource={modal.id.startsWith('CCSNEW:')?modal.id.slice(7):null} onChanged={refresh} onOpen={openRecord}/>;
     if (modal.type === 'payments') return <Payments key={companyId+modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id} initialView={modal.initialView} onChanged={refresh} onOpen={openRecord}/>;
     if (modal.type === 'payables') return <Payables key={companyId+modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id} onChanged={refresh} onOpen={openRecord}/>;
     if (modal.type === 'ledger') return <Ledger onOpen={openRecord} key={companyId + modal.id} company={company} preview={!!boot.preview} initialRecord={modal.id} onChanged={refresh} />;
