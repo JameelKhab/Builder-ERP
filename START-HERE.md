@@ -1,6 +1,8 @@
 # Resume Builder ERP on another laptop or account
 
-Checkpoint: 30 October 2026. Latest step: customer-credit allocation/refund accounting foundation (schema 19; see docs/implementation/customer-credits-local.md). Next connect its simple UI, My Work/search, bank matching and examples, then exact settlement reversals and ownership handover. The repository is self-contained for another laptop/account.
+Latest handover: 3 November 2026. Application checkpoint `5e159c8` is on GitHub main. Customer-credit company/project navigation, preparation/detail screen, scoped search/workspace, findings/CSV and two fictional walkthrough drafts per supplied project are connected. All 279 tests and the build passed. Continue bank-match UI, original remittance-file recording, source entry links, robust editing/report refresh, meaningful operational examples through ordinary services, My Work, settlement reversals and ownership handover before accepting this workflow. The walkthrough drafts have zero amounts and are not completed financial examples. Read the latest project log alongside the earlier foundation details below.
+
+For another laptop/account: clone this repository, follow the startup commands below, and give the new coding assistant this file and the latest project log. No access to the old chat is required. GitHub contains source and project records; the exact local SQLite workspace is private and needs a separate consistent backup. The portable archive from the earlier checkpoint predates `5e159c8`; use GitHub for current source and do not treat that archive as the latest source checkpoint.
 
 **Builder ERP is still being built. It is not yet a complete replacement or a production release.** The objective remains all **267 comparison functions, 34 data contracts and 21 domains**, preserving JAKH's business logic in original code. No function has been certified as full migration parity and no real source migration has occurred.
 
